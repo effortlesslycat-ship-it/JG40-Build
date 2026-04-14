@@ -586,6 +586,20 @@ body.dark-mode .jg-footer__legal a { color: #a0a0a0; }
 body.dark-mode .jg-footer__legal a:hover { color: #a8b361; }
 .jg-footer__legal-sep { margin: 0 8px; opacity: 0.4; }
 
+
+/* ══════════════════════════════════════════════════════
+   DARK MODE PATCHES
+══════════════════════════════════════════════════════ */
+body.dark-mode .page-title-band h1,
+body.dark-mode .page-title-band p,
+body.dark-mode .page-title-band .stat-line {
+    color: #ffffff;
+}
+
+body.dark-mode .page-title-band {
+    background-color: #0d2a45;
+}
+
 /* ══════════════════════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════════════════════ */
