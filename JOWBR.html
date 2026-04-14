@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burial Registry (JOWBR) — JewishGen</title>
+    <meta name="description" content="Search over 7 million Jewish burial records from 12,000+ cemeteries in 144 countries. The JewishGen Online Worldwide Burial Registry (JOWBR).">
+
+    <!-- 1. Bootstrap (layout only) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <!-- 2. JewishGen Global Design System -->
+    <link rel="stylesheet" href="jg-global.css">
+
+    <!-- 3. Page-specific styles -->
+    <style>
+
+        /* ── Breadcrumb ─────────────────────────────────────── */
+        .jg-breadcrumb {
+            background-color: var(--cream);
+            padding: 9px 50px;
+            font-size: 0.8125rem;
+            color: var(--charcoal);
+            border-bottom: 1px solid #d1caba;
+        }
+        body.dark-mode .jg-breadcrumb {
+            background-color: #1a1a1a;
+            border-bottom-color: #333;
+        }
+        .jg-breadcrumb a {
+            color: var(--navy);
+            font-weight: bold;
+            text-decoration: underline dotted;
+        }
+        .jg-breadcrumb a:hover { color: var(--sage); }
+        .jg-breadcrumb .sep {
+            margin: 0 6px;
+            opacity: 0.45;
+        }
+
+        /* ── Page Title Band ────────────────────────────────── */
+        .jg-page-band {
+            background-color: #09497a;
+            padding: 34px 50px;
+            text-align: center;
+        }
+        body.dark-mode .jg-page-band { background-color: #0d2a45; }
+
+        .jg-page-band__tag {
+            display: inline-block;
+            background-color: var(--sage);
+            color: #ffffff;
+            font-size: 0.6875rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 3px 12px;
+            border-radius: 3px;
+            margin-bottom: 12px;
+        }
+        .jg-page-band h1 {
+            margin: 0 0 8px;
+            font-size: 2.125rem;
+            font-weight: bold;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+        .jg-page-band__sub {
+            font-size: 1rem;
+            color: #a9c0d0;
+            margin: 0 auto;
+            max-width: 560px;
+            line-height: 1.6;
+        }
+
+        /* ── JOWBR Section Nav ──────────────────────────────── */
+        .jowbr-nav {
+            background-color: var(--white);
+            border-bottom: 2px solid var(--cream);
+            padding: 0 50px;
+            display: flex;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        body.dark-mode .jowbr-nav {
+            background-color: #121212;
+            border-bottom-color: #333;
+        }
+        .jowbr-nav a {
+            display: inline-block;
+            padding: 13px 18px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+            text-decoration: none;
+            transition: color 0.15s, border-color 0.15s;
+        }
+        .jowbr-nav a:hover {
+            color: var(--navy);
+            border-bottom-color: var(--sage);
+        }
+        .jowbr-nav a.active {
+            color: #09497a;
+            border-bottom-color: #09497a;
+        }
+        body.dark-mode .jowbr-nav a { color: #a0a0a0; }
+        body.dark-mode .jowbr-nav a:hover,
+        body.dark-mode .jowbr-nav a.active {
+            color: #e0e0e0;
+            border-bottom-color: var(--sage);
+        }
+
+        /* ── Stat Bar ───────────────────────────────────────── */
+        .jowbr-stats {
+            background-color: var(--cream);
+            border-bottom: 1px solid #d1caba;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        body.dark-mode .jowbr-stats {
+            background-color: #1a1a1a;
+            border-bottom-color: #333;
+        }
+        .jowbr-stat {
+            text-align: center;
+            padding: 10px 40px;
+            border-right: 1px solid #c5bca8;
+        }
+        .jowbr-stat:last-child { border-right: none; }
+        .jowbr-stat__num {
+            display: block;
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: #09497a;
+            line-height: 1.1;
+        }
+        body.dark-mode .jowbr-stat__num { color: #a8b361; }
+        .jowbr-stat__label {
+            display: block;
+            font-size: 0.6875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--charcoal);
+            margin-top: 3px;
+        }
+
+        /* ── Search Section Wrapper ─────────────────────────── */
+        .jowbr-search-wrap {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px 10px;
+        }
+
+        /* Reuse jg-search-container from global, extend for JOWBR rows */
+        .jowbr-search-title {
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--sage);
+            margin-bottom: 20px;
+        }
+
+        /* Each of the 4 search rows */
+        .jowbr-row {
+            display: grid;
+            grid-template-columns: 42px 170px 190px 1fr;
+            gap: 10px;
+            align-items: end;
+            margin-bottom: 14px;
+        }
+        .jowbr-row__num {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: var(--sage);
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .jowbr-row-divider {
+            border: none;
+            border-top: 1px solid var(--cream);
+            margin: 18px 0;
+        }
+        body.dark-mode .jowbr-row-divider { border-top-color: #333; }
+
+        /* Controls row */
+        .jowbr-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 24px;
+            padding-top: 18px;
+            border-top: 2px solid var(--cream);
+            margin-top: 4px;
+        }
+        body.dark-mode .jowbr-controls { border-top-color: #333; }
+
+        .jowbr-match-group legend,
+        .jowbr-geo-group label {
+            font-size: 0.6875rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--charcoal);
+            margin-bottom: 6px;
+            display: block;
+        }
+        .jowbr-match-group .form-check {
+            margin-bottom: 4px;
+        }
+        .jowbr-match-group .form-check-input { accent-color: #09497a; }
+        .jowbr-match-group .form-check-label {
+            font-size: 0.875rem;
+            color: var(--charcoal);
+            cursor: pointer;
+        }
+        body.dark-mode .jowbr-match-group .form-check-label { color: #a0a0a0; }
+
+        .jowbr-geo-group select {
+            min-width: 230px;
+        }
+
+        .jowbr-search-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 28px;
+            flex-wrap: wrap;
+        }
+
+        .jg-btn-reset {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--navy);
+            border: 2px solid var(--navy);
+            padding: 0.6875rem 1.5rem;
+            font-size: 0.875rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: inherit;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background-color 0.2s;
+        }
+        .jg-btn-reset:hover { background-color: var(--cream); }
+        body.dark-mode .jg-btn-reset { color: #e0e0e0; border-color: #555; }
+        body.dark-mode .jg-btn-reset:hover { background-color: #2a2a2a; }
+
+        /* ── "New to JOWBR" nudge bar ───────────────────────── */
+        .jowbr-nudge {
+            text-align: center;
+            padding: 14px 20px 24px;
+            font-size: 0.875rem;
+            color: var(--charcoal);
+        }
+        .jowbr-nudge a {
+            color: #09497a;
+            font-weight: bold;
+            text-decoration: underline dotted;
+        }
+        .jowbr-nudge a:hover { color: var(--sage); }
+
+        /* ── About Section ──────────────────────────────────── */
+        .jowbr-about {
+            background-color: #f5f2eb;
+            border-top: 4px solid #09497a;
+            padding: 56px 50px 64px;
+        }
+        body.dark-mode .jowbr-about {
+            background-color: #141414;
+            border-top-color: #a8b361;
+        }
+        .jowbr-about__inner {
+            max-width: 1060px;
+            margin: 0 auto;
+        }
+        .jowbr-about__intro {
+            text-align: center;
+            max-width: 660px;
+            margin: 0 auto 44px;
+        }
+        .jowbr-about__intro h2 {
+            font-size: 1.5rem;
+            color: #09497a;
+            margin: 0 0 12px;
+        }
+        body.dark-mode .jowbr-about__intro h2 { color: #e0e0e0; }
+        .jowbr-about__intro p {
+            font-size: 0.9375rem;
+            line-height: 1.7;
+            color: var(--charcoal);
+            margin: 0;
+        }
+
+        .jowbr-about__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-bottom: 40px;
+        }
+        .jowbr-about__reason {
+            border-left: 3px solid var(--sage);
+            padding-left: 16px;
+        }
+        .jowbr-about__reason h3 {
+            font-size: 0.875rem;
+            font-weight: bold;
+            color: #09497a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0 0 8px;
+        }
+        body.dark-mode .jowbr-about__reason h3 { color: #a8b361; }
+        .jowbr-about__reason p {
+            font-size: 0.875rem;
+            color: var(--charcoal);
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        .jowbr-about__cta {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        /* ── Responsive ─────────────────────────────────────── */
+        @media (max-width: 900px) {
+            .jowbr-row {
+                grid-template-columns: 28px 1fr 1fr;
+            }
+            .jowbr-row > :last-child {
+                grid-column: 2 / -1;
+            }
+            .jowbr-about__grid { grid-template-columns: 1fr 1fr; }
+            .jg-breadcrumb { padding: 9px 20px; }
+            .jg-page-band { padding: 28px 20px; }
+            .jowbr-nav { padding: 0 20px; }
+            .jowbr-stats { padding: 16px 20px; }
+            .jowbr-stat { padding: 10px 20px; }
+        }
+
+        @media (max-width: 600px) {
+            .jowbr-row {
+                grid-template-columns: 1fr;
+            }
+            .jowbr-row__num { text-align: left; padding-bottom: 0; }
+            .jowbr-stat { border-right: none; border-bottom: 1px solid #c5bca8; width: 50%; }
+            .jowbr-stat:nth-child(odd) { border-right: 1px solid #c5bca8; }
+            .jowbr-controls { flex-direction: column; }
+            .jowbr-about { padding: 36px 20px 44px; }
+            .jowbr-about__grid { grid-template-columns: 1fr; }
+            .jg-page-band h1 { font-size: 1.625rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Header injected here -->
+<div id="site-header"></div>
+
+<!-- ═══════════════════════════════════════════════════════
+     BREADCRUMB
+═══════════════════════════════════════════════════════ -->
+<nav class="jg-breadcrumb" aria-label="Breadcrumb">
+    <a href="/">JewishGen Home</a>
+    <span class="sep" aria-hidden="true">›</span>
+    <a href="#">Databases</a>
+    <span class="sep" aria-hidden="true">›</span>
+    <span aria-current="page">Burial Registry (JOWBR)</span>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE TITLE BAND
+═══════════════════════════════════════════════════════ -->
+<div class="jg-page-band">
+    <div class="jg-page-band__tag">Research</div>
+    <h1>Burial Registry (JOWBR)</h1>
+    <p class="jg-page-band__sub">The JewishGen Online Worldwide Burial Registry — search millions of Jewish burial records from cemeteries around the world.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     JOWBR SECTION NAV
+═══════════════════════════════════════════════════════ -->
+<nav class="jowbr-nav" aria-label="JOWBR section navigation">
+    <a href="jowbr-search.html" class="active">Search</a>
+    <a href="jowbr-browse.html">Browse Cemeteries</a>
+    <a href="jowbr-about.html">About &amp; FAQ</a>
+    <a href="jowbr-contribute.html">Contribute Data</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════
+     STATS BAR
+═══════════════════════════════════════════════════════ -->
+<div class="jowbr-stats" aria-label="JOWBR database statistics">
+    <div class="jowbr-stat">
+        <span class="jowbr-stat__num">7M+</span>
+        <span class="jowbr-stat__label">Burial Records</span>
+    </div>
+    <div class="jowbr-stat">
+        <span class="jowbr-stat__num">908K+</span>
+        <span class="jowbr-stat__label">Headstone Photos</span>
+    </div>
+    <div class="jowbr-stat">
+        <span class="jowbr-stat__num">12,114</span>
+        <span class="jowbr-stat__label">Cemeteries</span>
+    </div>
+    <div class="jowbr-stat">
+        <span class="jowbr-stat__num">144</span>
+        <span class="jowbr-stat__label">Countries</span>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SEARCH FORM
+═══════════════════════════════════════════════════════ -->
+<main id="main-content">
+<div class="jowbr-search-wrap">
+    <div class="jg-search-container">
+
+        <p class="jowbr-search-title">Search the Database</p>
+
+        <form action="#" method="get" aria-label="JOWBR burial record search">
+
+            <!-- Row 1 -->
+            <div class="jowbr-row">
+                <div class="jowbr-row__num" aria-hidden="true">1</div>
+                <div>
+                    <label class="jg-field-label" for="dtype1">Search Field</label>
+                    <select id="dtype1" name="dtype1">
+                        <option value="surname">Surname</option>
+                        <option value="givenname">Given Name</option>
+                        <option value="town">Town</option>
+                        <option value="any">Any Field</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="jg-field-label" for="stype1">Search Type</label>
+                    <select id="stype1" name="stype1">
+                        <option value="phonetic">Phonetically Like</option>
+                        <option value="soundslike">Sounds Like</option>
+                        <option value="startswith">Starts With</option>
+                        <option value="exact">Is Exactly</option>
+                        <option value="fuzzy">Fuzzy Match</option>
+                        <option value="fuzzier">Fuzzier Match</option>
+                        <option value="fuzziest">Fuzziest Match</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="jg-field-label" for="val1">Search Term</label>
+                    <input type="text" id="val1" name="val1" placeholder="Enter name or town…" autocomplete="off">
+                </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="jowbr-row">
+                <div class="jowbr-row__num" aria-hidden="true">2</div>
+                <div>
+                    <label class="jg-field-label" for="dtype2">Search Field</label>
+                    <select id="dtype2" name="dtype2">
+                        <option value="surname">Surname</option>
+                        <option value="givenname">Given Name</option>
+                        <option value="town">Town</option>
+                        <option value="any">Any Field</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="jg-field-label" for="stype2">Search Type</label>
+                    <select id="stype2" name="stype2">
+                        <option value="phonetic">Phonetically Like</option>
+                        <option value="soundslike">Sounds Like</option>
+                        <option value="startswith">Starts With</option>
+                        <option value="exact">Is Exactly</option>
+                        <option value="fuzzy">Fuzzy Match</option>
+                        <option value="fuzzier">Fuzzier Match</option>
+                        <option value="fuzziest">Fuzziest Match</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="jg-field-label" for="val2">Search Term</label>
+                    <input type="text" id="val2" name="val2" placeholder="" autocomplete="off">
+                </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="jowbr-row">
+                <div class="jowbr-row__num" aria-hidden="true">3</div>
+                <div>
+                    <label class="jg-field-label" for="dtype3">Search Field</label>
+                    <select id="dtype3" name="dtype3">
+                        <option value="surname">Surname</option>
+                        <option value="givenname">Given Name</option>
+                        <option value="town">Town</option>
+                        <option value="any">Any Field</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="jg-field-label" for="stype3">Search Type</label>
+                    <select id="stype3" name="stype3">
+                        <option value="phonetic">Phonetically Like</option>
+                        <option value="soundslike">Sounds Like</option>
+                        <option value="startswith">Starts With</option>
+                        <option value="exact">Is Exactly</option>
+                        <option value="fuzzy">Fuzzy Match</option>
+                        <option value="fuzzier">Fuzzier Match</option>
+                        <option value="fuzziest">Fuzziest Match</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="jg-field-label" for="val3">Search Term</label>
+                    <input type="text" id="val3" name="val3" placeholder="" autocomplete="off">
+                </div>
+            </div>
+
+            <!-- Row 4 -->
+            <div class="jowbr-row">
+                <div class="jowbr-row__num" aria-hidden="true">4</div>
+                <div>
+                    <label class="jg-field-label" for="dtype4">Search Field</label>
+                    <select id="dtype4" name="dtype4">
+                        <option value="surname">Surname</option>
+                        <option value="givenname">Given Name</option>
+                        <option value="town">Town</option>
+                        <option value="any">Any Field</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="jg-field-label" for="stype4">Search Type</label>
+                    <select id="stype4" name="stype4">
+                        <option value="phonetic">Phonetically Like</option>
+                        <option value="soundslike">Sounds Like</option>
+                        <option value="startswith">Starts With</option>
+                        <option value="exact">Is Exactly</option>
+                        <option value="fuzzy">Fuzzy Match</option>
+                        <option value="fuzzier">Fuzzier Match</option>
+                        <option value="fuzziest">Fuzziest Match</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="jg-field-label" for="val4">Search Term</label>
+                    <input type="text" id="val4" name="val4" placeholder="" autocomplete="off">
+                </div>
+            </div>
+
+            <hr class="jowbr-row-divider">
+
+            <!-- Controls: Match toggle + Geographic filter -->
+            <div class="jowbr-controls">
+
+                <fieldset class="jowbr-match-group" style="border:none; margin:0; padding:0;">
+                    <legend>Match rows using</legend>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="match" id="match-all" value="all" checked>
+                        <label class="form-check-label" for="match-all">Match <strong>ALL</strong> of the above (AND)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="match" id="match-any" value="any">
+                        <label class="form-check-label" for="match-any">Match <strong>ANY</strong> of the above (OR)</label>
+                    </div>
+                </fieldset>
+
+                <div class="jowbr-geo-group">
+                    <label class="jg-field-label" for="geo-region">Geographic Region</label>
+                    <select id="geo-region" name="geo" class="jg-region-select" style="min-width:230px;">
+                        <option value="">All Regions</option>
+                        <option value="africa">Africa</option>
+                        <option value="asia">Asia</option>
+                        <option value="australia">Australia / Oceania</option>
+                        <option value="caribbean">Caribbean</option>
+                        <option value="central-america">Central America</option>
+                        <option value="central-europe">Central Europe</option>
+                        <option value="eastern-europe">Eastern Europe</option>
+                        <option value="middle-east">Middle East</option>
+                        <option value="north-africa">North Africa</option>
+                        <option value="north-america">North America</option>
+                        <option value="scandinavia">Scandinavia</option>
+                        <option value="south-america">South America</option>
+                        <option value="western-europe">Western Europe</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <!-- Submit / Reset -->
+            <div class="jowbr-search-actions">
+                <button type="submit" class="jg-btn-search" style="max-width:220px; margin:0;">
+                    Search Burials
+                </button>
+                <button type="reset" class="jg-btn-reset">
+                    Clear
+                </button>
+            </div>
+
+        </form>
+    </div><!-- /.jg-search-container -->
+</div><!-- /.jowbr-search-wrap -->
+
+<!-- ─── "New to JOWBR?" nudge ──────────────────────────── -->
+<div class="jowbr-nudge">
+    New to JOWBR? <a href="#jowbr-about" onclick="scrollToAbout(event)">Learn what's in the database and how to contribute ↓</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     ABOUT SECTION (below fold)
+═══════════════════════════════════════════════════════ -->
+<section class="jowbr-about" id="jowbr-about" aria-labelledby="about-heading">
+    <div class="jowbr-about__inner">
+
+        <div class="jowbr-about__intro">
+            <h2 id="about-heading">What Is JOWBR?</h2>
+            <p>The JewishGen Online Worldwide Burial Registry is the world's largest centralized database of Jewish burial records — a permanent digital archive of headstone inscriptions, cemetery registers, and historical burial data from every corner of the globe. Records are freely searchable by anyone and updated twice annually.</p>
+        </div>
+
+        <div class="jowbr-about__grid">
+
+            <div class="jowbr-about__reason">
+                <h3>A Permanent Archive</h3>
+                <p>Cemeteries fall into disrepair. Landsmanshaft societies dissolve. JOWBR ensures records survive — a virtual resting place even when the physical one is lost.</p>
+            </div>
+
+            <div class="jowbr-about__reason">
+                <h3>Unique Genealogical Data</h3>
+                <p>Headstones preserve Hebrew names, fathers' names, and death dates unavailable anywhere else — essential for tracing ancestry back to the old country.</p>
+            </div>
+
+            <div class="jowbr-about__reason">
+                <h3>One Central Search</h3>
+                <p>Instead of contacting individual cemeteries worldwide, researchers and families can find burial sites in one place — across 144 countries and counting.</p>
+            </div>
+
+            <div class="jowbr-about__reason">
+                <h3>Volunteer-Powered</h3>
+                <p>Every record was contributed by a volunteer: photographed, transcribed, and translated. You can help grow the registry for future generations.</p>
+            </div>
+
+            <div class="jowbr-about__reason">
+                <h3>Headstone Photos</h3>
+                <p>Over 908,000 gravestone photographs are linked directly to burial records. Can't read Hebrew? JewishGen's ViewMate community can help with translation.</p>
+            </div>
+
+            <div class="jowbr-about__reason">
+                <h3>A Mitzvah</h3>
+                <p>Preserving burial records honors the deceased and comforts the living. Hebrew dates of death support yahrzeit observance for families worldwide.</p>
+            </div>
+
+        </div>
+
+        <div class="jowbr-about__cta">
+            <a href="jowbr-browse.html" class="jg-btn-card">Browse Cemeteries</a>
+            <a href="jowbr-contribute.html" class="jg-btn-card jg-btn-card--sage">Contribute Data</a>
+            <a href="jowbr-about.html" class="jg-btn-card" style="background-color: transparent; color: var(--navy); border: 2px solid var(--navy);">About &amp; FAQ</a>
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<!-- Footer injected here -->
+<div id="site-footer"></div>
+
+<script>
+/* ── Component Loader ──────────────────────────────────── */
+function loadComponent(id, file) {
+    return fetch(file)
+        .then(function(r) {
+            if (!r.ok) throw new Error('Could not load ' + file);
+            return r.text();
+        })
+        .then(function(html) {
+            document.getElementById(id).innerHTML = html;
+        })
+        .catch(function(err) { console.warn(err); });
+}
+
+Promise.all([
+    loadComponent('site-header', 'Header_NavBar.html'),
+    loadComponent('site-footer', 'Footer.html')
+]).then(function() {
+    initPage();
+});
+
+/* ── Page Init ─────────────────────────────────────────── */
+function initPage() {
+    /* Nav keyboard accessibility */
+    document.querySelectorAll('.jg-nav .dropbtn, .main-nav .dropbtn').forEach(function(btn) {
+        btn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                var menu = this.nextElementSibling;
+                if (menu) menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            }
+            if (e.key === 'Escape') {
+                var menu = this.nextElementSibling;
+                if (menu) menu.style.display = 'none';
+            }
+        });
+    });
+}
+
+/* ── Smooth scroll to About section ───────────────────── */
+function scrollToAbout(e) {
+    e.preventDefault();
+    var target = document.getElementById('jowbr-about');
+    if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.setAttribute('tabindex', '-1');
+        target.focus({ preventScroll: true });
+    }
+}
+</script>
+
+</body>
+</html>
