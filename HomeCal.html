@@ -1,8 +1,8 @@
 <!-- ============================================================
      JewishGen Redesign — HomeCal.html (Project Shorashim)
      Upcoming Events section on the homepage.
-     Sits inside the .jg-section wrapper in HomePage.html.
-     CSS: Classes below belong in GlobalStyles.css / HeadSection.txt
+     Self-contained: carries its own .jg-section wrapper.
+     CSS: Classes belong in GlobalStyles.css / HeadSection.txt
 
      DATA SOURCE:
      This component will eventually receive event data from the
@@ -15,148 +15,7 @@
      speaker-bio tooltip text, speaker name, meta, and button link.
      To add or remove an event, copy or delete a full .jg-card block.
      Keep to 3 cards maximum on the homepage (grid-3 layout).
-     ============================================================
-
-     ── CSS BLOCK (move to GlobalStyles.css when ready) ────────
-
-     .jg-grid-3 {
-         display: grid;
-         grid-template-columns: repeat(3, 1fr);
-         gap: 1.875rem;
-     }
-
-     .jg-card {
-         background-color: var(--cream);
-         border-radius: 8px;
-         padding: 1.25rem;
-         position: relative;
-         overflow: visible;
-         font-family: 'Gotham', 'Arial', sans-serif;
-         transition: transform 0.2s ease;
-     }
-     .jg-card:hover { transform: translateY(-4px); }
-     body.dark-mode .jg-card { background-color: #1e1e1e; }
-
-     /* ── Speaker bio tooltip ──────────────────────────────────
-        Appears above the card on hover.
-        Must sit inside .jg-card which has position: relative.   */
-     .jg-speaker-bio {
-         visibility: hidden;
-         width: 240px;
-         background-color: var(--charcoal);
-         color: #ffffff;
-         text-align: left;
-         border-radius: 6px;
-         padding: 0.9375rem;
-         position: absolute;
-         z-index: 100;
-         bottom: 105%;
-         left: 50%;
-         margin-left: -120px;
-         opacity: 0;
-         transition: opacity 0.3s ease;
-         font-size: 0.8125rem;
-         line-height: 1.4;
-         box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-         pointer-events: none;
-     }
-     /* Downward arrow */
-     .jg-speaker-bio::after {
-         content: "";
-         position: absolute;
-         top: 100%;
-         left: 50%;
-         margin-left: -5px;
-         border-width: 5px;
-         border-style: solid;
-         border-color: var(--charcoal) transparent transparent transparent;
-     }
-     .jg-card:hover .jg-speaker-bio {
-         visibility: visible;
-         opacity: 1;
-     }
-     body.dark-mode .jg-speaker-bio {
-         background-color: #2a2a2a;
-         border: 1px solid #444;
-     }
-     body.dark-mode .jg-speaker-bio::after {
-         border-color: #2a2a2a transparent transparent transparent;
-     }
-
-     .jg-card__date {
-         font-size: 0.75rem;
-         font-weight: bold;
-         color: var(--sage);
-         text-transform: uppercase;
-         letter-spacing: 0.5px;
-         margin-bottom: 0.25rem;
-     }
-
-     .jg-card__type {
-         font-size: 0.75rem;
-         color: var(--charcoal);
-         text-transform: uppercase;
-         letter-spacing: 1px;
-         margin-bottom: 0.5rem;
-         opacity: 0.7;
-     }
-
-     .jg-card h3 {
-         color: var(--navy);
-         font-size: 1rem;
-         margin: 0 0 0.5rem 0;
-         font-family: 'Gotham', 'Arial', sans-serif;
-     }
-
-     .jg-card__speaker {
-         font-size: 0.875rem;
-         color: var(--navy);
-         font-weight: 600;
-         margin: -0.75rem 0 1.25rem 0;
-         display: block;
-     }
-
-     .jg-card__meta {
-         display: flex;
-         justify-content: space-between;
-         font-size: 0.75rem;
-         color: #666;
-         margin-top: 0.625rem;
-         padding-top: 0.625rem;
-         border-top: 1px solid rgba(0,0,0,0.05);
-     }
-     body.dark-mode .jg-card__meta { color: #a0a0a0; border-top-color: #333; }
-
-     .jg-btn-card {
-         display: inline-block;
-         margin-top: 0.75rem;
-         padding: 0.5rem 0.9375rem;
-         background-color: var(--navy);
-         color: #ffffff;
-         border-radius: 4px;
-         font-size: 0.8125rem;
-         font-weight: bold;
-         text-decoration: none;
-         font-family: 'Gotham', 'Arial', sans-serif;
-         transition: filter 0.2s ease;
-     }
-     .jg-btn-card:hover { filter: brightness(1.15); }
-
-     @media (max-width: 768px) {
-         .jg-grid-3 { grid-template-columns: 1fr; }
-         /* On mobile, tooltip shows below card instead of above */
-         .jg-speaker-bio {
-             bottom: auto;
-             top: 105%;
-         }
-         .jg-speaker-bio::after {
-             top: auto;
-             bottom: 100%;
-             border-color: transparent transparent var(--charcoal) transparent;
-         }
-     }
-
-     ── END CSS BLOCK ───────────────────────────────────────── -->
+     ============================================================ -->
 
 
 <!-- ═══════════════════════════════════════════════════════════
@@ -166,66 +25,63 @@
 ═══════════════════════════════════════════════════════════ -->
 <div class="jg-section">
     <h2 class="jg-section-title">Upcoming Events</h2>
+
     <div class="jg-grid-3">
 
-    <!-- EVENT CARD 1 ─────────────────────────────────────── -->
-    <div class="jg-card">
-
-        <!-- Hover tooltip — bio/description shown on card hover -->
-        <div class="jg-speaker-bio" role="tooltip">
-            <strong>Caitlin Hollander Waas</strong> is the Chief Genealogist for JewishGen.
+        <!-- EVENT CARD 1 ─────────────────────────────────────── -->
+        <div class="jg-card">
+            <div class="jg-speaker-bio" role="tooltip">
+                <strong>Caitlin Hollander Waas</strong> is the Chief Genealogist for JewishGen.
+            </div>
+            <div class="jg-card__date">April 15, 2026</div>
+            <div class="jg-card__type">JewishGen Talk</div>
+            <h3>Finding Personality in Historical Documents</h3>
+            <span class="jg-card__speaker">with Caitlin Hollander Waas</span>
+            <div class="jg-card__meta">
+                <span>💻 Online</span>
+                <span>🕒 2:00 PM ET</span>
+            </div>
+            <a href="#" class="jg-btn-card">Register Now</a>
         </div>
 
-        <div class="jg-card__date">April 15, 2026</div>
-        <div class="jg-card__type">JewishGen Talk</div>
-        <h3>Finding Personality in Historical Documents</h3>
-        <span class="jg-card__speaker">with Caitlin Hollander Waas</span>
-        <div class="jg-card__meta">
-            <span>💻 Online</span>
-            <span>🕒 2:00 PM ET</span>
+        <!-- EVENT CARD 2 ─────────────────────────────────────── -->
+        <div class="jg-card">
+            <div class="jg-speaker-bio" role="tooltip">
+                The <strong>Peter and Mary Kalikow Jewish Genealogy Research Center</strong> is JewishGen's physical presence, proud to develop genealogy curriculum for schools to connect the next generation to their roots.
+            </div>
+            <div class="jg-card__date">May 2, 2026</div>
+            <div class="jg-card__type">Workshop</div>
+            <h3>Genealogy Workshop for Public High Schools</h3>
+            <span class="jg-card__speaker">Led by Kalikow Center Team</span>
+            <div class="jg-card__meta">
+                <span>📍 In person (NYC)</span>
+                <span>🕒 10:00 AM ET</span>
+            </div>
+            <a href="#" class="jg-btn-card">Learn More</a>
         </div>
-        <a href="#" class="jg-btn-card">Register Now</a>
+
+        <!-- EVENT CARD 3 ─────────────────────────────────────── -->
+        <div class="jg-card">
+            <div class="jg-speaker-bio" role="tooltip">
+                <strong>L'Dor V'Dor</strong> heritage trips provide immersive educational experiences at historical sites across Poland.
+            </div>
+            <div class="jg-card__date">June 10, 2026</div>
+            <div class="jg-card__type">Heritage Trip</div>
+            <h3>2026 L'Dor V'Dor Poland Trip</h3>
+            <span class="jg-card__speaker">Registration Deadline</span>
+            <div class="jg-card__meta">
+                <span>✈️ Travel (Poland)</span>
+                <span>📅 Summer 2026</span>
+            </div>
+            <a href="https://www.jewishgen.org/ldorvdor/" class="jg-btn-card">View Details</a>
+        </div>
 
     </div>
 
-    <!-- EVENT CARD 2 ─────────────────────────────────────── -->
-    <div class="jg-card">
-
-        <div class="jg-speaker-bio" role="tooltip">
-            The <strong>Peter and Mary Kalikow Jewish Genealogy Research Center</strong> is JewishGen's physical presence, proud to develop genealogy curriculum for schools to connect the next generation to their roots.
-        </div>
-
-        <div class="jg-card__date">May 2, 2026</div>
-        <div class="jg-card__type">Workshop</div>
-        <h3>Genealogy Workshop for Public High Schools</h3>
-        <span class="jg-card__speaker">Led by Kalikow Center Team</span>
-        <div class="jg-card__meta">
-            <span>📍 In person (NYC)</span>
-            <span>🕒 10:00 AM ET</span>
-        </div>
-        <a href="#" class="jg-btn-card">Learn More</a>
-
+    <div class="jg-events-links">
+        <a href="#"><span>📺</span> Watch Past JewishGen Talks</a>
+        <a href="#"><span>📅</span> View Full Events Calendar</a>
+        <a href="#"><span>📩</span> Submit a Program Idea</a>
     </div>
-
-    <!-- EVENT CARD 3 ─────────────────────────────────────── -->
-    <div class="jg-card">
-
-        <div class="jg-speaker-bio" role="tooltip">
-            <strong>L'Dor V'Dor</strong> heritage trips provide immersive educational experiences at historical sites across Poland.
-        </div>
-
-        <div class="jg-card__date">June 10, 2026</div>
-        <div class="jg-card__type">Heritage Trip</div>
-        <h3>2026 L'Dor V'Dor Poland Trip</h3>
-        <span class="jg-card__speaker">Registration Deadline</span>
-        <div class="jg-card__meta">
-            <span>✈️ Travel (Poland)</span>
-            <span>📅 Summer 2026</span>
-        </div>
-        <a href="https://www.jewishgen.org/ldorvdor/" class="jg-btn-card">View Details</a>
-
-    </div>
-         </div>
-</div>
 
 </div>
