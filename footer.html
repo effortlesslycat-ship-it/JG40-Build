@@ -1,0 +1,184 @@
+<!-- ============================================================
+     JewishGen Redesign — footer.txt (Project Shorashim)
+     Replaces: /JG/footer.txt
+     CSS: Classes below belong in GlobalStyles.css / HeadSection.txt
+     ============================================================
+
+     ── CSS BLOCK (move to GlobalStyles.css when ready) ────────
+
+     .jg-footer {
+         background-color: var(--cream);
+         border-top: 4px solid #09497a;
+         padding: 30px 50px 20px 50px;
+         font-family: 'Gotham', 'Arial', sans-serif;
+     }
+     body.dark-mode .jg-footer {
+         background-color: #1a1a1a;
+         border-top-color: #a8b361;
+     }
+
+     .jg-footer__main {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         flex-wrap: wrap;
+         gap: 20px;
+     }
+
+     .jg-footer__logo {
+         flex: 1;
+         min-width: 200px;
+     }
+     .jg-footer__logo a {
+         display: block;
+         line-height: 0;
+     }
+     .jg-footer__logo img {
+         height: 55px;
+         width: auto;
+         object-fit: contain;
+     }
+
+     .jg-footer__address {
+         flex: 2;
+         text-align: center;
+         font-size: 13px;
+         line-height: 1.8;
+         color: var(--charcoal);
+         min-width: 280px;
+     }
+     .jg-footer__address a {
+         color: var(--navy);
+         text-decoration: underline;
+         font-weight: bold;
+     }
+     .jg-footer__address a:hover { color: var(--sage); }
+     body.dark-mode .jg-footer__address { color: #a0a0a0; }
+     body.dark-mode .jg-footer__address a { color: #a8b361; }
+
+     .jg-footer__mjh {
+         flex: 1;
+         display: flex;
+         justify-content: flex-end;
+         align-items: center;
+         min-width: 200px;
+     }
+     .jg-footer__mjh img { height: 50px; width: auto; }
+
+     .jg-footer__legal {
+         margin-top: 20px;
+         padding-top: 15px;
+         border-top: 1px solid #d1caba;
+         text-align: center;
+         font-size: 12px;
+         color: var(--charcoal);
+         opacity: 0.75;
+     }
+     body.dark-mode .jg-footer__legal {
+         border-top-color: #333;
+         color: #a0a0a0;
+     }
+     .jg-footer__legal a {
+         color: var(--charcoal);
+         text-decoration: none;
+         font-weight: normal;
+     }
+     .jg-footer__legal a:hover {
+         color: var(--sage);
+         text-decoration: underline;
+     }
+     body.dark-mode .jg-footer__legal a { color: #a0a0a0; }
+     body.dark-mode .jg-footer__legal a:hover { color: #a8b361; }
+
+     .jg-footer__legal-sep {
+         margin: 0 8px;
+         opacity: 0.4;
+     }
+
+     @media (max-width: 768px) {
+         .jg-footer { padding: 25px 20px 15px 20px; }
+         .jg-footer__main { flex-direction: column; align-items: center; text-align: center; }
+         .jg-footer__logo { min-width: unset; }
+         .jg-footer__logo a { display: inline-block; }
+         .jg-footer__mjh { justify-content: center; min-width: unset; }
+         .jg-footer__legal { font-size: 11px; }
+     }
+
+     ── END CSS BLOCK ───────────────────────────────────────── -->
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════ -->
+<footer class="jg-footer" role="contentinfo">
+
+    <!-- Main row: Logo | Address | MJH -->
+    <div class="jg-footer__main">
+
+        <!-- JewishGen logo -->
+        <div class="jg-footer__logo">
+            <a href="https://www.jewishgen.org" title="JewishGen Home Page">
+                <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg"
+                     alt="JewishGen: The Global Home for Jewish Genealogy"
+                     class="light-logo"
+                     onerror="this.onerror=null; this.src='https://www.jewishgen.org/JG/images/JGnewcuts_01.gif'">
+                <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png"
+                     alt="JewishGen: The Global Home for Jewish Genealogy"
+                     class="dark-logo">
+            </a>
+        </div>
+
+        <!-- Address & copyright -->
+        <div class="jg-footer__address">
+            Edmond J. Safra Plaza &nbsp;|&nbsp; 36 Battery Place &nbsp;|&nbsp; New York, NY 10280<br>
+            646.494.2972 &nbsp;|&nbsp;
+            <a href="mailto:info@jewishgen.org">info@jewishgen.org</a>
+            &nbsp;|&nbsp;
+            &copy; 2026, JewishGen, Inc.&nbsp;
+            <a href="https://www.jewishgen.org/JewishGen/Disclaimer.html">All rights reserved.</a>
+        </div>
+
+        <!-- MJH logo -->
+        <div class="jg-footer__mjh">
+            <a href="https://mjhnyc.org"
+               target="_blank"
+               rel="noopener noreferrer"
+               title="Museum of Jewish Heritage — A Living Memorial to the Holocaust">
+                <img src="https://www.jewishgen.org/images/MJH-Circle-Logo.svg"
+                     alt="Museum of Jewish Heritage — A Living Memorial to the Holocaust"
+                     class="light-logo">
+                <img src="https://d3k74ww17vqc8e.cloudfront.net/app/uploads/2019/10/18145838/MJH-Circle-icon_Logo.png"
+                     alt="Museum of Jewish Heritage — A Living Memorial to the Holocaust"
+                     class="dark-logo">
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Legal/utility links row -->
+    <div class="jg-footer__legal">
+        <a href="#"><!-- TODO: new Privacy Policy page -->Privacy Policy</a>
+        <span class="jg-footer__legal-sep" aria-hidden="true">&middot;</span>
+        <a href="#"><!-- TODO: new Terms of Use page -->Terms of Use</a>
+        <span class="jg-footer__legal-sep" aria-hidden="true">&middot;</span>
+        <a href="https://www.jewishgen.org/JewishGen/Disclaimer.html">Disclaimer</a>
+        <span class="jg-footer__legal-sep" aria-hidden="true">&middot;</span>
+        <a href="mailto:info@jewishgen.org">Contact Us</a>
+        <span class="jg-footer__legal-sep" aria-hidden="true">&middot;</span>
+        <a href="#"><!-- TODO: new Accessibility Statement page -->Accessibility Statement</a>
+    </div>
+
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     GOOGLE ANALYTICS
+     retain allow_google_signals: false per existing policy.
+═══════════════════════════════════════════════════════════ -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NP9XWXG64C"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NP9XWXG64C', {'allow_google_signals': false});
+</script>
