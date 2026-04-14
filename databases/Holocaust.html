@@ -71,6 +71,30 @@ a { text-decoration: none; color: inherit; }
 /* ── Page body ── */
 .page-body { display:flex; max-width:1100px; margin:0 auto; padding:24px 50px 60px; align-items:flex-start; }
 
+/* ── Dark mode fixes ── */ 
+body.dark-mode .page-title-band {
+    background-color: #0d2a45;
+}
+
+body.dark-mode .browse-header {
+    background-color: #1a1a1a;
+    border-color: #333;
+}
+
+body.dark-mode .browse-title {
+    color: #e0e0e0;
+}
+
+body.dark-mode .browse-db-search input {
+    background-color: #121212;
+    color: #e0e0e0;
+    border-color: #444;
+}
+
+body.dark-mode .browse-db-search button {
+    background-color: #a8b361;
+}
+
 /* ── Sidebar ── */
 .sidebar { width:195px; flex-shrink:0; margin-right:30px; }
 .sidebar-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
