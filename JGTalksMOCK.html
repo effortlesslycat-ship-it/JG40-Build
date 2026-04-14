@@ -4,142 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JewishGen Talks | JewishGen</title>
+
+    <!-- 1. Bootstrap (layout only — design tokens override below) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <!-- 2. JewishGen Global Design System -->
+    <link rel="stylesheet" href="jg-global.css">
+
+    <!-- 3. Page-specific styles (JewishGen Talks only) -->
     <style>
-
-        /* =============================================
-           GLOBAL DESIGN SYSTEM
-           Root variables — exact match CompactDraft.html
-        ============================================= */
-        :root {
-            --cream: #e8e1d1;
-            --sage:  #939b51;
-            --navy:  #09497a;
-            --charcoal: #232b2b;
-            --white: #ffffff;
-        }
-
-        * { box-sizing: border-box; }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0; padding: 0;
-            color: var(--charcoal);
-            background-color: var(--white);
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
 
         a { text-decoration: none; color: inherit; }
 
-        /* =============================================
-           HEADER CSS — from CompactDraft.html
-        ============================================= */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 50px;
-            border-bottom: 2px solid var(--cream);
-        }
-
-        /* =============================================
-           NAVIGATION CSS — verbatim from NavBarCSS.html
-        ============================================= */
-        nav {
-            background-color: var(--navy);
-            color: var(--white);
-            padding: 0 50px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .dropdown { position: relative; display: inline-block; }
-        .dropbtn  { display: block; padding: 15px 0; cursor: pointer; }
-        .dropdown:hover .dropbtn { color: var(--sage); }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: var(--white);
-            min-width: 250px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15);
-            z-index: 10;
-            top: 100%; left: 0;
-            border-top: 3px solid var(--sage);
-            border-radius: 0 0 6px 6px;
-            overflow: hidden;
-        }
-
-        .dropdown-content a {
-            color: var(--navy);
-            padding: 12px 20px;
-            text-decoration: none;
-            display: block;
-            text-transform: none;
-            font-weight: normal;
-            font-size: 15px;
-            border-bottom: 1px solid var(--cream);
-        }
-
-        .dropdown-content a:last-child { border-bottom: none; }
-        .dropdown-content a:hover { background-color: var(--cream); color: var(--navy); font-weight: bold; }
-        .dropdown:hover .dropdown-content { display: block; }
-
-        /* =============================================
-           DARK MODE — exact pattern from CompactDraft.html
-        ============================================= */
-        body { transition: background-color 0.3s ease, color 0.3s ease; }
-
-        body.dark-mode {
-            --cream:    #1e1e1e;
-            --sage:     #a8b361;
-            --navy:     #e0e0e0;
-            --charcoal: #a0a0a0;
-            --white:    #121212;
-        }
-
-        .dark-logo { display: none !important; }
-        body.dark-mode .light-logo { display: none !important; }
-        body.dark-mode .dark-logo  { display: block !important; }
-
-        body.dark-mode nav { background-color: #1a1a1a !important; border-bottom: 1px solid #333; }
-        body.dark-mode .dropdown-content { background: #1e1e1e !important; border-color: #333 !important; }
-        body.dark-mode .dropdown-content a { border-bottom-color: #333 !important; color: #e0e0e0 !important; }
-        body.dark-mode .dropdown-content a:hover { background-color: #2a2a2a !important; }
-
-        /* Page header band in dark mode */
-        body.dark-mode .page-hero { background-color: #1a1a1a !important; }
-        body.dark-mode .breadcrumb { background-color: #1e1e1e !important; border-bottom-color: #333 !important; }
-        body.dark-mode .breadcrumb a { color: #a8b361 !important; }
-
+        /* ── Dark mode: page-specific overrides ───────────────── */
+        body.dark-mode .page-hero        { background-color: #1a1a1a !important; }
+        body.dark-mode .breadcrumb       { background-color: #1e1e1e !important; border-bottom-color: #333 !important; }
+        body.dark-mode .breadcrumb a     { color: #a8b361 !important; }
         body.dark-mode .upcoming-section { background-color: #1a1a1a !important; border-color: #333 !important; }
-        body.dark-mode .talk-card { background-color: #1e1e1e !important; border-color: #333 !important; }
-        body.dark-mode .talk-card:hover { border-color: var(--sage) !important; }
-        body.dark-mode .talk-date { color: var(--sage) !important; }
-        body.dark-mode .talk-title { color: #e0e0e0 !important; }
-        body.dark-mode .rss-error { color: #a0a0a0 !important; }
-
-        body.dark-mode .featured-meta { background-color: #1e1e1e !important; border-color: #333 !important; }
+        body.dark-mode .talk-card        { background-color: #1e1e1e !important; border-color: #333 !important; }
+        body.dark-mode .talk-card:hover  { border-color: var(--sage) !important; }
+        body.dark-mode .talk-date        { color: var(--sage) !important; }
+        body.dark-mode .talk-title       { color: #e0e0e0 !important; }
+        body.dark-mode .rss-error        { color: #a0a0a0 !important; }
+        body.dark-mode .featured-meta    { background-color: #1e1e1e !important; border-color: #333 !important; }
         body.dark-mode .featured-playlist-tag { background-color: #333 !important; color: #e0e0e0 !important; }
-        body.dark-mode .video-card { background-color: #1e1e1e !important; border-color: #333 !important; }
+        body.dark-mode .video-card       { background-color: #1e1e1e !important; border-color: #333 !important; }
         body.dark-mode .video-card:hover,
         body.dark-mode .video-card:focus { border-color: var(--sage) !important; }
         body.dark-mode .video-card.is-playing { border-color: var(--sage) !important; box-shadow: 0 0 0 3px rgba(168,179,97,0.2) !important; }
-        body.dark-mode .card-title { color: #e0e0e0 !important; }
-        body.dark-mode .section-heading { border-top-color: #333 !important; }
-        body.dark-mode .register-cta { background-color: #1e1e1e !important; border-color: #333 !important; }
-        body.dark-mode .btn-outline { border-color: #555 !important; color: #e0e0e0 !important; }
+        body.dark-mode .card-title       { color: #e0e0e0 !important; }
+        body.dark-mode .section-heading  { border-top-color: #333 !important; }
+        body.dark-mode .register-cta     { background-color: #1e1e1e !important; border-color: #333 !important; }
+        body.dark-mode .btn-outline      { border-color: #555 !important; color: #e0e0e0 !important; }
         body.dark-mode .btn-outline:hover { background-color: #2a2a2a !important; }
-        body.dark-mode footer { background-color: #1a1a1a !important; border-top-color: #333 !important; }
+        body.dark-mode .page-desc-bar    { background-color: #1e1e1e !important; border-bottom-color: #333 !important; }
+        body.dark-mode .page-desc-bar p  { color: #a0a0a0 !important; }
 
-        /* =============================================
-           BREADCRUMB — cream strip separates nav from hero
-           matches community-valkininkai.html pattern exactly
-        ============================================= */
+        /* ── Breadcrumb ────────────────────────────────────────── */
         .breadcrumb {
             background-color: var(--cream);
             padding: 10px 50px;
@@ -151,9 +52,7 @@
         .breadcrumb a:hover { color: var(--sage); }
         .breadcrumb span { margin: 0 6px; opacity: 0.5; }
 
-        /* =============================================
-           PAGE HERO BAND — navy, logo only, no buttons
-        ============================================= */
+        /* ── Page hero band ────────────────────────────────────── */
         .page-hero {
             background-color: var(--navy);
             padding: 36px 50px;
@@ -161,36 +60,18 @@
             align-items: center;
             justify-content: center;
         }
+        .page-hero img.talks-logo { height: 140px; width: auto; display: block; }
 
-        .page-hero img.talks-logo {
-            height: 140px;
-            width: auto;
-            display: block;
-        }
-
-        /* =============================================
-           DESCRIPTION BAR — cream, sits below navy hero
-        ============================================= */
+        /* ── Description bar ───────────────────────────────────── */
         .page-desc-bar {
             background-color: var(--cream);
             border-bottom: 1px solid #d1caba;
             padding: 18px 50px;
             text-align: center;
         }
+        .page-desc-bar p { margin: 0; font-size: 15px; color: var(--charcoal); line-height: 1.55; }
 
-        .page-desc-bar p {
-            margin: 0;
-            font-size: 15px;
-            color: var(--charcoal);
-            line-height: 1.55;
-        }
-
-        body.dark-mode .page-desc-bar {
-            background-color: #1e1e1e !important;
-            border-bottom-color: #333 !important;
-        }
-        body.dark-mode .page-desc-bar p { color: #a0a0a0 !important; }
-
+        /* ── Buttons ───────────────────────────────────────────── */
         .btn-sage {
             display: inline-flex; align-items: center; gap: 7px;
             background-color: var(--sage); color: var(--white);
@@ -210,176 +91,6 @@
         }
         .btn-navy-outline:hover { background-color: var(--navy); color: var(--white); }
 
-        .btn-sage svg, .btn-navy-outline svg, .btn-outline svg {
-            width: 17px; height: 17px; fill: currentColor; flex-shrink: 0;
-        }
-
-        /* =============================================
-           UPCOMING TALKS — RSS SECTION
-        ============================================= */
-        .upcoming-section {
-            background-color: var(--cream);
-            border: 1px solid #d1caba;
-            border-radius: 10px;
-            padding: 28px 32px;
-            margin-bottom: 40px;
-        }
-
-        .upcoming-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .upcoming-header h2 {
-            margin: 0;
-            font-size: 20px;
-            color: var(--navy);
-            position: relative;
-            padding-bottom: 8px;
-        }
-        .upcoming-header h2::after {
-            content: '';
-            position: absolute; bottom: 0; left: 0;
-            width: 40px; height: 3px;
-            background-color: var(--sage); border-radius: 2px;
-        }
-
-        .upcoming-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 16px;
-        }
-
-        .talk-card {
-            background-color: var(--white);
-            border: 1px solid #d1caba;
-            border-radius: 8px;
-            padding: 18px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
-            text-decoration: none;
-        }
-        .talk-card:hover {
-            border-color: var(--sage);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transform: translateY(-2px);
-        }
-        .talk-card:focus {
-            outline: 3px solid var(--sage);
-            outline-offset: 2px;
-        }
-
-        .talk-date {
-            font-size: 12px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            color: var(--sage);
-        }
-
-        .talk-title {
-            font-size: 15px;
-            font-weight: bold;
-            color: var(--navy);
-            line-height: 1.4;
-            margin: 0;
-        }
-
-        .talk-desc {
-            font-size: 13px;
-            color: var(--charcoal);
-            line-height: 1.5;
-            margin: 0;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            opacity: 0.85;
-        }
-
-        .talk-register {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 12px;
-            font-weight: bold;
-            color: var(--navy);
-            text-decoration: underline dotted;
-            margin-top: 4px;
-        }
-
-        .rss-loading, .rss-error, .rss-empty {
-            font-size: 14px;
-            color: var(--charcoal);
-            opacity: 0.7;
-            padding: 10px 0;
-        }
-
-        .rss-loading::before { content: '⏳ '; }
-        .rss-error::before   { content: '⚠️ '; }
-        .rss-empty::before   { content: '📅 '; }
-
-        /* =============================================
-           MAIN CONTENT WRAPPER
-        ============================================= */
-        .page-body {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 40px 50px 60px;
-        }
-
-        /* =============================================
-           FEATURED VIDEO
-        ============================================= */
-        .featured-section {
-            display: grid;
-            grid-template-columns: 1fr 320px;
-            gap: 28px;
-            margin-bottom: 40px;
-            align-items: start;
-        }
-
-        .featured-embed-wrap {
-            position: relative; width: 100%; padding-bottom: 56.25%;
-            background: #000; border-radius: 8px; overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.18);
-        }
-        .featured-embed-wrap iframe {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
-        }
-
-        .featured-meta {
-            background-color: var(--cream); border: 1px solid #d1caba;
-            border-radius: 8px; padding: 22px;
-            display: flex; flex-direction: column; gap: 13px;
-        }
-
-        .featured-label { font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: var(--sage); }
-        .featured-title { font-size: 18px; font-weight: bold; color: var(--navy); line-height: 1.35; margin: 0; }
-        .featured-playlist-tag {
-            display: inline-block; background-color: var(--navy); color: var(--white);
-            font-size: 11px; font-weight: bold; text-transform: uppercase;
-            letter-spacing: 0.8px; padding: 4px 10px; border-radius: 4px; width: fit-content;
-        }
-        .featured-desc { 
-    font-size: 13px; 
-    color: var(--charcoal); 
-    line-height: 1.6; 
-    margin: 0; 
-    /* Add the following lines to truncate text */
-    display: -webkit-box;
-    -webkit-line-clamp: 4; /* Adjust to 3 or 5 if you prefer */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-        .featured-duration { font-size: 12px; color: var(--charcoal); opacity: 0.65; }
-
         .btn-outline {
             display: inline-flex; align-items: center; gap: 6px;
             color: var(--navy); font-weight: bold; font-size: 13px;
@@ -388,103 +99,111 @@
         }
         .btn-outline:hover { background-color: var(--navy); color: var(--white); }
 
-        /* =============================================
-           LAYOUT TOGGLE — remove before production
-        ============================================= */
-        .layout-toggle-bar {
-            display: flex; align-items: center; justify-content: space-between;
-            flex-wrap: wrap; gap: 12px;
-            background-color: var(--cream); border: 1px solid #d1caba;
-            border-radius: 8px; padding: 14px 20px; margin-bottom: 28px;
+        .btn-sage svg, .btn-navy-outline svg, .btn-outline svg {
+            width: 17px; height: 17px; fill: currentColor; flex-shrink: 0;
         }
-        .layout-toggle-label { font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: var(--charcoal); opacity: 0.65; }
-        .layout-btn-group { display: flex; gap: 8px; }
-        .layout-btn {
-            padding: 7px 16px; font-size: 13px; font-weight: bold;
-            border: 2px solid var(--navy); color: var(--navy);
-            border-radius: 6px; cursor: pointer; background: transparent;
-            transition: background 0.15s, color 0.15s;
-        }
-        .layout-btn.active { background-color: var(--navy); color: var(--white); }
-        .layout-btn:hover:not(.active) { background-color: var(--cream); }
 
-        /* =============================================
-           SECTION HEADING
-        ============================================= */
-        .section-heading {
-            display: flex; align-items: baseline; justify-content: space-between;
-            margin-bottom: 20px; flex-wrap: wrap; gap: 10px;
-            border-top: 1px solid var(--cream); padding-top: 32px;
+        /* ── Upcoming talks ────────────────────────────────────── */
+        .upcoming-section {
+            background-color: var(--cream);
+            border: 1px solid #d1caba;
+            border-radius: 10px;
+            padding: 28px 32px;
+            margin-bottom: 40px;
         }
+        .upcoming-header {
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 10px; margin-bottom: 20px;
+        }
+        .upcoming-header h2 {
+            margin: 0; font-size: 20px; color: var(--navy);
+            position: relative; padding-bottom: 8px;
+        }
+        .upcoming-header h2::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 40px; height: 3px; background-color: var(--sage); border-radius: 2px;
+        }
+        .upcoming-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        .talk-card {
+            background-color: var(--white); border: 1px solid #d1caba;
+            border-radius: 8px; padding: 18px 20px;
+            display: flex; flex-direction: column; gap: 8px;
+            transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+            text-decoration: none;
+        }
+        .talk-card:hover { border-color: var(--sage); box-shadow: 0 4px 12px rgba(0,0,0,0.08); transform: translateY(-2px); }
+        .talk-card:focus { outline: 3px solid var(--sage); outline-offset: 2px; }
+        .talk-date { font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.8px; color: var(--sage); }
+        .talk-title { font-size: 15px; font-weight: bold; color: var(--navy); line-height: 1.4; margin: 0; }
+        .talk-desc { font-size: 13px; color: var(--charcoal); line-height: 1.5; margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; opacity: 0.85; }
+        .talk-register { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: bold; color: var(--navy); text-decoration: underline dotted; margin-top: 4px; }
+        .rss-loading, .rss-error, .rss-empty { font-size: 14px; color: var(--charcoal); opacity: 0.7; padding: 10px 0; }
+        .rss-loading::before { content: '⏳ '; }
+        .rss-error::before   { content: '⚠️ '; }
+        .rss-empty::before   { content: '📅 '; }
+
+        /* ── Main content wrapper ──────────────────────────────── */
+        .page-body { max-width: 1280px; margin: 0 auto; padding: 40px 50px 60px; }
+
+        /* ── Featured video ────────────────────────────────────── */
+        .featured-section { display: grid; grid-template-columns: 1fr 320px; gap: 28px; margin-bottom: 40px; align-items: start; }
+        .featured-embed-wrap { position: relative; width: 100%; padding-bottom: 56.25%; background: #000; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.18); }
+        .featured-embed-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .featured-meta { background-color: var(--cream); border: 1px solid #d1caba; border-radius: 8px; padding: 22px; display: flex; flex-direction: column; gap: 13px; }
+        .featured-label { font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: var(--sage); }
+        .featured-title { font-size: 18px; font-weight: bold; color: var(--navy); line-height: 1.35; margin: 0; }
+        .featured-playlist-tag { display: inline-block; background-color: var(--navy); color: var(--white); font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.8px; padding: 4px 10px; border-radius: 4px; width: fit-content; }
+        .featured-desc { font-size: 13px; color: var(--charcoal); line-height: 1.6; margin: 0; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+        .featured-duration { font-size: 12px; color: var(--charcoal); opacity: 0.65; }
+
+        /* ── Section heading ───────────────────────────────────── */
+        .section-heading { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; border-top: 1px solid var(--cream); padding-top: 32px; }
         .section-heading h2 { margin: 0; font-size: 22px; color: var(--navy); position: relative; padding-bottom: 8px; }
         .section-heading h2::after { content: ''; position: absolute; bottom: 0; left: 0; width: 48px; height: 3px; background-color: var(--sage); border-radius: 2px; }
         .section-count { font-size: 13px; color: var(--charcoal); opacity: 0.6; }
         .see-all-link { font-size: 13px; font-weight: bold; color: var(--navy); text-decoration: underline dotted; white-space: nowrap; }
         .see-all-link:hover { color: var(--sage); }
 
-        /* =============================================
-           LAYOUT B — GRID
-        ============================================= */
+        /* ── Video grid ────────────────────────────────────────── */
         .video-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-
-        /* =============================================
-           VIDEO CARD — shared
-        ============================================= */
-        .video-card {
-            background-color: var(--cream); border: 1px solid #d1caba;
-            border-radius: 8px; overflow: hidden; cursor: pointer;
-            transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
-        }
+        .video-card { background-color: var(--cream); border: 1px solid #d1caba; border-radius: 8px; overflow: hidden; cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s; }
         .video-card:hover { border-color: var(--sage); box-shadow: 0 4px 14px rgba(0,0,0,0.10); transform: translateY(-2px); }
         .video-card:focus { outline: 3px solid var(--sage); outline-offset: 2px; }
         .video-card.is-playing { border-color: var(--navy) !important; box-shadow: 0 0 0 3px rgba(9,73,122,0.2) !important; }
-
         .thumb-wrap { position: relative; width: 100%; padding-bottom: 56.25%; background: #111; overflow: hidden; }
         .thumb-wrap img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 0.2s; }
         .video-card:hover .thumb-wrap img { opacity: 0.85; }
-
-        .thumb-play {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 40px; height: 40px; background: rgba(9,73,122,0.82); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;
-        }
+        .thumb-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: rgba(9,73,122,0.82); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
         .video-card:hover .thumb-play,
         .video-card:focus .thumb-play { opacity: 1; }
         .thumb-play svg { width: 17px; height: 17px; fill: #fff; margin-left: 3px; }
-
         .duration-badge { position: absolute; bottom: 5px; right: 5px; background: rgba(0,0,0,0.78); color: #fff; font-size: 11px; font-weight: bold; padding: 2px 5px; border-radius: 3px; }
-
         .card-body { padding: 10px 12px 13px; }
         .card-title { font-size: 13px; font-weight: bold; color: var(--navy); line-height: 1.35; margin: 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 
-        /* =============================================
-           FOOTER — matches CompactDraft.html
-        ============================================= */
-        footer {
-            border-top: 2px solid var(--cream); padding: 28px 50px;
-            display: flex; align-items: center; justify-content: space-between;
-            flex-wrap: wrap; gap: 20px; background-color: var(--white);
-        }
-        .footer-center { flex: 2; text-align: center; font-size: 13px; line-height: 1.6; color: var(--charcoal); min-width: 280px; }
-        .footer-center a { color: var(--navy); text-decoration: underline; font-weight: bold; }
+        /* ── Layout toggle (remove before production) ──────────── */
+        .layout-toggle-bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; background-color: var(--cream); border: 1px solid #d1caba; border-radius: 8px; padding: 14px 20px; margin-bottom: 28px; }
+        .layout-toggle-label { font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: var(--charcoal); opacity: 0.65; }
+        .layout-btn-group { display: flex; gap: 8px; }
+        .layout-btn { padding: 7px 16px; font-size: 13px; font-weight: bold; border: 2px solid var(--navy); color: var(--navy); border-radius: 6px; cursor: pointer; background: transparent; transition: background 0.15s, color 0.15s; }
+        .layout-btn.active { background-color: var(--navy); color: var(--white); }
+        .layout-btn:hover:not(.active) { background-color: var(--cream); }
 
-        /* =============================================
-           RESPONSIVE
-        ============================================= */
+        /* ── Responsive ────────────────────────────────────────── */
         @media (max-width: 1100px) { .video-grid { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 860px) {
             .featured-section { grid-template-columns: 1fr; }
             .video-grid { grid-template-columns: repeat(2, 1fr); }
             .page-body { padding: 24px 24px 48px; }
             .page-hero { padding: 28px 24px; }
-            header { padding: 10px 20px; }
-            nav { padding: 0 20px; gap: 16px; font-size: 13px; }
-            footer { padding: 24px 20px; }
             .upcoming-section { padding: 22px 20px; }
         }
         @media (max-width: 540px) {
             .video-grid { grid-template-columns: 1fr; }
-            #layout-a .video-card { flex: 0 0 180px; }
             .page-hero img.talks-logo { height: 55px; }
         }
 
@@ -492,120 +211,16 @@
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════
-     HEADER — verbatim from Header_NavBar.html
-══════════════════════════════════════════ -->
-<header>
-<div class="brand">
-<a href="#">
-<img src="https://www.jewishgen.org/JG/Images/JGlogo.svg"
-alt="JewishGen: The Global Home for Jewish Genealogy"
-class="light-logo" style="height: 55px; width: auto; object-fit: contain;">
-<img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png"
-alt="JewishGen: The Global Home for Jewish Genealogy"
-class="dark-logo" style="height: 55px; width: auto; object-fit: contain;">
-</a>
-</div>
-<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
-<button onclick="document.body.classList.toggle('dark-mode')"
-style="background: var(--cream); color: var(--navy); border: 1px solid #d1caba;
-padding: 4px 10px; border-radius: 20px; cursor: pointer;
-font-size: 11px; font-weight: bold;"
-aria-label="Toggle dark mode">
-🌗 Toggle Dark Mode
-</button>
-<div style="display: flex; gap: 8px;">
-<a href="#" style="padding: 7px 15px; border: 2px solid var(--navy); color: var(--navy);
-font-weight: bold; font-size: 13px; border-radius: 6px;">Log In</a>
-<a href="#" style="padding: 7px 15px; background-color: var(--sage); color: var(--white);
-font-weight: bold; font-size: 13px; border-radius: 6px;">Sign Up</a>
-</div>
-<div style="text-align: right; margin-top: 2px;">
-<div style="font-size: 10px; color: var(--charcoal); margin-bottom: 3px;">
-The Genealogical Research Division of
-</div>
-<a href="https://mjhnyc.org/" target="_blank" rel="noopener">
-<img src="https://www.jewishgen.org/images/MJH-Circle-Logo.svg"
-alt="Museum of Jewish Heritage" class="light-logo" style="height: 32px; width: auto;">
-<img src="https://d3k74ww17vqc8e.cloudfront.net/app/uploads/2019/10/18145838/MJH-Circle-icon_Logo.png"
-alt="Museum of Jewish Heritage" class="dark-logo" style="height: 32px; width: auto;">
-</a>
-</div>
-</div>
-</header>
+<!-- ═══════════════════════════════════════════════════════════
+     HEADER + NAV — loaded from Header_NavBar.html
+═══════════════════════════════════════════════════════════ -->
+<div id="site-header"></div>
 
 <!-- ══════════════════════════════════════════
-     NAVIGATION — 
-     JewishGen Talks promoted to active top-level item
-══════════════════════════════════════════ -->
-
-<nav class="main-nav" aria-label="Main navigation">
-    <div class="dropdown">
-        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Databases ▾</span>
-        <div class="dropdown-content" role="menu">
-            <a href="#" role="menuitem">Global Search</a>
-            <a href="#" role="menuitem">Country &amp; Regional Databases</a>
-            <a href="#" role="menuitem">Holocaust Database</a>
-            <a href="#" role="menuitem">Burial Registry (JOWBR)</a>
-            <a href="#" role="menuitem">Records Catalog</a>
-            <a href="#" role="menuitem">Family Trees (FTJP)</a>
-            <a href="#" role="menuitem">Text Search</a>
-        </div>
-    </div>
-    <div class="dropdown">
-        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Communities ▾</span>
-        <div class="dropdown-content" role="menu">
-            <a href="#" role="menuitem">Regional/Topical Research Divisions</a>
-            <a href="#" role="menuitem">Town Finder</a>
-            <a href="#" role="menuitem">KehilaLinks</a>
-            <a href="#" role="menuitem">Yizkor Books</a>
-        </div>
-    </div>
-    <div class="dropdown">
-        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Learn &amp; Connect ▾</span>
-        <div class="dropdown-content" role="menu">
-            <a href="#" role="menuitem">Online Classes</a>
-            <a href="#" role="menuitem">How to JewishGen &amp; FAQ</a>
-            <a href="#" role="menuitem">Peter &amp; Mary Kalikow Center</a>
-            <a href="#" role="menuitem">Family Finder</a>
-            <a href="#" role="menuitem">Discussion Group</a>
-            <a href="#" role="menuitem">ViewMate</a>
-        </div>
-    </div>
-    <div class="dropdown">
-        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Events &amp; Programs ▾</span>
-        <div class="dropdown-content" role="menu">
-            <a href="#" role="menuitem">Upcoming Events Calendar</a>
-            <a href="#" role="menuitem">JewishGen Talks</a>
-            <a href="#" role="menuitem">Student Program in Poland</a>
-            <a href="#" role="menuitem">Study &amp; Service Tour of Poland</a>
-        </div>
-    </div>
-    <div class="dropdown">
-        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Publications ▾</span>
-        <div class="dropdown-content" role="menu">
-            <a href="#" role="menuitem">JewishGen Press</a>
-            <a href="#" role="menuitem">Newsletters</a>
-            <a href="#" role="menuitem">Holiday Companions</a>
-        </div>
-    </div>
-    <div class="dropdown">
-        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">About &amp; Support ▾</span>
-        <div class="dropdown-content" role="menu">
-            <a href="#" role="menuitem">Mission</a>
-            <a href="#" role="menuitem">Our Team</a>
-            <a href="#" role="menuitem">Donate Now</a>
-            <a href="#" role="menuitem">Planned Giving</a>
-            <a href="#" role="menuitem">Wall of Honor</a>
-        </div>
-    </div>
-</nav>
-<!-- ══════════════════════════════════════════
-     BREADCRUMB — cream strip breaks nav from hero
-     matches pattern in community-valkininkai.html
+     BREADCRUMB
 ══════════════════════════════════════════ -->
 <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="#">Home</a>
+    <a href="index.html">Home</a>
     <span>›</span>
     <a href="#">Events &amp; Programs</a>
     <span>›</span>
@@ -613,7 +228,7 @@ alt="Museum of Jewish Heritage" class="dark-logo" style="height: 32px; width: au
 </nav>
 
 <!-- ══════════════════════════════════════════
-     PAGE HERO BAND — logo only, no buttons
+     PAGE HERO BAND
 ══════════════════════════════════════════ -->
 <div class="page-hero">
     <img src="https://www.jewishgen.org/JG/Images/JGTalksLogoWhite.png"
@@ -621,7 +236,7 @@ alt="Museum of Jewish Heritage" class="dark-logo" style="height: 32px; width: au
          class="talks-logo">
 </div>
 
-<!-- Description bar — cream, sits below navy hero -->
+<!-- Description bar -->
 <div class="page-desc-bar">
     <p>Free genealogy lectures from leading experts — watch past talks or register for upcoming live programs.</p>
 </div>
@@ -631,15 +246,12 @@ alt="Museum of Jewish Heritage" class="dark-logo" style="height: 32px; width: au
 ══════════════════════════════════════════ -->
 <main class="page-body" id="main-content">
 
-    <!-- ── UPCOMING TALKS ────────────────────────────────────────────
-         PLACEHOLDER — connect to RSS feed or CMS when ready.
-         Section structure and styles are preserved for that integration.
-    ─────────────────────────────────────────────────────────────── -->
+    <!-- UPCOMING TALKS -->
     <section id="upcoming" aria-labelledby="upcoming-heading">
         <div class="upcoming-section">
             <div class="upcoming-header">
                 <h2 id="upcoming-heading">Upcoming Talks</h2>
-                <a href="https://www.jewishgen.org/live"
+                <a href="Calendar.html"
                    target="_blank" rel="noopener"
                    class="btn-navy-outline"
                    aria-label="See all upcoming talks and register (opens in new tab)">
@@ -655,48 +267,45 @@ alt="Museum of Jewish Heritage" class="dark-logo" style="height: 32px; width: au
                     <span class="talk-date">Apr 22, 2026 | 2PM EDT</span>
                     <p class="talk-title">Surfing USA - Jewish Institutional Records and Resources</p>
                     <p class="talk-desc">Be inspired to add Jewish institutional records and other unique resources to your search strategy for documenting Jews in the United States. Ellen Shindelman Kowitt will explain how to uncover archival treasures found online and offline in public and private archives, libraries, universities, historical societies, museums, and on commercial websites.</p>
-                    <span class="talk-register">Register now!›</span>
+                    <span class="talk-register">Register now! ›</span>
                 </a>
                 <a href="https://898a.blackbaudhosting.com/898a/tickets?tab=2&txobjid=ff220828-4707-4210-8821-91f5ef901b6f"
                    target="_blank" rel="noopener"
                    class="talk-card"
-                   aria-label="See full schedule at jewishgen.org/live">
-                    <span class="talk-date">Apr 29, 2026 | 2PM EDT</span>
-                    <p class="talk-title">Discovering Family History in Hebrew Manuscripts and Objects of Judaica</p>
-                    <p class="talk-desc">Genealogical research often begins with familiar sources—civil records, census documents, and family papers. Yet, the story of a family can also be found in far less than expected places. Printed Hebrew books, illuminated manuscripts, and a variety of ceremonial objects of Judaica frequently preserve traces of personal history: inscriptions recording births and marriages, dedicatory notes, owners’ signatures, memorial annotations, and traces of personal and communal lives are embedded in Hebrew texts and ritual objects. Libraries, museums and collections of Jewish material culture thus hold a remarkable, and often overlooked, archive of family history.</p>
+                   aria-label="Register for upcoming JewishGen Talks">
+                    <span class="talk-date">May 20, 2026 | 2PM EDT</span>
+                    <p class="talk-title">Finding Personality in Historical Documents</p>
+                    <p class="talk-desc">Join Chief Genealogist Caitlin Hollander Waas as she explores how to read between the lines of historical records to understand who your ancestors really were.</p>
                     <span class="talk-register">Register now! ›</span>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- ── FEATURED VIDEO ────────────────────────────────────────── -->
-    <section aria-labelledby="featured-title-el">
-        <div class="featured-section">
-            <div class="featured-embed-wrap">
-                <!-- Default: "The Hare with Amber Eyes" — highest view count (10K) -->
-                <iframe id="featured-iframe"
-                        src="https://www.youtube.com/embed/WZPGF3hZOO0?rel=0"
-                        title="JewishGen Talks: Disaster through the Lens of Genealogy — the Triangle Factory Fire Case Study"
-                        allowfullscreen
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        loading="lazy">
-                </iframe>
-            </div>
-            <div class="featured-meta" role="complementary" aria-label="Video details">
-                <span class="featured-label">▶ Now Playing</span>
-                <h2 class="featured-title" id="featured-title-el">JewishGen Talks: Disaster through the Lens of Genealogy &mdash; the Triangle Factory Fire Case Study</h2>
-                <span class="featured-playlist-tag">JewishGen Talks</span>
-                <p class="featured-desc" id="featured-desc-el">On the anniversary of the Triangle Shirtwaist Factory fire, we often remember the tragedy through the staggering number of lives lost. But behind the statistics are the stories of individuals like 17-year-old Sarah Brenman, who had been in America for only six weeks before that fateful day. Join us for a lecture exploring the fire through the lens of genealogy, where we move beyond the headlines to reconstruct the lives, families, and legacies of those who perished, turning names on a list back into daughters, sisters, and neighbors.</p>
-                <span class="featured-duration" id="featured-duration-el"></span>
-                <a class="btn-outline" id="featured-yt-link"
-                   href="https://www.youtube.com/watch?v=WZPGF3hZOO0"
-                   target="_blank" rel="noopener"
-                   aria-label="Watch this video on YouTube (opens in new tab)">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.8 8s-.2-1.4-.8-2c-.8-.8-1.6-.8-2-.9C16.2 5 12 5 12 5s-4.2 0-7 .1c-.4.1-1.3.1-2 .9-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.5c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.8.8 1.8.8 2.2.8C6.6 19 12 19 12 19s4.2 0 7-.2c.4-.1 1.3-.1 2-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.5C22 9.6 21.8 8 21.8 8zM9.7 14.5V9.3l5.4 2.6-5.4 2.6z"/></svg>
-                    Watch on YouTube
-                </a>
-            </div>
+    <!-- FEATURED VIDEO -->
+    <section class="featured-section" aria-labelledby="featured-heading">
+        <div class="featured-embed-wrap">
+            <iframe id="featured-iframe"
+                    src="https://www.youtube.com/embed/WZPGF3hZOO0?rel=0"
+                    title="JewishGen Talks: Disaster through the Lens of Genealogy — the Triangle Factory Fire Case Study"
+                    allowfullscreen
+                    loading="lazy">
+            </iframe>
+        </div>
+        <div class="featured-meta">
+            <span class="featured-label">▶ Now Playing</span>
+            <p class="featured-title" id="featured-title-el">JewishGen Talks: Disaster through the Lens of Genealogy — the Triangle Factory Fire Case Study</p>
+            <span class="featured-playlist-tag">JewishGen Talks</span>
+            <span class="featured-duration" id="featured-duration-el">⏱ 51:56</span>
+            <p class="featured-desc" id="featured-desc-el">This talk uses the Triangle Shirtwaist Factory Fire as a case study for disaster genealogy research. Learn how major historical disasters can be used as entry points for genealogical research.</p>
+            <a id="featured-yt-link"
+               href="https://www.youtube.com/watch?v=WZPGF3hZOO0"
+               target="_blank" rel="noopener"
+               class="btn-outline"
+               aria-label="Watch this video on YouTube (opens in new tab)">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
+                Watch on YouTube
+            </a>
         </div>
     </section>
 
@@ -720,90 +329,69 @@ alt="Museum of Jewish Heritage" class="dark-logo" style="height: 32px; width: au
 
 </main>
 
-<!-- ===================== FOOTER ===================== -->
-    <footer style="background-color: var(--cream); padding: 30px 50px; border-top: 4px solid var(--navy);">
-        <div style="max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; width: 100%;">
-            <div style="flex: 1; min-width: 250px;">
-                <a href="#">
-                    <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg" alt="JewishGen Logo" class="light-logo" style="height: 60px; width: auto; object-fit: contain;">
-                    <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png" alt="JewishGen Logo" class="dark-logo" style="height: 60px; width: auto; object-fit: contain;">
-                </a>
-            </div>
-            <div style="flex: 2; text-align: center; font-size: 13px; line-height: 1.6; color: var(--charcoal); min-width: 300px;">
-                Edmond J. Safra Plaza | 36 Battery Place | New York, NY 10280<br>
-                646.494.2972 | <a href="/cdn-cgi/l/email-protection#5d34333b321d37382a342e353a383373322f3a" style="color: var(--navy); text-decoration: underline; font-weight: bold;"><span class="__cf_email__" data-cfemail="0d64636b624d67687a647e656a686323627f6a">[email&#160;protected]</span></a> | © 2026, JewishGen, Inc. <a href="#" style="text-decoration: underline;">All rights reserved.</a>
-            </div>
-            <div style="flex: 1; display: flex; justify-content: flex-end; align-items: center; min-width: 250px;">
-                <a href="https://mjhnyc.org/" target="_blank" rel="noopener">
-                    <img src="https://www.jewishgen.org/images/MJH-Circle-Logo.svg" alt="Museum of Jewish Heritage" class="light-logo" style="height: 45px; width: auto;">
-                    <img src="https://d3k74ww17vqc8e.cloudfront.net/app/uploads/2019/10/18145838/MJH-Circle-icon_Logo.png" alt="Museum of Jewish Heritage" class="dark-logo" style="height: 45px; width: auto;">
-                </a>
-            </div>
-        </div>
-    </footer>
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER — loaded from Footer.html
+═══════════════════════════════════════════════════════════ -->
+<div id="site-footer"></div>
 
-<!-- ══════════════════════════════════════════
+<!-- ═══════════════════════════════════════════════════════════
      SCRIPTS
-══════════════════════════════════════════ -->
-<script>
+═══════════════════════════════════════════════════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-/* ── VIDEO LIBRARY ──────────────────────────────────────────────────
+<script>
+/* ── Component Loader ──────────────────────────────────────── */
+function loadComponent(id, file) {
+    return fetch(file)
+        .then(function(r) {
+            if (!r.ok) throw new Error('Could not load ' + file);
+            return r.text();
+        })
+        .then(function(html) {
+            document.getElementById(id).innerHTML = html;
+        })
+        .catch(function(err) { console.warn(err); });
+}
+
+Promise.all([
+    loadComponent('site-header', 'Header_NavBar.html'),
+    loadComponent('site-footer', 'Footer.html')
+]).then(function() {
+    /* Nav keyboard accessibility */
+    document.querySelectorAll('.jg-nav .dropbtn').forEach(function(btn) {
+        btn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                var expanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', String(!expanded));
+                var menu = document.getElementById(this.getAttribute('aria-controls'));
+                if (menu) menu.style.display = expanded ? 'none' : 'block';
+            }
+            if (e.key === 'Escape') {
+                this.setAttribute('aria-expanded', 'false');
+                var menu = document.getElementById(this.getAttribute('aria-controls'));
+                if (menu) menu.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+
+<script>
+/* ── Video Library ─────────────────────────────────────────────
    ★ = confirmed YouTube video ID
    NEED_ID_xx = replace with real YouTube ID
-   Playlist URL: PL2SY5Vnun7fmaXzzTT-O1ozboh1k3xYyV
+   Playlist: PL2SY5Vnun7fmaXzzTT-O1ozboh1k3xYyV
    Order: newest first
-────────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 const VIDEOS = [
-    { 
-        id: 'WZPGF3hZOO0', 
-        title: 'JewishGen Talks: Disaster through the Lens of Genealogy \u2014 the Triangle Factory Fire Case Study', 
-        duration: '51:56', 
-        desc: 'On the anniversary of the Triangle Shirtwaist Factory fire, we often remember the tragedy through the staggering number of lives lost. But behind the statistics are the stories of individuals like 17-year-old Sarah Brenman, who had been in America for only six weeks before that fateful day. Join us for a lecture exploring the fire through the lens of genealogy, where we move beyond the headlines to reconstruct the lives, families, and legacies of those who perished, turning names on a list back into daughters, sisters, and neighbors.' 
-    },
-    { 
-        id: 'ftn6EBCQ5AA', 
-        title: 'JewishGen Talks: Treasures for Your Tree \u2013 Finding Family Genealogical Ephemera in Archives', 
-        duration: '1:10:56', 
-        desc: 'Genealogists can discover far more than family trees and vital records in archives. In this talk, Michael Simonson will explore little-known collections at the Leo Baeck Institute—a panorama of art, objects, photographs, newspapers, books, and other materials—that illuminate the lives of ancestors, sharing strategies that can be applied to research in archives everywhere. The presentation will feature 1930s glass slides of Winnie-the-Pooh that may have been created in Theresienstadt, along with materials from the Shanghai Ghetto, offering a vivid glimpse into Jewish life under extraordinary circumstances.' 
-    },
-    { 
-        id: 'Fdew0xC-PeM', 
-        title: 'JewishGen Talks: Souls, Taxes, and Real Estate - Jewish Genealogy and the Ottoman Administrative State', 
-        duration: '50:23', 
-        desc: 'The Ottoman Empire, like all empires and states, was not just founded upon the idea of military power and might; it required a vast administrative apparatus to exert sovereignty over its lands, which included more than 690,000 square miles of territory at its height. For Jewish genealogists, there are four key types of administrative registers that offer insights: Cizye, Nüfus, Tapu Tahrir, and Temettuat[cite: 9]. Cizye registers hold information about the male poll tax payers belonging to ahl al-Kitab, the non-Muslim "People of the Book" (Jews and Christians). Nüfus are the modern census registers dating from 1832 to 1921. Tapu Tahrir is a series of cadastral population surveys conducted by the Ottoman Empire between the 15th and 18th centuries. And the Temettuat are real estate and tax censuses conducted in the wake of the original Nüfus, primarily to adjust taxation. In this lecture, Associate Director of the Sephardic Research Division, Michael Waas, will introduce these registers, heretofore little utilized by genealogists for genealogy research, and will reveal, with a series of examples from these registers, what might be possible to learn from them, including the heights, whether your ancestors had a beard, and if so, what the color of their beard was.' 
-    },
-    { 
-        id: 'lkSTBrt20s8', 
-        title: 'JewishGen Talks: The Dash: Finding the Person in the Papers', 
-        duration: '',
-        desc: 'A gravestone records two distinct dates, but the story of a life exists entirely within the “dash” between them. How do we find the living, breathing person behind the cold facts of a census or a death certificate? How do we move beyond a simple biography to discover a personality? Join Chief Genealogist Caitlin Hollander Waas for a look at the strategies used to find the human spirit hidden in the archives. This webinar explores how to identify the “little details” of a person that traditional research often overlooks[cite: 18]. From the shifting nuances of a signature to the physical clues that reveal a person’s reality, these details change how we see our family history. By looking at naming choices, self-reinvention, and the physical characteristics found in unusual documents, you’ll learn how to bridge the gap between data and identity.'
-    },
-    { 
-        id: 'JgQIKgRH6bI', 
-        title: 'JewishGen Talks: No, Your Ancestors\u2019 Names Were Not Changed at Ellis Island', 
-        duration: '',
-        desc: 'It is the most persistent myth in American family history: the overwhelmed or malicious clerk who unilaterally altered a family’s identity at the port of entry. Whether framed as a clerical error or an act of xenophobia, historical records show that this scenario was not only unlikely—it was impossible. Join Chief Genealogist Caitlin Hollander Waas as she deconstructs this legend by examining the administrative mechanics of the immigration process and the specific records created at the port of entry. This session moves beyond the myth to explore the genuine legal, social, and economic motivations behind name changes, revealing how immigrants navigated their new identities, not as victims of a clerical error, but as active participants in their own American narratives.'
-    },
-    { 
-        id: 'AcU6X3vzGcc', 
-        title: 'JewishGen Talks: Sephardim in Colonial America', 
-        duration: '',
-        desc: 'Sephardic Jews are the descendants of Iberian Jews who left Spain beginning in 1492. Fleeing persecution, many sought refuge in more tolerant regions and eventually made their way to the Americas. Settling in New Amsterdam (later New York) and Rhode Island, they formed the first American Jewish communities, bringing distinct cultural elements, including the Ladino language and unique customs, and contributing significantly to American cultural, economic, and political life. In this webinar, Sarina Roffé discusses how Sephardic Jews came to settle in New York and other cities in the Americas, established synagogues, and became an essential component of the American Revolution. Roffé also highlights several important early families and their economic ties, which helped develop commerce and shipping in port cities.'
-    },
-    { 
-        id: 'Yu71YlFDgFI', 
-        title: 'JewishGen Talks: Discovering Jewish Civil War Soldiers through the Shapell Roster and JewishGen', 
-        duration: '',
-        desc: 'American Jews made significant contributions during the Civil War, serving on both the Union and Confederate sides in numbers disproportionately high relative to their population[cite: 29]. Some Jews served in leadership roles, and others were awarded the Medal of Honor for their bravery. The Shapell Roster of Jewish Service in the American Civil War is a continually expanding digital database documenting the lives and military services of Jewish soldiers and sailors who served on both sides of the conflict. Since its last presentation to JewishGen, the Roster has grown significantly, including major progress in identifying Confederate soldiers. This talk highlights recent additions, explain how the website and database function, show how the Roster can be accessed through JewishGen, and demonstrate how researchers can search the Roster for individuals and families. The webinar also spotlights several compelling soldier stories drawn from newly identified individuals and discuss how genealogists and historians can share information and collaborate with the Shapell Roster research team.'
-    },
-    { 
-        id: 'zdo4N6IdUOA', 
-        title: 'JewishGen Talks: S\u00fc\u00dfkind Stern: One of the Earliest Known Portraits of a German Jew', 
-        duration: '',
-        desc: 'Today, the portrait of Süßkind Stern, marked with the date 1671, is prominently displayed in Frankfurt’s Jüdisches Museum. The website of Frankfurt’s Jüdisches Museum indicates “Süßkind Stern who was highly respected in the Jewish community of the 17th century was also one of the Frank forefathers”. Süßkind Stern is an ancestor of both Anne Frank and Ralph Stern, who is the speaker for this webinar. The historical and genealogical importance of the portrait is without question. However, for almost 300 years, the portrait was not in Frankfurt. How did the portrait survive the great Judengasse fire of 1711? How did the portrait survive the years of National Socialist rule? How did the portrait finally return to Frankfurt? The life of the portrait intersects many aspects of German-Jewish life. This talk will present the journey made be one of the earliest known oil portraits of a German Jew.'
-    },
+    { id: 'WZPGF3hZOO0', title: 'JewishGen Talks: Disaster through the Lens of Genealogy — the Triangle Factory Fire Case Study', duration: '51:56', desc: 'This talk uses the Triangle Shirtwaist Factory Fire as a case study for disaster genealogy research. Learn how major historical disasters can be used as entry points for genealogical research.' },
+    { id: 'NEED_ID_43', title: 'JewishGen Talks: Researching Jewish Families in the Russian Empire', duration: '' },
+    { id: 'NEED_ID_42', title: 'JewishGen Talks: Understanding Vital Records in Poland', duration: '' },
+    { id: 'NEED_ID_41', title: 'JewishGen Talks: DNA and Jewish Genealogy', duration: '' },
+    { id: 'zdo4N6IdUOA', title: 'JewishGen Talks: Süßkind Stern: One of the Earliest Known Portraits of a German Jew', duration: '' },
     { id: 'NEED_ID_40', title: 'JewishGen Talks: Exploring the Izmir, Turkey Census', duration: '' },
-    { id: 'NEED_ID_36', title: 'JewishGen Talks: Help! I Got My DNA Results and I\u2019m Confused \u2014 Part 1.25', duration: '' },
+    { id: 'NEED_ID_36', title: 'JewishGen Talks: Help! I Got My DNA Results and I\'m Confused — Part 1.25', duration: '' },
     { id: 'NEED_ID_35', title: 'JewishGen Talks: Post 1492 Sephardic Dispersion and A Guide to Sephardic Genealogy', duration: '' },
     { id: 'NEED_ID_34', title: 'JewishGen Talks: A Ray of Light in the Depths of Darkness: Chiune Sugihara and His Legacy', duration: '' },
     { id: 'NEED_ID_33', title: 'JewishGen Talks: En el nombre de Dio Amen: Notarial Archives and Sephardic Genealogy', duration: '' },
@@ -813,24 +401,24 @@ const VIDEOS = [
     { id: 'NEED_ID_29', title: 'JewishGen Talk: In Our Time: Legacy Writing, An Introduction', duration: '' },
     { id: 'NEED_ID_28', title: 'Fioretta Presentation/Q&A', duration: '' },
     { id: 'NEED_ID_27', title: 'Sephardic Names in the Ottoman Empire as Traces of the History of Judeo-Spanish/Ladino', duration: '' },
-    { id: 'NEED_ID_26', title: 'JewishGen Talks: Jews of the Land of Israel before the First Aliyah \u2014 Their Names & History', duration: '' },
+    { id: 'NEED_ID_26', title: 'JewishGen Talks: Jews of the Land of Israel before the First Aliyah — Their Names & History', duration: '' },
     { id: 'NEED_ID_25', title: 'JewishGen Talks: Genealogical Resources in Israel', duration: '' },
     { id: '6fsw-JTIrtE', title: 'JewishGen Talks: Focus on Lake Erie Region Resources (Cleveland, Detroit, and Western Pennsylvania)', duration: '' },
     { id: 'kMbPI-KeW5s', title: 'JewishGen Talks: Shapell Roster of Jewish Service in the American Civil War', duration: '' },
-    { id: 'NEED_ID_22', title: 'JewishGen Talks: Baghdadi Jews Who Lost Their Iraqi Nationality in 1951 with Dr. Jacob Rosen', duration: '' },
-    { id: 'NEED_ID_21', title: 'JewishGen Talks: Patronymic Naming and Cemetery Records \u2014 Their Importance in Jewish Genealogy', duration: '' },
+    { id: 'NEED_ID_22', title: 'JewishGen Talks: Baghdadi Jews Who Lost Their Iraqi Nationality in 1951', duration: '' },
+    { id: 'NEED_ID_21', title: 'JewishGen Talks: Patronymic Naming and Cemetery Records — Their Importance in Jewish Genealogy', duration: '' },
     { id: 'NEED_ID_20', title: 'JewishGen Talks: The Basics of Research in Israel', duration: '' },
     { id: 'NEED_ID_19', title: 'JewishGen Talks: The Lives of our Educated Ancestors', duration: '' },
-    { id: 'NEED_ID_18', title: 'The Ships of our Ancestors \u2014 with Hal Bookbinder', duration: '' },
-    { id: 'NEED_ID_16', title: 'Jewish Surnames and Patronymics \u2014 Tracing Your Ancestors before they had Surnames', duration: '' },
+    { id: 'NEED_ID_18', title: 'The Ships of our Ancestors — with Hal Bookbinder', duration: '' },
+    { id: 'NEED_ID_16', title: 'Jewish Surnames and Patronymics — Tracing Your Ancestors before they had Surnames', duration: '' },
     { id: 'NEED_ID_15', title: 'Jewish Genealogy in the Germanies', duration: '' },
     { id: 'NEED_ID_14', title: 'Tips & Tricks to using JewishGen', duration: '' },
     { id: 'NEED_ID_13', title: 'The Czech Torah Scroll Story: From the Holocaust to the Diaspora', duration: '' },
-    { id: 'NEED_ID_12', title: 'You Can\u2019t Find the Records \u2014 Now What?', duration: '' },
-    { id: 'aWTIFoqW0yg', title: '\u201cThe Hare with Amber Eyes\u201d: A Glimpse into some Jewish Families of Vienna', duration: '' },
+    { id: 'NEED_ID_12', title: 'You Can\'t Find the Records — Now What?', duration: '' },
+    { id: 'aWTIFoqW0yg', title: '"The Hare with Amber Eyes": A Glimpse into some Jewish Families of Vienna', duration: '' },
     { id: 'NEED_ID_10', title: 'JewishGen Talks: Researching Jewish Families in America', duration: '' },
     { id: 'NEED_ID_09', title: 'PANEL: Polish-Jewish Genealogy & Protecting Polish Jewish Cemeteries', duration: '1:00:41' },
-    { id: 'NEED_ID_08', title: 'Translating Russian Documents for the Non-Russian Speaker with Dr. Alan Levine', duration: '50:31' },
+    { id: 'NEED_ID_08', title: 'Translating Russian Documents for the Non-Russian Speaker', duration: '50:31' },
     { id: 'NEED_ID_07', title: 'What the Jewish Genealogist Needs to Know About Jewish Names', duration: '1:15:17' },
     { id: 'NEED_ID_06', title: 'From DNA to Genetic Genealogy: Everything you wanted to know but were afraid to ask.', duration: '1:00:50' },
     { id: 'NEED_ID_05', title: 'Manifest Destiny: Names at Ellis Island', duration: '1:00:06' },
@@ -839,6 +427,7 @@ const VIDEOS = [
     { id: 'NEED_ID_02', title: 'Researching NYC Records Remotely', duration: '1:03:53' },
     { id: 'NEED_ID_01', title: 'Tracing Your Jewish Roots through Catholic and Inquisition Records', duration: '56:10' }
 ];
+
 function thumbUrl(id) {
     if (!id || id.startsWith('NEED_ID')) return 'https://placehold.co/480x270/09497a/ffffff?text=Coming+Soon';
     return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
@@ -856,14 +445,11 @@ function playVideo(id, title, duration, desc) {
     document.getElementById('featured-iframe').src = embedUrl(id);
     document.getElementById('featured-iframe').title = title;
     document.getElementById('featured-title-el').textContent = title;
-    document.getElementById('featured-duration-el').textContent = duration ? '\u23f1 ' + duration : '';
+    document.getElementById('featured-duration-el').textContent = duration ? '⏱ ' + duration : '';
     document.getElementById('featured-yt-link').href = watchUrl(id);
     document.getElementById('featured-desc-el').textContent = desc || '';
-    
     document.querySelectorAll('.video-card').forEach(c => c.classList.remove('is-playing'));
     document.querySelectorAll(`[data-id="${id}"]`).forEach(c => c.classList.add('is-playing'));
-    
-    // Smooth scroll to the center of the screen
     document.querySelector('.featured-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
@@ -873,7 +459,7 @@ function buildCard(v) {
     card.setAttribute('role', 'listitem');
     card.setAttribute('tabindex', '0');
     card.setAttribute('data-id', v.id);
-    card.setAttribute('aria-label', `Play: ${v.title}${v.duration ? ' \u2014 ' + v.duration : ''}`);
+    card.setAttribute('aria-label', `Play: ${v.title}${v.duration ? ' — ' + v.duration : ''}`);
     card.onclick = () => playVideo(v.id, v.title, v.duration, v.desc || '');
     card.onkeydown = (e) => { if (e.key === 'Enter' || e.key === ' ') { card.click(); e.preventDefault(); } };
     card.innerHTML = `
@@ -891,20 +477,15 @@ function showAllVideos() {
     const grid = document.getElementById('video-grid-b');
     const btn  = document.getElementById('show-all-btn');
     const count = document.getElementById('grid-count');
-    // Add remaining videos (index 9 onward)
     VIDEOS.slice(8).forEach(v => grid.appendChild(buildCard(v)));
     count.textContent = '44 videos';
     btn.style.display = 'none';
-    // Mark featured as playing if it's in the newly added cards
     document.querySelectorAll('[data-id="WZPGF3hZOO0"]').forEach(c => c.classList.add('is-playing'));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     const gridB = document.getElementById('video-grid-b');
-
-    // Show 8 most recent on load
     VIDEOS.slice(0, 8).forEach(v => gridB.appendChild(buildCard(v)));
-
     document.querySelectorAll('[data-id="WZPGF3hZOO0"]').forEach(c => c.classList.add('is-playing'));
 });
 </script>
