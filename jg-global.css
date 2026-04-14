@@ -487,7 +487,7 @@ body.dark-mode .jg-card { background-color: #1e1e1e; }
 }
 .jg-card:hover .jg-speaker-bio { visibility: visible; opacity: 1; }
 
-.jg-card__date   { font-size: 0.75rem; font-weight: bold; color: var(--sage); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem; }
+.jg-card__date   { font-size: 0.75rem; font-weight: bold; color: var(--navy); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem; }
 .jg-card__type   { font-size: 0.75rem; color: var(--charcoal); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; opacity: 0.7; }
 .jg-card h3      { color: var(--navy); font-size: 1rem; margin: 0 0 0.5rem 0; }
 .jg-card__speaker { font-size: 0.875rem; color: var(--navy); font-weight: 600; margin: -0.75rem 0 1.25rem 0; display: block; }
