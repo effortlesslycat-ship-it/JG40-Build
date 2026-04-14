@@ -1,0 +1,52 @@
+<!-- ============================================================
+     JewishGen Redesign — Announcement.html (Project Shorashim)
+     Sits between HeroSearch.html and the resource cards on the homepage.
+     CSS: Classes below belong in GlobalStyles.css / HeadSection.txt
+
+     HOW TO UPDATE THIS BANNER:
+     Find the section marked EDIT START and EDIT END below.
+     Change only the announcement text and the href/link text.
+     Do not edit anything outside those markers.
+     ============================================================
+
+     ── CSS BLOCK (move to GlobalStyles.css when ready) ────────
+
+     .jg-announcement {
+         background-color: #09497a;
+         color: #ffffff;
+         text-align: center;
+         padding: 0.9375rem;
+         font-size: 0.9375rem;
+         font-weight: normal;
+         letter-spacing: 0.5px;
+         font-family: 'Gotham', 'Arial', sans-serif;
+     }
+     body.dark-mode .jg-announcement {
+         background-color: #1a1a1a;
+         border-bottom: 1px solid #333;
+     }
+     .jg-announcement__label {
+         color: #939b51;
+         font-weight: bold;
+         margin-right: 0.5rem;
+     }
+     .jg-announcement a {
+         color: #ffffff;
+         text-decoration: underline;
+     }
+     .jg-announcement a:hover { color: #939b51; }
+
+     ── END CSS BLOCK ───────────────────────────────────────── -->
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     ANNOUNCEMENT BANNER
+═══════════════════════════════════════════════════════════ -->
+<div class="jg-announcement" role="alert" aria-live="polite">
+    <span class="jg-announcement__label">📢 LATEST ANNOUNCEMENT:</span>
+
+    <!-- ═══════════ EDIT START ═══════════ -->
+    New Bessarabia Records Released!
+    <a href="#">Click here to read the update.</a>
+    <!-- ═══════════ EDIT END ═════════════ -->
+</div>
