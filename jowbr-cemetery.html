@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beth David Cemetery — Adolph Ullman Aid Society | JOWBR | JewishGen</title>
+    <style>
+        /* ── Global Design System ── */
+        :root {
+            --cream: #e8e1d1;
+            --sage:  #939b51;
+            --navy:  #09497a;
+            --charcoal: #232b2b;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0; padding: 0;
+            color: var(--charcoal);
+            background-color: var(--white);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        a { text-decoration: none; color: var(--navy); }
+        a:hover { text-decoration: underline; }
+
+        /* ── Header ── */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            border-bottom: 2px solid var(--cream);
+        }
+
+        /* ── Nav ── */
+        nav {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 0 50px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .dropdown { position: relative; display: inline-block; }
+        .dropbtn { display: block; padding: 15px 0; cursor: pointer; color: var(--white); }
+        .dropdown:hover .dropbtn { color: var(--sage); }
+        .dropdown-content {
+            display: none; position: absolute;
+            background-color: var(--white);
+            min-width: 250px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            z-index: 100; top: 100%; left: 0;
+            border-top: 3px solid var(--sage);
+            border-radius: 0 0 6px 6px; overflow: hidden;
+        }
+        .dropdown-content a {
+            color: var(--navy); padding: 12px 20px;
+            text-decoration: none; display: block;
+            text-transform: none; font-weight: normal;
+            font-size: 15px; border-bottom: 1px solid var(--cream);
+        }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background-color: var(--cream); color: var(--navy); font-weight: bold; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        /* ── Breadcrumb ── */
+        .breadcrumb {
+            background-color: var(--cream);
+            padding: 10px 50px;
+            font-size: 13px;
+            color: var(--charcoal);
+            border-bottom: 1px solid #d1caba;
+        }
+        .breadcrumb a {
+            color: var(--navy);
+            font-weight: bold;
+            text-decoration: underline dotted;
+        }
+        .breadcrumb a:hover { color: var(--sage); }
+        .breadcrumb span { margin: 0 6px; color: var(--charcoal); opacity: 0.5; }
+
+        /* ── Page header band ── */
+        .page-header-band {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 18px 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .page-header-band h1 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--white);
+        }
+        .page-header-band .jowbr-badge {
+            background-color: var(--sage);
+            color: var(--white);
+            font-size: 11px;
+            font-weight: bold;
+            padding: 3px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* ── Page wrapper ── */
+        .page-wrapper {
+            max-width: 1100px;
+            margin: 36px auto;
+            padding: 0 30px;
+        }
+
+        /* ── Cemetery name hero ── */
+        .cemetery-hero {
+            border-bottom: 2px solid var(--cream);
+            padding-bottom: 20px;
+            margin-bottom: 28px;
+        }
+        .cemetery-hero h2 {
+            margin: 0 0 4px;
+            font-size: 30px;
+            color: var(--navy);
+            font-weight: 700;
+        }
+        .cemetery-hero .section-subtitle {
+            font-size: 16px;
+            color: var(--charcoal);
+            opacity: 0.7;
+            margin: 0 0 10px;
+            font-style: italic;
+        }
+        .cemetery-hero .location-line {
+            font-size: 14px;
+            color: var(--charcoal);
+            margin: 0;
+        }
+        .cemetery-hero .location-line span {
+            margin-right: 14px;
+        }
+        .cemetery-hero .location-line .cem-id {
+            display: inline-block;
+            background-color: var(--cream);
+            border: 1px solid #d1caba;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 2px 8px;
+            color: var(--charcoal);
+            letter-spacing: 0.5px;
+            vertical-align: middle;
+        }
+
+        /* ── Stats bar ── */
+        .stats-bar {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 32px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #d1caba;
+        }
+        .stat-block {
+            flex: 1;
+            padding: 18px 24px;
+            background-color: var(--cream);
+            text-align: center;
+        }
+        .stat-block:not(:last-child) {
+            border-right: 2px solid var(--white);
+        }
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--navy);
+            display: block;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .stat-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--charcoal);
+            opacity: 0.65;
+            font-weight: bold;
+        }
+
+        /* ── Search box ── */
+        .search-section {
+            background-color: var(--navy);
+            border-radius: 8px;
+            padding: 24px 28px;
+            margin-bottom: 32px;
+        }
+        .search-section .search-label {
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--sage);
+            margin-bottom: 12px;
+            display: block;
+        }
+        .search-section .search-description {
+            font-size: 13px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 16px;
+        }
+        .search-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .search-row input[type="text"] {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px 14px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 6px;
+            font-size: 15px;
+            background-color: rgba(255,255,255,0.1);
+            color: var(--white);
+            outline: none;
+        }
+        .search-row input[type="text"]::placeholder { color: rgba(255,255,255,0.45); }
+        .search-row input[type="text"]:focus { border-color: var(--sage); background-color: rgba(255,255,255,0.15); }
+        .search-row .btn-cem-search {
+            background-color: var(--sage);
+            color: var(--white);
+            border: none;
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            white-space: nowrap;
+        }
+        .search-row .btn-cem-search:hover { filter: brightness(1.1); }
+        .search-note {
+            font-size: 11px;
+            color: rgba(255,255,255,0.45);
+            margin-top: 10px;
+        }
+
+        /* ── Two column body ── */
+        .content-body {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* ── Description ── */
+        .section-label {
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--sage);
+            margin: 0 0 10px;
+        }
+
+        .description-block {
+            margin-bottom: 32px;
+        }
+        .description-text {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--charcoal);
+            position: relative;
+        }
+        .description-text.collapsed {
+            max-height: 96px;
+            overflow: hidden;
+        }
+        .description-text.collapsed::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 40px;
+            background: linear-gradient(transparent, var(--white));
+            pointer-events: none;
+        }
+        .description-text p { margin: 0 0 12px; }
+        .description-text p:last-child { margin-bottom: 0; }
+        .description-text a { color: var(--navy); text-decoration: underline; }
+
+        .btn-show-more {
+            background: none;
+            border: none;
+            color: var(--navy);
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 8px 0 0;
+            text-decoration: underline;
+        }
+        .btn-show-more:hover { color: var(--sage); }
+
+        /* ── Asset cards ── */
+        .assets-section {
+            margin-bottom: 32px;
+        }
+        .asset-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .asset-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background-color: var(--cream);
+            border: 1px solid #d1caba;
+            border-radius: 8px;
+            padding: 14px 16px;
+            text-decoration: none;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+        .asset-card:hover {
+            border-color: var(--navy);
+            background-color: #f0ece3;
+            text-decoration: none;
+        }
+        .asset-card .asset-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--navy);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        .asset-card .asset-info {}
+        .asset-card .asset-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--navy);
+            display: block;
+            margin-bottom: 2px;
+        }
+        .asset-card .asset-subtitle {
+            font-size: 12px;
+            color: var(--charcoal);
+            opacity: 0.6;
+        }
+
+        /* ── Sidebar: details + other sections ── */
+        .sidebar {}
+
+        /* Detail rows */
+        .detail-group {
+            margin-bottom: 28px;
+        }
+        .detail-row {
+            display: flex;
+            flex-direction: column;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--cream);
+            font-size: 14px;
+        }
+        .detail-row:last-child { border-bottom: none; }
+        .detail-row-label {
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--charcoal);
+            opacity: 0.55;
+            margin-bottom: 2px;
+        }
+        .detail-row-value {
+            color: var(--charcoal);
+            line-height: 1.4;
+        }
+
+        /* Other sections placeholder */
+        .other-sections-box {
+            background-color: var(--cream);
+            border: 1px solid #d1caba;
+            border-left: 4px solid var(--sage);
+            border-radius: 0 8px 8px 0;
+            padding: 16px 18px;
+            margin-bottom: 28px;
+        }
+        .other-sections-box .osb-label {
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--sage);
+            margin-bottom: 8px;
+        }
+        .other-sections-box .osb-note {
+            font-size: 13px;
+            color: var(--charcoal);
+            opacity: 0.7;
+            line-height: 1.5;
+            font-style: italic;
+        }
+        .other-sections-box .osb-links {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .other-sections-box .osb-links a {
+            font-size: 13px;
+            color: var(--navy);
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        /* Back navigation */
+        .back-nav {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 36px;
+            padding-top: 24px;
+            border-top: 1px solid var(--cream);
+        }
+        .back-nav a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--white);
+            text-decoration: none;
+            padding: 8px 16px;
+            background-color: var(--navy);
+            border: 1px solid var(--navy);
+            border-radius: 6px;
+        }
+        .back-nav a:hover {
+            background-color: var(--sage);
+            border-color: var(--sage);
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        /* Record metadata */
+        .record-meta {
+            margin-top: 16px;
+            font-size: 12px;
+            color: var(--charcoal);
+            opacity: 0.5;
+        }
+
+        /* ── Dark logos ── */
+        .dark-logo { display: none; }
+        body.dark-mode .dark-logo { display: inline; }
+        body.dark-mode .light-logo { display: none; }
+
+        /* ── Dark Mode ── */
+        body.dark-mode {
+            --cream: #1e1e1e;
+            --sage:  #a8b361;
+            --navy:  #e0e0e0;
+            --charcoal: #a0a0a0;
+            --white: #121212;
+        }
+
+        body.dark-mode nav { background-color: #1a1a1a !important; color: #ffffff !important; }
+        body.dark-mode .dropbtn { color: #ffffff !important; }
+        body.dark-mode .dropdown:hover .dropbtn { color: #a8b361 !important; }
+        body.dark-mode .dropdown-content { background-color: #1e1e1e; }
+        body.dark-mode .dropdown-content a { color: #e0e0e0; border-bottom-color: #333; }
+        body.dark-mode .dropdown-content a:hover { background-color: #2a2a2a; }
+
+        body.dark-mode .page-header-band { background-color: #1a1a1a !important; }
+        body.dark-mode .page-header-band h1 { color: #ffffff !important; }
+        body.dark-mode .page-header-band .jowbr-badge { background-color: #a8b361 !important; color: #ffffff !important; }
+
+        body.dark-mode .stat-block { background-color: #1e1e1e; border-color: #333; }
+        body.dark-mode .stat-block:not(:last-child) { border-right-color: #333; }
+
+        body.dark-mode .search-section { background-color: #1a1a1a; border: 1px solid #333; }
+        body.dark-mode .search-row input[type="text"] { background-color: #2a2a2a; border-color: #444; color: #e0e0e0; }
+
+        body.dark-mode .description-text.collapsed::after { background: linear-gradient(transparent, #121212); }
+
+        body.dark-mode .asset-card { background-color: #1e1e1e; border-color: #333; }
+        body.dark-mode .asset-card:hover { background-color: #2a2a2a; border-color: #a8b361; }
+        body.dark-mode .asset-card .asset-title { color: #e0e0e0; }
+        body.dark-mode .asset-card .asset-icon { background-color: #2a2a2a; }
+
+        body.dark-mode .other-sections-box { background-color: #1e1e1e; border-color: #333; border-left-color: #a8b361; }
+
+        body.dark-mode .back-nav a { background-color: #1a1a1a; border-color: #555; color: #ffffff; }
+        body.dark-mode .back-nav a:hover { background-color: #a8b361; border-color: #a8b361; color: #ffffff; }
+
+        body.dark-mode .breadcrumb { border-bottom-color: #333; background-color: #1a1a1a; }
+
+        /* ── Footer ── */
+        footer {
+            background-color: var(--cream);
+            padding: 30px 50px;
+            border-top: 4px solid var(--navy);
+            margin-top: 60px;
+        }
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer-text {
+            flex: 2;
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--charcoal);
+            min-width: 300px;
+        }
+        .footer-text a { color: var(--navy); font-weight: bold; text-decoration: underline; }
+
+        /* ── Responsive ── */
+        @media (max-width: 860px) {
+            header { padding: 15px 20px; flex-wrap: wrap; gap: 12px; }
+            nav { padding: 0 20px; gap: 16px; font-size: 13px; }
+            .breadcrumb-strip { padding: 8px 20px; }
+            .page-header-band { padding: 14px 20px; }
+            .page-wrapper { padding: 0 16px; margin: 20px auto; }
+            .content-body { grid-template-columns: 1fr; }
+            .stats-bar { flex-wrap: wrap; }
+            .stat-block { flex: 1 1 40%; }
+            footer { padding: 20px; }
+        }
+
+        @media print {
+            nav, header button, .search-section, .back-nav { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════ -->
+<header>
+    <div class="brand">
+        <a href="#">
+            <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg"
+                 alt="JewishGen: The Global Home for Jewish Genealogy"
+                 class="light-logo" style="height: 55px; width: auto; object-fit: contain;">
+            <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png"
+                 alt="JewishGen: The Global Home for Jewish Genealogy"
+                 class="dark-logo" style="height: 55px; width: auto; object-fit: contain;">
+        </a>
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+        <button onclick="toggleDarkMode()"
+                style="background: var(--cream); color: var(--navy); border: 1px solid #d1caba;
+                       padding: 4px 10px; border-radius: 20px; cursor: pointer;
+                       font-size: 11px; font-weight: bold;"
+                aria-label="Toggle dark mode">
+            🌗 Toggle Dark Mode
+        </button>
+        <div style="display: flex; gap: 8px;">
+            <a href="#" style="padding: 7px 15px; border: 2px solid var(--navy); color: var(--navy);
+                               font-weight: bold; font-size: 13px; border-radius: 6px;">Log In</a>
+            <a href="#" style="padding: 7px 15px; background-color: var(--sage); color: var(--white);
+                               font-weight: bold; font-size: 13px; border-radius: 6px;">Sign Up</a>
+        </div>
+        <div style="text-align: right; margin-top: 2px;">
+            <div style="font-size: 10px; color: var(--charcoal); margin-bottom: 3px;">The Genealogical Research Division of</div>
+            <a href="https://mjhnyc.org/" target="_blank" rel="noopener">
+                <img src="https://www.jewishgen.org/images/MJH-Circle-Logo.svg"
+                     alt="Museum of Jewish Heritage" class="light-logo" style="height: 32px; width: auto;">
+                <img src="https://d3k74ww17vqc8e.cloudfront.net/app/uploads/2019/10/18145838/MJH-Circle-icon_Logo.png"
+                     alt="Museum of Jewish Heritage" class="dark-logo" style="height: 32px; width: auto;">
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════════ -->
+<nav aria-label="Main navigation">
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Databases ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Global Search</a>
+            <a href="#" role="menuitem">Country &amp; Regional Databases</a>
+            <a href="#" role="menuitem">Holocaust Database</a>
+            <a href="#" role="menuitem">Burial Registry (JOWBR)</a>
+            <a href="#" role="menuitem">Records Catalog</a>
+            <a href="#" role="menuitem">Family Trees (FTJP)</a>
+            <a href="#" role="menuitem">Text Search</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Communities ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Regional/Topical Research Divisions</a>
+            <a href="#" role="menuitem">Town Finder</a>
+            <a href="#" role="menuitem">KehilaLinks</a>
+            <a href="#" role="menuitem">Yizkor Books</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Learn &amp; Connect ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Online Classes</a>
+            <a href="#" role="menuitem">Search Methodologies &amp; Research Advice</a>
+            <a href="#" role="menuitem">Peter &amp; Mary Kalikow Center</a>
+            <a href="#" role="menuitem">Family Finder</a>
+            <a href="#" role="menuitem">Discussion Group</a>
+            <a href="#" role="menuitem">ViewMate</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Events &amp; Programs ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Upcoming Events Calendar</a>
+            <a href="#" role="menuitem">JewishGen Talks</a>
+            <a href="#" role="menuitem">Student Program in Poland</a>
+            <a href="#" role="menuitem">Study &amp; Service Tour of Poland</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Publications ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">JewishGen Press</a>
+            <a href="#" role="menuitem">Newsletters</a>
+            <a href="#" role="menuitem">Holiday Companions</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">About &amp; Support ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Mission</a>
+            <a href="#" role="menuitem">Our Team</a>
+            <a href="#" role="menuitem">Donate Now</a>
+            <a href="#" role="menuitem">Planned Giving</a>
+            <a href="#" role="menuitem">Wall of Honor</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     BREADCRUMB
+══════════════════════════════════════════ -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="#">JewishGen Home</a>
+    <span aria-hidden="true">›</span>
+    <a href="#">Databases</a>
+    <span aria-hidden="true">›</span>
+    <a href="#">Burial Registry (JOWBR)</a>
+    <span aria-hidden="true">›</span>
+    <span aria-current="page">Beth David Cemetery — Adolph Ullman Aid Society</span>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     PAGE HEADER BAND
+══════════════════════════════════════════ -->
+<div class="page-header-band" role="banner">
+    <h1>JewishGen Online Worldwide Burial Registry</h1>
+    <span class="jowbr-badge">JOWBR</span>
+</div>
+
+<!-- ══════════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════════ -->
+<main id="main-content" class="page-wrapper">
+
+    <!-- Cemetery name hero -->
+    <div class="cemetery-hero">
+        <h2>Beth David Cemetery</h2>
+        <!-- section_name: render as subtitle only if populated -->
+        <p class="section-subtitle">Adolph Ullman Aid Society</p>
+        <p class="location-line">
+            <span>300 Elmont Road, Elmont, New York</span>
+            <span>USA</span>
+            <span class="cem-id" aria-label="Cemetery ID">USA-11898</span>
+        </p>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="stats-bar" role="region" aria-label="Cemetery statistics">
+        <div class="stat-block">
+            <span class="stat-number" aria-label="2,732 burials">2,732</span>
+            <span class="stat-label">Burials</span>
+        </div>
+        <div class="stat-block">
+            <span class="stat-number" aria-label="2,686 photographs">2,686</span>
+            <span class="stat-label">Photographs</span>
+        </div>
+    </div>
+
+    <!-- Search this cemetery -->
+    <div class="search-section" role="search" aria-label="Search records in this cemetery">
+        <span class="search-label">Search Records in This Cemetery</span>
+        <p class="search-description">Enter a surname to search burial records for Beth David Cemetery — Adolph Ullman Aid Society.</p>
+        <div class="search-row">
+            <input type="text"
+                   id="cemetery-search-input"
+                   placeholder="Enter surname…"
+                   aria-label="Surname to search within this cemetery">
+            <button class="btn-cem-search"
+                    onclick="searchThisCemetery()"
+                    aria-label="Search this cemetery">
+                Search ↗
+            </button>
+        </div>
+        <p class="search-note">Results will open in the JOWBR search results page filtered to this cemetery.</p>
+    </div>
+
+    <!-- Two-column content body -->
+    <div class="content-body">
+
+        <!-- ── LEFT: Description + Assets ── -->
+        <div>
+
+            <!-- Description -->
+            <!-- Suppress entire block if cemetery_description is empty -->
+            <div class="description-block" role="region" aria-label="Cemetery description">
+                <p class="section-label">About This Cemetery</p>
+                <div class="description-text collapsed" id="desc-text">
+                    <p>Beth David Cemetery, Adolph Ullman Aid Society section, 300 Elmont Road, Elmont, NY, USA. 2,732 burials total.</p>
+                    <p>The cemetery office is at the address given elsewhere in this file. The office phone number is (516) 328-1300.</p>
+                    <p>The Adolph Ullman Aid Society has the largest society plot in the cemetery, being the entire block G8.</p>
+                    <p>The Society also had plots at Mt. Zion in Beth Page, NY, Mt Hebron Cemetery in Kew Gardens Hills, NY, and Wellwood Cemetery in West Babylon, NY.</p>
+                    <p>The Society ceased operation in the first decade of the 21st Century and all records (such as they are) are now in Record Group 2242 at the YIVO Archive in New York City.</p>
+                    <p><a href="#" target="_blank" rel="noopener">Cemetery map.</a></p>
+                    <p><a href="#" target="_blank" rel="noopener">Gates.</a></p>
+                    <p><a href="#" target="_blank" rel="noopener">Plot layout sketch and image.</a></p>
+                </div>
+                <button class="btn-show-more"
+                        id="desc-toggle"
+                        onclick="toggleDescription()"
+                        aria-expanded="false"
+                        aria-controls="desc-text">
+                    Show more ↓
+                </button>
+            </div>
+
+            <!-- Hosted assets: render only if links exist in the DB -->
+            <div class="assets-section" role="region" aria-label="Cemetery documents and maps">
+                <p class="section-label">Documents &amp; Maps</p>
+                <div class="asset-cards">
+
+                    <!-- Each card: only render if the corresponding link field is populated -->
+                    <a href="#" class="asset-card" target="_blank" rel="noopener"
+                       aria-label="View cemetery map (opens in new tab)">
+                        <div class="asset-icon" aria-hidden="true">🗺</div>
+                        <div class="asset-info">
+                            <span class="asset-title">Cemetery Map</span>
+                            <span class="asset-subtitle">Full plot layout overview</span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="asset-card" target="_blank" rel="noopener"
+                       aria-label="View cemetery gates photograph (opens in new tab)">
+                        <div class="asset-icon" aria-hidden="true">🚪</div>
+                        <div class="asset-info">
+                            <span class="asset-title">Gates</span>
+                            <span class="asset-subtitle">Entrance photograph</span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="asset-card" target="_blank" rel="noopener"
+                       aria-label="View plot layout sketch (opens in new tab)">
+                        <div class="asset-icon" aria-hidden="true">📐</div>
+                        <div class="asset-info">
+                            <span class="asset-title">Plot Layout Sketch</span>
+                            <span class="asset-subtitle">Section G8 diagram and image</span>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+        </div><!-- /left col -->
+
+        <!-- ── RIGHT: Sidebar ── -->
+        <div class="sidebar">
+
+            <!-- Cemetery details -->
+            <div class="detail-group" role="region" aria-label="Cemetery details">
+                <p class="section-label">Cemetery Details</p>
+
+                <!-- street: omit if empty -->
+                <div class="detail-row">
+                    <span class="detail-row-label">Street</span>
+                    <span class="detail-row-value">300 Elmont Road</span>
+                </div>
+
+                <!-- city -->
+                <div class="detail-row">
+                    <span class="detail-row-label">City</span>
+                    <span class="detail-row-value">Elmont</span>
+                </div>
+
+                <!-- state: omit if empty (US records only) -->
+                <div class="detail-row">
+                    <span class="detail-row-label">State</span>
+                    <span class="detail-row-value">New York</span>
+                </div>
+
+                <!-- country -->
+                <div class="detail-row">
+                    <span class="detail-row-label">Country</span>
+                    <span class="detail-row-value">USA</span>
+                </div>
+
+                <!-- section: omit if empty -->
+                <div class="detail-row">
+                    <span class="detail-row-label">Section</span>
+                    <span class="detail-row-value">Adolph Ullman Aid Society</span>
+                </div>
+
+            </div>
+
+            <!-- Other sections in JOWBR -->
+            <!-- This block requires a future data relationship to be built.
+                 Render with known section links once data is available.
+                 Until then, display as a placeholder. -->
+            <div class="other-sections-box" role="complementary" aria-label="Other sections of this cemetery in JOWBR">
+                <div class="osb-label">Other Sections in JOWBR</div>
+                <!-- When data is available, replace the note with osb-links: -->
+                <div class="osb-links">
+                    <a href="#">Beth David Cemetery — Section A</a>
+                    <a href="#">Beth David Cemetery — Mt. Hebron Plot</a>
+                </div>
+                <!-- Placeholder note (remove when data is wired):
+                <p class="osb-note">Other sections of this physical cemetery may be separately indexed in JOWBR. This feature is pending data linkage.</p>
+                -->
+            </div>
+
+            <!-- Record metadata -->
+            <div class="record-meta">
+                Data last updated: 29 December 2024
+            </div>
+
+        </div><!-- /sidebar -->
+
+    </div><!-- /content-body -->
+
+    <!-- Back navigation -->
+    <nav class="back-nav" aria-label="Return navigation">
+        <a href="#" aria-label="Return to JOWBR main page">← JOWBR Home</a>
+        <a href="#" aria-label="Return to JewishGen Databases">← All Databases</a>
+        <a href="#" aria-label="View JOWBR FAQ">JOWBR FAQ</a>
+    </nav>
+
+</main>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer>
+    <div class="footer-inner">
+        <div style="flex: 1; min-width: 250px;">
+            <a href="#">
+                <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg" alt="JewishGen Logo"
+                     class="light-logo" style="height: 60px; width: auto; object-fit: contain;">
+                <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png" alt="JewishGen Logo"
+                     class="dark-logo" style="height: 60px; width: auto; object-fit: contain;">
+            </a>
+        </div>
+        <div class="footer-text">
+            Edmond J. Safra Plaza | 36 Battery Place | New York, NY 10280<br>
+            646.494.2972 |
+            <a href="/cdn-cgi/l/email-protection#e38a8d858ca38986948a908b84868dcd8c9184"><span class="__cf_email__" data-cfemail="21484f474e614b445648524946444f0f4e5346">[email&#160;protected]</span></a>
+            | &copy; 2026, JewishGen, Inc.
+            <a href="#">All rights reserved.</a>
+        </div>
+        <div style="flex: 1; display: flex; justify-content: flex-end; align-items: center; min-width: 250px;">
+            <a href="https://mjhnyc.org/" target="_blank" rel="noopener">
+                <img src="https://www.jewishgen.org/images/MJH-Circle-Logo.svg"
+                     alt="Museum of Jewish Heritage"
+                     class="light-logo" style="height: 45px; width: auto;">
+                <img src="https://d3k74ww17vqc8e.cloudfront.net/app/uploads/2019/10/18145838/MJH-Circle-icon_Logo.png"
+                     alt="Museum of Jewish Heritage"
+                     class="dark-logo" style="height: 45px; width: auto;">
+            </a>
+        </div>
+    </div>
+</footer>
+
+<!-- ══════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════ -->
+<script>
+    // ── Dark mode toggle ──
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+    }
+
+    // ── Description show more / collapse ──
+    function toggleDescription() {
+        const text   = document.getElementById('desc-text');
+        const btn    = document.getElementById('desc-toggle');
+        const isOpen = !text.classList.contains('collapsed');
+
+        if (isOpen) {
+            text.classList.add('collapsed');
+            btn.textContent = 'Show more ↓';
+            btn.setAttribute('aria-expanded', 'false');
+        } else {
+            text.classList.remove('collapsed');
+            btn.textContent = 'Show less ↑';
+            btn.setAttribute('aria-expanded', 'true');
+        }
+    }
+
+    // ── Cemetery search ──
+    function searchThisCemetery() {
+        const name = document.getElementById('cemetery-search-input').value.trim();
+        if (!name) {
+            document.getElementById('cemetery-search-input').focus();
+            return;
+        }
+        // TODO: Replace with actual JOWBR search endpoint + cemetery ID param
+        const url = 'https://www.jewishgen.org/databases/cemetery/search.php'
+                  + '?cem_id=USA-11898'
+                  + '&surname=' + encodeURIComponent(name);
+        window.location.href = url;
+    }
+
+    // Allow Enter key to trigger search
+    document.getElementById('cemetery-search-input').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') searchThisCemetery();
+    });
+
+    // ── Keyboard nav for dropdowns ──
+    document.querySelectorAll('.dropbtn').forEach(function(btn) {
+        btn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const content = this.parentElement.querySelector('.dropdown-content');
+                const isOpen  = content.style.display === 'block';
+                document.querySelectorAll('.dropdown-content').forEach(function(d) { d.style.display = ''; });
+                content.style.display = isOpen ? '' : 'block';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!-- ============================================================
+     JewishGen Redesign — PubLib.html (Project Shorashim)
+     Publications Library section on the homepage.
+     Sits after the links row in HomePage.html, before the footer.
+     CSS: Classes below belong in GlobalStyles.css / HeadSection.txt
+
+     HOW TO UPDATE PUBLICATIONS:
+     Each publication is a .jg-card.jg-card--pub block.
+     Edit the card-type label, h3 title, description paragraph,
+     and the href on the Download PDF button.
+     Keep to 3 cards (grid-3 layout).
+     ============================================================
+
+     ── CSS BLOCK (move to GlobalStyles.css when ready) ────────
+
+     .jg-publications {
+         background-color: var(--cream);
+         border-radius: 12px;
+         margin-bottom: 3.125rem;
+         font-family: 'Gotham', 'Arial', sans-serif;
+     }
+     body.dark-mode .jg-publications { background-color: #1a1a1a; }
+
+     .jg-publications__header {
+         display: flex;
+         justify-content: space-between;
+         align-items: flex-end;
+         border-bottom: 2px solid var(--navy);
+         padding-bottom: 0.625rem;
+         margin-bottom: 1.875rem;
+     }
+
+     .jg-publications__header h2 {
+         color: var(--navy);
+         font-size: 1.5rem;
+         text-transform: uppercase;
+         margin: 0;
+         font-family: 'Gotham', 'Arial', sans-serif;
+     }
+
+     /* Pub cards: white background + border, matching CompactDraft .card.pub */
+     .jg-card--pub {
+         background-color: var(--white) !important;
+         border: 1px solid #d1caba !important;
+         border-radius: 8px;
+         padding: 0.9375rem 1.25rem;
+     }
+     body.dark-mode .jg-card--pub {
+         background-color: #1e1e1e !important;
+         border-color: #333 !important;
+     }
+
+     .jg-card--pub h3 {
+         color: var(--navy);
+         margin: 0 0 0.5rem 0;
+         font-size: 1.0625rem;
+         font-family: 'Gotham', 'Arial', sans-serif;
+     }
+
+     .jg-card--pub p {
+         font-size: 0.8125rem;
+         color: var(--charcoal);
+         margin-bottom: 0.9375rem;
+         font-family: 'Gotham', 'Arial', sans-serif;
+     }
+
+     .jg-btn-card {
+         display: inline-block;
+         padding: 0.5rem 0.9375rem;
+         background-color: var(--navy);
+         color: #ffffff;
+         border-radius: 4px;
+         font-size: 0.8125rem;
+         font-weight: bold;
+         text-decoration: none;
+         font-family: 'Gotham', 'Arial', sans-serif;
+         transition: filter 0.2s ease;
+     }
+     .jg-btn-card:hover { filter: brightness(1.15); }
+     .jg-btn-card--sage { background-color: var(--sage) !important; }
+
+     ── END CSS BLOCK ───────────────────────────────────────── -->
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     PUBLICATIONS LIBRARY
+     TODO: wire to live publications system when available
+═══════════════════════════════════════════════════════════ -->
+<div class="jg-publications">
+
+    <div class="jg-publications__header">
+        <h2>Publications Library</h2>
+        <a href="#"
+           class="jg-btn-card jg-btn-card--sage"
+           aria-label="Sign up for or manage your JewishGen newsletter subscriptions">
+            Join Our Mailing List
+        </a>
+    </div>
+
+    <div class="jg-grid-3">
+
+        <!-- PUBLICATION 1 -->
+        <div class="jg-card jg-card--pub">
+            <div class="jg-card__type">Newsletter</div>
+            <h3>Weekly Update</h3>
+            <p>Vol. 24, Issue 11</p>
+            <a href="#" class="jg-btn-card jg-btn-card--sage">Download PDF</a>
+        </div>
+
+        <!-- PUBLICATION 2 -->
+        <div class="jg-card jg-card--pub">
+            <div class="jg-card__type">Newsletter</div>
+            <h3>Monthly Newsletter</h3>
+            <p>March 2026 Edition</p>
+            <a href="#" class="jg-btn-card jg-btn-card--sage">Download PDF</a>
+        </div>
+
+        <!-- PUBLICATION 3 -->
+        <div class="jg-card jg-card--pub">
+            <div class="jg-card__type">Companion</div>
+            <h3>Holiday Companion</h3>
+            <p>Passover 2026 Edition</p>
+            <a href="#" class="jg-btn-card jg-btn-card--sage">Download PDF</a>
+        </div>
+
+    </div>
+
+</div>

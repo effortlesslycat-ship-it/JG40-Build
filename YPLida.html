@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lida, Belarus — Yizkor Book Translation — JewishGen-erosity [SIDEBAR RIGHT]</title>
+    <style>
+        :root {
+            --cream:    #e8e1d1;
+            --sage:     #939b51;
+            --navy:     #09497a;
+            --charcoal: #232b2b;
+            --white:    #ffffff;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; color: var(--charcoal); background-color: var(--white); transition: background-color 0.3s ease, color 0.3s ease; }
+        a { text-decoration: none; color: inherit; }
+        .skip-link { position: absolute; left: -9999px; top: 0; background: var(--navy); color: var(--white); padding: 8px 16px; font-weight: bold; z-index: 9999; }
+        .skip-link:focus { left: 0; }
+        .dark-logo  { display: none !important; }
+        body.dark-mode .light-logo { display: none !important; }
+        body.dark-mode .dark-logo  { display: block !important; }
+
+        header { display: flex; justify-content: space-between; align-items: center; padding: 10px 50px; border-bottom: 2px solid var(--cream); }
+        nav.main-nav { background-color: var(--navy); color: var(--white); padding: 0 50px; display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        .dropdown { position: relative; display: inline-block; }
+        .dropbtn { display: block; padding: 15px 0; cursor: pointer; color: var(--white); }
+        .dropdown:hover .dropbtn { color: var(--sage); }
+        .dropdown-content { display: none; position: absolute; background-color: var(--white); min-width: 250px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15); z-index: 100; top: 100%; left: 0; border-top: 3px solid var(--sage); border-radius: 0 0 6px 6px; overflow: hidden; }
+        .dropdown-content a { color: var(--navy); padding: 12px 20px; display: block; text-transform: none; font-weight: normal; font-size: 15px; border-bottom: 1px solid var(--cream); }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background-color: var(--cream); font-weight: bold; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        .breadcrumb { background-color: var(--cream); padding: 10px 50px; font-size: 13px; color: var(--charcoal); border-bottom: 1px solid #d1caba; }
+        .breadcrumb a { color: var(--navy); font-weight: bold; text-decoration: underline dotted; }
+        .breadcrumb a:hover { color: var(--sage); }
+        .breadcrumb .sep { margin: 0 6px; opacity: 0.5; }
+
+          .page-title-band { background-color: var(--navy); color: var(--white); padding: 35px 50px; text-align: center; }
+        .record-type-tag { display: inline-block; background-color: var(--sage); color: var(--white); font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; padding: 4px 12px; border-radius: 3px; margin-bottom: 12px; }
+        .page-title-band h1 { margin: 0 0 8px 0; font-size: 30px; font-weight: bold; line-height: 1.2; color: var(--white); }
+        .page-title-band .subtitle { font-size: 15px; color: #b8ccd8; margin: 0; }
+
+        /* SIDEBAR RIGHT: content left, sidebar right */
+        .dataset-layout { max-width: 1100px; margin: 0 auto; padding: 40px 50px; display: grid; grid-template-columns: 1fr 300px; gap: 40px; align-items: start; }
+        .dataset-sidebar { position: sticky; top: 20px; }
+
+        .back-link { display: flex; align-items: center; gap: 6px; color: var(--navy); font-size: 13px; font-weight: bold; text-decoration: underline dotted; margin-bottom: 20px; }
+        .back-link:hover { color: var(--sage); }
+
+        .meta-card { background-color: var(--cream); border-radius: 8px; padding: 20px; margin-bottom: 16px; border-top: 4px solid var(--navy); }
+        .meta-card h3 { margin: 0 0 16px 0; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--charcoal); font-weight: bold; }
+        .meta-row { margin-bottom: 14px; }
+        .meta-row:last-child { margin-bottom: 0; }
+        .meta-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--charcoal); opacity: 0.65; display: block; margin-bottom: 3px; }
+        .meta-value { font-weight: bold; color: var(--navy); font-size: 14px; line-height: 1.5; display: block; }
+        .meta-value.citation { font-weight: normal; font-style: italic; font-size: 13px; color: var(--charcoal); line-height: 1.6; }
+        .meta-value.citation strong { font-style: normal; color: var(--navy); }
+        .meta-link { color: var(--navy); font-weight: bold; text-decoration: underline dotted; font-size: 14px; }
+        .meta-link:hover { color: var(--sage); }
+        .funding-amount { font-size: 30px; font-weight: bold; color: var(--navy); line-height: 1; margin-top: 4px; letter-spacing: -0.5px; }
+
+        .donate-card { background-color: var(--navy); border-radius: 8px; padding: 22px; }
+        .donate-card p { font-size: 13px; color: #a9c0d0; line-height: 1.6; margin: 0 0 16px 0; }
+        .btn-donate-full { display: block; background-color: var(--sage); color: var(--white); padding: 12px 20px; border-radius: 5px; font-size: 14px; font-weight: bold; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; transition: filter 0.2s; }
+        .btn-donate-full:hover { filter: brightness(1.12); }
+
+        .dataset-main h2 { color: var(--navy); font-size: 18px; border-bottom: 2px solid var(--sage); padding-bottom: 7px; margin: 28px 0 14px 0; text-transform: uppercase; letter-spacing: 0.5px; }
+        .dataset-main h2:first-child { margin-top: 0; }
+        .dataset-main p { font-size: 15px; line-height: 1.8; color: var(--charcoal); margin: 0 0 14px 0; }
+        .dataset-main p:last-child { margin-bottom: 0; }
+        .dataset-main a { color: var(--navy); font-weight: bold; text-decoration: underline dotted; }
+        .dataset-main a:hover { color: var(--sage); }
+
+        footer { background-color: var(--cream); padding: 30px 50px; border-top: 4px solid var(--navy); }
+        .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; width: 100%; }
+        .footer-center { flex: 2; text-align: center; font-size: 13px; line-height: 1.6; color: var(--charcoal); min-width: 300px; }
+        .footer-center a { color: var(--navy); text-decoration: underline; font-weight: bold; }
+
+        body.dark-mode { --cream: #1e1e1e; --sage: #a8b361; --navy: #4fa0d8; --charcoal: #c8c8c8; --white: #121212; }
+        body.dark-mode nav.main-nav { background-color: #1a1a1a; border-bottom: 1px solid #333; }
+        body.dark-mode .dropbtn { color: #e0e0e0; }
+        body.dark-mode .dropdown-content { background-color: #1e1e1e; border-top-color: #a8b361; }
+        body.dark-mode .dropdown-content a { color: #b0c8de; border-bottom-color: #333; }
+        body.dark-mode .dropdown-content a:hover { background-color: #262626; }
+        body.dark-mode .page-title-band { background-color: #1a1a1a; border-bottom: 1px solid #333; }
+        body.dark-mode .page-title-band h1 { color: #ffffff !important; }
+        body.dark-mode .page-title-band .subtitle { color: #b8ccd8 !important; }
+        body.dark-mode .record-type-tag { color: #121212; }
+        body.dark-mode .meta-card { border-top-color: #a8b361; }
+        body.dark-mode .funding-amount { color: #a8b361; }
+        body.dark-mode .donate-card { background-color: #1a2a1a; }
+        body.dark-mode .dataset-main h2 { border-bottom-color: #a8b361; }
+        body.dark-mode footer { border-top-color: #a8b361; }
+
+        @media (max-width: 900px) {
+            header { flex-direction: column; text-align: center; gap: 15px; padding: 20px; }
+            nav.main-nav { flex-wrap: wrap; justify-content: center; padding: 15px; gap: 15px; }
+            .breadcrumb { padding: 10px 20px; overflow-x: auto; white-space: nowrap; }
+            .page-title-band { padding: 25px 20px; }
+            /* On mobile, sidebar stacks below content */
+            .dataset-layout { grid-template-columns: 1fr; padding: 28px 20px; gap: 28px; }
+            .dataset-sidebar { position: static; }
+            footer { padding: 25px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header>
+    <div class="brand">
+        <a href="https://www.jewishgen.org">
+            <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg" alt="JewishGen: The Global Home for Jewish Genealogy" class="light-logo" style="height:55px;width:auto;object-fit:contain;">
+            <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png" alt="JewishGen: The Global Home for Jewish Genealogy" class="dark-logo" style="height:55px;width:auto;object-fit:contain;">
+        </a>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+        <button onclick="document.body.classList.toggle('dark-mode')" style="background:var(--cream);color:var(--navy);border:1px solid #d1caba;padding:4px 10px;border-radius:20px;cursor:pointer;font-size:11px;font-weight:bold;" aria-label="Toggle dark mode">🌗 Toggle Dark Mode</button>
+        <div style="display:flex;gap:8px;">
+            <a href="#" style="padding:7px 15px;border:2px solid var(--navy);color:var(--navy);font-weight:bold;font-size:13px;border-radius:6px;">Log In</a>
+            <a href="#" style="padding:7px 15px;background-color:var(--sage);color:var(--white);font-weight:bold;font-size:13px;border-radius:6px;">Sign Up</a>
+        </div>
+        <div style="text-align:right;margin-top:2px;">
+            <div style="font-size:10px;color:var(--charcoal);margin-bottom:3px;">The Genealogical Research Division of</div>
+            <a href="https://mjhnyc.org/" target="_blank" rel="noopener">
+                <img src="https://www.jewishgen.org/images/MJH-Circle-Logo.svg" alt="Museum of Jewish Heritage" class="light-logo" style="height:32px;width:auto;">
+                <img src="https://d3k74ww17vqc8e.cloudfront.net/app/uploads/2019/10/18145838/MJH-Circle-icon_Logo.png" alt="Museum of Jewish Heritage" class="dark-logo" style="height:32px;width:auto;">
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- NAV -->
+<nav class="main-nav" aria-label="Main navigation">
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Databases ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Global Search</a>
+            <a href="#" role="menuitem">Country &amp; Regional Databases</a>
+            <a href="#" role="menuitem">Holocaust Database</a>
+            <a href="#" role="menuitem">Burial Registry (JOWBR)</a>
+            <a href="#" role="menuitem">Records Catalog</a>
+            <a href="#" role="menuitem">Family Trees (FTJP)</a>
+            <a href="#" role="menuitem">Text Search</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Communities ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Regional/Topical Research Divisions</a>
+            <a href="#" role="menuitem">Town Finder</a>
+            <a href="#" role="menuitem">KehilaLinks</a>
+            <a href="#" role="menuitem">Yizkor Books</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Learn &amp; Connect ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Online Classes</a>
+            <a href="#" role="menuitem">How to JewishGen &amp; FAQ</a>
+            <a href="#" role="menuitem">Peter &amp; Mary Kalikow Center</a>
+            <a href="#" role="menuitem">Family Finder</a>
+            <a href="#" role="menuitem">Discussion Group</a>
+            <a href="#" role="menuitem">ViewMate</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Events &amp; Programs ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Upcoming Events Calendar</a>
+            <a href="#" role="menuitem">JewishGen Talks</a>
+            <a href="#" role="menuitem">Student Program in Poland</a>
+            <a href="#" role="menuitem">Study &amp; Service Tour of Poland</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Publications ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">JewishGen Press</a>
+            <a href="#" role="menuitem">Newsletters</a>
+            <a href="#" role="menuitem">Holiday Companions</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">About &amp; Support ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Mission</a>
+            <a href="#" role="menuitem">Our Team</a>
+            <a href="#" role="menuitem">Donate Now</a>
+            <a href="#" role="menuitem">Planned Giving</a>
+            <a href="#" role="menuitem">Wall of Honor</a>
+        </div>
+    </div>
+</nav>
+<div class="page-title-band">
+    <div class="record-type-tag">Yizkor Book Translation</div>
+    <h1>Lida, Belarus</h1>
+    <p class="subtitle">Sefer Lida — Translation Project</p>
+</div>
+
+<main id="main-content">
+    <div class="dataset-layout">
+
+        <!-- MAIN CONTENT — left column, first in DOM for accessibility -->
+        <div class="dataset-main">
+            <h2>About This Project</h2>
+            <p>The goal is to translate into English the remainder of this 438-page memorial book. Nearly all the Yiddish text was translated by a volunteer, Roslyn Sherman Greenberg, <em>z"l</em>. Some Hebrew sections have been completed thanks to donations from individuals who sponsored passages of particular interest.</p>
+            <p>The remaining untranslated Yiddish totals approximately ¾ of a page, while the remaining Hebrew totals approximately 173 pages. Completed translations are published online at <a href="https://jewishgen.org/yizkor/lida/lida.html" target="_blank" rel="noopener">jewishgen.org/yizkor/lida/</a>.</p>
+
+            <h2>Historical Significance</h2>
+            <p>Given the deep reluctance of former Communist regimes to engage honestly with Holocaust history — despite the early efforts of the Soviet Extraordinary Commission — these memorial books will become increasingly important as eyewitnesses pass away. They preserve both a record of the Holocaust and the texture of pre-war Jewish life that official Soviet sources often obscured or undercounted.</p>
+            <p>The list of victims compiled by the Soviet Extraordinary Commission for Lida differs markedly from that in <em>Sefer Lida</em>. Surnames known to be most common from Revision Lists are underrepresented in the Soviet tally, while the <em>Sefer Lida</em> list is more complete. The Soviet count also numbers fewer victims than corresponding lists for neighboring villages with considerably smaller Jewish populations — a discrepancy that reflects the uneven commitment of individual Commission members to this essential documentation work.</p>
+
+            <h2>Project Details</h2>
+            <p>As funds become available, sections will be translated in the order they appear in the book by a professional translator.</p>
+        </div>
+
+        <!-- SIDEBAR — right column -->
+        <aside class="dataset-sidebar" aria-label="Project information">
+            <a href="yizkor-translations.html" class="back-link">← All Yizkor Book Projects</a>
+
+            <div class="meta-card">
+                <h3>Project Information</h3>
+                <div class="meta-row">
+                    <span class="meta-label">Book Title</span>
+                    <span class="meta-value citation"><strong>Sefer Lida</strong> (Book of Lida)<br>Editors: Alexander Manor, Itzchak Ganusovitch, Aba Lando.<br>Tel-Aviv, 1970.</span>
+                </div>
+                <div class="meta-row">
+                    <span class="meta-label">Project Leader</span>
+                    <span class="meta-value">Irene Newhouse <em>z"l</em></span>
+                </div>
+                <div class="meta-row">
+                    <span class="meta-label">JewishGen Liaison</span>
+                    <span class="meta-value">Lance Ackerfeld</span>
+                </div>
+                <div class="meta-row">
+                    <span class="meta-label">Community Page</span>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-1945387" class="meta-link" target="_blank" rel="noopener">Lida, Belarus →</a>
+                </div>
+                <div class="meta-row">
+                    <span class="meta-label">Funding Goal</span>
+                    <div class="funding-amount" aria-label="Funding goal: $6,500">$6,500</div>
+                </div>
+            </div>
+
+            <div class="donate-card">
+                <p>Your gift supports translation of this and all Yizkor book projects through the Yizkor Book General Fund.</p>
+                <a href="#" class="btn-donate-full" aria-label="Donate to the Yizkor Book Translation General Fund">Donate Now</a>
+            </div>
+        </aside>
+
+    </div>
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div style="flex:1;min-width:250px;"><a href="https://www.jewishgen.org"><img src="https://www.jewishgen.org/JG/Images/JGlogo.svg" alt="JewishGen Logo" class="light-logo" style="height:60px;width:auto;object-fit:contain;"><img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png" alt="JewishGen Logo" class="dark-logo" style="height:60px;width:auto;object-fit:contain;"></a></div>
+        <div class="footer-center">Edmond J. Safra Plaza | 36 Battery Place | New York, NY 10280<br>646.494.2972 | <a href="mailto:info@jewishgen.org">info@jewishgen.org</a> | © 2026, JewishGen, Inc. <a href="#">All rights reserved.</a></div>
+        <div style="flex:1;display:flex;justify-content:flex-end;align-items:center;min-width:250px;"><a href="https://mjhnyc.org/" target="_blank" rel="noopener"><img src="https://www.jewishgen.org/images/MJH-Circle-Logo.svg" alt="Museum of Jewish Heritage" class="light-logo" style="height:45px;width:auto;"><img src="https://d3k74ww17vqc8e.cloudfront.net/app/uploads/2019/10/18145838/MJH-Circle-icon_Logo.png" alt="Museum of Jewish Heritage" class="dark-logo" style="height:45px;width:auto;"></a></div>
+    </div>
+</footer>
+
+</body>
+</html>

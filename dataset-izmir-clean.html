@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1247 AH Izmir Census (1831–1832) — JewishGen</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="global.css">
+    <style>
+
+        /* ============================================
+           GLOBAL BASE STYLES
+           (Included here for standalone demo only.
+            In production, global.css handles these.)
+        ============================================ */
+
+        :root {
+            --cream: #e8e1d1;
+            --sage: #939b51;
+            --navy: #09497a;
+            --charcoal: #232b2b;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--charcoal);
+            background-color: var(--white);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 50px;
+            border-bottom: 2px solid var(--cream);
+        }
+
+        .brand h1 { margin: 0; color: var(--navy); font-size: 26px; }
+        .brand p { margin: 5px 0 0; font-size: 13px; color: var(--charcoal); text-transform: uppercase; letter-spacing: 1px; }
+        .museum-tag { font-size: 11px; color: var(--sage); font-weight: bold; margin-top: 5px; }
+        .user-nav { font-size: 14px; text-align: right; line-height: 1.5; }
+        .user-nav span { color: var(--navy); font-weight: bold; }
+        .user-nav a:hover { color: var(--sage); }
+
+                /* Navigation */
+        nav {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 0 50px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .dropdown { position: relative; display: inline-block; }
+        .dropbtn { display: block; padding: 15px 0; cursor: pointer; }
+        .dropdown:hover .dropbtn { color: var(--sage); }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 250px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.15);
+            z-index: 10;
+            top: 100%;
+            left: 0;
+            border-top: 3px solid var(--sage);
+            border-radius: 0 0 6px 6px;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: var(--navy);
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            text-transform: none;
+            font-weight: normal;
+            font-size: 15px;
+            border-bottom: 1px solid var(--cream);
+        }
+
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background-color: var(--cream); color: var(--navy); font-weight: bold; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        /* Logo swapping */
+        .dark-logo { display: none !important; }
+        body.dark-mode .light-logo { display: none !important; }
+        body.dark-mode .dark-logo { display: block !important; }
+
+        /* ============================================
+           DATASET PAGE STYLES
+        ============================================ */
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background-color: var(--cream);
+            padding: 10px 50px;
+            font-size: 13px;
+            color: var(--charcoal);
+            border-bottom: 1px solid #d1caba;
+        }
+
+        .breadcrumb a {
+            color: var(--navy);
+            font-weight: bold;
+            text-decoration: underline dotted;
+        }
+
+        .breadcrumb a:hover { color: var(--sage); }
+        .breadcrumb span { margin: 0 6px; color: var(--charcoal); opacity: 0.5; }
+
+        /* Title Band */
+        .dataset-title-band {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 35px 50px;
+        }
+
+        .dataset-title-band .record-type-tag {
+            display: inline-block;
+            background-color: var(--sage);
+            color: var(--white);
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 4px 12px;
+            border-radius: 3px;
+            margin-bottom: 12px;
+        }
+
+        .dataset-title-band h1 {
+            margin: 0 0 8px 0;
+            font-size: 30px;
+            font-weight: bold;
+            line-height: 1.2;
+            color: var(--white);
+        }
+
+        .dataset-title-band .subtitle {
+            font-size: 15px;
+            color: #b8ccd8;
+            margin: 0;
+        }
+
+        /* Two-column layout */
+        .dataset-layout {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 50px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* ---- Sidebar ---- */
+        .dataset-sidebar {
+            position: sticky;
+            top: 20px;
+        }
+
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--navy);
+            font-size: 13px;
+            font-weight: bold;
+            text-decoration: underline dotted;
+            margin-bottom: 20px;
+        }
+
+        .back-link:hover { color: var(--sage); }
+
+        .meta-card {
+            background-color: var(--cream);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-top: 4px solid var(--navy);
+        }
+
+        .meta-card h3 {
+            margin: 0 0 14px 0;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--charcoal);
+            font-weight: bold;
+        }
+
+        .meta-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--charcoal);
+            line-height: 1.4;
+        }
+
+        .meta-row:last-child { margin-bottom: 0; }
+
+        .meta-icon {
+            font-size: 16px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .meta-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--charcoal);
+            opacity: 0.65;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .meta-value {
+            font-weight: bold;
+            color: var(--navy);
+            font-size: 14px;
+        }
+
+        /* Search card */
+        .search-card {
+            background-color: var(--navy);
+            color: var(--white);
+            border-radius: 8px;
+            padding: 22px;
+            margin-bottom: 20px;
+        }
+
+        .search-card h3 {
+            margin: 0 0 12px 0;
+            font-size: 15px;
+            font-weight: bold;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .field-label {
+            font-size: 11px;
+            font-weight: bold;
+            color: var(--navy);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .search-card input[type="text"] {
+            width: 100%;
+            padding: 9px 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-bottom: 10px;
+            background: var(--white);
+            color: var(--charcoal);
+            box-sizing: border-box;
+        }
+
+        .search-card input[type="text"]::placeholder { color: #999; }
+
+        .btn-search-dataset {
+            width: 100%;
+            background-color: var(--sage);
+            color: var(--white);
+            border: none;
+            padding: 11px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-search-dataset:hover { filter: brightness(1.1); }
+
+        .search-note {
+            font-size: 11px;
+            color: #a9c0d0;
+            margin-top: 10px;
+            line-height: 1.4;
+        }
+
+        .search-note a {
+            color: var(--sage);
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        /* Contributor card */
+        .contributor-card {
+            background-color: var(--white);
+            border: 1px solid #d1caba;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .contributor-card h3 {
+            margin: 0 0 14px 0;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--charcoal);
+            font-weight: bold;
+        }
+
+        .contributor-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .contributor-item:last-child { margin-bottom: 0; }
+
+        .contributor-avatar {
+            width: 32px;
+            height: 32px;
+            background-color: var(--navy);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .contributor-name {
+            font-weight: bold;
+            color: var(--navy);
+            font-size: 13px;
+        }
+
+        .contributor-role {
+            color: var(--charcoal);
+            font-size: 12px;
+            opacity: 0.75;
+        }
+
+        /* Reusable card button */
+        .btn-card {
+            display: inline-block;
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .btn-card:hover { filter: brightness(1.2); }
+
+        /* ---- Main content ---- */
+        .dataset-main h2 {
+            color: var(--navy);
+            font-size: 20px;
+            border-bottom: 2px solid var(--sage);
+            padding-bottom: 8px;
+            margin: 30px 0 15px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .dataset-main h2:first-child { margin-top: 0; }
+
+        .dataset-main p {
+            font-size: 15px;
+            line-height: 1.75;
+            color: var(--charcoal);
+            margin: 0 0 16px 0;
+        }
+
+        .dataset-main strong { color: var(--navy); }
+
+        /* Sage callout (surnames note) */
+        .callout {
+            background-color: var(--cream);
+            border-left: 4px solid var(--sage);
+            padding: 16px 20px;
+            border-radius: 0 6px 6px 0;
+            margin: 20px 0;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--charcoal);
+        }
+
+        .callout strong { color: var(--navy); }
+
+        /* Navy callout (static — archival documents) */
+        .callout-navy {
+            background-color: var(--cream);
+            border-left: 4px solid var(--navy);
+            padding: 16px 20px;
+            border-radius: 0 6px 6px 0;
+            margin: 20px 0;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--charcoal);
+        }
+
+        .callout-navy strong { color: var(--navy); }
+        .callout-navy a { color: var(--navy); font-weight: bold; }
+        .callout-navy a:hover { color: var(--sage); }
+
+        /* Interactive callout (modal trigger — image extracts) */
+        .callout-interactive {
+            background-color: var(--cream);
+            border-left: 4px solid var(--navy);
+            padding: 16px 20px;
+            border-radius: 0 6px 6px 0;
+            margin: 20px 0;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--charcoal);
+            cursor: pointer;
+            transition: filter 0.2s;
+        }
+
+        .callout-interactive:hover { filter: brightness(0.95); }
+
+        /* Field list */
+        .field-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .field-item {
+            background-color: var(--cream);
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-size: 13px;
+            color: var(--navy);
+            font-weight: bold;
+            border-left: 3px solid var(--sage);
+        }
+
+        /* Bottom donate CTA */
+        .btn-donate-stars {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background-color: var(--sage);
+            color: var(--white);
+            padding: 16px 32px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(147, 155, 81, 0.2);
+            transition: transform 0.2s, filter 0.2s;
+        }
+
+        .btn-donate-stars:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.1);
+        }
+
+        .star-logo-icon {
+            height: 22px;
+            width: auto;
+            display: block;
+            filter: brightness(0) invert(1);
+        }
+
+        /* Last updated note */
+        .last-updated {
+            font-size: 12px;
+            color: var(--charcoal);
+            opacity: 0.6;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid var(--cream);
+            font-style: italic;
+        }
+
+        /* ============================================
+           MODAL
+        ============================================ */
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-box {
+            background-color: var(--white);
+            border-top: 5px solid var(--sage);
+            border-radius: 8px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-box { transform: translateY(0); }
+
+        .modal-close {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--charcoal);
+            font-weight: bold;
+            line-height: 1;
+            border: none;
+            background: transparent;
+        }
+
+        .modal-close:hover { color: var(--navy); }
+        .modal-box h3 { color: var(--navy); margin-top: 0; font-size: 22px; }
+        .modal-box p { color: var(--charcoal); font-size: 15px; line-height: 1.6; }
+
+        /* ============================================
+           RESPONSIVE
+        ============================================ */
+
+        @media (max-width: 900px) {
+            .dataset-layout {
+                grid-template-columns: 1fr;
+                padding: 30px 20px;
+                gap: 30px;
+            }
+
+            .dataset-sidebar {
+                position: static;
+                order: -1;
+            }
+
+            .dataset-title-band { padding: 25px 20px; }
+            .dataset-title-band h1 { font-size: 24px; }
+
+            .breadcrumb {
+                padding: 10px 20px;
+                white-space: nowrap;
+                overflow-x: auto;
+            }
+
+            .field-list { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; text-align: center; gap: 15px; padding: 20px; }
+            nav { flex-wrap: wrap; justify-content: center; padding: 15px; gap: 15px; }
+        }
+
+        /* ============================================
+           DARK MODE
+        ============================================ */
+
+        body.dark-mode {
+            --cream: #1e1e1e;
+            --sage: #a8b361;
+            --navy: #e0e0e0;
+            --charcoal: #a0a0a0;
+            --white: #121212;
+        }
+
+        body.dark-mode .dataset-title-band { background-color: #1a1a1a; border-bottom: 1px solid #333; }
+        body.dark-mode .dataset-title-band h1 { color: #ffffff !important; }
+        body.dark-mode .dataset-title-band .subtitle { color: #a9c0d0 !important; }
+        body.dark-mode .dataset-title-band .record-type-tag { background-color: var(--sage); color: #121212 !important; }
+
+        body.dark-mode nav { background-color: #1a1a1a !important; border: 1px solid #333 !important; color: #e0e0e0 !important; }
+        body.dark-mode .dropdown-content { background: var(--cream) !important; border-color: #333 !important; }
+
+        body.dark-mode .breadcrumb { border-bottom-color: #333; }
+        body.dark-mode .meta-card { background-color: #1a1a1a; border-top-color: var(--sage); }
+        body.dark-mode .contributor-card { background-color: #1a1a1a; border-color: #333; }
+        body.dark-mode .contributor-avatar { background-color: var(--sage); }
+
+        body.dark-mode .search-card { background-color: #1a1a1a; border: 1px solid #333; }
+        body.dark-mode .search-card input[type="text"] { background-color: #121212; color: #e0e0e0; border: 1px solid #333; }
+
+        body.dark-mode .callout { background-color: #1a1a1a; border-left-color: var(--sage); }
+        body.dark-mode .callout-navy { background-color: #1a1a1a; border-left-color: var(--navy); color: #c0c0c0; }
+        body.dark-mode .callout-navy strong { color: #e0e0e0; }
+        body.dark-mode .callout-interactive { background-color: #1a1a1a; border-left-color: var(--navy); color: #c0c0c0; }
+        body.dark-mode .callout-interactive:hover { filter: brightness(1.2); }
+
+        body.dark-mode .field-item { background-color: #1a1a1a; color: var(--sage); border-left-color: var(--sage); }
+        body.dark-mode .dataset-main p { color: #c0c0c0; }
+
+        body.dark-mode .modal-box { background-color: #1a1a1a; border-top-color: var(--sage); }
+        body.dark-mode .modal-box h3 { color: #ffffff; }
+        body.dark-mode .modal-box p { color: #e0e0e0; }
+        body.dark-mode .modal-close { color: #e0e0e0; }
+        body.dark-mode .modal-close:hover { color: var(--sage); }
+
+    </style>
+</head>
+<body>
+
+    <!-- ===================== HEADER ===================== -->
+    <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px 50px; border-bottom: 2px solid var(--cream);">
+        <div class="brand">
+            <a href="#">
+                <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg" alt="JewishGen: The Global Home for Jewish Genealogy" class="light-logo" style="height: 55px; width: auto; object-fit: contain;">
+                <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png" alt="JewishGen: The Global Home for Jewish Genealogy" class="dark-logo" style="height: 55px; width: auto; object-fit: contain;">
+            </a>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+            <button onclick="document.body.classList.toggle('dark-mode')" style="background: var(--cream); color: var(--navy); border: 1px solid #d1caba; padding: 4px 10px; border-radius: 20px; cursor: pointer; font-size: 11px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                🌗 Toggle Dark Mode
+            </button>
+            <div style="display: flex; gap: 8px;">
+                <a href="#" style="padding: 7px 15px; border: 2px solid var(--navy); color: var(--navy); font-weight: bold; font-size: 13px; border-radius: 6px;">Log In</a>
+                <a href="#" style="padding: 7px 15px; background-color: var(--sage); color: var(--white); border: 2px solid var(--sage); font-weight: bold; font-size: 13px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">Sign Up</a>
+            </div>
+            <div style="text-align: right; margin-top: 2px;">
+                <div class="museum-tag" style="font-size: 10px; color: var(--charcoal); margin-bottom: 3px; font-weight: normal;">The Genealogical Research Division of</div>
+                <a href="https://mjhnyc.org/" target="_blank">
+                    <img src="https://www.jewishgen.org/images/MJH-Circle-Logo.svg" alt="Museum of Jewish Heritage" class="light-logo" style="height: 32px; width: auto;">
+                    <img src="https://d3k74ww17vqc8e.cloudfront.net/app/uploads/2019/10/18145838/MJH-Circle-icon_Logo.png" alt="Museum of Jewish Heritage" class="dark-logo" style="height: 32px; width: auto;">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAV -->
+<nav class="main-nav" aria-label="Main navigation">
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Databases ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Global Search</a>
+            <a href="#" role="menuitem">Country &amp; Regional Databases</a>
+            <a href="#" role="menuitem">Holocaust Database</a>
+            <a href="#" role="menuitem">Burial Registry (JOWBR)</a>
+            <a href="#" role="menuitem">Records Catalog</a>
+            <a href="#" role="menuitem">Family Trees (FTJP)</a>
+            <a href="#" role="menuitem">Text Search</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Communities ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Regional/Topical Research Divisions</a>
+            <a href="#" role="menuitem">Town Finder</a>
+            <a href="#" role="menuitem">KehilaLinks</a>
+            <a href="#" role="menuitem">Yizkor Books</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Learn &amp; Connect ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Online Classes</a>
+            <a href="#" role="menuitem">How to JewishGen &amp; FAQ</a>
+            <a href="#" role="menuitem">Peter &amp; Mary Kalikow Center</a>
+            <a href="#" role="menuitem">Family Finder</a>
+            <a href="#" role="menuitem">Discussion Group</a>
+            <a href="#" role="menuitem">ViewMate</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Events &amp; Programs ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Upcoming Events Calendar</a>
+            <a href="#" role="menuitem">JewishGen Talks</a>
+            <a href="#" role="menuitem">Student Program in Poland</a>
+            <a href="#" role="menuitem">Study &amp; Service Tour of Poland</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Publications ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">JewishGen Press</a>
+            <a href="#" role="menuitem">Newsletters</a>
+            <a href="#" role="menuitem">Holiday Companions</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">About &amp; Support ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Mission</a>
+            <a href="#" role="menuitem">Our Team</a>
+            <a href="#" role="menuitem">Donate Now</a>
+            <a href="#" role="menuitem">Planned Giving</a>
+            <a href="#" role="menuitem">Wall of Honor</a>
+        </div>
+    </div>
+</nav>
+
+    <!-- ===================== BREADCRUMB ===================== -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="#">JewishGen Home</a>
+        <span aria-hidden="true">›</span>
+        <a href="#">Databases</a>
+        <span aria-hidden="true">›</span>
+        <a href="#">Turkey</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">1247 AH Izmir Census (1831–1832)</span>
+    </nav>
+
+    <!-- ===================== TITLE BAND ===================== -->
+    <div class="dataset-title-band">
+        <div style="max-width: 1100px; margin: 0 auto;">
+            <div class="record-type-tag">Census Records · Sephardic</div>
+            <h1>1247 AH Izmir Census (1831–1832)</h1>
+            <p class="subtitle">Ottoman Empire &nbsp;·&nbsp; Izmir (Smyrna), Turkey &nbsp;·&nbsp; 1,043 Records</p>
+        </div>
+    </div>
+
+    <!-- ===================== MAIN LAYOUT ===================== -->
+    <main class="dataset-layout">
+
+        <!-- ===== SIDEBAR ===== -->
+        <aside class="dataset-sidebar" aria-label="Dataset metadata">
+
+            <a href="#" class="back-link" aria-label="Back to Turkey databases catalogue">
+                ← Back to Turkey Databases
+            </a>
+
+            <!-- At a Glance -->
+            <div class="meta-card" role="region" aria-label="At a glance">
+                <h3>At a Glance</h3>
+
+                <div class="meta-row">
+                    <span class="meta-icon" aria-hidden="true">📅</span>
+                    <div>
+                        <span class="meta-label">Date Range</span>
+                        <span class="meta-value">1831–1832 (1247 AH)</span>
+                    </div>
+                </div>
+
+                <div class="meta-row">
+                    <span class="meta-icon" aria-hidden="true">🌍</span>
+                    <div>
+                        <span class="meta-label">Region</span>
+                        <span class="meta-value">Izmir (Smyrna), Ottoman Empire</span>
+                    </div>
+                </div>
+
+                <div class="meta-row">
+                    <span class="meta-icon" aria-hidden="true">📄</span>
+                    <div>
+                        <span class="meta-label">Records</span>
+                        <span class="meta-value">1,043 men &amp; boys</span>
+                    </div>
+                </div>
+
+                <div class="meta-row">
+                    <span class="meta-icon" aria-hidden="true">🔤</span>
+                    <div>
+                        <span class="meta-label">Source Language</span>
+                        <span class="meta-value">Ottoman Turkish</span>
+                    </div>
+                </div>
+
+                <div class="meta-row">
+                    <span class="meta-icon" aria-hidden="true">🗂️</span>
+                    <div>
+                        <span class="meta-label">Record Type</span>
+                        <span class="meta-value">Census / Population Register</span>
+                    </div>
+                </div>
+
+                <div class="meta-row">
+                    <span class="meta-icon" aria-hidden="true">🏛️</span>
+                    <div>
+                        <span class="meta-label">Source Archive</span>
+                        <span class="meta-value">Ottoman Archives, Istanbul<br>
+			<span style="font-weight: normal; font-size: 12px;">"Aydın eyaleti, Suğla sancağı, İzmir merkez kazası, reaya defteri. a.g.y.tt" NFS.d 2942</span>
+                    </div>
+                </div>
+
+             
+                <div class="meta-row">
+                    <span class="meta-icon" aria-hidden="true">🔄</span>
+                    <div>
+                        <span class="meta-label">Last Updated</span>
+                        <span class="meta-value">2022</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search This Dataset -->
+            <div class="search-card" role="search" aria-label="Search this dataset">
+                <h3>Search This Dataset</h3>
+                <label for="dataset-search-input" class="field-label" style="color: #a9c0d0; font-size: 11px; display: block; margin-bottom: 5px;">SEARCH TERM (SURNAME OR GIVEN NAME)</label>
+                <input
+                    type="text"
+                    id="dataset-search-input"
+                    placeholder="e.g., Levy, Mizrahi…"
+                    aria-label="Enter a name to search the 1247 AH Izmir Census"
+                >
+                <button class="btn-search-dataset" aria-label="Search the 1247 AH Izmir Census">
+                    Search This Database
+                </button>
+                <p class="search-note">
+                    Or search across all records in the
+                    <a href="https://www.jewishgen.org/databases/Sephardic/" target="_blank" rel="noopener">Sephardic Database</a>
+                    or the
+                    <a href="https://www.jewishgen.org/databases/all/" target="_blank" rel="noopener">Unified Search</a>.
+                </p>
+            </div>
+
+            <!-- Sidebar Donate -->
+            <div class="meta-card" style="border-top-color: var(--sage);">
+                <h3 style="color: var(--navy); font-size: 13px; margin-bottom: 10px;">Support This Research</h3>
+                <p style="font-size: 13px; line-height: 1.5; margin-bottom: 15px;">
+                    The Sephardic Research Division relies on donations to make records like these freely available.
+                </p>
+                <a href="https://www.jewishgen.org/jewishgen-erosity/" target="_blank" rel="noopener" class="btn-card" style="width: 100%; box-sizing: border-box; background-color: var(--navy);">
+                    Donate Today
+                </a>
+            </div>
+
+            <!-- Contributors -->
+            <div class="contributor-card" role="region" aria-label="Contributors">
+                <h3>Contributors &amp; Advisors</h3>
+
+                <div class="contributor-item">
+                    <div class="contributor-avatar" aria-hidden="true">MW</div>
+                    <div>
+                        <div class="contributor-name">Michael Waas</div>
+                        <div class="contributor-role">Associate Director, Sephardic Research Division — Researcher &amp; Compiler</div>
+                    </div>
+                </div>
+
+                <div class="contributor-item">
+                    <div class="contributor-avatar" aria-hidden="true">AM</div>
+                    <div>
+                        <div class="contributor-name">Dr. Abraham Marcus</div>
+                        <div class="contributor-role">Ottoman Turkish translation advisor</div>
+                    </div>
+                </div>
+
+                <div class="contributor-item">
+                    <div class="contributor-avatar" aria-hidden="true">DC</div>
+                    <div>
+                        <div class="contributor-name">Dr. Dov Cohen</div>
+                        <div class="contributor-role">Izmir Jewish community history &amp; genealogy advisor</div>
+                    </div>
+                </div>
+            </div>
+
+        </aside>
+
+        <!-- ===== MAIN NARRATIVE ===== -->
+        <article class="dataset-main" aria-label="Dataset description">
+
+            <h2>Background</h2>
+
+            <p>
+                The Ottoman Empire under <strong>Sultan Mahmut II (1808–1839)</strong> was a time of foundational
+                change as the Sultan sought to modernize his empire. The <em>Auspicious Incident</em> of 1826 —
+                in which the Sultan disbanded the Janissary Corps — kicked off a sweeping series of reforms that
+                would become the <strong><em>Tanzimat</em></strong> ("Reorganization"). With the old military
+                order dissolved, the Sultan required a new, formalized way to monitor the population for the
+                purposes of drafting soldiers and taxing the draft-exempt population: the
+                <em>ahl al-kitab</em> (<em>dhimmi</em>), the People of the Book — Jews and Christians.
+            </p>
+
+            <p>
+                This census was intended to act as a living register, periodically updated as males were born,
+                moved away, or died, serving both military and tax purposes. These censuses recorded
+                <strong>exclusively males</strong>; daughters and wives were not recorded until much later in the
+                Hamidian period (1876–1909).
+            </p>
+
+            <h2>About This Census</h2>
+
+            <p>
+                The first real census of the Ottoman Empire was completed in 1247 AH
+                (11 June 1831 – 20 May 1832 CE). It mainly covered the heartland of the Empire. The format
+                was not standardized beyond recording tax status, given name, father's name (for the head of
+                household or non-sons), and age. Some census takers recorded occupations and additional
+                comments. Additions — as well as notations of whether an individual had died or moved away —
+                can also be found in different hands, along with the date of registration.
+            </p>
+
+            <div class="callout" role="note">
+                <strong>A Note on Surnames:</strong> In the Ottoman Empire, there were officially no surnames,
+                even though much of the Jewish community and many Christian communities had stable family names.
+                The absence of surnames on most 19th-century documents reflects this general rule — though it
+                was not always followed. This census is notable for the partial survival of a third register
+                in which the Ottoman official did record surnames.
+            </div>
+
+            <h2>Discovery &amp; Structure of the Records</h2>
+
+            <p>
+                While conducting archival research in Istanbul in 2022, <strong>Michael Waas</strong>
+                (Associate Director of the Sephardic Research Division) discovered that for Izmir, three
+                separate copies of this first census register survive. Two of them are complete and appear
+                to be copies of one another to some degree. Together they record over 3,000 men
+                and boys. Neither of these contains surnames.
+            </p>
+
+            <p>
+                The third register is the most remarkable: the Ottoman official who compiled it recorded
+                surnames. This register is fragmented — approximately one-third of the original survives —
+                but from it, <strong>more than 230 unique surnames</strong> have been extracted. All names
+                are recorded in Ottoman Turkish script.
+            </p>
+
+            <h2>Fields Recorded</h2>
+
+            <p>The standard fields captured across the census registers include:</p>
+
+            <div class="field-list" role="list" aria-label="Database fields">
+                <div class="field-item" role="listitem">Given Name</div>
+                <div class="field-item" role="listitem">Father's Name</div>
+                <div class="field-item" role="listitem">Age</div>
+                <div class="field-item" role="listitem">Tax Status</div>
+                <div class="field-item" role="listitem">Occupation (where recorded)</div>
+                <div class="field-item" role="listitem">Surname (third register only)</div>
+                <div class="field-item" role="listitem">Marginal notes (deaths, moves)</div>
+                <div class="field-item" role="listitem">Date of registration</div>
+            </div>
+
+            <h2>Accessing the Original Records</h2>
+
+            <div class="callout-interactive" onclick="toggleModal('image-extract-modal')" role="button" tabindex="0" aria-label="Open information about requesting original image extracts" onkeydown="if(event.key==='Enter'||event.key===' ')toggleModal('image-extract-modal')">
+                <strong>📷 Original Image Extracts</strong><br>
+                Extracts from the original Ottoman census images are available for this collection.
+                <span style="color: var(--sage); font-weight: bold; text-decoration: underline; display: block; margin-top: 5px;">Click here for details →</span>
+            </div>
+
+            <div class="callout-navy" role="note" aria-label="Contact for original documents">
+                <strong>🏛️ Obtaining Original Archival Documents</strong><br>
+                For information on locating or obtaining copies of the original Ottoman archival
+                records, contact
+                <a href="mailto:mwaas@jewishgen.org">Michael Waas, Associate Director of the Sephardic Research Division</a>.
+            </div>
+
+            <h2>Acknowledgements</h2>
+
+            <p>
+                Special thanks to <strong>Dr. Abraham Marcus</strong> for his advisement and assistance
+                with translating Ottoman Turkish for this project, and to <strong>Dr. Dov Cohen</strong>
+                for his expertise on the genealogy and history of the Izmir Jewish community and for
+                collaborating on the research.
+            </p>
+
+            <!-- Bottom Donation CTA -->
+            <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid var(--cream); text-align: center;">
+                <div style="max-width: 700px; margin: 0 auto;">
+                    <p style="font-size: 15px; color: var(--charcoal); line-height: 1.6; margin-bottom: 25px;">
+                        Databases like this one are made possible entirely through volunteer effort and our generous donors.
+                        Your contribution helps fund archival research, translation, and preservation of Sephardic records worldwide.
+                    </p>
+                    <a href="https://www.jewishgen.org/jewishgen-erosity/" target="_blank" rel="noopener" class="btn-donate-stars">
+                        <img src="https://www.jewishgen.org/JG/Images/JGStarTra.png" alt="" aria-hidden="true" class="star-logo-icon">
+                        <span>Support the Sephardic Research Division</span>
+                        <img src="https://www.jewishgen.org/JG/Images/JGStarTra.png" alt="" aria-hidden="true" class="star-logo-icon">
+                    </a>
+                </div>
+            </div>
+
+            <p class="last-updated">
+                Database compiled 2022. For questions or additional information, contact the
+                <a href="mailto:mwaas@jewishgen.org" style="color: var(--navy); font-weight: bold;">JewishGen Sephardic Research Division</a>.
+            </p>
+
+        </article>
+
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer style="background-color: var(--cream); padding: 30px 50px; border-top: 4px solid var(--navy);">
+        <div style="max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; width: 100%;">
+            <div style="flex: 1; min-width: 250px;">
+                <a href="#">
+                    <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg" alt="JewishGen Logo" class="light-logo" style="height: 60px; width: auto; object-fit: contain;">
+                    <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png" alt="JewishGen Logo" class="dark-logo" style="height: 60px; width: auto; object-fit: contain;">
+                </a>
+            </div>
+            <div style="flex: 2; text-align: center; font-size: 13px; line-height: 1.6; color: var(--charcoal); min-width: 300px;">
+                Edmond J. Safra Plaza | 36 Battery Place | New York, NY 10280<br>
+                646.494.2972 | <a href="mailto:info@jewishgen.org" style="color: var(--navy); text-decoration: underline; font-weight: bold;">info@jewishgen.org</a> | © 2026, JewishGen, Inc. <a href="#" style="text-decoration: underline;">All rights reserved.</a>
+            </div>
+            <div style="flex: 1; display: flex; justify-content: flex-end; align-items: center; min-width: 250px;">
+                <a href="https://mjhnyc.org/" target="_blank" rel="noopener">
+                    <img src="https://www.jewishgen.org/images/MJH-Circle-Logo.svg" alt="Museum of Jewish Heritage" class="light-logo" style="height: 45px; width: auto;">
+                    <img src="https://d3k74ww17vqc8e.cloudfront.net/app/uploads/2019/10/18145838/MJH-Circle-icon_Logo.png" alt="Museum of Jewish Heritage" class="dark-logo" style="height: 45px; width: auto;">
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===================== MODAL ===================== -->
+    <div id="image-extract-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+        <div class="modal-box">
+            <button class="modal-close" onclick="toggleModal('image-extract-modal')" aria-label="Close modal">×</button>
+            <h3 id="modal-title">Request Original Images</h3>
+            <p>
+                Extracts from the original Ottoman census images are available for a <strong>$15 donation</strong> to the Sephardic Research Division.
+            </p>
+            <p>
+                This donation directly funds our ongoing archival research and record translation efforts.
+            </p>
+            <div style="margin-top: 25px; text-align: right; display: flex; gap: 10px; justify-content: flex-end;">
+                <a href="mailto:mwaas@jewishgen.org" class="btn-card" style="background-color: var(--sage);">
+                    Email to Request →
+                </a>
+                <button onclick="toggleModal('image-extract-modal')" class="btn-card" style="background-color: transparent; color: var(--navy); border: 2px solid var(--navy); cursor: pointer;">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== JAVASCRIPT ===================== -->
+    <script>
+        // Open/close modal
+        function toggleModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal.classList.contains('active')) {
+                modal.classList.remove('active');
+                modal.setAttribute('aria-hidden', 'true');
+            } else {
+                modal.classList.add('active');
+                modal.setAttribute('aria-hidden', 'false');
+            }
+        }
+
+        // Close modal on overlay click
+        document.getElementById('image-extract-modal').addEventListener('click', function(e) {
+            if (e.target === this) toggleModal('image-extract-modal');
+        });
+
+        // Search button
+        document.querySelector('.btn-search-dataset').addEventListener('click', function() {
+            const term = document.getElementById('dataset-search-input').value.trim();
+            const base = 'https://www.jewishgen.org/databases/Sephardic/';
+            window.location.href = term ? base + '?given=' + encodeURIComponent(term) : base;
+        });
+
+        // Search on Enter key
+        document.getElementById('dataset-search-input').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') document.querySelector('.btn-search-dataset').click();
+        });
+    </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

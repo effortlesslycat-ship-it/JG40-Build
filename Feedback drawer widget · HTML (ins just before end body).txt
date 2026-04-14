@@ -1,0 +1,380 @@
+Feedback drawer widget · HTML
+
+
+<!--
+  ============================================================
+  JEWISHGEN ALPHA FEEDBACK DRAWER — Drop-in Snippet
+  ============================================================
+  USAGE: Paste this entire block just before </body> on any
+  alpha page. 
+ 
+  DEPENDENCIES: Inherits :root CSS variables and body.dark-mode
+  toggle from CompactDraft.html / NavBarCSS.html. No external
+  libraries required.
+  ============================================================
+-->
+ 
+<!-- ── Floating Trigger Button ─────────────────────────── -->
+<button
+  id="feedback-trigger"
+  aria-haspopup="dialog"
+  aria-expanded="false"
+  aria-controls="feedback-drawer"
+  onclick="openFeedbackDrawer()"
+>
+  <span aria-hidden="true">✏</span> Share Feedback
+</button>
+ 
+<!-- ── Backdrop (closes drawer on click) ────────────────── -->
+<div
+  id="feedback-backdrop"
+  aria-hidden="true"
+  onclick="closeFeedbackDrawer()"
+></div>
+ 
+<!-- ── Drawer ────────────────────────────────────────────── -->
+<aside
+  id="feedback-drawer"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="feedback-drawer-title"
+  aria-hidden="true"
+  tabindex="-1"
+>
+  <!-- Drawer Header -->
+  <div id="feedback-drawer-header">
+    <h2 id="feedback-drawer-title">Alpha Feedback</h2>
+    <button
+      id="feedback-close"
+      aria-label="Close feedback panel"
+      onclick="closeFeedbackDrawer()"
+    >
+      ✕
+    </button>
+  </div>
+ 
+  <!-- Subhead -->
+  <p id="feedback-subhead">
+    You're helping shape the new JewishGen. Use this form to report bugs,
+    suggest features, or share general impressions.
+  </p>
+ 
+  <!-- Google Form Embed                                      -->
+  <!-- TODO: Replace the src URL below with your published   -->
+  <!-- Google Form embed URL (Share → Embed → copy src).     -->
+  <iframe
+    id="feedback-iframe"
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeiEPEuS00w0zUZgDAGqb9MfaD2cJ8jDuFeKwzdHWsIK-I9Yw/viewform?embedded=true"
+    title="JewishGen Alpha Feedback Form"
+    width="640" height="3308" frameborder="0" marginheight="0" marginwidth="0">
+    aria-label="Feedback form"
+  >
+    Loading feedback form…
+  </iframe>
+ 
+  <!-- Fallback link in case iframe is blocked -->
+  <p id="feedback-fallback">
+    Form not loading?
+    <a
+      href="https://docs.google.com/forms/d/e/YOUR_FORM_ID_HERE/viewform"
+      target="_blank"
+      rel="noopener noreferrer"
+    >Open in a new tab ↗</a>
+  </p>
+</aside>
+ 
+ 
+<!-- ── Styles ───────────────────────────────────────────── -->
+<style>
+  /* ── Floating trigger button ── */
+  #feedback-trigger {
+    position: fixed;
+    bottom: 28px;
+    right: 0;
+    z-index: 900;
+ 
+    background-color: var(--navy);
+    color: var(--white);
+    border: none;
+    border-radius: 8px 0 0 8px;   /* flat on right, rounded on left */
+    padding: 12px 18px 12px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: inherit;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+ 
+    display: flex;
+    align-items: center;
+    gap: 8px;
+ 
+    box-shadow: -3px 3px 12px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+ 
+  #feedback-trigger:hover,
+  #feedback-trigger:focus-visible {
+    background-color: var(--sage);
+    color: var(--white);
+    transform: translateX(-3px);
+    outline: 2px solid var(--sage);
+    outline-offset: 2px;
+  }
+ 
+  /* ── Backdrop ── */
+  #feedback-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 950;
+  }
+ 
+  #feedback-backdrop.open {
+    display: block;
+  }
+ 
+  /* ── Drawer ── */
+  #feedback-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 420px;
+    max-width: 95vw;
+    z-index: 1000;
+ 
+    background-color: var(--white);
+    color: var(--charcoal);
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.2);
+ 
+    display: flex;
+    flex-direction: column;
+ 
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+ 
+    overflow: hidden;
+  }
+ 
+  #feedback-drawer.open {
+    transform: translateX(0);
+  }
+ 
+  /* ── Drawer header strip ── */
+  #feedback-drawer-header {
+    background-color: var(--navy);
+    color: var(--white);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    border-bottom: 3px solid var(--sage);
+  }
+ 
+  #feedback-drawer-title {
+    margin: 0;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+ 
+  #feedback-close {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: var(--white);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.15s ease;
+    flex-shrink: 0;
+  }
+ 
+  #feedback-close:hover,
+  #feedback-close:focus-visible {
+    background-color: rgba(255, 255, 255, 0.15);
+    outline: 2px solid var(--sage);
+    outline-offset: 2px;
+  }
+ 
+  /* ── Subhead blurb ── */
+  #feedback-subhead {
+    margin: 0;
+    padding: 14px 20px 10px;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--charcoal);
+    background-color: var(--cream);
+    border-bottom: 1px solid #d1caba;
+    flex-shrink: 0;
+  }
+ 
+  /* ── iframe ── */
+  #feedback-iframe {
+    flex: 1;
+    width: 100%;
+    border: none;
+    min-height: 0;   /* allows flex shrink */
+  }
+ 
+  /* ── Fallback link ── */
+  #feedback-fallback {
+    text-align: center;
+    font-size: 12px;
+    padding: 8px 20px;
+    margin: 0;
+    border-top: 1px solid var(--cream);
+    flex-shrink: 0;
+    color: var(--charcoal);
+  }
+ 
+  #feedback-fallback a {
+    color: var(--navy);
+    font-weight: bold;
+    text-decoration: underline;
+  }
+ 
+  #feedback-fallback a:hover {
+    color: var(--sage);
+  }
+ 
+  /* ── Dark mode overrides ── */
+  body.dark-mode #feedback-trigger {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    border: 1px solid #333;
+    box-shadow: -3px 3px 12px rgba(0, 0, 0, 0.5);
+  }
+ 
+  body.dark-mode #feedback-trigger:hover,
+  body.dark-mode #feedback-trigger:focus-visible {
+    background-color: var(--sage);
+    color: #121212;
+  }
+ 
+  body.dark-mode #feedback-drawer {
+    background-color: #121212;
+    color: #e0e0e0;
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.6);
+  }
+ 
+  body.dark-mode #feedback-drawer-header {
+    background-color: #1a1a1a !important;
+    border-bottom-color: var(--sage) !important;
+  }
+ 
+  body.dark-mode #feedback-drawer-title {
+    color: #e0e0e0 !important;
+  }
+ 
+  body.dark-mode #feedback-subhead {
+    background-color: #1e1e1e;
+    color: #a0a0a0;
+    border-bottom-color: #333;
+  }
+ 
+  body.dark-mode #feedback-fallback {
+    border-top-color: #333;
+    color: #a0a0a0;
+  }
+ 
+  body.dark-mode #feedback-fallback a {
+    color: #a8b361;
+  }
+ 
+  /* ── Reduced motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    #feedback-drawer,
+    #feedback-trigger {
+      transition: none;
+    }
+  }
+ 
+  /* ── Mobile: full-width drawer ── */
+  @media (max-width: 480px) {
+    #feedback-drawer {
+      width: 100vw;
+      border-radius: 0;
+    }
+ 
+    #feedback-trigger {
+      bottom: 16px;
+      font-size: 13px;
+      padding: 10px 14px 10px 12px;
+    }
+  }
+</style>
+ 
+ 
+<!-- ── Script ───────────────────────────────────────────── -->
+<script>
+  (function () {
+    const drawer   = document.getElementById('feedback-drawer');
+    const backdrop = document.getElementById('feedback-backdrop');
+    const trigger  = document.getElementById('feedback-trigger');
+    const closeBtn = document.getElementById('feedback-close');
+ 
+    // All focusable elements inside the drawer (for focus trap)
+    function getFocusable() {
+      return Array.from(
+        drawer.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter(el => !el.disabled && el.offsetParent !== null);
+    }
+ 
+    window.openFeedbackDrawer = function () {
+      drawer.classList.add('open');
+      backdrop.classList.add('open');
+      drawer.setAttribute('aria-hidden', 'false');
+      trigger.setAttribute('aria-expanded', 'true');
+      // Move focus into drawer
+      closeBtn.focus();
+    };
+ 
+    window.closeFeedbackDrawer = function () {
+      drawer.classList.remove('open');
+      backdrop.classList.remove('open');
+      drawer.setAttribute('aria-hidden', 'true');
+      trigger.setAttribute('aria-expanded', 'false');
+      // Return focus to trigger
+      trigger.focus();
+    };
+ 
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && drawer.classList.contains('open')) {
+        closeFeedbackDrawer();
+      }
+    });
+ 
+    // Focus trap: keep Tab cycling inside the open drawer
+    drawer.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab') return;
+      const focusable = getFocusable();
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last  = focusable[focusable.length - 1];
+ 
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+  })();
+</script>

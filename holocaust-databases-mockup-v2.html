@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Holocaust Databases – JewishGen</title>
+<style>
+
+/* ════════════════════════════════════════════════
+   DESIGN TOKENS — from JG_PageShell. DO NOT MODIFY.
+════════════════════════════════════════════════ */
+:root {
+    --cream:    #e8e1d1;
+    --sage:     #939b51;
+    --navy:     #09497a;
+    --charcoal: #232b2b;
+    --white:    #ffffff;
+    --border:   #d1caba;
+    --light-bg: #f7f5f0;
+}
+
+/* ════════════════════════════════════════════════
+   BASE STYLES — from JG_PageShell. DO NOT MODIFY.
+════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--charcoal);
+    background-color: var(--white);
+}
+
+a { text-decoration: none; color: inherit; }
+.dark-logo { display: none !important; }
+
+/* ════════════════════════════════════════════════
+   HEADER — from JG_PageShell. DO NOT MODIFY.
+════════════════════════════════════════════════ */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    border-bottom: 2px solid var(--cream);
+}
+
+/* ════════════════════════════════════════════════
+   NAVIGATION — from JG_PageShell. DO NOT MODIFY.
+════════════════════════════════════════════════ */
+nav.main-nav {
+    background-color: var(--navy);
+    color: var(--white);
+    padding: 0 50px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 13px;
+}
+
+.dropdown { position: relative; display: inline-block; }
+.dropbtn  { display: block; padding: 15px 0; cursor: pointer; color: var(--white); }
+.dropdown:hover .dropbtn,
+.dropdown:focus-within .dropbtn { color: var(--sage); }
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--white);
+    min-width: 250px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    z-index: 1000;
+    top: 100%;
+    left: 0;
+    border-top: 3px solid var(--sage);
+    border-radius: 0 0 6px 6px;
+    overflow: hidden;
+}
+.dropdown-content a {
+    color: var(--navy);
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    text-transform: none;
+    font-weight: normal;
+    font-size: 15px;
+    border-bottom: 1px solid var(--cream);
+}
+.dropdown-content a:last-child { border-bottom: none; }
+.dropdown-content a:hover,
+.dropdown-content a:focus {
+    background-color: var(--cream);
+    color: var(--navy);
+    font-weight: bold;
+    outline: none;
+}
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content { display: block; }
+
+/* ════════════════════════════════════════════════
+   BREADCRUMB — from JG_PageShell. DO NOT MODIFY.
+════════════════════════════════════════════════ */
+.breadcrumb {
+    background-color: var(--cream);
+    padding: 10px 50px;
+    font-size: 13px;
+    color: var(--charcoal);
+    border-bottom: 1px solid #d1caba;
+}
+.breadcrumb a {
+    color: var(--navy);
+    font-weight: bold;
+    text-decoration: underline dotted;
+}
+.breadcrumb a:hover { color: var(--sage); }
+.breadcrumb span.sep { margin: 0 6px; color: var(--charcoal); opacity: 0.5; }
+
+/* ════════════════════════════════════════════════
+   DARK MODE — from JG_PageShell. DO NOT MODIFY.
+════════════════════════════════════════════════ */
+body.dark-mode {
+    --cream:    #1e1e1e;
+    --sage:     #a8b361;
+    --navy:     #e0e0e0;
+    --charcoal: #a0a0a0;
+    --white:    #121212;
+    --border:   #333;
+    --light-bg: #1a1a1a;
+}
+/* Nav bar — hardcoded so navy remap doesn't wash it out */
+body.dark-mode nav.main-nav {
+    background-color: #1a1a1a !important;
+    border-bottom: 1px solid #333;
+}
+body.dark-mode nav.main-nav .dropbtn { color: #ffffff !important; }
+body.dark-mode nav.main-nav .dropdown:hover .dropbtn,
+body.dark-mode nav.main-nav .dropdown:focus-within .dropbtn { color: var(--sage) !important; }
+body.dark-mode .dropdown-content { background: #1e1e1e !important; border-color: #333 !important; }
+body.dark-mode .dropdown-content a { border-bottom-color: #333 !important; }
+body.dark-mode input, body.dark-mode select, body.dark-mode textarea {
+    background: #121212 !important;
+    color: #e0e0e0 !important;
+    border-color: #444 !important;
+}
+body.dark-mode .light-logo { display: none  !important; }
+body.dark-mode .dark-logo  { display: block !important; }
+/* Page title band — hardcoded so remap doesn't wash it out */
+body.dark-mode .page-title-band { background-color: #0d2a45 !important; }
+body.dark-mode .page-title-band h1,
+body.dark-mode .page-title-band p  { color: #ffffff !important; }
+body.dark-mode footer { background-color: #1a1a1a !important; border-top-color: #333 !important; }
+body.dark-mode .breadcrumb { background-color: #1a1a1a !important; border-bottom-color: #333 !important; }
+
+/* Page-specific dark mode additions */
+body.dark-mode .search-zone  { background-color: #1a1a1a !important; border-bottom-color: #333 !important; }
+body.dark-mode .jg-search-container { background: #1e1e1e !important; border-color: #444 !important; }
+body.dark-mode .tips-panel    { background: #1a1a1a !important; color: #e0e0e0 !important; }
+body.dark-mode .browse-zone   { background-color: #121212 !important; }
+body.dark-mode .browse-header { background-color: #1a1a1a !important; border-color: #333 !important; }
+body.dark-mode .filter-group-title { border-bottom-color: #333 !important; }
+body.dark-mode .filter-count  { background: #2a2a2a !important; }
+body.dark-mode .catalog-card  { background: #1e1e1e !important; border-color: #333 !important; }
+body.dark-mode .catalog-card:hover { background: #252525 !important; }
+body.dark-mode .card-footer-row { border-top-color: #333 !important; }
+body.dark-mode .card-desc { color: #a0a0a0 !important; }
+/* Tags — from Catalog.html dark mode */
+body.dark-mode .tag-type { background: rgba(224,224,224,0.08) !important; color: #b0c4d8 !important; border-color: rgba(224,224,224,0.18) !important; }
+body.dark-mode .tag-geo  { background: rgba(168,179,97,0.1)  !important; color: #a8b361 !important; border-color: rgba(168,179,97,0.22) !important; }
+body.dark-mode .tag-era  { background: rgba(160,160,160,0.08) !important; color: #aaa    !important; border-color: rgba(160,160,160,0.18) !important; }
+body.dark-mode .more-tags-btn { background: rgba(224,224,224,0.06) !important; color: #b0c4d8 !important; border-color: rgba(224,224,224,0.15) !important; }
+body.dark-mode .record-count-badge { color: #b0c4d8 !important; }
+body.dark-mode .match-row label { color: #a0a0a0 !important; }
+body.dark-mode .cards-showing strong { color: #b0c4d8 !important; }
+body.dark-mode .mockup-note { background: #2a2318 !important; color: #c8b870 !important; border-color: #4a3e20 !important; }
+body.dark-mode .page-btn { background: #1e1e1e !important; border-color: #444 !important; color: #a0a0a0 !important; }
+body.dark-mode .page-btn.active { background: #2a4a6a !important; color: #e0e0e0 !important; border-color: #2a4a6a !important; }
+body.dark-mode .btn-view-dataset { background: #2a4a6a !important; color: #e0e0e0 !important; }
+
+/* ════════════════════════════════════════════════
+   PAGE TITLE BAND — from JG_PageShell. DO NOT MODIFY.
+════════════════════════════════════════════════ */
+.page-title-band {
+    background-color: var(--navy);
+    color: var(--white);
+    padding: 36px 50px;
+    text-align: center;
+}
+.page-title-band .section-tag {
+    display: inline-block;
+    background-color: var(--sage);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 4px 12px;
+    border-radius: 3px;
+    margin-bottom: 12px;
+}
+.page-title-band h1 {
+    margin: 0 0 10px 0;
+    font-size: 34px;
+    font-weight: bold;
+    color: var(--white);
+}
+.page-title-band p {
+    margin: 0 auto;
+    font-size: 16px;
+    color: #a9c0d0;
+    max-width: 680px;
+    line-height: 1.65;
+}
+.page-title-band .stat-line {
+    display: block;
+    margin-top: 14px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    font-style: italic;
+}
+@media (max-width: 600px) {
+    .page-title-band { padding: 28px 20px; }
+    .page-title-band h1 { font-size: 26px; }
+}
+
+/* ════════════════════════════════════════════════
+   SEARCH ZONE
+   Cream background, centered white navy-bordered box.
+   Modelled on HeroSearch.html .jg-hero / .jg-search-container.
+════════════════════════════════════════════════ */
+.search-zone {
+    background-color: var(--cream);
+    padding: 30px 50px;
+    border-bottom: 3px solid var(--navy);
+}
+.jg-search-container {
+    background: var(--white);
+    border: 3px solid var(--navy);
+    border-radius: 12px;
+    max-width: 840px;
+    margin: 0 auto;
+    padding: 24px 32px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.jg-search-container h2 {
+    color: var(--navy);
+    font-size: 15px;
+    text-align: center;
+    margin: 0 0 4px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.search-subtitle {
+    text-align: center;
+    font-size: 13px;
+    color: var(--charcoal);
+    margin-bottom: 14px;
+    line-height: 1.5;
+}
+.tips-toggle {
+    display: block;
+    margin: 0 auto 14px auto;
+    background-color: var(--cream);
+    color: var(--navy);
+    border: 1px solid var(--border);
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: background 0.2s;
+}
+.tips-toggle:hover { background: #d8d0bf; }
+
+.tips-panel {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.35s ease, margin 0.35s ease;
+    background: #f0f4f7;
+    border-left: 4px solid var(--sage);
+    border-radius: 4px;
+    padding: 0 16px;
+    margin-bottom: 0;
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--charcoal);
+}
+.tips-panel.open { max-height: 400px; opacity: 1; padding: 16px; margin-bottom: 14px; }
+.tips-panel strong { color: var(--navy); }
+
+.search-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+    align-items: flex-end;
+}
+.sf { display: flex; flex-direction: column; gap: 4px; }
+.sf.n { flex: 1.1; min-width: 130px; }
+.sf.w { flex: 2; }
+
+.field-label {
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--navy);
+}
+.jg-search-container select,
+.jg-search-container input[type="text"] {
+    width: 100%;
+    padding: 7px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 13.5px;
+    color: var(--charcoal);
+    background: var(--white);
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+.jg-search-container select:focus,
+.jg-search-container input[type="text"]:focus {
+    border-color: var(--navy);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(9,73,122,0.12);
+}
+.search-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 10px 0;
+}
+.match-row {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    margin: 8px 0 4px;
+}
+.match-row label {
+    font-size: 13px;
+    color: var(--charcoal);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+.match-row input[type="radio"] { accent-color: var(--navy); }
+.btn-search {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 14px auto 0;
+    background-color: var(--sage);
+    color: #fff;
+    border: none;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: inherit;
+    transition: filter 0.2s;
+}
+.btn-search:hover { filter: brightness(1.1); }
+.btn-search:focus { outline: 3px solid var(--navy); outline-offset: 2px; }
+
+/* ════════════════════════════════════════════════
+   BROWSE ZONE — two-chunk separation
+════════════════════════════════════════════════ */
+.browse-zone { background-color: var(--white); }
+
+.browse-header {
+    background-color: var(--light-bg);
+    border-bottom: 1px solid var(--border);
+    border-top: 1px solid var(--border);
+    padding: 14px 50px;
+}
+.browse-header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.browse-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.browse-db-search { display: flex; gap: 6px; }
+.browse-db-search input {
+    padding: 7px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--charcoal);
+    background: var(--white);
+    font-family: inherit;
+    width: 260px;
+    transition: border-color 0.2s;
+}
+.browse-db-search input:focus { border-color: var(--navy); outline: none; }
+.browse-db-search button {
+    padding: 7px 14px;
+    background: var(--navy);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: inherit;
+    transition: filter 0.15s;
+}
+.browse-db-search button:hover { filter: brightness(1.15); }
+
+/* ════════════════════════════════════════════════
+   PAGE BODY — sidebar + cards
+════════════════════════════════════════════════ */
+.page-body {
+    display: flex;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 50px 60px;
+    align-items: flex-start;
+}
+
+/* ── SIDEBAR FILTERS ── */
+.sidebar {
+    width: 195px;
+    flex-shrink: 0;
+    margin-right: 30px;
+}
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+.sidebar-title {
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--charcoal);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+.clear-btn {
+    font-size: 12px;
+    color: var(--navy);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+    font-family: inherit;
+}
+.clear-btn:hover { color: var(--sage); }
+
+.filter-group { margin-bottom: 18px; }
+.filter-group-title {
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    opacity: 0.6;
+    margin-bottom: 7px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 4px;
+}
+.filter-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 0;
+    font-size: 12.5px;
+    color: var(--charcoal);
+    cursor: pointer;
+    line-height: 1.3;
+    user-select: none;
+}
+.filter-item input[type=checkbox] { accent-color: var(--navy); flex-shrink: 0; }
+.filter-count {
+    margin-left: auto;
+    font-size: 10px;
+    color: var(--charcoal);
+    opacity: 0.55;
+    background: var(--cream);
+    padding: 1px 5px;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+.filter-more-btn {
+    display: block;
+    font-size: 11px;
+    color: var(--navy);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 3px 0;
+    text-align: left;
+    font-family: inherit;
+    text-decoration: underline dotted;
+}
+.filter-more-btn:hover { color: var(--sage); }
+.filter-extra { display: none; }
+.filter-extra.open { display: block; }
+
+/* ── CARDS AREA ── */
+.cards-area { flex: 1; min-width: 0; }
+
+.cards-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.cards-showing { font-size: 14px; color: var(--charcoal); }
+.cards-showing strong { color: var(--navy); font-size: 16px; }
+.active-filters { display: flex; gap: 6px; flex-wrap: wrap; }
+/* Active chips match Catalog.html .filter-chip */
+.filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--navy);
+    color: var(--white);
+    padding: 4px 10px 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+}
+.filter-chip button {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.65);
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 1;
+    padding: 0;
+    font-family: inherit;
+}
+.filter-chip button:hover { color: var(--white); }
+
+/* ── CATALOG CARDS (styled after Catalog.html .catalog-item) ── */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+.catalog-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    transition: background 0.15s;
+}
+.catalog-card:hover { background: var(--light-bg); }
+.catalog-card.no-match { display: none; }
+
+.card-title {
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--navy);
+    line-height: 1.3;
+}
+.card-desc {
+    font-size: 13px;
+    color: var(--charcoal);
+    line-height: 1.65;
+}
+
+/* Tags match Catalog.html exactly */
+.item-tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+    cursor: default;
+}
+/* type = navy tint (record type) */
+.tag-type {
+    background: rgba(9,73,122,0.1);
+    color: var(--navy);
+    border: 1px solid rgba(9,73,122,0.2);
+}
+/* geo = sage tint (geography) */
+.tag-geo {
+    background: rgba(147,155,81,0.12);
+    color: #5a6130;
+    border: 1px solid rgba(147,155,81,0.25);
+}
+/* era = charcoal tint (time period / subject / nature) */
+.tag-era {
+    background: rgba(35,43,43,0.07);
+    color: var(--charcoal);
+    border: 1px solid rgba(35,43,43,0.15);
+}
+
+.more-tags-btn {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: bold;
+    background: rgba(9,73,122,0.07);
+    color: var(--navy);
+    border: 1px solid rgba(9,73,122,0.16);
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.3px;
+}
+.more-tags-btn:hover { background: rgba(9,73,122,0.13); }
+.extra-tags { display: none; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.extra-tags.open { display: flex; }
+
+.card-footer-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+    margin-top: 2px;
+}
+.record-count-badge {
+    font-size: 12.5px;
+    font-weight: bold;
+    color: var(--navy);
+}
+/* view button matches Catalog.html .btn-view-dataset */
+.btn-view-dataset {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--white);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: filter 0.2s;
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+}
+.btn-view-dataset:hover { filter: brightness(1.2); }
+.btn-view-dataset:focus { outline: 3px solid var(--sage); outline-offset: 2px; }
+
+/* ── PAGINATION ── */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+}
+.page-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background: var(--white);
+    color: var(--charcoal);
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.15s;
+    font-family: inherit;
+}
+.page-btn:hover { border-color: var(--navy); color: var(--navy); }
+.page-btn.active {
+    background: var(--navy);
+    color: var(--white);
+    border-color: var(--navy);
+    font-weight: bold;
+}
+.page-btn.disabled { opacity: 0.35; cursor: default; pointer-events: none; }
+.page-ellipsis { padding: 0 3px; color: var(--charcoal); opacity: 0.55; font-size: 14px; }
+
+/* ── EMPTY STATE ── */
+#no-results {
+    display: none;
+    text-align: center;
+    padding: 50px 20px;
+    color: var(--charcoal);
+}
+#no-results.visible { display: block; }
+#no-results h3 { color: var(--navy); font-size: 18px; margin-bottom: 8px; }
+#no-results p { font-size: 13px; }
+
+/* ── MOCKUP NOTICE ── */
+.mockup-note {
+    background: #fdf8ef;
+    border: 1px solid #e0d5b5;
+    border-left: 4px solid var(--sage);
+    border-radius: 5px;
+    padding: 9px 13px;
+    font-size: 12px;
+    color: #7a6b3a;
+    margin-bottom: 14px;
+}
+
+/* ── ACCESSIBILITY ── */
+:focus-visible { outline: 3px solid var(--sage); outline-offset: 2px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+    .card-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+    header, .breadcrumb, .search-zone,
+    .browse-header, .page-body { padding-left: 20px; padding-right: 20px; }
+    .page-body { flex-direction: column; padding-top: 20px; }
+    .sidebar { width: 100%; margin-right: 0; margin-bottom: 20px; }
+    nav.main-nav { padding: 0 20px; gap: 15px; font-size: 11px; }
+    .page-title-band { padding: 28px 20px; }
+    .page-title-band h1 { font-size: 26px; }
+    .jg-search-container { padding: 18px 20px; }
+    .search-row { flex-direction: column; gap: 8px; }
+    .sf.n, .sf.w { flex: none; width: 100%; }
+    .browse-db-search input { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     HEADER — canonical, locked
+════════════════════════════════════════ -->
+<header>
+  <div class="brand">
+    <a href="#">
+      <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg"
+           alt="JewishGen: The Global Home for Jewish Genealogy"
+           class="light-logo" style="height:55px;width:auto;object-fit:contain;">
+      <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png"
+           alt="JewishGen: The Global Home for Jewish Genealogy"
+           class="dark-logo" style="height:55px;width:auto;object-fit:contain;">
+    </a>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+    <button onclick="document.body.classList.toggle('dark-mode')"
+            style="background:var(--cream);color:var(--navy);border:1px solid #d1caba;padding:4px 10px;border-radius:20px;cursor:pointer;font-size:11px;font-weight:bold;font-family:inherit;"
+            aria-label="Toggle dark mode">🌗 Toggle Dark Mode</button>
+    <div style="display:flex;gap:8px;">
+      <a href="#" style="padding:7px 15px;border:2px solid var(--navy);color:var(--navy);font-weight:bold;font-size:13px;border-radius:6px;">Log In</a>
+      <a href="#" style="padding:7px 15px;background-color:var(--sage);color:var(--white);font-weight:bold;font-size:13px;border-radius:6px;">Sign Up</a>
+    </div>
+    <div style="text-align:right;margin-top:2px;">
+      <div style="font-size:10px;color:var(--charcoal);margin-bottom:3px;">The Genealogical Research Division of</div>
+      <a href="https://mjhnyc.org/" target="_blank" rel="noopener">
+        <img src="https://www.jewishgen.org/images/MJH-Circle-Logo.svg"
+             alt="Museum of Jewish Heritage" class="light-logo" style="height:32px;width:auto;">
+        <img src="https://d3k74ww17vqc8e.cloudfront.net/app/uploads/2019/10/18145838/MJH-Circle-icon_Logo.png"
+             alt="Museum of Jewish Heritage" class="dark-logo" style="height:32px;width:auto;">
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════════
+     NAV — canonical, locked
+════════════════════════════════════════ -->
+<nav class="main-nav" aria-label="Main navigation">
+  <div class="dropdown">
+    <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Databases ▾</span>
+    <div class="dropdown-content" role="menu">
+      <a href="#" role="menuitem">Global Search</a>
+      <a href="#" role="menuitem">Country &amp; Regional Databases</a>
+      <a href="#" role="menuitem">Holocaust Database</a>
+      <a href="#" role="menuitem">Burial Registry (JOWBR)</a>
+      <a href="#" role="menuitem">Records Catalog</a>
+      <a href="#" role="menuitem">Family Trees (FTJP)</a>
+      <a href="#" role="menuitem">Text Search</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Communities ▾</span>
+    <div class="dropdown-content" role="menu">
+      <a href="#" role="menuitem">Regional/Topical Research Divisions</a>
+      <a href="#" role="menuitem">Town Finder</a>
+      <a href="#" role="menuitem">KehilaLinks</a>
+      <a href="#" role="menuitem">Yizkor Books</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Learn &amp; Connect ▾</span>
+    <div class="dropdown-content" role="menu">
+      <a href="#" role="menuitem">Online Classes</a>
+      <a href="#" role="menuitem">How to JewishGen &amp; FAQ</a>
+      <a href="#" role="menuitem">Peter &amp; Mary Kalikow Center</a>
+      <a href="#" role="menuitem">Family Finder</a>
+      <a href="#" role="menuitem">Discussion Group</a>
+      <a href="#" role="menuitem">ViewMate</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Events &amp; Programs ▾</span>
+    <div class="dropdown-content" role="menu">
+      <a href="#" role="menuitem">Upcoming Events Calendar</a>
+      <a href="#" role="menuitem">JewishGen Talks</a>
+      <a href="#" role="menuitem">Student Program in Poland</a>
+      <a href="#" role="menuitem">Study &amp; Service Tour of Poland</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Publications ▾</span>
+    <div class="dropdown-content" role="menu">
+      <a href="#" role="menuitem">JewishGen Press</a>
+      <a href="#" role="menuitem">Newsletters</a>
+      <a href="#" role="menuitem">Holiday Companions</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">About &amp; Support ▾</span>
+    <div class="dropdown-content" role="menu">
+      <a href="#" role="menuitem">Mission</a>
+      <a href="#" role="menuitem">Our Team</a>
+      <a href="#" role="menuitem">Donate Now</a>
+      <a href="#" role="menuitem">Planned Giving</a>
+      <a href="#" role="menuitem">Wall of Honor</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════
+     BREADCRUMB — canonical pattern
+════════════════════════════════════════ -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="#">Home</a>
+  <span class="sep" aria-hidden="true">›</span>
+  <a href="#">Databases</a>
+  <span class="sep" aria-hidden="true">›</span>
+  <span aria-current="page">Holocaust Databases</span>
+</nav>
+
+<!-- ════════════════════════════════════════
+     PAGE TITLE BAND — canonical .page-title-band
+════════════════════════════════════════ -->
+<div class="page-title-band">
+  <span class="section-tag">Holocaust</span>
+  <h1>Holocaust Databases</h1>
+  <p>A unique and critically valuable collection of databases containing information about Holocaust victims and survivors.</p>
+  <span class="stat-line">As of May 2025, more than 6 million records are available in this continually updated collection.</span>
+</div>
+
+<!-- ════════════════════════════════════════
+     VOLUNTEER STRIP
+════════════════════════════════════════ -->
+<div style="background-color:var(--cream);border-bottom:1px solid var(--border);padding:10px 50px;text-align:center;font-size:13px;color:var(--charcoal);">
+  This is an ongoing project and we welcome <a href="#" style="color:var(--navy);font-weight:bold;text-decoration:underline dotted;">additional volunteers</a>.
+</div>
+
+<!-- ════════════════════════════════════════
+     CHUNK A — SEARCH THE RECORDS
+     Cream background zone, navy-bordered white box.
+     Modelled on HeroSearch.html.
+════════════════════════════════════════ -->
+<section class="search-zone" aria-label="Search Holocaust records">
+  <div class="jg-search-container">
+    <h2>Search Holocaust Records</h2>
+    <p class="search-subtitle">Search across all 6 million+ individual records in all 356 component databases.</p>
+
+    <button class="tips-toggle"
+            aria-expanded="false"
+            aria-controls="tips-panel"
+            onclick="toggleTips(this)">💡 How do I get the best search results?</button>
+
+    <div class="tips-panel" id="tips-panel" role="region" aria-label="Search tips">
+      <p><strong>Search by OR:</strong> Use commas to search for either of two names. Example: <em>COHEN,GOLDBERG</em> finds records for either name.</p>
+      <p style="margin-top:8px;"><strong>Search by AND:</strong> Use a space to require both names. Example: <em>COHEN GOLDBERG</em> finds records containing both.</p>
+      <p style="margin-top:8px;"><strong>Exact search</strong> includes JewishGen synonyms for town and given names. A search for <em>Lodz</em> will also return <em>Litzmannstadt</em>; a search for <em>Minnie</em> will include <em>Miriam, Mina, Mary</em>, and more.</p>
+    </div>
+
+    <form action="#" method="get" onsubmit="alert('Search would submit to JewishGen Holocaust records engine.'); return false;">
+
+      <!-- Row 1 -->
+      <div class="search-row">
+        <div class="sf n">
+          <label class="field-label" for="dtype1">Data type</label>
+          <select id="dtype1" name="dtype1" aria-label="Data type for first search term">
+            <option value="surname">Surname</option>
+            <option value="given">Given name</option>
+            <option value="town">Town</option>
+            <option value="any">Any field</option>
+          </select>
+        </div>
+        <div class="sf n">
+          <label class="field-label" for="stype1">Search type</label>
+          <select id="stype1" name="stype1" aria-label="Search type for first term">
+            <option value="phon">Phonetically like</option>
+            <option value="sounds">Sounds like</option>
+            <option value="starts">Starts with</option>
+            <option value="exact">Is exactly</option>
+            <option value="fuzzy">Fuzzy match</option>
+            <option value="fuzzier">Fuzzier match</option>
+            <option value="fuzziest">Fuzziest match</option>
+          </select>
+        </div>
+        <div class="sf w">
+          <label class="field-label" for="term1">Search term</label>
+          <input type="text" id="term1" name="term1" placeholder="Enter name, town, or keyword…" aria-label="First search term">
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="search-row">
+        <div class="sf n">
+          <label class="field-label" for="dtype2">Data type</label>
+          <select id="dtype2" name="dtype2" aria-label="Data type for second search term">
+            <option value="surname">Surname</option>
+            <option value="given">Given name</option>
+            <option value="town">Town</option>
+            <option value="any">Any field</option>
+          </select>
+        </div>
+        <div class="sf n">
+          <label class="field-label" for="stype2">Search type</label>
+          <select id="stype2" name="stype2" aria-label="Search type for second term">
+            <option value="phon">Phonetically like</option>
+            <option value="sounds">Sounds like</option>
+            <option value="starts">Starts with</option>
+            <option value="exact">Is exactly</option>
+            <option value="fuzzy">Fuzzy match</option>
+            <option value="fuzzier">Fuzzier match</option>
+            <option value="fuzziest">Fuzziest match</option>
+          </select>
+        </div>
+        <div class="sf w">
+          <label class="field-label" for="term2">Search term</label>
+          <input type="text" id="term2" name="term2" placeholder="Optional second search term…" aria-label="Second search term">
+        </div>
+      </div>
+
+      <hr class="search-divider">
+
+      <div class="match-row" role="group" aria-label="Match logic">
+        <label><input type="radio" name="match" value="all" checked> Match <strong>ALL</strong> of the above (AND)</label>
+        <label><input type="radio" name="match" value="any"> Match <strong>ANY</strong> of the above (OR)</label>
+      </div>
+
+      <button type="submit" class="btn-search">Search Records</button>
+    </form>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     CHUNK B HEADER — BROWSE COMPONENT DATABASES
+════════════════════════════════════════ -->
+<div class="browse-header">
+  <div class="browse-header-inner">
+    <span class="browse-title">Browse Component Databases</span>
+    <div class="browse-db-search">
+      <input type="text"
+             id="db-search"
+             placeholder="Filter databases by name, place, or keyword…"
+             aria-label="Filter component databases"
+             oninput="filterCards()">
+      <button onclick="filterCards()" aria-label="Apply filter">Filter</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     BROWSE ZONE — sidebar + card grid
+════════════════════════════════════════ -->
+<div class="browse-zone">
+  <div class="page-body">
+
+    <!-- SIDEBAR FILTERS -->
+    <aside class="sidebar" aria-label="Filter databases">
+      <div class="sidebar-header">
+        <span class="sidebar-title">Filters</span>
+        <button class="clear-btn" onclick="clearAllFilters()">Clear all</button>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-group-title">Record Type</div>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="record" data-v="Camp Record" onchange="applyFilters()"> Camp Record <span class="filter-count">89</span></label>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="record" data-v="Deportation List" onchange="applyFilters()"> Deportation List <span class="filter-count">74</span></label>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="record" data-v="Survivor Registry" onchange="applyFilters()"> Survivor Registry <span class="filter-count">61</span></label>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="record" data-v="Emigration Record" onchange="applyFilters()"> Emigration Record <span class="filter-count">52</span></label>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="record" data-v="Forced Labor Record" onchange="applyFilters()"> Forced Labor Record <span class="filter-count">44</span></label>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="record" data-v="Ghetto Registry" onchange="applyFilters()"> Ghetto Registry <span class="filter-count">28</span></label>
+        <button class="filter-more-btn" onclick="toggleMore(this,'rt-extra')">+ 23 more record types…</button>
+        <div class="filter-extra" id="rt-extra">
+          <label class="filter-item"><input type="checkbox" class="fcb" data-f="record" data-v="Death Record" onchange="applyFilters()"> Death Record <span class="filter-count">41</span></label>
+          <label class="filter-item"><input type="checkbox" class="fcb" data-f="record" data-v="Visa / Passport Record" onchange="applyFilters()"> Visa / Passport Record <span class="filter-count">18</span></label>
+          <label class="filter-item"><input type="checkbox" class="fcb" data-f="record" data-v="Transport List" onchange="applyFilters()"> Transport List <span class="filter-count">33</span></label>
+          <label class="filter-item"><input type="checkbox" class="fcb" data-f="record" data-v="Community Record" onchange="applyFilters()"> Community Record <span class="filter-count">49</span></label>
+          <label class="filter-item"><input type="checkbox" class="fcb" data-f="record" data-v="Memorial Record" onchange="applyFilters()"> Memorial Record <span class="filter-count">15</span></label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-group-title">Time Period</div>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="time" data-v="Prewar" onchange="applyFilters()"> Prewar <span class="filter-count">38</span></label>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="time" data-v="Wartime" onchange="applyFilters()"> Wartime <span class="filter-count">241</span></label>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="time" data-v="Postwar" onchange="applyFilters()"> Postwar <span class="filter-count">178</span></label>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-group-title">Origin Region</div>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="region" data-v="Poland" onchange="applyFilters()"> Poland <span class="filter-count">67</span></label>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="region" data-v="Germany" onchange="applyFilters()"> Germany <span class="filter-count">55</span></label>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="region" data-v="Hungary" onchange="applyFilters()"> Hungary <span class="filter-count">41</span></label>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="region" data-v="France" onchange="applyFilters()"> France <span class="filter-count">38</span></label>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="region" data-v="Romania" onchange="applyFilters()"> Romania <span class="filter-count">32</span></label>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="region" data-v="Netherlands" onchange="applyFilters()"> Netherlands <span class="filter-count">18</span></label>
+        <button class="filter-more-btn" onclick="toggleMore(this,'or-extra')">+ 30 more regions…</button>
+        <div class="filter-extra" id="or-extra">
+          <label class="filter-item"><input type="checkbox" class="fcb" data-f="region" data-v="Ukraine" onchange="applyFilters()"> Ukraine <span class="filter-count">22</span></label>
+          <label class="filter-item"><input type="checkbox" class="fcb" data-f="region" data-v="Czechoslovakia" onchange="applyFilters()"> Czechoslovakia <span class="filter-count">24</span></label>
+          <label class="filter-item"><input type="checkbox" class="fcb" data-f="region" data-v="Greece" onchange="applyFilters()"> Greece <span class="filter-count">17</span></label>
+          <label class="filter-item"><input type="checkbox" class="fcb" data-f="region" data-v="Lithuania" onchange="applyFilters()"> Lithuania <span class="filter-count">11</span></label>
+          <label class="filter-item"><input type="checkbox" class="fcb" data-f="region" data-v="Latvia" onchange="applyFilters()"> Latvia <span class="filter-count">8</span></label>
+          <label class="filter-item"><input type="checkbox" class="fcb" data-f="region" data-v="Belgium" onchange="applyFilters()"> Belgium <span class="filter-count">7</span></label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-group-title">Subject Group</div>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="subject" data-v="Victims" onchange="applyFilters()"> Victims <span class="filter-count">210</span></label>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="subject" data-v="Survivors" onchange="applyFilters()"> Survivors <span class="filter-count">98</span></label>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="subject" data-v="Refugees / DPs" onchange="applyFilters()"> Refugees / DPs <span class="filter-count">77</span></label>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="subject" data-v="Children" onchange="applyFilters()"> Children <span class="filter-count">24</span></label>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="subject" data-v="Women" onchange="applyFilters()"> Women <span class="filter-count">19</span></label>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="subject" data-v="Sephardic Jews" onchange="applyFilters()"> Sephardic Jews <span class="filter-count">14</span></label>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-group-title">Record Nature</div>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="nature" data-v="Postwar documentation" onchange="applyFilters()"> Postwar documentation <span class="filter-count">187</span></label>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="nature" data-v="Nazi-created" onchange="applyFilters()"> Nazi-created <span class="filter-count">158</span></label>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="nature" data-v="Jewish community-created" onchange="applyFilters()"> Jewish community-created <span class="filter-count">64</span></label>
+        <label class="filter-item"><input type="checkbox" class="fcb" data-f="nature" data-v="Memorial / commemorative" onchange="applyFilters()"> Memorial / commemorative <span class="filter-count">21</span></label>
+      </div>
+    </aside>
+
+    <!-- CARDS AREA -->
+    <div class="cards-area">
+      <div class="mockup-note">
+        ⚑ Mockup — 4 of 356 databases shown alphabetically. All filters and counts are illustrative; JS filtering is live against these 4 placeholder cards.
+      </div>
+
+      <div class="cards-toolbar">
+        <span class="cards-showing" id="cards-showing">
+          Showing <strong id="showing-count">4</strong> of <strong>356</strong> databases
+        </span>
+        <div class="active-filters" id="active-filters" aria-live="polite"></div>
+      </div>
+
+      <div class="card-grid" id="card-grid">
+
+        <!-- CARD 1 — Dachau (alphabetically first among these 4) -->
+        <article class="catalog-card"
+                 data-record="Camp Record"
+                 data-time="Prewar|Wartime"
+                 data-region="Germany"
+                 data-subject="Prisoners|Victims"
+                 data-nature="Nazi-created"
+                 data-title="dachau concentration camp records">
+          <div class="card-title">Dachau Concentration Camp Records</div>
+          <div class="card-desc">Data on approximately 150,000 prisoners drawn from captured German documents covering the camp's full history, 1933–1945. One of the largest single-camp databases on JewishGen.</div>
+          <div class="item-tags">
+            <span class="tag tag-type">Camp Record</span>
+            <span class="tag tag-geo">Germany · Dachau</span>
+            <span class="tag tag-era">Prewar</span>
+            <button class="more-tags-btn" onclick="toggleTags(this)" aria-expanded="false">+2 more</button>
+          </div>
+          <div class="extra-tags">
+            <span class="tag tag-era">Wartime</span>
+            <span class="tag tag-era">Nazi-created</span>
+          </div>
+          <div class="card-footer-row">
+            <span class="record-count-badge">~150,000 records</span>
+            <a class="btn-view-dataset" href="#">View dataset page</a>
+          </div>
+        </article>
+
+        <!-- CARD 2 — Lodz -->
+        <article class="catalog-card"
+                 data-record="Ghetto Registry|Census"
+                 data-time="Wartime"
+                 data-region="Poland"
+                 data-subject="Victims|Prisoners"
+                 data-nature="Nazi-created|Jewish community-created"
+                 data-title="lodz ghetto database">
+          <div class="card-title">Lodz Ghetto Database</div>
+          <div class="card-desc">A record of the 240,000 inhabitants of the Lodz Ghetto, drawn from German administrative records and Judenrat documentation, 1940–1944.</div>
+          <div class="item-tags">
+            <span class="tag tag-type">Ghetto Registry</span>
+            <span class="tag tag-type">Census</span>
+            <span class="tag tag-geo">Poland · Lodz</span>
+            <button class="more-tags-btn" onclick="toggleTags(this)" aria-expanded="false">+3 more</button>
+          </div>
+          <div class="extra-tags">
+            <span class="tag tag-era">Wartime</span>
+            <span class="tag tag-era">Nazi-created</span>
+            <span class="tag tag-era">Jewish community-created</span>
+          </div>
+          <div class="card-footer-row">
+            <span class="record-count-badge">~240,000 records</span>
+            <a class="btn-view-dataset" href="#">View dataset page</a>
+          </div>
+        </article>
+
+        <!-- CARD 3 — Sugihara -->
+        <article class="catalog-card"
+                 data-record="Visa / Passport Record|Emigration Record"
+                 data-time="Wartime"
+                 data-region="Poland|Lithuania"
+                 data-subject="Refugees / DPs|Survivors"
+                 data-nature="Postwar documentation"
+                 data-title="sugihara passports">
+          <div class="card-title">Sugihara Passports</div>
+          <div class="card-desc">Names and visa dates of 2,140 (mostly Polish) Jews saved by transit visas issued by Japanese Consul Chiune Sugihara in Kaunas (Kovno), Lithuania in 1940.</div>
+          <div class="item-tags">
+            <span class="tag tag-type">Visa / Passport Record</span>
+            <span class="tag tag-geo">Poland · Lithuania</span>
+            <button class="more-tags-btn" onclick="toggleTags(this)" aria-expanded="false">+4 more</button>
+          </div>
+          <div class="extra-tags">
+            <span class="tag tag-type">Emigration Record</span>
+            <span class="tag tag-era">Wartime</span>
+            <span class="tag tag-era">Refugees / DPs</span>
+            <span class="tag tag-era">Postwar documentation</span>
+          </div>
+          <div class="card-footer-row">
+            <span class="record-count-badge">2,140 records</span>
+            <a class="btn-view-dataset" href="#">View dataset page</a>
+          </div>
+        </article>
+
+        <!-- CARD 4 — Westerbork -->
+        <article class="catalog-card"
+                 data-record="Deportation List|Transport List|Camp Record"
+                 data-time="Wartime"
+                 data-region="Netherlands"
+                 data-subject="Victims|Prisoners"
+                 data-nature="Nazi-created"
+                 data-title="westerbork victims deported from the netherlands">
+          <div class="card-title">Westerbork – Victims Deported from the Netherlands</div>
+          <div class="card-desc">101,560 Jews deported from the Netherlands through the Westerbork transit camp, documented from German and Dutch administrative sources, 1942–1944.</div>
+          <div class="item-tags">
+            <span class="tag tag-type">Deportation List</span>
+            <span class="tag tag-type">Transport List</span>
+            <span class="tag tag-geo">Netherlands</span>
+            <button class="more-tags-btn" onclick="toggleTags(this)" aria-expanded="false">+3 more</button>
+          </div>
+          <div class="extra-tags">
+            <span class="tag tag-era">Wartime</span>
+            <span class="tag tag-era">Nazi-created</span>
+            <span class="tag tag-era">Victims · Prisoners</span>
+          </div>
+          <div class="card-footer-row">
+            <span class="record-count-badge">101,560 records</span>
+            <a class="btn-view-dataset" href="#">View dataset page</a>
+          </div>
+        </article>
+
+      </div><!-- /card-grid -->
+
+      <!-- EMPTY STATE -->
+      <div id="no-results" role="status">
+        <h3>No databases match your filters</h3>
+        <p><button class="clear-btn" style="font-size:13px;" onclick="clearAllFilters()">Clear all filters</button> to start over.</p>
+      </div>
+
+      <!-- PAGINATION -->
+      <nav class="pagination" aria-label="Database list pages">
+        <button class="page-btn disabled" aria-label="Previous page" aria-disabled="true">‹</button>
+        <button class="page-btn active" aria-current="page" aria-label="Page 1">1</button>
+        <button class="page-btn" aria-label="Page 2">2</button>
+        <button class="page-btn" aria-label="Page 3">3</button>
+        <span class="page-ellipsis" aria-hidden="true">…</span>
+        <button class="page-btn" aria-label="Page 15">15</button>
+        <button class="page-btn" aria-label="Next page">›</button>
+      </nav>
+
+    </div><!-- /cards-area -->
+  </div><!-- /page-body -->
+</div><!-- /browse-zone -->
+
+<!-- ════════════════════════════════════════
+     FOOTER — canonical, locked
+════════════════════════════════════════ -->
+<footer style="background-color:var(--cream);padding:30px 50px;border-top:4px solid var(--navy);">
+  <div style="max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;width:100%;">
+    <div style="flex:1;min-width:250px;">
+      <a href="#">
+        <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg" alt="JewishGen Logo"
+             class="light-logo" style="height:60px;width:auto;object-fit:contain;">
+        <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png" alt="JewishGen Logo"
+             class="dark-logo" style="height:60px;width:auto;object-fit:contain;">
+      </a>
+    </div>
+    <div style="flex:2;text-align:center;font-size:13px;line-height:1.6;color:var(--charcoal);min-width:300px;">
+      Edmond J. Safra Plaza | 36 Battery Place | New York, NY 10280<br>
+      646.494.2972 |
+      <a href="mailto:info@jewishgen.org" style="color:var(--navy);text-decoration:underline;font-weight:bold;">info@jewishgen.org</a>
+      | © 2026, JewishGen, Inc.
+      <a href="#" style="text-decoration:underline;">All rights reserved.</a>
+    </div>
+    <div style="flex:1;display:flex;justify-content:flex-end;align-items:center;min-width:250px;">
+      <a href="https://mjhnyc.org/" target="_blank" rel="noopener">
+        <img src="https://www.jewishgen.org/images/MJH-Circle-Logo.svg"
+             alt="Museum of Jewish Heritage" class="light-logo" style="height:45px;width:auto;">
+        <img src="https://d3k74ww17vqc8e.cloudfront.net/app/uploads/2019/10/18145838/MJH-Circle-icon_Logo.png"
+             alt="Museum of Jewish Heritage" class="dark-logo" style="height:45px;width:auto;">
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── TAG EXPANDER ── */
+function toggleTags(btn) {
+    var card = btn.closest('.catalog-card');
+    var extra = card.querySelector('.extra-tags');
+    var open = extra.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+    if (!btn._orig) btn._orig = btn.textContent;
+    btn.textContent = open ? 'Show fewer' : btn._orig;
+}
+
+/* ── FILTER MORE/LESS ── */
+function toggleMore(btn, id) {
+    var el = document.getElementById(id);
+    var open = el.classList.toggle('open');
+    if (!btn._orig) btn._orig = btn.textContent;
+    btn.textContent = open ? 'Show fewer…' : btn._orig;
+}
+
+/* ── SEARCH TIPS TOGGLE ── */
+function toggleTips(btn) {
+    var panel = document.getElementById('tips-panel');
+    var open = panel.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+}
+
+/* ── CARD FILTERING ── */
+var allCards = [];
+document.addEventListener('DOMContentLoaded', function () {
+    allCards = Array.from(document.querySelectorAll('.catalog-card'));
+});
+
+function getChecked(filter) {
+    return Array.from(document.querySelectorAll('.fcb[data-f="' + filter + '"]:checked'))
+                .map(function (cb) { return cb.dataset.v; });
+}
+
+function applyFilters() {
+    var q        = (document.getElementById('db-search').value || '').toLowerCase().trim();
+    var recF     = getChecked('record');
+    var timeF    = getChecked('time');
+    var regionF  = getChecked('region');
+    var subjectF = getChecked('subject');
+    var natureF  = getChecked('nature');
+
+    var visible = 0;
+    allCards.forEach(function (card) {
+        var title   = card.dataset.title  || '';
+        var desc    = (card.querySelector('.card-desc').textContent || '').toLowerCase();
+        var record  = card.dataset.record  || '';
+        var time    = card.dataset.time    || '';
+        var region  = card.dataset.region  || '';
+        var subject = card.dataset.subject || '';
+        var nature  = card.dataset.nature  || '';
+
+        var mQ = !q || title.includes(q) || desc.includes(q) || record.toLowerCase().includes(q) || region.toLowerCase().includes(q);
+        var mR = !recF.length     || recF.some(function (v)     { return record.includes(v); });
+        var mT = !timeF.length    || timeF.some(function (v)    { return time.includes(v); });
+        var mG = !regionF.length  || regionF.some(function (v)  { return region.includes(v); });
+        var mS = !subjectF.length || subjectF.some(function (v) { return subject.includes(v); });
+        var mN = !natureF.length  || natureF.some(function (v)  { return nature.includes(v); });
+
+        var show = mQ && mR && mT && mG && mS && mN;
+        card.classList.toggle('no-match', !show);
+        if (show) visible++;
+    });
+
+    document.getElementById('showing-count').textContent = visible;
+    document.getElementById('no-results').classList.toggle('visible', visible === 0);
+    document.getElementById('card-grid').style.display = visible === 0 ? 'none' : '';
+    document.querySelector('.pagination').style.display = visible === 0 ? 'none' : '';
+
+    renderChips(recF, timeF, regionF, subjectF, natureF);
+}
+
+function filterCards() { applyFilters(); }
+
+function renderChips(r, t, reg, s, n) {
+    var all = r.concat(t).concat(reg).concat(s).concat(n);
+    var el = document.getElementById('active-filters');
+    el.innerHTML = all.map(function (v) {
+        return '<span class="filter-chip">' + v +
+               ' <button aria-label="Remove ' + v + ' filter" onclick="removeChip(\'' + v.replace(/'/g, "\\'") + '\')">×</button></span>';
+    }).join('');
+}
+
+function removeChip(val) {
+    document.querySelectorAll('.fcb').forEach(function (cb) {
+        if (cb.dataset.v === val) cb.checked = false;
+    });
+    applyFilters();
+}
+
+function clearAllFilters() {
+    document.querySelectorAll('.fcb').forEach(function (cb) { cb.checked = false; });
+    document.getElementById('db-search').value = '';
+    allCards.forEach(function (c) { c.classList.remove('no-match'); });
+    document.getElementById('showing-count').textContent = allCards.length;
+    document.getElementById('no-results').classList.remove('visible');
+    document.getElementById('card-grid').style.display = '';
+    document.querySelector('.pagination').style.display = '';
+    document.getElementById('active-filters').innerHTML = '';
+}
+</script>
+</body>
+</html>

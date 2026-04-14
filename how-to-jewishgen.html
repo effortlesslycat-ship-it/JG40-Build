@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to JewishGen &amp; FAQ — JewishGen</title>
+    <style>
+        :root {
+            --cream:    #e8e1d1;
+            --sage:     #939b51;
+            --navy:     #09497a;
+            --charcoal: #232b2b;
+            --white:    #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0; padding: 0;
+            color: var(--charcoal);
+            background-color: var(--white);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        a { text-decoration: none; color: inherit; }
+
+        /* HEADER */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 50px;
+            border-bottom: 2px solid var(--cream);
+        }
+
+        /* NAV */
+        nav {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 0 50px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .dropdown { position: relative; display: inline-block; }
+        .dropbtn  { display: block; padding: 15px 0; cursor: pointer; }
+        .dropdown:hover .dropbtn { color: var(--sage); }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 250px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15);
+            z-index: 10;
+            top: 100%;
+            left: 0;
+            border-top: 3px solid var(--sage);
+            border-radius: 0 0 6px 6px;
+            overflow: hidden;
+        }
+        .dropdown-content a {
+            color: var(--navy);
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            text-transform: none;
+            font-weight: normal;
+            font-size: 15px;
+            border-bottom: 1px solid var(--cream);
+        }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background-color: var(--cream); color: var(--navy); font-weight: bold; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        /* LOGO SWAP */
+        .dark-logo { display: none !important; }
+        body.dark-mode .light-logo { display: none !important; }
+        body.dark-mode .dark-logo  { display: block !important; }
+
+        /* BREADCRUMB */
+        .breadcrumb {
+            background-color: var(--cream);
+            padding: 10px 50px;
+            font-size: 13px;
+            color: var(--charcoal);
+            border-bottom: 1px solid #d1caba;
+        }
+        .breadcrumb a {
+            color: var(--navy);
+            font-weight: bold;
+            text-decoration: underline dotted;
+        }
+        .breadcrumb a:hover { color: var(--sage); }
+        .breadcrumb span { margin: 0 6px; color: var(--charcoal); opacity: 0.5; }
+
+        /* TITLE BAND */
+        .page-title-band {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 36px 50px;
+            text-align: center;
+        }
+        .page-title-band .section-tag {
+            display: inline-block;
+            background-color: var(--sage);
+            color: var(--white);
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 4px 12px;
+            border-radius: 3px;
+            margin-bottom: 12px;
+        }
+        .page-title-band h1 {
+            margin: 0 0 10px 0;
+            font-size: 34px;
+            font-weight: bold;
+            color: var(--white);
+        }
+        .page-title-band p {
+            margin: 0 auto;
+            font-size: 16px;
+            color: #a9c0d0;
+            max-width: 620px;
+            line-height: 1.65;
+        }
+
+        /* PAGE TABS */
+        .page-tabs-wrapper {
+            background-color: var(--cream);
+            border-bottom: 3px solid #d1caba;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+        .page-tabs {
+            display: flex;
+            gap: 8px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 10px 50px;
+            overflow-x: auto;
+        }
+        .page-tab-btn {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 10px 20px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--navy);
+            cursor: pointer;
+            border: 2px solid transparent;
+            background-color: rgba(255,255,255,0.55);
+            border-radius: 6px;
+            transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            font-family: inherit;
+        }
+        .page-tab-btn:hover { background-color: var(--white); border-color: #d1caba; }
+        .page-tab-btn.active {
+            background-color: var(--navy);
+            color: var(--white);
+            border-color: var(--navy);
+            box-shadow: 0 3px 8px rgba(9,73,122,0.25);
+        }
+        .page-tab-btn:focus-visible { outline: 2px solid var(--sage); outline-offset: 3px; }
+
+        /* TAB PANELS */
+        .page-tab-panel { display: none; }
+        .page-tab-panel.active { display: block; }
+
+        /* HOWTO CONTENT */
+        .howto-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 44px 50px;
+        }
+
+        /* PHASE STEPPER */
+        .phase-stepper-wrapper {
+            position: relative;
+            margin-bottom: 48px;
+        }
+        .phase-stepper-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 23px;
+            left: 12.5%;
+            right: 12.5%;
+            height: 2px;
+            background-color: #d1caba;
+            z-index: 0;
+        }
+        .phase-stepper {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+        .phase-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: inherit;
+            text-align: center;
+            padding: 0 8px;
+        }
+        .phase-step:focus-visible { outline: 2px solid var(--sage); outline-offset: 4px; border-radius: 4px; }
+        .phase-circle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid #d1caba;
+            background-color: var(--white);
+            color: var(--charcoal);
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            flex-shrink: 0;
+            transition: background-color 0.2s, border-color 0.2s, color 0.2s, opacity 0.2s;
+        }
+        .phase-step.active .phase-circle {
+            background-color: var(--navy);
+            border-color: var(--navy);
+            color: var(--white);
+        }
+        .phase-step.coming-soon .phase-circle { opacity: 0.4; }
+        .phase-step.coming-soon.active .phase-circle { opacity: 1; }
+        .phase-step-label {
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--charcoal);
+            line-height: 1.5;
+            max-width: 120px;
+            transition: color 0.2s, opacity 0.2s;
+        }
+        .phase-step.active .phase-step-label { color: var(--navy); }
+        .phase-step.coming-soon .phase-step-label { opacity: 0.4; }
+        .phase-step.coming-soon.active .phase-step-label { opacity: 1; color: var(--navy); }
+        .coming-soon-badge {
+            display: none;
+            font-size: 9px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background-color: #d1caba;
+            color: var(--charcoal);
+            padding: 2px 7px;
+            border-radius: 3px;
+            margin-top: 6px;
+        }
+        .phase-step.coming-soon .coming-soon-badge { display: inline-block; }
+
+        /* PHASE PANELS */
+        .phase-panel { display: none; }
+        .phase-panel.active { display: block; }
+
+        /* CARD GRID */
+        .phase1-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .tip-card {
+            background-color: var(--cream);
+            border-radius: 10px;
+            padding: 28px;
+            border-top: 4px solid var(--navy);
+        }
+        .tip-card:nth-child(2) { border-top-color: var(--sage); }
+        .tip-card:nth-child(3) { border-top-color: var(--sage); }
+        .tip-card:nth-child(4) { border-top-color: var(--navy); }
+        .tip-card h3 { margin: 0 0 10px 0; font-size: 17px; color: var(--navy); line-height: 1.3; }
+        .tip-card p  { margin: 0 0 14px 0; font-size: 14px; line-height: 1.75; }
+        .tip-card ul { margin: 0; padding: 0; list-style: none; }
+        .tip-card ul li {
+            font-size: 14px;
+            line-height: 1.75;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .tip-card ul li:last-child { margin-bottom: 0; }
+        .tip-card ul li::before { content: '→'; position: absolute; left: 0; color: var(--sage); font-weight: bold; }
+        .tip-card ul li strong { color: var(--navy); }
+
+        /* COMING SOON PANEL */
+        .coming-soon-panel { text-align: center; padding: 64px 20px 56px; }
+        .coming-soon-panel .cs-icon { font-size: 40px; margin-bottom: 18px; display: block; }
+        .coming-soon-panel h3 { font-size: 21px; margin: 0 0 12px 0; color: var(--navy); }
+        .coming-soon-panel p  { font-size: 15px; line-height: 1.7; max-width: 460px; margin: 0 auto; color: var(--charcoal); opacity: 0.7; }
+
+        /* FAQ */
+        .faq-content { max-width: 860px; margin: 0 auto; padding: 48px 50px; }
+        .faq-content h2 { font-size: 24px; color: var(--navy); margin: 0 0 8px 0; }
+        .faq-intro { font-size: 14px; line-height: 1.75; color: var(--charcoal); opacity: 0.75; margin: 0 0 36px 0; }
+
+        /* ACCORDION */
+        .accordion { border: 1px solid #d1caba; border-radius: 8px; overflow: hidden; }
+        .accordion-item { border-bottom: 1px solid #d1caba; }
+        .accordion-item:last-child { border-bottom: none; }
+        .accordion-btn {
+            width: 100%;
+            text-align: left;
+            padding: 20px 24px;
+            font-size: 15px;
+            font-weight: bold;
+            color: var(--navy);
+            background-color: var(--white);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            font-family: inherit;
+            line-height: 1.4;
+            transition: background-color 0.15s;
+        }
+        .accordion-btn:hover { background-color: var(--cream); }
+        .accordion-btn[aria-expanded="true"] { background-color: var(--cream); border-bottom: 1px solid #d1caba; }
+        .accordion-btn:focus-visible { outline: 2px solid var(--sage); outline-offset: -2px; }
+        .accordion-chevron { font-size: 11px; color: var(--sage); flex-shrink: 0; transition: transform 0.25s ease; }
+        .accordion-btn[aria-expanded="true"] .accordion-chevron { transform: rotate(180deg); }
+        .accordion-body {
+            display: none;
+            padding: 22px 24px 26px;
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--charcoal);
+            background-color: var(--white);
+        }
+        .accordion-body.open { display: block; }
+        .accordion-body p { margin: 0 0 14px 0; }
+        .accordion-body p:last-child { margin-bottom: 0; }
+        .accordion-body a { color: var(--navy); text-decoration: underline dotted; font-weight: bold; }
+        .accordion-body a:hover { color: var(--sage); }
+
+        /* DARK MODE */
+        body.dark-mode { background-color: #1a1f1f; color: var(--cream); }
+        body.dark-mode header { border-bottom-color: #333; }
+        body.dark-mode .breadcrumb { background-color: #252a2a; border-bottom-color: #3a3f3f; color: var(--cream); }
+        body.dark-mode .breadcrumb a { color: #a9c0d0; }
+        body.dark-mode .page-tabs-wrapper { background-color: #252a2a; border-bottom-color: #3a3f3f; }
+        body.dark-mode .page-tab-btn { color: var(--cream); background-color: rgba(255,255,255,0.07); }
+        body.dark-mode .page-tab-btn:hover { background-color: rgba(255,255,255,0.12); border-color: #555; }
+        body.dark-mode .page-tab-btn.active { background-color: var(--navy); color: var(--white); border-color: var(--navy); }
+        body.dark-mode .phase-stepper-wrapper::before { background-color: #3a3f3f; }
+        body.dark-mode .phase-circle { background-color: #252a2a; border-color: #3a3f3f; color: var(--cream); }
+        body.dark-mode .phase-step.active .phase-circle { background-color: var(--navy); border-color: var(--navy); color: var(--white); }
+        body.dark-mode .phase-step-label { color: var(--cream); }
+        body.dark-mode .phase-step.active .phase-step-label { color: #a9c0d0; }
+        body.dark-mode .phase-step.coming-soon.active .phase-step-label { color: #a9c0d0; }
+        body.dark-mode .coming-soon-badge { background-color: #3a3f3f; color: var(--cream); }
+        body.dark-mode .tip-card { background-color: #252a2a; }
+        body.dark-mode .tip-card h3 { color: #a9c0d0; }
+        body.dark-mode .tip-card p,
+        body.dark-mode .tip-card ul li { color: var(--cream); }
+        body.dark-mode .tip-card ul li strong { color: #a9c0d0; }
+        body.dark-mode .coming-soon-panel h3 { color: #a9c0d0; }
+        body.dark-mode .coming-soon-panel p { color: var(--cream); }
+        body.dark-mode .faq-content h2 { color: #a9c0d0; }
+        body.dark-mode .faq-intro { color: var(--cream); }
+        body.dark-mode .accordion { border-color: #3a3f3f; }
+        body.dark-mode .accordion-item { border-bottom-color: #3a3f3f; }
+        body.dark-mode .accordion-btn { background-color: #252a2a; color: var(--cream); }
+        body.dark-mode .accordion-btn:hover,
+        body.dark-mode .accordion-btn[aria-expanded="true"] { background-color: #2f3535; border-bottom-color: #3a3f3f; color: var(--cream); }
+        body.dark-mode .accordion-body { background-color: #1f2424; color: var(--cream); }
+        body.dark-mode .accordion-body a { color: #a9c0d0; }
+        body.dark-mode footer { background-color: #252a2a !important; }
+        body.dark-mode footer div[style] { color: var(--cream) !important; }
+        body.dark-mode footer a { color: #a9c0d0 !important; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            header { padding: 10px 20px; }
+            nav    { padding: 0 20px; gap: 16px; }
+            .breadcrumb { padding: 10px 20px; white-space: nowrap; overflow-x: auto; }
+            .page-title-band { padding: 28px 20px; }
+            .page-title-band h1 { font-size: 26px; }
+            .page-tabs { padding: 10px 20px; }
+            .howto-content { padding: 28px 20px; }
+            .phase-stepper-wrapper::before { display: none; }
+            .phase-stepper { flex-direction: column; gap: 4px; }
+            .phase-step { flex-direction: row; text-align: left; align-items: center; padding: 8px 0; width: 100%; }
+            .phase-circle { width: 40px; height: 40px; font-size: 16px; margin-bottom: 0; margin-right: 14px; flex-shrink: 0; }
+            .phase-step-label { max-width: none; }
+            .coming-soon-badge { margin-top: 0; margin-left: 10px; }
+            .phase-stepper-wrapper { margin-bottom: 32px; }
+            .phase1-grid { grid-template-columns: 1fr; }
+            .faq-content { padding: 28px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="brand">
+        <a href="#">
+            <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg"
+                 alt="JewishGen: The Global Home for Jewish Genealogy"
+                 class="light-logo" style="height: 55px; width: auto; object-fit: contain;">
+            <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png"
+                 alt="JewishGen: The Global Home for Jewish Genealogy"
+                 class="dark-logo" style="height: 55px; width: auto; object-fit: contain;">
+        </a>
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+        <button onclick="document.body.classList.toggle('dark-mode')"
+            style="background: var(--cream); color: var(--navy); border: 1px solid #d1caba;
+            padding: 4px 10px; border-radius: 20px; cursor: pointer; font-size: 11px; font-weight: bold;"
+            aria-label="Toggle dark mode">🌗 Toggle Dark Mode</button>
+        <div style="display: flex; gap: 8px;">
+            <a href="#" style="padding: 7px 15px; border: 2px solid var(--navy); color: var(--navy); font-weight: bold; font-size: 13px; border-radius: 6px;">Log In</a>
+            <a href="#" style="padding: 7px 15px; background-color: var(--sage); color: var(--white); font-weight: bold; font-size: 13px; border-radius: 6px;">Sign Up</a>
+        </div>
+        <div style="text-align: right; margin-top: 2px;">
+            <div style="font-size: 10px; color: var(--charcoal); margin-bottom: 3px;">The Genealogical Research Division of</div>
+            <a href="https://mjhnyc.org/" target="_blank" rel="noopener">
+                <img src="https://www.jewishgen.org/images/MJH-Circle-Logo.svg" alt="Museum of Jewish Heritage" class="light-logo" style="height: 32px; width: auto;">
+                <img src="https://d3k74ww17vqc8e.cloudfront.net/app/uploads/2019/10/18145838/MJH-Circle-icon_Logo.png" alt="Museum of Jewish Heritage" class="dark-logo" style="height: 32px; width: auto;">
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- NAV -->
+<nav aria-label="Main navigation">
+    <div class="dropdown">
+        <span class="dropbtn">Databases ▾</span>
+        <div class="dropdown-content">
+            <a href="#">Global Search</a>
+            <a href="#">Country &amp; Regional Databases</a>
+            <a href="#">Holocaust Database</a>
+            <a href="#">Burial Registry (JOWBR)</a>
+            <a href="#">Records Catalog</a>
+            <a href="#">Family Trees (FTJP)</a>
+            <a href="#">Text Search</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn">Communities ▾</span>
+        <div class="dropdown-content">
+            <a href="#">Regional/Topical Research Divisions</a>
+            <a href="#">Town Finder</a>
+            <a href="#">KehilaLinks</a>
+            <a href="#">Yizkor Books</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn">Learn &amp; Connect ▾</span>
+        <div class="dropdown-content">
+            <a href="#">Online Classes</a>
+            <a href="#" aria-current="page" style="font-weight: bold; background-color: var(--cream);">How to JewishGen &amp; FAQ</a>
+            <a href="#">Peter &amp; Mary Kalikow Center</a>
+            <a href="#">Family Finder</a>
+            <a href="#">Discussion Group</a>
+            <a href="#">ViewMate</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn">Events &amp; Programs ▾</span>
+        <div class="dropdown-content">
+            <a href="#">Upcoming Events Calendar</a>
+            <a href="#">JewishGen Talks</a>
+            <a href="#">Student Program in Poland</a>
+            <a href="#">Study &amp; Service Tour of Poland</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn">Publications ▾</span>
+        <div class="dropdown-content">
+            <a href="#">JewishGen Press</a>
+            <a href="#">Newsletters</a>
+            <a href="#">Holiday Companions</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn">About &amp; Support ▾</span>
+        <div class="dropdown-content">
+            <a href="#">Mission</a>
+            <a href="#">Our Team</a>
+            <a href="#">Donate Now</a>
+            <a href="#">Planned Giving</a>
+            <a href="#">Wall of Honor</a>
+        </div>
+    </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="#">JewishGen Home</a>
+    <span aria-hidden="true">›</span>
+    <a href="#">Learn &amp; Connect</a>
+    <span aria-hidden="true">›</span>
+    <span aria-current="page">How to JewishGen &amp; FAQ</span>
+</nav>
+
+<!-- TITLE BAND -->
+<div class="page-title-band">
+    <div class="section-tag">Learn &amp; Connect</div>
+    <h1>How to JewishGen</h1>
+    <p>A step-by-step guide to researching your Jewish family history — and answers to the questions every newcomer asks.</p>
+</div>
+
+<!-- PAGE TABS -->
+<div class="page-tabs-wrapper">
+    <div class="page-tabs" role="tablist" aria-label="Page sections">
+        <button class="page-tab-btn active" role="tab"
+            id="page-tab-howto" aria-controls="page-panel-howto" aria-selected="true">
+            📖 How to JewishGen
+        </button>
+        <button class="page-tab-btn" role="tab"
+            id="page-tab-faq" aria-controls="page-panel-faq" aria-selected="false">
+            ❓ Frequently Asked Questions
+        </button>
+    </div>
+</div>
+
+<!-- PANEL 1: HOW TO -->
+<div id="page-panel-howto" class="page-tab-panel active"
+     role="tabpanel" aria-labelledby="page-tab-howto">
+    <div class="howto-content">
+
+        <div class="phase-stepper-wrapper">
+            <div class="phase-stepper" role="tablist" aria-label="Research phases">
+                <button class="phase-step active" role="tab"
+                    id="phase-tab-1" aria-controls="phase-panel-1" aria-selected="true">
+                    <div class="phase-circle" aria-hidden="true">1</div>
+                    <div class="phase-step-label">The<br>Groundwork</div>
+                </button>
+                <button class="phase-step coming-soon" role="tab"
+                    id="phase-tab-2" aria-controls="phase-panel-2" aria-selected="false">
+                    <div class="phase-circle" aria-hidden="true">2</div>
+                    <div class="phase-step-label">Your First<br>Search</div>
+                    <span class="coming-soon-badge">Coming Soon</span>
+                </button>
+                <button class="phase-step coming-soon" role="tab"
+                    id="phase-tab-3" aria-controls="phase-panel-3" aria-selected="false">
+                    <div class="phase-circle" aria-hidden="true">3</div>
+                    <div class="phase-step-label">Digging<br>Deeper</div>
+                    <span class="coming-soon-badge">Coming Soon</span>
+                </button>
+                <button class="phase-step coming-soon" role="tab"
+                    id="phase-tab-4" aria-controls="phase-panel-4" aria-selected="false">
+                    <div class="phase-circle" aria-hidden="true">4</div>
+                    <div class="phase-step-label">Connecting<br>with Others</div>
+                    <span class="coming-soon-badge">Coming Soon</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Phase 1 -->
+        <div id="phase-panel-1" class="phase-panel active"
+             role="tabpanel" aria-labelledby="phase-tab-1">
+            <div class="phase1-grid">
+                <div class="tip-card">
+                    <h3>Start at Home</h3>
+                    <p>Before you type a single name into the search bar, pause! The most important step in genealogy actually happens offline. Genealogy is all about working from the known to the unknown.</p>
+                    <ul>
+                        <li><strong>Write it down:</strong> Jot down everything you already know about yourself, your parents, and your grandparents.</li>
+                        <li><strong>Gather the basics:</strong> Get the names, dates (birth, marriage, death), and locations organized first. This is your foundation.</li>
+                    </ul>
+                </div>
+                <div class="tip-card">
+                    <h3>Find the Paper Trail</h3>
+                    <p>To jump the pond and research your family in Europe, you first need to find them in the records created after they emigrated.</p>
+                    <ul>
+                        <li><strong>Be a detective:</strong> Dig into old family papers, naturalization records, ship manifests, vital records, and even the backs of old photos.</li>
+                        <li><strong>The ultimate goal:</strong> You are looking for two golden nuggets of information — your ancestor's pre-immigration name and the specific town they left behind.</li>
+                    </ul>
+                </div>
+                <div class="tip-card">
+                    <h3>Throw Perfect Spelling Out the Window</h3>
+                    <p>When searching for your ancestors, flexibility is your best friend.</p>
+                    <ul>
+                        <li><strong>Names evolve:</strong> It's a stubborn myth that names were changed by clerks at Ellis Island. In reality, names simply shifted over time, across borders, and depending on who was holding the pen.</li>
+                        <li><strong>Sound it out:</strong> A single surname could be spelled half a dozen ways. First names often morphed from Yiddish or Hebrew into local forms even before emigration. Prepare to get creative and embrace phonetic variations!</li>
+                    </ul>
+                </div>
+                <div class="tip-card">
+                    <h3>Forget Countries, Focus on Towns</h3>
+                    <p>Historical borders shifted constantly. Depending on the year a document was signed, your ancestor might have listed their home as Russia, Poland, or Austria — without ever moving!</p>
+                    <ul>
+                        <li><strong>Towns are the key:</strong> Pinning down the specific town name is vital. Even if it's horribly misspelled on a ship manifest, finding that town is the master key to unlocking JewishGen's most powerful databases.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 2 -->
+        <div id="phase-panel-2" class="phase-panel"
+             role="tabpanel" aria-labelledby="phase-tab-2">
+            <div class="coming-soon-panel">
+                <span class="cs-icon" aria-hidden="true">🔍</span>
+                <h3>Phase 2: Your First Search</h3>
+                <p>This section will walk you through using JewishGen's Global Search, understanding your results, and making sense of Soundex matching. Content coming soon.</p>
+            </div>
+        </div>
+
+        <!-- Phase 3 -->
+        <div id="phase-panel-3" class="phase-panel"
+             role="tabpanel" aria-labelledby="phase-tab-3">
+            <div class="coming-soon-panel">
+                <span class="cs-icon" aria-hidden="true">🏘️</span>
+                <h3>Phase 3: Digging Deeper</h3>
+                <p>This section will cover the Communities Database, Yizkor Books, Holocaust records, burial registries, and regional research divisions. Content coming soon.</p>
+            </div>
+        </div>
+
+        <!-- Phase 4 -->
+        <div id="phase-panel-4" class="phase-panel"
+             role="tabpanel" aria-labelledby="phase-tab-4">
+            <div class="coming-soon-panel">
+                <span class="cs-icon" aria-hidden="true">🤝</span>
+                <h3>Phase 4: Connecting with Others</h3>
+                <p>This section will introduce the JewishGen Family Finder, the Discussion Group, ViewMate, and how to connect with other researchers worldwide. Content coming soon.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- PANEL 2: FAQ -->
+<div id="page-panel-faq" class="page-tab-panel"
+     role="tabpanel" aria-labelledby="page-tab-faq">
+    <div class="faq-content">
+        <h2>Frequently Asked Questions</h2>
+        <p class="faq-intro">These are some of the questions we hear most often — from researchers just starting out and from experienced genealogists who've hit a wall.</p>
+
+        <div class="accordion">
+
+            <div class="accordion-item">
+                <button class="accordion-btn" id="faq-btn-1"
+                    aria-expanded="false" aria-controls="faq-body-1">
+                    <span>Why can't I find my family's name?</span>
+                    <span class="accordion-chevron" aria-hidden="true">▼</span>
+                </button>
+                <div class="accordion-body" id="faq-body-1"
+                     role="region" aria-labelledby="faq-btn-1">
+                    <p>The most common culprit isn't a missing record — it's a spelling mismatch. Your family's name may appear in dozens of different forms across different documents, depending on the country, the language, who was writing, and when.</p>
+                    <p>There's also a persistent myth worth putting to rest: names were <em>not</em> changed by clerks at Ellis Island. Immigration inspectors worked from passenger manifests prepared before departure and generally recorded names phonetically as they heard them. The real transformation happened gradually — as families moved between countries, translated names into new languages, or simply chose new American-sounding names for themselves.</p>
+                    <p>The key is to search phonetically and broadly. JewishGen's databases use <strong>Soundex</strong> and <strong>Daitch-Mokotoff Soundex</strong> — systems designed specifically to capture the many phonetic variations of Jewish names. When in doubt, try searching with just the first few letters of a surname, or experiment with alternate vowel combinations.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-btn" id="faq-btn-2"
+                    aria-expanded="false" aria-controls="faq-body-2">
+                    <span>The town borders keep changing. Where do I search?</span>
+                    <span class="accordion-chevron" aria-hidden="true">▼</span>
+                </button>
+                <div class="accordion-body" id="faq-body-2"
+                     role="region" aria-labelledby="faq-btn-2">
+                    <p>This is one of the most disorienting aspects of Jewish research — and it trips up even experienced genealogists. The same town might appear as Russian, Polish, Austrian, or German in different records, even though the town itself never moved. Borders were redrawn constantly, especially after World War I and World War II.</p>
+                    <p>JewishGen addresses this by organizing communities around <strong>the town itself</strong>, not the changing political borders. The <a href="#">Communities Database</a> includes alternate names in multiple languages, cross-referenced across historical periods — so you can find the same place whether it was recorded as Lwów, Lviv, Lemberg, or Leopolis.</p>
+                    <p>The practical rule: always search by <strong>town name</strong>, not country. Use the <a href="#">Town Finder</a> to locate your ancestral community and see its full naming history before diving into records.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-btn" id="faq-btn-3"
+                    aria-expanded="false" aria-controls="faq-body-3">
+                    <span>What if I don't know the town they came from?</span>
+                    <span class="accordion-chevron" aria-hidden="true">▼</span>
+                </button>
+                <div class="accordion-body" id="faq-body-3"
+                     role="region" aria-labelledby="faq-btn-3">
+                    <p>Don't start searching JewishGen's databases just yet — first, build the bridge. The key is to find your ancestor in records created <em>after</em> immigration, since many of those documents ask for a place of origin.</p>
+                    <p><strong>Naturalization records</strong> are often the single most valuable source. After 1906, U.S. naturalization papers required the applicant's exact town of origin. These can unlock everything.</p>
+                    <p><strong>Passenger manifests</strong> after 1906 include a "last residence" column. Search the Ellis Island database or Ancestry for your ancestor's arrival record.</p>
+                    <p><strong>Death certificates, tombstones, and obituaries</strong> frequently contain birthplace information, sometimes down to the town level. Hebrew tombstone inscriptions in particular often name the deceased's place of origin.</p>
+                    <p>Once you have a town name — even a badly misspelled one — you're ready to unlock JewishGen's most powerful tools.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-btn" id="faq-btn-4"
+                    aria-expanded="false" aria-controls="faq-body-4">
+                    <span>I found a record, but it's not in English. What do I do?</span>
+                    <span class="accordion-chevron" aria-hidden="true">▼</span>
+                </button>
+                <div class="accordion-body" id="faq-body-4"
+                     role="region" aria-labelledby="faq-btn-4">
+                    <p>Don't panic — this is extremely common, and the JewishGen community has you covered. Records from Eastern Europe may be in Russian, Polish, Hebrew, Yiddish, German, Romanian, or Latin, depending on the region and time period.</p>
+                    <p><strong><a href="#">ViewMate</a></strong> is JewishGen's free translation and transcription request service. You upload an image of the document, and volunteers from the community — many of them native speakers or trained researchers — will translate or transcribe it for you. It's one of JewishGen's most beloved features.</p>
+                    <p>For help with Hebrew tombstone inscriptions specifically, JewishGen's <a href="#">InfoFiles</a> include dedicated guidance on reading cemetery records. And if you'd like to learn the basics yourself, <a href="#">Online Classes</a> cover document reading in several languages.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer style="background-color: var(--cream); padding: 30px 50px; border-top: 4px solid var(--navy);">
+    <div style="max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; width: 100%;">
+        <div style="flex: 1; min-width: 250px;">
+            <a href="#">
+                <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg" alt="JewishGen Logo" class="light-logo" style="height: 60px; width: auto; object-fit: contain;">
+                <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png" alt="JewishGen Logo" class="dark-logo" style="height: 60px; width: auto; object-fit: contain;">
+            </a>
+        </div>
+        <div style="flex: 2; text-align: center; font-size: 13px; line-height: 1.6; color: var(--charcoal); min-width: 300px;">
+            Edmond J. Safra Plaza | 36 Battery Place | New York, NY 10280<br>
+            646.494.2972 |
+            <a href="mailto:info@jewishgen.org" style="color: var(--navy); text-decoration: underline; font-weight: bold;">info@jewishgen.org</a>
+            | © 2026, JewishGen, Inc.
+            <a href="#" style="text-decoration: underline;">All rights reserved.</a>
+        </div>
+        <div style="flex: 1; display: flex; justify-content: flex-end; align-items: center; min-width: 250px;">
+            <a href="https://mjhnyc.org/" target="_blank" rel="noopener">
+                <img src="https://www.jewishgen.org/images/MJH-Circle-Logo.svg" alt="Museum of Jewish Heritage" class="light-logo" style="height: 45px; width: auto;">
+                <img src="https://d3k74ww17vqc8e.cloudfront.net/app/uploads/2019/10/18145838/MJH-Circle-icon_Logo.png" alt="Museum of Jewish Heritage" class="dark-logo" style="height: 45px; width: auto;">
+            </a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    /* Page tabs */
+    const pageTabs   = document.querySelectorAll('.page-tab-btn');
+    const pagePanels = document.querySelectorAll('.page-tab-panel');
+    pageTabs.forEach((btn, i) => {
+        btn.addEventListener('click', () => {
+            pageTabs.forEach((b, j) => {
+                const on = i === j;
+                b.classList.toggle('active', on);
+                b.setAttribute('aria-selected', String(on));
+                pagePanels[j].classList.toggle('active', on);
+            });
+        });
+        btn.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight') { e.preventDefault(); const n = (i+1) % pageTabs.length; pageTabs[n].focus(); pageTabs[n].click(); }
+            if (e.key === 'ArrowLeft')  { e.preventDefault(); const n = (i-1+pageTabs.length) % pageTabs.length; pageTabs[n].focus(); pageTabs[n].click(); }
+        });
+    });
+
+    /* Phase stepper */
+    const phaseSteps  = document.querySelectorAll('.phase-step');
+    const phasePanels = document.querySelectorAll('.phase-panel');
+    phaseSteps.forEach((btn, i) => {
+        btn.addEventListener('click', () => {
+            phaseSteps.forEach((b, j) => {
+                const on = i === j;
+                b.classList.toggle('active', on);
+                b.setAttribute('aria-selected', String(on));
+                phasePanels[j].classList.toggle('active', on);
+            });
+        });
+        btn.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight') { e.preventDefault(); const n = (i+1) % phaseSteps.length; phaseSteps[n].focus(); phaseSteps[n].click(); }
+            if (e.key === 'ArrowLeft')  { e.preventDefault(); const n = (i-1+phaseSteps.length) % phaseSteps.length; phaseSteps[n].focus(); phaseSteps[n].click(); }
+        });
+    });
+
+    /* Accordion */
+    document.querySelectorAll('.accordion-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const body  = document.getElementById(btn.getAttribute('aria-controls'));
+            const isOpen = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', String(!isOpen));
+            body.classList.toggle('open', !isOpen);
+        });
+    });
+</script>
+
+</body>
+</html>

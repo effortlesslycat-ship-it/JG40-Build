@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JewishGen Records Catalog — Mockup</title>
+    <style>
+        :root {
+            --cream: #e8e1d1;
+            --sage: #939b51;
+            --navy: #09497a;
+            --charcoal: #232b2b;
+            --white: #ffffff;
+            --border: #d1caba;
+            --light-bg: #f7f5f0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--white);
+            color: var(--charcoal);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* ── HEADER ── */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            border-bottom: 2px solid var(--cream);
+        }
+        .brand h1 { margin: 0; color: var(--navy); font-size: 26px; }
+        .brand p  { margin: 5px 0 0; font-size: 13px; color: var(--charcoal); text-transform: uppercase; letter-spacing: 1px; }
+        .museum-tag { font-size: 11px; color: var(--sage); font-weight: bold; margin-top: 5px; }
+        .user-nav { font-size: 14px; text-align: right; line-height: 1.5; }
+        .user-nav span { color: var(--navy); font-weight: bold; }
+        .user-nav a:hover { color: var(--sage); }
+
+                       /* Navigation */
+        nav {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 0 50px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .dropdown { position: relative; display: inline-block; }
+        .dropbtn { display: block; padding: 15px 0; cursor: pointer; }
+        .dropdown:hover .dropbtn { color: var(--sage); }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 250px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.15);
+            z-index: 10;
+            top: 100%;
+            left: 0;
+            border-top: 3px solid var(--sage);
+            border-radius: 0 0 6px 6px;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: var(--navy);
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            text-transform: none;
+            font-weight: normal;
+            font-size: 15px;
+            border-bottom: 1px solid var(--cream);
+        }
+
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background-color: var(--cream); color: var(--navy); font-weight: bold; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        /* ── SPONSORSHIP BANNER ── */
+        .sponsorship-banner {
+            background-color: var(--cream);
+            color: var(--charcoal);
+            text-align: center;
+            padding: 12px 20px;
+            font-size: 15px;
+            font-style: italic;
+            border-bottom: 1px solid #d1caba;
+            letter-spacing: 0.5px;
+            min-height: 42px;
+        }
+        .sponsorship-banner strong { color: var(--navy); font-weight: bold; font-style: normal; }
+        .sponsor-slide { position: absolute; width: 100%; top: 0; left: 0; opacity: 0; transition: opacity 1s ease-in-out; pointer-events: none; }
+        .sponsor-slide.active { position: relative; opacity: 1; pointer-events: auto; }
+
+        /* ── DARK MODE TOGGLE ── */
+        .dm-toggle {
+            background: none;
+            border: 1.5px solid var(--border);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            color: var(--charcoal);
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+        .dm-toggle:hover { background: var(--cream); }
+
+        /* ── FILTER SECTION (cream zone below navy hero) ── */
+        .catalog-hero {
+            background: var(--cream);
+            padding: 24px 20px 24px 20px;
+        }
+        .catalog-hero .catalog-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ── INNER CONTENT WRAPPER ── */
+        .catalog-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .filter-group label {
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--navy);
+        }
+        .filter-group input,
+        .filter-group select {
+            padding: 9px 12px;
+            border: 1.5px solid var(--border);
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            background: var(--white);
+            color: var(--charcoal);
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .filter-group input:focus,
+        .filter-group select:focus {
+            outline: none;
+            border-color: var(--navy);
+            box-shadow: 0 0 0 3px rgba(9,73,122,0.1);
+        }
+        .filter-group.search-group { flex: 1; min-width: 240px; }
+        .filter-group.search-group input { width: 100%; }
+
+        .date-range-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .date-range-group label {
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--navy);
+        }
+        .date-range-inputs {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .date-range-inputs input {
+            width: 90px;
+            padding: 9px 10px;
+            border: 1.5px solid var(--border);
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            background: var(--white);
+            color: var(--charcoal);
+            transition: border-color 0.2s;
+        }
+        .date-range-inputs input:focus {
+            outline: none;
+            border-color: var(--navy);
+            box-shadow: 0 0 0 3px rgba(9,73,122,0.1);
+        }
+        .date-range-inputs span {
+            font-size: 13px;
+            color: var(--charcoal);
+            font-weight: bold;
+        }
+
+        .btn-reset {
+            padding: 9px 18px;
+            background: transparent;
+            border: 1.5px solid var(--charcoal);
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--charcoal);
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+            align-self: flex-end;
+        }
+        .btn-reset:hover { background: var(--charcoal); color: var(--white); }
+
+        /* Sub-region + town appear/disappear */
+        .filter-group.hidden { display: none; }
+        .filter-group.revealed { display: flex; animation: fadeIn 0.25s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ── ACTIVE FILTER CHIPS ── */
+        .active-filters {
+            padding: 0 20px;
+            background: var(--cream);
+            min-height: 0;
+        }
+        .active-filters .catalog-inner {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            padding-bottom: 12px;
+        }
+
+        .filter-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--navy);
+            color: var(--white);
+            padding: 4px 10px 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            animation: chipIn 0.2s ease;
+        }
+        @keyframes chipIn { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+        .filter-chip button {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.7);
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+        .filter-chip button:hover { color: var(--white); }
+
+        /* ── RESULTS HEADER ── */
+        .results-header {
+            padding: 16px 20px;
+            background: var(--white);
+            border-bottom: 1px solid var(--cream);
+        }
+        .results-header .catalog-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .results-count {
+            font-size: 15px;
+            color: var(--charcoal);
+        }
+        .results-count strong { color: var(--navy); font-size: 17px; }
+
+        .sort-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--charcoal);
+        }
+        .sort-control select {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 13px;
+            font-family: inherit;
+            background: var(--white);
+            color: var(--charcoal);
+        }
+
+        /* ── CATALOG LIST ── */
+        .catalog-list {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 60px 20px;
+            background: var(--white);
+        }
+
+        /* ── CATALOG ITEM ── */
+        .catalog-item {
+            border-bottom: 1px solid var(--cream);
+            transition: background 0.15s;
+        }
+        .catalog-item:first-child { border-top: none; }
+        .catalog-item.no-match { display: none; }
+
+        .catalog-item-summary {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 16px;
+            padding: 16px 0;
+            cursor: pointer;
+            align-items: start;
+            user-select: none;
+        }
+        .catalog-item-summary:hover { }
+        .catalog-item:hover { background: #faf9f6; }
+
+        .item-left { display: flex; flex-direction: column; gap: 7px; }
+
+        .item-title-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .item-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.3;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+        }
+        .badge-new { background: var(--sage); color: var(--white); }
+        .badge-updated { background: var(--navy); color: var(--white); }
+
+        .item-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 13px;
+            color: var(--charcoal);
+            align-items: center;
+        }
+        .item-meta-piece {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .item-meta-piece .meta-icon { font-size: 12px; opacity: 0.7; }
+        .item-meta-piece .meta-label { font-weight: bold; color: var(--navy); margin-right: 2px; }
+
+        .item-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .tag:hover { filter: brightness(0.9); }
+        .tag-type {
+            background: rgba(9,73,122,0.1);
+            color: var(--navy);
+            border: 1px solid rgba(9,73,122,0.2);
+        }
+        .tag-geo {
+            background: rgba(147,155,81,0.12);
+            color: #5a6130;
+            border: 1px solid rgba(147,155,81,0.25);
+        }
+        .tag-era {
+            background: rgba(35,43,43,0.07);
+            color: var(--charcoal);
+            border: 1px solid rgba(35,43,43,0.15);
+        }
+
+        /* Expand toggle */
+        .item-right {
+            display: flex;
+            align-items: flex-start;
+            padding-top: 2px;
+            gap: 12px;
+        }
+        .expand-toggle {
+            width: 28px;
+            height: 28px;
+            border: 1.5px solid var(--border);
+            border-radius: 50%;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex-shrink: 0;
+            font-size: 13px;
+            color: var(--navy);
+        }
+        .catalog-item.open .expand-toggle {
+            background: var(--navy);
+            color: var(--white);
+            border-color: var(--navy);
+            transform: rotate(180deg);
+        }
+
+        /* ── EXPANDED DETAILS ── */
+        .catalog-item-detail {
+            display: none;
+            padding: 0 0 20px 0;
+            animation: expandIn 0.25s ease;
+        }
+        @keyframes expandIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+        .catalog-item.open .catalog-item-detail { display: block; }
+
+        .detail-inner {
+            background: var(--light-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px 28px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .detail-description {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--charcoal);
+            margin-bottom: 16px;
+        }
+
+        .detail-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .detail-meta-item {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 10px 14px;
+        }
+        .detail-meta-item .dmi-label {
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            color: var(--sage);
+            margin-bottom: 4px;
+        }
+        .detail-meta-item .dmi-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+
+        .detail-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-end;
+            min-width: 180px;
+        }
+        .btn-view-dataset {
+            display: inline-block;
+            background: var(--navy);
+            color: var(--white);
+            padding: 12px 22px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            white-space: nowrap;
+            transition: filter 0.2s;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .btn-view-dataset:hover { filter: brightness(1.2); }
+        .btn-view-dataset:focus { outline: 3px solid var(--sage); outline-offset: 2px; }
+
+        .btn-search-dataset {
+            display: inline-block;
+            background: var(--sage);
+            color: var(--white);
+            padding: 12px 22px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            white-space: nowrap;
+            transition: filter 0.2s;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .btn-search-dataset:hover { filter: brightness(1.1); }
+
+        .detail-division {
+            font-size: 12px;
+            color: #888;
+            text-align: right;
+            margin-top: 4px;
+        }
+
+        /* ── EMPTY STATE ── */
+        .empty-state {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--charcoal);
+        }
+        .empty-state.visible { display: block; }
+        .empty-state h3 { color: var(--navy); font-size: 20px; margin-bottom: 10px; }
+        .empty-state p { font-size: 14px; color: #666; }
+
+        /* ── DARK MODE ── */
+        body.dark-mode {
+            --cream: #1e1e1e;
+            --sage: #a8b361;
+            --navy: #e0e0e0;
+            --charcoal: #a0a0a0;
+            --white: #121212;
+            --border: #333;
+            --light-bg: #1a1a1a;
+        }
+        body.dark-mode nav { background-color: #1a1a1a !important; border-bottom: 1px solid #333; }
+        body.dark-mode .dropbtn { color: #e0e0e0; }
+        body.dark-mode .dropdown-content { background: #1e1e1e; border-color: #a8b361; }
+        body.dark-mode .dropdown-content a { color: #b0c8de; border-bottom-color: #333; }
+        body.dark-mode .dropdown-content a:hover { background: #262626; }
+        body.dark-mode .filter-group input,
+        body.dark-mode .filter-group select,
+        body.dark-mode .date-range-inputs input,
+        body.dark-mode .sort-control select { background: #1a1a1a; color: #e0e0e0; border-color: #333; }
+        body.dark-mode .tag-type { background: rgba(224,224,224,0.1); color: #b0c4d8; border-color: rgba(224,224,224,0.2); }
+        body.dark-mode .tag-geo  { background: rgba(168,179,97,0.12); color: #a8b361; border-color: rgba(168,179,97,0.25); }
+        body.dark-mode .tag-era  { background: rgba(160,160,160,0.1); color: #aaa;    border-color: rgba(160,160,160,0.2); }
+        body.dark-mode .expand-toggle { background: #1a1a1a; color: #e0e0e0; }
+        body.dark-mode .catalog-item:hover { background: #1a1a1a; }
+        body.dark-mode .item-title { color: #b0c8de; }
+        body.dark-mode .btn-view-dataset { background: #2a4a6a; color: #e0e0e0; }
+        body.dark-mode .detail-inner { background: #1a1a1a; border-color: #333; }
+        body.dark-mode .detail-meta-item { background: #121212; border-color: #333; }
+        body.dark-mode #catalog-hints-panel { background: #1a1a1a !important; border-left-color: var(--sage) !important; color: #e0e0e0 !important; }
+        body.dark-mode .catalog-nav-bar { background: #1a1a1a !important; border-color: #333 !important; }
+        /* Logo swap */
+        .dark-logo { display: none !important; }
+        body.dark-mode .light-logo { display: none !important; }
+        body.dark-mode .dark-logo  { display: inline-block !important; }
+        @media (max-width: 768px) {
+            header { flex-direction: column; text-align: center; gap: 15px; padding: 20px; }
+            .user-nav { text-align: center; }
+            nav { padding: 0 20px; gap: 15px; }
+            .filter-bar, .active-filters, .results-header, .catalog-list { padding-left: 20px; padding-right: 20px; }
+            .catalog-hero { padding: 30px 20px 0 20px; }
+            .detail-inner { grid-template-columns: 1fr; }
+            .detail-actions { align-items: flex-start; }
+        }
+
+        /* ── ARIA / FOCUS ── */
+        :focus-visible { outline: 3px solid var(--sage); outline-offset: 2px; }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+        /* Zebra on expand */
+        .catalog-item:nth-child(even) .catalog-item-summary { background: transparent; }
+
+    </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+HEADER
+══════════════════════════════════════════ -->
+
+<header>
+<div class="brand">
+<a href="#">
+<img src="https://www.jewishgen.org/JG/Images/JGlogo.svg"
+alt="JewishGen: The Global Home for Jewish Genealogy"
+class="light-logo" style="height: 55px; width: auto; object-fit: contain;">
+<img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png"
+alt="JewishGen: The Global Home for Jewish Genealogy"
+class="dark-logo" style="height: 55px; width: auto; object-fit: contain;">
+</a>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+<button onclick="document.body.classList.toggle('dark-mode')"
+style="background: var(--cream); color: var(--navy); border: 1px solid #d1caba;
+padding: 4px 10px; border-radius: 20px; cursor: pointer;
+font-size: 11px; font-weight: bold;"
+aria-label="Toggle dark mode">
+🌗 Toggle Dark Mode
+</button>
+<div style="display: flex; gap: 8px;">
+<a href="#" style="padding: 7px 15px; border: 2px solid var(--navy); color: var(--navy);
+font-weight: bold; font-size: 13px; border-radius: 6px;">Log In</a>
+<a href="#" style="padding: 7px 15px; background-color: var(--sage); color: var(--white);
+font-weight: bold; font-size: 13px; border-radius: 6px;">Sign Up</a>
+</div>
+<div style="text-align: right; margin-top: 2px;">
+<div style="font-size: 10px; color: var(--charcoal); margin-bottom: 3px;">
+The Genealogical Research Division of
+</div>
+<a href="https://mjhnyc.org/" target="_blank" rel="noopener">
+<img src="https://www.jewishgen.org/images/MJH-Circle-Logo.svg"
+alt="Museum of Jewish Heritage" class="light-logo" style="height: 32px; width: auto;">
+<img src="https://d3k74ww17vqc8e.cloudfront.net/app/uploads/2019/10/18145838/MJH-Circle-icon_Logo.png"
+alt="Museum of Jewish Heritage" class="dark-logo" style="height: 32px; width: auto;">
+</a>
+</div>
+</div>
+</header>
+
+<!-- NAV -->
+<nav class="main-nav" aria-label="Main navigation">
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Databases ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Global Search</a>
+            <a href="#" role="menuitem">Country &amp; Regional Databases</a>
+            <a href="#" role="menuitem">Holocaust Database</a>
+            <a href="#" role="menuitem">Burial Registry (JOWBR)</a>
+            <a href="#" role="menuitem">Records Catalog</a>
+            <a href="#" role="menuitem">Family Trees (FTJP)</a>
+            <a href="#" role="menuitem">Text Search</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Communities ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Regional/Topical Research Divisions</a>
+            <a href="#" role="menuitem">Town Finder</a>
+            <a href="#" role="menuitem">KehilaLinks</a>
+            <a href="#" role="menuitem">Yizkor Books</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Learn &amp; Connect ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Online Classes</a>
+            <a href="#" role="menuitem">How to JewishGen &amp; FAQ</a>
+            <a href="#" role="menuitem">Peter &amp; Mary Kalikow Center</a>
+            <a href="#" role="menuitem">Family Finder</a>
+            <a href="#" role="menuitem">Discussion Group</a>
+            <a href="#" role="menuitem">ViewMate</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Events &amp; Programs ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Upcoming Events Calendar</a>
+            <a href="#" role="menuitem">JewishGen Talks</a>
+            <a href="#" role="menuitem">Student Program in Poland</a>
+            <a href="#" role="menuitem">Study &amp; Service Tour of Poland</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Publications ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">JewishGen Press</a>
+            <a href="#" role="menuitem">Newsletters</a>
+            <a href="#" role="menuitem">Holiday Companions</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">About &amp; Support ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Mission</a>
+            <a href="#" role="menuitem">Our Team</a>
+            <a href="#" role="menuitem">Donate Now</a>
+            <a href="#" role="menuitem">Planned Giving</a>
+            <a href="#" role="menuitem">Wall of Honor</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ══ BREADCRUMB NAV ══ -->
+<div style="background: var(--cream); padding: 12px 20px; border-bottom: 1px solid #d1caba;">
+    <div style="max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; flex-wrap: wrap;">
+        <a href="#" style="color: var(--navy); text-decoration: underline;">JewishGen Home</a>
+        <span style="color: #aaa;">›</span>
+        <a href="#" style="color: var(--navy); text-decoration: underline;">Databases</a>
+        <span style="color: #aaa;">›</span>
+        <span style="color: #aaa; font-weight: normal;">Records Catalog</span>
+    </div>
+</div>
+
+<!-- ══ NAVY HERO BANNER ══ -->
+<div style="background-color: var(--navy); color: var(--white); padding: 36px 20px 32px 20px;">
+    <div style="max-width: 1100px; margin: 0 auto;">
+        <div style="margin-bottom: 12px;">
+            <span id="hero-pill" style="background-color: var(--sage); color: var(--white); font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; padding: 4px 12px; border-radius: 3px;">Global Search</span>
+        </div>
+        <h1 style="font-size: 34px; font-weight: bold; color: var(--white); margin: 0 0 12px 0; line-height: 1.2;">Records Catalog</h1>
+        <p style="font-size: 15px; color: rgba(255,255,255,0.8); margin: 0; line-height: 1.5;">
+            Browse and filter all searchable datasets in the JewishGen collection. Every entry links to a full description page and directly into the records. Use the filters below to find datasets by record type, region, or time period.
+        </p>
+    </div>
+</div>
+
+<!-- ══ FILTER SECTION (cream, below hero) ══ -->
+<div class="catalog-hero">
+<div class="catalog-inner">
+
+    <!-- Search Tips Toggle -->
+    <div style="text-align: center; margin-bottom: 16px; padding-top: 4px;">
+        <span onclick="toggleCatalogHints()" style="background-color: var(--white); color: var(--navy); padding: 8px 20px; border-radius: 20px; font-size: 13px; font-weight: bold; cursor: pointer; display: inline-block; border: 1px solid #d1caba; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            💡 Search Tips and Tricks
+        </span>
+    </div>
+
+    <div id="catalog-hints-panel" style="display: none; background: #f0f4f7; border-left: 4px solid var(--sage); padding: 20px; border-radius: 4px; margin-bottom: 16px; font-size: 13px; line-height: 1.5; color: var(--charcoal);">
+        <strong style="color: var(--navy); font-size: 14px; display: block; margin-bottom: 15px;">Tips for Using the Records Catalog:</strong>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+            <div><strong>Filter by Record Type:</strong> Narrow results to births, marriages, deaths, censuses, and more. <br><span style="color: #666;"><em>Example: Select "Census / Revision Lists" to find Czarist tax records</em></span></div>
+            <div><strong>Filter by Region:</strong> Choose a country, then refine by historical sub-region or gubernia. <br><span style="color: #666;"><em>Example: Ukraine → Pale of Settlement → Kiev Gubernia</em></span></div>
+            <div><strong>Date Range:</strong> Find records that overlap with a specific time period. <br><span style="color: #666;"><em>Example: From 1850 To 1900 finds any dataset covering those years</em></span></div>
+            <div><strong>Text Search:</strong> Search dataset titles and descriptions for any keyword. <br><span style="color: #666;"><em>Example: Type "business directory" or "revision lists"</em></span></div>
+            <div><strong>Clickable Tags:</strong> Click any tag on a result to instantly filter by that value. <br><span style="color: #666;"><em>Example: Click "Russian Empire" to see all Russian Empire datasets</em></span></div>
+            <div><strong>New &amp; Updated:</strong> Use the Show filter to see only recently added or updated datasets. <br><span style="color: #666;"><em>Example: Select "New Only" to see what's been added recently</em></span></div>
+        </div>
+        <div style="margin-top: 15px; border-top: 1px solid #dce4e8; padding-top: 10px; text-align: right;">
+            <a href="#" style="font-size: 12px; color: var(--navy); font-weight: bold; font-style: italic; text-decoration: underline;">
+                Need more help? Read our complete "How to JewishGen" guide →
+            </a>
+        </div>
+    </div>
+
+    <!-- Row 1: text search + record type + region + date -->
+    <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:flex-end; width:100%;">
+
+        <div class="filter-group search-group">
+            <label for="text-search">SEARCH DATASETS</label>
+            <input type="text" id="text-search" placeholder="e.g. birth records, Bessarabia, business directory…"
+                oninput="applyFilters()" autocomplete="off" aria-label="Search dataset titles and descriptions">
+        </div>
+
+        <div class="filter-group">
+            <label for="filter-type">RECORD TYPE</label>
+            <select id="filter-type" onchange="applyFilters()" aria-label="Filter by record type">
+                <option value="">All Record Types</option>
+                <optgroup label="Vital Records">
+                    <option value="vital">Vital Records (BMD combined)</option>
+                    <option value="birth">Birth / Brit Milah</option>
+                    <option value="marriage">Marriage / Ketubot</option>
+                    <option value="death">Death / Burial</option>
+                </optgroup>
+                <optgroup label="Census &amp; Lists">
+                    <option value="census">Census / Revision Lists</option>
+                    <option value="names">Name Lists</option>
+                    <option value="passenger">Passenger / Immigration</option>
+                </optgroup>
+                <optgroup label="Other Record Types">
+                    <option value="business">Business Directory</option>
+                    <option value="holocaust">Holocaust</option>
+                    <option value="military">Military</option>
+                    <option value="obituary">Obituaries</option>
+                    <option value="notary">Notary / Judicial</option>
+                    <option value="organizational">Organizational Records</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label for="filter-geo">REGION / COUNTRY</label>
+            <select id="filter-geo" onchange="onRegionChange()" aria-label="Filter by region or country">
+                <option value="">All Regions</option>
+                <optgroup label="Topical Databases">
+                    <option value="holocaust">Holocaust (All Regions)</option>
+                    <option value="sephardic">Sephardic</option>
+                </optgroup>
+                <optgroup label="Africa">
+                    <option value="algeria">Algeria</option>
+                    <option value="egypt">Egypt</option>
+                    <option value="morocco">Morocco</option>
+                    <option value="north africa">North Africa</option>
+                    <option value="safrica">South Africa</option>
+                    <option value="tunisia">Tunisia</option>
+                </optgroup>
+                <optgroup label="Asia &amp; The Middle East">
+                    <option value="india">India</option>
+                    <option value="iraq">Iraq</option>
+                    <option value="israel">Israel</option>
+                    <option value="syria">Syria</option>
+                    <option value="turkey">Turkey</option>
+                </optgroup>
+                <optgroup label="Eastern &amp; Central Europe">
+                    <option value="austria">Austria / Czechia</option>
+                    <option value="belarus">Belarus</option>
+                    <option value="bulgaria">Bulgaria</option>
+                    <option value="germany">Germany</option>
+                    <option value="hungary">Hungary / Slovakia</option>
+                    <option value="latvia">Latvia</option>
+                    <option value="lithuania">Lithuania</option>
+                    <option value="poland">Poland</option>
+                    <option value="romania">Romania / Moldova</option>
+                    <option value="ukraine">Ukraine</option>
+                </optgroup>
+                <optgroup label="Western &amp; Southern Europe">
+                    <option value="france">France</option>
+                    <option value="greece">Greece</option>
+                    <option value="italy">Italy</option>
+                    <option value="netherlands">Netherlands</option>
+                    <option value="portugal">Portugal</option>
+                    <option value="scandinavia">Scandinavia</option>
+                    <option value="spain">Spain</option>
+                    <option value="ukireland">United Kingdom &amp; Ireland</option>
+                </optgroup>
+                <optgroup label="North America">
+                    <option value="canada">Canada</option>
+                    <option value="usa">United States</option>
+                </optgroup>
+                <optgroup label="Central &amp; South America">
+                    <option value="argentina">Argentina</option>
+                    <option value="latinam">Latin America</option>
+                    <option value="venezuela">Venezuela</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <div class="date-range-group">
+            <label>DATE RANGE</label>
+            <div class="date-range-inputs">
+                <input type="number" id="date-from" placeholder="From" min="1600" max="2025"
+                    oninput="applyFilters()" aria-label="Date range from year">
+                <span aria-hidden="true">–</span>
+                <input type="number" id="date-to" placeholder="To" min="1600" max="2025"
+                    oninput="applyFilters()" aria-label="Date range to year">
+            </div>
+        </div>
+
+        <button class="btn-reset" onclick="resetFilters()" aria-label="Reset all filters">✕ Reset</button>
+    </div>
+
+    <!-- Row 2: Sub-region (appears when region selected) -->
+    <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:flex-end; width:100%;" id="subregion-row">
+
+        <div class="filter-group hidden" id="filter-subregion-group" style="min-width:280px; flex:1;">
+            <label for="filter-subregion" id="filter-subregion-label">SUB-REGION</label>
+            <select id="filter-subregion" onchange="applyFilters()" aria-label="Filter by sub-region">
+                <option value="">All Sub-Regions</option>
+            </select>
+        </div>
+
+        <div class="filter-group hidden" id="filter-town-group" style="min-width:200px; flex:1;">
+            <label for="filter-town">TOWN / CITY</label>
+            <input type="text" id="filter-town" placeholder="e.g. Kishinev, Kaunas, Denver…"
+                oninput="applyFilters()" autocomplete="off" aria-label="Filter by town or city">
+        </div>
+
+    </div><!-- end subregion row -->
+
+</div><!-- end catalog-inner -->
+</div><!-- end catalog-hero / filter section -->
+
+<!-- ── ACTIVE FILTER CHIPS ── -->
+<div class="active-filters" id="active-filters-outer" aria-live="polite" aria-label="Active filters">
+    <div class="catalog-inner" id="active-filters"></div>
+</div>
+
+<!-- ══ RESULTS HEADER ══ -->
+<div class="results-header">
+    <div class="catalog-inner">
+        <div class="results-count">
+            Showing <strong id="result-count">0</strong> datasets
+            <span id="total-records-summary" style="color:#888; font-size:13px; margin-left:8px;"></span>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+            <div class="sort-control">
+                <label for="filter-status" style="font-size:13px; font-weight:bold; color:var(--navy);">Show:</label>
+                <select id="filter-status" onchange="applyFilters()" aria-label="Filter by status">
+                    <option value="">All Datasets</option>
+                    <option value="new">New Only</option>
+                    <option value="updated">Recently Updated</option>
+                    <option value="new updated">New &amp; Updated</option>
+                </select>
+            </div>
+            <div class="sort-control">
+                <label for="sort-select" style="font-size:13px;">Sort by:</label>
+                <select id="sort-select" onchange="applyFilters()" aria-label="Sort results">
+                    <option value="name">Name (A–Z)</option>
+                    <option value="records-desc">Most Records</option>
+                    <option value="records-asc">Fewest Records</option>
+                    <option value="date-asc">Earliest Records First</option>
+                    <option value="date-desc">Latest Records First</option>
+                    <option value="new">New / Updated First</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ══ CATALOG LIST ══ -->
+<main class="catalog-list" id="catalog-list" aria-label="Dataset catalog results">
+    <!-- Items injected by JS -->
+</main>
+
+<div class="empty-state" id="empty-state" aria-live="polite">
+    <h3>No datasets match your filters</h3>
+    <p>Try broadening your search — remove a filter or adjust the date range.</p>
+</div>
+
+
+<script>
+// ══════════════════════════════════════════════
+// GEO NAME FORMATTER — preserves acronyms
+// ══════════════════════════════════════════════
+const GEO_DISPLAY = {
+    // Regions & countries
+    'usa': 'USA', 'ukireland': 'UK & Ireland', 'safrica': 'South Africa',
+    'north africa': 'North Africa', 'latin america': 'Latin America',
+    'latinam': 'Latin America', 'sephardic': 'Sephardic',
+    'austria': 'Austria / Czechia', 'hungary': 'Hungary / Slovakia',
+    'romania': 'Romania / Moldova',
+    // Historical eras & empires
+    'russian empire': 'Russian Empire',
+    'austro-hungarian empire': 'Austro-Hungarian Empire',
+    'ottoman empire': 'Ottoman Empire',
+    'wwii': 'WWII',
+    'wwi': 'WWI',
+    'holocaust': 'Holocaust',
+    'interwar': 'Interwar Period',
+    'soviet': 'Soviet Era',
+    'pale of settlement': 'Pale of Settlement',
+};
+function geoDisplayName(g) {
+    return GEO_DISPLAY[g.toLowerCase()] || g.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+}
+
+// ══════════════════════════════════════════════
+// SUB-REGION DATA — ported exactly from main.js
+// ══════════════════════════════════════════════
+const SUB_REGIONS = {
+    austria: {
+        label: "Refine by Region (Austria / Czechia / Galicia):",
+        options: [
+            { val: 'bohemia', label: 'Bohemia (Böhmen)', bold: true },
+            { val: 'prague', label: 'Prague (Prag)', indent: true },
+            { val: 'bukovina_aus', label: 'Bukovina (Bucovina / Bukowina)', bold: true },
+            { val: 'chernivtsi_aus', label: 'Czernowitz (Chernivtsi/Cernăuți)', indent: true },
+            { val: 'burgenland', label: 'Burgenland', bold: true },
+            { val: 'galicia_aus', label: 'Galicia (Galizien)', bold: true },
+            { val: 'krakow_aus', label: 'Kraków (Krakau)', indent: true },
+            { val: 'lviv_aus', label: 'Lemberg (Lwów/Lviv)', indent: true },
+            { val: 'stanislau_aus', label: 'Stanislau (Ivano-Frankivsk/Stanisławów)', indent: true },
+            { val: 'tarnopol_aus', label: 'Tarnopol (Ternopil)', indent: true },
+            { val: 'lower_austria_vienna', label: 'Lower Austria & Vienna', bold: true },
+            { val: 'lower_austria_p', label: 'Lower Austria (Niederösterreich)', indent: true },
+            { val: 'vienna', label: 'Vienna (Wien)', indent: true },
+            { val: 'moravia', label: 'Moravia (Mähren)', bold: true },
+        ]
+    },
+    belarus: {
+        label: "Refine by Historical Region (Belarus):",
+        options: [
+            { val: 'grodno_bel', label: 'Grodno (Grodnenskaya Guberniya)', indent: true },
+            { val: 'minsk', label: 'Minsk (Minskaya Guberniya)', indent: true },
+            { val: 'mogilev', label: 'Mogilev (Mogilevskaya Guberniya)', indent: true },
+            { val: 'vilna_bel', label: 'Vilna (Vilenskaya Guberniya)', indent: true },
+            { val: 'vitebsk', label: 'Vitebsk (Vitebskaya Guberniya)', indent: true },
+        ]
+    },
+    canada: {
+        label: "Refine by Province/Territory (Canada):",
+        options: ["Alberta","British Columbia","Manitoba","New Brunswick","Newfoundland and Labrador","Nova Scotia","Northwest Territories","Nunavut","Ontario","Prince Edward Island","Québec","Saskatchewan","Yukon"].map(p => ({ val: p.toLowerCase(), label: p }))
+    },
+    hungary: {
+        label: "Refine by Historical Region (Hungary / Slovakia / Croatia):",
+        options: [
+            { val: 'banat', label: 'Banat / Bačka (Bánság / Bácska)', bold: true },
+            { val: 'croatia_slavonia', label: 'Croatia-Slavonia (Hrvatska-Slavonija)', bold: true },
+            { val: 'hungary_mod', label: 'Hungary (Magyarország)', bold: true },
+            { val: 'budapest', label: 'Budapest & Pest', indent: true },
+            { val: 'zemplen_hun', label: 'Zemplén (Southern portion)', indent: true },
+            { val: 'maramures', label: 'Maramureș (Máramaros)', bold: true },
+            { val: 'slovakia', label: 'Slovakia (Slovensko / Felvidék)', bold: true },
+            { val: 'zemplen_svk', label: 'Zemplín (Northern portion)', indent: true },
+            { val: 'subcarpathia', label: 'Subcarpathia (Zakarpattia / Kárpátalja)', bold: true },
+            { val: 'transylvania', label: 'Transylvania (Transilvania / Erdély)', bold: true },
+        ]
+    },
+    latvia: {
+        label: "Refine by Historical Region (Latvia):",
+        options: [
+            { val: 'courland', label: 'Courland (Kurland)', indent: true },
+            { val: 'estland', label: 'Estland (Estonia)', indent: true },
+            { val: 'livland', label: 'Livland (Vidzeme)', indent: true },
+            { val: 'vitebsk_lat', label: 'Vitebsk (Latgale)', indent: true },
+        ]
+    },
+    lithuania: {
+        label: "Refine by Historical Region (Lithuania):",
+        options: [
+            { val: 'kovno_all', label: 'Kovno Gubernia (Kauno gubernija)', bold: true },
+            { val: 'kaunas', label: 'Kaunas (Kovno uyezd)', indent: true },
+            { val: 'panevezys', label: 'Panevėžys (Ponevezh uyezd)', indent: true },
+            { val: 'raseiniai', label: 'Raseiniai (Rossieny uyezd)', indent: true },
+            { val: 'siauliai', label: 'Šiauliai (Shavl uyezd)', indent: true },
+            { val: 'telsiai', label: 'Telšiai (Telshi uyezd)', indent: true },
+            { val: 'ukmerge', label: 'Ukmergė (Vilkomir uyezd)', indent: true },
+            { val: 'zarasai', label: 'Zarasai (Novo-Aleksandrovsk uyezd)', indent: true },
+            { val: 'prussia_lit', label: 'Prussia (Preußen)', bold: true },
+            { val: 'suwalki_all', label: 'Suwalki Gubernia (Suvalkų gubernija)', bold: true },
+            { val: 'kalvarija', label: 'Kalvarija (Kalwarya uyezd)', indent: true },
+            { val: 'naumiestis', label: 'Kudirkos Naumiestis (Władysławów uyezd)', indent: true },
+            { val: 'marijampole', label: 'Marijampolė (Mariampol uyezd)', indent: true },
+            { val: 'sejny_uyezd', label: 'Sejny (Sejny uyezd)', indent: true },
+            { val: 'vilkaviskis', label: 'Vilkaviškis (Wyłkowyszki uyezd)', indent: true },
+            { val: 'vilna_all', label: 'Vilna Gubernia (Vilniaus gubernija)', bold: true },
+            { val: 'ashmyany', label: 'Ashmyany (Oshmyany uyezd)', indent: true },
+            { val: 'disna', label: 'Disna (Disna uyezd)', indent: true },
+            { val: 'lida', label: 'Lida (Lida uyezd)', indent: true },
+            { val: 'svencionys', label: 'Švenčionys (Sventsyany uyezd)', indent: true },
+            { val: 'trakai', label: 'Trakai (Troki uyezd)', indent: true },
+            { val: 'vileyka', label: 'Vileyka (Vilejka uyezd)', indent: true },
+            { val: 'vilnius_uyezd', label: 'Vilnius (Vilna uyezd)', indent: true },
+        ]
+    },
+    poland: {
+        label: "Refine by Historical Region (Poland):",
+        options: [
+            { val: 'congress_poland', label: 'Congress Poland (Russian Empire)', bold: true },
+            { val: 'kalisz', label: 'Kalisz', indent: true },
+            { val: 'kielce', label: 'Kielce', indent: true },
+            { val: 'lomza', label: 'Łomża', indent: true },
+            { val: 'lublin', label: 'Lublin', indent: true },
+            { val: 'piotrkow', label: 'Piotrków', indent: true },
+            { val: 'plock', label: 'Płock', indent: true },
+            { val: 'radom', label: 'Radom', indent: true },
+            { val: 'siedlce', label: 'Siedlce', indent: true },
+            { val: 'suwalki_pol', label: 'Suwalki (Suwałki)', indent: true },
+            { val: 'warszawa', label: 'Warsaw (Warszawa)', indent: true },
+            { val: 'galicia_pol', label: 'Galicia (Galizien)', bold: true },
+            { val: 'krakow', label: 'Kraków (Krakau)', indent: true },
+            { val: 'lwow_pol', label: 'Lwów (Lviv/Lemberg)', indent: true },
+            { val: 'stanislawow_pol', label: 'Stanisławów (Ivano-Frankivsk / Stanislau)', indent: true },
+            { val: 'tarnopol_pol', label: 'Tarnopol (Ternopil)', indent: true },
+            { val: 'pale_pol', label: 'Pale of Settlement (Russian Empire)', bold: true },
+            { val: 'grodno_pol', label: 'Grodno (Hrodna)', indent: true },
+            { val: 'vilna_pol', label: 'Vilna (Vilnius)', indent: true },
+            { val: 'volhynia_pol', label: 'Volhynia (Volyn)', indent: true },
+            { val: 'prussia_pol', label: 'Prussia (Preußen)', bold: true },
+        ]
+    },
+    romania: {
+        label: "Refine by Historical Region (Romania / Moldova):",
+        options: [
+            { val: 'aus_rom', label: 'Bukovina (Austrian Empire)', bold: true },
+            { val: 'chernivtsi_rom', label: 'Cernăuți (Chernivtsi/Czernowitz)', indent: true },
+            { val: 'russian_rom', label: 'Former Russian Empire (Republic of Moldova)', bold: true },
+            { val: 'bessarabia', label: 'Bessarabia', indent: true },
+            { val: 'transnistria', label: 'Transnistria', indent: true },
+            { val: 'kingdom_romania', label: 'Kingdom of Romania', bold: true },
+            { val: 'dobrogea', label: 'Dobrogea', indent: true },
+            { val: 'moldavia', label: 'Moldavia (Moldova)', indent: true },
+            { val: 'muntenia_oltenia', label: 'Wallachia (Muntenia/Oltenia)', indent: true },
+            { val: 'hung_rom', label: 'Pre-WWI Hungary', bold: true },
+            { val: 'banat', label: 'Banat', indent: true },
+            { val: 'crisana', label: 'Crișana', indent: true },
+            { val: 'maramures', label: 'Maramureș (Máramaros)', indent: true },
+            { val: 'transylvania', label: 'Transylvania (Transilvania / Erdély)', indent: true },
+        ]
+    },
+    scandinavia: {
+        label: "Refine by Country (Scandinavia):",
+        options: [
+            { val: 'denmark', label: 'Denmark (Danmark)' },
+            { val: 'finland', label: 'Finland (Suomi)' },
+            { val: 'norway', label: 'Norway (Norge)' },
+            { val: 'sweden', label: 'Sweden (Sverige)' },
+        ]
+    },
+    ukraine: {
+        label: "Refine by Historical Region (Ukraine):",
+        options: [
+            { val: 'bukovina_ukr', label: 'Bukovina (Bucovina / Bukowina)', bold: true },
+            { val: 'chernivtsi_ukr', label: 'Chernivtsi (Czernowitz)', indent: true },
+            { val: 'galicia_ukr', label: 'Eastern Galicia (Austrian Partition)', bold: true },
+            { val: 'lviv_ukr', label: 'Lviv (Lemberg / Lwów)', indent: true },
+            { val: 'stanislau_ukr', label: 'Stanislau (Ivano-Frankivsk / Stanisławów)', indent: true },
+            { val: 'ternopil_ukr', label: 'Ternopil (Tarnopol)', indent: true },
+            { val: 'pale_ukr', label: 'Pale of Settlement (Russian Partition)', bold: true },
+            { val: 'chernigov', label: 'Chernigov (Chernihiv)', indent: true },
+            { val: 'kherson', label: 'Kherson', indent: true },
+            { val: 'kiev_ukr', label: 'Kiev (Kyiv / Kijów)', indent: true },
+            { val: 'podolia', label: 'Podolia (Podillia / Podole)', indent: true },
+            { val: 'poltava', label: 'Poltava', indent: true },
+            { val: 'volhynia', label: 'Volhynia (Volyn / Wołyń)', indent: true },
+            { val: 'yekaterinoslav', label: 'Yekaterinoslav (Dnipro)', indent: true },
+            { val: 'southern_ukraine', label: 'Southern Ukraine & Crimea', bold: true },
+            { val: 'crimea', label: 'Crimea (Krym)', indent: true },
+            { val: 'odessa', label: 'Odessa (Odesa)', indent: true },
+            { val: 'transcarpathia_ukr', label: 'Transcarpathia (Hungarian Partition)', bold: true },
+            { val: 'sub_ukr', label: 'Subcarpathia (Zakarpattia / Kárpátalja)', indent: true },
+        ]
+    },
+    usa: {
+        label: "Refine by State (United States):",
+        options: ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"].map(s => ({ val: s.toLowerCase(), label: s }))
+    }
+};
+
+// ══════════════════════════════════════════════
+// SEARCH HINTS TOGGLE
+// ══════════════════════════════════════════════
+function toggleCatalogHints() {
+    const panel = document.getElementById('catalog-hints-panel');
+    panel.style.display = panel.style.display === 'none' || panel.style.display === '' ? 'block' : 'none';
+}
+
+// ══════════════════════════════════════════════
+// CASCADING REGION → SUB-REGION → TOWN
+// ══════════════════════════════════════════════
+function onRegionChange() {
+    const val = document.getElementById('filter-geo').value;
+    const subGroup = document.getElementById('filter-subregion-group');
+    const subSelect = document.getElementById('filter-subregion');
+    const subLabel = document.getElementById('filter-subregion-label');
+    const townGroup = document.getElementById('filter-town-group');
+    const townInput = document.getElementById('filter-town');
+
+    // Reset sub-region and town
+    subSelect.value = '';
+    townInput.value = '';
+    townGroup.classList.remove('revealed');
+    townGroup.classList.add('hidden');
+
+    if (val && SUB_REGIONS[val]) {
+        const data = SUB_REGIONS[val];
+        subLabel.textContent = data.label.toUpperCase().replace('REFINE BY ', '').replace(':', '');
+        let html = '<option value="">All Sub-Regions</option>';
+        data.options.forEach(opt => {
+            const style = opt.bold ? ' style="font-weight:bold;"' : opt.indent ? '' : '';
+            const prefix = opt.indent ? '\u00a0\u00a0\u00a0' : '';
+            html += `<option value="${opt.val}"${style}>${prefix}${opt.label}</option>`;
+        });
+        subSelect.innerHTML = html;
+        subGroup.classList.remove('hidden');
+        subGroup.classList.add('revealed');
+    } else {
+        subGroup.classList.remove('revealed');
+        subGroup.classList.add('hidden');
+    }
+
+    applyFilters();
+}
+
+function onSubRegionChange() {
+    const subVal = document.getElementById('filter-subregion').value;
+    const townGroup = document.getElementById('filter-town-group');
+    const townInput = document.getElementById('filter-town');
+    townInput.value = '';
+
+    if (subVal && subVal !== '') {
+        townGroup.classList.remove('hidden');
+        townGroup.classList.add('revealed');
+    } else {
+        townGroup.classList.remove('revealed');
+        townGroup.classList.add('hidden');
+    }
+    applyFilters();
+}
+
+// ══════════════════════════════════════════════
+// SAMPLE DATA — representative cross-section
+// of JewishGen holdings
+// ══════════════════════════════════════════════
+const datasets = [
+    {
+        id: 1,
+        title: "Ukraine Vital Records — Kyiv Gubernia Birth Records",
+        badge: "updated",
+        description: "Jewish birth records from the Kyiv Gubernia, sourced from metrical books held in Ukrainian state archives. Includes given name, surname, father's name, mother's name, town, and date of birth. Records are primarily in Russian with some Hebrew notation.",
+        types: ["birth", "vital"],
+        geos: ["ukraine"],
+        eras: ["russian empire"],
+        dateFrom: 1835,
+        dateTo: 1905,
+        records: 45230,
+        division: "Ukraine Research Division",
+        language: "Russian / Hebrew",
+        source: "Ukrainian State Archives"
+    },
+    {
+        id: 2,
+        title: "Bessarabia Revision Lists",
+        badge: "none",
+        description: "Records from Reviskaya Skazka – 19th and early 20th century Czarist tax censuses – for more than 100 towns, shtetls and colonies in Bessarabia. Includes household compositions, ages, and inter-census changes. Critical for tracing families before vital records were standardized.",
+        types: ["census"],
+        geos: ["romania", "ukraine"],
+        eras: ["russian empire"],
+        dateFrom: 1796,
+        dateTo: 1858,
+        records: 28400,
+        division: "Romania Research Division",
+        language: "Russian",
+        source: "State Archive of Republic of Moldova"
+    },
+    {
+        id: 3,
+        title: "Ottoman Censuses — Greece, Turkey, Bulgaria",
+        badge: "updated",
+        description: "Jewish household census records from various Ottoman administrative districts, covering communities in Salonika, Izmir, Istanbul, Sofia, and surrounding regions. Includes names, household members, and occupational data. A rare window into pre-WWI Sephardic community structure.",
+        types: ["census"],
+        geos: ["sephardic", "turkey"],
+        eras: ["ottoman empire"],
+        dateFrom: 1831,
+        dateTo: 1882,
+        records: 12100,
+        division: "Sephardic Research Division",
+        language: "Ottoman Turkish / Ladino",
+        source: "Ottoman State Archives"
+    },
+    {
+        id: 4,
+        title: "Izmir (Smyrna) Census, 1831–1832",
+        badge: "new",
+        description: "Partial census of the Jewish community of Izmir (Smyrna), taken in 1831–1832. Contains data for the male members of one of the largest Sephardic communities in the Ottoman Empire. Includes names, ages, occupations, and other information.",
+        types: ["census"],
+        geos: ["sephardic", "turkey"],
+        eras: ["ottoman empire"],
+        dateFrom: 1831,
+        dateTo: 1832,
+        records: 1043,
+        division: "Sephardic Research Division",
+        language: "Ottoman Turkish",
+        source: "Ottoman State Archives (Istanbul)"
+    },
+    {
+        id: 5,
+        title: "Poland — Warsaw Gubernia Vital Records",
+        badge: "none",
+        description: "Jewish birth, marriage, and death records from Congress Poland under Russian Imperial rule. Records are organized by town and include full family data. Cross-referenced with JRI-Poland. One of the most densely populated Jewish record sets in the collection.",
+        types: ["birth", "marriage", "death", "vital"],
+        geos: ["poland"],
+        eras: ["russian empire"],
+        dateFrom: 1826,
+        dateTo: 1915,
+        records: 89000,
+        division: "Poland Research Division / JRI-Poland",
+        language: "Russian / Polish",
+        source: "Polish State Archives (AGAD)"
+    },
+    {
+        id: 6,
+        title: "Lithuania — Kaunas (Kovno) Gubernia Vital Records",
+        badge: "updated",
+        description: "More than 250,000 birth, marriage, and death records from the Kaunas Gubernia (Kovna) of the Russian Empire, covering the core of historic Lithuania. Part of the LitvakSIG All Lithuania Database. Includes revision lists, metrical books, and Holocaust-era records from Lithuanian state archives.",
+        types: ["birth", "marriage", "death", "vital"],
+        geos: ["lithuania"],
+        eras: ["russian empire"],
+        dateFrom: 1830,
+        dateTo: 1940,
+        records: 256000,
+        division: "LitvakSIG",
+        language: "Russian / Hebrew / Yiddish",
+        source: "Lithuanian State Historical Archives (LVIA)"
+    },
+    {
+        id: 7,
+        title: "Hungary — Budapest & Pest Jewish Vital Records",
+        badge: "none",
+        description: "Jewish birth, marriage, and death records for Budapest and surrounding Pest county, drawn from the Hungarian Jewish metrical books. Covers both Neolog and Orthodox communities. Includes extensive data for the largest Jewish urban community in pre-war Hungary.",
+        types: ["birth", "marriage", "death", "vital"],
+        geos: ["hungary"],
+        eras: ["austro-hungarian empire"],
+        dateFrom: 1827,
+        dateTo: 1895,
+        records: 180400,
+        division: "Hungary Research Division",
+        language: "Hungarian / German / Hebrew",
+        source: "Hungarian National Archives (MOL)"
+    },
+    {
+        id: 8,
+        title: "Máramaros Jewish Vital Records",
+        badge: "none",
+        description: "54,000 birth, marriage, and death records from former Máramaros megye (now split between Maramureș County, Romania and Zakarpattia, Ukraine). Records span 1851–1895 and represent one of the most complete surviving record sets for this heavily Hasidic region.",
+        types: ["birth", "marriage", "death", "vital"],
+        geos: ["hungary", "romania", "ukraine"],
+        eras: ["austro-hungarian empire"],
+        dateFrom: 1851,
+        dateTo: 1895,
+        records: 54000,
+        division: "Hungary RD / Romania RD",
+        language: "Hungarian / Hebrew",
+        source: "Hungarian National Archives"
+    },
+    {
+        id: 9,
+        title: "Aleppo (Aram Tzova) Brit Milah Database",
+        badge: "none",
+        description: "Over 9,000 circumcision records from the Syrian city of Aleppo, recorded in the mohel books of the community. Spans from 1868 to 1945, offering an unbroken multigenerational record of one of the most historically significant Sephardic communities in the Middle East.",
+        types: ["birth"],
+        geos: ["sephardic", "syria"],
+        eras: ["ottoman empire"],
+        dateFrom: 1868,
+        dateTo: 1945,
+        records: 9200,
+        division: "Sephardic Research Division",
+        language: "Judeo-Arabic / Hebrew",
+        source: "Community records (digitized)"
+    },
+    {
+        id: 10,
+        title: "Bucovina (Bukowina) Vital Records",
+        badge: "updated",
+        description: "More than 30,000 Jewish birth, marriage, and death records from the Austrian Crownland of Bucovina, covering towns including Kimpolung, Gurahumora, Radautz, Solka, and Suczawa. Bucovina records are notably complete due to Austrian civil registration requirements.",
+        types: ["birth", "marriage", "death", "vital"],
+        geos: ["romania", "ukraine"],
+        eras: ["austro-hungarian empire"],
+        dateFrom: 1784,
+        dateTo: 1918,
+        records: 31800,
+        division: "Romania Research Division",
+        language: "German / Hebrew",
+        source: "Austrian State Archives / Regional Archives"
+    },
+    {
+        id: 11,
+        title: "Algeria WWII Database",
+        badge: "new",
+        description: "A database combining a variety of lists reflecting Jewish life in Algeria during the Second World War. Includes Vichy-era exclusion lists, internment records, forced labor records, and resistance documentation. Over 3,400 individual entries. Ongoing project.",
+        types: ["holocaust"],
+        geos: ["algeria", "north africa"],
+        eras: ["wwii", "holocaust"],
+        dateFrom: 1939,
+        dateTo: 1945,
+        records: 3400,
+        division: "Sephardic Research Division / North Africa",
+        language: "French",
+        source: "Archives nationales d'Outre-Mer (ANOM)"
+    },
+    {
+        id: 12,
+        title: "Philadelphia Jewish Exponent Obituaries",
+        badge: "updated",
+        description: "Index to more than 69,000 obituary notices from the Philadelphia Jewish Exponent, covering 1887–2013. Each record typically includes full name, age, date of death, spouse and children, congregation affiliation, and often town of origin. Among the largest newspaper obituary databases in the collection.",
+        types: ["obituary", "death"],
+        geos: ["usa"],
+        subregions: ["pennsylvania"],
+        eras: [],
+        dateFrom: 1887,
+        dateTo: 2013,
+        records: 69000,
+        division: "USA Research Division",
+        language: "English",
+        source: "Philadelphia Jewish Exponent archives"
+    },
+    {
+        id: 13,
+        title: "Bessarabia Business Directory, 1924",
+        badge: "none",
+        description: "More than 13,000 entries for Jewish businesses in 705 localities in Bessarabia, from a 1924 Romanian business directory. Provides names, businesses, addresses, and localities. A valuable tool for placing families geographically in the interwar period, especially when vital records are unavailable.",
+        types: ["business"],
+        geos: ["romania"],
+        eras: ["interwar"],
+        dateFrom: 1924,
+        dateTo: 1924,
+        records: 13200,
+        division: "Romania Research Division",
+        language: "Romanian",
+        source: "Romanian National Archives"
+    },
+    {
+        id: 14,
+        title: "Duma Voters Lists, Bessarabia, 1906–1907",
+        badge: "none",
+        description: "128,000 voters in Bessarabia eligible to vote in the Russian Duma elections in 1906 and 1907. One of the most comprehensive name lists for the region, covering a wide cross-section of the Jewish male population. Valuable for filling gaps between revision lists and vital records.",
+        types: ["census", "names"],
+        geos: ["romania"],
+        eras: ["russian empire"],
+        dateFrom: 1906,
+        dateTo: 1907,
+        records: 128000,
+        division: "Romania Research Division",
+        language: "Russian",
+        source: "State Archive of Republic of Moldova"
+    },
+    {
+        id: 15,
+        title: "Houston Jewish Herald-Voice Database",
+        badge: "updated",
+        description: "Index to more than 70,000 individual and couple events from the Houston Jewish Herald-Voice newspaper, 1908–2025. Includes birth announcements, Bar/Bat Mitzvahs, engagements, weddings, anniversaries, and obituaries. Updated twice a year. An extraordinary resource for Texas and Gulf Coast Jewish families.",
+        types: ["obituary", "organizational", "birth", "marriage"],
+        geos: ["usa"],
+        subregions: ["texas"],
+        eras: [],
+        dateFrom: 1908,
+        dateTo: 2025,
+        records: 70000,
+        division: "USA Research Division",
+        language: "English",
+        source: "Houston Jewish Herald-Voice"
+    },
+    {
+        id: 16,
+        title: "Sephardic Ketubot — Serbia, Croatia, Macedonia",
+        badge: "new",
+        description: "Marriage contracts (Ketubot) from Sephardic Jewish communities in Serbia, Croatia, and Macedonia. These beautifully illustrated documents provide direct genealogical data: names, dates, community of residence, and family connections, often for families with no other surviving records.",
+        types: ["marriage"],
+        geos: ["sephardic"],
+        eras: ["ottoman empire"],
+        dateFrom: 1700,
+        dateTo: 1940,
+        records: 2800,
+        division: "Sephardic Research Division",
+        language: "Judeo-Spanish / Hebrew",
+        source: "Various community and national archives"
+    },
+    {
+        id: 17,
+        title: "Latvia — Courland, Livland & Vitebsk Records",
+        badge: "none",
+        description: "More than 258,000 records for the Baltic region of Latvia, drawing from voter lists, tax records, census records, death records, newspaper articles, police and military records, Memorial Books, and Extraordinary Commission lists. Covers all three historical provinces with sub-regional organization.",
+        types: ["vital", "census", "military", "names"],
+        geos: ["latvia"],
+        eras: ["russian empire"],
+        dateFrom: 1795,
+        dateTo: 1940,
+        records: 258000,
+        division: "Latvia Research Division",
+        language: "Russian / German / Latvian",
+        source: "Latvian State Historical Archives"
+    },
+    {
+        id: 18,
+        title: "Jewish Civil War Veterans (USA)",
+        badge: "none",
+        description: "More than 7,000 Jewish-American Civil War veterans, both Union and Confederate, from Simon Wolf's 1895 publication. Provides names, unit affiliations, and ranks. Note: this list has been subject to scholarly dispute regarding attribution of Jewish identity; see the Shapell Roster for more recent scholarship.",
+        types: ["military"],
+        geos: ["usa"],
+        subregions: [],
+        eras: [],
+        dateFrom: 1861,
+        dateTo: 1865,
+        records: 7200,
+        division: "USA Research Division",
+        language: "English",
+        source: "Simon Wolf, 'The American Jew as Patriot, Soldier and Citizen' (1895)"
+    },
+    {
+        id: 19,
+        title: "Livorno (Leghorn) Birth Index, 1668–1810",
+        badge: "new",
+        description: "Over 10,000 Jewish births registered in Livorno, Italy from 1668–1810. Livorno (Leghorn) was a critical hub for Sephardic Jews expelled from Iberia, and this index covers one of the longest continuous birth record series for any Sephardic community in Western Europe.",
+        types: ["birth"],
+        geos: ["sephardic", "italy"],
+        eras: [],
+        dateFrom: 1668,
+        dateTo: 1810,
+        records: 10400,
+        division: "Sephardic Research Division",
+        language: "Italian / Hebrew / Ladino",
+        source: "Archivio di Stato di Livorno"
+    },
+    {
+        id: 20,
+        title: "Romania Vital Records — Iași and Bucharest",
+        badge: "updated",
+        description: "More than 30,000 Jewish birth, marriage, and death records from Iași and Bucharest, as well as many other Romanian towns. Drawn from the Romanian National Archives and representing the core of the pre-WWI Jewish community of the Romanian Old Kingdom (Regat).",
+        types: ["birth", "marriage", "death", "vital"],
+        geos: ["romania"],
+        eras: [],
+        dateFrom: 1831,
+        dateTo: 1942,
+        records: 30500,
+        division: "Romania Research Division",
+        language: "Romanian / Hebrew",
+        source: "Romanian National Archives (ANR)"
+    }
+];
+
+// ══════════════════════════════════════════════
+// RENDER ENGINE
+// ══════════════════════════════════════════════
+
+function formatNumber(n) {
+    return n.toLocaleString();
+}
+
+function renderItem(ds) {
+    const badgeHtml = ds.badge === 'new'
+        ? '<span class="badge badge-new" aria-label="New dataset">NEW</span>'
+        : ds.badge === 'updated'
+        ? '<span class="badge badge-updated" aria-label="Recently updated">UPDATED</span>'
+        : '';
+
+    const typeTags = ds.types.map(t => `<span class="tag tag-type" data-filter-type="${t}" onclick="quickFilter('type','${t}')" title="Filter by this record type" role="button" tabindex="0">${formatTypeName(t)}</span>`).join('');
+    const geoTags = ds.geos.map(g => `<span class="tag tag-geo" data-filter-geo="${g}" onclick="quickFilter('geo','${g}')" title="Filter by this region" role="button" tabindex="0">${geoDisplayName(g)}</span>`).join('');
+    const eraTags = ds.eras.map(e => `<span class="tag tag-era">${geoDisplayName(e)}</span>`).join('');
+
+    const dateDisplay = ds.dateFrom === ds.dateTo ? ds.dateFrom : `${ds.dateFrom}–${ds.dateTo}`;
+
+    return `
+    <article class="catalog-item" data-id="${ds.id}"
+        data-types="${ds.types.join(' ')}"
+        data-geos="${ds.geos.join(' ')}"
+        data-subregions="${(ds.subregions || []).join(' ')}"
+        data-eras="${ds.eras.join(' ')}"
+        data-datefrom="${ds.dateFrom}"
+        data-dateto="${ds.dateTo}"
+        data-title="${ds.title.toLowerCase()}"
+        data-desc="${ds.description.toLowerCase()}"
+        data-records="${ds.records}"
+        data-badge="${ds.badge}"
+        aria-expanded="false">
+
+        <div class="catalog-item-summary" onclick="toggleItem(${ds.id})" role="button" tabindex="0"
+             aria-controls="detail-${ds.id}" aria-label="Expand details for ${ds.title}"
+             onkeydown="if(event.key==='Enter'||event.key===' ')toggleItem(${ds.id})">
+
+            <div class="item-left">
+                <div class="item-title-row">
+                    <span class="item-title">${ds.title}</span>
+                    ${badgeHtml}
+                </div>
+
+                <div class="item-meta">
+                    <div class="item-meta-piece">
+                        <span class="meta-icon" aria-hidden="true">📅</span>
+                        <span class="meta-label">Years:</span>
+                        <span>${dateDisplay}</span>
+                    </div>
+                    <div class="item-meta-piece">
+                        <span class="meta-icon" aria-hidden="true">📊</span>
+                        <span class="meta-label">Records:</span>
+                        <span>${formatNumber(ds.records)}</span>
+                    </div>
+                    <div class="item-meta-piece">
+                        <span class="meta-icon" aria-hidden="true">🌐</span>
+                        <span class="meta-label">Language:</span>
+                        <span>${ds.language}</span>
+                    </div>
+                </div>
+
+                <div class="item-tags" aria-label="Tags">
+                    ${typeTags}
+                    ${geoTags}
+                    ${eraTags}
+                </div>
+            </div>
+
+            <div class="item-right">
+                <div class="expand-toggle" aria-hidden="true">▾</div>
+            </div>
+        </div>
+
+        <div class="catalog-item-detail" id="detail-${ds.id}" role="region" aria-label="Details for ${ds.title}">
+            <div class="detail-inner">
+                <div>
+                    <p class="detail-description">${ds.description}</p>
+                    <div class="detail-meta-grid">
+                        <div class="detail-meta-item">
+                            <div class="dmi-label">Date Range</div>
+                            <div class="dmi-value">${dateDisplay}</div>
+                        </div>
+                        <div class="detail-meta-item">
+                            <div class="dmi-label">Total Records</div>
+                            <div class="dmi-value">${formatNumber(ds.records)}</div>
+                        </div>
+                        <div class="detail-meta-item">
+                            <div class="dmi-label">Language(s)</div>
+                            <div class="dmi-value">${ds.language}</div>
+                        </div>
+                        <div class="detail-meta-item">
+                            <div class="dmi-label">Original Source</div>
+                            <div class="dmi-value">${ds.source}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-actions">
+                    <a href="#" class="btn-view-dataset" aria-label="View full description of ${ds.title}">View Description →</a>
+                    <a href="#" class="btn-search-dataset" aria-label="Search records in ${ds.title}">Search Records</a>
+                    <div class="detail-division">Division: ${ds.division}</div>
+                </div>
+            </div>
+        </div>
+    </article>`;
+}
+
+function formatTypeName(t) {
+    const names = {
+        birth: 'Birth', marriage: 'Marriage', death: 'Death / Burial',
+        vital: 'Vital Records', census: 'Census', business: 'Business Directory',
+        holocaust: 'Holocaust', military: 'Military', obituary: 'Obituary',
+        passenger: 'Passenger / Immigration', names: 'Name List',
+        notary: 'Notary / Judicial', organizational: 'Organizational'
+    };
+    return names[t] || geoDisplayName(t);
+}
+
+// ══════════════════════════════════════════════
+// TOGGLE ITEM EXPANSION
+// ══════════════════════════════════════════════
+function toggleItem(id) {
+    const item = document.querySelector(`.catalog-item[data-id="${id}"]`);
+    const isOpen = item.classList.contains('open');
+    item.classList.toggle('open');
+    item.setAttribute('aria-expanded', !isOpen);
+}
+
+// ══════════════════════════════════════════════
+// QUICK FILTER FROM TAG CLICK
+// ══════════════════════════════════════════════
+function quickFilter(dimension, value) {
+    if (dimension === 'type') {
+        document.getElementById('filter-type').value = value;
+        applyFilters();
+    } else if (dimension === 'geo') {
+        document.getElementById('filter-geo').value = value;
+        onRegionChange(); // handles applyFilters internally
+    }
+}
+
+// ══════════════════════════════════════════════
+// LIVE FILTER ENGINE
+// ══════════════════════════════════════════════
+function applyFilters() {
+    const textVal    = document.getElementById('text-search').value.toLowerCase().trim();
+    const typeVal    = document.getElementById('filter-type').value.toLowerCase();
+    const geoVal     = document.getElementById('filter-geo').value.toLowerCase();
+    const subVal     = document.getElementById('filter-subregion').value.toLowerCase();
+    const townVal    = document.getElementById('filter-town').value.toLowerCase().trim();
+    const statusVal  = document.getElementById('filter-status').value.toLowerCase();
+    const sortVal    = document.getElementById('sort-select').value;
+    const dateFrom   = parseInt(document.getElementById('date-from').value) || null;
+    const dateTo     = parseInt(document.getElementById('date-to').value) || null;
+
+    const list = document.getElementById('catalog-list');
+    const items = Array.from(document.querySelectorAll('.catalog-item'));
+
+    let visibleCount = 0;
+    let totalRecords = 0;
+
+    items.forEach(item => {
+        const types      = item.dataset.types;
+        const geos       = item.dataset.geos;
+        const subregions = item.dataset.subregions || '';
+        const towns      = item.dataset.towns || '';
+        const dsDateFrom = parseInt(item.dataset.datefrom);
+        const dsDateTo   = parseInt(item.dataset.dateto);
+        const title      = item.dataset.title;
+        const desc       = item.dataset.desc;
+        const badge      = item.dataset.badge;
+        const records    = parseInt(item.dataset.records) || 0;
+
+        let match = true;
+
+        if (textVal && !title.includes(textVal) && !desc.includes(textVal)) match = false;
+        if (typeVal && !types.includes(typeVal)) match = false;
+        if (geoVal && !geos.includes(geoVal)) match = false;
+        if (subVal && !subregions.includes(subVal) && !title.includes(subVal) && !desc.includes(subVal)) match = false;
+        if (townVal && !towns.includes(townVal) && !title.includes(townVal) && !desc.includes(townVal)) match = false;
+        if (dateFrom && dsDateTo < dateFrom) match = false;
+        if (dateTo && dsDateFrom > dateTo) match = false;
+        if (statusVal) {
+            const statuses = statusVal.split(' ');
+            if (!statuses.includes(badge)) match = false;
+        }
+
+        item.classList.toggle('no-match', !match);
+        if (match) {
+            visibleCount++;
+            totalRecords += records;
+        }
+    });
+
+    // ── SORT visible items ──
+    const visibleItems = items.filter(i => !i.classList.contains('no-match'));
+    visibleItems.sort((a, b) => {
+        switch (sortVal) {
+            case 'name':
+                return a.dataset.title.localeCompare(b.dataset.title);
+            case 'records-desc':
+                return parseInt(b.dataset.records) - parseInt(a.dataset.records);
+            case 'records-asc':
+                return parseInt(a.dataset.records) - parseInt(b.dataset.records);
+            case 'date-asc':
+                return parseInt(a.dataset.datefrom) - parseInt(b.dataset.datefrom);
+            case 'date-desc':
+                return parseInt(b.dataset.dateto) - parseInt(a.dataset.dateto);
+            case 'new': {
+                const order = { new: 0, updated: 1, none: 2 };
+                return (order[a.dataset.badge] ?? 2) - (order[b.dataset.badge] ?? 2);
+            }
+            default:
+                return 0;
+        }
+    });
+
+    // Re-append in sorted order (hidden items go to end)
+    const hiddenItems = items.filter(i => i.classList.contains('no-match'));
+    [...visibleItems, ...hiddenItems].forEach(item => list.appendChild(item));
+
+    // ── UPDATE COUNTS ──
+    document.getElementById('result-count').textContent = visibleCount;
+    document.getElementById('total-records-summary').textContent =
+        visibleCount > 0 ? `— ${totalRecords.toLocaleString()} total records` : '';
+    document.getElementById('empty-state').classList.toggle('visible', visibleCount === 0);
+
+    updateChips(textVal, typeVal, geoVal, subVal, townVal, statusVal, dateFrom, dateTo);
+    updateHeroPill(typeVal, geoVal, subVal);
+}
+
+// ══════════════════════════════════════════════
+// DYNAMIC HERO PILL
+// ══════════════════════════════════════════════
+function updateHeroPill(type, geo, sub) {
+    const pill = document.getElementById('hero-pill');
+    if (!pill) return;
+
+    const parts = [];
+
+    // Geography part — most specific wins
+    if (sub) {
+        // Find the sub-region label from the data
+        const regionData = SUB_REGIONS[document.getElementById('filter-geo').value];
+        const opt = regionData && regionData.options.find(o => o.val === sub);
+        parts.push(opt ? opt.label : geoDisplayName(sub));
+    } else if (geo) {
+        parts.push(geoDisplayName(geo));
+    }
+
+    // Record type part
+    if (type) parts.push(formatTypeName(type));
+
+    pill.textContent = parts.length > 0 ? parts.join(' · ') : 'Global Search';
+}
+
+// ══════════════════════════════════════════════
+// ACTIVE FILTER CHIPS
+// ══════════════════════════════════════════════
+function updateChips(text, type, geo, sub, town, status, from, to) {
+    const container = document.getElementById('active-filters');
+    container.innerHTML = '';
+
+    const statusLabels = { new: 'New Only', updated: 'Recently Updated', 'new updated': 'New & Updated' };
+
+    const chips = [];
+    if (text)   chips.push({ label: `"${text}"`,            clear: () => { document.getElementById('text-search').value = '';   applyFilters(); } });
+    if (type)   chips.push({ label: formatTypeName(type),   clear: () => { document.getElementById('filter-type').value = '';   applyFilters(); } });
+    if (geo)    chips.push({ label: geoDisplayName(geo),    clear: () => { document.getElementById('filter-geo').value = '';    onRegionChange(); } });
+    if (sub) {
+        const regionData = SUB_REGIONS[document.getElementById('filter-geo').value];
+        const opt = regionData && regionData.options.find(o => o.val === sub);
+        chips.push({ label: opt ? opt.label : sub,          clear: () => { document.getElementById('filter-subregion').value = ''; onSubRegionChange(); } });
+    }
+    if (town)   chips.push({ label: `Town: ${town}`,        clear: () => { document.getElementById('filter-town').value = '';   applyFilters(); } });
+    if (status) chips.push({ label: statusLabels[status] || status, clear: () => { document.getElementById('filter-status').value = ''; applyFilters(); } });
+    if (from)   chips.push({ label: `From ${from}`,         clear: () => { document.getElementById('date-from').value = '';     applyFilters(); } });
+    if (to)     chips.push({ label: `To ${to}`,             clear: () => { document.getElementById('date-to').value = '';       applyFilters(); } });
+
+    chips.forEach(chip => {
+        const el = document.createElement('div');
+        el.className = 'filter-chip';
+        el.setAttribute('role', 'status');
+        el.innerHTML = `${chip.label} <button aria-label="Remove filter ${chip.label}">×</button>`;
+        el.querySelector('button').addEventListener('click', chip.clear);
+        container.appendChild(el);
+    });
+}
+
+// ══════════════════════════════════════════════
+// RESET
+// ══════════════════════════════════════════════
+function resetFilters() {
+    document.getElementById('text-search').value = '';
+    document.getElementById('filter-type').value = '';
+    document.getElementById('filter-geo').value = '';
+    document.getElementById('filter-status').value = '';
+    document.getElementById('sort-select').value = 'name';
+    document.getElementById('date-from').value = '';
+    document.getElementById('date-to').value = '';
+    document.getElementById('filter-town').value = '';
+    const subGroup  = document.getElementById('filter-subregion-group');
+    const townGroup = document.getElementById('filter-town-group');
+    subGroup.classList.remove('revealed');  subGroup.classList.add('hidden');
+    townGroup.classList.remove('revealed'); townGroup.classList.add('hidden');
+    applyFilters();
+}
+
+// ══════════════════════════════════════════════
+// INITIAL RENDER
+// ══════════════════════════════════════════════
+const list = document.getElementById('catalog-list');
+datasets.forEach(ds => {
+    list.innerHTML += renderItem(ds);
+});
+
+// Wire sub-region change listener after DOM items exist
+document.getElementById('filter-subregion').addEventListener('change', onSubRegionChange);
+
+applyFilters();
+
+</script>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer style="background-color: var(--cream); padding: 30px 50px; border-top: 4px solid var(--navy);">
+        <div style="max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; width: 100%;">
+            <div style="flex: 1; min-width: 250px;">
+                <a href="#">
+                    <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg" alt="JewishGen Logo" class="light-logo" style="height: 60px; width: auto; object-fit: contain;">
+                    <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png" alt="JewishGen Logo" class="dark-logo" style="height: 60px; width: auto; object-fit: contain;">
+                </a>
+            </div>
+            <div style="flex: 2; text-align: center; font-size: 13px; line-height: 1.6; color: var(--charcoal); min-width: 300px;">
+                Edmond J. Safra Plaza | 36 Battery Place | New York, NY 10280<br>
+                646.494.2972 | <a href="mailto:info@jewishgen.org" style="color: var(--navy); text-decoration: underline; font-weight: bold;">info@jewishgen.org</a> | © 2026, JewishGen, Inc. <a href="#" style="text-decoration: underline;">All rights reserved.</a>
+            </div>
+            <div style="flex: 1; display: flex; justify-content: flex-end; align-items: center; min-width: 250px;">
+                <a href="https://mjhnyc.org/" target="_blank" rel="noopener">
+                    <img src="https://www.jewishgen.org/images/MJH-Circle-Logo.svg" alt="Museum of Jewish Heritage" class="light-logo" style="height: 45px; width: auto;">
+                    <img src="https://d3k74ww17vqc8e.cloudfront.net/app/uploads/2019/10/18145838/MJH-Circle-icon_Logo.png" alt="Museum of Jewish Heritage" class="dark-logo" style="height: 45px; width: auto;">
+                </a>
+            </div>
+        </div>
+    </footer>

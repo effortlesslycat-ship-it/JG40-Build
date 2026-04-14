@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JewishGen Homepage Redesign Mockup</title>
+    <style>
+        /* Your Custom Color Palette */
+        :root {
+            --cream: #e8e1d1;
+            --sage: #939b51;
+            --navy: #09497a;
+            --charcoal: #232b2b;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--charcoal);
+            background-color: var(--white);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header & Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            border-bottom: 2px solid var(--cream);
+        }
+
+        .brand h1 {
+            margin: 0;
+            color: var(--navy);
+            font-size: 26px;
+        }
+
+        .brand p {
+            margin: 5px 0 0;
+            font-size: 13px;
+            color: var(--charcoal);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .museum-tag {
+            font-size: 11px;
+            color: var(--sage);
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .user-nav {
+            font-size: 14px;
+            text-align: right;
+            line-height: 1.5;
+        }
+
+        .user-nav span {
+            color: var(--navy);
+            font-weight: bold;
+        }
+
+        .user-nav a:hover {
+            color: var(--sage);
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 0 50px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .dropdown { position: relative; display: inline-block; }
+        .dropbtn { display: block; padding: 15px 0; cursor: pointer; }
+        .dropdown:hover .dropbtn { color: var(--sage); }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 250px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.15);
+            z-index: 10;
+            top: 100%;
+            left: 0;
+            border-top: 3px solid var(--sage);
+            border-radius: 0 0 6px 6px;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: var(--navy);
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            text-transform: none;
+            font-weight: normal;
+            font-size: 15px;
+            border-bottom: 1px solid var(--cream);
+        }
+
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background-color: var(--cream); color: var(--navy); font-weight: bold; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        /* Sponsorship Banner */
+        .sponsorship-banner {
+            background-color: var(--cream);
+            color: var(--charcoal);
+            text-align: center;
+            padding: 12px 20px;
+            font-size: 15px;
+            font-style: italic;
+            border-bottom: 1px solid #d1caba;
+            letter-spacing: 0.5px;
+        }
+
+        .sponsorship-banner strong {
+            color: var(--navy);
+            font-weight: bold;
+            font-style: normal;
+        }
+        
+        /* Rotating Sponsorship Banner Styles */
+        .sponsor-slide {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            pointer-events: none;
+        }
+        .sponsor-slide.active {
+            position: relative;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Hero Section (Search Engine) */
+        .hero {
+            background-color: var(--cream);
+            padding: 70px 20px;
+            text-align: center;
+        }
+
+        .search-container {
+            background: var(--white);
+            border: 3px solid var(--navy);
+            border-radius: 12px;
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            text-align: left;
+        }
+
+        .search-container h2 {
+            color: var(--navy);
+            margin-top: 0;
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .field-label {
+            font-size: 11px;
+            font-weight: bold;
+            color: var(--navy);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        /* Advanced Drawer Transitions */
+        #advanced-drawer {
+            display: block; /* Kept as block so CSS can animate it */
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.4s ease-out, opacity 0.3s ease, margin 0.4s ease;
+            background: #f9f9f9;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            padding: 0 20px;
+            margin-top: 0;
+        }
+
+        #advanced-drawer.open {
+            max-height: 500px;
+            opacity: 1;
+            padding: 20px;
+            margin-top: 15px;
+            border-color: #ddd;
+        }
+
+ /* Search Hints Panel Transitions */
+        #search-hints-panel {
+            display: block;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.4s ease-out, opacity 0.3s ease, margin 0.4s ease;
+            background: #f0f4f7;
+            border-left: 4px solid var(--sage);
+            border-radius: 4px;
+            padding: 0 20px;
+            margin-bottom: 0;
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--charcoal);
+        }
+ 
+        #search-hints-panel.open {
+            max-height: 500px;
+            opacity: 1;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        /* Sub-region Styling */
+        #sub-region-container {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid var(--cream);
+            background: #fdfcf9;
+            border-radius: 8px;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .sub-region-label {
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--navy);
+            display: block;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Buttons */
+        .btn-search {
+            background-color: var(--sage);
+            color: var(--white);
+            border: none;
+            padding: 16px 35px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-search-all {
+            background-color: transparent;
+            color: var(--navy);
+            border: 2px solid var(--navy);
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+
+        .btn-search:hover, .btn-search-all:hover {
+            filter: brightness(1.1);
+        }
+
+        .btn-search-all:hover {
+            background: var(--navy);
+            color: white;
+        }
+
+        /* Announcements Banner */
+        .announcement {
+            background-color: var(--navy);
+            color: var(--white);
+            text-align: center;
+            padding: 15px;
+            font-weight: normal;
+            letter-spacing: 0.5px;
+            font-size: 15px;
+        }
+
+        .announcement span {
+            color: var(--sage);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .announcement a {
+            text-decoration: underline;
+        }
+
+        /* General Section Layout */
+        .section-container {
+            padding: 50px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            color: var(--navy);
+            border-bottom: 2px solid var(--sage);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            font-size: 24px;
+            text-transform: uppercase;
+        }
+        
+        /* 4-Column Grid for Spotlight Banner */
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        .feature-card {
+            background: var(--white);
+            border-top: 4px solid var(--sage);
+            padding: 25px 20px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: var(--navy);
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .feature-card p {
+            font-size: 13px;
+            color: var(--charcoal);
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        /* Reusable Cards */
+        .card {
+            background-color: var(--cream);
+            border-radius: 8px;
+            padding: 25px;
+            text-align: left;
+            position: relative;
+            overflow: visible;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card.pub {
+            background-color: var(--white);
+            border: 1px solid #d1caba;
+        }
+
+        .card-date {
+            font-size: 14px;
+            color: var(--navy);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .card-type {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--charcoal);
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin: 0 0 20px 0;
+            font-size: 20px;
+            color: var(--navy);
+            line-height: 1.3;
+        }
+
+        .card p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .btn-card {
+            display: inline-block;
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .btn-card.sage {
+            background-color: var(--sage);
+        }
+
+        .btn-card:hover {
+            filter: brightness(1.2);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--charcoal);
+            color: var(--cream);
+            padding: 40px 50px;
+            text-align: center;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        footer h4 {
+            margin: 0 0 10px 0;
+            color: var(--white);
+            font-size: 18px;
+        }
+
+        .speaker-bio {
+            visibility: hidden;
+            width: 240px;
+            background-color: var(--charcoal);
+            color: #fff;
+            text-align: left;
+            border-radius: 6px;
+            padding: 15px;
+            position: absolute;
+            z-index: 100;
+            bottom: 105%;
+            left: 50%;
+            margin-left: -120px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 13px;
+            line-height: 1.4;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .speaker-bio::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--charcoal) transparent transparent transparent;
+        }
+
+        .card:hover .speaker-bio {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .event-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .card-speaker {
+            font-size: 14px;
+            color: var(--navy);
+            font-weight: 600;
+            margin: -15px 0 20px 0;
+            display: block;
+        }
+        /* ========================================== */
+        /* RESPONSIVE MOBILE & TABLET DESIGN          */
+        /* ========================================== */
+        
+        /* For Tablets (Screens smaller than 900px) */
+        @media (max-width: 900px) {
+            .grid-4 { grid-template-columns: repeat(2, 1fr); } /* 4 columns become 2 */
+            .section-container { padding: 40px 30px; }
+        }
+
+        /* For Mobile Phones (Screens smaller than 768px) */
+        @media (max-width: 768px) {
+            /* 1. Header & Nav */
+            header { flex-direction: column; text-align: center; gap: 15px; padding: 20px; }
+            .user-nav { text-align: center; }
+            nav { flex-wrap: wrap; justify-content: center; padding: 15px; gap: 15px; }
+            
+            /* 2. Containers & Typography */
+            .hero { padding: 40px 15px; }
+            .search-container { padding: 20px; }
+            .section-container { padding: 30px 15px !important; }
+            h2 { font-size: 24px !important; }
+            
+            /* 3. Search Box Flex Rows (Stack them vertically) */
+            .search-container div[style*="display: flex"] { flex-direction: column; align-items: stretch !important; gap: 15px; }
+            
+            /* Fix the Help Menu Toggle (Keep it horizontal but centered) */
+            .search-container div[style*="justify-content: flex-end"] { flex-direction: row; flex-wrap: wrap; justify-content: center !important; margin-top: 10px !important; }
+            
+            /* 4. Search Hints & Grids (1 column on mobile) */
+            #search-hints-panel div[style*="display: grid"] { grid-template-columns: 1fr !important; }
+            .grid-3, .grid-4 { grid-template-columns: 1fr; }
+            
+            /* 5. Kalikow Banner Override */
+            .section-container div[style*="background-color: var(--navy)"][style*="display: flex"] { 
+                flex-direction: column !important; 
+                padding: 30px 20px !important; 
+                text-align: center; 
+            }
+            .section-container div[style*="background-color: var(--navy)"] > div:first-child { 
+                padding-right: 0 !important; 
+                margin-bottom: 25px; 
+            }
+            .section-container div[style*="background-color: var(--navy)"] > div:last-child { 
+                border-left: none !important; 
+                padding-left: 0 !important; 
+                border-top: 1px solid rgba(255,255,255,0.2); 
+                padding-top: 25px; 
+                text-align: center !important; 
+            }
+
+            /* 6. Utility Links (Watch talks, Calendar, etc.) */
+            .section-container div[style*="gap: 40px"] { 
+                flex-direction: column; 
+                gap: 20px !important; 
+                text-align: center; 
+            }
+        }
+        /* ========================================== */
+        /* COMPACT DESKTOP LAYOUT OVERRIDES           */
+        /* ========================================== */
+        
+        /* 1. Shrink the massive background area */
+        .hero { padding: 35px 20px !important; }
+        .hero h2 { font-size: 26px !important; margin-bottom: 10px !important; }
+        .hero p { font-size: 14px !important; margin-bottom: 10px !important; }
+
+        /* 2. Tighten up the Search Box itself */
+        .search-container { padding: 25px 35px !important; max-width: 900px !important; }
+        .search-container h2 { font-size: 22px !important; margin-bottom: 15px !important; }
+
+        /* 3. Make the Inputs, Dropdowns, and Buttons sleeker */
+        .search-container input, 
+        .search-container select { 
+            padding: 8px 10px !important; 
+            font-size: 14px !important; 
+        }
+        .btn-search { 
+            padding: 12px 25px !important; 
+            font-size: 15px !important; 
+        }
+
+        /* 4. Reduce the empty space between the search rows */
+        .search-container div[style*="margin-bottom: 15px;"] { margin-bottom: 10px !important; }
+        .search-container div[style*="margin-bottom: 25px;"] { margin-bottom: 15px !important; }
+        .search-container div[style*="margin-bottom: 30px;"] { margin-bottom: 20px !important; }
+        /* 5. De-bloat the Publications Library */
+        .card.pub {
+            padding: 15px 20px !important; /* Cut card padding almost in half */
+        }
+        .card.pub h3 {
+            margin: 0 0 8px 0 !important;
+            font-size: 17px !important;
+        }
+        .card.pub p {
+            margin-bottom: 15px !important;
+            font-size: 13px !important;
+        }
+        .card.pub .btn-card {
+            padding: 8px 15px !important;
+            font-size: 13px !important;
+        }
+        
+        /* Reduce the huge padding box around the publications section */
+        .section-container:has(.pub) {
+            padding: 30px 40px !important;
+        }
+        
+         /* ========================================== */
+        /* DARK MODE STYLES                           */
+        /* ========================================== */
+        body { transition: background-color 0.3s ease, color 0.3s ease; }
+
+        body.dark-mode {
+            --cream: #1e1e1e;     /* Deep gray for cards (elevated off the background) */
+            --sage: #a8b361;      /* Slightly desaturated sage so it doesn't vibrate on black */
+            --navy: #e0e0e0;      /* Replaces navy text with a crisp, soft off-white */
+            --charcoal: #a0a0a0;  /* Muted gray for standard paragraph reading text */
+            --white: #121212;     /* The true Soft Black background */
+        }
+
+        /* 1. Override elements that used Navy as a BACKGROUND */
+        body.dark-mode nav,
+        body.dark-mode .announcement,
+        body.dark-mode .btn-card:not(.sage),
+        body.dark-mode .section-container > div[style*="background-color: var(--navy)"] {
+            background-color: #1a1a1a !important; /* Slightly lighter than the background */
+            border: 1px solid #333 !important;
+            color: #e0e0e0 !important;
+        }
+
+        /* 2. Search Container & Dropdowns */
+        body.dark-mode .search-container, 
+        body.dark-mode .dropdown-content { 
+            background: var(--cream) !important; 
+            border-color: #333 !important; 
+        }
+        
+        /* 3. Input Fields */
+        body.dark-mode input, 
+        body.dark-mode select { 
+            background: #121212 !important; 
+            color: #e0e0e0 !important; 
+            border-color: #333 !important; 
+        }
+        
+        /* 4. Drawers & Cheat Codes */
+        body.dark-mode #search-hints-panel, 
+        body.dark-mode #advanced-drawer,
+        body.dark-mode #sub-region-container { 
+            background: #1a1a1a !important; 
+            border-color: var(--sage) !important; 
+        }
+
+        /* 5. Force Kalikow Banner Text to Pure White in Dark Mode */
+        body.dark-mode .section-container div[style*="background-color: var(--navy)"] h2,
+        body.dark-mode .section-container div[style*="background-color: var(--navy)"] p,
+        body.dark-mode .section-container div[style*="background-color: var(--navy)"] div,
+        body.dark-mode .section-container div[style*="background-color: var(--navy)"] strong {
+            color: #ffffff !important;
+        }
+        
+        /* 6. Fix the "Search All Databases" hollow button */
+        body.dark-mode .btn-search-all {
+            color: #e0e0e0;
+            border-color: #333;
+        }
+        body.dark-mode .btn-search-all:hover {
+            background-color: #333;
+        }
+        /* 7. Fix the "Value Added Services" callout in the Advanced Drawer */
+        body.dark-mode #advanced-drawer div[style*="background-color: #f0f4f7"] {
+            background-color: #262626 !important;
+            border-left-color: var(--sage) !important;
+        }
+        body.dark-mode #advanced-drawer div[style*="background-color: #f0f4f7"] p {
+            color: #e0e0e0 !important;
+        }
+        body.dark-mode #advanced-drawer div[style*="background-color: #f0f4f7"] a {
+            color: var(--sage) !important;
+        }
+        /* ========================================== */
+        /* LOGO SWAPPING FOR DARK MODE                */
+        /* ========================================== */
+        .dark-logo { display: none !important; }
+        body.dark-mode .light-logo { display: none !important; }
+        body.dark-mode .dark-logo { display: block !important; }
+
+    </style>
+</head>
+
+<body>
+
+   <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px 50px; border-bottom: 2px solid var(--cream);">
+        
+        <div class="brand">
+            <a href="#">
+                <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg" alt="JewishGen: The Global Home for Jewish Genealogy" class="light-logo" style="height: 55px; width: auto; object-fit: contain;">
+                <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png" alt="JewishGen: The Global Home for Jewish Genealogy" class="dark-logo" style="height: 55px; width: auto; object-fit: contain;">
+            </a>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+            
+            <button onclick="document.body.classList.toggle('dark-mode')" style="background: var(--cream); color: var(--navy); border: 1px solid #d1caba; padding: 4px 10px; border-radius: 20px; cursor: pointer; font-size: 11px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                🌗 Toggle Dark Mode
+            </button>
+            
+            <div style="display: flex; gap: 8px;">
+                <a href="#" style="padding: 7px 15px; border: 2px solid var(--navy); color: var(--navy); font-weight: bold; font-size: 13px; border-radius: 6px; text-decoration: none;">
+                    Log In
+                </a>
+                <a href="#" style="padding: 7px 15px; background-color: var(--sage); color: var(--white); border: 2px solid var(--sage); font-weight: bold; font-size: 13px; border-radius: 6px; text-decoration: none; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    Sign Up
+                </a>
+            </div>
+            
+            <div style="text-align: right; margin-top: 2px;">
+                <div class="museum-tag" style="font-size: 10px; color: var(--charcoal); margin-bottom: 3px; margin-top: 0; font-weight: normal;">
+                    The Genealogical Research Division of
+                </div>
+                <a href="https://mjhnyc.org/" target="_blank" style="display: inline-block;">
+                    <img src="https://www.jewishgen.org/images/MJH-Circle-Logo.svg" alt="Museum of Jewish Heritage" class="light-logo" style="height: 32px; width: auto;">
+                    <img src="https://d3k74ww17vqc8e.cloudfront.net/app/uploads/2019/10/18145838/MJH-Circle-icon_Logo.png" alt="Museum of Jewish Heritage" class="dark-logo" style="height: 32px; width: auto;">
+                </a>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- ══════════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════════ -->
+    <nav>
+        <div class="dropdown">
+            <span class="dropbtn">Databases ▾</span>
+            <div class="dropdown-content">
+                <a href="#">Global Search</a>
+                <a href="#">Country & Regional Databases</a>
+                <a href="#">Holocaust Database</a>
+                <a href="#">Burial Registry (JOWBR)</a>
+                <a href="#">Records Catalog</a>
+                <a href="#">Family Trees (FTJP)</a>
+                <a href="#">Text Search</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <span class="dropbtn">Communities ▾</span>
+            <div class="dropdown-content">
+                <a href="#">Regional/Topical Research Divisions</a>
+                <a href="#">Town Finder</a>
+                <a href="#">KehilaLinks</a>
+                <a href="#">Yizkor Books</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <span class="dropbtn">Learn & Connect ▾</span>
+            <div class="dropdown-content">
+                <a href="#">Online Classes</a>
+                <a href="#">Search Methodologies & Research Advice</a>
+                <a href="#">Peter & Mary Kalikow Center</a>
+                <a href="#">Family Finder</a>
+                <a href="#">Discussion Group</a>
+                <a href="#">ViewMate</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <span class="dropbtn">Events & Programs ▾</span>
+            <div class="dropdown-content">
+                <a href="#">Upcoming Events Calendar</a>
+                <a href="#">JewishGen Talks</a>
+                <a href="#">Student Program in Poland</a>
+                <a href="#">Study & Service Tour of Poland</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <span class="dropbtn">Publications ▾</span>
+            <div class="dropdown-content">
+                <a href="#">JewishGen Press</a>
+                <a href="#">Newsletters</a>
+                <a href="#">Holiday Companions</a>
+            </div>
+        </div>
+          <div class="dropdown">
+            <span class="dropbtn">About & Support ▾</span>
+            <div class="dropdown-content">
+                <a href="#">Mission</a>
+		<a href="#">Our Team</a>
+                <a href="#">Donate Now</a>
+                <a href="#">Planned Giving</a>
+                <a href="#">Wall of Honor</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="sponsorship-banner" style="position: relative; padding: 15px 20px 12px 20px;">
+        
+        <div id="sponsor-container" style="position: relative; min-height: 25px;">
+            
+            <div class="sponsor-slide active">
+                Today's research is sponsored by <strong>The Hollander Family</strong> in loving memory of <strong>Leo Hollander</strong>.
+            </div>
+
+            <div class="sponsor-slide">
+                Today's research is sponsored in honor of all the dedicated volunteers who index records.
+            </div>
+            
+        </div>
+
+        <div style="margin-top: 8px; font-size: 13px;">
+            <a href="https://www.jewishgen.org/jewishgen-secure/donate.asp" target="_blank" style="color: var(--navy); text-decoration: underline; font-weight: bold;">
+                To Dedicate a Day of Research, please click here
+            </a>
+        </div>
+    </div>
+
+        <div class="hero">
+        <div style="max-width: 850px; margin: 0 auto 35px auto; text-align: center; padding: 0 20px;">
+            <h2 style="color: var(--navy); font-size: 32px; margin: 0 0 15px 0; line-height: 1.3;">
+                Welcome to JewishGen &mdash; The Global Home for Jewish Genealogy
+            </h2>
+            <p style="font-size: 16px; color: var(--charcoal); line-height: 1.6; margin: 0 0 15px 0;">
+                <strong>The largest online Jewish genealogy and history resource.</strong> Explore millions of records from around the world, identify relatives, discover the towns of your ancestors, experience how they lived, connect with our global JewishGen community, and more!
+            </p>
+            <p style="font-size: 15px; color: var(--navy); font-style: italic; font-weight: bold; margin: 0;">
+                Begin your research below, or use the links above.
+            </p>
+        </div>
+
+        <div class="search-container">
+            <h2 style="text-align: center; color: var(--navy); margin-top: 0; font-size: 28px; margin-bottom: 15px;">START YOUR RESEARCH</h2>
+
+    <div style="text-align: center; margin-bottom: 30px;">
+        <span onclick="toggleHints()" style="background-color: var(--cream); color: var(--navy); padding: 8px 20px; border-radius: 20px; font-size: 13px; font-weight: bold; cursor: pointer; display: inline-block; border: 1px solid #d1caba; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            💡 Search Tips and Tricks
+        </span>
+    </div>
+
+    <div id="search-hints-panel">
+        <strong style="color: var(--navy); font-size: 14px; display: block; margin-bottom: 15px;">JewishGen Search Tips:</strong>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+            <div><strong>Comma = OR:</strong> Use commas to search for either name. <br><span style="color: #666;"><em>Example: Schwartz, Weiss (Finds either)</em></span></div>
+            <div><strong>Space = AND:</strong> Use a space to search for both names. <br><span style="color: #666;"><em>Example: Schwartz Weiss (Finds both)</em></span></div>
+            <div><strong>Wildcards (*):</strong> Fill in the blanks for bad handwriting (Exact Search). <br><span style="color: #666;"><em>Example: Sp*l*ng (Finds Spelling, Sperling)</em></span></div>
+            <div><strong>Brackets [ ]:</strong> Force a specific starting letter (Phonetic). <br><span style="color: #666;"><em>Example: [F]isch (Finds Fish, but not Visz)</em></span></div>
+            <div><strong>Synonyms:</strong> Exact search includes standard variants. <br><span style="color: #666;"><em>Example: Jankel = Jakob = Jacob = Jack</em></span></div>
+            <div><strong>Starts With / Contains:</strong> Finds root words in the name. <br><span style="color: #666;"><em>Example: "Gold" finds FeinGold</em></span></div>
+        </div>
+ 
+        <div style="margin-top: 15px; border-top: 1px solid #dce4e8; padding-top: 10px; text-align: right;">
+            <a href="#" style="font-size: 12px; color: var(--navy); font-weight: bold; font-style: italic; text-decoration: underline;">
+                Need more help? Read our complete "How to JewishGen" guide →
+            </a>
+        </div>
+    </div>
+
+            <div style="display: flex; gap: 10px; margin-bottom: 15px; align-items: flex-end;">
+                <div style="flex: 1;">
+                    <label class="field-label">DATA TYPE</label>
+                    <select style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                        <option selected>Surname</option>
+                        <option>Given Name</option>
+                        <option>Town</option>
+                        <option>Any Field</option>
+                    </select>
+                </div>
+                <div style="flex: 1;">
+                    <label class="field-label">SEARCH TYPE</label>
+                    <select style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                        <option>Phonetically Like</option>
+                        <option>is Exactly</option>
+                        <option>Starts with</option>
+                        <option>Sounds Like</option>
+                    </select>
+                </div>
+                <div style="flex: 2;">
+                    <label class="field-label">SEARCH TERM</label>
+                    <input type="text" placeholder="e.g., Hollander" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-bottom: 25px; align-items: flex-end;">
+                <div style="flex: 1;">
+                    <select style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                        <option>Surname</option>
+                        <option selected>Given Name</option>
+                        <option>Town</option>
+                        <option>Any Field</option>
+                    </select>
+                </div>
+                <div style="flex: 1;">
+                    <select style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                        <option>Phonetically Like</option>
+                        <option>is Exactly</option>
+                        <option>Starts with</option>
+                        <option>Sounds Like</option>
+                    </select>
+                </div>
+                <div style="flex: 2;">
+                    <input type="text" placeholder="e.g., Caitlin" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                </div>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label class="field-label">REGION / COLLECTION</label>
+                <select id="main-region-select" onchange="toggleSubRegion()" style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; width: 100%; max-height: 400px; overflow-y: auto;">
+                    <option value="all">Region/Collection: ALL</option>
+                    <optgroup label="Topical Databases">
+                        <option value="cemetery">Cemetery Records</option>
+                        <option value="holocaust">Holocaust Records</option>
+                        <option value="sephardic">Sephardic</option>
+                    </optgroup>
+                    <optgroup label="Africa">
+                        <option value="algeria">Algeria</option>
+                        <option value="egypt">Egypt</option>
+                        <option value="libya">Libya</option>
+                        <option value="morocco">Morocco</option>
+                        <option value="safrica">South Africa</option>
+                        <option value="tunisia">Tunisia</option>
+                    </optgroup>
+                    <optgroup label="Asia & The Middle East">
+                        <option value="india">India</option>
+                        <option value="iraq">Iraq</option>
+                        <option value="israel">Israel</option>
+                        <option value="lebanon">Lebanon</option>
+                        <option value="syria">Syria</option>
+                        <option value="turkey">Turkey</option>
+                    </optgroup>
+                    <optgroup label="Eastern & Central Europe">
+                        <option value="austria">Austria / Czechia</option>
+                        <option value="belarus">Belarus</option>
+                        <option value="bulgaria">Bulgaria</option>
+                        <option value="germany">Germany</option>
+                        <option value="hungary">Hungary / Slovakia</option>
+                        <option value="latvia">Latvia</option>
+                        <option value="lithuania">Lithuania</option>
+                        <option value="poland">Poland</option>
+                        <option value="romania">Romania / Moldova</option>
+                        <option value="ukraine">Ukraine</option>
+                    </optgroup>
+                    <optgroup label="Western & Southern Europe">
+                        <option value="france">France</option>
+                        <option value="france">Greece</option>
+                        <option value="italy">Italy</option>
+                        <option value="netherlands">Netherlands</option>
+                        <option value="portugal">Portugal</option>
+                        <option value="scandinavia">Scandinavia</option>
+                        <option value="spain">Spain</option>
+                        <option value="ukireland">United Kingdom & Ireland</option>
+                    </optgroup>
+                    <optgroup label="North America">
+                        <option value="canada">Canada</option>
+                        <option value="usa">United States</option>
+                    </optgroup>
+                    <optgroup label="Central & South America">
+                        <option value="argentina">Argentina</option>
+                        <option value="latinam">Latin America</option>
+                        <option value="venezuela">Venezuela</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div id="sub-region-container">
+                <span class="sub-region-label" id="sub-region-title">Refine Search:</span>
+                <select id="sub-region-select" style="padding: 12px; border: 3px solid var(--navy); border-radius: 6px; font-size: 16px; width: 100%; max-width: 100%; background-color: var(--white);">
+                </select>
+            </div>
+
+            <div style="text-align: center; margin-top: 20px; border-top: 1px solid var(--cream); padding-top: 15px;">
+                <span id="toggle-text" onclick="toggleAdvanced()" style="font-size: 13px; font-weight: bold; color: var(--navy); cursor: pointer; text-decoration: underline dotted;">⚙️ SHOW ADVANCED OPTIONS</span>
+            </div>
+
+            <div id="advanced-drawer">
+                <div style="background-color: #f0f4f7; border-left: 4px solid var(--navy); padding: 12px 15px; margin-bottom: 20px;">
+                    <p style="margin: 0; font-size: 13px; color: var(--charcoal); line-height: 1.4;">
+                        ★ <strong>Value Added Services:</strong> Basic search allows for two simultaneous fields.
+                        <a href="https://www.jewishgen.org/jewishgen-secure/donate.asp" target="_blank" style="color: var(--navy); font-weight: bold; text-decoration: underline;">
+                            Donate $100 or more
+                        </a>
+                        to unlock two additional rows for more complex multi-field searches.
+                    </p>
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-bottom: 10px; opacity: 0.4;">
+                    <div style="flex: 1;">
+                        <select style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" disabled>
+                            <option>Town</option>
+                        </select>
+                    </div>
+                    <div style="flex: 1;">
+                        <select style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" disabled>
+                            <option>is Exactly</option>
+                        </select>
+                    </div>
+                    <div style="flex: 2;">
+                        <input type="text" placeholder="Unlock with Donation" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" disabled>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 10px; opacity: 0.4;">
+                    <div style="flex: 1;">
+                        <select style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" disabled>
+                            <option>Any Field</option>
+                        </select>
+                    </div>
+                    <div style="flex: 1;">
+                        <select style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" disabled>
+                            <option>Contains</option>
+                        </select>
+                    </div>
+                    <div style="flex: 2;">
+                        <input type="text" placeholder="Unlock with Donation" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" disabled>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 25px;">
+        <button class="btn-search">Search Databases</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="announcement">
+        <span>📢 LATEST ANNOUNCEMENT:</span> New Bessarabia Records Released! <a href="#">Click here to read the update.</a>
+    </div>
+<div class="section-container" style="background-color: var(--cream); border-radius: 12px; margin: 40px auto; padding: 40px 50px;">
+        <h2 style="text-align: center; color: var(--navy); margin-top: 0; font-size: 24px; text-transform: uppercase;">Explore Our Core Resources</h2>
+        <p style="text-align: center; font-size: 15px; margin-bottom: 35px; color: var(--charcoal);">
+            Beyond the search engine, JewishGen offers powerful tools to help you break through your brick walls.
+        </p>
+
+        <div class="grid-4">
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3>Discussion Group</h3>
+                <p>Get help solving your genealogy mysteries and check out our extensive message archive.</p>
+                <a href="#" style="color: var(--navy); font-weight: bold; font-size: 13px; text-decoration: underline;">Join the Conversation</a>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📖</div>
+                <h3>Yizkor Books</h3>
+                <p>Read translated memorial books documenting Jewish life and history in destroyed communities.</p>
+                <a href="#" style="color: var(--navy); font-weight: bold; font-size: 13px; text-decoration: underline;">Read Translations</a>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🗂️</div>
+                <h3>Catalogue of Records</h3>
+                <p>Browse our comprehensive inventory of historical datasets, organized by country and region.</p>
+                <a href="#" style="color: var(--navy); font-weight: bold; font-size: 13px; text-decoration: underline;">Browse Catalogue</a>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>Communities Database</h3>
+                <p>Uncover historical, geographical, and linguistic details about Jewish towns worldwide.</p>
+                <a href="#" style="color: var(--navy); font-weight: bold; font-size: 13px; text-decoration: underline;">Explore Towns</a>
+            </div>
+        </div>
+    </div>
+<div class="section-container" style="padding: 0 50px; max-width: 1100px; margin: 0 auto;">
+        <div style="background-color: var(--navy); color: var(--white); border-radius: 12px; display: flex; align-items: center; justify-content: space-between; padding: 40px 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); gap: 40px;">
+            
+            <div style="flex: 1; max-width: 250px;">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOftAKb33doQ9HQsRocXJvU1YaNMzr55I8au8rNW0djA&s" alt="Two women sitting at a table with computers on top of it, with one gesturing to the computer at the Peter and Mary Kalikow Jewish Genealogy Research Center" style="width: 100%; height: auto; border-radius: 8px; border: 3px solid var(--sage); box-shadow: 0 4px 10px rgba(0,0,0,0.3); object-fit: cover;">
+            </div>
+
+            <div style="flex: 2;">
+                <h2 style="color: var(--white); margin-top: 0; font-size: 26px; margin-bottom: 15px;">
+                    Visiting New York City?
+                </h2>
+                <p style="font-size: 15px; line-height: 1.6; margin-bottom: 0; color: #dce4e8;">
+                    The <strong>Peter and Mary Kalikow Jewish Genealogy Research Center</strong> is the physical presence of JewishGen, located at the Museum of Jewish Heritage. Our expert genealogists are on hand to assist in uncovering your family's past, and to help you navigate across JewishGen and many other critical resources accessible at the Center.
+                </p>
+            </div>
+            <div style="flex: 1.2; text-align: right; border-left: 2px solid rgba(255,255,255,0.2); padding-left: 40px;">
+                <a href="https://898a.blackbaudhosting.com/898a/Peter-and-Mary-Kalikow-Jewish-Genealogy-Research-Center-Appointment-12Apr2026" target="_blank" rel="noopener noreferrer" style="background-color: var(--sage); color: var(--white); padding: 16px 30px; border-radius: 6px; font-weight: bold; font-size: 16px; text-decoration: none; display: inline-block; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); margin-bottom: 10px;">
+                    📅 Book an Appointment
+                </a>
+                
+                <div style="font-size: 14px; color: var(--cream); margin-bottom: 15px;">
+                    or email us at <a href="mailto:kalikow@jewishgen.org" style="color: var(--sage); font-weight: bold; text-decoration: underline;">kalikow@jewishgen.org</a>
+                </div>
+
+                <p style="font-size: 12px; margin-top: 0; color: #a9bccc; font-style: italic; line-height: 1.4;">
+                    Appointments are recommended but not required. Museum tickets are required to visit the Center.  </p>
+            </div>
+
+        </div>
+    </div>
+
+ 
+
+
+    <div class="section-container">
+        <h2 class="section-title">Upcoming Events</h2>
+        <div class="grid-3">
+
+            <div class="card">
+                <div class="speaker-bio">
+                    <strong>Caitlin Hollander Waas</strong> is the Chief Genealogist for JewishGen.
+                </div>
+                <div class="card-date">April 15, 2026</div>
+                <div class="card-type">JewishGen Talk</div>
+                <h3>Finding Personality in Historical Documents</h3>
+                <span class="card-speaker">
+                    with Caitlin Hollander Waas
+                </span>
+                <div class="event-meta">
+                    <span>💻 Online</span>
+                    <span>🕒 2:00 PM ET</span>
+                </div>
+                <br>
+                <a href="#" class="btn-card">Register Now</a>
+            </div>
+
+            <div class="card">
+                <div class="speaker-bio">
+                    The <strong>Peter and Mary Kalikow Jewish Genealogy Research Center</strong> is JewishGen's physical iteration, and is proud to develop genealogy curriculum for schools to connect the next generation to their roots.
+                </div>
+                <div class="card-date">May 2, 2026</div>
+                <div class="card-type">Workshop</div>
+                <h3>Genealogy Workshop for Public High Schools</h3>
+                <span class="card-speaker">
+                    Led by Kalikow Center Team
+                </span>
+                <div class="event-meta">
+                    <span>📍 In person (NYC)</span>
+                    <span>🕒 10:00 AM ET</span>
+                </div>
+                <br>
+                <a href="#" class="btn-card">Learn More</a>
+            </div>
+
+            <div class="card">
+                <div class="speaker-bio">
+                    <strong>L'Dor V'Dor</strong> heritage trips provide immersive educational experiences at historical sites across Poland.
+                </div>
+                <div class="card-date">June 10, 2026</div>
+                <div class="card-type">Heritage Trip</div>
+                <h3>2026 L'Dor V'Dor Poland Trip</h3>
+                <span class="card-speaker">
+                    Registration Deadline
+                </span>
+                <div class="event-meta">
+                    <span>✈️ Travel (Poland)</span>
+                    <span>📅 Summer 2026</span>
+                </div>
+                <br>
+                <a href="#" class="btn-card">View Details</a>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center; gap: 40px; margin-top: 40px; padding-top: 20px; border-top: 2px solid var(--cream);">
+            <a href="#" style="display: flex; align-items: center; gap: 8px; color: var(--navy); font-weight: bold; font-size: 15px; text-decoration: none;">
+                <span>📺</span> Watch Past JewishGen Talks
+            </a>
+            <a href="#" style="display: flex; align-items: center; gap: 8px; color: var(--navy); font-weight: bold; font-size: 15px; text-decoration: none;">
+                <span>📅</span> View Full Events Calendar
+            </a>
+            <a href="#" style="display: flex; align-items: center; gap: 8px; color: var(--navy); font-weight: bold; font-size: 15px; text-decoration: none;">
+                <span>📩</span> Submit a Program Idea
+            </a>
+        </div>
+    </div>
+
+    <div class="section-container" style="background-color: var(--cream); border-radius: 12px; margin-bottom: 50px;">
+        <div class="pub-header-row" style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid var(--navy); padding-bottom: 10px; margin-bottom: 30px;">
+            <h2 class="section-title" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">Publications Library</h2>
+            <a href="#"
+               class="btn-card"
+               style="font-size: 13px; padding: 8px 16px; white-space: nowrap; flex-shrink: 0;"
+               aria-label="Sign up for or manage your JewishGen newsletter subscriptions">
+                Join Our Mailing List 
+            </a>
+        </div>
+        <div class="grid-3">
+            <div class="card pub">
+                <div class="card-type">Newsletter</div>
+                <h3>Weekly Update</h3>
+                <p>Vol. 24, Issue 11</p>
+                <a href="#" class="btn-card sage">Download PDF</a>
+            </div>
+            <div class="card pub">
+                <div class="card-type">Newsletter</div>
+                <h3>Monthly Newsletter</h3>
+                <p>March 2026 Edition</p>
+                <a href="#" class="btn-card sage">Download PDF</a>
+            </div>
+            <div class="card pub">
+                <div class="card-type">Companion</div>
+                <h3>Holiday Companion</h3>
+                <p>Passover 2026 Edition</p>
+                <a href="#" class="btn-card sage">Download PDF</a>
+            </div>
+        </div>
+    </div>
+
+   <footer style="background-color: var(--cream); padding: 30px 50px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; border-top: 4px solid var(--navy);">
+        
+        <div style="flex: 1; min-width: 250px;">
+            <a href="#">
+                <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg" alt="JewishGen Logo" class="light-logo" style="height: 60px; width: auto; object-fit: contain;">
+                <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png" alt="JewishGen Logo" class="dark-logo" style="height: 60px; width: auto; object-fit: contain;">
+            </a>
+        </div>
+
+        <div style="flex: 2; text-align: center; font-size: 13px; line-height: 1.6; color: var(--charcoal); min-width: 300px;">
+            Edmond J. Safra Plaza | 36 Battery Place | New York, NY 10280<br>
+            646.494.2972 | <a href="mailto:info@jewishgen.org" style="color: var(--navy); text-decoration: underline; font-weight: bold;">info@jewishgen.org</a> | © 2026, JewishGen, Inc. <a href="#" style="text-decoration: underline;">All rights reserved.</a>
+        </div>
+
+        <div style="flex: 1; display: flex; justify-content: flex-end; align-items: center; min-width: 250px;">
+            <a href="https://mjhnyc.org/" target="_blank" style="display: inline-block;">
+                <img src="https://www.jewishgen.org/images/MJH-Circle-Logo.svg" alt="Museum of Jewish Heritage" class="light-logo" style="height: 45px; width: auto;">
+                <img src="https://d3k74ww17vqc8e.cloudfront.net/app/uploads/2019/10/18145838/MJH-Circle-icon_Logo.png" alt="Museum of Jewish Heritage" class="dark-logo" style="height: 45px; width: auto;">
+            </a>
+        </div>
+
+    </footer>
+
+    <script>
+        // Logic to open/close the Search Hints Cheat Codes
+        function toggleHints() {
+            const panel = document.getElementById('search-hints-panel');
+            panel.classList.toggle('open');
+        }
+
+        // Logic to open/close the Advanced (VAS) Drawer
+        function toggleAdvanced() {
+            const drawer = document.getElementById('advanced-drawer');
+            const text = document.getElementById('toggle-text');
+            drawer.classList.toggle('open');
+            if (drawer.classList.contains('open')) {
+                text.innerText = '⚙️ HIDE ADVANCED OPTIONS';
+            } else {
+                text.innerText = '⚙️ SHOW ADVANCED OPTIONS';
+            }
+        }
+
+        function toggleSubRegion() {
+            const mainSelect = document.getElementById('main-region-select');
+            const container = document.getElementById('sub-region-container');
+            const subSelect = document.getElementById('sub-region-select');
+            const title = document.getElementById('sub-region-title');
+
+            const val = mainSelect.value;
+            let optionsHtml = '<option value="all">All Sub-Regions</option>';
+            let show = true;
+
+            // ALPHABETICAL BY COUNTRY
+            if (val === 'austria') {
+                title.innerText = "Refine by Region (Austria / Czechia / Galicia):";
+                optionsHtml += `
+            <option value="bohemia" style="font-weight:bold;">Bohemia (Böhmen)</option>
+            <option value="prague">&nbsp;&nbsp;&nbsp;Prague (Prag)</option>
+            <option value="bukovina_aus" style="font-weight:bold; margin-top:10px;">Bukovina (Bucovina / Bukowina)</option>
+            <option value="chernivtsi_aus">&nbsp;&nbsp;&nbsp;Czernowitz (Chernivtsi/Cernăuți)</option>
+            <option value="burgenland" style="font-weight:bold; margin-top:10px;">Burgenland (Burgenland)</option>
+            <option value="galicia_aus" style="font-weight:bold; margin-top:10px;">Galicia (Galizien)</option>
+            <option value="krakow_aus">&nbsp;&nbsp;&nbsp;Kraków (Krakau)</option>
+            <option value="lviv_aus">&nbsp;&nbsp;&nbsp;Lemberg (Lwów/Lviv)</option>
+            <option value="stanislau_aus">&nbsp;&nbsp;&nbsp;Stanislau (Ivano-Frankivsk/Stanisławów)</option>
+            <option value="tarnopol_aus">&nbsp;&nbsp;&nbsp;Tarnopol (Ternopil)</option>
+            <option value="lower_austria_vienna" style="font-weight:bold; margin-top:10px;">Lower Austria (Niederösterreich) & Vienna</option>
+            <option value="lower_austria_p">&nbsp;&nbsp;&nbsp;Lower Austria (Niederösterreich)</option>
+            <option value="vienna">&nbsp;&nbsp;&nbsp;Vienna (Wien)</option>
+            <option value="moravia" style="font-weight:bold; margin-top:10px;">Moravia (Mähren)</option>`;
+
+            } else if (val === 'belarus') {
+                title.innerText = "Refine by Historical Region (Belarus):";
+                optionsHtml += `
+            <option value="grodno_bel">&nbsp;&nbsp;&nbsp;Grodno (Grodnenskaya Guberniya)</option>
+            <option value="minsk">&nbsp;&nbsp;&nbsp;Minsk (Minskaya Guberniya)</option>
+            <option value="mogilev">&nbsp;&nbsp;&nbsp;Mogilev (Mogilevskaya Guberniya)</option>
+            <option value="vilna_bel">&nbsp;&nbsp;&nbsp;Vilna (Vilenskaya Guberniya)</option>
+            <option value="vitebsk">&nbsp;&nbsp;&nbsp;Vitebsk (Vitebskaya Guberniya)</option>`;
+
+            } else if (val === 'canada') {
+                title.innerText = "Refine by Province/Territory (Canada):";
+                const provinces = ["Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", "Nova Scotia", "Northwest Territories", "Nunavut", "Ontario", "Prince Edward Island", "Québec", "Saskatchewan", "Yukon"];
+                provinces.forEach(p => {
+                    optionsHtml += `<option value="${p.toLowerCase()}">${p}</option>`;
+                });
+
+            } else if (val === 'hungary') {
+                title.innerText = "Refine by Historical Region (Hungary / Slovakia / Croatia):";
+                optionsHtml += `
+            <option value="banat" style="font-weight:bold;">Banat / Bačka (Bánság / Bácska)</option>
+            <option value="croatia_slavonia" style="font-weight:bold; margin-top:10px;">Croatia-Slavonia (Hrvatska-Slavonija)</option>
+            <option value="hungary_mod" style="font-weight:bold; margin-top:10px;">Hungary (Magyarország)</option>
+            <option value="budapest">&nbsp;&nbsp;&nbsp;Budapest & Pest</option>
+            <option value="zemplen_hun">&nbsp;&nbsp;&nbsp;Zemplén (Southern portion)</option>
+            <option value="maramures" style="font-weight:bold; margin-top:10px;">Maramureș (Máramaros)</option>
+            <option value="slovakia" style="font-weight:bold; margin-top:10px;">Slovakia (Slovensko / Felvidék)</option>
+            <option value="zemplen_svk">&nbsp;&nbsp;&nbsp;Zemplín (Northern portion)</option>
+            <option value="subcarpathia" style="font-weight:bold; margin-top:10px;">Subcarpathia (Zakarpattia / Kárpátalja)</option>
+            <option value="transylvania" style="font-weight:bold; margin-top:10px;">Transylvania (Transilvania / Erdély)</option>`;
+
+            } else if (val === 'latvia') {
+                title.innerText = "Refine by Historical Region (Latvia):";
+                optionsHtml += `
+            <option value="courland">&nbsp;&nbsp;&nbsp;Courland (Kurland)</option>
+            <option value="estland">&nbsp;&nbsp;&nbsp;Estland (Estonia)</option>
+            <option value="livland">&nbsp;&nbsp;&nbsp;Livland (Vidzeme)</option>
+            <option value="vitebsk_lat">&nbsp;&nbsp;&nbsp;Vitebsk (Latgale)</option>`;
+
+            } else if (val === 'lithuania') {
+                title.innerText = "Refine by Historical Region (Lithuania):";
+                optionsHtml += `
+            <option value="kovno_all" style="font-weight:bold;">Kovno Gubernia (Kauno gubernija)</option>
+            <option value="kaunas">&nbsp;&nbsp;&nbsp;Kaunas (Kovno uyezd)</option>
+            <option value="panevezys">&nbsp;&nbsp;&nbsp;Panevėžys (Ponevezh uyezd)</option>
+            <option value="raseiniai">&nbsp;&nbsp;&nbsp;Raseiniai (Rossieny uyezd)</option>
+            <option value="siauliai">&nbsp;&nbsp;&nbsp;Šiauliai (Shavl uyezd)</option>
+            <option value="telsiai">&nbsp;&nbsp;&nbsp;Telšiai (Telshi uyezd)</option>
+            <option value="ukmerge">&nbsp;&nbsp;&nbsp;Ukmergė (Vilkomir uyezd)</option>
+            <option value="zarasai">&nbsp;&nbsp;&nbsp;Zarasai (Novo-Aleksandrovsk uyezd)</option>
+            <option value="prussia_lit" style="font-weight:bold; margin-top:10px;">Prussia (Preußen)</option>
+            <option value="suwalki_all" style="font-weight:bold; margin-top:10px;">Suwalki Gubernia (Suvalkų gubernija)</option>
+            <option value="kalvarija">&nbsp;&nbsp;&nbsp;Kalvarija (Kalwarya uyezd)</option>
+            <option value="naumiestis">&nbsp;&nbsp;&nbsp;Kudirkos Naumiestis (Władysławów uyezd)</option>
+            <option value="marijampole">&nbsp;&nbsp;&nbsp;Marijampolė (Mariampol uyezd)</option>
+            <option value="sejny_uyezd">&nbsp;&nbsp;&nbsp;Sejny (Sejny uyezd)</option>
+            <option value="vilkaviskis">&nbsp;&nbsp;&nbsp;Vilkaviškis (Wyłkowyszki uyezd)</option>
+            <option value="vilna_all" style="font-weight:bold; margin-top:10px;">Vilna Gubernia (Vilniaus gubernija)</option>
+            <option value="ashmyany">&nbsp;&nbsp;&nbsp;Ashmyany (Oshmyany uyezd)</option>
+            <option value="disna">&nbsp;&nbsp;&nbsp;Disna (Disna uyezd)</option>
+            <option value="lida">&nbsp;&nbsp;&nbsp;Lida (Lida uyezd)</option>
+            <option value="svencionys">&nbsp;&nbsp;&nbsp;Švenčionys (Sventsyany uyezd)</option>
+            <option value="trakai">&nbsp;&nbsp;&nbsp;Trakai (Troki uyezd)</option>
+            <option value="vileyka">&nbsp;&nbsp;&nbsp;Vileyka (Vilejka uyezd)</option>
+            <option value="vilnius_uyezd">&nbsp;&nbsp;&nbsp;Vilnius (Vilna uyezd)</option>`;
+
+            } else if (val === 'poland') {
+                title.innerText = "Refine by Historical Region (Poland):";
+                optionsHtml += `
+            <option value="congress_poland" style="font-weight:bold;">Congress Poland (Russian Empire)</option>
+            <option value="kalisz">&nbsp;&nbsp;&nbsp;Kalisz (Kalisz)</option>
+            <option value="kielce">&nbsp;&nbsp;&nbsp;Kielce (Kielce)</option>
+            <option value="lomza">&nbsp;&nbsp;&nbsp;Łomża (Łomża)</option>
+            <option value="lublin">&nbsp;&nbsp;&nbsp;Lublin (Lublin)</option>
+            <option value="piotrkow">&nbsp;&nbsp;&nbsp;Piotrków (Piotrków)</option>
+            <option value="plock">&nbsp;&nbsp;&nbsp;Płock (Płock)</option>
+            <option value="radom">&nbsp;&nbsp;&nbsp;Radom (Radom)</option>
+            <option value="siedlce">&nbsp;&nbsp;&nbsp;Siedlce (Siedlce)</option>
+            <option value="suwalki_pol">&nbsp;&nbsp;&nbsp;Suwalki (Suwałki)</option>
+            <option value="warszawa">&nbsp;&nbsp;&nbsp;Warsaw (Warszawa)</option>
+            <option value="galicia_pol" style="font-weight:bold; margin-top:10px;">Galicia (Galizien)</option>
+            <option value="krakow">&nbsp;&nbsp;&nbsp;Kraków (Krakau)</option>
+            <option value="lwow_pol">&nbsp;&nbsp;&nbsp;Lwów (Lviv/Lemberg)</option>
+            <option value="stanislawow_pol">&nbsp;&nbsp;&nbsp;Stanisławów (Ivano-Frankivsk / Stanislau)</option>
+            <option value="tarnopol_pol">&nbsp;&nbsp;&nbsp;Tarnopol (Ternopil)</option>
+            <option value="pale_pol" style="font-weight:bold; margin-top:10px;">Pale of Settlement (Russian Empire)</option>
+            <option value="grodno_pol">&nbsp;&nbsp;&nbsp;Grodno (Hrodna)</option>
+            <option value="vilna_pol">&nbsp;&nbsp;&nbsp;Vilna (Vilnius)</option>
+            <option value="volhynia_pol">&nbsp;&nbsp;&nbsp;Volhynia (Volyn)</option>
+            <option value="prussia_pol" style="font-weight:bold; margin-top:10px;">Prussia (Preußen)</option>`;
+
+            } else if (val === 'romania') {
+                title.innerText = "Refine by Historical Region (Romania / Moldova):";
+                optionsHtml += `
+            <option value="aus_rom" style="font-weight:bold;">Bukovina (Austrian Empire)</option>
+            <option value="chernivtsi_rom">&nbsp;&nbsp;&nbsp;Cernăuți (Chernivtsi/Czernowitz)</option>
+            <option value="russian_rom" style="font-weight:bold; margin-top:10px;">Former Russian Empire (Republic of Moldova)</option>
+            <option value="bessarabia">&nbsp;&nbsp;&nbsp;Bessarabia</option>
+            <option value="transnistria">&nbsp;&nbsp;&nbsp;Transnistria</option>
+            <option value="kingdom_romania" style="font-weight:bold; margin-top:10px;">Kingdom of Romania</option>
+            <option value="dobrogea">&nbsp;&nbsp;&nbsp;Dobrogea</option>
+            <option value="moldavia">&nbsp;&nbsp;&nbsp;Moldavia (Moldova)</option>
+            <option value="muntenia_oltenia">&nbsp;&nbsp;&nbsp;Wallachia (Muntenia/Oltenia)</option>
+            <option value="hung_rom" style="font-weight:bold; margin-top:10px;">Pre-WWI Hungary</option>
+            <option value="banat">&nbsp;&nbsp;&nbsp;Banat</option>
+            <option value="crisana">&nbsp;&nbsp;&nbsp;Crișana</option>
+            <option value="maramures">&nbsp;&nbsp;&nbsp;Maramureș (Máramaros)</option>
+            <option value="transylvania">&nbsp;&nbsp;&nbsp;Transylvania (Transilvania / Erdély)</option>`;
+
+            } else if (val === 'scandinavia') {
+                title.innerText = "Refine by Country (Scandinavia):";
+                optionsHtml += `
+            <option value="denmark">Denmark (Danmark)</option>
+            <option value="finland">Finland (Suomi)</option>
+            <option value="norway">Norway (Norge)</option>
+            <option value="sweden">Sweden (Sverige)</option>`;
+
+            } else if (val === 'ukraine') {
+                title.innerText = "Refine by Historical Region (Ukraine):";
+                optionsHtml += `
+            <option value="bukovina_ukr" style="font-weight:bold;">Bukovina (Bucovina / Bukowina)</option>
+            <option value="chernivtsi_ukr">&nbsp;&nbsp;&nbsp;Chernivtsi (Czernowitz)</option>
+            <option value="galicia_ukr" style="font-weight:bold; margin-top:10px;">Eastern Galicia (Austrian Partition)</option>
+            <option value="lviv_ukr">&nbsp;&nbsp;&nbsp;Lviv (Lemberg / Lwów)</option>
+            <option value="stanislau_ukr">&nbsp;&nbsp;&nbsp;Stanislau (Ivano-Frankivsk / Stanisławów)</option>
+            <option value="ternopil_ukr">&nbsp;&nbsp;&nbsp;Ternopil (Tarnopol)</option>
+            <option value="pale_ukr" style="font-weight:bold; margin-top:10px;">Pale of Settlement (Russian Partition)</option>
+            <option value="chernigov">&nbsp;&nbsp;&nbsp;Chernigov (Chernihiv)</option>
+            <option value="kherson">&nbsp;&nbsp;&nbsp;Kherson</option>
+            <option value="kiev_ukr">&nbsp;&nbsp;&nbsp;Kiev (Kyiv / Kijów)</option>
+            <option value="podolia">&nbsp;&nbsp;&nbsp;Podolia (Podillia / Podole)</option>
+            <option value="poltava">&nbsp;&nbsp;&nbsp;Poltava</option>
+            <option value="volhynia">&nbsp;&nbsp;&nbsp;Volhynia (Volyn / Wołyń)</option>
+            <option value="yekaterinoslav">&nbsp;&nbsp;&nbsp;Yekaterinoslav (Dnipro)</option>
+            <option value="southern_ukraine" style="font-weight:bold; margin-top:10px;">Southern Ukraine & Crimea</option>
+            <option value="crimea">&nbsp;&nbsp;&nbsp;Crimea (Krym)</option>
+            <option value="odessa">&nbsp;&nbsp;&nbsp;Odessa (Odesa)</option>
+            <option value="transcarpathia_ukr" style="font-weight:bold; margin-top:10px;">Transcarpathia (Hungarian Partition)</option>
+            <option value="sub_ukr">&nbsp;&nbsp;&nbsp;Subcarpathia (Zakarpattia / Kárpátalja)</option>`;
+
+            } else if (val === 'usa') {
+                title.innerText = "Refine by State (United States):";
+                const states = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];
+                states.forEach(s => {
+                    optionsHtml += `<option value="${s.toLowerCase()}">${s}</option>`;
+                });
+
+            } else {
+                show = false;
+            }
+
+            if (show) {
+                subSelect.innerHTML = optionsHtml;
+                container.style.display = 'block';
+            } else {
+                container.style.display = 'none';
+            }
+        }
+        // Logic to rotate the Sponsorship Banner
+        function startBannerRotation() {
+            const slides = document.querySelectorAll('.sponsor-slide');
+            if (slides.length <= 1) return; // Don't rotate if there's only 1 sponsor
+            
+            let currentIndex = 0;
+            setInterval(() => {
+                slides[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % slides.length;
+                slides[currentIndex].classList.add('active');
+            }, 6000); // Rotates every 6 seconds (6000 milliseconds)
+        }
+        
+        // Start the rotation when the page loads
+        document.addEventListener('DOMContentLoaded', startBannerRotation);
+    </script>
+
+</body>
+
+</html>

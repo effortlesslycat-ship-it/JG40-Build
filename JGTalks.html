@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JewishGen Talks | JewishGen</title>
+    <style>
+
+        /* =============================================
+           GLOBAL DESIGN SYSTEM
+           Root variables — exact match CompactDraft.html
+        ============================================= */
+        :root {
+            --cream: #e8e1d1;
+            --sage:  #939b51;
+            --navy:  #09497a;
+            --charcoal: #232b2b;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0; padding: 0;
+            color: var(--charcoal);
+            background-color: var(--white);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* =============================================
+           HEADER CSS — from CompactDraft.html
+        ============================================= */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 50px;
+            border-bottom: 2px solid var(--cream);
+        }
+
+        /* =============================================
+           NAVIGATION CSS — verbatim from NavBarCSS.html
+        ============================================= */
+        nav {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 0 50px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .dropdown { position: relative; display: inline-block; }
+        .dropbtn  { display: block; padding: 15px 0; cursor: pointer; }
+        .dropdown:hover .dropbtn { color: var(--sage); }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 250px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15);
+            z-index: 10;
+            top: 100%; left: 0;
+            border-top: 3px solid var(--sage);
+            border-radius: 0 0 6px 6px;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: var(--navy);
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            text-transform: none;
+            font-weight: normal;
+            font-size: 15px;
+            border-bottom: 1px solid var(--cream);
+        }
+
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background-color: var(--cream); color: var(--navy); font-weight: bold; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        /* =============================================
+           DARK MODE — exact pattern from CompactDraft.html
+        ============================================= */
+        body { transition: background-color 0.3s ease, color 0.3s ease; }
+
+        body.dark-mode {
+            --cream:    #1e1e1e;
+            --sage:     #a8b361;
+            --navy:     #e0e0e0;
+            --charcoal: #a0a0a0;
+            --white:    #121212;
+        }
+
+        .dark-logo { display: none !important; }
+        body.dark-mode .light-logo { display: none !important; }
+        body.dark-mode .dark-logo  { display: block !important; }
+
+        body.dark-mode nav { background-color: #1a1a1a !important; border-bottom: 1px solid #333; }
+        body.dark-mode .dropdown-content { background: #1e1e1e !important; border-color: #333 !important; }
+        body.dark-mode .dropdown-content a { border-bottom-color: #333 !important; color: #e0e0e0 !important; }
+        body.dark-mode .dropdown-content a:hover { background-color: #2a2a2a !important; }
+
+        /* Page header band in dark mode */
+        body.dark-mode .page-hero { background-color: #1a1a1a !important; }
+        body.dark-mode .breadcrumb { background-color: #1e1e1e !important; border-bottom-color: #333 !important; }
+        body.dark-mode .breadcrumb a { color: #a8b361 !important; }
+
+        body.dark-mode .upcoming-section { background-color: #1a1a1a !important; border-color: #333 !important; }
+        body.dark-mode .talk-card { background-color: #1e1e1e !important; border-color: #333 !important; }
+        body.dark-mode .talk-card:hover { border-color: var(--sage) !important; }
+        body.dark-mode .talk-date { color: var(--sage) !important; }
+        body.dark-mode .talk-title { color: #e0e0e0 !important; }
+        body.dark-mode .rss-error { color: #a0a0a0 !important; }
+
+        body.dark-mode .featured-meta { background-color: #1e1e1e !important; border-color: #333 !important; }
+        body.dark-mode .featured-playlist-tag { background-color: #333 !important; color: #e0e0e0 !important; }
+        body.dark-mode .video-card { background-color: #1e1e1e !important; border-color: #333 !important; }
+        body.dark-mode .video-card:hover,
+        body.dark-mode .video-card:focus { border-color: var(--sage) !important; }
+        body.dark-mode .video-card.is-playing { border-color: var(--sage) !important; box-shadow: 0 0 0 3px rgba(168,179,97,0.2) !important; }
+        body.dark-mode .card-title { color: #e0e0e0 !important; }
+        body.dark-mode .section-heading { border-top-color: #333 !important; }
+        body.dark-mode .register-cta { background-color: #1e1e1e !important; border-color: #333 !important; }
+        body.dark-mode .btn-outline { border-color: #555 !important; color: #e0e0e0 !important; }
+        body.dark-mode .btn-outline:hover { background-color: #2a2a2a !important; }
+        body.dark-mode footer { background-color: #1a1a1a !important; border-top-color: #333 !important; }
+
+        /* =============================================
+           BREADCRUMB — cream strip separates nav from hero
+           matches community-valkininkai.html pattern exactly
+        ============================================= */
+        .breadcrumb {
+            background-color: var(--cream);
+            padding: 10px 50px;
+            font-size: 13px;
+            color: var(--charcoal);
+            border-bottom: 1px solid #d1caba;
+        }
+        .breadcrumb a { color: var(--navy); font-weight: bold; text-decoration: underline dotted; }
+        .breadcrumb a:hover { color: var(--sage); }
+        .breadcrumb span { margin: 0 6px; opacity: 0.5; }
+
+        /* =============================================
+           PAGE HERO BAND — navy, logo only, no buttons
+        ============================================= */
+        .page-hero {
+            background-color: var(--navy);
+            padding: 36px 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page-hero img.talks-logo {
+            height: 140px;
+            width: auto;
+            display: block;
+        }
+
+        /* =============================================
+           DESCRIPTION BAR — cream, sits below navy hero
+        ============================================= */
+        .page-desc-bar {
+            background-color: var(--cream);
+            border-bottom: 1px solid #d1caba;
+            padding: 18px 50px;
+            text-align: center;
+        }
+
+        .page-desc-bar p {
+            margin: 0;
+            font-size: 15px;
+            color: var(--charcoal);
+            line-height: 1.55;
+        }
+
+        body.dark-mode .page-desc-bar {
+            background-color: #1e1e1e !important;
+            border-bottom-color: #333 !important;
+        }
+        body.dark-mode .page-desc-bar p { color: #a0a0a0 !important; }
+
+        .btn-sage {
+            display: inline-flex; align-items: center; gap: 7px;
+            background-color: var(--sage); color: var(--white);
+            font-weight: bold; font-size: 14px; padding: 10px 22px;
+            border-radius: 6px; transition: filter 0.2s; white-space: nowrap;
+            border: none; cursor: pointer;
+        }
+        .btn-sage:hover { filter: brightness(1.1); }
+
+        .btn-navy-outline {
+            display: inline-flex; align-items: center; gap: 7px;
+            background-color: transparent; color: var(--navy);
+            font-weight: bold; font-size: 14px; padding: 9px 20px;
+            border-radius: 6px; border: 2px solid var(--navy);
+            transition: background 0.2s, color 0.2s; white-space: nowrap;
+            cursor: pointer;
+        }
+        .btn-navy-outline:hover { background-color: var(--navy); color: var(--white); }
+
+        .btn-sage svg, .btn-navy-outline svg, .btn-outline svg {
+            width: 17px; height: 17px; fill: currentColor; flex-shrink: 0;
+        }
+
+        /* =============================================
+           UPCOMING TALKS — RSS SECTION
+        ============================================= */
+        .upcoming-section {
+            background-color: var(--cream);
+            border: 1px solid #d1caba;
+            border-radius: 10px;
+            padding: 28px 32px;
+            margin-bottom: 40px;
+        }
+
+        .upcoming-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .upcoming-header h2 {
+            margin: 0;
+            font-size: 20px;
+            color: var(--navy);
+            position: relative;
+            padding-bottom: 8px;
+        }
+        .upcoming-header h2::after {
+            content: '';
+            position: absolute; bottom: 0; left: 0;
+            width: 40px; height: 3px;
+            background-color: var(--sage); border-radius: 2px;
+        }
+
+        .upcoming-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .talk-card {
+            background-color: var(--white);
+            border: 1px solid #d1caba;
+            border-radius: 8px;
+            padding: 18px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+            text-decoration: none;
+        }
+        .talk-card:hover {
+            border-color: var(--sage);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+        .talk-card:focus {
+            outline: 3px solid var(--sage);
+            outline-offset: 2px;
+        }
+
+        .talk-date {
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--sage);
+        }
+
+        .talk-title {
+            font-size: 15px;
+            font-weight: bold;
+            color: var(--navy);
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .talk-desc {
+            font-size: 13px;
+            color: var(--charcoal);
+            line-height: 1.5;
+            margin: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            opacity: 0.85;
+        }
+
+        .talk-register {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--navy);
+            text-decoration: underline dotted;
+            margin-top: 4px;
+        }
+
+        .rss-loading, .rss-error, .rss-empty {
+            font-size: 14px;
+            color: var(--charcoal);
+            opacity: 0.7;
+            padding: 10px 0;
+        }
+
+        .rss-loading::before { content: '⏳ '; }
+        .rss-error::before   { content: '⚠️ '; }
+        .rss-empty::before   { content: '📅 '; }
+
+        /* =============================================
+           MAIN CONTENT WRAPPER
+        ============================================= */
+        .page-body {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 40px 50px 60px;
+        }
+
+        /* =============================================
+           FEATURED VIDEO
+        ============================================= */
+        .featured-section {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 28px;
+            margin-bottom: 40px;
+            align-items: start;
+        }
+
+        .featured-embed-wrap {
+            position: relative; width: 100%; padding-bottom: 56.25%;
+            background: #000; border-radius: 8px; overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+        }
+        .featured-embed-wrap iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
+        }
+
+        .featured-meta {
+            background-color: var(--cream); border: 1px solid #d1caba;
+            border-radius: 8px; padding: 22px;
+            display: flex; flex-direction: column; gap: 13px;
+        }
+
+        .featured-label { font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: var(--sage); }
+        .featured-title { font-size: 18px; font-weight: bold; color: var(--navy); line-height: 1.35; margin: 0; }
+        .featured-playlist-tag {
+            display: inline-block; background-color: var(--navy); color: var(--white);
+            font-size: 11px; font-weight: bold; text-transform: uppercase;
+            letter-spacing: 0.8px; padding: 4px 10px; border-radius: 4px; width: fit-content;
+        }
+        .featured-desc { font-size: 13px; color: var(--charcoal); line-height: 1.6; margin: 0; }
+        .featured-duration { font-size: 12px; color: var(--charcoal); opacity: 0.65; }
+
+        .btn-outline {
+            display: inline-flex; align-items: center; gap: 6px;
+            color: var(--navy); font-weight: bold; font-size: 13px;
+            border: 2px solid var(--navy); padding: 8px 14px;
+            border-radius: 6px; transition: background 0.2s, color 0.2s; width: fit-content;
+        }
+        .btn-outline:hover { background-color: var(--navy); color: var(--white); }
+
+        /* =============================================
+           LAYOUT TOGGLE — remove before production
+        ============================================= */
+        .layout-toggle-bar {
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 12px;
+            background-color: var(--cream); border: 1px solid #d1caba;
+            border-radius: 8px; padding: 14px 20px; margin-bottom: 28px;
+        }
+        .layout-toggle-label { font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: var(--charcoal); opacity: 0.65; }
+        .layout-btn-group { display: flex; gap: 8px; }
+        .layout-btn {
+            padding: 7px 16px; font-size: 13px; font-weight: bold;
+            border: 2px solid var(--navy); color: var(--navy);
+            border-radius: 6px; cursor: pointer; background: transparent;
+            transition: background 0.15s, color 0.15s;
+        }
+        .layout-btn.active { background-color: var(--navy); color: var(--white); }
+        .layout-btn:hover:not(.active) { background-color: var(--cream); }
+
+        /* =============================================
+           SECTION HEADING
+        ============================================= */
+        .section-heading {
+            display: flex; align-items: baseline; justify-content: space-between;
+            margin-bottom: 20px; flex-wrap: wrap; gap: 10px;
+            border-top: 1px solid var(--cream); padding-top: 32px;
+        }
+        .section-heading h2 { margin: 0; font-size: 22px; color: var(--navy); position: relative; padding-bottom: 8px; }
+        .section-heading h2::after { content: ''; position: absolute; bottom: 0; left: 0; width: 48px; height: 3px; background-color: var(--sage); border-radius: 2px; }
+        .section-count { font-size: 13px; color: var(--charcoal); opacity: 0.6; }
+        .see-all-link { font-size: 13px; font-weight: bold; color: var(--navy); text-decoration: underline dotted; white-space: nowrap; }
+        .see-all-link:hover { color: var(--sage); }
+
+        /* =============================================
+           LAYOUT B — GRID
+        ============================================= */
+        .video-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+        /* =============================================
+           VIDEO CARD — shared
+        ============================================= */
+        .video-card {
+            background-color: var(--cream); border: 1px solid #d1caba;
+            border-radius: 8px; overflow: hidden; cursor: pointer;
+            transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+        }
+        .video-card:hover { border-color: var(--sage); box-shadow: 0 4px 14px rgba(0,0,0,0.10); transform: translateY(-2px); }
+        .video-card:focus { outline: 3px solid var(--sage); outline-offset: 2px; }
+        .video-card.is-playing { border-color: var(--navy) !important; box-shadow: 0 0 0 3px rgba(9,73,122,0.2) !important; }
+
+        .thumb-wrap { position: relative; width: 100%; padding-bottom: 56.25%; background: #111; overflow: hidden; }
+        .thumb-wrap img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 0.2s; }
+        .video-card:hover .thumb-wrap img { opacity: 0.85; }
+
+        .thumb-play {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 40px; height: 40px; background: rgba(9,73,122,0.82); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;
+        }
+        .video-card:hover .thumb-play,
+        .video-card:focus .thumb-play { opacity: 1; }
+        .thumb-play svg { width: 17px; height: 17px; fill: #fff; margin-left: 3px; }
+
+        .duration-badge { position: absolute; bottom: 5px; right: 5px; background: rgba(0,0,0,0.78); color: #fff; font-size: 11px; font-weight: bold; padding: 2px 5px; border-radius: 3px; }
+
+        .card-body { padding: 10px 12px 13px; }
+        .card-title { font-size: 13px; font-weight: bold; color: var(--navy); line-height: 1.35; margin: 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+        /* =============================================
+           FOOTER
+        ============================================= */
+        footer {
+            border-top: 2px solid var(--cream); padding: 28px 50px;
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 20px; background-color: var(--white);
+        }
+        .footer-center { flex: 2; text-align: center; font-size: 13px; line-height: 1.6; color: var(--charcoal); min-width: 280px; }
+        .footer-center a { color: var(--navy); text-decoration: underline; font-weight: bold; }
+
+        /* =============================================
+           RESPONSIVE
+        ============================================= */
+        @media (max-width: 1100px) { .video-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 860px) {
+            .featured-section { grid-template-columns: 1fr; }
+            .video-grid { grid-template-columns: repeat(2, 1fr); }
+            .page-body { padding: 24px 24px 48px; }
+            .page-hero { padding: 28px 24px; }
+            header { padding: 10px 20px; }
+            nav { padding: 0 20px; gap: 16px; font-size: 13px; }
+            footer { padding: 24px 20px; }
+            .upcoming-section { padding: 22px 20px; }
+        }
+        @media (max-width: 540px) {
+            .video-grid { grid-template-columns: 1fr; }
+            #layout-a .video-card { flex: 0 0 180px; }
+            .page-hero img.talks-logo { height: 55px; }
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HEADER — verbatim from Header_NavBar.html
+══════════════════════════════════════════ -->
+<header>
+<div class="brand">
+<a href="#">
+<img src="https://www.jewishgen.org/JG/Images/JGlogo.svg"
+alt="JewishGen: The Global Home for Jewish Genealogy"
+class="light-logo" style="height: 55px; width: auto; object-fit: contain;">
+<img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png"
+alt="JewishGen: The Global Home for Jewish Genealogy"
+class="dark-logo" style="height: 55px; width: auto; object-fit: contain;">
+</a>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+<button onclick="document.body.classList.toggle('dark-mode')"
+style="background: var(--cream); color: var(--navy); border: 1px solid #d1caba;
+padding: 4px 10px; border-radius: 20px; cursor: pointer;
+font-size: 11px; font-weight: bold;"
+aria-label="Toggle dark mode">
+🌗 Toggle Dark Mode
+</button>
+<div style="display: flex; gap: 8px;">
+<a href="#" style="padding: 7px 15px; border: 2px solid var(--navy); color: var(--navy);
+font-weight: bold; font-size: 13px; border-radius: 6px;">Log In</a>
+<a href="#" style="padding: 7px 15px; background-color: var(--sage); color: var(--white);
+font-weight: bold; font-size: 13px; border-radius: 6px;">Sign Up</a>
+</div>
+<div style="text-align: right; margin-top: 2px;">
+<div style="font-size: 10px; color: var(--charcoal); margin-bottom: 3px;">
+The Genealogical Research Division of
+</div>
+<a href="https://mjhnyc.org/" target="_blank" rel="noopener">
+<img src="https://www.jewishgen.org/images/MJH-Circle-Logo.svg"
+alt="Museum of Jewish Heritage" class="light-logo" style="height: 32px; width: auto;">
+<img src="https://d3k74ww17vqc8e.cloudfront.net/app/uploads/2019/10/18145838/MJH-Circle-icon_Logo.png"
+alt="Museum of Jewish Heritage" class="dark-logo" style="height: 32px; width: auto;">
+</a>
+</div>
+</div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     NAVIGATION — 
+     JewishGen Talks promoted to active top-level item
+══════════════════════════════════════════ -->
+
+<nav class="main-nav" aria-label="Main navigation">
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Databases ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Global Search</a>
+            <a href="#" role="menuitem">Country &amp; Regional Databases</a>
+            <a href="#" role="menuitem">Holocaust Database</a>
+            <a href="#" role="menuitem">Burial Registry (JOWBR)</a>
+            <a href="#" role="menuitem">Records Catalog</a>
+            <a href="#" role="menuitem">Family Trees (FTJP)</a>
+            <a href="#" role="menuitem">Text Search</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Communities ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Regional/Topical Research Divisions</a>
+            <a href="#" role="menuitem">Town Finder</a>
+            <a href="#" role="menuitem">KehilaLinks</a>
+            <a href="#" role="menuitem">Yizkor Books</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Learn &amp; Connect ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Online Classes</a>
+            <a href="#" role="menuitem">How to JewishGen &amp; FAQ</a>
+            <a href="#" role="menuitem">Peter &amp; Mary Kalikow Center</a>
+            <a href="#" role="menuitem">Family Finder</a>
+            <a href="#" role="menuitem">Discussion Group</a>
+            <a href="#" role="menuitem">ViewMate</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Events &amp; Programs ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Upcoming Events Calendar</a>
+            <a href="#" role="menuitem">JewishGen Talks</a>
+            <a href="#" role="menuitem">Student Program in Poland</a>
+            <a href="#" role="menuitem">Study &amp; Service Tour of Poland</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">Publications ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">JewishGen Press</a>
+            <a href="#" role="menuitem">Newsletters</a>
+            <a href="#" role="menuitem">Holiday Companions</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true">About &amp; Support ▾</span>
+        <div class="dropdown-content" role="menu">
+            <a href="#" role="menuitem">Mission</a>
+            <a href="#" role="menuitem">Our Team</a>
+            <a href="#" role="menuitem">Donate Now</a>
+            <a href="#" role="menuitem">Planned Giving</a>
+            <a href="#" role="menuitem">Wall of Honor</a>
+        </div>
+    </div>
+</nav>
+<!-- ══════════════════════════════════════════
+     BREADCRUMB — cream strip breaks nav from hero
+     matches pattern in community-valkininkai.html
+══════════════════════════════════════════ -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="#">Home</a>
+    <span>›</span>
+    <a href="#">Events &amp; Programs</a>
+    <span>›</span>
+    JewishGen Talks
+</nav>
+
+<!-- ══════════════════════════════════════════
+     PAGE HERO BAND — logo only, no buttons
+══════════════════════════════════════════ -->
+<div class="page-hero">
+    <img src="https://www.jewishgen.org/JG/Images/JGTalksLogoWhite.png"
+         alt="JewishGen Talks"
+         class="talks-logo">
+</div>
+
+<!-- Description bar — cream, sits below navy hero -->
+<div class="page-desc-bar">
+    <p>Free genealogy lectures from leading experts — watch past talks or register for upcoming live programs.</p>
+</div>
+
+<!-- ══════════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════════ -->
+<main class="page-body" id="main-content">
+
+    <!-- ── UPCOMING TALKS ────────────────────────────────────────────
+         PLACEHOLDER — connect to RSS feed or CMS when ready.
+         Section structure and styles are preserved for that integration.
+    ─────────────────────────────────────────────────────────────── -->
+    <section id="upcoming" aria-labelledby="upcoming-heading">
+        <div class="upcoming-section">
+            <div class="upcoming-header">
+                <h2 id="upcoming-heading">Upcoming Talks</h2>
+                <a href="https://www.jewishgen.org/live"
+                   target="_blank" rel="noopener"
+                   class="btn-navy-outline"
+                   aria-label="See all upcoming talks and register (opens in new tab)">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
+                    All Upcoming Events
+                </a>
+            </div>
+            <div class="upcoming-cards">
+                <a href="https://www.jewishgen.org/live"
+                   target="_blank" rel="noopener"
+                   class="talk-card"
+                   aria-label="Register for upcoming JewishGen Talks">
+                    <span class="talk-date">Coming Soon</span>
+                    <p class="talk-title">Next JewishGen Talk — Date &amp; Topic TBA</p>
+                    <p class="talk-desc">Upcoming talk details will appear here. All JewishGen Talks are free to attend.</p>
+                    <span class="talk-register">Register at jewishgen.org/live ›</span>
+                </a>
+                <a href="https://www.jewishgen.org/live"
+                   target="_blank" rel="noopener"
+                   class="talk-card"
+                   aria-label="See full schedule at jewishgen.org/live">
+                    <span class="talk-date">Coming Soon</span>
+                    <p class="talk-title">Upcoming Talk — Topic TBA</p>
+                    <p class="talk-desc">Check jewishgen.org/live for the latest schedule and registration links.</p>
+                    <span class="talk-register">Register at jewishgen.org/live ›</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FEATURED VIDEO ────────────────────────────────────────── -->
+    <section aria-labelledby="featured-title-el">
+        <div class="featured-section">
+            <div class="featured-embed-wrap">
+                <!-- Default: "The Hare with Amber Eyes" — highest view count (10K) -->
+                <iframe id="featured-iframe"
+                        src="https://www.youtube.com/embed/aWTIFoqW0yg?rel=0"
+                        title="Featured JewishGen Talk"
+                        allowfullscreen
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        loading="lazy">
+                </iframe>
+            </div>
+            <div class="featured-meta" role="complementary" aria-label="Video details">
+                <span class="featured-label">▶ Now Playing</span>
+                <h2 class="featured-title" id="featured-title-el">&#8220;The Hare with Amber Eyes&#8221;: A Glimpse into some Jewish Families of Vienna</h2>
+                    &#8220;The Hare with Amber Eyes&#8221;: A Glimpse into some Jewish Families of Vienna
+                </h2>
+                <span class="featured-playlist-tag">JewishGen Talks</span>
+                <p class="featured-desc" id="featured-desc-el">
+                    Click any talk below to watch it here. All talks are free — past recordings are available anytime, and new lectures are added regularly.
+                </p>
+                <span class="featured-duration" id="featured-duration-el"></span>
+                <a class="btn-outline" id="featured-yt-link"
+                   href="https://www.youtube.com/watch?v=aWTIFoqW0yg"
+                   target="_blank" rel="noopener"
+                   aria-label="Watch this video on YouTube (opens in new tab)">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.8 8s-.2-1.4-.8-2c-.8-.8-1.6-.8-2-.9C16.2 5 12 5 12 5s-4.2 0-7 .1c-.4.1-1.3.1-2 .9-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.5c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.8.8 1.8.8 2.2.8C6.6 19 12 19 12 19s4.2 0 7-.2c.4-.1 1.3-.1 2-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.5C22 9.6 21.8 8 21.8 8zM9.7 14.5V9.3l5.4 2.6-5.4 2.6z"/></svg>
+                    Watch on YouTube
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAST TALKS GRID -->
+    <div>
+        <div class="section-heading">
+            <h2>Past Talks</h2>
+            <span class="section-count" id="grid-count">Showing 8 most recent</span>
+            <a class="see-all-link"
+               href="https://www.youtube.com/playlist?list=PL2SY5Vnun7fmaXzzTT-O1ozboh1k3xYyV"
+               target="_blank" rel="noopener">View Full Playlist on YouTube ›</a>
+        </div>
+        <div class="video-grid" id="video-grid-b" role="list"></div>
+        <div style="text-align:center; margin-top:28px;">
+            <button id="show-all-btn" class="btn-navy-outline" onclick="showAllVideos()"
+                    aria-label="Show all 44 past talks">
+                Show All 44 Talks ▾
+            </button>
+        </div>
+    </div>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+    <footer style="background-color: var(--cream); padding: 30px 50px; border-top: 4px solid var(--navy);">
+        <div style="max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; width: 100%;">
+            <div style="flex: 1; min-width: 250px;">
+                <a href="#">
+                    <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg" alt="JewishGen Logo" class="light-logo" style="height: 60px; width: auto; object-fit: contain;">
+                    <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png" alt="JewishGen Logo" class="dark-logo" style="height: 60px; width: auto; object-fit: contain;">
+                </a>
+            </div>
+            <div style="flex: 2; text-align: center; font-size: 13px; line-height: 1.6; color: var(--charcoal); min-width: 300px;">
+                Edmond J. Safra Plaza | 36 Battery Place | New York, NY 10280<br>
+                646.494.2972 | <a href="/cdn-cgi/l/email-protection#5d34333b321d37382a342e353a383373322f3a" style="color: var(--navy); text-decoration: underline; font-weight: bold;"><span class="__cf_email__" data-cfemail="0d64636b624d67687a647e656a686323627f6a">[email&#160;protected]</span></a> | © 2026, JewishGen, Inc. <a href="#" style="text-decoration: underline;">All rights reserved.</a>
+            </div>
+            <div style="flex: 1; display: flex; justify-content: flex-end; align-items: center; min-width: 250px;">
+                <a href="https://mjhnyc.org/" target="_blank" rel="noopener">
+                    <img src="https://www.jewishgen.org/images/MJH-Circle-Logo.svg" alt="Museum of Jewish Heritage" class="light-logo" style="height: 45px; width: auto;">
+                    <img src="https://d3k74ww17vqc8e.cloudfront.net/app/uploads/2019/10/18145838/MJH-Circle-icon_Logo.png" alt="Museum of Jewish Heritage" class="dark-logo" style="height: 45px; width: auto;">
+                </a>
+            </div>
+        </div>
+    </footer>
+
+<!-- ══════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════ -->
+<script>
+
+/* ── VIDEO LIBRARY ──────────────────────────────────────────────────
+   ★ = confirmed YouTube video ID
+   NEED_ID_xx = replace with real YouTube ID
+   Playlist URL: PL2SY5Vnun7fmaXzzTT-O1ozboh1k3xYyV
+   Order: newest first
+   NOTE: "Annual Purim Party 2022" (NEED_ID_17) — include or exclude?
+────────────────────────────────────────────────────────────────── */
+const VIDEOS = [
+    { id: 'NEED_ID_44', title: 'JewishGen Talks: Treasures for Your Tree \u2013 Finding Family Genealogical Ephemera in Archives', duration: '' },
+    { id: 'NEED_ID_43', title: 'JewishGen Talks: Souls, Taxes, and Real Estate', duration: '' },
+    { id: 'NEED_ID_42', title: 'JewishGen Talks: The Dash: Finding the Person in the Papers', duration: '' },
+    { id: 'NEED_ID_41', title: 'JewishGen Talks: No, Your Ancestors\u2019 Names Were Not Changed at Ellis Island', duration: '' },
+    { id: 'NEED_ID_40', title: 'JewishGen Talks: Exploring the Izmir, Turkey Census', duration: '' },
+    { id: 'NEED_ID_39', title: 'JewishGen Talks: S\u00fc\u00dfkind Stern: One of the Earliest Known Portraits of a German Jew', duration: '' },
+    { id: 'NEED_ID_38', title: 'JewishGen Talks: Discovering Jewish Civil War Soldiers through the Shapell Roster and JewishGen', duration: '' },
+    { id: 'NEED_ID_37', title: 'JewishGen Talks: Sephardim in Colonial America', duration: '' },
+    { id: 'NEED_ID_36', title: 'JewishGen Talks: Help! I Got My DNA Results and I\u2019m Confused \u2014 Part 1.25', duration: '' },
+    { id: 'NEED_ID_35', title: 'JewishGen Talks: Post 1492 Sephardic Dispersion and A Guide to Sephardic Genealogy', duration: '' },
+    { id: 'NEED_ID_34', title: 'JewishGen Talks: A Ray of Light in the Depths of Darkness: Chiune Sugihara and His Legacy', duration: '' },
+    { id: 'NEED_ID_33', title: 'JewishGen Talks: En el nombre de Dio Amen: Notarial Archives and Sephardic Genealogy', duration: '' },
+    { id: 'NEED_ID_32', title: 'JewishGen Talks: Jewish Heritage Words: Connecting to Our Ancestors and Communities', duration: '' },
+    { id: 'NEED_ID_31', title: 'JewishGen Talks: Sunrise, Sunset: Beginning Your Journey into Ashkenazi Jewish Genealogy', duration: '' },
+    { id: 'NEED_ID_30', title: 'JewishGen Talks: Illegitimacy in the Jewish Communities of Galicia', duration: '' },
+    { id: 'NEED_ID_29', title: 'JewishGen Talk: In Our Time: Legacy Writing, An Introduction', duration: '' },
+    { id: 'NEED_ID_28', title: 'Fioretta Presentation/Q&A', duration: '' },
+    { id: 'NEED_ID_27', title: 'Sephardic Names in the Ottoman Empire as Traces of the History of Judeo-Spanish/Ladino', duration: '' },
+    { id: 'NEED_ID_26', title: 'JewishGen Talks: Jews of the Land of Israel before the First Aliyah \u2014 Their Names & History', duration: '' },
+    { id: 'NEED_ID_25', title: 'JewishGen Talks: Genealogical Resources in Israel', duration: '' },
+    { id: '6fsw-JTIrtE', title: 'JewishGen Talks: Focus on Lake Erie Region Resources (Cleveland, Detroit, and Western Pennsylvania)', duration: '' },
+    { id: 'kMbPI-KeW5s', title: 'JewishGen Talks: Shapell Roster of Jewish Service in the American Civil War', duration: '' },
+    { id: 'NEED_ID_22', title: 'JewishGen Talks: Baghdadi Jews Who Lost Their Iraqi Nationality in 1951 with Dr. Jacob Rosen', duration: '' },
+    { id: 'NEED_ID_21', title: 'JewishGen Talks: Patronymic Naming and Cemetery Records \u2014 Their Importance in Jewish Genealogy', duration: '' },
+    { id: 'NEED_ID_20', title: 'JewishGen Talks: The Basics of Research in Israel', duration: '' },
+    { id: 'NEED_ID_19', title: 'JewishGen Talks: The Lives of our Educated Ancestors', duration: '' },
+    { id: 'NEED_ID_18', title: 'The Ships of our Ancestors \u2014 with Hal Bookbinder', duration: '' },
+    { id: 'NEED_ID_17', title: 'Annual Purim Party 2022', duration: '' }, // ← EDITORIAL FLAG: include?
+    { id: 'NEED_ID_16', title: 'Jewish Surnames and Patronymics \u2014 Tracing Your Ancestors before they had Surnames', duration: '' },
+    { id: 'NEED_ID_15', title: 'Jewish Genealogy in the Germanies', duration: '' },
+    { id: 'NEED_ID_14', title: 'Tips & Tricks to using JewishGen', duration: '' },
+    { id: 'NEED_ID_13', title: 'The Czech Torah Scroll Story: From the Holocaust to the Diaspora', duration: '' },
+    { id: 'NEED_ID_12', title: 'You Can\u2019t Find the Records \u2014 Now What?', duration: '' },
+    { id: 'aWTIFoqW0yg', title: '\u201cThe Hare with Amber Eyes\u201d: A Glimpse into some Jewish Families of Vienna', duration: '' },
+    { id: 'NEED_ID_10', title: 'JewishGen Talks: Researching Jewish Families in America', duration: '' },
+    { id: 'NEED_ID_09', title: 'PANEL: Polish-Jewish Genealogy & Protecting Polish Jewish Cemeteries', duration: '1:00:41' },
+    { id: 'NEED_ID_08', title: 'Translating Russian Documents for the Non-Russian Speaker with Dr. Alan Levine', duration: '50:31' },
+    { id: 'NEED_ID_07', title: 'What the Jewish Genealogist Needs to Know About Jewish Names', duration: '1:15:17' },
+    { id: 'NEED_ID_06', title: 'From DNA to Genetic Genealogy: Everything you wanted to know but were afraid to ask.', duration: '1:00:50' },
+    { id: 'NEED_ID_05', title: 'Manifest Destiny: Names at Ellis Island', duration: '1:00:06' },
+    { id: 'NEED_ID_04', title: 'Privacy and Genealogy: What Are The Rules?', duration: '' },
+    { id: 'NEED_ID_03', title: 'Rescue and Resettlement: Researching Refugees from Nazi Europe', duration: '31:01' },
+    { id: 'NEED_ID_02', title: 'Researching NYC Records Remotely', duration: '1:03:53' },
+    { id: 'NEED_ID_01', title: 'Tracing Your Jewish Roots through Catholic and Inquisition Records', duration: '56:10' },
+];
+
+function thumbUrl(id) {
+    if (!id || id.startsWith('NEED_ID')) return 'https://placehold.co/480x270/09497a/ffffff?text=Coming+Soon';
+    return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+}
+function embedUrl(id) {
+    if (!id || id.startsWith('NEED_ID')) return 'about:blank';
+    return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+}
+function watchUrl(id) {
+    if (!id || id.startsWith('NEED_ID')) return 'https://www.youtube.com/playlist?list=PL2SY5Vnun7fmaXzzTT-O1ozboh1k3xYyV';
+    return `https://www.youtube.com/watch?v=${id}`;
+}
+
+function playVideo(id, title, duration, desc) {
+    document.getElementById('featured-iframe').src = embedUrl(id);
+    document.getElementById('featured-iframe').title = title;
+    document.getElementById('featured-title-el').textContent = title;
+    document.getElementById('featured-duration-el').textContent = duration ? '\u23f1 ' + duration : '';
+    document.getElementById('featured-yt-link').href = watchUrl(id);
+    document.getElementById('featured-desc-el').textContent = desc || '';
+    
+    document.querySelectorAll('.video-card').forEach(c => c.classList.remove('is-playing'));
+    document.querySelectorAll(`[data-id="${id}"]`).forEach(c => c.classList.add('is-playing'));
+    
+    // Smooth scroll to the center of the screen
+    document.querySelector('.featured-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function buildCard(v) {
+    const card = document.createElement('div');
+    card.className = 'video-card';
+    card.setAttribute('role', 'listitem');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('data-id', v.id);
+    card.setAttribute('aria-label', `Play: ${v.title}${v.duration ? ' \u2014 ' + v.duration : ''}`);
+    card.onclick = () => playVideo(v.id, v.title, v.duration);
+    card.onkeydown = (e) => { if (e.key === 'Enter' || e.key === ' ') { card.click(); e.preventDefault(); } };
+    card.innerHTML = `
+        <div class="thumb-wrap">
+            <img src="${thumbUrl(v.id)}" alt="${v.title.replace(/"/g,'&quot;')} thumbnail" loading="lazy">
+            <div class="thumb-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            ${v.duration ? `<span class="duration-badge" aria-hidden="true">${v.duration}</span>` : ''}
+        </div>
+        <div class="card-body"><p class="card-title">${v.title}</p></div>
+    `;
+    return card;
+}
+
+function showAllVideos() {
+    const grid = document.getElementById('video-grid-b');
+    const btn  = document.getElementById('show-all-btn');
+    const count = document.getElementById('grid-count');
+    // Add remaining videos (index 9 onward)
+    VIDEOS.slice(8).forEach(v => grid.appendChild(buildCard(v)));
+    count.textContent = '44 videos';
+    btn.style.display = 'none';
+    // Mark featured as playing if it's in the newly added cards
+    document.querySelectorAll('[data-id="aWTIFoqW0yg"]').forEach(c => c.classList.add('is-playing'));
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const gridB = document.getElementById('video-grid-b');
+
+    // Show 8 most recent on load
+    VIDEOS.slice(0, 8).forEach(v => gridB.appendChild(buildCard(v)));
+
+    document.querySelectorAll('[data-id="aWTIFoqW0yg"]').forEach(c => c.classList.add('is-playing'));
+});
+</script>
+
+</body>
+</html>
