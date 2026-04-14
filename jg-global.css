@@ -176,7 +176,20 @@ body.dark-mode .jg-sponsor-banner strong { color: #e0e0e0; }
 .jg-sponsor-banner__dedicate { display: block; margin-top: 0.3rem; font-size: 0.8125rem; font-style: normal; }
 .jg-sponsor-banner__dedicate a { color: var(--navy); text-decoration: underline; font-weight: bold; }
 .jg-sponsor-banner__dedicate a:hover { color: var(--sage); }
+/* ══════════════════════════════════════════════════════ 
+BREADCRUMB ALIGNMENT 
+══════════════════════════════════════════════════════ */
+.breadcrumb {
+    text-align: left;
+    margin: 0;
+}
 
+/* ══════════════════════════════════════════════════════ 
+PAGE TITLE BAND ALIGNMENT 
+══════════════════════════════════════════════════════ */
+.page-title-band {
+    text-align: center;
+}
 /* ══════════════════════════════════════════════════════
    HERO SEARCH
 ══════════════════════════════════════════════════════ */
