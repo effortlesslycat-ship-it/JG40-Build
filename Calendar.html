@@ -4,94 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upcoming Events Calendar — JewishGen</title>
-    <link rel="stylesheet" href="global.css">
+
+    <!-- 1. Bootstrap (layout only — design tokens override below) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <!-- 2. JewishGen Global Design System -->
+    <link rel="stylesheet" href="jg-global.css">
+
+    <!-- 3. Page-specific styles (Events Calendar only) -->
     <style>
-
-        /* ============================================
-           GLOBAL BASE STYLES
-           (Included here for standalone demo only.
-            In production, global.css handles these.)
-        ============================================ */
-
-        :root {
-            --cream: #e8e1d1;
-            --sage:   #939b51;
-            --navy:   #09497a;
-            --charcoal: #232b2b;
-            --white:  #ffffff;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: var(--charcoal);
-            background-color: var(--white);
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
 
         a { text-decoration: none; color: inherit; }
 
-        /* ── Header ── */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 50px;
-            border-bottom: 2px solid var(--cream);
-        }
-
-        /* ── Nav ── */
-        nav {
-            background-color: var(--navy);
-            color: var(--white);
-            padding: 0 50px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .dropdown { position: relative; display: inline-block; }
-        .dropbtn  { display: block; padding: 15px 0; cursor: pointer; }
-        .dropdown:hover .dropbtn { color: var(--sage); }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: var(--white);
-            min-width: 250px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15);
-            z-index: 100;
-            top: 100%; left: 0;
-            border-top: 3px solid var(--sage);
-            border-radius: 0 0 6px 6px;
-            overflow: hidden;
-        }
-
-        .dropdown-content a {
-            color: var(--navy);
-            padding: 12px 20px;
-            text-decoration: none;
-            display: block;
-            text-transform: none;
-            font-weight: normal;
-            font-size: 15px;
-            border-bottom: 1px solid var(--cream);
-        }
-
-        .dropdown-content a:last-child { border-bottom: none; }
-        .dropdown-content a:hover { background-color: var(--cream); color: var(--navy); font-weight: bold; }
-        .dropdown:hover .dropdown-content { display: block; }
-
-        /* ── Logo visibility ── */
-        .light-logo { display: inline; }
-        .dark-logo  { display: none; }
-
-        /* ── Breadcrumb — matches Izmir canonical style ── */
+        /* ── Breadcrumb ────────────────────────────────────────── */
         .breadcrumb {
             background-color: var(--cream);
             padding: 10px 50px;
@@ -102,45 +27,23 @@
             font-weight: normal;
             letter-spacing: 0;
         }
-
-        .breadcrumb a {
-            color: var(--navy);
-            font-weight: bold;
-            text-decoration: underline dotted;
-        }
-
+        .breadcrumb a { color: var(--navy); font-weight: bold; text-decoration: underline dotted; }
         .breadcrumb a:hover { color: var(--sage); }
         .breadcrumb span { margin: 0 6px; color: var(--charcoal); opacity: 0.5; }
 
-        /* ── Page Title Band ── */
+        /* ── Page title band ───────────────────────────────────── */
         .page-title-band {
             background-color: var(--navy);
             color: var(--white);
             padding: 28px 50px;
         }
+        .page-title-band h1 { margin: 0 0 4px 0; font-size: 26px; font-weight: bold; }
+        .page-title-band p  { margin: 0; font-size: 14px; color: rgba(255,255,255,0.75); }
 
-        .page-title-band h1 {
-            margin: 0 0 4px 0;
-            font-size: 26px;
-            font-weight: bold;
-        }
+        /* ── Main container ────────────────────────────────────── */
+        .page-container { max-width: 1100px; margin: 0 auto; padding: 36px 50px 60px; }
 
-        .page-title-band p {
-            margin: 0;
-            font-size: 14px;
-            color: rgba(255,255,255,0.75);
-        }
-
-        /* ── Main Container ── */
-        .page-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 36px 50px 60px;
-        }
-
-        /* ══════════════════════════════════════
-           TOP PANEL: Kalikow + CTAs
-        ══════════════════════════════════════ */
+        /* ── Top panel: Kalikow + CTAs ─────────────────────────── */
         .top-panel {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -156,48 +59,14 @@
             padding: 24px 28px;
             border-right: 2px solid var(--navy);
         }
+        .kalikow-block h2 { margin: 0 0 4px 0; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--charcoal); font-weight: bold; }
+        .kalikow-block .kalikow-name { font-size: 16px; font-weight: bold; color: var(--navy); margin: 0 0 16px 0; }
 
-        .kalikow-block h2 {
-            margin: 0 0 4px 0;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--charcoal);
-            font-weight: bold;
-        }
+        .hours-grid { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: 14px; }
+        .hours-day  { font-weight: bold; color: var(--charcoal); }
+        .hours-time { color: var(--charcoal); }
+        .closure-notice { margin-top: 14px; font-size: 12px; color: var(--charcoal); opacity: 0.75; font-style: italic; }
 
-        .kalikow-block .kalikow-name {
-            font-size: 16px;
-            font-weight: bold;
-            color: var(--navy);
-            margin: 0 0 16px 0;
-        }
-
-        .hours-grid {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 6px 16px;
-            font-size: 14px;
-        }
-
-        .hours-day {
-            font-weight: bold;
-            color: var(--charcoal);
-        }
-
-        .hours-time {
-            color: var(--charcoal);
-        }
-
-        .closure-notice {
-            margin-top: 14px;
-            font-size: 12px;
-            color: var(--charcoal);
-            opacity: 0.75;
-            font-style: italic;
-        }
-
-        /* CTA block */
         .cta-block {
             background-color: var(--cream);
             padding: 24px 28px;
@@ -206,598 +75,160 @@
             justify-content: space-between;
             gap: 14px;
         }
-
-        .cta-block h2 {
-            margin: 0 0 4px 0;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--charcoal);
-            font-weight: bold;
-        }
-
-        .cta-block .talks-name {
-            font-size: 16px;
-            font-weight: bold;
-            color: var(--navy);
-            margin: 0 0 16px 0;
-        }
+        .cta-block h2 { margin: 0 0 4px 0; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--charcoal); font-weight: bold; }
+        .cta-block .talks-name { font-size: 16px; font-weight: bold; color: var(--navy); margin: 0 0 16px 0; }
 
         .cta-btn {
-            display: block;
-            text-align: center;
-            padding: 13px 20px;
-            border-radius: 7px;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: opacity 0.2s ease, background-color 0.2s ease;
-            line-height: 1.3;
+            display: block; text-align: center; padding: 13px 20px; border-radius: 7px;
+            font-size: 14px; font-weight: bold; cursor: pointer;
+            transition: opacity 0.2s ease; line-height: 1.3;
         }
-
         .cta-btn:hover { opacity: 0.88; }
+        .cta-primary   { background-color: var(--sage); color: var(--white); }
+        .cta-secondary { background-color: var(--navy); color: var(--white); border: 2px solid var(--navy); }
 
-        .cta-primary {
-            background-color: var(--sage);
-            color: var(--white);
-        }
+        /* ── Controls bar ──────────────────────────────────────── */
+        .controls-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
 
-        .cta-secondary {
-            background-color: var(--navy);
-            color: var(--white);
-            border: 2px solid var(--navy);
-        }
-
-        /* ══════════════════════════════════════
-           TOGGLE BAR
-        ══════════════════════════════════════ */
-        .controls-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .month-nav {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
+        .month-nav { display: flex; align-items: center; gap: 14px; }
         .month-nav button {
-            background: none;
-            border: 2px solid var(--navy);
-            color: var(--navy);
-            width: 34px; height: 34px;
-            border-radius: 6px;
-            font-size: 16px;
-            cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            transition: background-color 0.2s ease;
+            background: none; border: 2px solid var(--navy); color: var(--navy);
+            width: 34px; height: 34px; border-radius: 6px; font-size: 16px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; transition: background-color 0.2s ease;
         }
+        .month-nav button:hover { background-color: var(--navy); color: var(--white); }
+        .month-label { font-size: 18px; font-weight: bold; color: var(--navy); min-width: 180px; text-align: center; }
 
-        .month-nav button:hover {
-            background-color: var(--navy);
-            color: var(--white);
-        }
+        .view-toggle { display: flex; border: 2px solid var(--navy); border-radius: 7px; overflow: hidden; }
+        .view-toggle button { background: none; border: none; padding: 7px 16px; font-size: 13px; font-weight: bold; cursor: pointer; color: var(--navy); transition: background-color 0.2s ease, color 0.2s ease; }
+        .view-toggle button.active { background-color: var(--navy); color: var(--white); }
+        .view-toggle button:not(.active):hover { background-color: var(--cream); }
 
-        .month-label {
-            font-size: 18px;
-            font-weight: bold;
-            color: var(--navy);
-            min-width: 180px;
-            text-align: center;
-        }
-
-        .view-toggle {
-            display: flex;
-            border: 2px solid var(--navy);
-            border-radius: 7px;
-            overflow: hidden;
-        }
-
-        .view-toggle button {
-            background: none;
-            border: none;
-            padding: 7px 16px;
-            font-size: 13px;
-            font-weight: bold;
-            cursor: pointer;
-            color: var(--navy);
-            transition: background-color 0.2s ease, color 0.2s ease;
-        }
-
-        .view-toggle button.active {
-            background-color: var(--navy);
-            color: var(--white);
-        }
-
-        .view-toggle button:not(.active):hover {
-            background-color: var(--cream);
-        }
-
-        /* ══════════════════════════════════════
-           GRID CALENDAR
-        ══════════════════════════════════════ */
+        /* ── Grid calendar ─────────────────────────────────────── */
         .calendar-grid-wrap { display: block; }
         .calendar-list-wrap { display: none; }
 
-        .cal-header-row {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            background-color: var(--navy);
-            color: var(--white);
-            border-radius: 8px 8px 0 0;
-            overflow: hidden;
-        }
+        .cal-header-row { display: grid; grid-template-columns: repeat(7, 1fr); background-color: var(--navy); color: var(--white); border-radius: 8px 8px 0 0; overflow: hidden; }
+        .cal-header-row span { text-align: center; padding: 10px 4px; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
 
-        .cal-header-row span {
-            text-align: center;
-            padding: 10px 4px;
-            font-size: 12px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        .cal-body { display: grid; grid-template-columns: repeat(7, 1fr); border-left: 1px solid #d1caba; border-bottom: 1px solid #d1caba; }
 
-        .cal-body {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            border-left: 1px solid #d1caba;
-            border-bottom: 1px solid #d1caba;
-        }
+        .cal-day { min-height: 90px; border-right: 1px solid #d1caba; border-top: 1px solid #d1caba; padding: 6px; position: relative; background-color: var(--white); vertical-align: top; }
+        .cal-day.empty            { background-color: #f7f4ee; }
+        .cal-day.kalikow-open     { background-color: #f0f4e8; }
+        .cal-day.kalikow-closed-override { background-color: var(--white); }
 
-        .cal-day {
-            min-height: 90px;
-            border-right: 1px solid #d1caba;
-            border-top: 1px solid #d1caba;
-            padding: 6px;
-            position: relative;
-            background-color: var(--white);
-            vertical-align: top;
-        }
+        .day-num { font-size: 12px; font-weight: bold; color: var(--charcoal); display: block; margin-bottom: 4px; }
+        .kalikow-open .day-num { color: var(--navy); }
 
-        .cal-day.empty {
-            background-color: #f7f4ee;
-        }
+        .kalikow-badge { font-size: 10px; font-weight: bold; color: var(--sage); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px; }
 
-        .cal-day.kalikow-open {
-            background-color: #f0f4e8;
-        }
+        .cal-event-chip { background-color: var(--navy); color: var(--white); border-radius: 4px; font-size: 10px; padding: 3px 5px; margin-bottom: 3px; line-height: 1.3; cursor: pointer; display: block; transition: background-color 0.15s ease; }
+        .cal-event-chip:hover   { background-color: var(--sage); }
+        .cal-event-chip.virtual { background-color: var(--sage); }
+        .cal-event-chip.virtual:hover { background-color: var(--navy); }
 
-        .cal-day.kalikow-closed-override {
-            background-color: var(--white);
-        }
+        .cal-day.today { outline: 2px solid var(--sage); outline-offset: -2px; }
+        .cal-day.today .day-num { background-color: var(--sage); color: var(--white); width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
 
-        .day-num {
-            font-size: 12px;
-            font-weight: bold;
-            color: var(--charcoal);
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        .kalikow-open .day-num {
-            color: var(--navy);
-        }
-
-        .kalikow-badge {
-            font-size: 10px;
-            font-weight: bold;
-            color: var(--sage);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        .cal-event-chip {
-            background-color: var(--navy);
-            color: var(--white);
-            border-radius: 4px;
-            font-size: 10px;
-            padding: 3px 5px;
-            margin-bottom: 3px;
-            line-height: 1.3;
-            cursor: pointer;
-            display: block;
-            transition: background-color 0.15s ease;
-        }
-
-        .cal-event-chip:hover {
-            background-color: var(--sage);
-        }
-
-        .cal-event-chip.virtual {
-            background-color: var(--sage);
-        }
-
-        .cal-event-chip.virtual:hover {
-            background-color: var(--navy);
-        }
-
-        /* ── Today highlight ── */
-        .cal-day.today {
-            outline: 2px solid var(--sage);
-            outline-offset: -2px;
-        }
-
-        .cal-day.today .day-num {
-            background-color: var(--sage);
-            color: var(--white);
-            width: 20px; height: 20px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center; justify-content: center;
-        }
-
-        /* ══════════════════════════════════════
-           LIST VIEW
-        ══════════════════════════════════════ */
+        /* ── List view ─────────────────────────────────────────── */
         .event-list { list-style: none; margin: 0; padding: 0; }
-
-        .event-list-item {
-            display: grid;
-            grid-template-columns: 80px 1fr auto;
-            gap: 0 20px;
-            align-items: start;
-            padding: 18px 0;
-            border-bottom: 1px solid #d1caba;
-        }
-
+        .event-list-item { display: grid; grid-template-columns: 80px 1fr auto; gap: 0 20px; align-items: start; padding: 18px 0; border-bottom: 1px solid #d1caba; }
         .event-list-item:last-child { border-bottom: none; }
 
-        .event-date-col {
-            text-align: center;
-        }
+        .event-date-col   { text-align: center; }
+        .event-date-month { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--sage); font-weight: bold; display: block; }
+        .event-date-day   { font-size: 30px; font-weight: bold; color: var(--navy); line-height: 1; display: block; }
+        .event-date-dow   { font-size: 11px; color: var(--charcoal); opacity: 0.7; display: block; }
 
-        .event-date-month {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--sage);
-            font-weight: bold;
-            display: block;
-        }
+        .event-info h3 { margin: 0 0 6px 0; font-size: 15px; color: var(--navy); line-height: 1.3; }
+        .event-info h3 a { color: var(--navy); }
+        .event-info h3 a:hover { color: var(--sage); text-decoration: underline; }
+        .event-time { font-size: 13px; color: var(--charcoal); margin-bottom: 6px; }
 
-        .event-date-day {
-            font-size: 30px;
-            font-weight: bold;
-            color: var(--navy);
-            line-height: 1;
-            display: block;
-        }
+        .event-badge { display: inline-block; font-size: 11px; font-weight: bold; padding: 2px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .badge-virtual  { background-color: var(--sage); color: var(--white); }
+        .badge-inperson { background-color: var(--navy); color: var(--white); }
 
-        .event-date-dow {
-            font-size: 11px;
-            color: var(--charcoal);
-            opacity: 0.7;
-            display: block;
-        }
+        .event-learn-btn { align-self: center; white-space: nowrap; padding: 8px 16px; background-color: var(--navy); color: var(--white); font-size: 13px; font-weight: bold; border-radius: 6px; transition: opacity 0.2s ease; }
+        .event-learn-btn:hover { opacity: 0.82; }
 
-        .event-info h3 {
-            margin: 0 0 6px 0;
-            font-size: 15px;
-            color: var(--navy);
-            line-height: 1.3;
-        }
+        .no-events { text-align: center; padding: 48px 0; color: var(--charcoal); opacity: 0.55; font-size: 15px; }
 
-        .event-info h3 a {
-            color: var(--navy);
-        }
+        /* ── Legend ────────────────────────────────────────────── */
+        .legend { display: flex; gap: 20px; font-size: 12px; color: var(--charcoal); margin-top: 14px; flex-wrap: wrap; align-items: center; }
+        .legend-item { display: flex; align-items: center; gap: 6px; }
+        .legend-swatch { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; }
+        .swatch-kalikow { background-color: #f0f4e8; border: 1px solid var(--sage); }
+        .swatch-event   { background-color: var(--navy); }
+        .swatch-virtual { background-color: var(--sage); }
+        .swatch-today   { background-color: var(--white); border: 2px solid var(--sage); }
 
-        .event-info h3 a:hover {
-            color: var(--sage);
-            text-decoration: underline;
-        }
-
-        .event-time {
-            font-size: 13px;
-            color: var(--charcoal);
-            margin-bottom: 6px;
-        }
-
-        .event-badge {
-            display: inline-block;
-            font-size: 11px;
-            font-weight: bold;
-            padding: 2px 8px;
-            border-radius: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .badge-virtual  { background-color: var(--sage);  color: var(--white); }
-        .badge-inperson { background-color: var(--navy);  color: var(--white); }
-
-        .event-learn-btn {
-            align-self: center;
-            white-space: nowrap;
-            padding: 8px 16px;
-            background-color: var(--navy);
-            color: var(--white);
-            font-size: 13px;
-            font-weight: bold;
-            border-radius: 6px;
-            transition: opacity 0.2s ease;
-        }
-
-        .event-learn-btn:hover {
-            opacity: 0.82;
-        }
-
-        /* No-events message */
-        .no-events {
-            text-align: center;
-            padding: 48px 0;
-            color: var(--charcoal);
-            opacity: 0.55;
-            font-size: 15px;
-        }
-
-        /* ══════════════════════════════════════
-           LEGEND
-        ══════════════════════════════════════ */
-        .legend {
-            display: flex;
-            gap: 20px;
-            font-size: 12px;
-            color: var(--charcoal);
-            margin-top: 14px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .legend-swatch {
-            width: 14px; height: 14px;
-            border-radius: 3px;
-            flex-shrink: 0;
-        }
-
-        .swatch-kalikow  { background-color: #f0f4e8; border: 1px solid var(--sage); }
-        .swatch-event    { background-color: var(--navy); }
-        .swatch-virtual  { background-color: var(--sage); }
-        .swatch-today    { background-color: var(--white); border: 2px solid var(--sage); }
-
-        /* ══════════════════════════════════════
-           EVENT DETAIL MODAL
-        ══════════════════════════════════════ */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background-color: rgba(9,73,122,0.45);
-            z-index: 500;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .modal-overlay.open {
-            display: flex;
-        }
-
-        .modal-box {
-            background-color: var(--white);
-            border-radius: 10px;
-            max-width: 520px;
-            width: 100%;
-            padding: 32px;
-            position: relative;
-            box-shadow: 0 8px 40px rgba(0,0,0,0.25);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 14px; right: 18px;
-            background: none;
-            border: none;
-            font-size: 22px;
-            cursor: pointer;
-            color: var(--charcoal);
-            line-height: 1;
-        }
-
-        .modal-badge {
-            margin-bottom: 10px;
-        }
-
-        .modal-title {
-            margin: 0 0 10px 0;
-            font-size: 20px;
-            color: var(--navy);
-            line-height: 1.3;
-        }
-
-        .modal-meta {
-            font-size: 14px;
-            color: var(--charcoal);
-            margin-bottom: 18px;
-            line-height: 1.6;
-        }
-
-        .modal-link {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: var(--navy);
-            color: var(--white);
-            font-weight: bold;
-            font-size: 14px;
-            border-radius: 7px;
-            transition: opacity 0.2s ease;
-        }
-
+        /* ── Modal ─────────────────────────────────────────────── */
+        .modal-overlay { display: none; position: fixed; inset: 0; background-color: rgba(9,73,122,0.45); z-index: 500; justify-content: center; align-items: center; padding: 20px; }
+        .modal-overlay.open { display: flex; }
+        .modal-box { background-color: var(--white); border-radius: 10px; max-width: 520px; width: 100%; padding: 32px; position: relative; box-shadow: 0 8px 40px rgba(0,0,0,0.25); }
+        .modal-close { position: absolute; top: 14px; right: 18px; background: none; border: none; font-size: 22px; cursor: pointer; color: var(--charcoal); line-height: 1; }
+        .modal-badge { margin-bottom: 10px; }
+        .modal-title { margin: 0 0 10px 0; font-size: 20px; color: var(--navy); line-height: 1.3; }
+        .modal-meta  { font-size: 14px; color: var(--charcoal); margin-bottom: 18px; line-height: 1.6; }
+        .modal-link  { display: inline-block; padding: 10px 20px; background-color: var(--navy); color: var(--white); font-weight: bold; font-size: 14px; border-radius: 7px; transition: opacity 0.2s ease; }
         .modal-link:hover { opacity: 0.82; }
 
-        /* ══════════════════════════════════════
-           DARK MODE
-        ══════════════════════════════════════ */
-        body.dark-mode {
-            background-color: #1a1f1f;
-            color: #e8e1d1;
-        }
-
-        body.dark-mode header {
-            border-bottom-color: #2e3535;
-        }
-
-        body.dark-mode .light-logo { display: none; }
-        body.dark-mode .dark-logo  { display: inline; }
-
-        body.dark-mode .breadcrumb {
-            background-color: #2a2f2f;
-            color: #c8c0b0;
-            border-bottom-color: #333;
-        }
-
-        body.dark-mode .breadcrumb a { color: var(--sage); }
-
-        body.dark-mode .page-title-band {
-            background-color: #0a3a5c;
-        }
-
-        body.dark-mode .top-panel {
-            border-color: #3a4a4a;
-        }
-
-        body.dark-mode .kalikow-block {
-            background-color: #2a2f2f;
-            border-right-color: #3a4a4a;
-        }
-
-        body.dark-mode .kalikow-block h2 { color: #c8c0b0; }
+        /* ── Dark mode: page-specific overrides ───────────────── */
+        body.dark-mode .breadcrumb           { background-color: #2a2f2f; color: #c8c0b0; border-bottom-color: #333; }
+        body.dark-mode .breadcrumb a         { color: var(--sage); }
+        body.dark-mode .page-title-band      { background-color: #0a3a5c; }
+        body.dark-mode .top-panel            { border-color: #3a4a4a; }
+        body.dark-mode .kalikow-block        { background-color: #2a2f2f; border-right-color: #3a4a4a; }
+        body.dark-mode .kalikow-block h2     { color: #c8c0b0; }
         body.dark-mode .kalikow-block .kalikow-name { color: var(--sage); }
-        body.dark-mode .hours-day  { color: #e8e1d1; }
-        body.dark-mode .hours-time { color: #c8c0b0; }
-        body.dark-mode .closure-notice { color: #a09888; }
-
-        body.dark-mode .cta-block {
-            background-color: #2a2f2f;
-        }
-
-        body.dark-mode .cta-block h2 { color: #c8c0b0; }
-        body.dark-mode .cta-block p  { color: #c8c0b0; }
-        body.dark-mode .talks-name   { color: var(--sage); }
-
-        body.dark-mode .cta-secondary {
-            background-color: var(--navy);
-            color: var(--white);
-            border-color: var(--navy);
-        }
-
-        body.dark-mode .month-nav button {
-            border-color: var(--sage);
-            color: var(--sage);
-        }
-
-        body.dark-mode .month-nav button:hover {
-            background-color: var(--sage);
-            color: var(--white);
-        }
-
-        body.dark-mode .month-label { color: var(--sage); }
-
-        body.dark-mode .view-toggle {
-            border-color: var(--sage);
-        }
-
-        body.dark-mode .view-toggle button { color: var(--sage); }
-        body.dark-mode .view-toggle button.active {
-            background-color: var(--sage);
-            color: var(--white);
-        }
-
-        body.dark-mode .view-toggle button:not(.active):hover {
-            background-color: #2a2f2f;
-        }
-
-        body.dark-mode .cal-header-row { background-color: #0a3a5c; }
-
-        body.dark-mode .cal-body {
-            border-color: #3a4a4a;
-        }
-
-        body.dark-mode .cal-day {
-            background-color: #1e2424;
-            border-color: #3a4a4a;
-        }
-
-        body.dark-mode .cal-day.empty { background-color: #171c1c; }
-
+        body.dark-mode .hours-day            { color: #e8e1d1; }
+        body.dark-mode .hours-time           { color: #c8c0b0; }
+        body.dark-mode .closure-notice       { color: #a09888; }
+        body.dark-mode .cta-block            { background-color: #2a2f2f; }
+        body.dark-mode .cta-block h2         { color: #c8c0b0; }
+        body.dark-mode .cta-block p          { color: #c8c0b0; }
+        body.dark-mode .talks-name           { color: var(--sage); }
+        body.dark-mode .month-nav button     { border-color: var(--sage); color: var(--sage); }
+        body.dark-mode .month-nav button:hover { background-color: var(--sage); color: var(--white); }
+        body.dark-mode .month-label          { color: var(--sage); }
+        body.dark-mode .view-toggle          { border-color: var(--sage); }
+        body.dark-mode .view-toggle button   { color: var(--sage); }
+        body.dark-mode .view-toggle button.active { background-color: var(--sage); color: var(--white); }
+        body.dark-mode .view-toggle button:not(.active):hover { background-color: #2a2f2f; }
+        body.dark-mode .cal-header-row       { background-color: #0a3a5c; }
+        body.dark-mode .cal-body             { border-color: #3a4a4a; }
+        body.dark-mode .cal-day              { background-color: #1e2424; border-color: #3a4a4a; }
+        body.dark-mode .cal-day.empty        { background-color: #171c1c; }
         body.dark-mode .cal-day.kalikow-open { background-color: #1e2b1e; }
-
-        body.dark-mode .day-num { color: #c8c0b0; }
+        body.dark-mode .day-num              { color: #c8c0b0; }
         body.dark-mode .kalikow-open .day-num { color: var(--sage); }
+        body.dark-mode .event-list-item      { border-color: #3a4a4a; }
+        body.dark-mode .event-info h3 a      { color: var(--sage); }
+        body.dark-mode .event-time           { color: #c8c0b0; }
+        body.dark-mode .modal-box            { background-color: #1e2424; color: #e8e1d1; }
+        body.dark-mode .modal-close          { color: #e8e1d1; }
+        body.dark-mode .modal-title          { color: var(--sage); }
+        body.dark-mode .modal-meta           { color: #c8c0b0; }
+        body.dark-mode .legend               { color: #c8c0b0; }
+        body.dark-mode .swatch-kalikow       { border-color: var(--sage); background-color: #1e2b1e; }
+        body.dark-mode .no-events            { color: #c8c0b0; }
 
-        body.dark-mode .event-list-item { border-color: #3a4a4a; }
-
-        body.dark-mode .event-info h3 a { color: var(--sage); }
-
-        body.dark-mode .event-time { color: #c8c0b0; }
-
-        body.dark-mode .modal-box {
-            background-color: #1e2424;
-            color: #e8e1d1;
-        }
-
-        body.dark-mode .modal-close { color: #e8e1d1; }
-        body.dark-mode .modal-title { color: var(--sage); }
-        body.dark-mode .modal-meta  { color: #c8c0b0; }
-
-        body.dark-mode .legend { color: #c8c0b0; }
-
-        body.dark-mode .swatch-kalikow { border-color: var(--sage); background-color: #1e2b1e; }
-
-        body.dark-mode .no-events { color: #c8c0b0; }
-
-        /* ══════════════════════════════════════
-           RESPONSIVE
-        ══════════════════════════════════════ */
+        /* ── Responsive ────────────────────────────────────────── */
         @media (max-width: 768px) {
-            header { padding: 10px 20px; }
-            nav.breadcrumb { padding: 10px 20px; }
+            .breadcrumb { padding: 10px 20px; }
             .page-title-band { padding: 22px 20px; }
             .page-title-band h1 { font-size: 20px; }
             .page-container { padding: 24px 20px 48px; }
-
-            .top-panel {
-                grid-template-columns: 1fr;
-            }
-
-            .kalikow-block {
-                border-right: none;
-                border-bottom: 2px solid var(--navy);
-            }
-
-            body.dark-mode .kalikow-block {
-                border-bottom-color: #3a4a4a;
-            }
-
-            /* Force list view on mobile */
+            .top-panel { grid-template-columns: 1fr; }
+            .kalikow-block { border-right: none; border-bottom: 2px solid var(--navy); }
+            body.dark-mode .kalikow-block { border-bottom-color: #3a4a4a; }
             .calendar-grid-wrap { display: none !important; }
             .calendar-list-wrap { display: block !important; }
             .view-toggle { display: none; }
-
-            .event-list-item {
-                grid-template-columns: 64px 1fr;
-                grid-template-rows: auto auto;
-            }
-
-            .event-learn-btn {
-                grid-column: 2;
-                margin-top: 10px;
-                display: inline-block;
-                width: fit-content;
-            }
-
+            .event-list-item { grid-template-columns: 64px 1fr; grid-template-rows: auto auto; }
+            .event-learn-btn { grid-column: 2; margin-top: 10px; display: inline-block; width: fit-content; }
             .controls-bar { justify-content: center; }
         }
 
@@ -810,118 +241,16 @@
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════
-     HEADER
-══════════════════════════════════════════ -->
-<header>
-    <div class="brand">
-        <a href="https://www.jewishgen.org">
-            <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg"
-                 alt="JewishGen: The Global Home for Jewish Genealogy"
-                 class="light-logo" style="height: 55px; width: auto; object-fit: contain;">
-            <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png"
-                 alt="JewishGen: The Global Home for Jewish Genealogy"
-                 class="dark-logo" style="height: 55px; width: auto; object-fit: contain;">
-        </a>
-    </div>
-    <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
-        <button onclick="document.body.classList.toggle('dark-mode')"
-            aria-label="Toggle dark mode"
-            style="background: var(--cream); color: var(--navy); border: 1px solid #d1caba;
-                   padding: 4px 10px; border-radius: 20px; cursor: pointer;
-                   font-size: 11px; font-weight: bold;">
-            🌗 Toggle Dark Mode
-        </button>
-        <div style="display: flex; gap: 8px;">
-            <a href="#" style="padding: 7px 15px; border: 2px solid var(--navy); color: var(--navy);
-                               font-weight: bold; font-size: 13px; border-radius: 6px;">Log In</a>
-            <a href="#" style="padding: 7px 15px; background-color: var(--sage); color: var(--white);
-                               font-weight: bold; font-size: 13px; border-radius: 6px;">Sign Up</a>
-        </div>
-        <div style="text-align: right; margin-top: 2px;">
-            <div style="font-size: 10px; color: var(--charcoal); margin-bottom: 3px;">
-                The Genealogical Research Division of
-            </div>
-            <a href="https://mjhnyc.org/" target="_blank" rel="noopener">
-                <img src="https://www.jewishgen.org/images/MJH-Circle-Logo.svg"
-                     alt="Museum of Jewish Heritage" class="light-logo" style="height: 32px; width: auto;">
-                <img src="https://d3k74ww17vqc8e.cloudfront.net/app/uploads/2019/10/18145838/MJH-Circle-icon_Logo.png"
-                     alt="Museum of Jewish Heritage" class="dark-logo" style="height: 32px; width: auto;">
-            </a>
-        </div>
-    </div>
-</header>
-
-<!-- ══════════════════════════════════════════
-     NAVIGATION
-══════════════════════════════════════════ -->
-<nav aria-label="Main navigation">
-    <div class="dropdown">
-        <span class="dropbtn">Databases ▾</span>
-        <div class="dropdown-content">
-            <a href="#">Global Search</a>
-            <a href="#">Country &amp; Regional Databases</a>
-            <a href="#">Holocaust Database</a>
-            <a href="#">Burial Registry (JOWBR)</a>
-            <a href="#">Records Catalog</a>
-            <a href="#">Family Trees (FTJP)</a>
-            <a href="#">Text Search</a>
-        </div>
-    </div>
-    <div class="dropdown">
-        <span class="dropbtn">Communities ▾</span>
-        <div class="dropdown-content">
-            <a href="#">Regional/Topical Research Divisions</a>
-            <a href="#">Town Finder</a>
-            <a href="#">KehilaLinks</a>
-            <a href="#">Yizkor Books</a>
-        </div>
-    </div>
-    <div class="dropdown">
-        <span class="dropbtn">Learn &amp; Connect ▾</span>
-        <div class="dropdown-content">
-            <a href="#">Online Classes</a>
-            <a href="#">Search Methodologies &amp; Research Advice</a>
-            <a href="#">Peter &amp; Mary Kalikow Center</a>
-            <a href="#">Family Finder</a>
-            <a href="#">Discussion Group</a>
-            <a href="#">ViewMate</a>
-        </div>
-    </div>
-    <div class="dropdown">
-        <span class="dropbtn">Events &amp; Programs ▾</span>
-        <div class="dropdown-content">
-            <a href="events-calendar.html" aria-current="page">Upcoming Events Calendar</a>
-            <a href="#">JewishGen Talks</a>
-            <a href="#">Student Program in Poland</a>
-            <a href="#">Study &amp; Service Tour of Poland</a>
-        </div>
-    </div>
-    <div class="dropdown">
-        <span class="dropbtn">Publications ▾</span>
-        <div class="dropdown-content">
-            <a href="#">JewishGen Press</a>
-            <a href="#">Newsletters</a>
-            <a href="#">Holiday Companions</a>
-        </div>
-    </div>
-    <div class="dropdown">
-        <span class="dropbtn">About &amp; Support ▾</span>
-        <div class="dropdown-content">
-            <a href="#">Mission</a>
-            <a href="#">Our Team</a>
-            <a href="#">Donate Now</a>
-            <a href="#">Planned Giving</a>
-            <a href="#">Wall of Honor</a>
-        </div>
-    </div>
-</nav>
+<!-- ═══════════════════════════════════════════════════════════
+     HEADER + NAV — loaded from Header_NavBar.html
+═══════════════════════════════════════════════════════════ -->
+<div id="site-header"></div>
 
 <!-- ══════════════════════════════════════════
      BREADCRUMB
 ══════════════════════════════════════════ -->
 <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="#">JewishGen Home</a>
+    <a href="index.html">JewishGen Home</a>
     <span aria-hidden="true">›</span>
     <a href="#">Events &amp; Programs</a>
     <span aria-hidden="true">›</span>
@@ -944,10 +273,9 @@
 <main>
 <div class="page-container">
 
-    <!-- ── TOP PANEL ── -->
+    <!-- TOP PANEL -->
     <section class="top-panel" aria-label="Kalikow Center and quick links">
 
-        <!-- Kalikow Hours + Booking -->
         <div class="kalikow-block">
             <h2>Visit Us In Person</h2>
             <p class="kalikow-name">Peter &amp; Mary Kalikow<br>Jewish Genealogy Center</p>
@@ -961,14 +289,12 @@
             </div>
             <p class="closure-notice">Hours subject to change when the museum is closed.<br>
                 Highlighted days on the calendar reflect standard open days.</p>
-            <!-- [PLACEHOLDER: Replace href with live Altru booking URL when available] -->
             <a href="#" class="cta-btn cta-primary" style="margin-top: 18px;"
                aria-label="Schedule an appointment at the Kalikow Center">
                 📅 Book an Appointment
             </a>
         </div>
 
-        <!-- Talks CTA -->
         <div class="cta-block">
             <div>
                 <h2>Miss a JewishGen Talk?</h2>
@@ -977,7 +303,7 @@
                     Expert lectures on Jewish genealogy and history — new talks added regularly.
                 </p>
             </div>
-            <a href="JGTalks.html" class="cta-btn cta-secondary"
+            <a href="JGTalksMOCK.html" class="cta-btn cta-secondary"
                aria-label="Watch the JewishGen Talks archive">
                 🎥 Watch Now
             </a>
@@ -985,7 +311,7 @@
 
     </section>
 
-    <!-- ── CONTROLS BAR ── -->
+    <!-- CONTROLS BAR -->
     <div class="controls-bar">
         <div class="month-nav" role="group" aria-label="Navigate calendar months">
             <button id="prev-month" aria-label="Previous month">&#8249;</button>
@@ -998,7 +324,7 @@
         </div>
     </div>
 
-    <!-- ── GRID VIEW ── -->
+    <!-- GRID VIEW -->
     <div class="calendar-grid-wrap" id="grid-view" aria-label="Monthly calendar grid">
         <div class="cal-header-row" aria-hidden="true">
             <span>Sun</span><span>Mon</span><span>Tue</span>
@@ -1007,12 +333,12 @@
         <div class="cal-body" id="cal-body"></div>
     </div>
 
-    <!-- ── LIST VIEW ── -->
+    <!-- LIST VIEW -->
     <div class="calendar-list-wrap" id="list-view">
         <ul class="event-list" id="event-list" aria-label="Upcoming events list"></ul>
     </div>
 
-    <!-- ── LEGEND (grid only) ── -->
+    <!-- LEGEND -->
     <div class="legend" id="cal-legend" aria-label="Calendar legend">
         <div class="legend-item">
             <div class="legend-swatch swatch-kalikow" aria-hidden="true"></div>
@@ -1051,52 +377,59 @@
     </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     FOOTER
-══════════════════════════════════════════ -->
-<footer style="background-color: var(--cream); padding: 30px 50px; border-top: 4px solid var(--navy);">
-    <div style="max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between;
-                align-items: center; flex-wrap: wrap; gap: 20px; width: 100%;">
-        <div style="flex: 1; min-width: 250px;">
-            <a href="#">
-                <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg"
-                     alt="JewishGen Logo" class="light-logo" style="height: 60px; width: auto; object-fit: contain;">
-                <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png"
-                     alt="JewishGen Logo" class="dark-logo" style="height: 60px; width: auto; object-fit: contain;">
-            </a>
-        </div>
-        <div style="flex: 2; text-align: center; font-size: 13px; line-height: 1.6;
-                    color: var(--charcoal); min-width: 300px;">
-            Edmond J. Safra Plaza | 36 Battery Place | New York, NY 10280<br>
-            646.494.2972 |
-            <a href="/cdn-cgi/l/email-protection#650c0b030a250f00120c160d02000b4b0a1702" style="color: var(--navy); text-decoration: underline; font-weight: bold;">
-               <span class="__cf_email__" data-cfemail="b3daddd5dcf3d9d6c4dac0dbd4d6dd9ddcc1d4">[email&#160;protected]</span></a>
-            | © 2026, JewishGen, Inc.
-            <a href="#" style="text-decoration: underline;">All rights reserved.</a>
-        </div>
-        <div style="flex: 1; display: flex; justify-content: flex-end; align-items: center; min-width: 250px;">
-            <a href="https://mjhnyc.org/" target="_blank" rel="noopener">
-                <img src="https://www.jewishgen.org/images/MJH-Circle-Logo.svg"
-                     alt="Museum of Jewish Heritage" class="light-logo" style="height: 45px; width: auto;">
-                <img src="https://d3k74ww17vqc8e.cloudfront.net/app/uploads/2019/10/18145838/MJH-Circle-icon_Logo.png"
-                     alt="Museum of Jewish Heritage" class="dark-logo" style="height: 45px; width: auto;">
-            </a>
-        </div>
-    </div>
-</footer>
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER — loaded from Footer.html
+═══════════════════════════════════════════════════════════ -->
+<div id="site-footer"></div>
 
-<!-- ══════════════════════════════════════════
-     JAVASCRIPT
-══════════════════════════════════════════ -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<!-- ═══════════════════════════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════════════════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+<script>
+/* ── Component Loader ──────────────────────────────────────── */
+function loadComponent(id, file) {
+    return fetch(file)
+        .then(function(r) {
+            if (!r.ok) throw new Error('Could not load ' + file);
+            return r.text();
+        })
+        .then(function(html) {
+            document.getElementById(id).innerHTML = html;
+        })
+        .catch(function(err) { console.warn(err); });
+}
+
+Promise.all([
+    loadComponent('site-header', 'Header_NavBar.html'),
+    loadComponent('site-footer', 'Footer.html')
+]).then(function() {
+    document.querySelectorAll('.jg-nav .dropbtn').forEach(function(btn) {
+        btn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                var expanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', String(!expanded));
+                var menu = document.getElementById(this.getAttribute('aria-controls'));
+                if (menu) menu.style.display = expanded ? 'none' : 'block';
+            }
+            if (e.key === 'Escape') {
+                this.setAttribute('aria-expanded', 'false');
+                var menu = document.getElementById(this.getAttribute('aria-controls'));
+                if (menu) menu.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+
+<script>
     /* ─────────────────────────────────────────
        CONFIGURATION — EDIT THESE SECTIONS
+       Replace EVENTS array with live feed data from MJH calendar API when available.
+       Expected fields: title, date (YYYY-MM-DD), time (display string), timezone, virtual (bool), link.
     ───────────────────────────────────────── */
-
-    // [PLACEHOLDER] Replace this array with live feed data from the MJH calendar API.
-    // Expected fields per event: title, date (YYYY-MM-DD), time (display string),
-    // timezone, virtual (bool), link (MJH event URL).
     const EVENTS = [
         {
             id: 1,
@@ -1136,14 +469,13 @@
         }
     ];
 
-    // Days of the week the Kalikow Center is normally open (0=Sun,1=Mon,...,6=Sat)
-    const KALIKOW_OPEN_DAYS = [0, 3, 4]; // Sunday, Wednesday, Thursday
+    // Days the Kalikow Center is normally open (0=Sun, 3=Wed, 4=Thu)
+    const KALIKOW_OPEN_DAYS = [0, 3, 4];
 
-    // [MANUALLY MAINTAINED] Museum/Kalikow closure dates — override open days above.
-    // Format: "YYYY-MM-DD". Update this list whenever the museum announces a closure.
+    // Museum/Kalikow closure dates — update whenever the museum announces a closure
     const KALIKOW_CLOSURES = [
-        "2026-04-20", // Passover / museum closed — example
-        "2026-05-25", // Memorial Day weekend — example
+        "2026-04-20", // Passover / museum closed
+        "2026-05-25", // Memorial Day weekend
     ];
 
     /* ─────────────────────────────────────────
@@ -1151,18 +483,11 @@
     ───────────────────────────────────────── */
     const today = new Date();
     let currentYear  = today.getFullYear();
-    let currentMonth = today.getMonth(); // 0-indexed
+    let currentMonth = today.getMonth();
 
-    const MONTH_NAMES = [
-        "January","February","March","April","May","June",
-        "July","August","September","October","November","December"
-    ];
+    const MONTH_NAMES = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const DOW_NAMES   = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
-    const DOW_NAMES = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-
-    /* ─────────────────────────────────────────
-       HELPERS
-    ───────────────────────────────────────── */
     function dateStr(y, m, d) {
         return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
     }
@@ -1174,10 +499,7 @@
         return KALIKOW_OPEN_DAYS.includes(dow);
     }
 
-    function eventsOnDate(ds) {
-        return EVENTS.filter(e => e.date === ds);
-    }
-
+    function eventsOnDate(ds) { return EVENTS.filter(e => e.date === ds); }
     function eventsInMonth(y, m) {
         const prefix = `${y}-${String(m+1).padStart(2,'0')}`;
         return EVENTS.filter(e => e.date.startsWith(prefix));
@@ -1187,16 +509,12 @@
        GRID RENDER
     ───────────────────────────────────────── */
     function renderGrid() {
-        const label = document.getElementById('month-label');
-        label.textContent = `${MONTH_NAMES[currentMonth]} ${currentYear}`;
-
+        document.getElementById('month-label').textContent = `${MONTH_NAMES[currentMonth]} ${currentYear}`;
         const body = document.getElementById('cal-body');
         body.innerHTML = '';
+        const firstDow = new Date(currentYear, currentMonth, 1).getDay();
+        const daysInMo = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-        const firstDow  = new Date(currentYear, currentMonth, 1).getDay();
-        const daysInMo  = new Date(currentYear, currentMonth + 1, 0).getDate();
-
-        // Empty cells before first day
         for (let i = 0; i < firstDow; i++) {
             const cell = document.createElement('div');
             cell.className = 'cal-day empty';
@@ -1208,22 +526,16 @@
             const ds    = dateStr(currentYear, currentMonth, d);
             const open  = isKalikowOpen(currentYear, currentMonth, d);
             const evts  = eventsOnDate(ds);
-            const isToday = (d === today.getDate() &&
-                             currentMonth === today.getMonth() &&
-                             currentYear  === today.getFullYear());
+            const isToday = (d === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear());
 
             const cell = document.createElement('div');
-            cell.className = 'cal-day' +
-                (open   ? ' kalikow-open' : '') +
-                (isToday ? ' today' : '');
+            cell.className = 'cal-day' + (open ? ' kalikow-open' : '') + (isToday ? ' today' : '');
 
-            // Date number
             const num = document.createElement('span');
             num.className = 'day-num';
             num.textContent = d;
             cell.appendChild(num);
 
-            // Kalikow badge
             if (open) {
                 const badge = document.createElement('span');
                 badge.className = 'kalikow-badge';
@@ -1232,7 +544,6 @@
                 cell.appendChild(badge);
             }
 
-            // Event chips
             evts.forEach(evt => {
                 const chip = document.createElement('button');
                 chip.className = 'cal-event-chip' + (evt.virtual ? ' virtual' : '');
@@ -1242,12 +553,10 @@
                 cell.appendChild(chip);
             });
 
-            // ARIA label for cell
             let cellLabel = `${MONTH_NAMES[currentMonth]} ${d}`;
-            if (open)          cellLabel += ', Kalikow Center open';
-            if (evts.length)   cellLabel += `, ${evts.length} event${evts.length>1?'s':''}`;
+            if (open)        cellLabel += ', Kalikow Center open';
+            if (evts.length) cellLabel += `, ${evts.length} event${evts.length>1?'s':''}`;
             cell.setAttribute('aria-label', cellLabel);
-
             body.appendChild(cell);
         }
     }
@@ -1258,7 +567,6 @@
     function renderList() {
         const list = document.getElementById('event-list');
         list.innerHTML = '';
-
         const evts = eventsInMonth(currentYear, currentMonth);
 
         if (evts.length === 0) {
@@ -1270,14 +578,12 @@
         }
 
         evts.sort((a,b) => a.date.localeCompare(b.date));
-
         evts.forEach(evt => {
             const d   = new Date(evt.date + 'T12:00:00');
             const mon = MONTH_NAMES[d.getMonth()].slice(0,3).toUpperCase();
             const day = d.getDate();
             const dow = DOW_NAMES[d.getDay()];
-
-            const li = document.createElement('li');
+            const li  = document.createElement('li');
             li.className = 'event-list-item';
             li.innerHTML = `
                 <div class="event-date-col" aria-hidden="true">
@@ -1313,17 +619,12 @@
         const legend   = document.getElementById('cal-legend');
         const btnGrid  = document.getElementById('btn-grid');
         const btnList  = document.getElementById('btn-list');
-
         if (v === 'grid') {
-            gridWrap.style.display = 'block';
-            listWrap.style.display = 'none';
-            legend.style.display   = 'flex';
+            gridWrap.style.display = 'block'; listWrap.style.display = 'none'; legend.style.display = 'flex';
             btnGrid.classList.add('active');    btnGrid.setAttribute('aria-pressed','true');
             btnList.classList.remove('active'); btnList.setAttribute('aria-pressed','false');
         } else {
-            gridWrap.style.display = 'none';
-            listWrap.style.display = 'block';
-            legend.style.display   = 'none';
+            gridWrap.style.display = 'none'; listWrap.style.display = 'block'; legend.style.display = 'none';
             btnList.classList.add('active');    btnList.setAttribute('aria-pressed','true');
             btnGrid.classList.remove('active'); btnGrid.setAttribute('aria-pressed','false');
         }
@@ -1344,47 +645,29 @@
         renderAll();
     });
 
-    function renderAll() {
-        renderGrid();
-        renderList();
-    }
+    function renderAll() { renderGrid(); renderList(); }
 
     /* ─────────────────────────────────────────
        MODAL
     ───────────────────────────────────────── */
     function openModal(evt) {
-        const d    = new Date(evt.date + 'T12:00:00');
-        const mon  = MONTH_NAMES[d.getMonth()];
-        const day  = d.getDate();
-        const dow  = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d.getDay()];
-
+        const d   = new Date(evt.date + 'T12:00:00');
+        const mon = MONTH_NAMES[d.getMonth()];
+        const day = d.getDate();
+        const dow = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d.getDay()];
         document.getElementById('modal-title-text').textContent = evt.title;
-        document.getElementById('modal-meta').innerHTML =
-            `<strong>${dow}, ${mon} ${day}</strong><br>
-             ${evt.time} ${evt.timezone}`;
-        document.getElementById('modal-badge').innerHTML =
-            `<span class="event-badge ${evt.virtual ? 'badge-virtual' : 'badge-inperson'}">
-                ${evt.virtual ? 'Virtual' : 'In Person'}
-             </span>`;
+        document.getElementById('modal-meta').innerHTML = `<strong>${dow}, ${mon} ${day}</strong><br>${evt.time} ${evt.timezone}`;
+        document.getElementById('modal-badge').innerHTML = `<span class="event-badge ${evt.virtual ? 'badge-virtual' : 'badge-inperson'}">${evt.virtual ? 'Virtual' : 'In Person'}</span>`;
         document.getElementById('modal-link').href = evt.link;
-
         const overlay = document.getElementById('event-modal');
         overlay.classList.add('open');
         overlay.focus();
     }
 
-    function closeModal() {
-        document.getElementById('event-modal').classList.remove('open');
-    }
+    function closeModal() { document.getElementById('event-modal').classList.remove('open'); }
 
-    // Close modal on overlay click or Escape key
-    document.getElementById('event-modal').addEventListener('click', function(e) {
-        if (e.target === this) closeModal();
-    });
-
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') closeModal();
-    });
+    document.getElementById('event-modal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
     /* ─────────────────────────────────────────
        INIT
