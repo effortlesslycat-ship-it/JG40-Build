@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JewishGen: The Global Home for Jewish Genealogy</title>
+    <meta name="description" content="JewishGen is the largest online Jewish genealogy resource. Search millions of records, discover your ancestral towns, and connect with our global community.">
+
+    <!-- 1. Bootstrap (layout only — design tokens override below) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <!-- 2. JewishGen Global Design System (always wins the cascade) -->
+    <link rel="stylesheet" href="jg-global.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HEADER + NAV — loaded from Header_NavBar.html
+     To edit: open Header_NavBar.html
+═══════════════════════════════════════════════════════════ -->
+<div id="site-header"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SPONSOR BANNER — inline (updated daily by staff)
+     To edit: find EDIT START / EDIT END markers below
+═══════════════════════════════════════════════════════════ -->
+<div class="jg-sponsor-banner" aria-live="polite" aria-label="Daily research dedication">
+    <div id="jg-sponsor-container" style="position: relative; min-height: 1.4rem;">
+        <!-- EDIT START -->
+        <div class="jg-sponsor-slide active">
+            Today's research is dedicated by: <strong>The Hollander Family</strong> in loving memory of <strong>Leo Hollander</strong>.
+        </div>
+        <div class="jg-sponsor-slide">
+            Today's research is dedicated in honor of all the dedicated volunteers who index our records.
+        </div>
+        <!-- EDIT END -->
+    </div>
+    <span class="jg-sponsor-banner__dedicate">
+        <a href="https://www.jewishgen.org/jewishgen-secure/donate.asp" target="_blank" rel="noopener noreferrer">To Dedicate a Day of Research, please click here</a>
+    </span>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HERO SEARCH — loaded from HeroSearch.html
+     To edit: open HeroSearch.html
+═══════════════════════════════════════════════════════════ -->
+<div id="hero-search"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ANNOUNCEMENT BANNER — loaded from Announcement.html
+     To edit: open Announcement.html
+═══════════════════════════════════════════════════════════ -->
+<div id="announcement"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CORE RESOURCE TILES — inline (8 cards)
+     To edit: update card content directly here.
+     Keep total count at 8. Replace placeholder cards as confirmed.
+═══════════════════════════════════════════════════════════ -->
+<div class="jg-cards-section">
+    <div class="jg-cards-section__intro">
+        <h2>Explore Our Core Resources</h2>
+        <p>Beyond the search engine, JewishGen offers powerful tools to help you break through your brick walls.</p>
+    </div>
+    <div class="jg-grid-4">
+
+        <div class="jg-feature-card">
+            <div class="jg-feature-card__icon">💬</div>
+            <h3>Discussion Group</h3>
+            <p>Get help solving your genealogy mysteries and check out our extensive message archive.</p>
+            <a href="https://groups.jewishgen.org/g/main">Join the Conversation</a>
+        </div>
+
+        <div class="jg-feature-card">
+            <div class="jg-feature-card__icon">📖</div>
+            <h3>Yizkor Books</h3>
+            <p>Read translated memorial books documenting Jewish life and history in destroyed communities.</p>
+            <a href="https://www.jewishgen.org/Yizkor/translations/">Read Translations</a>
+        </div>
+
+        <div class="jg-feature-card">
+            <div class="jg-feature-card__icon">🗂️</div>
+            <h3>Catalogue of Records</h3>
+            <p>Browse our comprehensive inventory of historical datasets, organized by country and region.</p>
+            <a href="#">Browse Catalogue</a><!-- TODO: update URL when catalogue page is live -->
+        </div>
+
+        <div class="jg-feature-card">
+            <div class="jg-feature-card__icon">🌍</div>
+            <h3>Communities Database</h3>
+            <p>Uncover historical, geographical, and linguistic details about Jewish towns worldwide.</p>
+            <a href="https://www.jewishgen.org/Communities/Search.asp">Explore Towns</a>
+        </div>
+
+        <!-- PLACEHOLDER CARDS — replace with confirmed content -->
+        <div class="jg-feature-card jg-feature-card--placeholder">
+            <div class="jg-feature-card__icon">🔖</div>
+            <h3>Lorem Ipsum</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.</p>
+            <a href="#" tabindex="-1" aria-hidden="true">Learn More</a>
+        </div>
+
+        <div class="jg-feature-card jg-feature-card--placeholder">
+            <div class="jg-feature-card__icon">🧭</div>
+            <h3>Lorem Ipsum</h3>
+            <p>Ut labore et dolore magna aliqua. Quis nostrud exercitation ullamco laboris nisi aliquip.</p>
+            <a href="#" tabindex="-1" aria-hidden="true">Learn More</a>
+        </div>
+
+        <div class="jg-feature-card jg-feature-card--placeholder">
+            <div class="jg-feature-card__icon">📜</div>
+            <h3>Lorem Ipsum</h3>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
+            <a href="#" tabindex="-1" aria-hidden="true">Learn More</a>
+        </div>
+
+        <div class="jg-feature-card jg-feature-card--placeholder">
+            <div class="jg-feature-card__icon">🕍</div>
+            <h3>Lorem Ipsum</h3>
+            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.</p>
+            <a href="#" tabindex="-1" aria-hidden="true">Learn More</a>
+        </div>
+
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     KALIKOW CENTER BANNER — inline
+     To edit: update text and links directly here.
+     TODO: replace placeholder photo with hosted image on jewishgen.org
+═══════════════════════════════════════════════════════════ -->
+<div class="jg-kalikow">
+    <div class="jg-kalikow__inner">
+
+        <div class="jg-kalikow__photo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOftAKb33doQ9HQsRocXJvU1YaNMzr55I8au8rNW0djA&s"
+                 alt="Two researchers working at computers at the Peter and Mary Kalikow Jewish Genealogy Research Center">
+        </div>
+
+        <div class="jg-kalikow__text">
+            <h2>Visiting New York City?</h2>
+            <p>The <strong>Peter and Mary Kalikow Jewish Genealogy Research Center</strong>
+               is the physical presence of JewishGen, located at the Museum of Jewish Heritage.
+               Our expert genealogists are on hand to assist in uncovering your family's past,
+               and to help you navigate JewishGen and many other critical resources
+               accessible at the Center.</p>
+        </div>
+
+        <div class="jg-kalikow__cta">
+            <a href="https://www.jewishgen.org/kalikow/"
+               class="jg-kalikow__cta-btn"
+               target="_blank"
+               rel="noopener noreferrer">
+                📅 Book an Appointment
+            </a>
+            <div class="jg-kalikow__cta-email">
+                or email us at <a href="mailto:kalikow@jewishgen.org">kalikow@jewishgen.org</a>
+            </div>
+            <p class="jg-kalikow__cta-note">
+                Appointments are recommended but not required.
+                Museum tickets are required to visit the Center.
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     UPCOMING EVENTS — loaded from HomeCal.html
+     To edit: open HomeCal.html
+═══════════════════════════════════════════════════════════ -->
+<div id="home-cal"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PUBLICATIONS LIBRARY — loaded from PubLib.html
+     To edit: open PubLib.html
+═══════════════════════════════════════════════════════════ -->
+<div id="pub-lib"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER — loaded from Footer.html
+     To edit: open Footer.html
+═══════════════════════════════════════════════════════════ -->
+<div id="site-footer"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════════════════════════ -->
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+/* ── Component Loader ──────────────────────────────────────
+   Fetches each component file and injects it into its
+   placeholder div. initPage() runs after all fetches
+   complete so scripts that depend on injected HTML
+   (e.g. nav keyboard handler) fire at the right time.
+──────────────────────────────────────────────────────────── */
+function loadComponent(id, file) {
+    return fetch(file)
+        .then(function(r) {
+            if (!r.ok) throw new Error('Could not load ' + file);
+            return r.text();
+        })
+        .then(function(html) {
+            document.getElementById(id).innerHTML = html;
+        })
+        .catch(function(err) {
+            console.warn(err);
+        });
+}
+
+Promise.all([
+    loadComponent('site-header',  'Header_NavBar.html'),
+    loadComponent('hero-search',  'HeroSearch.html'),
+    loadComponent('announcement', 'Announcement.html'),
+    loadComponent('home-cal',     'HomeCal.html'),
+    loadComponent('pub-lib',      'PubLib.html'),
+    loadComponent('site-footer',  'Footer.html')
+]).then(function() {
+    initPage();
+});
+
+/* ── Page Initialisation ───────────────────────────────────
+   Runs after all components are injected into the DOM.
+──────────────────────────────────────────────────────────── */
+function initPage() {
+
+    /* Nav: keyboard accessibility for dropdown menus */
+    document.querySelectorAll('.jg-nav .dropbtn').forEach(function(btn) {
+        btn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                var expanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', String(!expanded));
+                var menu = document.getElementById(this.getAttribute('aria-controls'));
+                if (menu) menu.style.display = expanded ? 'none' : 'block';
+            }
+            if (e.key === 'Escape') {
+                this.setAttribute('aria-expanded', 'false');
+                var menu = document.getElementById(this.getAttribute('aria-controls'));
+                if (menu) menu.style.display = 'none';
+            }
+        });
+    });
+
+    /* Sponsor banner: rotate slides every 6 seconds */
+    (function() {
+        var slides = document.querySelectorAll('.jg-sponsor-slide');
+        if (slides.length <= 1) return;
+        var current = 0;
+        setInterval(function() {
+            slides[current].classList.remove('active');
+            current = (current + 1) % slides.length;
+            slides[current].classList.add('active');
+        }, 6000);
+    })();
+}
+
+/* ── Auth State Toggle (demo only — remove before go-live) ── */
+var loggedIn = false;
+function toggleAuthState() {
+    loggedIn = !loggedIn;
+    var out = document.getElementById('auth-logged-out');
+    var inn = document.getElementById('auth-logged-in');
+    if (out) out.style.display = loggedIn ? 'none' : 'flex';
+    if (inn) inn.style.display  = loggedIn ? 'flex' : 'none';
+}
+
+/* ── Search: Tips panel toggle ─────────────────────────────── */
+function jgToggleTips(btn) {
+    var panel = document.getElementById('jg-tips-panel');
+    var isOpen = panel.classList.contains('open');
+    panel.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(!isOpen));
+}
+
+/* ── Search: Sub-region dropdown ───────────────────────────── */
+function jgToggleSubRegion() {
+    var mainSelect = document.getElementById('jg-region-select');
+    var container  = document.getElementById('jg-subregion-container');
+    var subSelect  = document.getElementById('jg-subregion-select');
+    var title      = document.getElementById('jg-subregion-title');
+    var val = mainSelect.value;
+    var optionsHtml = '<option value="all">All Sub-Regions</option>';
+    var show = true;
+
+    if (val === 'austria') {
+        title.innerText = "Refine by Region (Austria / Czechia / Galicia):";
+        optionsHtml += '<option value="bohemia" style="font-weight:bold;">Bohemia (Böhmen)</option><option value="prague">&nbsp;&nbsp;&nbsp;Prague (Prag)</option><option value="galicia_aus" style="font-weight:bold;">Galicia (Galizien)</option><option value="krakow_aus">&nbsp;&nbsp;&nbsp;Kraków (Krakau)</option><option value="lviv_aus">&nbsp;&nbsp;&nbsp;Lemberg (Lwów/Lviv)</option><option value="vienna" style="font-weight:bold;">Vienna (Wien)</option><option value="moravia" style="font-weight:bold;">Moravia (Mähren)</option>';
+    } else if (val === 'belarus') {
+        title.innerText = "Refine by Historical Region (Belarus):";
+        optionsHtml += '<option value="grodno_bel">Grodno</option><option value="minsk">Minsk</option><option value="mogilev">Mogilev</option><option value="vilna_bel">Vilna</option><option value="vitebsk">Vitebsk</option>';
+    } else if (val === 'canada') {
+        title.innerText = "Refine by Province/Territory (Canada):";
+        ["Alberta","British Columbia","Manitoba","New Brunswick","Newfoundland and Labrador","Nova Scotia","Northwest Territories","Nunavut","Ontario","Prince Edward Island","Québec","Saskatchewan","Yukon"].forEach(function(p) { optionsHtml += '<option value="' + p.toLowerCase().replace(/ /g,'-') + '">' + p + '</option>'; });
+    } else if (val === 'hungary') {
+        title.innerText = "Refine by Historical Region (Hungary / Slovakia / Croatia):";
+        optionsHtml += '<option value="hungary_mod" style="font-weight:bold;">Hungary (Magyarország)</option><option value="budapest">&nbsp;&nbsp;&nbsp;Budapest &amp; Pest</option><option value="slovakia" style="font-weight:bold;">Slovakia (Slovensko / Felvidék)</option><option value="transylvania" style="font-weight:bold;">Transylvania (Transilvania / Erdély)</option>';
+    } else if (val === 'latvia') {
+        title.innerText = "Refine by Historical Region (Latvia):";
+        optionsHtml += '<option value="courland">Courland (Kurland)</option><option value="livland">Livland (Vidzeme)</option><option value="vitebsk_lat">Vitebsk (Latgale)</option>';
+    } else if (val === 'lithuania') {
+        title.innerText = "Refine by Historical Region (Lithuania):";
+        optionsHtml += '<option value="kovno_all" style="font-weight:bold;">Kovno Gubernia</option><option value="kaunas">&nbsp;&nbsp;&nbsp;Kaunas</option><option value="siauliai">&nbsp;&nbsp;&nbsp;Šiauliai</option><option value="vilna_all" style="font-weight:bold;">Vilna Gubernia</option><option value="lida">&nbsp;&nbsp;&nbsp;Lida</option><option value="vilnius_uyezd">&nbsp;&nbsp;&nbsp;Vilnius</option>';
+    } else if (val === 'poland') {
+        title.innerText = "Refine by Historical Region (Poland):";
+        optionsHtml += '<option value="congress_poland" style="font-weight:bold;">Congress Poland (Russian Empire)</option><option value="lublin">&nbsp;&nbsp;&nbsp;Lublin</option><option value="warszawa">&nbsp;&nbsp;&nbsp;Warsaw (Warszawa)</option><option value="galicia_pol" style="font-weight:bold;">Galicia (Galizien)</option><option value="krakow">&nbsp;&nbsp;&nbsp;Kraków</option><option value="lwow_pol">&nbsp;&nbsp;&nbsp;Lwów (Lviv/Lemberg)</option><option value="prussia_pol" style="font-weight:bold;">Prussia (Preußen)</option>';
+    } else if (val === 'romania') {
+        title.innerText = "Refine by Historical Region (Romania / Moldova):";
+        optionsHtml += '<option value="bessarabia">Bessarabia</option><option value="moldavia">Moldavia (Moldova)</option><option value="transylvania">Transylvania (Transilvania / Erdély)</option>';
+    } else if (val === 'scandinavia') {
+        title.innerText = "Refine by Country (Scandinavia):";
+        optionsHtml += '<option value="denmark">Denmark</option><option value="finland">Finland</option><option value="norway">Norway</option><option value="sweden">Sweden</option>';
+    } else if (val === 'ukraine') {
+        title.innerText = "Refine by Historical Region (Ukraine):";
+        optionsHtml += '<option value="galicia_ukr" style="font-weight:bold;">Eastern Galicia (Austrian Partition)</option><option value="lviv_ukr">&nbsp;&nbsp;&nbsp;Lviv (Lemberg / Lwów)</option><option value="pale_ukr" style="font-weight:bold;">Pale of Settlement (Russian Partition)</option><option value="kiev_ukr">&nbsp;&nbsp;&nbsp;Kiev (Kyiv)</option><option value="odessa">&nbsp;&nbsp;&nbsp;Odessa (Odesa)</option>';
+    } else if (val === 'usa') {
+        title.innerText = "Refine by State (United States):";
+        ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"].forEach(function(s) { optionsHtml += '<option value="' + s.toLowerCase().replace(/ /g,'-') + '">' + s + '</option>'; });
+    } else {
+        show = false;
+    }
+
+    if (show) {
+        subSelect.innerHTML = optionsHtml;
+        container.style.display = 'block';
+    } else {
+        container.style.display = 'none';
+    }
+}
+</script>
+
+</body>
+</html>
