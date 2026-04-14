@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+/*Test page render - community page for Valkininkai*/
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valkininkai, Lithuania — JewishGen Communities Database</title>
+
+    <!-- 1. Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- 2. JewishGen Global Design System -->
+    <link rel="stylesheet" href="/JG40-Build/jg-global.css">
+    <!-- 3. Page-specific styles -->
+    <style>
+        a { text-decoration: none; color: inherit; }
+
+        /* ── Breadcrumb ── */
+        .breadcrumb { background-color:var(--cream); padding:10px 50px; font-size:13px; color:var(--charcoal); border-bottom:1px solid #d1caba; margin:0; text-align:left; }
+        .breadcrumb a { color:var(--navy); font-weight:bold; text-decoration:underline dotted; }
+        .breadcrumb a:hover { color:var(--sage); }
+        .breadcrumb span { margin:0 6px; opacity:0.5; }
+
+        /* ── Community title band ── */
+        .community-title-band { background-color:var(--navy); color:var(--white); padding:30px 50px; text-align:center; }
+        .community-title-band .region-tag { display:inline-block; background-color:var(--sage); color:var(--white); font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1.5px; padding:4px 12px; border-radius:3px; margin-bottom:10px; }
+        .community-title-band h1 { margin:0 0 8px 0; font-size:32px; font-weight:bold; color:#ffffff; display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap; }
+        .community-title-band .coords { font-size:13px; color:#a9c0d0; font-style:italic; }
+
+        /* ── Tab navigation ── */
+        .community-tabs-wrapper { background-color:var(--cream); border-bottom:3px solid #d1caba; position:sticky; top:0; z-index:50; box-shadow:0 2px 8px rgba(0,0,0,0.07); }
+        .community-tabs { display:flex; gap:8px; max-width:1100px; margin:0 auto; padding:10px 50px; overflow-x:auto; }
+        .tab-btn { display:flex; align-items:center; gap:7px; padding:10px 18px; font-size:12px; font-weight:bold; color:var(--navy); cursor:pointer; border:2px solid transparent; background-color:rgba(255,255,255,0.55); border-radius:6px; transition:background-color 0.15s,border-color 0.15s,color 0.15s,box-shadow 0.15s; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap; font-family:inherit; }
+        .tab-btn:hover { background-color:var(--white); border-color:#d1caba; box-shadow:0 2px 5px rgba(0,0,0,0.08); }
+        .tab-btn.active { background-color:var(--navy); color:var(--white); border-color:var(--navy); box-shadow:0 3px 8px rgba(9,73,122,0.25); }
+        .tab-icon { font-size:14px; }
+
+        /* ── Tab panels ── */
+        .tab-panel { display:none; }
+        .tab-panel.active { display:block; }
+
+        /* ── Tab 1: Geography & Context ── */
+        .geo-layout { max-width:1100px; margin:0 auto; padding:35px 50px; }
+        .location-overview { background-color:var(--cream); border-radius:10px; padding:25px 30px; margin-bottom:28px; border-top:4px solid var(--navy); }
+        .location-overview .overview-heading { margin:0 0 18px 0; font-size:11px; text-transform:uppercase; letter-spacing:2px; color:var(--charcoal); opacity:0.6; font-weight:bold; }
+        .overview-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:24px; align-items:start; }
+        .overview-label { font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1px; color:var(--charcoal); opacity:0.6; margin-bottom:7px; display:block; }
+        .overview-value { font-size:14px; color:var(--charcoal); line-height:1.6; }
+        .lang-tag { display:inline-block; font-size:10px; font-weight:bold; color:var(--navy); background-color:rgba(9,73,122,0.1); border-radius:3px; padding:1px 5px; margin-right:2px; vertical-align:middle; }
+        .alt-names-extra { font-size:12px; opacity:0.65; margin-top:6px; display:block; line-height:1.5; }
+        .pop-figure { font-size:20px; font-weight:bold; color:var(--navy); line-height:1; }
+        .pop-year { font-size:11px; opacity:0.6; margin-left:3px; }
+        .script-line { font-size:13px; color:var(--charcoal); margin-bottom:4px; }
+        .script-lang { font-size:11px; opacity:0.6; margin-right:5px; }
+        .notes-box { grid-column:1/-1; margin-top:6px; padding:12px 16px; background-color:rgba(255,255,255,0.55); border-left:3px solid var(--sage); border-radius:0 5px 5px 0; font-size:13px; line-height:1.6; color:var(--charcoal); }
+        .overview-temporal { grid-column:1/-1; margin-top:8px; border-top:1px solid rgba(0,0,0,0.1); padding-top:16px; }
+        .overview-temporal-label { font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1px; color:var(--charcoal); opacity:0.6; margin-bottom:12px; display:block; }
+        .temporal-summary-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+        .temporal-summary-cell { background-color:rgba(255,255,255,0.5); border-radius:6px; padding:11px 13px; border-top:3px solid var(--navy); font-size:13px; }
+        .temporal-summary-cell.era-interwar { border-top-color:#5a7a9a; }
+        .temporal-summary-cell.era-postwar  { border-top-color:var(--sage); }
+        .temporal-summary-cell.era-present  { border-top-color:#a0a0a0; }
+        .ts-era-label { font-size:10px; font-weight:bold; text-transform:uppercase; letter-spacing:0.8px; opacity:0.55; margin-bottom:5px; display:block; }
+        .ts-town { font-size:14px; font-weight:bold; color:var(--navy); display:block; margin-bottom:3px; }
+        .ts-jurisdiction { font-size:11px; color:var(--charcoal); opacity:0.7; line-height:1.4; }
+        .map-communities-layout { display:grid; grid-template-columns:1fr 290px; gap:25px; align-items:start; }
+        .temporal-section { background-color:var(--white); border:1px solid #d1caba; border-radius:10px; overflow:hidden; }
+        .temporal-tabs { display:flex; background-color:var(--cream); padding:12px 14px; gap:6px; border-bottom:2px solid #d1caba; }
+        .era-tab { flex:1; padding:10px 8px; text-align:center; cursor:pointer; border:2px solid transparent; background-color:rgba(255,255,255,0.5); border-radius:6px; transition:background-color 0.15s,border-color 0.15s,box-shadow 0.15s,color 0.15s; display:flex; flex-direction:column; align-items:center; gap:3px; font-family:inherit; color:var(--charcoal); }
+        .era-tab:hover { background-color:var(--white); border-color:#c0b898; color:var(--navy); box-shadow:0 2px 5px rgba(0,0,0,0.08); }
+        .era-tab.active { background-color:var(--navy); border-color:var(--navy); color:var(--white); box-shadow:0 3px 8px rgba(9,73,122,0.25); }
+        .era-icon { font-size:17px; }
+        .era-year { font-size:13px; font-weight:bold; }
+        .era-label { font-size:10px; text-transform:uppercase; letter-spacing:0.5px; opacity:0.7; }
+        .era-table-wrapper { padding:18px 20px; }
+        .era-table { width:100%; border-collapse:collapse; font-size:14px; }
+        .era-table th { background-color:var(--navy); color:var(--white); padding:9px 13px; text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:1px; }
+        .era-table td { padding:10px 13px; border-bottom:1px solid var(--cream); vertical-align:top; }
+        .era-table td:first-child { font-size:11px; text-transform:uppercase; letter-spacing:0.5px; color:var(--charcoal); opacity:0.6; font-weight:bold; white-space:nowrap; width:140px; }
+        .era-table td.val { font-weight:bold; color:var(--navy); }
+        .era-table td.val a { color:var(--navy); text-decoration:underline dotted; }
+        .era-table td.val a:hover { color:var(--sage); }
+        .era-table tr:last-child td { border-bottom:none; }
+        .era-table tr td { background-color:rgba(9,73,122,0.03); }
+        .map-container { position:relative; height:300px; background-color:#d4e3ed; border-top:2px solid var(--cream); overflow:hidden; }
+        .map-placeholder { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; color:var(--navy); opacity:0.45; font-size:13px; }
+        .map-placeholder .map-ph-icon { font-size:36px; }
+        .map-era-badge { position:absolute; top:10px; left:10px; background-color:rgba(9,73,122,0.88); color:white; font-size:11px; font-weight:bold; padding:4px 10px; border-radius:3px; letter-spacing:0.5px; text-transform:uppercase; pointer-events:none; }
+        .map-coords-badge { position:absolute; bottom:10px; left:10px; background-color:rgba(255,255,255,0.88); color:var(--charcoal); font-size:11px; padding:3px 8px; border-radius:3px; font-style:italic; pointer-events:none; }
+        .map-container iframe { width:100%; height:100%; border:none; display:block; }
+        .map-source-note { background-color:var(--cream); padding:7px 14px; font-size:11px; color:var(--charcoal); opacity:0.7; font-style:italic; border-top:1px solid #d1caba; text-align:center; }
+        .nearby-panel { background-color:var(--cream); border-radius:10px; overflow:hidden; border-top:4px solid var(--sage); position:sticky; top:65px; }
+        .nearby-panel-header { margin:0; padding:13px 18px; font-size:11px; text-transform:uppercase; letter-spacing:2px; color:var(--charcoal); font-weight:bold; background-color:rgba(0,0,0,0.04); border-bottom:1px solid #d1caba; }
+        .nearby-list { list-style:none; margin:0; padding:0; max-height:420px; overflow-y:auto; }
+        .nearby-list li { padding:9px 18px; border-bottom:1px solid rgba(0,0,0,0.06); display:flex; justify-content:space-between; align-items:center; font-size:13px; }
+        .nearby-list li:last-child { border-bottom:none; }
+        .nearby-list li a { color:var(--navy); font-weight:bold; text-decoration:underline dotted; }
+        .nearby-list li a:hover { color:var(--sage); }
+        .nearby-dist { font-size:11px; color:var(--charcoal); opacity:0.55; white-space:nowrap; margin-left:8px; }
+
+        /* ── Tab 2: Essential Resources ── */
+        .resources-layout { max-width:1100px; margin:0 auto; padding:35px 50px; display:grid; grid-template-columns:1fr 1fr; gap:25px; }
+        .resource-card { background-color:var(--cream); border-radius:10px; overflow:hidden; border-top:4px solid var(--navy); }
+        .resource-card.sage-accent { border-top-color:var(--sage); }
+        .resource-card.muted-accent { border-top-color:#d1caba; }
+        .resource-card-header { padding:14px 20px; background-color:rgba(0,0,0,0.03); border-bottom:1px solid #d1caba; display:flex; align-items:center; gap:10px; }
+        .resource-card-header .res-icon { font-size:19px; }
+        .resource-card-header h3 { margin:0; font-size:14px; font-weight:bold; color:var(--navy); text-transform:uppercase; letter-spacing:0.5px; }
+        .res-count { margin-left:auto; background-color:var(--navy); color:white; font-size:11px; font-weight:bold; padding:3px 9px; border-radius:20px; }
+        .resource-card-body { padding:16px 20px; }
+        .yizkor-item { padding:11px 0; border-bottom:1px solid rgba(0,0,0,0.08); font-size:13px; line-height:1.5; }
+        .yizkor-item:last-child { border-bottom:none; padding-bottom:0; }
+        .yizkor-item a { color:var(--navy); text-decoration:underline; font-weight:bold; }
+        .yizkor-item a:hover { color:var(--sage); }
+        .yizkor-meta { font-size:11px; color:var(--charcoal); opacity:0.65; margin-top:3px; }
+        .empty-state { font-size:13px; color:var(--charcoal); opacity:0.6; font-style:italic; line-height:1.6; }
+        .empty-state a { color:var(--navy); font-weight:bold; text-decoration:underline; font-style:normal; }
+
+        /* ── Tab 3: Records & Catalogue ── */
+        .records-layout { max-width:1100px; margin:0 auto; padding:35px 50px; }
+        .records-coming-soon { background-color:var(--cream); border-radius:10px; padding:60px 40px; text-align:center; border:2px dashed #d1caba; }
+        .records-coming-soon .cs-icon { font-size:42px; margin-bottom:16px; }
+        .records-coming-soon h3 { color:var(--navy); margin:0 0 12px 0; font-size:22px; }
+        .records-coming-soon p { font-size:14px; color:var(--charcoal); opacity:0.7; max-width:520px; margin:0 auto; line-height:1.7; }
+        .records-coming-soon a { color:var(--navy); font-weight:bold; text-decoration:underline; }
+
+        /* ── Tab 4: Search ── */
+        .search-layout { max-width:1100px; margin:0 auto; padding:35px 50px; display:grid; grid-template-columns:1fr 1fr; gap:25px; }
+        .search-option-card { background-color:var(--navy); border-radius:10px; padding:30px; color:var(--white); }
+        .search-option-card h3 { margin:0 0 10px 0; font-size:17px; font-weight:bold; color:var(--white); }
+        .search-option-card p { font-size:13px; color:#a9c0d0; line-height:1.6; margin:0 0 18px 0; }
+        .search-names-list { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:22px; }
+        .search-name-tag { background-color:rgba(255,255,255,0.14); color:var(--white); font-size:12px; padding:4px 11px; border-radius:20px; font-weight:bold; }
+        .btn-search-db { display:inline-block; background-color:var(--sage); color:var(--white); padding:11px 22px; border-radius:5px; font-weight:bold; font-size:14px; text-transform:uppercase; letter-spacing:0.5px; }
+        .btn-search-db:hover { filter:brightness(1.12); color:var(--white); }
+
+        /* ── Tab 5: Connect & Share ── */
+        .connect-layout { max-width:1100px; margin:0 auto; padding:35px 50px; display:grid; grid-template-columns:1fr 1fr; gap:25px; }
+        .full-width { grid-column:1/-1; }
+        .connect-card { background-color:var(--cream); border-radius:10px; overflow:hidden; border-top:4px solid var(--sage); }
+        .connect-card.navy-accent { border-top-color:var(--navy); }
+        .connect-card-header { padding:13px 20px; background-color:rgba(0,0,0,0.03); border-bottom:1px solid #d1caba; display:flex; align-items:center; gap:10px; }
+        .connect-card-header .con-icon { font-size:18px; }
+        .connect-card-header h3 { margin:0; font-size:13px; font-weight:bold; color:var(--navy); text-transform:uppercase; letter-spacing:0.5px; }
+        .connect-card-body { padding:16px 20px; }
+        .jgff-block { background-color:var(--navy); border-radius:8px; padding:20px 25px; display:flex; align-items:center; justify-content:space-between; gap:20px; margin-top:10px; }
+        .jgff-number { font-size:42px; font-weight:bold; color:var(--white); line-height:1; }
+        .jgff-label { font-size:11px; color:#a9c0d0; text-transform:uppercase; letter-spacing:0.5px; margin-top:5px; }
+        .partner-item { display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid rgba(0,0,0,0.08); font-size:14px; }
+        .partner-item:last-child { border-bottom:none; padding-bottom:0; }
+        .partner-icon { font-size:20px; flex-shrink:0; margin-top:1px; }
+        .partner-item a { color:var(--navy); font-weight:bold; text-decoration:underline; }
+        .partner-item a:hover { color:var(--sage); }
+        .partner-desc { font-size:11px; opacity:0.6; margin-top:2px; }
+        .bib-item { padding:10px 0; border-bottom:1px solid rgba(0,0,0,0.08); font-size:13px; line-height:1.55; color:var(--charcoal); }
+        .bib-item:last-child { border-bottom:none; padding-bottom:0; }
+        .bib-entry { color:var(--navy); font-weight:bold; }
+
+        /* ── Bottom nav ── */
+        .page-footer-nav { max-width:1100px; margin:20px auto; padding:20px 50px; display:flex; align-items:center; justify-content:space-between; border-top:2px solid var(--cream); }
+        .back-link { display:flex; align-items:center; gap:8px; color:var(--navy); font-weight:bold; font-size:14px; }
+        .back-link:hover { color:var(--sage); }
+        .back-link .arrow { font-size:18px; }
+
+        /* ── Dark mode overrides ── */
+        body.dark-mode .community-title-band { background-color:#0d2a45; }
+        body.dark-mode .community-title-band h1 { color:#ffffff !important; }
+        body.dark-mode .community-title-band .region-tag { background-color:var(--sage); color:#121212 !important; }
+        body.dark-mode .community-tabs-wrapper { background-color:#1a1a1a; border-bottom-color:#333; box-shadow:0 2px 8px rgba(0,0,0,0.5); }
+        body.dark-mode .tab-btn { color:#c0c0c0; background-color:rgba(255,255,255,0.05); }
+        body.dark-mode .tab-btn:hover { background-color:rgba(255,255,255,0.1); border-color:#444; }
+        body.dark-mode .tab-btn.active { background-color:var(--sage); color:#121212; border-color:var(--sage); }
+        body.dark-mode .location-overview { background-color:#1a1a1a; border-top-color:var(--sage); }
+        body.dark-mode .temporal-summary-cell { background-color:rgba(255,255,255,0.04); }
+        body.dark-mode .notes-box { background-color:rgba(0,0,0,0.25); border-left-color:var(--sage); }
+        body.dark-mode .lang-tag { background-color:rgba(168,179,97,0.15); color:var(--sage); }
+        body.dark-mode .temporal-section { border-color:#333; }
+        body.dark-mode .temporal-tabs { background-color:#1a1a1a; border-bottom-color:#333; }
+        body.dark-mode .era-tab { color:#888; background-color:rgba(255,255,255,0.04); border-color:transparent; }
+        body.dark-mode .era-tab:hover { background-color:rgba(255,255,255,0.09); border-color:#444; color:#e0e0e0; }
+        body.dark-mode .era-tab.active { background-color:var(--sage); border-color:var(--sage); color:#121212; box-shadow:0 3px 8px rgba(168,179,97,0.3); }
+        body.dark-mode .era-table-wrapper { background-color:#121212; }
+        body.dark-mode .era-table th { background-color:#262626; }
+        body.dark-mode .era-table td { border-bottom-color:#333; }
+        body.dark-mode .era-table tr td { background-color:rgba(255,255,255,0.02); }
+        body.dark-mode .map-container { background-color:#1a1a1a; }
+        body.dark-mode .map-source-note { background-color:#1a1a1a; border-top-color:#333; }
+        body.dark-mode .nearby-panel { background-color:#1a1a1a; }
+        body.dark-mode .nearby-panel-header { background-color:rgba(255,255,255,0.03); border-bottom-color:#333; }
+        body.dark-mode .nearby-list li { border-bottom-color:#2a2a2a; }
+        body.dark-mode .resource-card { background-color:#1a1a1a; }
+        body.dark-mode .resource-card.muted-accent { border-top-color:#444; }
+        body.dark-mode .resource-card-header { background-color:rgba(255,255,255,0.03); border-bottom-color:#333; }
+        body.dark-mode .yizkor-item { border-bottom-color:#333; }
+        body.dark-mode .records-coming-soon { background-color:#1a1a1a; border-color:#333; }
+        body.dark-mode .search-option-card { background-color:#1a1a1a; border:1px solid #333; }
+        body.dark-mode .search-option-card h3 { color:#e0e0e0; }
+        body.dark-mode .connect-card { background-color:#1a1a1a; }
+        body.dark-mode .connect-card-header { background-color:rgba(255,255,255,0.03); border-bottom-color:#333; }
+        body.dark-mode .partner-item { border-bottom-color:#333; }
+        body.dark-mode .bib-item { border-bottom-color:#333; color:#c0c0c0; }
+        body.dark-mode .jgff-block { background-color:#262626; }
+        body.dark-mode .page-footer-nav { border-top-color:#333; }
+
+        /* ── Responsive ── */
+        @media (max-width:900px) {
+            .breadcrumb { padding:10px 20px; overflow-x:auto; white-space:nowrap; }
+            .community-title-band { padding:25px 20px; }
+            .community-title-band h1 { font-size:24px; }
+            .community-tabs { padding:0 15px; }
+            .tab-btn { padding:12px 10px; font-size:11px; }
+            .geo-layout, .resources-layout, .records-layout,
+            .search-layout, .connect-layout { padding:25px 20px; }
+            .map-communities-layout { grid-template-columns:1fr; }
+            .nearby-panel { position:static; }
+            .nearby-list { max-height:300px; }
+            .overview-grid { grid-template-columns:1fr; }
+            .temporal-summary-grid { grid-template-columns:repeat(2,1fr); }
+            .resources-layout, .search-layout, .connect-layout { grid-template-columns:1fr; }
+            .full-width { grid-column:auto; }
+            .jgff-block { flex-direction:column; text-align:center; }
+            .page-footer-nav { flex-direction:column; gap:15px; padding:20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER + NAV -->
+<div id="site-header"></div>
+
+<!-- BREADCRUMB -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="https://effortlesslycat-ship-it.github.io/JG40-Build/index.html">JewishGen Home</a>
+    <span aria-hidden="true">›</span>
+    <a href="#">Communities Database</a>
+    <span aria-hidden="true">›</span>
+    <a href="#">Lithuania</a>
+    <span aria-hidden="true">›</span>
+    <span aria-current="page">Valkininkai</span>
+</nav>
+
+<!-- TITLE BAND -->
+<div class="community-title-band">
+    <div style="max-width:1100px; margin:0 auto;">
+        <div class="region-tag">Vilna Region · Lithuania</div>
+        <h1>
+            <img src="https://www.jewishgen.org/JG/Images/JGStarTra.png" alt="" aria-hidden="true"
+                 style="height:26px;width:auto;filter:brightness(0) invert(1);opacity:0.65;">
+            Valkininkai, Lithuania
+            <img src="https://www.jewishgen.org/JG/Images/JGStarTra.png" alt="" aria-hidden="true"
+                 style="height:26px;width:auto;filter:brightness(0) invert(1);opacity:0.65;">
+        </h1>
+        <p class="coords">54°21′ N, 24°50′ E &nbsp;·&nbsp; 30 miles SW of Vilnius</p>
+    </div>
+</div>
+
+<!-- TAB NAVIGATION -->
+<div class="community-tabs-wrapper">
+    <div class="community-tabs" role="tablist" aria-label="Community page sections">
+        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-geo" id="tab-geo" onclick="switchTab('geo')">
+            <span class="tab-icon" aria-hidden="true">🧭</span> Geography &amp; Context
+        </button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-resources" id="tab-resources" onclick="switchTab('resources')">
+            <span class="tab-icon" aria-hidden="true">📚</span> Essential Resources
+        </button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-records" id="tab-records" onclick="switchTab('records')">
+            <span class="tab-icon" aria-hidden="true">🗂️</span> Records &amp; Catalogue
+        </button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-search" id="tab-search" onclick="switchTab('search')">
+            <span class="tab-icon" aria-hidden="true">🔍</span> Search the Database
+        </button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-connect" id="tab-connect" onclick="switchTab('connect')">
+            <span class="tab-icon" aria-hidden="true">🔗</span> Connect &amp; Share
+        </button>
+    </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════╗
+     TAB 1: GEOGRAPHY & CONTEXT
+╚══════════════════════════════════════════╝ -->
+<div class="tab-panel active" id="panel-geo" role="tabpanel" aria-labelledby="tab-geo">
+<div class="geo-layout">
+
+    <section class="location-overview" aria-label="Location overview">
+        <h2 class="overview-heading">Location Overview</h2>
+        <div class="overview-grid">
+
+            <div>
+                <span class="overview-label">Alternate Names</span>
+                <div class="overview-value">
+                    <span class="lang-tag">Lith</span> Valkininkai &nbsp;
+                    <span class="lang-tag">Pol</span> Olkieniki &nbsp;
+                    <span class="lang-tag">Rus</span> Olkeniki &nbsp;
+                    <span class="lang-tag">Yid</span> Olkenik &nbsp;
+                    <span class="lang-tag">Bel</span> Alkeniki
+                    <span class="alt-names-extra">Also known as: Olkienniki, Olkinik, Olknik, Volknik, Valkiniras, Valkininkas, Valkininkay, Valkėninkā, Walkenykai</span>
+                </div>
+            </div>
+
+            <div>
+                <span class="overview-label">Jewish Population</span>
+                <div class="overview-value">
+                    <div style="margin-bottom:6px;"><span class="pop-figure">1,126</span><span class="pop-year">(1897 census)</span></div>
+                    <div><span class="pop-figure" style="font-size:17px;">798</span><span class="pop-year">(1925)</span></div>
+                </div>
+            </div>
+
+            <div>
+                <span class="overview-label">Name in Other Scripts</span>
+                <div class="overview-value">
+                    <div class="script-line"><span class="script-lang">Russian:</span> Олькеники</div>
+                    <div class="script-line"><span class="script-lang">Yiddish:</span> <span dir="rtl" lang="yi">אָלקעניק</span></div>
+                    <div class="script-line"><span class="script-lang">Belarusian:</span> Алькенікі</div>
+                </div>
+            </div>
+
+            <div class="overview-temporal">
+                <span class="overview-temporal-label">Historical Jurisdictions at a Glance</span>
+                <div class="temporal-summary-grid">
+                    <div class="temporal-summary-cell era-prewwi">
+                        <span class="ts-era-label">Pre-WWI · c. 1900</span>
+                        <span class="ts-town">Olkeniki</span>
+                        <span class="ts-jurisdiction">Troki · Vilna<br>Russian Empire</span>
+                    </div>
+                    <div class="temporal-summary-cell era-interwar">
+                        <span class="ts-era-label">Interwar · c. 1930</span>
+                        <span class="ts-town">Olkieniki</span>
+                        <span class="ts-jurisdiction">Wilno-Troki · Wilno<br>Poland</span>
+                    </div>
+                    <div class="temporal-summary-cell era-postwar">
+                        <span class="ts-era-label">Post War · c. 1950</span>
+                        <span class="ts-town">Valkininkai</span>
+                        <span class="ts-jurisdiction">Soviet Union</span>
+                    </div>
+                    <div class="temporal-summary-cell era-present">
+                        <span class="ts-era-label">Present Day · Name (2000)</span>
+                        <span class="ts-town">Valkininkai</span>
+                        <span class="ts-jurisdiction">Lithuania</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes-box" role="note">
+                <strong>Notes:</strong> 30 miles SW of Vilnius (Vilna), 20 miles SSW of Trakai (Troki), 14 miles SW of Varėna (Aran).
+            </div>
+
+        </div>
+    </section>
+
+    <div class="map-communities-layout">
+
+        <section aria-label="Historical jurisdiction and map">
+            <div class="temporal-section">
+                <div class="temporal-tabs" role="tablist" aria-label="Select historical time period">
+                    <button class="era-tab active" role="tab" aria-selected="true" id="era-prewwi" onclick="switchEra('prewwi')" aria-label="Pre-WWI period, circa 1900">
+                        <span class="era-icon" aria-hidden="true">👑</span>
+                        <span class="era-year">c. 1900</span>
+                        <span class="era-label">Pre-WWI</span>
+                    </button>
+                    <button class="era-tab" role="tab" aria-selected="false" id="era-interwar" onclick="switchEra('interwar')" aria-label="Interwar period, circa 1930">
+                        <span class="era-icon" aria-hidden="true">🏛️</span>
+                        <span class="era-year">c. 1930</span>
+                        <span class="era-label">Interwar</span>
+                    </button>
+                    <button class="era-tab" role="tab" aria-selected="false" id="era-postwar" onclick="switchEra('postwar')" aria-label="Post-war period, circa 1950">
+                        <span class="era-icon" aria-hidden="true">⚛️</span>
+                        <span class="era-year">c. 1950</span>
+                        <span class="era-label">Post War</span>
+                    </button>
+                    <button class="era-tab" role="tab" aria-selected="false" id="era-present" onclick="switchEra('present')" aria-label="Present day">
+                        <span class="era-icon" aria-hidden="true">🏙️</span>
+                        <span class="era-year">Today</span>
+                        <span class="era-label">Present Day</span>
+                    </button>
+                </div>
+
+                <div class="era-table-wrapper" aria-live="polite" aria-atomic="true">
+                    <table class="era-table" aria-label="Historical jurisdiction for selected era">
+                        <thead>
+                            <tr>
+                                <th scope="col">Era</th>
+                                <th scope="col">Town Name</th>
+                                <th scope="col">District</th>
+                                <th scope="col">Province</th>
+                                <th scope="col">Country</th>
+                            </tr>
+                        </thead>
+                        <tbody id="era-table-body"></tbody>
+                    </table>
+                </div>
+
+                <div class="map-container" id="map-container" aria-label="Map of Valkininkai for the selected time period"></div>
+                <div class="map-source-note" id="map-source-note" aria-live="polite"></div>
+            </div>
+        </section>
+
+        <aside class="nearby-panel" aria-label="Nearby Jewish communities">
+            <h3 class="nearby-panel-header">Nearby Jewish Communities</h3>
+            <ul class="nearby-list">
+                <li><a href="#">Degsnės</a> <span class="nearby-dist">2 mi NW</span></li>
+                <li><a href="#">Lieponys</a> <span class="nearby-dist">8 mi NNW</span></li>
+                <li><a href="#">Panošiškes</a> <span class="nearby-dist">12 mi NNW</span></li>
+                <li><a href="#">Onuškis</a> <span class="nearby-dist">13 mi NW</span></li>
+                <li><a href="#">Varėna</a> <span class="nearby-dist">14 mi SW</span></li>
+                <li><a href="#">Eišiškes</a> <span class="nearby-dist">14 mi SSE</span></li>
+                <li><a href="#">Trakai</a> <span class="nearby-dist">20 mi N</span></li>
+                <li><a href="#">Aukštadvaris</a> <span class="nearby-dist">20 mi NW</span></li>
+                <li><a href="#">Daugai</a> <span class="nearby-dist">20 mi W</span></li>
+                <li><a href="#">Jašiunai</a> <span class="nearby-dist">21 mi ENE</span></li>
+                <li><a href="#">Radun, Belarus</a> <span class="nearby-dist">22 mi SSE</span></li>
+                <li><a href="#">Šalčininkai</a> <span class="nearby-dist">22 mi E</span></li>
+                <li><a href="#">Lentvaris</a> <span class="nearby-dist">22 mi NNE</span></li>
+                <li><a href="#">Byenyakoni, Belarus</a><span class="nearby-dist">23 mi ESE</span></li>
+                <li><a href="#">Semeliškės</a> <span class="nearby-dist">23 mi NNW</span></li>
+                <li><a href="#">Voranava, Belarus</a> <span class="nearby-dist">24 mi SE</span></li>
+                <li><a href="#">Alovė</a> <span class="nearby-dist">26 mi W</span></li>
+                <li><a href="#">Butrimonys</a> <span class="nearby-dist">26 mi WNW</span></li>
+                <li><a href="#">Rudamina</a> <span class="nearby-dist">26 mi NE</span></li>
+                <li><a href="#">Stakliškės</a> <span class="nearby-dist">27 mi NW</span></li>
+                <li><a href="#">Čekoniškės</a> <span class="nearby-dist">28 mi NNE</span></li>
+                <li><a href="#">Vievis</a> <span class="nearby-dist">29 mi N</span></li>
+                <li><a href="#">Laibiškės</a> <span class="nearby-dist">30 mi ENE</span></li>
+                <li><a href="#">Merkinė</a> <span class="nearby-dist">30 mi WSW</span></li>
+                <li><a href="#">Vilnius</a> <span class="nearby-dist">30 mi NE</span></li>
+                <li><a href="#">Šnipiškės</a> <span class="nearby-dist">30 mi NE</span></li>
+            </ul>
+        </aside>
+
+    </div>
+</div>
+</div><!-- /panel-geo -->
+
+<!-- ╔══════════════════════════════════════════╗
+     TAB 2: ESSENTIAL RESOURCES
+╚══════════════════════════════════════════╝ -->
+<div class="tab-panel" id="panel-resources" role="tabpanel" aria-labelledby="tab-resources">
+<div class="resources-layout">
+
+    <div class="resource-card" style="border-top-color:var(--navy);">
+        <div class="resource-card-header">
+            <span class="res-icon" aria-hidden="true">📖</span>
+            <h3>Yizkor Books</h3>
+            <span class="res-count" aria-label="2 Yizkor books">2</span>
+        </div>
+        <div class="resource-card-body">
+            <div class="yizkor-item">
+                <a href="#" target="_blank" rel="noopener"><em>Ha-ayara be-lehavot: sefer zikaron le-kehilat Olkenik pelekh Vilna</em></a>
+                <div class="yizkor-meta">Tel Aviv, 1962 · Hebrew</div>
+            </div>
+            <div class="yizkor-item">
+                <a href="#" target="_blank" rel="noopener"><em>Ha-Ayarah she-haytah… Olknik: ayarah bi-medinat Lita</em></a>
+                <div class="yizkor-meta">Haifa, 1967 · Hebrew</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="resource-card muted-accent">
+        <div class="resource-card-header">
+            <span class="res-icon" aria-hidden="true">🌐</span>
+            <h3>KehilaLinks</h3>
+        </div>
+        <div class="resource-card-body">
+            <p class="empty-state">No KehilaLinks community page exists for Valkininkai yet. If you have roots or research connections here, <a href="#">consider creating one</a> to share your knowledge with the community.</p>
+        </div>
+    </div>
+
+    <div class="resource-card sage-accent">
+        <div class="resource-card-header">
+            <span class="res-icon" aria-hidden="true">🪦</span>
+            <h3>Local Cemetery (JOWBR)</h3>
+        </div>
+        <div class="resource-card-body">
+            <p class="empty-state">No local cemetery records are currently indexed for Valkininkai in the JewishGen Online Worldwide Burial Registry. <a href="#">Help us add records.</a></p>
+        </div>
+    </div>
+
+    <div class="resource-card sage-accent">
+        <div class="resource-card-header">
+            <span class="res-icon" aria-hidden="true">🌎</span>
+            <h3>Landsmanshaft Cemeteries</h3>
+        </div>
+        <div class="resource-card-body">
+            <p class="empty-state">No landsmanshaft cemetery sections are currently linked for Valkininkai. Landsmanshaftn were mutual aid societies formed by immigrants from the same town, many of which established dedicated burial sections in diaspora cemeteries across North America and beyond.</p>
+        </div>
+    </div>
+
+</div>
+</div><!-- /panel-resources -->
+
+<!-- ╔══════════════════════════════════════════╗
+     TAB 3: RECORDS & CATALOGUE
+╚══════════════════════════════════════════╝ -->
+<div class="tab-panel" id="panel-records" role="tabpanel" aria-labelledby="tab-records">
+<div class="records-layout">
+    <div class="records-coming-soon">
+        <div class="cs-icon" aria-hidden="true">🗂️</div>
+        <h3>Record Inventory Coming Soon</h3>
+        <p>We are building a comprehensive catalogue of all JewishGen records associated with Valkininkai, drawn from our Records Catalogue and indexed datasets. Check back soon, or <a href="#">search the database directly</a>.</p>
+    </div>
+</div>
+</div><!-- /panel-records -->
+
+<!-- ╔══════════════════════════════════════════╗
+     TAB 4: SEARCH THE DATABASE
+╚══════════════════════════════════════════╝ -->
+<div class="tab-panel" id="panel-search" role="tabpanel" aria-labelledby="tab-search">
+<div class="search-layout">
+
+    <div class="search-option-card">
+        <h3>🇱🇹 JewishGen Lithuania Database</h3>
+        <p>Search the Lithuania-specific database for all records associated with Valkininkai and its historical names.</p>
+        <div class="search-names-list" aria-label="Search terms used">
+            <span class="search-name-tag">Valkininkai</span>
+            <span class="search-name-tag">Olkieniki</span>
+            <span class="search-name-tag">Olkeniki</span>
+        </div>
+        <a href="#" class="btn-search-db" aria-label="Search the JewishGen Lithuania Database for Valkininkai">Search Lithuania Database →</a>
+    </div>
+
+    <div class="search-option-card">
+        <h3>🌍 JewishGen Global Search</h3>
+        <p>Search across all JewishGen databases worldwide for records mentioning Valkininkai or any of its alternate names.</p>
+        <div class="search-names-list" aria-label="Search terms used">
+            <span class="search-name-tag">Valkininkai</span>
+            <span class="search-name-tag">Olkieniki</span>
+            <span class="search-name-tag">Olkeniki</span>
+            <span class="search-name-tag">Olkenik</span>
+        </div>
+        <a href="#" class="btn-search-db" aria-label="Search all JewishGen databases for Valkininkai">Search All Databases →</a>
+    </div>
+
+</div>
+</div><!-- /panel-search -->
+
+<!-- ╔══════════════════════════════════════════╗
+     TAB 5: CONNECT & SHARE
+╚══════════════════════════════════════════╝ -->
+<div class="tab-panel" id="panel-connect" role="tabpanel" aria-labelledby="tab-connect">
+<div class="connect-layout">
+
+    <div class="connect-card navy-accent full-width">
+        <div class="connect-card-header">
+            <span class="con-icon" aria-hidden="true">👨‍👩‍👧‍👦</span>
+            <h3>JewishGen Family Finder (JGFF)</h3>
+        </div>
+        <div class="connect-card-body">
+            <p style="font-size:13px;margin:0 0 14px 0;color:var(--charcoal);line-height:1.6;">Researchers who have registered surnames connected to this community in the JewishGen Family Finder. Matches are linked via the community's USBGN feature number, covering all historical names for this location.</p>
+            <div class="jgff-block" aria-label="113 JGFF surname matches for Valkininkai">
+                <div class="jgff-count-wrap">
+                    <div class="jgff-number">113</div>
+                    <div class="jgff-label">Registered Surname Matches</div>
+                </div>
+                <a href="#" class="btn-search-db" aria-label="View all 113 JGFF matches for Valkininkai">View All Matches →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="connect-card">
+        <div class="connect-card-header">
+            <span class="con-icon" aria-hidden="true">🤝</span>
+            <h3>Partner Organizations</h3>
+        </div>
+        <div class="connect-card-body">
+            <div class="partner-item">
+                <span class="partner-icon" aria-hidden="true">🇱🇹</span>
+                <div>
+                    <div><a href="https://www.litvaksig.org/" target="_blank" rel="noopener">LitvakSIG</a></div>
+                    <div class="partner-desc">Special Interest Group for Lithuanian Jewish Genealogy</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="connect-card">
+        <div class="connect-card-header">
+            <span class="con-icon" aria-hidden="true">📋</span>
+            <h3>Print Bibliography</h3>
+        </div>
+        <div class="connect-card-body">
+            <div class="bib-item" lang="pl"><em>Słownik Geograficzny Królestwa Polskiego</em> (1880–1902), Vol. VII, pp. 484–485: <span class="bib-entry">"Olkieniki"</span></div>
+            <div class="bib-item"><em>Shtetl Finder</em> (1989), p. 66: <span class="bib-entry">"Olknik, Volknik"</span></div>
+            <div class="bib-item"><em>Pinkas HaKehilot</em>, Poland, Vol. 8 (2005), pp. 94–99: <span class="bib-entry">"Olkieniki"</span></div>
+            <div class="bib-item"><em>Lithuanian Jewish Communities</em> (1991), pp. 205–207: <span class="bib-entry">"Olkenik (Valkininkai)"</span></div>
+            <div class="bib-item"><em>Encyclopedia of Jewish Life</em> (2001), p. 934: <span class="bib-entry">"Olkieniki"</span></div>
+            <div class="bib-item" lang="ru"><em lang="ru">Еврейская энциклопедия</em> (1906–1913): <span class="bib-entry" lang="ru">"Олькеники"</span></div>
+        </div>
+    </div>
+
+</div>
+</div><!-- /panel-connect -->
+
+<!-- BOTTOM NAV -->
+<div class="page-footer-nav">
+    <a href="#" class="back-link" aria-label="Back to Communities Database search results">
+        <span class="arrow" aria-hidden="true">←</span>
+        Back to Communities Database Search
+    </a>
+    <div style="font-size:12px;color:var(--charcoal);opacity:0.5;font-style:italic;">
+        JewishGen Communities Database · Valkininkai, Lithuania
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div id="site-footer"></div>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+/* ── Component Loader ── */
+function loadComponent(id, file) {
+    return fetch(file)
+        .then(r => { if (!r.ok) throw new Error('Could not load ' + file); return r.text(); })
+        .then(html => { document.getElementById(id).innerHTML = html; })
+        .catch(err => console.warn(err));
+}
+
+Promise.all([
+    loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
+    loadComponent('site-footer', '/JG40-Build/Footer.html')
+]).then(() => {
+    document.querySelectorAll('.jg-nav .dropbtn').forEach(btn => {
+        btn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const expanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', String(!expanded));
+                const menu = document.getElementById(this.getAttribute('aria-controls'));
+                if (menu) menu.style.display = expanded ? 'none' : 'block';
+            }
+            if (e.key === 'Escape') {
+                this.setAttribute('aria-expanded', 'false');
+                const menu = document.getElementById(this.getAttribute('aria-controls'));
+                if (menu) menu.style.display = 'none';
+            }
+        });
+    });
+});
+
+/* ── Tab switcher ── */
+function switchTab(name) {
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        const active = btn.id === 'tab-' + name;
+        btn.classList.toggle('active', active);
+        btn.setAttribute('aria-selected', String(active));
+    });
+    document.querySelectorAll('.tab-panel').forEach(panel => {
+        panel.classList.toggle('active', panel.id === 'panel-' + name);
+    });
+}
+
+/* ── Era data ── */
+const ERA_DATA = {
+    prewwi: {
+        label: 'Pre-WWI · c. 1900',
+        sourceNote: 'Historical map source: David Rumsey Map Collection · Russian Empire c. 1895',
+        mapType: 'placeholder',
+        rows: [{ era:'Pre-WWI (c. 1900)', town:'Olkeniki', district:'Troki', province:'Vilna', country:'Russian Empire' }]
+    },
+    interwar: {
+        label: 'Interwar · c. 1930',
+        sourceNote: 'Historical map source: David Rumsey Map Collection · Interwar Poland c. 1924',
+        mapType: 'placeholder',
+        rows: [{ era:'Interwar (c. 1930)', town:'Olkieniki', district:'Wilno-Troki', province:'Wilno', country:'Poland' }]
+    },
+    postwar: {
+        label: 'Post War · c. 1950',
+        sourceNote: 'Historical map source: David Rumsey Map Collection · Soviet Union c. 1950',
+        mapType: 'placeholder',
+        rows: [{ era:'Post War (c. 1950)', town:'Valkininkai', district:'—', province:'—', country:'Soviet Union' }]
+    },
+    present: {
+        label: 'Present Day',
+        sourceNote: 'Map source: Google Maps · Present day',
+        mapType: 'google',
+        rows: [{ era:'Present Day', town:'Valkininkai', district:'Varėna', province:'Alytus County', country:'Lithuania' }]
+    }
+};
+
+function switchEra(name) {
+    document.querySelectorAll('.era-tab').forEach(btn => {
+        const active = btn.id === 'era-' + name;
+        btn.classList.toggle('active', active);
+        btn.setAttribute('aria-selected', String(active));
+    });
+
+    const data = ERA_DATA[name];
+    if (!data) return;
+
+    document.getElementById('era-table-body').innerHTML = data.rows.map(row => `
+        <tr>
+            <td>${escHtml(row.era)}</td>
+            <td class="val">${escHtml(row.town)}</td>
+            <td class="val">${escHtml(row.district)}</td>
+            <td class="val">${escHtml(row.province)}</td>
+            <td class="val">${escHtml(row.country)}</td>
+        </tr>
+    `).join('');
+
+    document.getElementById('map-source-note').textContent = data.sourceNote;
+
+    const container = document.getElementById('map-container');
+    if (data.mapType === 'google') {
+        container.innerHTML = `
+            <iframe src="https://maps.google.com/maps?q=54.35,24.833&z=11&output=embed"
+                title="Map of Valkininkai, Lithuania (present day)"
+                aria-label="Google Map showing the present-day location of Valkininkai, Lithuania"
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="map-era-badge">Present Day</div>
+            <div class="map-coords-badge">54°21′ N, 24°50′ E</div>`;
+    } else {
+        container.innerHTML = `
+            <div class="map-placeholder" role="img"
+                aria-label="Historical map placeholder for ${escHtml(data.label)}. David Rumsey Map Collection integration coming soon.">
+                <span class="map-ph-icon" aria-hidden="true">🗺️</span>
+                <span style="font-weight:bold;">${escHtml(data.label)}</span>
+                <span style="font-size:12px;opacity:0.7;text-align:center;max-width:260px;line-height:1.4;">Interactive historical map coming soon<br><em>David Rumsey Map Collection</em></span>
+            </div>
+            <div class="map-era-badge">${escHtml(data.label)}</div>
+            <div class="map-coords-badge">54°21′ N, 24°50′ E</div>`;
+    }
+}
+
+function escHtml(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ── Keyboard nav ── */
+function addArrowKeyNav(selector) {
+    document.querySelectorAll(selector).forEach(btn => {
+        btn.addEventListener('keydown', function(e) {
+            const tabs = Array.from(document.querySelectorAll(selector));
+            const idx = tabs.indexOf(this);
+            if (e.key === 'ArrowRight') { e.preventDefault(); const next = tabs[(idx+1) % tabs.length]; next.focus(); next.click(); }
+            else if (e.key === 'ArrowLeft') { e.preventDefault(); const prev = tabs[(idx-1+tabs.length) % tabs.length]; prev.focus(); prev.click(); }
+        });
+    });
+}
+addArrowKeyNav('.tab-btn');
+addArrowKeyNav('.era-tab');
+
+/* ── Init ── */
+function initPage() { switchEra('prewwi'); }
+if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', initPage); }
+else { initPage(); }
+</script>
+</body>
+</html>
