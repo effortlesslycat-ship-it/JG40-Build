@@ -378,20 +378,64 @@ Promise.all([
 </script>
 
 <script>
-/* ── Video Library ─────────────────────────────────────────────
+
+/* ── VIDEO LIBRARY ──────────────────────────────────────────────────
    ★ = confirmed YouTube video ID
    NEED_ID_xx = replace with real YouTube ID
-   Playlist: PL2SY5Vnun7fmaXzzTT-O1ozboh1k3xYyV
+   Playlist URL: PL2SY5Vnun7fmaXzzTT-O1ozboh1k3xYyV
    Order: newest first
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────── */
 const VIDEOS = [
-    { id: 'WZPGF3hZOO0', title: 'JewishGen Talks: Disaster through the Lens of Genealogy — the Triangle Factory Fire Case Study', duration: '51:56', desc: 'This talk uses the Triangle Shirtwaist Factory Fire as a case study for disaster genealogy research. Learn how major historical disasters can be used as entry points for genealogical research.' },
-    { id: 'NEED_ID_43', title: 'JewishGen Talks: Researching Jewish Families in the Russian Empire', duration: '' },
-    { id: 'NEED_ID_42', title: 'JewishGen Talks: Understanding Vital Records in Poland', duration: '' },
-    { id: 'NEED_ID_41', title: 'JewishGen Talks: DNA and Jewish Genealogy', duration: '' },
-    { id: 'zdo4N6IdUOA', title: 'JewishGen Talks: Süßkind Stern: One of the Earliest Known Portraits of a German Jew', duration: '' },
+    { 
+        id: 'WZPGF3hZOO0', 
+        title: 'JewishGen Talks: Disaster through the Lens of Genealogy \u2014 the Triangle Factory Fire Case Study', 
+        duration: '51:56', 
+        desc: 'On the anniversary of the Triangle Shirtwaist Factory fire, we often remember the tragedy through the staggering number of lives lost. But behind the statistics are the stories of individuals like 17-year-old Sarah Brenman, who had been in America for only six weeks before that fateful day. Join us for a lecture exploring the fire through the lens of genealogy, where we move beyond the headlines to reconstruct the lives, families, and legacies of those who perished, turning names on a list back into daughters, sisters, and neighbors.' 
+    },
+    { 
+        id: 'ftn6EBCQ5AA', 
+        title: 'JewishGen Talks: Treasures for Your Tree \u2013 Finding Family Genealogical Ephemera in Archives', 
+        duration: '1:10:56', 
+        desc: 'Genealogists can discover far more than family trees and vital records in archives. In this talk, Michael Simonson will explore little-known collections at the Leo Baeck Institute—a panorama of art, objects, photographs, newspapers, books, and other materials—that illuminate the lives of ancestors, sharing strategies that can be applied to research in archives everywhere. The presentation will feature 1930s glass slides of Winnie-the-Pooh that may have been created in Theresienstadt, along with materials from the Shanghai Ghetto, offering a vivid glimpse into Jewish life under extraordinary circumstances.' 
+    },
+    { 
+        id: 'Fdew0xC-PeM', 
+        title: 'JewishGen Talks: Souls, Taxes, and Real Estate - Jewish Genealogy and the Ottoman Administrative State', 
+        duration: '50:23', 
+        desc: 'The Ottoman Empire, like all empires and states, was not just founded upon the idea of military power and might; it required a vast administrative apparatus to exert sovereignty over its lands, which included more than 690,000 square miles of territory at its height. For Jewish genealogists, there are four key types of administrative registers that offer insights: Cizye, Nüfus, Tapu Tahrir, and Temettuat[cite: 9]. Cizye registers hold information about the male poll tax payers belonging to ahl al-Kitab, the non-Muslim "People of the Book" (Jews and Christians). Nüfus are the modern census registers dating from 1832 to 1921. Tapu Tahrir is a series of cadastral population surveys conducted by the Ottoman Empire between the 15th and 18th centuries. And the Temettuat are real estate and tax censuses conducted in the wake of the original Nüfus, primarily to adjust taxation. In this lecture, Associate Director of the Sephardic Research Division, Michael Waas, will introduce these registers, heretofore little utilized by genealogists for genealogy research, and will reveal, with a series of examples from these registers, what might be possible to learn from them, including the heights, whether your ancestors had a beard, and if so, what the color of their beard was.' 
+    },
+    { 
+        id: 'lkSTBrt20s8', 
+        title: 'JewishGen Talks: The Dash: Finding the Person in the Papers', 
+        duration: '',
+        desc: 'A gravestone records two distinct dates, but the story of a life exists entirely within the “dash” between them. How do we find the living, breathing person behind the cold facts of a census or a death certificate? How do we move beyond a simple biography to discover a personality? Join Chief Genealogist Caitlin Hollander Waas for a look at the strategies used to find the human spirit hidden in the archives. This webinar explores how to identify the “little details” of a person that traditional research often overlooks[cite: 18]. From the shifting nuances of a signature to the physical clues that reveal a person’s reality, these details change how we see our family history. By looking at naming choices, self-reinvention, and the physical characteristics found in unusual documents, you’ll learn how to bridge the gap between data and identity.'
+    },
+    { 
+        id: 'JgQIKgRH6bI', 
+        title: 'JewishGen Talks: No, Your Ancestors\u2019 Names Were Not Changed at Ellis Island', 
+        duration: '',
+        desc: 'It is the most persistent myth in American family history: the overwhelmed or malicious clerk who unilaterally altered a family’s identity at the port of entry. Whether framed as a clerical error or an act of xenophobia, historical records show that this scenario was not only unlikely—it was impossible. Join Chief Genealogist Caitlin Hollander Waas as she deconstructs this legend by examining the administrative mechanics of the immigration process and the specific records created at the port of entry. This session moves beyond the myth to explore the genuine legal, social, and economic motivations behind name changes, revealing how immigrants navigated their new identities, not as victims of a clerical error, but as active participants in their own American narratives.'
+    },
+    { 
+        id: 'AcU6X3vzGcc', 
+        title: 'JewishGen Talks: Sephardim in Colonial America', 
+        duration: '',
+        desc: 'Sephardic Jews are the descendants of Iberian Jews who left Spain beginning in 1492. Fleeing persecution, many sought refuge in more tolerant regions and eventually made their way to the Americas. Settling in New Amsterdam (later New York) and Rhode Island, they formed the first American Jewish communities, bringing distinct cultural elements, including the Ladino language and unique customs, and contributing significantly to American cultural, economic, and political life. In this webinar, Sarina Roffé discusses how Sephardic Jews came to settle in New York and other cities in the Americas, established synagogues, and became an essential component of the American Revolution. Roffé also highlights several important early families and their economic ties, which helped develop commerce and shipping in port cities.'
+    },
+    { 
+        id: 'Yu71YlFDgFI', 
+        title: 'JewishGen Talks: Discovering Jewish Civil War Soldiers through the Shapell Roster and JewishGen', 
+        duration: '',
+        desc: 'American Jews made significant contributions during the Civil War, serving on both the Union and Confederate sides in numbers disproportionately high relative to their population[cite: 29]. Some Jews served in leadership roles, and others were awarded the Medal of Honor for their bravery. The Shapell Roster of Jewish Service in the American Civil War is a continually expanding digital database documenting the lives and military services of Jewish soldiers and sailors who served on both sides of the conflict. Since its last presentation to JewishGen, the Roster has grown significantly, including major progress in identifying Confederate soldiers. This talk highlights recent additions, explain how the website and database function, show how the Roster can be accessed through JewishGen, and demonstrate how researchers can search the Roster for individuals and families. The webinar also spotlights several compelling soldier stories drawn from newly identified individuals and discuss how genealogists and historians can share information and collaborate with the Shapell Roster research team.'
+    },
+    { 
+        id: 'zdo4N6IdUOA', 
+        title: 'JewishGen Talks: S\u00fc\u00dfkind Stern: One of the Earliest Known Portraits of a German Jew', 
+        duration: '',
+        desc: 'Today, the portrait of Süßkind Stern, marked with the date 1671, is prominently displayed in Frankfurt’s Jüdisches Museum. The website of Frankfurt’s Jüdisches Museum indicates “Süßkind Stern who was highly respected in the Jewish community of the 17th century was also one of the Frank forefathers”. Süßkind Stern is an ancestor of both Anne Frank and Ralph Stern, who is the speaker for this webinar. The historical and genealogical importance of the portrait is without question. However, for almost 300 years, the portrait was not in Frankfurt. How did the portrait survive the great Judengasse fire of 1711? How did the portrait survive the years of National Socialist rule? How did the portrait finally return to Frankfurt? The life of the portrait intersects many aspects of German-Jewish life. This talk will present the journey made be one of the earliest known oil portraits of a German Jew.'
+    },
     { id: 'NEED_ID_40', title: 'JewishGen Talks: Exploring the Izmir, Turkey Census', duration: '' },
-    { id: 'NEED_ID_36', title: 'JewishGen Talks: Help! I Got My DNA Results and I\'m Confused — Part 1.25', duration: '' },
+    { id: 'NEED_ID_36', title: 'JewishGen Talks: Help! I Got My DNA Results and I\u2019m Confused \u2014 Part 1.25', duration: '' },
     { id: 'NEED_ID_35', title: 'JewishGen Talks: Post 1492 Sephardic Dispersion and A Guide to Sephardic Genealogy', duration: '' },
     { id: 'NEED_ID_34', title: 'JewishGen Talks: A Ray of Light in the Depths of Darkness: Chiune Sugihara and His Legacy', duration: '' },
     { id: 'NEED_ID_33', title: 'JewishGen Talks: En el nombre de Dio Amen: Notarial Archives and Sephardic Genealogy', duration: '' },
@@ -401,24 +445,24 @@ const VIDEOS = [
     { id: 'NEED_ID_29', title: 'JewishGen Talk: In Our Time: Legacy Writing, An Introduction', duration: '' },
     { id: 'NEED_ID_28', title: 'Fioretta Presentation/Q&A', duration: '' },
     { id: 'NEED_ID_27', title: 'Sephardic Names in the Ottoman Empire as Traces of the History of Judeo-Spanish/Ladino', duration: '' },
-    { id: 'NEED_ID_26', title: 'JewishGen Talks: Jews of the Land of Israel before the First Aliyah — Their Names & History', duration: '' },
+    { id: 'NEED_ID_26', title: 'JewishGen Talks: Jews of the Land of Israel before the First Aliyah \u2014 Their Names & History', duration: '' },
     { id: 'NEED_ID_25', title: 'JewishGen Talks: Genealogical Resources in Israel', duration: '' },
     { id: '6fsw-JTIrtE', title: 'JewishGen Talks: Focus on Lake Erie Region Resources (Cleveland, Detroit, and Western Pennsylvania)', duration: '' },
     { id: 'kMbPI-KeW5s', title: 'JewishGen Talks: Shapell Roster of Jewish Service in the American Civil War', duration: '' },
-    { id: 'NEED_ID_22', title: 'JewishGen Talks: Baghdadi Jews Who Lost Their Iraqi Nationality in 1951', duration: '' },
-    { id: 'NEED_ID_21', title: 'JewishGen Talks: Patronymic Naming and Cemetery Records — Their Importance in Jewish Genealogy', duration: '' },
+    { id: 'NEED_ID_22', title: 'JewishGen Talks: Baghdadi Jews Who Lost Their Iraqi Nationality in 1951 with Dr. Jacob Rosen', duration: '' },
+    { id: 'NEED_ID_21', title: 'JewishGen Talks: Patronymic Naming and Cemetery Records \u2014 Their Importance in Jewish Genealogy', duration: '' },
     { id: 'NEED_ID_20', title: 'JewishGen Talks: The Basics of Research in Israel', duration: '' },
     { id: 'NEED_ID_19', title: 'JewishGen Talks: The Lives of our Educated Ancestors', duration: '' },
-    { id: 'NEED_ID_18', title: 'The Ships of our Ancestors — with Hal Bookbinder', duration: '' },
-    { id: 'NEED_ID_16', title: 'Jewish Surnames and Patronymics — Tracing Your Ancestors before they had Surnames', duration: '' },
+    { id: 'NEED_ID_18', title: 'The Ships of our Ancestors \u2014 with Hal Bookbinder', duration: '' },
+    { id: 'NEED_ID_16', title: 'Jewish Surnames and Patronymics \u2014 Tracing Your Ancestors before they had Surnames', duration: '' },
     { id: 'NEED_ID_15', title: 'Jewish Genealogy in the Germanies', duration: '' },
     { id: 'NEED_ID_14', title: 'Tips & Tricks to using JewishGen', duration: '' },
     { id: 'NEED_ID_13', title: 'The Czech Torah Scroll Story: From the Holocaust to the Diaspora', duration: '' },
-    { id: 'NEED_ID_12', title: 'You Can\'t Find the Records — Now What?', duration: '' },
-    { id: 'aWTIFoqW0yg', title: '"The Hare with Amber Eyes": A Glimpse into some Jewish Families of Vienna', duration: '' },
+    { id: 'NEED_ID_12', title: 'You Can\u2019t Find the Records \u2014 Now What?', duration: '' },
+    { id: 'aWTIFoqW0yg', title: '\u201cThe Hare with Amber Eyes\u201d: A Glimpse into some Jewish Families of Vienna', duration: '' },
     { id: 'NEED_ID_10', title: 'JewishGen Talks: Researching Jewish Families in America', duration: '' },
     { id: 'NEED_ID_09', title: 'PANEL: Polish-Jewish Genealogy & Protecting Polish Jewish Cemeteries', duration: '1:00:41' },
-    { id: 'NEED_ID_08', title: 'Translating Russian Documents for the Non-Russian Speaker', duration: '50:31' },
+    { id: 'NEED_ID_08', title: 'Translating Russian Documents for the Non-Russian Speaker with Dr. Alan Levine', duration: '50:31' },
     { id: 'NEED_ID_07', title: 'What the Jewish Genealogist Needs to Know About Jewish Names', duration: '1:15:17' },
     { id: 'NEED_ID_06', title: 'From DNA to Genetic Genealogy: Everything you wanted to know but were afraid to ask.', duration: '1:00:50' },
     { id: 'NEED_ID_05', title: 'Manifest Destiny: Names at Ellis Island', duration: '1:00:06' },
@@ -427,7 +471,6 @@ const VIDEOS = [
     { id: 'NEED_ID_02', title: 'Researching NYC Records Remotely', duration: '1:03:53' },
     { id: 'NEED_ID_01', title: 'Tracing Your Jewish Roots through Catholic and Inquisition Records', duration: '56:10' }
 ];
-
 function thumbUrl(id) {
     if (!id || id.startsWith('NEED_ID')) return 'https://placehold.co/480x270/09497a/ffffff?text=Coming+Soon';
     return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
@@ -445,11 +488,14 @@ function playVideo(id, title, duration, desc) {
     document.getElementById('featured-iframe').src = embedUrl(id);
     document.getElementById('featured-iframe').title = title;
     document.getElementById('featured-title-el').textContent = title;
-    document.getElementById('featured-duration-el').textContent = duration ? '⏱ ' + duration : '';
+    document.getElementById('featured-duration-el').textContent = duration ? '\u23f1 ' + duration : '';
     document.getElementById('featured-yt-link').href = watchUrl(id);
     document.getElementById('featured-desc-el').textContent = desc || '';
+    
     document.querySelectorAll('.video-card').forEach(c => c.classList.remove('is-playing'));
     document.querySelectorAll(`[data-id="${id}"]`).forEach(c => c.classList.add('is-playing'));
+    
+    // Smooth scroll to the center of the screen
     document.querySelector('.featured-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
@@ -459,7 +505,7 @@ function buildCard(v) {
     card.setAttribute('role', 'listitem');
     card.setAttribute('tabindex', '0');
     card.setAttribute('data-id', v.id);
-    card.setAttribute('aria-label', `Play: ${v.title}${v.duration ? ' — ' + v.duration : ''}`);
+    card.setAttribute('aria-label', `Play: ${v.title}${v.duration ? ' \u2014 ' + v.duration : ''}`);
     card.onclick = () => playVideo(v.id, v.title, v.duration, v.desc || '');
     card.onkeydown = (e) => { if (e.key === 'Enter' || e.key === ' ') { card.click(); e.preventDefault(); } };
     card.innerHTML = `
@@ -477,15 +523,20 @@ function showAllVideos() {
     const grid = document.getElementById('video-grid-b');
     const btn  = document.getElementById('show-all-btn');
     const count = document.getElementById('grid-count');
+    // Add remaining videos (index 9 onward)
     VIDEOS.slice(8).forEach(v => grid.appendChild(buildCard(v)));
     count.textContent = '44 videos';
     btn.style.display = 'none';
+    // Mark featured as playing if it's in the newly added cards
     document.querySelectorAll('[data-id="WZPGF3hZOO0"]').forEach(c => c.classList.add('is-playing'));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     const gridB = document.getElementById('video-grid-b');
+
+    // Show 8 most recent on load
     VIDEOS.slice(0, 8).forEach(v => gridB.appendChild(buildCard(v)));
+
     document.querySelectorAll('[data-id="WZPGF3hZOO0"]').forEach(c => c.classList.add('is-playing'));
 });
 </script>
