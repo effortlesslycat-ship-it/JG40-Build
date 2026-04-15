@@ -21,7 +21,7 @@ a { text-decoration: none; color: inherit; }
 
 /* ── Page title band ── */
 .page-title-band { background-color:var(--navy); color:var(--white); padding:40px 50px; text-align:center; }
-.section-tag { display:inline-block; background:rgba(147,155,81,0.25); color:var(--sage); font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1.5px; padding:4px 12px; border-radius:3px; margin-bottom:12px; }
+.section-tag { display:inline-block; background:var(--sage); color:#ffffff; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1.5px; padding:4px 12px; border-radius:3px; margin-bottom:12px; }
 .page-title-band h1 { margin:0 0 10px 0; font-size:34px; font-weight:bold; color:var(--white); }
 .page-title-band p { margin:0 auto; font-size:16px; color:#a9c0d0; max-width:680px; line-height:1.65; }
 .page-title-band .stat-line { display:block; margin-top:14px; font-size:13px; color:rgba(255,255,255,0.65); font-style:italic; }
@@ -161,7 +161,7 @@ a { text-decoration: none; color: inherit; }
 
 <!-- BREADCRUMB -->
 <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="index.html">Home</a>
+    <a href="https://effortlesslycat-ship-it.github.io/JG40-Build/index.html">Home</a>
     <span aria-hidden="true">›</span>
     <a href="#">Databases</a>
     <span aria-hidden="true">›</span>
@@ -211,11 +211,13 @@ a { text-decoration: none; color: inherit; }
                 <div class="sf n">
                     <label class="field-label" for="stype1">Search type</label>
                     <select id="stype1" name="stype1">
-                        <option value="phon">Phonetically like</option>
-                        <option value="sounds">Sounds like</option>
-                        <option value="starts">Starts with</option>
-                        <option value="exact">Is exactly</option>
-                        <option value="fuzzy">Fuzzy match</option>
+                        <option value="Q">Phonetically Like</option>
+                        <option value="E">is Exactly</option>
+                        <option value="SW">Starts With</option>
+                        <option value="DM">Sounds Like (DM)</option>
+                        <option value="FZ">Fuzzy</option>
+                        <option value="FZR">Fuzzier</option>
+                        <option value="FZST">Fuzziest</option>
                     </select>
                 </div>
                 <div class="sf w">
@@ -227,28 +229,15 @@ a { text-decoration: none; color: inherit; }
                 <div class="sf n">
                     <label class="field-label" for="dtype2">Data type</label>
                     <select id="dtype2" name="dtype2">
-                        <option value="phon">Phonetically like</option>
-                        <option value="sounds">Sounds like</option>
-                        <option value="starts">Starts with</option>
-                        <option value="exact">Is exactly</option>
-                        <option value="fuzzy">Fuzzy match</option>
-                        <option value="Q">Phonetically Like</option>
-                        <option value="E">is Exactly</option>
-                        <option value="SW">Starts With</option>
-                        <option value="DM">Sounds Like (DM)</option>
-                        <option value="FZ">Fuzzy</option>
-                        <option value="FZR">Fuzzier</option>
-                        <option value="FZST">Fuzziest</option>
+                        <option value="surname">Surname</option>
+                        <option value="given">Given name</option>
+                        <option value="town">Town</option>
+                        <option value="any">Any field</option>
                     </select>
                 </div>
                 <div class="sf n">
                     <label class="field-label" for="stype2">Search type</label>
                     <select id="stype2" name="stype2">
-                         <option value="phon">Phonetically like</option>
-                        <option value="sounds">Sounds like</option>
-                        <option value="starts">Starts with</option>
-                        <option value="exact">Is exactly</option>
-                        <option value="fuzzy">Fuzzy match</option>
                         <option value="Q">Phonetically Like</option>
                         <option value="E">is Exactly</option>
                         <option value="SW">Starts With</option>
@@ -365,8 +354,8 @@ function loadComponent(id, file) {
 }
 
 Promise.all([
-    loadComponent('site-header', 'Header_NavBar.html'),
-    loadComponent('site-footer', 'Footer.html')
+loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
+loadComponent('site-footer', '/JG40-Build/Footer.html')
 ]).then(() => {
     document.querySelectorAll('.jg-nav .dropbtn').forEach(btn => {
         btn.addEventListener('keydown', function(e) {
