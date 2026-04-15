@@ -57,6 +57,34 @@ a { text-decoration: none; color: inherit; }
 .btn-search:hover { filter:brightness(1.1); }
 .btn-search:focus { outline:3px solid var(--navy); outline-offset:2px; }
 
+/* Locked rows */
+    .search-row.locked {
+        opacity: 0.42;
+        pointer-events: none;
+    }
+    .search-row.locked select,
+    .search-row.locked input[type="text"] {
+        background-color: #f2f2f2;
+    }
+
+/* Donate nudge */
+    .donate-nudge {
+        background-color: #f0f4f7;
+        border-left: 4px solid var(--navy);
+        border-radius: 4px;
+        padding: 10px 14px;
+        font-size: 13px;
+        color: var(--charcoal);
+        margin: 14px 0 10px;
+        line-height: 1.5;
+    }
+    .donate-nudge a {
+        color: var(--navy);
+        font-weight: bold;
+        text-decoration: underline;
+    }
+    .donate-nudge a:hover { color: var(--sage); }  
+    
 /* ── Browse zone ── */
 .browse-zone { background-color:var(--white); }
 .browse-header { background-color:#f7f5f0; border-bottom:1px solid #d1caba; border-top:1px solid #d1caba; padding:14px 50px; }
@@ -279,6 +307,25 @@ body.dark-mode .page-title-band h1 {
                     <label class="field-label" for="term2">Search term</label>
                     <input type="text" id="term2" name="term2" placeholder="Optional second search term…">
                 </div>
+                <!-- Donate nudge — separates active rows from locked rows -->
+        <div class="donate-nudge" role="note">
+            ★ <strong>Value Added Services:</strong> Basic search allows two simultaneous fields.
+            <a href="https://www.jewishgen.org/jewishgen-secure/donate.asp" target="_blank" rel="noopener">Donate $100 or more</a>
+            to unlock two additional search rows for more complex multi-field queries.
+        </div>
+
+        <!-- Row 3 — Locked -->
+        <div class="search-row locked" aria-hidden="true">
+            <div class="col-type">
+                <select tabindex="-1" disabled><option>Data Type</option></select>
+            </div>
+            <div class="col-match">
+                <select tabindex="-1" disabled><option>Search Type</option></select>
+            </div>
+            <div class="col-term">
+                <input type="text" tabindex="-1" disabled placeholder="🔒 Unlock with a donation">
+            </div>
+        </div>
             </div>
             <hr class="search-divider">
             <div class="match-row" role="group" aria-label="Match logic">
