@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The JewishGen Holocaust Database</title>
+<title>Holocaust Databases – JewishGen</title>
 
 <!-- 1. Bootstrap -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
@@ -21,7 +21,7 @@ a { text-decoration: none; color: inherit; }
 
 /* ── Page title band ── */
 .page-title-band { background-color:var(--navy); color:var(--white); padding:40px 50px; text-align:center; }
-.section-tag { display:inline-block; background:var(--sage); color:#ffffff; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1.5px; padding:4px 12px; border-radius:3px; margin-bottom:12px; }
+.section-tag { display:inline-block; background:rgba(147,155,81,0.25); color:var(--sage); font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1.5px; padding:4px 12px; border-radius:3px; margin-bottom:12px; }
 .page-title-band h1 { margin:0 0 10px 0; font-size:34px; font-weight:bold; color:var(--white); }
 .page-title-band p { margin:0 auto; font-size:16px; color:#a9c0d0; max-width:680px; line-height:1.65; }
 .page-title-band .stat-line { display:block; margin-top:14px; font-size:13px; color:rgba(255,255,255,0.65); font-style:italic; }
@@ -57,34 +57,6 @@ a { text-decoration: none; color: inherit; }
 .btn-search:hover { filter:brightness(1.1); }
 .btn-search:focus { outline:3px solid var(--navy); outline-offset:2px; }
 
-/* Locked rows */
-    .search-row.locked {
-        opacity: 0.42;
-        pointer-events: none;
-    }
-    .search-row.locked select,
-    .search-row.locked input[type="text"] {
-        background-color: #f2f2f2;
-    }
-
-/* Donate nudge */
-    .donate-nudge {
-        background-color: #f0f4f7;
-        border-left: 4px solid var(--navy);
-        border-radius: 4px;
-        padding: 10px 14px;
-        font-size: 13px;
-        color: var(--charcoal);
-        margin: 14px 0 10px;
-        line-height: 1.5;
-    }
-    .donate-nudge a {
-        color: var(--navy);
-        font-weight: bold;
-        text-decoration: underline;
-    }
-    .donate-nudge a:hover { color: var(--sage); }  
-    
 /* ── Browse zone ── */
 .browse-zone { background-color:var(--white); }
 .browse-header { background-color:#f7f5f0; border-bottom:1px solid #d1caba; border-top:1px solid #d1caba; padding:14px 50px; }
@@ -98,34 +70,6 @@ a { text-decoration: none; color: inherit; }
 
 /* ── Page body ── */
 .page-body { display:flex; max-width:1100px; margin:0 auto; padding:24px 50px 60px; align-items:flex-start; }
-
-/* ── Dark mode fixes ── */ 
-body.dark-mode .page-title-band {
-    background-color: #0d2a45;
-}
-
-body.dark-mode .browse-header {
-    background-color: #1a1a1a;
-    border-color: #333;
-}
-
-body.dark-mode .browse-title {
-    color: #e0e0e0;
-}
-
-body.dark-mode .browse-db-search input {
-    background-color: #121212;
-    color: #e0e0e0;
-    border-color: #444;
-}
-
-body.dark-mode .browse-db-search button {
-    background-color: #a8b361;
-}
-
-body.dark-mode .page-title-band h1 {
-    color: #ffffff;
-}
 
 /* ── Sidebar ── */
 .sidebar { width:195px; flex-shrink:0; margin-right:30px; }
@@ -221,13 +165,13 @@ body.dark-mode .page-title-band h1 {
     <span aria-hidden="true">›</span>
     <a href="#">Databases</a>
     <span aria-hidden="true">›</span>
-    <span aria-current="page">Holocaust Database</span>
+    <span aria-current="page">Holocaust Databases</span>
 </nav>
 
 <!-- PAGE TITLE BAND -->
 <div class="page-title-band">
     <span class="section-tag">Holocaust</span>
-    <h1>The JewishGen Holocaust Database</h1>
+    <h1>Holocaust Databases</h1>
     <p>A unique and critically valuable collection of databases containing information about Holocaust victims and survivors.</p>
     <span class="stat-line">As of May 2025, more than 6 million records are available in this continually updated collection.</span>
 </div>
@@ -267,13 +211,11 @@ body.dark-mode .page-title-band h1 {
                 <div class="sf n">
                     <label class="field-label" for="stype1">Search type</label>
                     <select id="stype1" name="stype1">
-                        <option value="Q">Phonetically Like</option>
-                        <option value="E">is Exactly</option>
-                        <option value="SW">Starts With</option>
-                        <option value="DM">Sounds Like (DM)</option>
-                        <option value="FZ">Fuzzy</option>
-                        <option value="FZR">Fuzzier</option>
-                        <option value="FZST">Fuzziest</option>
+                        <option value="phon">Phonetically like</option>
+                        <option value="sounds">Sounds like</option>
+                        <option value="starts">Starts with</option>
+                        <option value="exact">Is exactly</option>
+                        <option value="fuzzy">Fuzzy match</option>
                     </select>
                 </div>
                 <div class="sf w">
@@ -285,15 +227,28 @@ body.dark-mode .page-title-band h1 {
                 <div class="sf n">
                     <label class="field-label" for="dtype2">Data type</label>
                     <select id="dtype2" name="dtype2">
-                        <option value="surname">Surname</option>
-                        <option value="given">Given name</option>
-                        <option value="town">Town</option>
-                        <option value="any">Any field</option>
+                        <option value="phon">Phonetically like</option>
+                        <option value="sounds">Sounds like</option>
+                        <option value="starts">Starts with</option>
+                        <option value="exact">Is exactly</option>
+                        <option value="fuzzy">Fuzzy match</option>
+                        <option value="Q">Phonetically Like</option>
+                        <option value="E">is Exactly</option>
+                        <option value="SW">Starts With</option>
+                        <option value="DM">Sounds Like (DM)</option>
+                        <option value="FZ">Fuzzy</option>
+                        <option value="FZR">Fuzzier</option>
+                        <option value="FZST">Fuzziest</option>
                     </select>
                 </div>
                 <div class="sf n">
                     <label class="field-label" for="stype2">Search type</label>
                     <select id="stype2" name="stype2">
+                         <option value="phon">Phonetically like</option>
+                        <option value="sounds">Sounds like</option>
+                        <option value="starts">Starts with</option>
+                        <option value="exact">Is exactly</option>
+                        <option value="fuzzy">Fuzzy match</option>
                         <option value="Q">Phonetically Like</option>
                         <option value="E">is Exactly</option>
                         <option value="SW">Starts With</option>
@@ -307,26 +262,33 @@ body.dark-mode .page-title-band h1 {
                     <label class="field-label" for="term2">Search term</label>
                     <input type="text" id="term2" name="term2" placeholder="Optional second search term…">
                 </div>
-                <!-- Donate nudge — separates active rows from locked rows -->
-        <div class="donate-nudge" role="note">
-            ★ <strong>Value Added Services:</strong> Basic search allows two simultaneous fields.
-            <a href="https://www.jewishgen.org/jewishgen-secure/donate.asp" target="_blank" rel="noopener">Donate $100 or more</a>
-            to unlock two additional search rows for more complex multi-field queries.
-        </div>
+            </div>
+            <!-- ── LOCKED ROW — value-added contributors only ── -->
+            <div class="jg-locked-rows-wrapper">
+                <div aria-hidden="true">
+                    <div class="search-row" style="opacity:0.28;pointer-events:none;margin-bottom:8px;">
+                        <div class="sf n"><select disabled tabindex="-1"><option>Data Type</option></select></div>
+                        <div class="sf n"><select disabled tabindex="-1"><option>Search Type</option></select></div>
+                        <div class="sf w"><input type="text" disabled tabindex="-1" placeholder="Additional search row"></div>
+                    </div>
+                </div>
+                <div class="jg-locked-overlay" role="note" aria-label="Value-added feature — donate to unlock">
+                    <div class="jg-locked-overlay__inner">
+                        <div class="jg-locked-overlay__icon" aria-hidden="true">🔓</div>
+                        <div class="jg-locked-overlay__text">
+                            <strong>Unlock an Additional Search Row</strong>
+                            <p>A donation of $100 or more to the JewishGen General Fund unlocks multi-field search, letting you combine up to three simultaneous criteria for more precise results.</p>
+                            <a href="https://www.jewishgen.org/jewishgen-secure/donate.asp"
+                               class="jg-btn-unlock"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                Donate Now to Unlock →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <!-- Row 3 — Locked -->
-        <div class="search-row locked" aria-hidden="true">
-            <div class="col-type">
-                <select tabindex="-1" disabled><option>Data Type</option></select>
-            </div>
-            <div class="col-match">
-                <select tabindex="-1" disabled><option>Search Type</option></select>
-            </div>
-            <div class="col-term">
-                <input type="text" tabindex="-1" disabled placeholder="🔒 Unlock with a donation">
-            </div>
-        </div>
-            </div>
             <hr class="search-divider">
             <div class="match-row" role="group" aria-label="Match logic">
                 <label><input type="radio" name="match" value="all" checked> Match <strong>ALL</strong> of the above (AND)</label>
@@ -403,8 +365,8 @@ function loadComponent(id, file) {
 }
 
 Promise.all([
-loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
-loadComponent('site-footer', '/JG40-Build/Footer.html')
+    loadComponent('site-header', 'Header_NavBar.html'),
+    loadComponent('site-footer', 'Footer.html')
 ]).then(() => {
     document.querySelectorAll('.jg-nav .dropbtn').forEach(btn => {
         btn.addEventListener('keydown', function(e) {
@@ -425,7 +387,7 @@ loadComponent('site-footer', '/JG40-Build/Footer.html')
 });
 
 /* ── State ────────────────────────────────────────────────── */
-const PER_PAGE = 10;
+const PER_PAGE = 24;
 let DB         = [];       // full dataset
 let filtered   = [];       // after filters applied
 let currentPage = 1;
