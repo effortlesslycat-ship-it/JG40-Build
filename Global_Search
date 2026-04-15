@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Search — JewishGen</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="/JG40-Build/jg-global.css">
+
+    <style>
+        /* ── PAGE-SPECIFIC CSS ─────────────────────────────────────── */
+        .sr-only {
+            position: absolute; width: 1px; height: 1px; padding: 0;
+            margin: -1px; overflow: hidden; clip: rect(0,0,0,0);
+            white-space: nowrap; border: 0;
+        }
+
+        .search-wrapper { max-width: 860px; margin: 0 auto; padding: 40px 20px 60px; }
+        
+        .search-container {
+            background: var(--white);
+            border: 3px solid var(--navy);
+            border-radius: 12px;
+            padding: 36px 40px 32px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+
+        /* Tips toggle */
+        .tips-trigger-wrap { text-align: center; margin-bottom: 24px; }
+        .tips-trigger {
+            background-color: var(--cream); color: var(--navy); border: 1px solid #d1caba;
+            padding: 8px 20px; border-radius: 20px; font-size: 13px; font-weight: bold;
+            cursor: pointer; font-family: inherit;
+        }
+        .tips-trigger:hover { filter: brightness(0.95); }
+
+        #search-hints-panel {
+            max-height: 0; overflow: hidden; opacity: 0;
+            transition: max-height 0.4s ease-out, opacity 0.3s ease, margin 0.4s ease;
+            background: #f0f4f7; border-left: 4px solid var(--sage); border-radius: 4px;
+            padding: 0 20px; margin-bottom: 0; font-size: 13px; line-height: 1.5; color: var(--charcoal);
+        }
+        #search-hints-panel.open { max-height: 500px; opacity: 1; padding: 20px; margin-bottom: 24px; }
+        .tips-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+
+        /* Column header row */
+        .col-header-row { display: flex; gap: 10px; margin-bottom: 4px; }
+        .field-label { font-size: 11px; font-weight: bold; color: var(--navy); display: block; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* Search rows */
+        .search-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; }
+        .col-type  { flex: 1; } .col-match { flex: 1; } .col-term  { flex: 2; }
+
+        .search-row select, .search-row input[type="text"] {
+            width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;
+            font-size: 14px; font-family: inherit; background-color: var(--white); color: var(--charcoal);
+        }
+        .search-row select:focus, .search-row input[type="text"]:focus {
+            outline: 2px solid var(--navy); outline-offset: 2px;
+        }
+
+        /* Hover-to-Unlock Wrapper Logic */
+        .jg-locked-rows-wrapper { position: relative; margin-top: 14px; transition: padding-bottom 0.3s ease; }
+        .jg-locked-rows-wrapper:hover, .jg-locked-rows-wrapper.revealed { padding-bottom: 60px; }
+        
+        .search-row.locked { opacity: 0.45; pointer-events: none; }
+        .search-row.locked select, .search-row.locked input[type="text"] { background-color: #f2f2f2; }
+
+        .jg-locked-overlay {
+            position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+            background: rgba(232, 225, 209, 0.45); border-radius: 8px; border: 1px solid #d1caba;
+            z-index: 2; padding: 20px 28px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .jg-locked-rows-wrapper:hover .jg-locked-overlay, .jg-locked-rows-wrapper.revealed .jg-locked-overlay {
+            opacity: 1; pointer-events: auto;
+        }
+        .jg-locked-overlay__inner { display: flex; align-items: center; gap: 20px; max-width: 560px; width: 100%; }
+        .jg-locked-overlay__icon { font-size: 28px; flex-shrink: 0; line-height: 1; }
+        .jg-locked-overlay__text { flex: 1; font-size: 13px; color: var(--charcoal); line-height: 1.55; }
+        .jg-locked-overlay__text strong { color: var(--navy); font-size: 14px; display: block; margin-bottom: 3px; }
+        .jg-locked-overlay__text p { margin: 0 0 10px 0; }
+        
+        .jg-btn-unlock {
+            display: inline-block; background-color: var(--sage); color: var(--white);
+            padding: 9px 20px; border-radius: 6px; font-size: 13px; font-weight: bold;
+            white-space: nowrap; transition: filter 0.2s; border: none; cursor: pointer; text-decoration: none;
+        }
+        .jg-btn-unlock:hover { filter: brightness(1.1); color: var(--white); }
+
+        /* Region block */
+        .region-block { margin-top: 14px; }
+        #sub-region-container {
+            display: none; margin-top: 14px; padding: 16px 20px; border: 1px solid var(--cream);
+            background: #fdfcf9; border-radius: 8px; animation: fadeIn 0.3s ease-in;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .sub-region-label { font-size: 13px; font-weight: bold; color: var(--navy); display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* Submit area */
+        .search-submit-wrap { text-align: center; margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--cream); }
+        .btn-search {
+            background-color: var(--sage); color: var(--white); border: none; padding: 14px 50px;
+            font-size: 17px; font-weight: bold; border-radius: 6px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; font-family: inherit;
+        }
+        .btn-search:hover { filter: brightness(1.1); }
+
+        /* ── Dark mode overrides ── */
+        body.dark-mode .search-container { border-color: #a8b361; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+        body.dark-mode #search-hints-panel { background: #1a2533; border-left-color: #a8b361; color: #c8c8c8; }
+        body.dark-mode #sub-region-container { background: #1a1a1a; border-color: #333; }
+        body.dark-mode .search-row.locked select, body.dark-mode .search-row.locked input[type="text"] { background-color: #2a2a2a !important; }
+        body.dark-mode .tips-trigger { background-color: #1e1e1e; border-color: #444; color: #a8b361; }
+        body.dark-mode .search-submit-wrap { border-top-color: #333; }
+        body.dark-mode .jg-locked-overlay { background: rgba(30, 30, 30, 0.6); border-color: #444; }
+        body.dark-mode .jg-locked-overlay__text { color: #c0c0c0; }
+        body.dark-mode .jg-locked-overlay__text strong { color: #a8b361; }
+
+        /* ── Responsive ── */
+        @media (max-width: 640px) {
+            .search-container { padding: 24px 18px 20px; }
+            .search-row, .col-header-row { flex-direction: column; }
+            .col-type, .col-match, .col-term { flex: unset; width: 100%; }
+            .tips-grid { grid-template-columns: 1fr; }
+            .search-wrapper { padding: 28px 16px 48px; }
+            .jg-locked-overlay__inner { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<nav class="breadcrumb" aria-label="Breadcrumb" style="background-color: var(--cream); padding: 10px 50px; font-size: 13px; color: var(--charcoal); border-bottom: 1px solid #d1caba; margin: 0; text-align: left;">
+    <a href="/" style="color: var(--navy); font-weight: bold; text-decoration: underline dotted;">JewishGen Home</a>
+    <span class="sep" aria-hidden="true" style="margin: 0 6px; opacity: 0.5;">›</span>
+    <a href="#" style="color: var(--navy); font-weight: bold; text-decoration: underline dotted;">Databases</a>
+    <span class="sep" aria-hidden="true" style="margin: 0 6px; opacity: 0.5;">›</span>
+    <span aria-current="page">Global Search</span>
+</nav>
+
+<div class="page-title-band" style="background-color: var(--navy); color: var(--white); padding: 40px 50px; text-align: center;">
+    <span class="section-tag" style="display: inline-block; background: var(--sage); color: #ffffff; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; padding: 4px 12px; border-radius: 3px; margin-bottom: 12px;">Databases</span>
+    <h1 style="margin: 0 0 10px 0; font-size: 34px; font-weight: bold; color: var(--white);">Welcome to the JewishGen Global Search</h1>
+    <p style="margin: 0 auto; font-size: 16px; color: #a9c0d0; max-width: 680px; line-height: 1.65;">Explore millions of records from around the world — including Holocaust and burial records — all in one search.</p>
+</div>
+
+<main id="main-content">
+<div class="search-wrapper">
+    <div class="search-container" role="search" aria-label="JewishGen Global Database Search">
+
+        <div class="tips-trigger-wrap">
+            <button class="tips-trigger" onclick="toggleHints()" aria-expanded="false" aria-controls="search-hints-panel" id="tips-btn">
+                💡 Search Tips and Tricks
+            </button>
+        </div>
+
+        <div id="search-hints-panel" role="region" aria-labelledby="tips-btn">
+            <strong style="color: var(--navy); font-size: 14px; display: block; margin-bottom: 14px;">JewishGen Search Tips:</strong>
+            <div class="tips-grid">
+                <div><strong>Comma = OR:</strong> Use commas to search for either name.<br><span style="color: #666;"><em>Example: Schwartz, Weiss (Finds either)</em></span></div>
+                <div><strong>Space = AND:</strong> Use a space to search for both names.<br><span style="color: #666;"><em>Example: Schwartz Weiss (Finds both)</em></span></div>
+                <div><strong>Wildcards (*):</strong> Fill in the blanks for bad handwriting.<br><span style="color: #666;"><em>Example: Sp*l*ng (Finds Spelling, Sperling)</em></span></div>
+                <div><strong>Brackets [ ]:</strong> Force a specific starting letter.<br><span style="color: #666;"><em>Example: [F]isch (Finds Fish, but not Visz)</em></span></div>
+                <div><strong>Synonyms:</strong> Exact search includes standard variants.<br><span style="color: #666;"><em>Example: Jankel = Jakob = Jacob = Jack</em></span></div>
+                <div><strong>Starts With / Contains:</strong> Finds root words in the name.<br><span style="color: #666;"><em>Example: "Gold" finds FeinGold</em></span></div>
+            </div>
+        </div>
+
+        <div class="col-header-row" aria-hidden="true">
+            <div class="col-type"><span class="field-label">Data Type</span></div>
+            <div class="col-match"><span class="field-label">Search Type</span></div>
+            <div class="col-term"><span class="field-label">Search Term</span></div>
+        </div>
+
+        <div class="search-row">
+            <div class="col-type">
+                <label for="dtype-1" class="sr-only">Data type, row 1</label>
+                <select id="dtype-1" onchange="syncSearchType(this, 'stype-1')">
+                    <option value="surname" selected>Surname</option>
+                    <option value="givenname">Given Name</option>
+                    <option value="town">Town</option>
+                    <option value="anyfield">Any Field</option>
+                </select>
+            </div>
+            <div class="col-match">
+                <label for="stype-1" class="sr-only">Search type, row 1</label>
+                <select id="stype-1">
+                    <option value="phonetic" selected>Phonetically Like</option>
+                    <option value="soundslike">Sounds Like</option>
+                    <option value="startswith">Starts With</option>
+                    <option value="exactly">Is Exactly</option>
+                    <option value="fuzzy">Fuzzy Match</option>
+                    <option value="fuzzier">Fuzzier Match</option>
+                    <option value="fuzziest">Fuzziest Match</option>
+                </select>
+            </div>
+            <div class="col-term">
+                <label for="term-1" class="sr-only">Search term, row 1</label>
+                <input type="text" id="term-1" placeholder="e.g., Hollander">
+            </div>
+        </div>
+
+        <div class="search-row">
+            <div class="col-type">
+                <label for="dtype-2" class="sr-only">Data type, row 2</label>
+                <select id="dtype-2" onchange="syncSearchType(this, 'stype-2')">
+                    <option value="" selected disabled>Data Type</option>
+                    <option value="surname">Surname</option>
+                    <option value="givenname">Given Name</option>
+                    <option value="town">Town</option>
+                    <option value="anyfield">Any Field</option>
+                </select>
+            </div>
+            <div class="col-match">
+                <label for="stype-2" class="sr-only">Search type, row 2</label>
+                <select id="stype-2">
+                    <option value="" selected disabled>Search Type</option>
+                    <option value="phonetic">Phonetically Like</option>
+                    <option value="soundslike">Sounds Like</option>
+                    <option value="startswith">Starts With</option>
+                    <option value="exactly">Is Exactly</option>
+                    <option value="fuzzy">Fuzzy Match</option>
+                    <option value="fuzzier">Fuzzier Match</option>
+                    <option value="fuzziest">Fuzziest Match</option>
+                </select>
+            </div>
+            <div class="col-term">
+                <label for="term-2" class="sr-only">Search term, row 2</label>
+                <input type="text" id="term-2" placeholder="Search term">
+            </div>
+        </div>
+
+        <div class="jg-locked-rows-wrapper" onmouseenter="this.classList.add('revealed')">
+            <div aria-hidden="true">
+                <div class="search-row locked">
+                    <div class="col-type"><select tabindex="-1" disabled><option>Data Type</option></select></div>
+                    <div class="col-match"><select tabindex="-1" disabled><option>Search Type</option></select></div>
+                    <div class="col-term"><input type="text" tabindex="-1" disabled placeholder="Additional search row"></div>
+                </div>
+
+                <div class="search-row locked" style="margin-bottom: 0;">
+                    <div class="col-type"><select tabindex="-1" disabled><option>Data Type</option></select></div>
+                    <div class="col-match"><select tabindex="-1" disabled><option>Search Type</option></select></div>
+                    <div class="col-term"><input type="text" tabindex="-1" disabled placeholder="Additional search row"></div>
+                </div>
+            </div>
+
+            <div class="jg-locked-overlay" role="note" aria-label="Value-added feature — donate to unlock">
+                <div class="jg-locked-overlay__inner">
+                    <div class="jg-locked-overlay__icon" aria-hidden="true">🔓</div>
+                    <div class="jg-locked-overlay__text">
+                        <strong>Unlock Two Additional Search Rows</strong>
+                        <p>A donation of $100 or more to the JewishGen General Fund unlocks multi-field search, letting you combine up to four simultaneous criteria for more precise results.</p>
+                        <a href="https://www.jewishgen.org/jewishgen-secure/donate.asp" class="jg-btn-unlock" target="_blank" rel="noopener noreferrer">
+                            Donate Now to Unlock →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="region-block">
+            <label class="field-label" for="main-region-select">Region / Collection</label>
+            <select id="main-region-select" onchange="toggleSubRegion()" style="padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; width: 100%; margin-top: 5px;">
+                <option value="all">Region / Collection: ALL</option>
+                <optgroup label="Topical Databases">
+                    <option value="cemetery">Cemetery Records</option>
+                    <option value="holocaust">Holocaust Records</option>
+                    <option value="sephardic">Sephardic</option>
+                </optgroup>
+                <optgroup label="Europe">
+                    <option value="poland">Poland</option>
+                    <option value="ukraine">Ukraine</option>
+                    </optgroup>
+            </select>
+
+            <div id="sub-region-container" role="region" aria-live="polite">
+                <span class="sub-region-label" id="sub-region-title">Refine Search:</span>
+                <select id="sub-region-select" style="padding: 10px; border: 2px solid var(--navy); border-radius: 6px; font-size: 14px; width: 100%; background-color: var(--white);" aria-labelledby="sub-region-title">
+                </select>
+            </div>
+        </div>
+
+        <div class="search-submit-wrap">
+            <button class="btn-search" type="button" onclick="submitSearch()">Search Databases</button>
+        </div>
+
+    </div></div>
+</main>
+
+<div id="site-footer"></div>
+
+<script>
+    /* ── Component Loader (From JOWBR.html) ────────────────── */
+    function loadComponent(id, file) {
+        return fetch(file)
+            .then(function(r) {
+                if (!r.ok) throw new Error('Could not load ' + file);
+                return r.text();
+            })
+            .then(function(html) {
+                document.getElementById(id).innerHTML = html;
+            })
+            .catch(function(err) { console.warn(err); });
+    }
+
+    Promise.all([
+        loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
+        loadComponent('site-footer', '/JG40-Build/Footer.html')
+    ]).then(function() {
+        // Init Nav accessibility
+        document.querySelectorAll('.jg-nav .dropbtn, .main-nav .dropbtn').forEach(function(btn) {
+            btn.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    var menu = this.nextElementSibling;
+                    if (menu) menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+                }
+                if (e.key === 'Escape') {
+                    var menu = this.nextElementSibling;
+                    if (menu) menu.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    /* ── Tips panel ── */
+    function toggleHints() {
+        const panel = document.getElementById('search-hints-panel');
+        const btn   = document.getElementById('tips-btn');
+        const isOpen = panel.classList.toggle('open');
+        btn.setAttribute('aria-expanded', isOpen);
+    }
+
+    /* ── Search Type sync ── */
+    const FULL_OPTIONS = [
+        { value: '',           label: 'Search Type',    disabled: true },
+        { value: 'phonetic',   label: 'Phonetically Like' },
+        { value: 'soundslike', label: 'Sounds Like'    },
+        { value: 'startswith', label: 'Starts With'    },
+        { value: 'exactly',    label: 'Is Exactly'     },
+        { value: 'fuzzy',      label: 'Fuzzy Match'    },
+        { value: 'fuzzier',    label: 'Fuzzier Match'  },
+        { value: 'fuzziest',   label: 'Fuzziest Match' },
+    ];
+
+    const ANYFIELD_OPTIONS = [
+        { value: 'contains', label: 'contains' },
+    ];
+
+    function buildOptions(select, options) {
+        select.innerHTML = '';
+        options.forEach(opt => {
+            const el = document.createElement('option');
+            el.value = opt.value;
+            el.textContent = opt.label;
+            if (opt.disabled) el.disabled = true;
+            select.appendChild(el);
+        });
+        const first = options.find(o => !o.disabled);
+        if (first) select.value = first.value;
+    }
+
+    function syncSearchType(dataTypeSelect, searchTypeId) {
+        const stSelect = document.getElementById(searchTypeId);
+        if (dataTypeSelect.value === 'anyfield') {
+            buildOptions(stSelect, ANYFIELD_OPTIONS);
+        } else {
+            buildOptions(stSelect, FULL_OPTIONS);
+        }
+    }
+
+    /* ── Sub-region toggle ── */
+    function toggleSubRegion() {
+        const val       = document.getElementById('main-region-select').value;
+        const container = document.getElementById('sub-region-container');
+        const title     = document.getElementById('sub-region-title');
+        const subSelect = document.getElementById('sub-region-select');
+
+        let show = true;
+        let html = '<option value="">— Select —</option>';
+
+        if (val === 'poland') {
+            title.innerText = 'Refine by Historical Region (Poland):';
+            html += `<option value="congress_poland">Congress Poland</option>
+                     <option value="galicia_pol">Galicia</option>`;
+        } else if (val === 'ukraine') {
+            title.innerText = 'Refine by Historical Region (Ukraine):';
+            html += `<option value="bukovina_ukr">Bukovina</option>
+                     <option value="galicia_ukr">Eastern Galicia</option>`;
+        } else {
+            show = false;
+        }
+
+        if (show) {
+            subSelect.innerHTML = html;
+            container.style.display = 'block';
+        } else {
+            container.style.display = 'none';
+        }
+    }
+
+    function submitSearch() {
+        console.log('Search submitted');
+    }
+</script>
+
+</body>
+</html>
