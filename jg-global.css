@@ -176,20 +176,7 @@ body.dark-mode .jg-sponsor-banner strong { color: #e0e0e0; }
 .jg-sponsor-banner__dedicate { display: block; margin-top: 0.3rem; font-size: 0.8125rem; font-style: normal; }
 .jg-sponsor-banner__dedicate a { color: var(--navy); text-decoration: underline; font-weight: bold; }
 .jg-sponsor-banner__dedicate a:hover { color: var(--sage); }
-/* ══════════════════════════════════════════════════════ 
-BREADCRUMB ALIGNMENT 
-══════════════════════════════════════════════════════ */
-.breadcrumb {
-    text-align: left;
-    margin: 0;
-}
 
-/* ══════════════════════════════════════════════════════ 
-PAGE TITLE BAND ALIGNMENT 
-══════════════════════════════════════════════════════ */
-.page-title-band {
-    text-align: center;
-}
 /* ══════════════════════════════════════════════════════
    HERO SEARCH
 ══════════════════════════════════════════════════════ */
@@ -373,6 +360,20 @@ body.dark-mode .jg-announcement { background-color: #1a1a1a; border-bottom: 1px 
 .jg-announcement a:hover { color: #939b51; }
 
 /* ══════════════════════════════════════════════════════
+   TITLE BAND DARK MODE FIX
+══════════════════════════════════════════════════════ */
+
+body.dark-mode .page-title-band h1,
+body.dark-mode .page-title-band p,
+body.dark-mode .page-title-band .stat-line {
+    color: #ffffff;
+}
+
+body.dark-mode .page-title-band {
+    background-color: #0d2a45;
+}
+
+/* ══════════════════════════════════════════════════════
    SECTIONS
 ══════════════════════════════════════════════════════ */
 .jg-section {
@@ -500,7 +501,7 @@ body.dark-mode .jg-card { background-color: #1e1e1e; }
 }
 .jg-card:hover .jg-speaker-bio { visibility: visible; opacity: 1; }
 
-.jg-card__date   { font-size: 0.75rem; font-weight: bold; color: var(--navy); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem; }
+.jg-card__date   { font-size: 0.75rem; font-weight: bold; color: var(--sage); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem; }
 .jg-card__type   { font-size: 0.75rem; color: var(--charcoal); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; opacity: 0.7; }
 .jg-card h3      { color: var(--navy); font-size: 1rem; margin: 0 0 0.5rem 0; }
 .jg-card__speaker { font-size: 0.875rem; color: var(--navy); font-weight: 600; margin: -0.75rem 0 1.25rem 0; display: block; }
@@ -586,20 +587,6 @@ body.dark-mode .jg-footer__legal a { color: #a0a0a0; }
 body.dark-mode .jg-footer__legal a:hover { color: #a8b361; }
 .jg-footer__legal-sep { margin: 0 8px; opacity: 0.4; }
 
-
-/* ══════════════════════════════════════════════════════
-   DARK MODE PATCHES
-══════════════════════════════════════════════════════ */
-body.dark-mode .page-title-band h1,
-body.dark-mode .page-title-band p,
-body.dark-mode .page-title-band .stat-line {
-    color: #ffffff;
-}
-
-body.dark-mode .page-title-band {
-    background-color: #0d2a45;
-}
-
 /* ══════════════════════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════════════════════ */
@@ -630,4 +617,109 @@ body.dark-mode .page-title-band {
     .jg-footer__mjh { justify-content: center; }
     .jg-speaker-bio { visibility: visible; opacity: 1; position: static; width: 100%; margin: 0 0 0.75rem 0; box-shadow: none; }
     .jg-speaker-bio::after { display: none; }
+}
+
+/* ══════════════════════════════════════════════════════
+   LOCKED ROWS — Value-Added Contributor Feature
+   Reusable component for search pages.
+   Usage:
+     <div class="jg-locked-rows-wrapper">
+       <div aria-hidden="true">
+         <!-- dimmed row(s) here -->
+       </div>
+       <div class="jg-locked-overlay" role="note">
+         <div class="jg-locked-overlay__inner">
+           <div class="jg-locked-overlay__icon" aria-hidden="true">🔓</div>
+           <div class="jg-locked-overlay__text">
+             <strong>Unlock Two Additional Search Rows</strong>
+             <p>...</p>
+             <a href="..." class="jg-btn-unlock">Donate Now to Unlock →</a>
+           </div>
+         </div>
+       </div>
+     </div>
+══════════════════════════════════════════════════════ */
+.jg-locked-rows-wrapper {
+    position: relative;
+    margin-top: 6px;
+}
+
+.jg-locked-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(232, 225, 209, 0.72);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border-radius: 8px;
+    border: 1px solid #d1caba;
+    z-index: 2;
+    padding: 20px 28px;
+}
+
+.jg-locked-overlay__inner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    max-width: 560px;
+    width: 100%;
+}
+
+.jg-locked-overlay__icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.jg-locked-overlay__text {
+    flex: 1;
+    font-size: 13px;
+    color: var(--charcoal);
+    line-height: 1.55;
+}
+
+.jg-locked-overlay__text strong {
+    color: var(--navy);
+    font-size: 14px;
+    display: block;
+    margin-bottom: 3px;
+}
+
+.jg-locked-overlay__text p {
+    margin: 0 0 10px 0;
+}
+
+.jg-btn-unlock {
+    display: inline-block;
+    background-color: var(--sage);
+    color: #ffffff;
+    padding: 9px 20px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: filter 0.2s;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+.jg-btn-unlock:hover { filter: brightness(1.1); color: #ffffff; }
+.jg-btn-unlock:focus { outline: 3px solid var(--navy); outline-offset: 2px; }
+
+/* Dark mode */
+body.dark-mode .jg-locked-overlay {
+    background: rgba(30, 30, 30, 0.85);
+    border-color: #444;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+body.dark-mode .jg-locked-overlay__text { color: #c0c0c0; }
+body.dark-mode .jg-locked-overlay__text strong { color: #a8b361; }
+
+/* Mobile */
+@media (max-width: 640px) {
+    .jg-locked-overlay__inner { flex-direction: column; text-align: center; }
 }
