@@ -1,703 +1,478 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Holocaust Databases – JewishGen</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Search — JewishGen</title>
 
-<!-- 1. Bootstrap --><form action="#" method="get" onsubmit="alert('Search would submit to JewishGen Holocaust records engine.'); return false;">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="/JG40-Build/jg-global.css">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-<!-- 2. JewishGen Global Design System -->
-<link rel="stylesheet" href="/JG40-Build/jg-global.css">
-<!-- 3. Page-specific styles -->
-<style>
-a { text-decoration: none; color: inherit; }
+    <style>
+        /* ── PAGE-SPECIFIC CSS ─────────────────────────────────────── */
+        .sr-only {
+            position: absolute; width: 1px; height: 1px; padding: 0;
+            margin: -1px; overflow: hidden; clip: rect(0,0,0,0);
+            white-space: nowrap; border: 0;
+        }
 
-/* ── Breadcrumb ── */
-.breadcrumb { background-color:var(--cream); padding:10px 50px; font-size:13px; color:var(--charcoal); border-bottom:1px solid #d1caba; margin:0; text-align:left; }
-.breadcrumb a { color:var(--navy); font-weight:bold; text-decoration:underline dotted; }
-.breadcrumb a:hover { color:var(--sage); }
-.breadcrumb span { margin:0 6px; opacity:0.5; }
+        .search-wrapper { max-width: 860px; margin: 0 auto; padding: 40px 20px 60px; }
+        
+        .search-container {
+            background: var(--white);
+            border: 3px solid var(--navy);
+            border-radius: 12px;
+            padding: 36px 40px 32px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
 
-/* ── Page title band ── */
-.page-title-band { background-color:var(--navy); color:var(--white); padding:40px 50px; text-align:center; }
-.section-tag { display:inline-block; background:var(--sage); color:#ffffff; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1.5px; padding:4px 12px; border-radius:3px; margin-bottom:12px; }
-.page-title-band h1 { margin:0 0 10px 0; font-size:34px; font-weight:bold; color:var(--white); }
-.page-title-band p { margin:0 auto; font-size:16px; color:#a9c0d0; max-width:680px; line-height:1.65; }
-.page-title-band .stat-line { display:block; margin-top:14px; font-size:13px; color:rgba(255,255,255,0.65); font-style:italic; }
+        /* Tips toggle */
+        .tips-trigger-wrap { text-align: center; margin-bottom: 24px; }
+        .tips-trigger {
+            background-color: var(--cream); color: var(--navy); border: 1px solid #d1caba;
+            padding: 8px 20px; border-radius: 20px; font-size: 13px; font-weight: bold;
+            cursor: pointer; font-family: inherit;
+        }
+        .tips-trigger:hover { filter: brightness(0.95); }
 
-/* ── Volunteer strip ── */
-.volunteer-strip { background-color:var(--cream); border-bottom:1px solid #d1caba; padding:10px 50px; text-align:center; font-size:13px; color:var(--charcoal); }
-.volunteer-strip a { color:var(--navy); font-weight:bold; text-decoration:underline dotted; }
+        #search-hints-panel {
+            max-height: 0; overflow: hidden; opacity: 0;
+            transition: max-height 0.4s ease-out, opacity 0.3s ease, margin 0.4s ease;
+            background: #f0f4f7; border-left: 4px solid var(--sage); border-radius: 4px;
+            padding: 0 20px; margin-bottom: 0; font-size: 13px; line-height: 1.5; color: var(--charcoal);
+        }
+        #search-hints-panel.open { max-height: 500px; opacity: 1; padding: 20px; margin-bottom: 24px; }
+        .tips-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
 
-/* ── Search zone ── */
-.search-zone { background-color:var(--cream); padding:30px 50px; border-bottom:3px solid var(--navy); }
-.jg-search-container { background:var(--white); border:3px solid var(--navy); border-radius:12px; max-width:840px; margin:0 auto; padding:24px 32px; box-shadow:0 4px 15px rgba(0,0,0,0.05); }
-.jg-search-container h2 { color:var(--navy); font-size:15px; text-align:center; margin:0 0 4px 0; text-transform:uppercase; letter-spacing:1px; }
-.search-subtitle { text-align:center; font-size:13px; color:var(--charcoal); margin-bottom:14px; line-height:1.5; }
-.tips-toggle { display:block; margin:0 auto 14px auto; background-color:var(--cream); color:var(--navy); border:1px solid #d1caba; padding:6px 18px; border-radius:20px; font-size:12px; font-weight:bold; cursor:pointer; font-family:inherit; transition:background 0.2s; }
-.tips-toggle:hover { background:#d8d0bf; }
-.tips-panel { max-height:0; overflow:hidden; opacity:0; transition:max-height 0.35s ease,opacity 0.25s ease,padding 0.35s ease,margin 0.35s ease; background:#f0f4f7; border-left:4px solid var(--sage); border-radius:4px; padding:0 16px; margin-bottom:0; font-size:12.5px; line-height:1.55; color:var(--charcoal); }
-.tips-panel.open { max-height:400px; opacity:1; padding:16px; margin-bottom:14px; }
-.tips-panel strong { color:var(--navy); }
-.search-row { display:flex; gap:8px; margin-bottom:8px; align-items:flex-end; }
-.sf { display:flex; flex-direction:column; gap:4px; }
-.sf.n { flex:1.1; min-width:130px; }
-.sf.w { flex:2; }
-.field-label { font-size:10px; font-weight:bold; text-transform:uppercase; letter-spacing:0.5px; color:var(--navy); }
-.jg-search-container select,
-.jg-search-container input[type="text"] { width:100%; padding:7px 10px; border:1px solid #ccc; border-radius:6px; font-size:13.5px; color:var(--charcoal); background:var(--white); font-family:inherit; transition:border-color 0.2s; }
-.jg-search-container select:focus,
-.jg-search-container input[type="text"]:focus { border-color:var(--navy); outline:none; box-shadow:0 0 0 2px rgba(9,73,122,0.12); }
-.search-divider { border:none; border-top:1px solid #d1caba; margin:10px 0; }
-.match-row { display:flex; gap:24px; justify-content:center; margin:8px 0 4px; }
-.match-row label { font-size:13px; color:var(--charcoal); display:flex; align-items:center; gap:5px; cursor:pointer; }
-.match-row input[type="radio"] { accent-color:var(--navy); }
-.btn-search { display:block; width:100%; max-width:300px; margin:14px auto 0; background-color:var(--sage); color:#fff; border:none; padding:10px 24px; font-size:14px; font-weight:bold; border-radius:6px; cursor:pointer; text-transform:uppercase; letter-spacing:1px; font-family:inherit; transition:filter 0.2s; }
-.btn-search:hover { filter:brightness(1.1); }
-.btn-search:focus { outline:3px solid var(--navy); outline-offset:2px; }
+        /* Column header row */
+        .col-header-row { display: flex; gap: 10px; margin-bottom: 4px; }
+        .field-label { font-size: 11px; font-weight: bold; color: var(--navy); display: block; text-transform: uppercase; letter-spacing: 0.5px; }
 
-/* ── Browse zone ── */
-.browse-zone { background-color:var(--white); }
-.browse-header { background-color:#f7f5f0; border-bottom:1px solid #d1caba; border-top:1px solid #d1caba; padding:14px 50px; }
-.browse-header-inner { max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
-.browse-title { font-size:14px; font-weight:bold; color:var(--navy); text-transform:uppercase; letter-spacing:0.5px; }
-.browse-db-search { display:flex; gap:6px; }
-.browse-db-search input { padding:7px 12px; border:1.5px solid #d1caba; border-radius:6px; font-size:13px; color:var(--charcoal); background:var(--white); font-family:inherit; width:260px; transition:border-color 0.2s; }
-.browse-db-search input:focus { border-color:var(--navy); outline:none; }
-.browse-db-search button { padding:7px 14px; background:var(--navy); color:var(--white); border:none; border-radius:6px; font-size:13px; font-weight:bold; cursor:pointer; font-family:inherit; transition:filter 0.15s; }
-.browse-db-search button:hover { filter:brightness(1.15); }
+        /* Search rows */
+        .search-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; }
+        .col-type  { flex: 1; } .col-match { flex: 1; } .col-term  { flex: 2; }
 
-/* ── Page body ── */
-.page-body { display:flex; max-width:1100px; margin:0 auto; padding:24px 50px 60px; align-items:flex-start; }
+        .search-row select, .search-row input[type="text"] {
+            width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;
+            font-size: 14px; font-family: inherit; background-color: var(--white); color: var(--charcoal);
+        }
+        .search-row select:focus, .search-row input[type="text"]:focus {
+            outline: 2px solid var(--navy); outline-offset: 2px;
+        }
 
-/* ── Sidebar ── */
-.sidebar { width:195px; flex-shrink:0; margin-right:30px; }
-.sidebar-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
-.sidebar-title { font-size:12px; font-weight:bold; color:var(--charcoal); text-transform:uppercase; letter-spacing:0.6px; }
-.clear-btn { font-size:12px; color:var(--navy); background:none; border:none; cursor:pointer; text-decoration:underline; padding:0; font-family:inherit; }
-.clear-btn:hover { color:var(--sage); }
-.filter-group { margin-bottom:18px; }
-.filter-group-title { font-size:10px; font-weight:bold; letter-spacing:0.08em; text-transform:uppercase; color:var(--charcoal); opacity:0.6; margin-bottom:7px; border-bottom:1px solid #d1caba; padding-bottom:4px; }
-.filter-item { display:flex; align-items:center; gap:6px; padding:3px 0; font-size:12.5px; color:var(--charcoal); cursor:pointer; line-height:1.3; user-select:none; }
-.filter-item input[type=checkbox] { accent-color:var(--navy); flex-shrink:0; }
-.filter-count { margin-left:auto; font-size:10px; color:var(--charcoal); opacity:0.55; background:var(--cream); padding:1px 5px; border-radius:10px; white-space:nowrap; }
-.filter-more-btn { display:block; font-size:11px; color:var(--navy); background:none; border:none; cursor:pointer; padding:3px 0; text-align:left; font-family:inherit; text-decoration:underline dotted; }
-.filter-more-btn:hover { color:var(--sage); }
-.filter-extra { display:none; }
-.filter-extra.open { display:block; }
+        /* Hover-to-Unlock Wrapper Logic */
+        .jg-locked-rows-wrapper { position: relative; margin-top: 14px; transition: padding-bottom 0.3s ease; }
+        .jg-locked-rows-wrapper:hover, .jg-locked-rows-wrapper.revealed { padding-bottom: 60px; }
+        
+        .search-row.locked { opacity: 0.45; pointer-events: none; }
+        .search-row.locked select, .search-row.locked input[type="text"] { background-color: #f2f2f2; }
 
-/* ── Cards area ── */
-.cards-area { flex:1; min-width:0; }
-.cards-toolbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; flex-wrap:wrap; gap:8px; }
-.cards-showing { font-size:14px; color:var(--charcoal); }
-.cards-showing strong { color:var(--navy); font-size:16px; }
-.active-filters { display:flex; gap:6px; flex-wrap:wrap; }
-.filter-chip { display:inline-flex; align-items:center; gap:5px; background:var(--navy); color:var(--white); padding:4px 10px 4px 12px; border-radius:20px; font-size:11px; font-weight:bold; }
-.filter-chip button { background:none; border:none; color:rgba(255,255,255,0.65); cursor:pointer; font-size:15px; line-height:1; padding:0; font-family:inherit; }
-.filter-chip button:hover { color:var(--white); }
+        .jg-locked-overlay {
+            position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+            background: rgba(232, 225, 209, 0.45); border-radius: 8px; border: 1px solid #d1caba;
+            z-index: 2; padding: 20px 28px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .jg-locked-rows-wrapper:hover .jg-locked-overlay, .jg-locked-rows-wrapper.revealed .jg-locked-overlay {
+            opacity: 1; pointer-events: auto;
+        }
+        .jg-locked-overlay__inner { display: flex; align-items: center; gap: 20px; max-width: 560px; width: 100%; }
+        .jg-locked-overlay__icon { font-size: 28px; flex-shrink: 0; line-height: 1; }
+        .jg-locked-overlay__text { flex: 1; font-size: 13px; color: var(--charcoal); line-height: 1.55; }
+        .jg-locked-overlay__text strong { color: var(--navy); font-size: 14px; display: block; margin-bottom: 3px; }
+        .jg-locked-overlay__text p { margin: 0 0 10px 0; }
+        
+        .jg-btn-unlock {
+            display: inline-block; background-color: var(--sage); color: var(--white);
+            padding: 9px 20px; border-radius: 6px; font-size: 13px; font-weight: bold;
+            white-space: nowrap; transition: filter 0.2s; border: none; cursor: pointer; text-decoration: none;
+        }
+        .jg-btn-unlock:hover { filter: brightness(1.1); color: var(--white); }
 
-/* ── Cards ── */
-.card-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
-.catalog-card { background:var(--white); border:1px solid #d1caba; border-radius:8px; padding:16px 18px; display:flex; flex-direction:column; gap:9px; transition:background 0.15s; }
-.catalog-card:hover { background:#f7f5f0; }
-.catalog-card.no-match { display:none; }
-.card-title { font-size:15px; font-weight:bold; color:var(--navy); line-height:1.3; }
-.card-desc { font-size:13px; color:var(--charcoal); line-height:1.65; }
-.item-tags { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
-.tag { display:inline-block; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:bold; letter-spacing:0.3px; cursor:default; }
-.tag-type { background:rgba(9,73,122,0.1); color:var(--navy); border:1px solid rgba(9,73,122,0.2); }
-.tag-geo  { background:rgba(147,155,81,0.12); color:#5a6130; border:1px solid rgba(147,155,81,0.25); }
-.tag-era  { background:rgba(35,43,43,0.07); color:var(--charcoal); border:1px solid rgba(35,43,43,0.15); }
-.more-tags-btn { display:inline-block; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:bold; background:rgba(9,73,122,0.07); color:var(--navy); border:1px solid rgba(9,73,122,0.16); cursor:pointer; font-family:inherit; letter-spacing:0.3px; }
-.more-tags-btn:hover { background:rgba(9,73,122,0.13); }
-.extra-tags { display:none; flex-wrap:wrap; gap:6px; margin-top:4px; }
-.extra-tags.open { display:flex; }
-.card-footer-row { display:flex; align-items:center; justify-content:space-between; border-top:1px solid #d1caba; padding-top:10px; margin-top:2px; }
-.record-count-badge { font-size:12.5px; font-weight:bold; color:var(--navy); }
-.btn-view-dataset { display:inline-block; background:var(--navy); color:var(--white); padding:8px 16px; border-radius:6px; font-size:13px; font-weight:bold; text-decoration:none; transition:filter 0.2s; }
-.btn-view-dataset:hover { filter:brightness(1.2); color:var(--white); }
+        /* Region block */
+        .region-block { margin-top: 14px; }
+        #sub-region-container {
+            display: none; margin-top: 14px; padding: 16px 20px; border: 1px solid var(--cream);
+            background: #fdfcf9; border-radius: 8px; animation: fadeIn 0.3s ease-in;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .sub-region-label { font-size: 13px; font-weight: bold; color: var(--navy); display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-/* ── Pagination ── */
-.pagination { display:flex; align-items:center; justify-content:center; gap:5px; margin-top:32px; flex-wrap:wrap; }
-.page-btn { display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border:1px solid #d1caba; border-radius:5px; background:var(--white); color:var(--charcoal); font-size:13px; cursor:pointer; font-family:inherit; transition:border-color 0.15s; }
-.page-btn:hover { border-color:var(--navy); color:var(--navy); }
-.page-btn.active { background:var(--navy); color:var(--white); border-color:var(--navy); font-weight:bold; }
-.page-btn.disabled { opacity:0.35; cursor:default; pointer-events:none; }
-.page-ellipsis { padding:0 3px; color:var(--charcoal); opacity:0.55; font-size:14px; }
+        /* Submit area */
+        .search-submit-wrap { text-align: center; margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--cream); }
+        .btn-search {
+            background-color: var(--sage); color: var(--white); border: none; padding: 14px 50px;
+            font-size: 17px; font-weight: bold; border-radius: 6px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; font-family: inherit;
+        }
+        .btn-search:hover { filter: brightness(1.1); }
 
-/* ── View toggle ── */
-.view-toggle { display:flex; border:2px solid var(--navy); border-radius:7px; overflow:hidden; }
-.view-toggle button { background:none; border:none; padding:6px 14px; font-size:13px; font-weight:bold; cursor:pointer; color:var(--navy); font-family:inherit; transition:background-color 0.2s,color 0.2s; }
-.view-toggle button.active { background-color:var(--navy); color:var(--white); }
-.view-toggle button:not(.active):hover { background-color:var(--cream); }
-.view-toggle button:focus-visible { outline:3px solid var(--sage); outline-offset:-2px; }
+        /* ── Dark mode overrides ── */
+        body.dark-mode .search-container { border-color: #a8b361; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+        body.dark-mode #search-hints-panel { background: #1a2533; border-left-color: #a8b361; color: #c8c8c8; }
+        body.dark-mode #sub-region-container { background: #1a1a1a; border-color: #333; }
+        body.dark-mode .search-row.locked select, body.dark-mode .search-row.locked input[type="text"] { background-color: #2a2a2a !important; }
+        body.dark-mode .tips-trigger { background-color: #1e1e1e; border-color: #444; color: #a8b361; }
+        body.dark-mode .search-submit-wrap { border-top-color: #333; }
+        body.dark-mode .jg-locked-overlay { background: rgba(30, 30, 30, 0.6); border-color: #444; }
+        body.dark-mode .jg-locked-overlay__text { color: #c0c0c0; }
+        body.dark-mode .jg-locked-overlay__text strong { color: #a8b361; }
 
-/* ── List view mode ── */
-.card-grid.list-mode { display:flex; flex-direction:column; gap:0; border:1px solid #d1caba; border-radius:8px; overflow:hidden; }
-.card-grid.list-mode .catalog-card { flex-direction:row; align-items:center; gap:14px; padding:10px 16px; border-radius:0; border:none; border-bottom:1px solid #d1caba; }
-.card-grid.list-mode .catalog-card:last-child { border-bottom:none; }
-.card-grid.list-mode .card-title { flex:1; font-size:14px; order:1; margin:0; }
-.card-grid.list-mode .card-desc { display:none; }
-.card-grid.list-mode .item-tags { order:2; flex-shrink:0; }
-.card-grid.list-mode .item-tags span.tag:nth-of-type(n+3) { display:none; }
-.card-grid.list-mode .item-tags .more-tags-btn { display:none; }
-.card-grid.list-mode .extra-tags { display:none !important; }
-.card-grid.list-mode .card-footer-row { order:3; flex-shrink:0; border-top:none; padding-top:0; margin-top:0; gap:12px; }
-
-/* ── Empty state ── */
-#no-results { display:none; text-align:center; padding:50px 20px; color:var(--charcoal); }
-#no-results.visible { display:block; }
-#no-results h3 { color:var(--navy); font-size:18px; margin-bottom:8px; }
-#no-results p { font-size:13px; }
-
-/* ── Loading state ── */
-#loading-state { text-align:center; padding:60px 20px; color:var(--charcoal); font-size:14px; opacity:0.7; }
-
-/* ── Accessibility ── */
-:focus-visible { outline:3px solid var(--sage); outline-offset:2px; }
-.sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
-
-/* ── Responsive ── */
-@media (max-width:900px) { .card-grid { grid-template-columns:1fr; } }
-@media (max-width:768px) {
-    .breadcrumb, .search-zone, .browse-header, .page-body { padding-left:20px; padding-right:20px; }
-    .page-body { flex-direction:column; padding-top:20px; }
-    .sidebar { width:100%; margin-right:0; margin-bottom:20px; }
-    .page-title-band { padding:28px 20px; }
-    .page-title-band h1 { font-size:26px; }
-    .jg-search-container { padding:18px 20px; }
-    .search-row { flex-direction:column; gap:8px; }
-    .sf.n, .sf.w { flex:none; width:100%; }
-    .browse-db-search input { width:100%; }
-    .view-toggle { display:none; }
-}
-</style>
+        /* ── Responsive ── */
+        @media (max-width: 640px) {
+            .search-container { padding: 24px 18px 20px; }
+            .search-row, .col-header-row { flex-direction: column; }
+            .col-type, .col-match, .col-term { flex: unset; width: 100%; }
+            .tips-grid { grid-template-columns: 1fr; }
+            .search-wrapper { padding: 28px 16px 48px; }
+            .jg-locked-overlay__inner { flex-direction: column; text-align: center; }
+        }
+    </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <div id="site-header"></div>
 
-<!-- BREADCRUMB -->
-<nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="https://effortlesslycat-ship-it.github.io/JG40-Build/index.html">Home</a>
-    <span aria-hidden="true">›</span>
-    <a href="#">Databases</a>
-    <span aria-hidden="true">›</span>
-    <span aria-current="page">Holocaust Databases</span>
+<nav class="breadcrumb" aria-label="Breadcrumb" style="background-color: var(--cream); padding: 10px 50px; font-size: 13px; color: var(--charcoal); border-bottom: 1px solid #d1caba; margin: 0; text-align: left;">
+    <a href="/" style="color: var(--navy); font-weight: bold; text-decoration: underline dotted;">JewishGen Home</a>
+    <span class="sep" aria-hidden="true" style="margin: 0 6px; opacity: 0.5;">›</span>
+    <a href="#" style="color: var(--navy); font-weight: bold; text-decoration: underline dotted;">Databases</a>
+    <span class="sep" aria-hidden="true" style="margin: 0 6px; opacity: 0.5;">›</span>
+    <span aria-current="page">Global Search</span>
 </nav>
 
-<!-- PAGE TITLE BAND -->
-<div class="page-title-band">
-    <span class="section-tag">Holocaust</span>
-    <h1>Holocaust Databases</h1>
-    <p>A unique and critically valuable collection of databases containing information about Holocaust victims and survivors.</p>
-    <span class="stat-line">As of May 2025, more than 6 million records are available in this continually updated collection.</span>
+<div class="page-title-band" style="background-color: var(--navy); color: var(--white); padding: 40px 50px; text-align: center;">
+    <span class="section-tag" style="display: inline-block; background: var(--sage); color: #ffffff; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; padding: 4px 12px; border-radius: 3px; margin-bottom: 12px;">Databases</span>
+    <h1 style="margin: 0 0 10px 0; font-size: 34px; font-weight: bold; color: var(--white);">Welcome to the JewishGen Global Search</h1>
+    <p style="margin: 0 auto; font-size: 16px; color: #a9c0d0; max-width: 680px; line-height: 1.65;">Explore millions of records from around the world — including Holocaust and burial records — all in one search.</p>
 </div>
 
-<!-- VOLUNTEER STRIP -->
-<div class="volunteer-strip">
-    This is an ongoing project and we welcome <a href="#">additional volunteers</a>.
-</div>
+<main id="main-content">
+<div class="search-wrapper">
+    <div class="search-container" role="search" aria-label="JewishGen Global Database Search">
 
-<!-- SEARCH ZONE -->
-<section class="search-zone" aria-label="Search Holocaust records">
-    <div class="jg-search-container">
-        <h2>Search Holocaust Records</h2>
-        <p class="search-subtitle">Search across all 6 million+ individual records in all 356 component databases.</p>
-
-        <button class="tips-toggle" aria-expanded="false" aria-controls="tips-panel" onclick="toggleTips(this)">
-            💡 How do I get the best search results?
-        </button>
-
-        <div class="tips-panel" id="tips-panel" role="region" aria-label="Search tips">
-            <p><strong>Search by OR:</strong> Use commas to search for either of two names. Example: <em>COHEN,GOLDBERG</em> finds records for either name.</p>
-            <p style="margin-top:8px;"><strong>Search by AND:</strong> Use a space to require both names. Example: <em>COHEN GOLDBERG</em> finds records containing both.</p>
-            <p style="margin-top:8px;"><strong>Exact search</strong> includes JewishGen synonyms for town and given names. A search for <em>Lodz</em> will also return <em>Litzmannstadt</em>.</p>
+        <div class="tips-trigger-wrap">
+            <button class="tips-trigger" onclick="toggleHints()" aria-expanded="false" aria-controls="search-hints-panel" id="tips-btn">
+                💡 Search Tips and Tricks
+            </button>
         </div>
 
-        <form action="#" method="get" onsubmit="alert('Search would submit to JewishGen Holocaust records engine.'); return false;">
-            <div class="search-row">
-                <div class="sf n">
-                    <label class="field-label" for="dtype1">Data type</label>
-                    <select id="dtype1" name="dtype1">
-                        <option value="surname">Surname</option>
-                        <option value="given">Given name</option>
-                        <option value="town">Town</option>
-                        <option value="any">Any field</option>
-                    </select>
-                </div>
-                <div class="sf n">
-                    <label class="field-label" for="stype1">Search type</label>
-                    <select id="stype1" name="stype1">
-                        <option value="Q">Phonetically Like</option>
-                        <option value="DM">Sounds Like (DM)</option>
-                        <option value="E">is Exactly</option>
-                        <option value="SW">Starts With</option>
-                        <option value="FZ">Fuzzy</option>
-                        <option value="FZR">Fuzzier</option>
-                        <option value="FZST">Fuzziest</option>
-                    </select>
-                </div>
-                <div class="sf w">
-                    <label class="field-label" for="term1">Search term</label>
-                    <input type="text" id="term1" name="term1" placeholder="Enter name, town, or keyword…">
-                </div>
+        <div id="search-hints-panel" role="region" aria-labelledby="tips-btn">
+            <strong style="color: var(--navy); font-size: 14px; display: block; margin-bottom: 14px;">JewishGen Search Tips:</strong>
+            <div class="tips-grid">
+                <div><strong>Comma = OR:</strong> Use commas to search for either name.<br><span style="color: #666;"><em>Example: Schwartz, Weiss (Finds either)</em></span></div>
+                <div><strong>Space = AND:</strong> Use a space to search for both names.<br><span style="color: #666;"><em>Example: Schwartz Weiss (Finds both)</em></span></div>
+                <div><strong>Wildcards (*):</strong> Fill in the blanks for bad handwriting.<br><span style="color: #666;"><em>Example: Sp*l*ng (Finds Spelling, Sperling)</em></span></div>
+                <div><strong>Brackets [ ]:</strong> Force a specific starting letter.<br><span style="color: #666;"><em>Example: [F]isch (Finds Fish, but not Visz)</em></span></div>
+                <div><strong>Synonyms:</strong> Exact search includes standard variants.<br><span style="color: #666;"><em>Example: Jankel = Jakob = Jacob = Jack</em></span></div>
+                <div><strong>Starts With / Contains:</strong> Finds root words in the name.<br><span style="color: #666;"><em>Example: "Gold" finds FeinGold</em></span></div>
             </div>
-        
-            <div class="search-row">
-                <div class="sf n">
-                    <label class="field-label" for="dtype2">Data type</label>
-                    <select id="dtype2" name="dtype2">
-                        <option value="surname">Surname</option>
-                        <option value="given">Given name</option>
-                        <option value="town">Town</option>
-                        <option value="any">Any field</option>
-                    </select>
-                </div>
-                <div class="sf n">
-                    <label class="field-label" for="stype2">Search type</label>
-                    <select id="stype2" name="stype2">
-                        <option value="Q">Phonetically Like</option>
-                        <option value="DM">Sounds Like (DM)</option>
-                        <option value="E">is Exactly</option>
-                        <option value="SW">Starts With</option>
-                        <option value="FZ">Fuzzy</option>
-                        <option value="FZR">Fuzzier</option>
-                        <option value="FZST">Fuzziest</option>
-                    </select>
-                </div>
-                <div class="sf w">
-                    <label class="field-label" for="term2">Search term</label>
-                    <input type="text" id="term2" name="term2" placeholder="Optional second search term…">
-                </div>
-            </div>
-        
-            <div class="search-row">
-                <div class="sf n">
-                    <label class="field-label" for="dtype3">Data type</label>
-                    <select id="dtype3" name="dtype3">
-                        <option value="surname">Surname</option>
-                        <option value="given">Given name</option>
-                        <option value="town">Town</option>
-                        <option value="any">Any field</option>
-                    </select>
-                </div>
-                <div class="sf n">
-                    <label class="field-label" for="stype3">Search type</label>
-                    <select id="stype3" name="stype3">
-                        <option value="Q">Phonetically Like</option>
-                        <option value="DM">Sounds Like (DM)</option>
-                        <option value="E">is Exactly</option>
-                        <option value="SW">Starts With</option>
-                        <option value="FZ">Fuzzy</option>
-                        <option value="FZR">Fuzzier</option>
-                        <option value="FZST">Fuzziest</option>
-                    </select>
-                </div>
-                <div class="sf w">
-                    <label class="field-label" for="term3">Search term</label>
-                    <input type="text" id="term3" name="term3" placeholder="Optional third search term…">
-                </div>
-            </div>
-        
-            <div class="search-row">
-                <div class="sf n">
-                    <label class="field-label" for="dtype4">Data type</label>
-                    <select id="dtype4" name="dtype4">
-                        <option value="surname">Surname</option>
-                        <option value="given">Given name</option>
-                        <option value="town">Town</option>
-                        <option value="any">Any field</option>
-                    </select>
-                </div>
-                <div class="sf n">
-                    <label class="field-label" for="stype4">Search type</label>
-                    <select id="stype4" name="stype4">
-                        <option value="Q">Phonetically Like</option>
-                        <option value="DM">Sounds Like (DM)</option>
-                        <option value="E">is Exactly</option>
-                        <option value="SW">Starts With</option>
-                        <option value="FZ">Fuzzy</option>
-                        <option value="FZR">Fuzzier</option>
-                        <option value="FZST">Fuzziest</option>
-                    </select>
-                </div>
-                <div class="sf w">
-                    <label class="field-label" for="term4">Search term</label>
-                    <input type="text" id="term4" name="term4" placeholder="Optional fourth search term…">
-                </div>
-            </div>
-        
-            <hr class="search-divider">
-            <div class="match-row" role="group" aria-label="Match logic">
-                <label><input type="radio" name="match" value="all" checked> Match <strong>ALL</strong> of the above (AND)</label>
-                <label><input type="radio" name="match" value="any"> Match <strong>ANY</strong> of the above (OR)</label>
-            </div>
-            <button type="submit" class="btn-search">Search Records</button>
-        </form>
-           
-    </div>
-</section>
-
-<!-- BROWSE HEADER -->
-<div class="browse-header">
-    <div class="browse-header-inner">
-        <span class="browse-title">Browse Component Databases</span>
-        <div class="browse-db-search">
-            <input type="text" id="db-search" placeholder="Filter databases by name, place, or keyword…"
-                   aria-label="Filter component databases" oninput="applyFilters()">
-            <button onclick="applyFilters()" aria-label="Apply filter">Filter</button>
         </div>
-    </div>
-</div>
 
-<!-- BROWSE ZONE -->
-<div class="browse-zone">
-    <div class="page-body">
+        <div class="col-header-row" aria-hidden="true">
+            <div class="col-type"><span class="field-label">Data Type</span></div>
+            <div class="col-match"><span class="field-label">Search Type</span></div>
+            <div class="col-term"><span class="field-label">Search Term</span></div>
+        </div>
 
-        <!-- SIDEBAR FILTERS — built dynamically from data -->
-        <aside class="sidebar" aria-label="Filter databases">
-            <div class="sidebar-header">
-                <span class="sidebar-title">Filters</span>
-                <button class="clear-btn" onclick="clearAllFilters()">Clear all</button>
+        <div class="search-row">
+            <div class="col-type">
+                <label for="dtype-1" class="sr-only">Data type, row 1</label>
+                <select id="dtype-1" onchange="syncSearchType(this, 'stype-1')">
+                    <option value="surname" selected>Surname</option>
+                    <option value="givenname">Given Name</option>
+                    <option value="town">Town</option>
+                    <option value="anyfield">Any Field</option>
+                </select>
             </div>
-            <div id="sidebar-filters">
-                <p style="font-size:12px;color:var(--charcoal);opacity:0.6;">Loading filters…</p>
+            <div class="col-match">
+                <label for="stype-1" class="sr-only">Search type, row 1</label>
+                <select id="stype-1">
+                    <option value="phonetic" selected>Phonetically Like</option>
+                    <option value="soundslike">Sounds Like</option>
+                    <option value="startswith">Starts With</option>
+                    <option value="exactly">Is Exactly</option>
+                    <option value="fuzzy">Fuzzy Match</option>
+                    <option value="fuzzier">Fuzzier Match</option>
+                    <option value="fuzziest">Fuzziest Match</option>
+                </select>
             </div>
-        </aside>
+            <div class="col-term">
+                <label for="term-1" class="sr-only">Search term, row 1</label>
+                <input type="text" id="term-1" placeholder="e.g., Hollander">
+            </div>
+        </div>
 
-        <!-- CARDS AREA -->
-        <div class="cards-area">
-            <div class="cards-toolbar">
-                <span class="cards-showing" id="cards-showing">
-                    Showing <strong id="showing-count">—</strong> of <strong id="total-count">356</strong> databases
-                </span>
-                <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-                    <div class="active-filters" id="active-filters" aria-live="polite"></div>
-                    <div class="view-toggle" role="group" aria-label="Switch database view">
-                        <button id="btn-grid" class="active" aria-pressed="true"  onclick="setView('card')">⊞ Cards</button>
-                        <button id="btn-list"              aria-pressed="false" onclick="setView('list')">☰ List</button>
+        <div class="search-row">
+            <div class="col-type">
+                <label for="dtype-2" class="sr-only">Data type, row 2</label>
+                <select id="dtype-2" onchange="syncSearchType(this, 'stype-2')">
+                    <option value="" selected disabled>Data Type</option>
+                    <option value="surname">Surname</option>
+                    <option value="givenname">Given Name</option>
+                    <option value="town">Town</option>
+                    <option value="anyfield">Any Field</option>
+                </select>
+            </div>
+            <div class="col-match">
+                <label for="stype-2" class="sr-only">Search type, row 2</label>
+                <select id="stype-2">
+                    <option value="" selected disabled>Search Type</option>
+                    <option value="phonetic">Phonetically Like</option>
+                    <option value="soundslike">Sounds Like</option>
+                    <option value="startswith">Starts With</option>
+                    <option value="exactly">Is Exactly</option>
+                    <option value="fuzzy">Fuzzy Match</option>
+                    <option value="fuzzier">Fuzzier Match</option>
+                    <option value="fuzziest">Fuzziest Match</option>
+                </select>
+            </div>
+            <div class="col-term">
+                <label for="term-2" class="sr-only">Search term, row 2</label>
+                <input type="text" id="term-2" placeholder="Search term">
+            </div>
+        </div>
+
+        <div class="jg-locked-rows-wrapper" onmouseenter="this.classList.add('revealed')">
+            <div aria-hidden="true">
+                <div class="search-row locked">
+                    <div class="col-type"><select tabindex="-1" disabled><option>Data Type</option></select></div>
+                    <div class="col-match"><select tabindex="-1" disabled><option>Search Type</option></select></div>
+                    <div class="col-term"><input type="text" tabindex="-1" disabled placeholder="Search term"></div>
+                </div>
+
+                <div class="search-row locked" style="margin-bottom: 0;">
+                    <div class="col-type"><select tabindex="-1" disabled><option>Data Type</option></select></div>
+                    <div class="col-match"><select tabindex="-1" disabled><option>Search Type</option></select></div>
+                    <div class="col-term"><input type="text" tabindex="-1" disabled placeholder="Search term"></div>
+                </div>
+            </div>
+
+            <div class="jg-locked-overlay" role="note" aria-label="Value-added feature — donate to unlock">
+                <div class="jg-locked-overlay__inner">
+                    <div class="jg-locked-overlay__icon" aria-hidden="true">🔓</div>
+                    <div class="jg-locked-overlay__text">
+                        <strong>Unlock Two Additional Search Rows</strong>
+                        <p>A donation of $100 or more to the JewishGen General Fund unlocks multi-field search, letting you combine up to four simultaneous criteria for more precise results.</p>
+                        <a href="https://www.jewishgen.org/jewishgen-secure/donate.asp" class="jg-btn-unlock" target="_blank" rel="noopener noreferrer">
+                            Donate Now to Unlock →
+                        </a>
                     </div>
                 </div>
             </div>
-
-            <div id="loading-state">Loading databases…</div>
-            <div class="card-grid" id="card-grid" style="display:none;"></div>
-
-            <div id="no-results" role="status">
-                <h3>No databases match your filters</h3>
-                <p><button class="clear-btn" style="font-size:13px;" onclick="clearAllFilters()">Clear all filters</button> to start over.</p>
-            </div>
-
-            <nav class="pagination" id="pagination" aria-label="Database list pages" style="display:none;"></nav>
         </div>
 
-    </div>
-</div>
+        <div class="region-block">
+            <label class="field-label" for="main-region-select">Region / Collection</label>
+            <select id="main-region-select" onchange="toggleSubRegion()" style="padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; width: 100%; margin-top: 5px;">
+                <option value="all">Region / Collection: ALL</option>
+                    <optgroup label="Topical Databases">
+                        <option value="JOWBR">Cemetery Records</option>
+                        <option value="ALLHOLOCAUST">Holocaust Records</option>
+                        <option value="sephardic">Sephardic</option>
+                    </optgroup>
+                    <optgroup label="Africa">
+                        <option value="algeria">Algeria</option>
+                        <option value="egypt">Egypt</option>
+                        <option value="libya">Libya</option>
+                        <option value="morocco">Morocco</option>
+                        <option value="safrica">South Africa</option>
+                        <option value="tunisia">Tunisia</option>
+                    </optgroup>
+                    <optgroup label="Asia &amp; The Middle East">
+                        <option value="india">India</option>
+                        <option value="iraq">Iraq</option>
+                        <option value="israel">Israel</option>
+                        <option value="lebanon">Lebanon</option>
+                        <option value="syria">Syria</option>
+                        <option value="turkey">Turkey</option>
+                    </optgroup>
+                    <optgroup label="Eastern &amp; Central Europe">
+                        <option value="austria">Austria / Czechia</option>
+                        <option value="belarus">Belarus</option>
+                        <option value="bulgaria">Bulgaria</option>
+                        <option value="germany">Germany</option>
+                        <option value="hungary">Hungary / Slovakia</option>
+                        <option value="latvia">Latvia</option>
+                        <option value="lithuania">Lithuania</option>
+                        <option value="poland">Poland</option>
+                        <option value="romania">Romania / Moldova</option>
+                        <option value="ukraine">Ukraine</option>
+                    </optgroup>
+                    <optgroup label="Western &amp; Southern Europe">
+                        <option value="france">France</option>
+                        <option value="greece">Greece</option>
+                        <option value="italy">Italy</option>
+                        <option value="netherlands">Netherlands</option>
+                        <option value="portugal">Portugal</option>
+                        <option value="scandinavia">Scandinavia</option>
+                        <option value="spain">Spain</option>
+                        <option value="ukireland">United Kingdom &amp; Ireland</option>
+                    </optgroup>
+                    <optgroup label="North America">
+                        <option value="canada">Canada</option>
+                        <option value="usa">United States</option>
+                    </optgroup>
+                    <optgroup label="Central &amp; South America">
+                        <option value="argentina">Argentina</option>
+                        <option value="latinam">Latin America</option>
+                        <option value="venezuela">Venezuela</option>
+                    </optgroup>
+                </select>        
+            </select>
+        
+            <!-- Sub-region (shown dynamically) -->
 
-<!-- FOOTER -->
+            <div id="sub-region-container" role="region" aria-live="polite">
+                <span class="sub-region-label" id="sub-region-title">Refine Search:</span>
+                <select id="sub-region-select" style="padding: 10px; border: 2px solid var(--navy); border-radius: 6px; font-size: 14px; width: 100%; background-color: var(--white);" aria-labelledby="sub-region-title">
+                </select>
+            </div>
+        </div>
+
+        <div class="search-submit-wrap">
+            <button class="btn-search" type="button" onclick="submitSearch()">Search Databases</button>
+        </div>
+
+    </div></div>
+</main>
+
 <div id="site-footer"></div>
 
-<!-- SCRIPTS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-
-/* ── Component loader ─────────────────────────────────────── */
-function loadComponent(id, file) {
-    return fetch(file)
-        .then(r => { if (!r.ok) throw new Error('Could not load ' + file); return r.text(); })
-        .then(html => { document.getElementById(id).innerHTML = html; })
-        .catch(err => console.warn(err));
-}
-
-Promise.all([
-loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
-loadComponent('site-footer', '/JG40-Build/Footer.html')
-]).then(() => {
-    document.querySelectorAll('.jg-nav .dropbtn').forEach(btn => {
-        btn.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                const expanded = this.getAttribute('aria-expanded') === 'true';
-                this.setAttribute('aria-expanded', String(!expanded));
-                const menu = document.getElementById(this.getAttribute('aria-controls'));
-                if (menu) menu.style.display = expanded ? 'none' : 'block';
-            }
-            if (e.key === 'Escape') {
-                this.setAttribute('aria-expanded', 'false');
-                const menu = document.getElementById(this.getAttribute('aria-controls'));
-                if (menu) menu.style.display = 'none';
-            }
-        });
-    });
-});
-
-/* ── State ────────────────────────────────────────────────── */
-const PER_PAGE = 24;
-let DB         = [];
-let filtered   = [];
-let currentPage = 1;
-let viewMode   = window.innerWidth < 768 ? 'list' : 'card';
-
-/* ── View toggle ──────────────────────────────────────────── */
-function setView(mode) {
-    viewMode = mode;
-    const grid    = document.getElementById('card-grid');
-    const btnGrid = document.getElementById('btn-grid');
-    const btnList = document.getElementById('btn-list');
-    grid.classList.toggle('list-mode', mode === 'list');
-    btnGrid.classList.toggle('active', mode === 'card');
-    btnGrid.setAttribute('aria-pressed', String(mode === 'card'));
-    btnList.classList.toggle('active', mode === 'list');
-    btnList.setAttribute('aria-pressed', String(mode === 'list'));
-}
-
-/* ── Load data ────────────────────────────────────────────── */
-fetch('holocaust-databases.json')
-    .then(r => r.json())
-    .then(data => {
-        DB = data.slice().sort((a, b) => a.name.localeCompare(b.name));
-        filtered = DB.slice();
-        buildSidebar();
-        renderCards();
-        document.getElementById('loading-state').style.display = 'none';
-        document.getElementById('card-grid').style.display = '';
-        document.getElementById('total-count').textContent = DB.length;
-        setView(viewMode);
-    })
-    .catch(err => {
-        document.getElementById('loading-state').textContent = 'Error loading database list. Please try refreshing.';
-        console.error(err);
-    });
-
-/* ── Build sidebar from actual data ───────────────────────── */
-function countValues(field) {
-    const counts = {};
-    DB.forEach(db => {
-        (db[field] || []).forEach(v => { counts[v] = (counts[v] || 0) + 1; });
-    });
-    return counts;
-}
-
-function buildFilterGroup(title, field, counts, showTop, extraId) {
-    const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
-    const top    = sorted.slice(0, showTop);
-    const rest   = sorted.slice(showTop);
-
-    let html = `<div class="filter-group">
-        <div class="filter-group-title">${title}</div>`;
-
-    top.forEach(([val, cnt]) => {
-        html += filterItem(field, val, cnt);
-    });
-
-    if (rest.length > 0) {
-        html += `<button class="filter-more-btn" onclick="toggleMore(this,'${extraId}')">+ ${rest.length} more…</button>
-        <div class="filter-extra" id="${extraId}">`;
-        rest.forEach(([val, cnt]) => { html += filterItem(field, val, cnt); });
-        html += `</div>`;
+    /* ── Component Loader (From JOWBR.html) ────────────────── */
+    function loadComponent(id, file) {
+        return fetch(file)
+            .then(function(r) {
+                if (!r.ok) throw new Error('Could not load ' + file);
+                return r.text();
+            })
+            .then(function(html) {
+                document.getElementById(id).innerHTML = html;
+            })
+            .catch(function(err) { console.warn(err); });
     }
 
-    html += `</div>`;
-    return html;
-}
+    Promise.all([
+        loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
+        loadComponent('site-footer', '/JG40-Build/Footer.html')
+    ]).then(function() {
+        // Init Nav accessibility
+        document.querySelectorAll('.jg-nav .dropbtn, .main-nav .dropbtn').forEach(function(btn) {
+            btn.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    var menu = this.nextElementSibling;
+                    if (menu) menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+                }
+                if (e.key === 'Escape') {
+                    var menu = this.nextElementSibling;
+                    if (menu) menu.style.display = 'none';
+                }
+            });
+        });
+    });
 
-function filterItem(field, val, cnt) {
-    const id = `fcb-${field}-${val.replace(/[^a-z0-9]/gi, '_')}`;
-    return `<label class="filter-item">
-        <input type="checkbox" class="fcb" id="${id}" data-f="${field}" data-v="${val}" onchange="applyFilters()">
-        ${val} <span class="filter-count">${cnt}</span>
-    </label>`;
-}
+    /* ── Tips panel ── */
+    function toggleHints() {
+        const panel = document.getElementById('search-hints-panel');
+        const btn   = document.getElementById('tips-btn');
+        const isOpen = panel.classList.toggle('open');
+        btn.setAttribute('aria-expanded', isOpen);
+    }
 
-function buildSidebar() {
-    const recordCounts  = countValues('recordType');
-    const timeCounts    = countValues('timePeriod');
-    const regionCounts  = countValues('region');
-    const subjectCounts = countValues('subject');
-    const natureCounts  = countValues('nature');
+    /* ── Search Type sync ── */
+    const FULL_OPTIONS = [
+        { value: '',           label: 'Search Type',    disabled: true },
+        { value: 'phonetic',   label: 'Phonetically Like' },
+        { value: 'soundslike', label: 'Sounds Like'    },
+        { value: 'startswith', label: 'Starts With'    },
+        { value: 'exactly',    label: 'Is Exactly'     },
+        { value: 'fuzzy',      label: 'Fuzzy Match'    },
+        { value: 'fuzzier',    label: 'Fuzzier Match'  },
+        { value: 'fuzziest',   label: 'Fuzziest Match' },
+    ];
 
-    document.getElementById('sidebar-filters').innerHTML =
-        buildFilterGroup('Record Type',   'recordType', recordCounts,  6, 'rt-extra')  +
-        buildFilterGroup('Time Period',   'timePeriod', timeCounts,    10, 'tp-extra') +
-        buildFilterGroup('Origin Region', 'region',     regionCounts,  6, 'or-extra')  +
-        buildFilterGroup('Subject Group', 'subject',    subjectCounts, 6, 'sg-extra')  +
-        buildFilterGroup('Record Nature', 'nature',     natureCounts,  10, 'rn-extra');
-}
+    const ANYFIELD_OPTIONS = [
+        { value: 'contains', label: 'contains' },
+    ];
 
-/* ── Card rendering ───────────────────────────────────────── */
-function buildCard(db) {
-    const allTags = [];
-    (db.recordType || []).forEach(v => allTags.push({ cls: 'tag-type', label: v }));
-    const geo = db.region.join(' · ') + (db.subregion ? ' · ' + db.subregion : '');
-    if (geo) allTags.push({ cls: 'tag-geo', label: geo });
-    (db.timePeriod || []).forEach(v => allTags.push({ cls: 'tag-era', label: v }));
-    (db.nature     || []).forEach(v => allTags.push({ cls: 'tag-era', label: v }));
+    function buildOptions(select, options) {
+        select.innerHTML = '';
+        options.forEach(opt => {
+            const el = document.createElement('option');
+            el.value = opt.value;
+            el.textContent = opt.label;
+            if (opt.disabled) el.disabled = true;
+            select.appendChild(el);
+        });
+        const first = options.find(o => !o.disabled);
+        if (first) select.value = first.value;
+    }
 
-    const visibleTags = allTags.slice(0, 3);
-    const extraTags   = allTags.slice(3);
-
-    const visibleHTML = visibleTags.map(t => `<span class="tag ${t.cls}">${t.label}</span>`).join('');
-    const extraHTML   = extraTags.map(t => `<span class="tag ${t.cls}">${t.label}</span>`).join('');
-    const moreBtn     = extraTags.length > 0
-        ? `<button class="more-tags-btn" onclick="toggleTags(this)" aria-expanded="false">+${extraTags.length} more</button>` : '';
-    const extraDiv    = extraTags.length > 0
-        ? `<div class="extra-tags">${extraHTML}</div>` : '';
-
-    const countLabel = db.count ? `${db.count} records` : '';
-    const link = db.url
-        ? `<a class="btn-view-dataset" href="${db.url}" target="_blank" rel="noopener">More about this data</a>`
-        : `<span class="btn-view-dataset" style="opacity:0.4;cursor:default;">Coming soon</span>`;
-
-    return `<article class="catalog-card"
-        data-recordtype="${(db.recordType||[]).join('|')}"
-        data-timeperiod="${(db.timePeriod||[]).join('|')}"
-        data-region="${(db.region||[]).join('|')}"
-        data-subject="${(db.subject||[]).join('|')}"
-        data-nature="${(db.nature||[]).join('|')}"
-        data-title="${db.name.toLowerCase()}">
-        <div class="card-title">${db.name}</div>
-        <div class="card-desc">${db.desc}</div>
-        <div class="item-tags">${visibleHTML}${moreBtn}</div>
-        ${extraDiv}
-        <div class="card-footer-row">
-            <span class="record-count-badge">${countLabel}</span>
-            ${link}
-        </div>
-    </article>`;
-}
-
-function renderCards() {
-    const grid  = document.getElementById('card-grid');
-    const start = (currentPage - 1) * PER_PAGE;
-    const page  = filtered.slice(start, start + PER_PAGE);
-
-    grid.innerHTML = page.map(buildCard).join('');
-
-    document.getElementById('showing-count').textContent = filtered.length;
-    document.getElementById('no-results').classList.toggle('visible', filtered.length === 0);
-    grid.style.display = filtered.length === 0 ? 'none' : '';
-
-    renderPagination();
-}
-
-/* ── Pagination ───────────────────────────────────────────── */
-function renderPagination() {
-    const nav        = document.getElementById('pagination');
-    const totalPages = Math.ceil(filtered.length / PER_PAGE);
-
-    if (totalPages <= 1) { nav.style.display = 'none'; return; }
-    nav.style.display = 'flex';
-
-    let html = `<button class="page-btn ${currentPage === 1 ? 'disabled' : ''}"
-        aria-label="Previous page" onclick="goPage(${currentPage - 1})">‹</button>`;
-
-    for (let p = 1; p <= totalPages; p++) {
-        if (p === 1 || p === totalPages || Math.abs(p - currentPage) <= 2) {
-            html += `<button class="page-btn ${p === currentPage ? 'active' : ''}"
-                aria-label="Page ${p}" aria-current="${p === currentPage ? 'page' : 'false'}"
-                onclick="goPage(${p})">${p}</button>`;
-        } else if (Math.abs(p - currentPage) === 3) {
-            html += `<span class="page-ellipsis" aria-hidden="true">…</span>`;
+    function syncSearchType(dataTypeSelect, searchTypeId) {
+        const stSelect = document.getElementById(searchTypeId);
+        if (dataTypeSelect.value === 'anyfield') {
+            buildOptions(stSelect, ANYFIELD_OPTIONS);
+        } else {
+            buildOptions(stSelect, FULL_OPTIONS);
         }
     }
 
-    html += `<button class="page-btn ${currentPage === totalPages ? 'disabled' : ''}"
-        aria-label="Next page" onclick="goPage(${currentPage + 1})">›</button>`;
+    /* ── Sub-region toggle ── */
+    function toggleSubRegion() {
+        const val       = document.getElementById('main-region-select').value;
+        const container = document.getElementById('sub-region-container');
+        const title     = document.getElementById('sub-region-title');
+        const subSelect = document.getElementById('sub-region-select');
 
-    nav.innerHTML = html;
+        let show = true;
+        let html = '<option value="">— Select —</option>';
+
+         if (val === 'austria') {
+        title.innerText = "Refine by Region (Austria / Czechia / Galicia):";
+        optionsHtml += '<option value="bohemia" style="font-weight:bold;">Bohemia (Böhmen)</option><option value="prague">&nbsp;&nbsp;&nbsp;Prague (Prag)</option><option value="bukovina_aus" style="font-weight:bold;">Bukovina (Bucovina / Bukowina)</option><option value="chernivtsi_aus">&nbsp;&nbsp;&nbsp;Czernowitz (Chernivtsi/Cernăuți)</option><option value="burgenland" style="font-weight:bold;">Burgenland</option><option value="galicia_aus" style="font-weight:bold;">Galicia (Galizien)</option><option value="krakow_aus">&nbsp;&nbsp;&nbsp;Kraków (Krakau)</option><option value="lviv_aus">&nbsp;&nbsp;&nbsp;Lemberg (Lwów/Lviv)</option><option value="stanislau_aus">&nbsp;&nbsp;&nbsp;Stanislau (Ivano-Frankivsk/Stanisławów)</option><option value="tarnopol_aus">&nbsp;&nbsp;&nbsp;Tarnopol (Ternopil)</option><option value="lower_austria_vienna" style="font-weight:bold;">Lower Austria &amp; Vienna</option><option value="lower_austria_p">&nbsp;&nbsp;&nbsp;Lower Austria (Niederösterreich)</option><option value="vienna">&nbsp;&nbsp;&nbsp;Vienna (Wien)</option><option value="moravia" style="font-weight:bold;">Moravia (Mähren)</option>';
+    } else if (val === 'belarus') {
+        title.innerText = "Refine by Historical Region (Belarus):";
+        optionsHtml += '<option value="grodno_bel">Grodno (Grodnenskaya Guberniya)</option><option value="minsk">Minsk (Minskaya Guberniya)</option><option value="mogilev">Mogilev (Mogilevskaya Guberniya)</option><option value="vilna_bel">Vilna (Vilenskaya Guberniya)</option><option value="vitebsk">Vitebsk (Vitebskaya Guberniya)</option>';
+    } else if (val === 'canada') {
+        title.innerText = "Refine by Province/Territory (Canada):";
+        ["Alberta","British Columbia","Manitoba","New Brunswick","Newfoundland and Labrador","Nova Scotia","Northwest Territories","Nunavut","Ontario","Prince Edward Island","Québec","Saskatchewan","Yukon"].forEach(function(p) { optionsHtml += '<option value="' + p.toLowerCase() + '">' + p + '</option>'; });
+    } else if (val === 'hungary') {
+        title.innerText = "Refine by Historical Region (Hungary / Slovakia / Croatia):";
+        optionsHtml += '<option value="banat" style="font-weight:bold;">Banat / Bačka (Bánság / Bácska)</option><option value="croatia_slavonia" style="font-weight:bold;">Croatia-Slavonia (Hrvatska-Slavonija)</option><option value="hungary_mod" style="font-weight:bold;">Hungary (Magyarország)</option><option value="budapest">&nbsp;&nbsp;&nbsp;Budapest &amp; Pest</option><option value="zemplen_hun">&nbsp;&nbsp;&nbsp;Zemplén (Southern portion)</option><option value="maramures" style="font-weight:bold;">Maramureș (Máramaros)</option><option value="slovakia" style="font-weight:bold;">Slovakia (Slovensko / Felvidék)</option><option value="zemplen_svk">&nbsp;&nbsp;&nbsp;Zemplín (Northern portion)</option><option value="subcarpathia" style="font-weight:bold;">Subcarpathia (Zakarpattia / Kárpátalja)</option><option value="transylvania" style="font-weight:bold;">Transylvania (Transilvania / Erdély)</option>';
+    } else if (val === 'latvia') {
+        title.innerText = "Refine by Historical Region (Latvia):";
+        optionsHtml += '<option value="courland">Courland (Kurland)</option><option value="estland">Estland (Estonia)</option><option value="livland">Livland (Vidzeme)</option><option value="vitebsk_lat">Vitebsk (Latgale)</option>';
+    } else if (val === 'lithuania') {
+        title.innerText = "Refine by Historical Region (Lithuania):";
+        optionsHtml += '<option value="kovno_all" style="font-weight:bold;">Kovno Gubernia (Kauno gubernija)</option><option value="kaunas">&nbsp;&nbsp;&nbsp;Kaunas (Kovno uyezd)</option><option value="panevezys">&nbsp;&nbsp;&nbsp;Panevėžys (Ponevezh uyezd)</option><option value="raseiniai">&nbsp;&nbsp;&nbsp;Raseiniai (Rossieny uyezd)</option><option value="siauliai">&nbsp;&nbsp;&nbsp;Šiauliai (Shavl uyezd)</option><option value="telsiai">&nbsp;&nbsp;&nbsp;Telšiai (Telshi uyezd)</option><option value="ukmerge">&nbsp;&nbsp;&nbsp;Ukmergė (Vilkomir uyezd)</option><option value="zarasai">&nbsp;&nbsp;&nbsp;Zarasai (Novo-Aleksandrovsk uyezd)</option><option value="prussia_lit" style="font-weight:bold;">Prussia (Preußen)</option><option value="suwalki_all" style="font-weight:bold;">Suwalki Gubernia (Suvalkų gubernija)</option><option value="kalvarija">&nbsp;&nbsp;&nbsp;Kalvarija (Kalwarya uyezd)</option><option value="naumiestis">&nbsp;&nbsp;&nbsp;Kudirkos Naumiestis (Władysławów uyezd)</option><option value="marijampole">&nbsp;&nbsp;&nbsp;Marijampolė (Mariampol uyezd)</option><option value="sejny_uyezd">&nbsp;&nbsp;&nbsp;Sejny (Sejny uyezd)</option><option value="vilkaviskis">&nbsp;&nbsp;&nbsp;Vilkaviškis (Wyłkowyszki uyezd)</option><option value="vilna_all" style="font-weight:bold;">Vilna Gubernia (Vilniaus gubernija)</option><option value="ashmyany">&nbsp;&nbsp;&nbsp;Ashmyany (Oshmyany uyezd)</option><option value="disna">&nbsp;&nbsp;&nbsp;Disna (Disna uyezd)</option><option value="lida">&nbsp;&nbsp;&nbsp;Lida (Lida uyezd)</option><option value="svencionys">&nbsp;&nbsp;&nbsp;Švenčionys (Sventsyany uyezd)</option><option value="trakai">&nbsp;&nbsp;&nbsp;Trakai (Troki uyezd)</option><option value="vileyka">&nbsp;&nbsp;&nbsp;Vileyka (Vilejka uyezd)</option><option value="vilnius_uyezd">&nbsp;&nbsp;&nbsp;Vilnius (Vilna uyezd)</option>';
+    } else if (val === 'poland') {
+        title.innerText = "Refine by Historical Region (Poland):";
+        optionsHtml += '<option value="congress_poland" style="font-weight:bold;">Congress Poland (Russian Empire)</option><option value="kalisz">&nbsp;&nbsp;&nbsp;Kalisz</option><option value="kielce">&nbsp;&nbsp;&nbsp;Kielce</option><option value="lomza">&nbsp;&nbsp;&nbsp;Łomża</option><option value="lublin">&nbsp;&nbsp;&nbsp;Lublin</option><option value="piotrkow">&nbsp;&nbsp;&nbsp;Piotrków</option><option value="plock">&nbsp;&nbsp;&nbsp;Płock</option><option value="radom">&nbsp;&nbsp;&nbsp;Radom</option><option value="siedlce">&nbsp;&nbsp;&nbsp;Siedlce</option><option value="suwalki_pol">&nbsp;&nbsp;&nbsp;Suwałki</option><option value="warszawa">&nbsp;&nbsp;&nbsp;Warsaw (Warszawa)</option><option value="galicia_pol" style="font-weight:bold;">Galicia (Galizien)</option><option value="krakow">&nbsp;&nbsp;&nbsp;Kraków (Krakau)</option><option value="lwow_pol">&nbsp;&nbsp;&nbsp;Lwów (Lviv/Lemberg)</option><option value="stanislawow_pol">&nbsp;&nbsp;&nbsp;Stanisławów (Ivano-Frankivsk)</option><option value="tarnopol_pol">&nbsp;&nbsp;&nbsp;Tarnopol (Ternopil)</option><option value="pale_pol" style="font-weight:bold;">Pale of Settlement (Russian Empire)</option><option value="grodno_pol">&nbsp;&nbsp;&nbsp;Grodno (Hrodna)</option><option value="vilna_pol">&nbsp;&nbsp;&nbsp;Vilna (Vilnius)</option><option value="volhynia_pol">&nbsp;&nbsp;&nbsp;Volhynia (Volyn)</option><option value="prussia_pol" style="font-weight:bold;">Prussia (Preußen)</option>';
+    } else if (val === 'romania') {
+        title.innerText = "Refine by Historical Region (Romania / Moldova):";
+        optionsHtml += '<option value="aus_rom" style="font-weight:bold;">Bukovina (Austrian Empire)</option><option value="chernivtsi_rom">&nbsp;&nbsp;&nbsp;Cernăuți (Chernivtsi/Czernowitz)</option><option value="russian_rom" style="font-weight:bold;">Former Russian Empire (Republic of Moldova)</option><option value="bessarabia">&nbsp;&nbsp;&nbsp;Bessarabia</option><option value="transnistria">&nbsp;&nbsp;&nbsp;Transnistria</option><option value="kingdom_romania" style="font-weight:bold;">Kingdom of Romania</option><option value="dobrogea">&nbsp;&nbsp;&nbsp;Dobrogea</option><option value="moldavia">&nbsp;&nbsp;&nbsp;Moldavia (Moldova)</option><option value="muntenia_oltenia">&nbsp;&nbsp;&nbsp;Wallachia (Muntenia/Oltenia)</option><option value="hung_rom" style="font-weight:bold;">Pre-WWI Hungary</option><option value="banat">&nbsp;&nbsp;&nbsp;Banat</option><option value="crisana">&nbsp;&nbsp;&nbsp;Crișana</option><option value="maramures">&nbsp;&nbsp;&nbsp;Maramureș (Máramaros)</option><option value="transylvania">&nbsp;&nbsp;&nbsp;Transylvania (Transilvania / Erdély)</option>';
+    } else if (val === 'scandinavia') {
+        title.innerText = "Refine by Country (Scandinavia):";
+        optionsHtml += '<option value="denmark">Denmark (Danmark)</option><option value="finland">Finland (Suomi)</option><option value="norway">Norway (Norge)</option><option value="sweden">Sweden (Sverige)</option>';
+    } else if (val === 'ukraine') {
+        title.innerText = "Refine by Historical Region (Ukraine):";
+        optionsHtml += '<option value="bukovina_ukr" style="font-weight:bold;">Bukovina (Bucovina / Bukowina)</option><option value="chernivtsi_ukr">&nbsp;&nbsp;&nbsp;Chernivtsi (Czernowitz)</option><option value="galicia_ukr" style="font-weight:bold;">Eastern Galicia (Austrian Partition)</option><option value="lviv_ukr">&nbsp;&nbsp;&nbsp;Lviv (Lemberg / Lwów)</option><option value="stanislau_ukr">&nbsp;&nbsp;&nbsp;Stanislau (Ivano-Frankivsk / Stanisławów)</option><option value="ternopil_ukr">&nbsp;&nbsp;&nbsp;Ternopil (Tarnopol)</option><option value="pale_ukr" style="font-weight:bold;">Pale of Settlement (Russian Partition)</option><option value="chernigov">&nbsp;&nbsp;&nbsp;Chernigov (Chernihiv)</option><option value="kherson">&nbsp;&nbsp;&nbsp;Kherson</option><option value="kiev_ukr">&nbsp;&nbsp;&nbsp;Kiev (Kyiv / Kijów)</option><option value="podolia">&nbsp;&nbsp;&nbsp;Podolia (Podillia / Podole)</option><option value="poltava">&nbsp;&nbsp;&nbsp;Poltava</option><option value="volhynia">&nbsp;&nbsp;&nbsp;Volhynia (Volyn / Wołyń)</option><option value="yekaterinoslav">&nbsp;&nbsp;&nbsp;Yekaterinoslav (Dnipro)</option><option value="southern_ukraine" style="font-weight:bold;">Southern Ukraine &amp; Crimea</option><option value="crimea">&nbsp;&nbsp;&nbsp;Crimea (Krym)</option><option value="odessa">&nbsp;&nbsp;&nbsp;Odessa (Odesa)</option><option value="transcarpathia_ukr" style="font-weight:bold;">Transcarpathia (Hungarian Partition)</option><option value="sub_ukr">&nbsp;&nbsp;&nbsp;Subcarpathia (Zakarpattia / Kárpátalja)</option>';
+    } else if (val === 'usa') {
+        title.innerText = "Refine by State (United States):";
+        ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"].forEach(function(s) { optionsHtml += '<option value="' + s.toLowerCase() + '">' + s + '</option>'; });
+    } else {
+        show = false;
+    }
+
+    if (show) { subSelect.innerHTML = optionsHtml; container.style.display = 'block'; }
+    else       { container.style.display = 'none'; }
 }
 
-function goPage(p) {
-    const totalPages = Math.ceil(filtered.length / PER_PAGE);
-    if (p < 1 || p > totalPages) return;
-    currentPage = p;
-    renderCards();
-    document.querySelector('.browse-header').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-/* ── Filtering ────────────────────────────────────────────── */
-function getChecked(field) {
-    return Array.from(document.querySelectorAll(`.fcb[data-f="${field}"]:checked`)).map(cb => cb.dataset.v);
-}
-
-function applyFilters() {
-    const q         = (document.getElementById('db-search').value || '').toLowerCase().trim();
-    const recF      = getChecked('recordType');
-    const timeF     = getChecked('timePeriod');
-    const regionF   = getChecked('region');
-    const subjectF  = getChecked('subject');
-    const natureF   = getChecked('nature');
-
-    filtered = DB.filter(db => {
-        const mQ = !q ||
-            db.name.toLowerCase().includes(q) ||
-            db.desc.toLowerCase().includes(q) ||
-            (db.region || []).join(' ').toLowerCase().includes(q) ||
-            (db.recordType || []).join(' ').toLowerCase().includes(q);
-        const mR = !recF.length     || recF.some(v     => (db.recordType || []).includes(v));
-        const mT = !timeF.length    || timeF.some(v    => (db.timePeriod || []).includes(v));
-        const mG = !regionF.length  || regionF.some(v  => (db.region || []).includes(v));
-        const mS = !subjectF.length || subjectF.some(v => (db.subject || []).includes(v));
-        const mN = !natureF.length  || natureF.some(v  => (db.nature || []).includes(v));
-        return mQ && mR && mT && mG && mS && mN;
-    });
-
-    currentPage = 1;
-    renderCards();
-    renderChips(recF, timeF, regionF, subjectF, natureF);
-}
-
-function renderChips(r, t, reg, s, n) {
-    const all = [...r, ...t, ...reg, ...s, ...n];
-    document.getElementById('active-filters').innerHTML = all.map(v =>
-        `<span class="filter-chip">${v}
-         <button aria-label="Remove ${v} filter" onclick="removeChip('${v.replace(/'/g, "\\'")}')">×</button>
-         </span>`
-    ).join('');
-}
-
-function removeChip(val) {
-    document.querySelectorAll('.fcb').forEach(cb => {
-        if (cb.dataset.v === val) cb.checked = false;
-    });
-    applyFilters();
-}
-
-function clearAllFilters() {
-    document.querySelectorAll('.fcb').forEach(cb => cb.checked = false);
-    document.getElementById('db-search').value = '';
-    filtered = DB.slice();
-    currentPage = 1;
-    renderCards();
-    document.getElementById('active-filters').innerHTML = '';
-}
-
-/* ── UI helpers ───────────────────────────────────────────── */
-function toggleTags(btn) {
-    const extra = btn.closest('.catalog-card').querySelector('.extra-tags');
-    const open  = extra.classList.toggle('open');
-    btn.setAttribute('aria-expanded', String(open));
-    if (!btn._orig) btn._orig = btn.textContent;
-    btn.textContent = open ? 'Show fewer' : btn._orig;
-}
-
-function toggleMore(btn, id) {
-    const el   = document.getElementById(id);
-    const open = el.classList.toggle('open');
-    if (!btn._orig) btn._orig = btn.textContent;
-    btn.textContent = open ? 'Show fewer…' : btn._orig;
-}
-
-function toggleTips(btn) {
-    const panel = document.getElementById('tips-panel');
-    const open  = panel.classList.toggle('open');
-    btn.setAttribute('aria-expanded', String(open));
-}
-
+    function submitSearch() {
+        console.log('Search submitted');
+    }
 </script>
+
 </body>
 </html>
