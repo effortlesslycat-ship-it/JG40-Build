@@ -237,13 +237,13 @@
                 <div class="search-row locked">
                     <div class="col-type"><select tabindex="-1" disabled><option>Data Type</option></select></div>
                     <div class="col-match"><select tabindex="-1" disabled><option>Search Type</option></select></div>
-                    <div class="col-term"><input type="text" tabindex="-1" disabled placeholder="Additional search row"></div>
+                    <div class="col-term"><input type="text" tabindex="-1" disabled placeholder="Search term"></div>
                 </div>
 
                 <div class="search-row locked" style="margin-bottom: 0;">
                     <div class="col-type"><select tabindex="-1" disabled><option>Data Type</option></select></div>
                     <div class="col-match"><select tabindex="-1" disabled><option>Search Type</option></select></div>
-                    <div class="col-term"><input type="text" tabindex="-1" disabled placeholder="Additional search row"></div>
+                    <div class="col-term"><input type="text" tabindex="-1" disabled placeholder="Search term"></div>
                 </div>
             </div>
 
@@ -265,16 +265,62 @@
             <label class="field-label" for="main-region-select">Region / Collection</label>
             <select id="main-region-select" onchange="toggleSubRegion()" style="padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; width: 100%; margin-top: 5px;">
                 <option value="all">Region / Collection: ALL</option>
-                <optgroup label="Topical Databases">
-                    <option value="cemetery">Cemetery Records</option>
-                    <option value="holocaust">Holocaust Records</option>
-                    <option value="sephardic">Sephardic</option>
-                </optgroup>
-                <optgroup label="Europe">
-                    <option value="poland">Poland</option>
-                    <option value="ukraine">Ukraine</option>
+                    <optgroup label="Topical Databases">
+                        <option value="JOWBR">Cemetery Records</option>
+                        <option value="ALLHOLOCAUST">Holocaust Records</option>
+                        <option value="sephardic">Sephardic</option>
                     </optgroup>
+                    <optgroup label="Africa">
+                        <option value="algeria">Algeria</option>
+                        <option value="egypt">Egypt</option>
+                        <option value="libya">Libya</option>
+                        <option value="morocco">Morocco</option>
+                        <option value="safrica">South Africa</option>
+                        <option value="tunisia">Tunisia</option>
+                    </optgroup>
+                    <optgroup label="Asia &amp; The Middle East">
+                        <option value="india">India</option>
+                        <option value="iraq">Iraq</option>
+                        <option value="israel">Israel</option>
+                        <option value="lebanon">Lebanon</option>
+                        <option value="syria">Syria</option>
+                        <option value="turkey">Turkey</option>
+                    </optgroup>
+                    <optgroup label="Eastern &amp; Central Europe">
+                        <option value="austria">Austria / Czechia</option>
+                        <option value="belarus">Belarus</option>
+                        <option value="bulgaria">Bulgaria</option>
+                        <option value="germany">Germany</option>
+                        <option value="hungary">Hungary / Slovakia</option>
+                        <option value="latvia">Latvia</option>
+                        <option value="lithuania">Lithuania</option>
+                        <option value="poland">Poland</option>
+                        <option value="romania">Romania / Moldova</option>
+                        <option value="ukraine">Ukraine</option>
+                    </optgroup>
+                    <optgroup label="Western &amp; Southern Europe">
+                        <option value="france">France</option>
+                        <option value="greece">Greece</option>
+                        <option value="italy">Italy</option>
+                        <option value="netherlands">Netherlands</option>
+                        <option value="portugal">Portugal</option>
+                        <option value="scandinavia">Scandinavia</option>
+                        <option value="spain">Spain</option>
+                        <option value="ukireland">United Kingdom &amp; Ireland</option>
+                    </optgroup>
+                    <optgroup label="North America">
+                        <option value="canada">Canada</option>
+                        <option value="usa">United States</option>
+                    </optgroup>
+                    <optgroup label="Central &amp; South America">
+                        <option value="argentina">Argentina</option>
+                        <option value="latinam">Latin America</option>
+                        <option value="venezuela">Venezuela</option>
+                    </optgroup>
+                </select>        
             </select>
+        
+            <!-- Sub-region (shown dynamically) -->
 
             <div id="sub-region-container" role="region" aria-live="polite">
                 <span class="sub-region-label" id="sub-region-title">Refine Search:</span>
@@ -382,25 +428,46 @@
         let show = true;
         let html = '<option value="">— Select —</option>';
 
-        if (val === 'poland') {
-            title.innerText = 'Refine by Historical Region (Poland):';
-            html += `<option value="congress_poland">Congress Poland</option>
-                     <option value="galicia_pol">Galicia</option>`;
-        } else if (val === 'ukraine') {
-            title.innerText = 'Refine by Historical Region (Ukraine):';
-            html += `<option value="bukovina_ukr">Bukovina</option>
-                     <option value="galicia_ukr">Eastern Galicia</option>`;
-        } else {
-            show = false;
-        }
-
-        if (show) {
-            subSelect.innerHTML = html;
-            container.style.display = 'block';
-        } else {
-            container.style.display = 'none';
-        }
+         if (val === 'austria') {
+        title.innerText = "Refine by Region (Austria / Czechia / Galicia):";
+        optionsHtml += '<option value="bohemia" style="font-weight:bold;">Bohemia (Böhmen)</option><option value="prague">&nbsp;&nbsp;&nbsp;Prague (Prag)</option><option value="bukovina_aus" style="font-weight:bold;">Bukovina (Bucovina / Bukowina)</option><option value="chernivtsi_aus">&nbsp;&nbsp;&nbsp;Czernowitz (Chernivtsi/Cernăuți)</option><option value="burgenland" style="font-weight:bold;">Burgenland</option><option value="galicia_aus" style="font-weight:bold;">Galicia (Galizien)</option><option value="krakow_aus">&nbsp;&nbsp;&nbsp;Kraków (Krakau)</option><option value="lviv_aus">&nbsp;&nbsp;&nbsp;Lemberg (Lwów/Lviv)</option><option value="stanislau_aus">&nbsp;&nbsp;&nbsp;Stanislau (Ivano-Frankivsk/Stanisławów)</option><option value="tarnopol_aus">&nbsp;&nbsp;&nbsp;Tarnopol (Ternopil)</option><option value="lower_austria_vienna" style="font-weight:bold;">Lower Austria &amp; Vienna</option><option value="lower_austria_p">&nbsp;&nbsp;&nbsp;Lower Austria (Niederösterreich)</option><option value="vienna">&nbsp;&nbsp;&nbsp;Vienna (Wien)</option><option value="moravia" style="font-weight:bold;">Moravia (Mähren)</option>';
+    } else if (val === 'belarus') {
+        title.innerText = "Refine by Historical Region (Belarus):";
+        optionsHtml += '<option value="grodno_bel">Grodno (Grodnenskaya Guberniya)</option><option value="minsk">Minsk (Minskaya Guberniya)</option><option value="mogilev">Mogilev (Mogilevskaya Guberniya)</option><option value="vilna_bel">Vilna (Vilenskaya Guberniya)</option><option value="vitebsk">Vitebsk (Vitebskaya Guberniya)</option>';
+    } else if (val === 'canada') {
+        title.innerText = "Refine by Province/Territory (Canada):";
+        ["Alberta","British Columbia","Manitoba","New Brunswick","Newfoundland and Labrador","Nova Scotia","Northwest Territories","Nunavut","Ontario","Prince Edward Island","Québec","Saskatchewan","Yukon"].forEach(function(p) { optionsHtml += '<option value="' + p.toLowerCase() + '">' + p + '</option>'; });
+    } else if (val === 'hungary') {
+        title.innerText = "Refine by Historical Region (Hungary / Slovakia / Croatia):";
+        optionsHtml += '<option value="banat" style="font-weight:bold;">Banat / Bačka (Bánság / Bácska)</option><option value="croatia_slavonia" style="font-weight:bold;">Croatia-Slavonia (Hrvatska-Slavonija)</option><option value="hungary_mod" style="font-weight:bold;">Hungary (Magyarország)</option><option value="budapest">&nbsp;&nbsp;&nbsp;Budapest &amp; Pest</option><option value="zemplen_hun">&nbsp;&nbsp;&nbsp;Zemplén (Southern portion)</option><option value="maramures" style="font-weight:bold;">Maramureș (Máramaros)</option><option value="slovakia" style="font-weight:bold;">Slovakia (Slovensko / Felvidék)</option><option value="zemplen_svk">&nbsp;&nbsp;&nbsp;Zemplín (Northern portion)</option><option value="subcarpathia" style="font-weight:bold;">Subcarpathia (Zakarpattia / Kárpátalja)</option><option value="transylvania" style="font-weight:bold;">Transylvania (Transilvania / Erdély)</option>';
+    } else if (val === 'latvia') {
+        title.innerText = "Refine by Historical Region (Latvia):";
+        optionsHtml += '<option value="courland">Courland (Kurland)</option><option value="estland">Estland (Estonia)</option><option value="livland">Livland (Vidzeme)</option><option value="vitebsk_lat">Vitebsk (Latgale)</option>';
+    } else if (val === 'lithuania') {
+        title.innerText = "Refine by Historical Region (Lithuania):";
+        optionsHtml += '<option value="kovno_all" style="font-weight:bold;">Kovno Gubernia (Kauno gubernija)</option><option value="kaunas">&nbsp;&nbsp;&nbsp;Kaunas (Kovno uyezd)</option><option value="panevezys">&nbsp;&nbsp;&nbsp;Panevėžys (Ponevezh uyezd)</option><option value="raseiniai">&nbsp;&nbsp;&nbsp;Raseiniai (Rossieny uyezd)</option><option value="siauliai">&nbsp;&nbsp;&nbsp;Šiauliai (Shavl uyezd)</option><option value="telsiai">&nbsp;&nbsp;&nbsp;Telšiai (Telshi uyezd)</option><option value="ukmerge">&nbsp;&nbsp;&nbsp;Ukmergė (Vilkomir uyezd)</option><option value="zarasai">&nbsp;&nbsp;&nbsp;Zarasai (Novo-Aleksandrovsk uyezd)</option><option value="prussia_lit" style="font-weight:bold;">Prussia (Preußen)</option><option value="suwalki_all" style="font-weight:bold;">Suwalki Gubernia (Suvalkų gubernija)</option><option value="kalvarija">&nbsp;&nbsp;&nbsp;Kalvarija (Kalwarya uyezd)</option><option value="naumiestis">&nbsp;&nbsp;&nbsp;Kudirkos Naumiestis (Władysławów uyezd)</option><option value="marijampole">&nbsp;&nbsp;&nbsp;Marijampolė (Mariampol uyezd)</option><option value="sejny_uyezd">&nbsp;&nbsp;&nbsp;Sejny (Sejny uyezd)</option><option value="vilkaviskis">&nbsp;&nbsp;&nbsp;Vilkaviškis (Wyłkowyszki uyezd)</option><option value="vilna_all" style="font-weight:bold;">Vilna Gubernia (Vilniaus gubernija)</option><option value="ashmyany">&nbsp;&nbsp;&nbsp;Ashmyany (Oshmyany uyezd)</option><option value="disna">&nbsp;&nbsp;&nbsp;Disna (Disna uyezd)</option><option value="lida">&nbsp;&nbsp;&nbsp;Lida (Lida uyezd)</option><option value="svencionys">&nbsp;&nbsp;&nbsp;Švenčionys (Sventsyany uyezd)</option><option value="trakai">&nbsp;&nbsp;&nbsp;Trakai (Troki uyezd)</option><option value="vileyka">&nbsp;&nbsp;&nbsp;Vileyka (Vilejka uyezd)</option><option value="vilnius_uyezd">&nbsp;&nbsp;&nbsp;Vilnius (Vilna uyezd)</option>';
+    } else if (val === 'poland') {
+        title.innerText = "Refine by Historical Region (Poland):";
+        optionsHtml += '<option value="congress_poland" style="font-weight:bold;">Congress Poland (Russian Empire)</option><option value="kalisz">&nbsp;&nbsp;&nbsp;Kalisz</option><option value="kielce">&nbsp;&nbsp;&nbsp;Kielce</option><option value="lomza">&nbsp;&nbsp;&nbsp;Łomża</option><option value="lublin">&nbsp;&nbsp;&nbsp;Lublin</option><option value="piotrkow">&nbsp;&nbsp;&nbsp;Piotrków</option><option value="plock">&nbsp;&nbsp;&nbsp;Płock</option><option value="radom">&nbsp;&nbsp;&nbsp;Radom</option><option value="siedlce">&nbsp;&nbsp;&nbsp;Siedlce</option><option value="suwalki_pol">&nbsp;&nbsp;&nbsp;Suwałki</option><option value="warszawa">&nbsp;&nbsp;&nbsp;Warsaw (Warszawa)</option><option value="galicia_pol" style="font-weight:bold;">Galicia (Galizien)</option><option value="krakow">&nbsp;&nbsp;&nbsp;Kraków (Krakau)</option><option value="lwow_pol">&nbsp;&nbsp;&nbsp;Lwów (Lviv/Lemberg)</option><option value="stanislawow_pol">&nbsp;&nbsp;&nbsp;Stanisławów (Ivano-Frankivsk)</option><option value="tarnopol_pol">&nbsp;&nbsp;&nbsp;Tarnopol (Ternopil)</option><option value="pale_pol" style="font-weight:bold;">Pale of Settlement (Russian Empire)</option><option value="grodno_pol">&nbsp;&nbsp;&nbsp;Grodno (Hrodna)</option><option value="vilna_pol">&nbsp;&nbsp;&nbsp;Vilna (Vilnius)</option><option value="volhynia_pol">&nbsp;&nbsp;&nbsp;Volhynia (Volyn)</option><option value="prussia_pol" style="font-weight:bold;">Prussia (Preußen)</option>';
+    } else if (val === 'romania') {
+        title.innerText = "Refine by Historical Region (Romania / Moldova):";
+        optionsHtml += '<option value="aus_rom" style="font-weight:bold;">Bukovina (Austrian Empire)</option><option value="chernivtsi_rom">&nbsp;&nbsp;&nbsp;Cernăuți (Chernivtsi/Czernowitz)</option><option value="russian_rom" style="font-weight:bold;">Former Russian Empire (Republic of Moldova)</option><option value="bessarabia">&nbsp;&nbsp;&nbsp;Bessarabia</option><option value="transnistria">&nbsp;&nbsp;&nbsp;Transnistria</option><option value="kingdom_romania" style="font-weight:bold;">Kingdom of Romania</option><option value="dobrogea">&nbsp;&nbsp;&nbsp;Dobrogea</option><option value="moldavia">&nbsp;&nbsp;&nbsp;Moldavia (Moldova)</option><option value="muntenia_oltenia">&nbsp;&nbsp;&nbsp;Wallachia (Muntenia/Oltenia)</option><option value="hung_rom" style="font-weight:bold;">Pre-WWI Hungary</option><option value="banat">&nbsp;&nbsp;&nbsp;Banat</option><option value="crisana">&nbsp;&nbsp;&nbsp;Crișana</option><option value="maramures">&nbsp;&nbsp;&nbsp;Maramureș (Máramaros)</option><option value="transylvania">&nbsp;&nbsp;&nbsp;Transylvania (Transilvania / Erdély)</option>';
+    } else if (val === 'scandinavia') {
+        title.innerText = "Refine by Country (Scandinavia):";
+        optionsHtml += '<option value="denmark">Denmark (Danmark)</option><option value="finland">Finland (Suomi)</option><option value="norway">Norway (Norge)</option><option value="sweden">Sweden (Sverige)</option>';
+    } else if (val === 'ukraine') {
+        title.innerText = "Refine by Historical Region (Ukraine):";
+        optionsHtml += '<option value="bukovina_ukr" style="font-weight:bold;">Bukovina (Bucovina / Bukowina)</option><option value="chernivtsi_ukr">&nbsp;&nbsp;&nbsp;Chernivtsi (Czernowitz)</option><option value="galicia_ukr" style="font-weight:bold;">Eastern Galicia (Austrian Partition)</option><option value="lviv_ukr">&nbsp;&nbsp;&nbsp;Lviv (Lemberg / Lwów)</option><option value="stanislau_ukr">&nbsp;&nbsp;&nbsp;Stanislau (Ivano-Frankivsk / Stanisławów)</option><option value="ternopil_ukr">&nbsp;&nbsp;&nbsp;Ternopil (Tarnopol)</option><option value="pale_ukr" style="font-weight:bold;">Pale of Settlement (Russian Partition)</option><option value="chernigov">&nbsp;&nbsp;&nbsp;Chernigov (Chernihiv)</option><option value="kherson">&nbsp;&nbsp;&nbsp;Kherson</option><option value="kiev_ukr">&nbsp;&nbsp;&nbsp;Kiev (Kyiv / Kijów)</option><option value="podolia">&nbsp;&nbsp;&nbsp;Podolia (Podillia / Podole)</option><option value="poltava">&nbsp;&nbsp;&nbsp;Poltava</option><option value="volhynia">&nbsp;&nbsp;&nbsp;Volhynia (Volyn / Wołyń)</option><option value="yekaterinoslav">&nbsp;&nbsp;&nbsp;Yekaterinoslav (Dnipro)</option><option value="southern_ukraine" style="font-weight:bold;">Southern Ukraine &amp; Crimea</option><option value="crimea">&nbsp;&nbsp;&nbsp;Crimea (Krym)</option><option value="odessa">&nbsp;&nbsp;&nbsp;Odessa (Odesa)</option><option value="transcarpathia_ukr" style="font-weight:bold;">Transcarpathia (Hungarian Partition)</option><option value="sub_ukr">&nbsp;&nbsp;&nbsp;Subcarpathia (Zakarpattia / Kárpátalja)</option>';
+    } else if (val === 'usa') {
+        title.innerText = "Refine by State (United States):";
+        ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"].forEach(function(s) { optionsHtml += '<option value="' + s.toLowerCase() + '">' + s + '</option>'; });
+    } else {
+        show = false;
     }
+
+    if (show) { subSelect.innerHTML = optionsHtml; container.style.display = 'block'; }
+    else       { container.style.display = 'none'; }
+}
 
     function submitSearch() {
         console.log('Search submitted');
