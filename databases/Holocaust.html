@@ -127,6 +127,25 @@ a { text-decoration: none; color: inherit; }
 .page-btn.disabled { opacity:0.35; cursor:default; pointer-events:none; }
 .page-ellipsis { padding:0 3px; color:var(--charcoal); opacity:0.55; font-size:14px; }
 
+/* ── View toggle ── */
+.view-toggle { display:flex; border:2px solid var(--navy); border-radius:7px; overflow:hidden; }
+.view-toggle button { background:none; border:none; padding:6px 14px; font-size:13px; font-weight:bold; cursor:pointer; color:var(--navy); font-family:inherit; transition:background-color 0.2s,color 0.2s; }
+.view-toggle button.active { background-color:var(--navy); color:var(--white); }
+.view-toggle button:not(.active):hover { background-color:var(--cream); }
+.view-toggle button:focus-visible { outline:3px solid var(--sage); outline-offset:-2px; }
+
+/* ── List view mode ── */
+.card-grid.list-mode { display:flex; flex-direction:column; gap:0; border:1px solid #d1caba; border-radius:8px; overflow:hidden; }
+.card-grid.list-mode .catalog-card { flex-direction:row; align-items:center; gap:14px; padding:10px 16px; border-radius:0; border:none; border-bottom:1px solid #d1caba; }
+.card-grid.list-mode .catalog-card:last-child { border-bottom:none; }
+.card-grid.list-mode .card-title { flex:1; font-size:14px; order:1; margin:0; }
+.card-grid.list-mode .card-desc { display:none; }
+.card-grid.list-mode .item-tags { order:2; flex-shrink:0; }
+.card-grid.list-mode .item-tags span.tag:nth-of-type(n+3) { display:none; }
+.card-grid.list-mode .item-tags .more-tags-btn { display:none; }
+.card-grid.list-mode .extra-tags { display:none !important; }
+.card-grid.list-mode .card-footer-row { order:3; flex-shrink:0; border-top:none; padding-top:0; margin-top:0; gap:12px; }
+
 /* ── Empty state ── */
 #no-results { display:none; text-align:center; padding:50px 20px; color:var(--charcoal); }
 #no-results.visible { display:block; }
@@ -152,6 +171,7 @@ a { text-decoration: none; color: inherit; }
     .search-row { flex-direction:column; gap:8px; }
     .sf.n, .sf.w { flex:none; width:100%; }
     .browse-db-search input { width:100%; }
+    .view-toggle { display:none; }
 }
 </style>
 </head>
@@ -355,7 +375,13 @@ a { text-decoration: none; color: inherit; }
                 <span class="cards-showing" id="cards-showing">
                     Showing <strong id="showing-count">—</strong> of <strong id="total-count">356</strong> databases
                 </span>
-                <div class="active-filters" id="active-filters" aria-live="polite"></div>
+                <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                    <div class="active-filters" id="active-filters" aria-live="polite"></div>
+                    <div class="view-toggle" role="group" aria-label="Switch database view">
+                        <button id="btn-grid" class="active" aria-pressed="true"  onclick="setView('card')">⊞ Cards</button>
+                        <button id="btn-list"              aria-pressed="false" onclick="setView('list')">☰ List</button>
+                    </div>
+                </div>
             </div>
 
             <div id="loading-state">Loading databases…</div>
@@ -411,9 +437,23 @@ loadComponent('site-footer', '/JG40-Build/Footer.html')
 
 /* ── State ────────────────────────────────────────────────── */
 const PER_PAGE = 24;
-let DB         = [];       // full dataset
-let filtered   = [];       // after filters applied
+let DB         = [];
+let filtered   = [];
 let currentPage = 1;
+let viewMode   = window.innerWidth < 768 ? 'list' : 'card';
+
+/* ── View toggle ──────────────────────────────────────────── */
+function setView(mode) {
+    viewMode = mode;
+    const grid    = document.getElementById('card-grid');
+    const btnGrid = document.getElementById('btn-grid');
+    const btnList = document.getElementById('btn-list');
+    grid.classList.toggle('list-mode', mode === 'list');
+    btnGrid.classList.toggle('active', mode === 'card');
+    btnGrid.setAttribute('aria-pressed', String(mode === 'card'));
+    btnList.classList.toggle('active', mode === 'list');
+    btnList.setAttribute('aria-pressed', String(mode === 'list'));
+}
 
 /* ── Load data ────────────────────────────────────────────── */
 fetch('holocaust-databases.json')
@@ -426,6 +466,7 @@ fetch('holocaust-databases.json')
         document.getElementById('loading-state').style.display = 'none';
         document.getElementById('card-grid').style.display = '';
         document.getElementById('total-count').textContent = DB.length;
+        setView(viewMode);
     })
     .catch(err => {
         document.getElementById('loading-state').textContent = 'Error loading database list. Please try refreshing.';
@@ -508,7 +549,7 @@ function buildCard(db) {
 
     const countLabel = db.count ? `${db.count} records` : '';
     const link = db.url
-        ? `<a class="btn-view-dataset" href="${db.url}" target="_blank" rel="noopener">View dataset page</a>`
+        ? `<a class="btn-view-dataset" href="${db.url}" target="_blank" rel="noopener">More about this data</a>`
         : `<span class="btn-view-dataset" style="opacity:0.4;cursor:default;">Coming soon</span>`;
 
     return `<article class="catalog-card"
