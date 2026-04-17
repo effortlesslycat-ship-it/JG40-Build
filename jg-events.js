@@ -156,7 +156,19 @@
   }
 
   function initTalksPage() {
-    console.info('[JGEvents] initTalksPage -- not yet implemented.');
+    var container = document.getElementById('jg-talks-grid');
+    if (!container) return;
+
+    fetchEvents(3).then(function (events) {
+      if (!events || events.length === 0) {
+        container.innerHTML = renderEmpty();
+        return;
+      }
+      container.innerHTML = events.map(renderCard).join('');
+    }).catch(function (err) {
+      console.warn('[JGEvents] initTalksPage failed:', err);
+      container.innerHTML = renderError();
+    });
   }
 
   /* ----------------------------------------------------------
