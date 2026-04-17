@@ -214,20 +214,46 @@
         body.dark-mode .swatch-kalikow       { border-color: var(--sage); background-color: #1e2b1e; }
         body.dark-mode .no-events            { color: #c8c0b0; }
 
-        /* ── Responsive ────────────────────────────────────────── */
+         /* ══════════════════════════════════════
+           RESPONSIVE
+        ══════════════════════════════════════ */
         @media (max-width: 768px) {
-            .breadcrumb { padding: 10px 20px; }
+            header { padding: 10px 20px; }
+            nav.breadcrumb { padding: 10px 20px; }
             .page-title-band { padding: 22px 20px; }
             .page-title-band h1 { font-size: 20px; }
             .page-container { padding: 24px 20px 48px; }
-            .top-panel { grid-template-columns: 1fr; }
-            .kalikow-block { border-right: none; border-bottom: 2px solid var(--navy); }
-            body.dark-mode .kalikow-block { border-bottom-color: #3a4a4a; }
+
+            .top-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .kalikow-block {
+                border-right: none;
+                border-bottom: 2px solid var(--navy);
+            }
+
+            body.dark-mode .kalikow-block {
+                border-bottom-color: #3a4a4a;
+            }
+
+            /* Force list view on mobile */
             .calendar-grid-wrap { display: none !important; }
             .calendar-list-wrap { display: block !important; }
             .view-toggle { display: none; }
-            .event-list-item { grid-template-columns: 64px 1fr; grid-template-rows: auto auto; }
-            .event-learn-btn { grid-column: 2; margin-top: 10px; display: inline-block; width: fit-content; }
+
+            .event-list-item {
+                grid-template-columns: 64px 1fr;
+                grid-template-rows: auto auto;
+            }
+
+            .event-learn-btn {
+                grid-column: 2;
+                margin-top: 10px;
+                display: inline-block;
+                width: fit-content;
+            }
+
             .controls-bar { justify-content: center; }
         }
 
@@ -239,6 +265,7 @@
     </style>
 </head>
 <body>
+
 
 <!-- ═══════════════════════════════════════════════════════════
      HEADER + NAV — loaded from Header_NavBar.html
@@ -453,6 +480,9 @@ Promise.all([
     const MONTH_NAMES = ["January","February","March","April","May","June","July","August","September","October","November","December"];
     const DOW_NAMES   = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
+     /* ─────────────────────────────────────────
+       HELPERS
+    ───────────────────────────────────────── */
     function dateStr(y, m, d) {
         return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
     }
@@ -464,22 +494,29 @@ Promise.all([
         return KALIKOW_OPEN_DAYS.includes(dow);
     }
 
-    function eventsOnDate(ds) { return EVENTS.filter(e => e.date === ds); }
+    function eventsOnDate(ds) {
+        return EVENTS.filter(e => e.date === ds);
+    }
+
     function eventsInMonth(y, m) {
         const prefix = `${y}-${String(m+1).padStart(2,'0')}`;
         return EVENTS.filter(e => e.date.startsWith(prefix));
     }
 
-    /* ─────────────────────────────────────────
+ /* ─────────────────────────────────────────
        GRID RENDER
     ───────────────────────────────────────── */
     function renderGrid() {
-        document.getElementById('month-label').textContent = `${MONTH_NAMES[currentMonth]} ${currentYear}`;
+        const label = document.getElementById('month-label');
+        label.textContent = `${MONTH_NAMES[currentMonth]} ${currentYear}`;
+
         const body = document.getElementById('cal-body');
         body.innerHTML = '';
-        const firstDow = new Date(currentYear, currentMonth, 1).getDay();
-        const daysInMo = new Date(currentYear, currentMonth + 1, 0).getDate();
 
+        const firstDow  = new Date(currentYear, currentMonth, 1).getDay();
+        const daysInMo  = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+        // Empty cells before first day
         for (let i = 0; i < firstDow; i++) {
             const cell = document.createElement('div');
             cell.className = 'cal-day empty';
@@ -491,16 +528,22 @@ Promise.all([
             const ds    = dateStr(currentYear, currentMonth, d);
             const open  = isKalikowOpen(currentYear, currentMonth, d);
             const evts  = eventsOnDate(ds);
-            const isToday = (d === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear());
+            const isToday = (d === today.getDate() &&
+                             currentMonth === today.getMonth() &&
+                             currentYear  === today.getFullYear());
 
             const cell = document.createElement('div');
-            cell.className = 'cal-day' + (open ? ' kalikow-open' : '') + (isToday ? ' today' : '');
+            cell.className = 'cal-day' +
+                (open   ? ' kalikow-open' : '') +
+                (isToday ? ' today' : '');
 
+            // Date number
             const num = document.createElement('span');
             num.className = 'day-num';
             num.textContent = d;
             cell.appendChild(num);
 
+            // Kalikow badge
             if (open) {
                 const badge = document.createElement('span');
                 badge.className = 'kalikow-badge';
@@ -509,6 +552,7 @@ Promise.all([
                 cell.appendChild(badge);
             }
 
+            // Event chips
             evts.forEach(evt => {
                 const chip = document.createElement('button');
                 chip.className = 'cal-event-chip' + (evt.virtual ? ' virtual' : '');
@@ -518,10 +562,12 @@ Promise.all([
                 cell.appendChild(chip);
             });
 
+            // ARIA label for cell
             let cellLabel = `${MONTH_NAMES[currentMonth]} ${d}`;
-            if (open)        cellLabel += ', Kalikow Center open';
-            if (evts.length) cellLabel += `, ${evts.length} event${evts.length>1?'s':''}`;
+            if (open)          cellLabel += ', Kalikow Center open';
+            if (evts.length)   cellLabel += `, ${evts.length} event${evts.length>1?'s':''}`;
             cell.setAttribute('aria-label', cellLabel);
+
             body.appendChild(cell);
         }
     }
@@ -532,6 +578,7 @@ Promise.all([
     function renderList() {
         const list = document.getElementById('event-list');
         list.innerHTML = '';
+
         const evts = eventsInMonth(currentYear, currentMonth);
 
         if (evts.length === 0) {
@@ -543,12 +590,14 @@ Promise.all([
         }
 
         evts.sort((a,b) => a.date.localeCompare(b.date));
+
         evts.forEach(evt => {
             const d   = new Date(evt.date + 'T12:00:00');
             const mon = MONTH_NAMES[d.getMonth()].slice(0,3).toUpperCase();
             const day = d.getDate();
             const dow = DOW_NAMES[d.getDay()];
-            const li  = document.createElement('li');
+
+            const li = document.createElement('li');
             li.className = 'event-list-item';
             li.innerHTML = `
                 <div class="event-date-col" aria-hidden="true">
@@ -584,18 +633,23 @@ Promise.all([
         const legend   = document.getElementById('cal-legend');
         const btnGrid  = document.getElementById('btn-grid');
         const btnList  = document.getElementById('btn-list');
+
         if (v === 'grid') {
-            gridWrap.style.display = 'block'; listWrap.style.display = 'none'; legend.style.display = 'flex';
+            gridWrap.style.display = 'block';
+            listWrap.style.display = 'none';
+            legend.style.display   = 'flex';
             btnGrid.classList.add('active');    btnGrid.setAttribute('aria-pressed','true');
             btnList.classList.remove('active'); btnList.setAttribute('aria-pressed','false');
         } else {
-            gridWrap.style.display = 'none'; listWrap.style.display = 'block'; legend.style.display = 'none';
+            gridWrap.style.display = 'none';
+            listWrap.style.display = 'block';
+            legend.style.display   = 'none';
             btnList.classList.add('active');    btnList.setAttribute('aria-pressed','true');
             btnGrid.classList.remove('active'); btnGrid.setAttribute('aria-pressed','false');
         }
     }
 
-    /* ─────────────────────────────────────────
+      /* ─────────────────────────────────────────
        MONTH NAVIGATION
     ───────────────────────────────────────── */
     document.getElementById('prev-month').addEventListener('click', () => {
@@ -610,39 +664,57 @@ Promise.all([
         renderAll();
     });
 
-    function renderAll() { renderGrid(); renderList(); }
-
-    /* ─────────────────────────────────────────
+    function renderAll() {
+        renderGrid();
+        renderList();
+    }
+     /* ─────────────────────────────────────────
        MODAL
     ───────────────────────────────────────── */
     function openModal(evt) {
-        const d   = new Date(evt.date + 'T12:00:00');
-        const mon = MONTH_NAMES[d.getMonth()];
-        const day = d.getDate();
-        const dow = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d.getDay()];
+        const d    = new Date(evt.date + 'T12:00:00');
+        const mon  = MONTH_NAMES[d.getMonth()];
+        const day  = d.getDate();
+        const dow  = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d.getDay()];
+
         document.getElementById('modal-title-text').textContent = evt.title;
-        document.getElementById('modal-meta').innerHTML = `<strong>${dow}, ${mon} ${day}</strong><br>${evt.time} ${evt.timezone}`;
-        document.getElementById('modal-badge').innerHTML = `<span class="event-badge ${evt.virtual ? 'badge-virtual' : 'badge-inperson'}">${evt.virtual ? 'Virtual' : 'In Person'}</span>`;
+        document.getElementById('modal-meta').innerHTML =
+            `<strong>${dow}, ${mon} ${day}</strong><br>
+             ${evt.time} ${evt.timezone}`;
+        document.getElementById('modal-badge').innerHTML =
+            `<span class="event-badge ${evt.virtual ? 'badge-virtual' : 'badge-inperson'}">
+                ${evt.virtual ? 'Virtual' : 'In Person'}
+             </span>`;
         document.getElementById('modal-link').href = evt.link;
+
         const overlay = document.getElementById('event-modal');
         overlay.classList.add('open');
         overlay.focus();
     }
 
-    function closeModal() { document.getElementById('event-modal').classList.remove('open'); }
+    function closeModal() {
+        document.getElementById('event-modal').classList.remove('open');
+    }
 
-    document.getElementById('event-modal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    // Close modal on overlay click or Escape key
+    document.getElementById('event-modal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+    });
 
-    /* ─────────────────────────────────────────
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeModal();
+    });
+
+  /* ─────────────────────────────────────────
        INIT
     ───────────────────────────────────────── */
- JGEvents.initCalendarPage(function(loadedEvents) {
+    JGEvents.initCalendarPage(function(loadedEvents) {
         EVENTS = loadedEvents;
         renderAll();
     });
 
 </script>
+
 <script src="jg-events.js"></script>
 </body>
 </html>
