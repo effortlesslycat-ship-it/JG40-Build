@@ -248,11 +248,11 @@
 <main class="page-body" id="main-content">
 
     <!-- UPCOMING TALKS -->
-    <section id="upcoming" aria-labelledby="upcoming-heading">
+        <section id="upcoming" aria-labelledby="upcoming-heading">
         <div class="upcoming-section">
             <div class="upcoming-header">
                 <h2 id="upcoming-heading">Upcoming Talks</h2>
-                <a href="Calendar.html"
+                <a href="https://www.jewishgen.org/live"
                    target="_blank" rel="noopener"
                    class="btn-navy-outline"
                    aria-label="See all upcoming talks and register (opens in new tab)">
@@ -260,28 +260,12 @@
                     All Upcoming Events
                 </a>
             </div>
-            <div class="upcoming-cards">
-                <a href="https://898a.blackbaudhosting.com/898a/tickets?tab=2&txobjid=89a61fc3-f5e4-4ce9-a9e6-46094caa94cb"
-                   target="_blank" rel="noopener"
-                   class="talk-card"
-                   aria-label="Register for upcoming JewishGen Talks">
-                    <span class="talk-date">Apr 22, 2026 | 2PM EDT</span>
-                    <p class="talk-title">Surfing USA - Jewish Institutional Records and Resources</p>
-                    <p class="talk-desc">Be inspired to add Jewish institutional records and other unique resources to your search strategy for documenting Jews in the United States. Ellen Shindelman Kowitt will explain how to uncover archival treasures found online and offline in public and private archives, libraries, universities, historical societies, museums, and on commercial websites.</p>
-                    <span class="talk-register">Register now! ›</span>
-                </a>
-                <a href="https://898a.blackbaudhosting.com/898a/tickets?tab=2&txobjid=ff220828-4707-4210-8821-91f5ef901b6f"
-                   target="_blank" rel="noopener"
-                   class="talk-card"
-                   aria-label="Register for upcoming JewishGen Talks">
-                    <span class="talk-date">April 29, 2026 | 2PM EDT</span>
-                    <p class="talk-title">JewishGen Talks: Discovering Family History in Hebrew Manuscripts and Objects of Judaica</p>
-                    <p class="talk-desc">The story of a family can be found in far less than expected places. Printed Hebrew books, illuminated manuscripts, and a variety of ceremonial objects of Judaica frequently preserve traces of personal history: inscriptions recording births and marriages, dedicatory notes, owners’ signatures, memorial annotations, and traces of personal and communal lives are embedded in Hebrew texts and ritual objects..</p>
-                    <span class="talk-register">Register now! ›</span>
-                </a>
+            <div class="jg-grid-3" id="jg-talks-grid" role="region" aria-label="Upcoming Talks">
+                <p class="jg-events-loading" aria-live="polite">Loading upcoming events&hellip;</p>
             </div>
         </div>
     </section>
+
 
     <!-- FEATURED VIDEO -->
     <section class="featured-section" aria-labelledby="featured-heading">
@@ -541,6 +525,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-id="WZPGF3hZOO0"]').forEach(c => c.classList.add('is-playing'));
 });
 </script>
-
+<script src="jg-events.js"></script>
+<script>JGEvents.initTalksPage();</script>
 </body>
 </html>
