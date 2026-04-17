@@ -1,5 +1,5 @@
 /* =============================================================
-jg-events.js  —  
+jg-events.js  —  Project Shorashim / JewishGen Redesign
 Shared event-fetching and rendering module.
 Fetches from MJH REST API and renders .jg-card elements.
 
@@ -161,11 +161,17 @@ Container: <div class="jg-grid-3" id="jg-homecal-grid">
 ––––––––––––––––––––––––––––– */
 async function initHomeCal() {
 const container = document.getElementById(‘jg-homecal-grid’);
-if (!container) return;
+if (!container) {
+document.body.insertAdjacentHTML(‘afterbegin’,
+‘<div style="background:red;color:white;padding:1rem;font-size:1rem;">JGEvents DEBUG: #jg-homecal-grid not found in DOM</div>’);
+return;
+}
 
 ```
 try {
+  container.innerHTML = '<p style="grid-column:1/-1;">DEBUG: fetching from MJH API...</p>';
   const events = await fetchEvents(3);
+  container.innerHTML = '<p style="grid-column:1/-1;">DEBUG: got ' + (events ? events.length : 0) + ' events</p>';
 
   if (!events || events.length === 0) {
     container.innerHTML = renderEmpty();
@@ -175,8 +181,7 @@ try {
   container.innerHTML = events.map(renderCard).join('\n');
 
 } catch (err) {
-  console.warn('[JGEvents] initHomeCal fetch failed:', err);
-  container.innerHTML = renderError();
+  container.innerHTML = '<p style="grid-column:1/-1;color:red;">DEBUG ERROR: ' + err.message + '</p>';
 }
 ```
 
