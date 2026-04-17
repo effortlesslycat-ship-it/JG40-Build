@@ -151,8 +151,49 @@
   /* ----------------------------------------------------------
      INIT -- Calendar page & Talks page (stubs)
   ---------------------------------------------------------- */
-  function initCalendarPage() {
-    console.info('[JGEvents] initCalendarPage -- not yet implemented.');
+  function initCalendarPage(onLoaded) {
+    fetchEvents(100).then(function(events) {
+      if (!events || events.length === 0) {
+        onLoaded([]);
+        return;
+      }
+      var mapped = events.map(function(ev, i) {
+        var dt       = new Date(ev.start_datetime);
+        var dateOnly = ev.start_datetime.substring(0, 10);
+        var timeStr  = dt.toLocaleTimeString('en-US', {
+          hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York'
+        }).replace(':00', '');
+        // Hybrid defaults to virtual
+        var isVirtual = ev.is_virtual || (ev.is_virtual && ev.is_in_person);
+
+        // Normalize non-breaking spaces, strip JewishGen Talks prefix for display
+        var rawTitle    = decodeHTML(ev.title).replace(/\u00a0/g, ' ').trim();
+        var jgtPos      = rawTitle.toLowerCase().indexOf('jewishgen talks');
+        var displayTitle = rawTitle;
+        if (jgtPos !== -1) {
+          var rest   = rawTitle.substring(jgtPos + 15);
+          var sepPos = rest.search(/[:\u2013\u2014-]/);
+          displayTitle = sepPos !== -1 ? rawTitle.substring(0, jgtPos + 15) + ':' + rest.substring(sepPos + 1) : rawTitle;
+        }
+
+        var btnUrl = ev.event_ticket_url && ev.event_ticket_url.trim() !== ''
+          ? ev.event_ticket_url : ev.event_url;
+
+        return {
+          id:       i + 1,
+          title:    decodeHTML(ev.title).replace(/\u00a0/g, ' ').trim(),
+          date:     dateOnly,
+          time:     timeStr,
+          timezone: 'ET',
+          virtual:  isVirtual,
+          link:     btnUrl
+        };
+      });
+      onLoaded(mapped);
+    }).catch(function(err) {
+      console.warn('[JGEvents] initCalendarPage failed:', err);
+      onLoaded([]);
+    });
   }
 
   function renderTalkCard(ev) {
