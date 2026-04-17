@@ -112,37 +112,103 @@
             padding: 28px 32px;
             margin-bottom: 40px;
         }
+ 
         .upcoming-header {
-            display: flex; align-items: center; justify-content: space-between;
-            flex-wrap: wrap; gap: 10px; margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
         }
+ 
         .upcoming-header h2 {
-            margin: 0; font-size: 20px; color: var(--navy);
-            position: relative; padding-bottom: 8px;
+            margin: 0;
+            font-size: 20px;
+            color: var(--navy);
+            position: relative;
+            padding-bottom: 8px;
         }
         .upcoming-header h2::after {
-            content: ''; position: absolute; bottom: 0; left: 0;
-            width: 40px; height: 3px; background-color: var(--sage); border-radius: 2px;
+            content: '';
+            position: absolute; bottom: 0; left: 0;
+            width: 40px; height: 3px;
+            background-color: var(--sage); border-radius: 2px;
         }
+ 
         .upcoming-cards {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 16px;
         }
+ 
         .talk-card {
-            background-color: var(--white); border: 1px solid #d1caba;
-            border-radius: 8px; padding: 18px 20px;
-            display: flex; flex-direction: column; gap: 8px;
+            background-color: var(--white);
+            border: 1px solid #d1caba;
+            border-radius: 8px;
+            padding: 18px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
             transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
             text-decoration: none;
         }
-        .talk-card:hover { border-color: var(--sage); box-shadow: 0 4px 12px rgba(0,0,0,0.08); transform: translateY(-2px); }
-        .talk-card:focus { outline: 3px solid var(--sage); outline-offset: 2px; }
-        .talk-date { font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.8px; color: var(--sage); }
-        .talk-title { font-size: 15px; font-weight: bold; color: var(--navy); line-height: 1.4; margin: 0; }
-        .talk-desc { font-size: 13px; color: var(--charcoal); line-height: 1.5; margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; opacity: 0.85; }
-        .talk-register { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: bold; color: var(--navy); text-decoration: underline dotted; margin-top: 4px; }
-        .rss-loading, .rss-error, .rss-empty { font-size: 14px; color: var(--charcoal); opacity: 0.7; padding: 10px 0; }
+        .talk-card:hover {
+            border-color: var(--sage);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+        .talk-card:focus {
+            outline: 3px solid var(--sage);
+            outline-offset: 2px;
+        }
+ 
+        .talk-date {
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--sage);
+        }
+ 
+        .talk-title {
+            font-size: 15px;
+            font-weight: bold;
+            color: var(--navy);
+            line-height: 1.4;
+            margin: 0;
+        }
+ 
+        .talk-desc {
+            font-size: 13px;
+            color: var(--charcoal);
+            line-height: 1.5;
+            margin: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            opacity: 0.85;
+        }
+ 
+        .talk-register {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--navy);
+            text-decoration: underline dotted;
+            margin-top: 4px;
+        }
+ 
+        .rss-loading, .rss-error, .rss-empty {
+            font-size: 14px;
+            color: var(--charcoal);
+            opacity: 0.7;
+            padding: 10px 0;
+        }
+ 
         .rss-loading::before { content: '⏳ '; }
         .rss-error::before   { content: '⚠️ '; }
         .rss-empty::before   { content: '📅 '; }
