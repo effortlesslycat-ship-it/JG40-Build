@@ -16,7 +16,7 @@
 
         a { text-decoration: none; color: inherit; }
 
-        /* ── Breadcrumb ────────────────────────────────────────── */
+        /* -- Breadcrumb ---------------------------------------- */
         .breadcrumb {
             background-color: var(--cream);
             padding: 10px 50px;
@@ -29,7 +29,7 @@
         .breadcrumb a:hover { color: var(--sage); }
         .breadcrumb span { margin: 0 6px; color: var(--charcoal); opacity: 0.5; }
 
-        /* ── Page title band ───────────────────────────────────── */
+        /* -- Page title band ----------------------------------- */
         .page-title-band {
             background-color: var(--navy);
             color: var(--white);
@@ -38,10 +38,10 @@
         .page-title-band h1 { margin: 0 0 4px 0; font-size: 26px; font-weight: bold; }
         .page-title-band p  { margin: 0; font-size: 14px; color: rgba(255,255,255,0.75); }
 
-        /* ── Main container ────────────────────────────────────── */
+        /* -- Main container ------------------------------------ */
         .page-container { max-width: 1100px; margin: 0 auto; padding: 36px 50px 60px; }
 
-        /* ── Top panel: Kalikow + CTAs ─────────────────────────── */
+        /* -- Top panel: Kalikow + CTAs ------------------------- */
         .top-panel {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -85,7 +85,7 @@
         .cta-primary   { background-color: var(--sage); color: var(--white); }
         .cta-secondary { background-color: var(--navy); color: var(--white); border: 2px solid var(--navy); }
 
-        /* ── Controls bar ──────────────────────────────────────── */
+        /* -- Controls bar -------------------------------------- */
         .controls-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
 
         .month-nav { display: flex; align-items: center; gap: 14px; }
@@ -102,7 +102,7 @@
         .view-toggle button.active { background-color: var(--navy); color: var(--white); }
         .view-toggle button:not(.active):hover { background-color: var(--cream); }
 
-        /* ── Grid calendar ─────────────────────────────────────── */
+        /* -- Grid calendar ------------------------------------- */
         .calendar-grid-wrap { display: block; }
         .calendar-list-wrap { display: none; }
 
@@ -129,7 +129,7 @@
         .cal-day.today { outline: 2px solid var(--sage); outline-offset: -2px; }
         .cal-day.today .day-num { background-color: var(--sage); color: var(--white); width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
 
-        /* ── List view ─────────────────────────────────────────── */
+        /* -- List view ----------------------------------------- */
         .event-list { list-style: none; margin: 0; padding: 0; }
         .event-list-item { display: grid; grid-template-columns: 80px 1fr auto; gap: 0 20px; align-items: start; padding: 18px 0; border-bottom: 1px solid #d1caba; }
         .event-list-item:last-child { border-bottom: none; }
@@ -153,7 +153,7 @@
 
         .no-events { text-align: center; padding: 48px 0; color: var(--charcoal); opacity: 0.55; font-size: 15px; }
 
-        /* ── Legend ────────────────────────────────────────────── */
+        /* -- Legend -------------------------------------------- */
         .legend { display: flex; gap: 20px; font-size: 12px; color: var(--charcoal); margin-top: 14px; flex-wrap: wrap; align-items: center; }
         .legend-item { display: flex; align-items: center; gap: 6px; }
         .legend-swatch { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; }
@@ -162,7 +162,7 @@
         .swatch-virtual { background-color: var(--sage); }
         .swatch-today   { background-color: var(--white); border: 2px solid var(--sage); }
 
-        /* ── Modal ─────────────────────────────────────────────── */
+        /* -- Modal --------------------------------------------- */
         .modal-overlay { display: none; position: fixed; inset: 0; background-color: rgba(9,73,122,0.45); z-index: 500; justify-content: center; align-items: center; padding: 20px; }
         .modal-overlay.open { display: flex; }
         .modal-box { background-color: var(--white); border-radius: 10px; max-width: 520px; width: 100%; padding: 32px; position: relative; box-shadow: 0 8px 40px rgba(0,0,0,0.25); }
@@ -173,7 +173,7 @@
         .modal-link  { display: inline-block; padding: 10px 20px; background-color: var(--navy); color: var(--white); font-weight: bold; font-size: 14px; border-radius: 7px; transition: opacity 0.2s ease; }
         .modal-link:hover { opacity: 0.82; }
 
-        /* ── Dark mode: page-specific overrides ───────────────── */
+        /* -- Dark mode: page-specific overrides ---------------- */
         body.dark-mode .breadcrumb           { background-color: #2a2f2f; color: #c8c0b0; border-bottom-color: #333; }
         body.dark-mode .breadcrumb a         { color: var(--sage); }
         body.dark-mode .page-title-band      { background-color: #0a3a5c; }
@@ -214,46 +214,20 @@
         body.dark-mode .swatch-kalikow       { border-color: var(--sage); background-color: #1e2b1e; }
         body.dark-mode .no-events            { color: #c8c0b0; }
 
-         /* ══════════════════════════════════════
-           RESPONSIVE
-        ══════════════════════════════════════ */
+        /* -- Responsive ---------------------------------------- */
         @media (max-width: 768px) {
-            header { padding: 10px 20px; }
-            nav.breadcrumb { padding: 10px 20px; }
+            .breadcrumb { padding: 10px 20px; }
             .page-title-band { padding: 22px 20px; }
             .page-title-band h1 { font-size: 20px; }
             .page-container { padding: 24px 20px 48px; }
-
-            .top-panel {
-                grid-template-columns: 1fr;
-            }
-
-            .kalikow-block {
-                border-right: none;
-                border-bottom: 2px solid var(--navy);
-            }
-
-            body.dark-mode .kalikow-block {
-                border-bottom-color: #3a4a4a;
-            }
-
-            /* Force list view on mobile */
+            .top-panel { grid-template-columns: 1fr; }
+            .kalikow-block { border-right: none; border-bottom: 2px solid var(--navy); }
+            body.dark-mode .kalikow-block { border-bottom-color: #3a4a4a; }
             .calendar-grid-wrap { display: none !important; }
             .calendar-list-wrap { display: block !important; }
             .view-toggle { display: none; }
-
-            .event-list-item {
-                grid-template-columns: 64px 1fr;
-                grid-template-rows: auto auto;
-            }
-
-            .event-learn-btn {
-                grid-column: 2;
-                margin-top: 10px;
-                display: inline-block;
-                width: fit-content;
-            }
-
+            .event-list-item { grid-template-columns: 64px 1fr; grid-template-rows: auto auto; }
+            .event-learn-btn { grid-column: 2; margin-top: 10px; display: inline-block; width: fit-content; }
             .controls-bar { justify-content: center; }
         }
 
@@ -265,7 +239,6 @@
     </style>
 </head>
 <body>
-
 
 <!-- ═══════════════════════════════════════════════════════════
      HEADER + NAV — loaded from Header_NavBar.html
@@ -414,8 +387,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-
-/* ── Component Loader ──────────────────────────────────────── */
+/* -- Component Loader ----------------------------------------- */
 function loadComponent(id, file) {
     return fetch(file)
         .then(function(r) {
@@ -451,28 +423,28 @@ Promise.all([
 });
 </script>
 
-<script>
-   /* ─────────────────────────────────────────
-       CONFIGURATION — EDIT THESE SECTIONS
-    ───────────────────────────────────────── */
+<!-- CHANGE 1: jg-events.js loaded here, before the calendar script that calls it -->
+<script src="jg-events.js"></script>
 
-    // Events loaded from MJH API via jg-events.js
-    // Populated by JGEvents.initCalendarPage() on page load
+<script>
+    /* ---------------------------------------------------------
+       CONFIGURATION
+       CHANGE 2: EVENTS populated from MJH API via initCalendarPage()
+    --------------------------------------------------------- */
     var EVENTS = [];
 
-    // Days of the week the Kalikow Center is normally open (0=Sun,1=Mon,...,6=Sat)
-    const KALIKOW_OPEN_DAYS = [0, 3, 4]; // Sunday, Wednesday, Thursday
+    // Days the Kalikow Center is normally open (0=Sun, 3=Wed, 4=Thu)
+    const KALIKOW_OPEN_DAYS = [0, 3, 4];
 
-    // [MANUALLY MAINTAINED] Museum/Kalikow closure dates — override open days above.
-    // Format: "YYYY-MM-DD". Update this list whenever the museum announces a closure.
+    // Museum/Kalikow closure dates — update whenever the museum announces a closure
     const KALIKOW_CLOSURES = [
-        "2026-04-20", // Passover / museum closed — example
-        "2026-05-25", // Memorial Day weekend — example
+        "2026-04-20", // Passover / museum closed
+        "2026-05-25", // Memorial Day weekend
     ];
 
-    /* ─────────────────────────────────────────
+    /* ---------------------------------------------------------
        CALENDAR STATE
-    ───────────────────────────────────────── */
+    --------------------------------------------------------- */
     const today = new Date();
     let currentYear  = today.getFullYear();
     let currentMonth = today.getMonth();
@@ -480,9 +452,6 @@ Promise.all([
     const MONTH_NAMES = ["January","February","March","April","May","June","July","August","September","October","November","December"];
     const DOW_NAMES   = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
-     /* ─────────────────────────────────────────
-       HELPERS
-    ───────────────────────────────────────── */
     function dateStr(y, m, d) {
         return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
     }
@@ -494,29 +463,22 @@ Promise.all([
         return KALIKOW_OPEN_DAYS.includes(dow);
     }
 
-    function eventsOnDate(ds) {
-        return EVENTS.filter(e => e.date === ds);
-    }
-
+    function eventsOnDate(ds) { return EVENTS.filter(e => e.date === ds); }
     function eventsInMonth(y, m) {
         const prefix = `${y}-${String(m+1).padStart(2,'0')}`;
         return EVENTS.filter(e => e.date.startsWith(prefix));
     }
 
- /* ─────────────────────────────────────────
+    /* ---------------------------------------------------------
        GRID RENDER
-    ───────────────────────────────────────── */
+    --------------------------------------------------------- */
     function renderGrid() {
-        const label = document.getElementById('month-label');
-        label.textContent = `${MONTH_NAMES[currentMonth]} ${currentYear}`;
-
+        document.getElementById('month-label').textContent = `${MONTH_NAMES[currentMonth]} ${currentYear}`;
         const body = document.getElementById('cal-body');
         body.innerHTML = '';
+        const firstDow = new Date(currentYear, currentMonth, 1).getDay();
+        const daysInMo = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-        const firstDow  = new Date(currentYear, currentMonth, 1).getDay();
-        const daysInMo  = new Date(currentYear, currentMonth + 1, 0).getDate();
-
-        // Empty cells before first day
         for (let i = 0; i < firstDow; i++) {
             const cell = document.createElement('div');
             cell.className = 'cal-day empty';
@@ -528,22 +490,16 @@ Promise.all([
             const ds    = dateStr(currentYear, currentMonth, d);
             const open  = isKalikowOpen(currentYear, currentMonth, d);
             const evts  = eventsOnDate(ds);
-            const isToday = (d === today.getDate() &&
-                             currentMonth === today.getMonth() &&
-                             currentYear  === today.getFullYear());
+            const isToday = (d === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear());
 
             const cell = document.createElement('div');
-            cell.className = 'cal-day' +
-                (open   ? ' kalikow-open' : '') +
-                (isToday ? ' today' : '');
+            cell.className = 'cal-day' + (open ? ' kalikow-open' : '') + (isToday ? ' today' : '');
 
-            // Date number
             const num = document.createElement('span');
             num.className = 'day-num';
             num.textContent = d;
             cell.appendChild(num);
 
-            // Kalikow badge
             if (open) {
                 const badge = document.createElement('span');
                 badge.className = 'kalikow-badge';
@@ -552,7 +508,6 @@ Promise.all([
                 cell.appendChild(badge);
             }
 
-            // Event chips
             evts.forEach(evt => {
                 const chip = document.createElement('button');
                 chip.className = 'cal-event-chip' + (evt.virtual ? ' virtual' : '');
@@ -562,23 +517,20 @@ Promise.all([
                 cell.appendChild(chip);
             });
 
-            // ARIA label for cell
             let cellLabel = `${MONTH_NAMES[currentMonth]} ${d}`;
-            if (open)          cellLabel += ', Kalikow Center open';
-            if (evts.length)   cellLabel += `, ${evts.length} event${evts.length>1?'s':''}`;
+            if (open)        cellLabel += ', Kalikow Center open';
+            if (evts.length) cellLabel += `, ${evts.length} event${evts.length>1?'s':''}`;
             cell.setAttribute('aria-label', cellLabel);
-
             body.appendChild(cell);
         }
     }
 
-    /* ─────────────────────────────────────────
+    /* ---------------------------------------------------------
        LIST RENDER
-    ───────────────────────────────────────── */
+    --------------------------------------------------------- */
     function renderList() {
         const list = document.getElementById('event-list');
         list.innerHTML = '';
-
         const evts = eventsInMonth(currentYear, currentMonth);
 
         if (evts.length === 0) {
@@ -590,14 +542,12 @@ Promise.all([
         }
 
         evts.sort((a,b) => a.date.localeCompare(b.date));
-
         evts.forEach(evt => {
             const d   = new Date(evt.date + 'T12:00:00');
             const mon = MONTH_NAMES[d.getMonth()].slice(0,3).toUpperCase();
             const day = d.getDate();
             const dow = DOW_NAMES[d.getDay()];
-
-            const li = document.createElement('li');
+            const li  = document.createElement('li');
             li.className = 'event-list-item';
             li.innerHTML = `
                 <div class="event-date-col" aria-hidden="true">
@@ -624,34 +574,29 @@ Promise.all([
         });
     }
 
-    /* ─────────────────────────────────────────
+    /* ---------------------------------------------------------
        VIEW TOGGLE
-    ───────────────────────────────────────── */
+    --------------------------------------------------------- */
     function setView(v) {
         const gridWrap = document.getElementById('grid-view');
         const listWrap = document.getElementById('list-view');
         const legend   = document.getElementById('cal-legend');
         const btnGrid  = document.getElementById('btn-grid');
         const btnList  = document.getElementById('btn-list');
-
         if (v === 'grid') {
-            gridWrap.style.display = 'block';
-            listWrap.style.display = 'none';
-            legend.style.display   = 'flex';
+            gridWrap.style.display = 'block'; listWrap.style.display = 'none'; legend.style.display = 'flex';
             btnGrid.classList.add('active');    btnGrid.setAttribute('aria-pressed','true');
             btnList.classList.remove('active'); btnList.setAttribute('aria-pressed','false');
         } else {
-            gridWrap.style.display = 'none';
-            listWrap.style.display = 'block';
-            legend.style.display   = 'none';
+            gridWrap.style.display = 'none'; listWrap.style.display = 'block'; legend.style.display = 'none';
             btnList.classList.add('active');    btnList.setAttribute('aria-pressed','true');
             btnGrid.classList.remove('active'); btnGrid.setAttribute('aria-pressed','false');
         }
     }
 
-      /* ─────────────────────────────────────────
+    /* ---------------------------------------------------------
        MONTH NAVIGATION
-    ───────────────────────────────────────── */
+    --------------------------------------------------------- */
     document.getElementById('prev-month').addEventListener('click', () => {
         currentMonth--;
         if (currentMonth < 0) { currentMonth = 11; currentYear--; }
@@ -664,50 +609,33 @@ Promise.all([
         renderAll();
     });
 
-    function renderAll() {
-        renderGrid();
-        renderList();
-    }
-     /* ─────────────────────────────────────────
+    function renderAll() { renderGrid(); renderList(); }
+
+    /* ---------------------------------------------------------
        MODAL
-    ───────────────────────────────────────── */
+    --------------------------------------------------------- */
     function openModal(evt) {
-        const d    = new Date(evt.date + 'T12:00:00');
-        const mon  = MONTH_NAMES[d.getMonth()];
-        const day  = d.getDate();
-        const dow  = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d.getDay()];
-
+        const d   = new Date(evt.date + 'T12:00:00');
+        const mon = MONTH_NAMES[d.getMonth()];
+        const day = d.getDate();
+        const dow = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d.getDay()];
         document.getElementById('modal-title-text').textContent = evt.title;
-        document.getElementById('modal-meta').innerHTML =
-            `<strong>${dow}, ${mon} ${day}</strong><br>
-             ${evt.time} ${evt.timezone}`;
-        document.getElementById('modal-badge').innerHTML =
-            `<span class="event-badge ${evt.virtual ? 'badge-virtual' : 'badge-inperson'}">
-                ${evt.virtual ? 'Virtual' : 'In Person'}
-             </span>`;
+        document.getElementById('modal-meta').innerHTML = `<strong>${dow}, ${mon} ${day}</strong><br>${evt.time} ${evt.timezone}`;
+        document.getElementById('modal-badge').innerHTML = `<span class="event-badge ${evt.virtual ? 'badge-virtual' : 'badge-inperson'}">${evt.virtual ? 'Virtual' : 'In Person'}</span>`;
         document.getElementById('modal-link').href = evt.link;
-
         const overlay = document.getElementById('event-modal');
         overlay.classList.add('open');
         overlay.focus();
     }
 
-    function closeModal() {
-        document.getElementById('event-modal').classList.remove('open');
-    }
+    function closeModal() { document.getElementById('event-modal').classList.remove('open'); }
 
-    // Close modal on overlay click or Escape key
-    document.getElementById('event-modal').addEventListener('click', function(e) {
-        if (e.target === this) closeModal();
-    });
+    document.getElementById('event-modal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') closeModal();
-    });
-
-  /* ─────────────────────────────────────────
-       INIT
-    ───────────────────────────────────────── */
+    /* ---------------------------------------------------------
+       INIT — CHANGE 3: fetch from API then render
+    --------------------------------------------------------- */
     JGEvents.initCalendarPage(function(loadedEvents) {
         EVENTS = loadedEvents;
         renderAll();
@@ -715,6 +643,5 @@ Promise.all([
 
 </script>
 
-<script src="jg-events.js"></script>
 </body>
 </html>
