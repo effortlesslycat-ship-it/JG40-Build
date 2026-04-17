@@ -60,18 +60,38 @@
      RENDER -- single event card
   ---------------------------------------------------------- */
   function renderCard(ev) {
-    var title      = decodeHTML(ev.title);
+    var rawTitle   = decodeHTML(ev.title);
     var desc       = decodeHTML(ev.short_description || 'No description available.');
     var date       = formatDate(ev.start_datetime);
     var time       = formatTime(ev.start_datetime);
     var format     = getFormatLabel(ev);
     var hasTicket  = ev.event_ticket_url && ev.event_ticket_url.trim() !== '';
     var btnUrl     = hasTicket ? ev.event_ticket_url : ev.event_url;
+
+    // If title starts with "JewishGen Talks:", split it into type + short title
+    var typeLabel  = '';
+    var title      = rawTitle;
+    var colonPos   = rawTitle.indexOf('JewishGen Talks:');
+    if (colonPos !== -1) {
+      typeLabel = 'JewishGen Talks';
+      title     = rawTitle.substring(colonPos + 16).trim(); // 16 = length of 'JewishGen Talks:'
+    }
+    // Also handle em-dash separator (some titles use -- instead of :)
+    if (!typeLabel) {
+      var dashPos = rawTitle.indexOf('JewishGen Talks \u2013');
+      if (dashPos !== -1) {
+        typeLabel = 'JewishGen Talks';
+        title     = rawTitle.substring(dashPos + 18).trim();
+      }
+    }
+
     var btnLabel   = hasTicket ? 'Register Now' : 'Learn More';
+    var typeHtml   = typeLabel ? '<div class="jg-card__type">' + typeLabel + '</div>' : '';
 
     return '<div class="jg-card" role="article">' +
              '<div class="jg-speaker-bio" role="tooltip" aria-hidden="true">' + desc + '</div>' +
              '<div class="jg-card__date">' + date + '</div>' +
+             typeHtml +
              '<h3><a href="' + ev.event_url + '" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">' + title + '</a></h3>' +
              '<div class="jg-card__meta">' +
                '<span>' + format + '</span>' +
