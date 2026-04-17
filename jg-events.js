@@ -60,6 +60,7 @@
      RENDER -- single event card
   ---------------------------------------------------------- */
   function renderCard(ev) {
+    var title      = decodeHTML(ev.title);
     var rawTitle   = decodeHTML(ev.title);
     var desc       = decodeHTML(ev.short_description || 'No description available.');
     var date       = formatDate(ev.start_datetime);
