@@ -387,6 +387,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
+
 /* ── Component Loader ──────────────────────────────────────── */
 function loadComponent(id, file) {
     return fetch(file)
@@ -424,57 +425,22 @@ Promise.all([
 </script>
 
 <script>
-    /* ─────────────────────────────────────────
+   /* ─────────────────────────────────────────
        CONFIGURATION — EDIT THESE SECTIONS
-       Replace EVENTS array with live feed data from MJH calendar API when available.
-       Expected fields: title, date (YYYY-MM-DD), time (display string), timezone, virtual (bool), link.
     ───────────────────────────────────────── */
-    const EVENTS = [
-        {
-            id: 1,
-            title: "JewishGen Talks: Surfing USA – Institutional Records and Resources",
-            date: "2026-04-22",
-            time: "2:00 PM",
-            timezone: "ET",
-            virtual: true,
-            link: "https://mjhnyc.org/events/jewishgen-talks-surfing-usa/"
-        },
-        {
-            id: 2,
-            title: "JewishGen Talks: Researching Romanian Jewish Ancestry",
-            date: "2026-05-13",
-            time: "2:00 PM",
-            timezone: "ET",
-            virtual: true,
-            link: "https://mjhnyc.org/"
-        },
-        {
-            id: 3,
-            title: "Genealogy Workshop: Getting Started with DNA",
-            date: "2026-05-07",
-            time: "6:30 PM",
-            timezone: "ET",
-            virtual: false,
-            link: "https://mjhnyc.org/"
-        },
-        {
-            id: 4,
-            title: "JewishGen Talks: Vital Records of the Pale of Settlement",
-            date: "2026-06-10",
-            time: "2:00 PM",
-            timezone: "ET",
-            virtual: true,
-            link: "https://mjhnyc.org/"
-        }
-    ];
 
-    // Days the Kalikow Center is normally open (0=Sun, 3=Wed, 4=Thu)
-    const KALIKOW_OPEN_DAYS = [0, 3, 4];
+    // Events loaded from MJH API via jg-events.js
+    // Populated by JGEvents.initCalendarPage() on page load
+    var EVENTS = [];
 
-    // Museum/Kalikow closure dates — update whenever the museum announces a closure
+    // Days of the week the Kalikow Center is normally open (0=Sun,1=Mon,...,6=Sat)
+    const KALIKOW_OPEN_DAYS = [0, 3, 4]; // Sunday, Wednesday, Thursday
+
+    // [MANUALLY MAINTAINED] Museum/Kalikow closure dates — override open days above.
+    // Format: "YYYY-MM-DD". Update this list whenever the museum announces a closure.
     const KALIKOW_CLOSURES = [
-        "2026-04-20", // Passover / museum closed
-        "2026-05-25", // Memorial Day weekend
+        "2026-04-20", // Passover / museum closed — example
+        "2026-05-25", // Memorial Day weekend — example
     ];
 
     /* ─────────────────────────────────────────
@@ -671,9 +637,12 @@ Promise.all([
     /* ─────────────────────────────────────────
        INIT
     ───────────────────────────────────────── */
-    renderAll();
+ JGEvents.initCalendarPage(function(loadedEvents) {
+        EVENTS = loadedEvents;
+        renderAll();
+    });
 
 </script>
-
+<script src="jg-events.js"></script>
 </body>
 </html>
