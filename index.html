@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,13 +6,11 @@
     <title>JewishGen: The Global Home for Jewish Genealogy</title>
     <meta name="description" content="JewishGen is the largest online Jewish genealogy resource. Search millions of records, discover your ancestral towns, and connect with our global community.">
 
-```
-<!-- 1. Bootstrap (layout only — design tokens override below) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- 1. Bootstrap (layout only — design tokens override below) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 
-<!-- 2. JewishGen Global Design System (always wins the cascade) -->
-<link rel="stylesheet" href="jg-global.css">
-```
+    <!-- 2. JewishGen Global Design System (always wins the cascade) -->
+    <link rel="stylesheet" href="jg-global.css">
 
 </head>
 <body>
@@ -22,14 +19,12 @@
      HEADER + NAV — loaded from Header_NavBar.html
      To edit: open Header_NavBar.html
 ═══════════════════════════════════════════════════════════ -->
-
 <div id="site-header"></div>
 
 <!-- ═══════════════════════════════════════════════════════════
      SPONSOR BANNER — inline (updated daily by staff)
      To edit: find EDIT START / EDIT END markers below
 ═══════════════════════════════════════════════════════════ -->
-
 <div class="jg-sponsor-banner" aria-live="polite" aria-label="Daily research dedication">
     <div id="jg-sponsor-container" style="position: relative; min-height: 1.4rem;">
         <!-- EDIT START -->
@@ -50,14 +45,12 @@
      HERO SEARCH — loaded from HeroSearch.html
      To edit: open HeroSearch.html
 ═══════════════════════════════════════════════════════════ -->
-
 <div id="hero-search"></div>
 
 <!-- ═══════════════════════════════════════════════════════════
      ANNOUNCEMENT BANNER — loaded from Announcement.html
      To edit: open Announcement.html
 ═══════════════════════════════════════════════════════════ -->
-
 <div id="announcement"></div>
 
 <!-- ═══════════════════════════════════════════════════════════
@@ -65,7 +58,6 @@
      To edit: update card content directly here.
      Keep total count at 8. Replace placeholder cards as confirmed.
 ═══════════════════════════════════════════════════════════ -->
-
 <div class="jg-cards-section">
     <div class="jg-cards-section__intro">
         <h2>Explore Our Core Resources</h2>
@@ -73,67 +65,64 @@
     </div>
     <div class="jg-grid-4">
 
-```
-    <div class="jg-feature-card">
-        <div class="jg-feature-card__icon">💬</div>
-        <h3>Discussion Group</h3>
-        <p>Get help solving your genealogy mysteries and check out our extensive message archive.</p>
-        <a href="https://groups.jewishgen.org/g/main">Join the Conversation</a>
+        <div class="jg-feature-card">
+            <div class="jg-feature-card__icon">💬</div>
+            <h3>Discussion Group</h3>
+            <p>Get help solving your genealogy mysteries and check out our extensive message archive.</p>
+            <a href="https://groups.jewishgen.org/g/main">Join the Conversation</a>
+        </div>
+
+        <div class="jg-feature-card">
+            <div class="jg-feature-card__icon">📖</div>
+            <h3>Yizkor Books</h3>
+            <p>Read translated memorial books documenting Jewish life and history in destroyed communities.</p>
+            <a href="https://www.jewishgen.org/Yizkor/translations/">Read Translations</a>
+        </div>
+
+        <div class="jg-feature-card">
+            <div class="jg-feature-card__icon">🗂️</div>
+            <h3>Catalogue of Records</h3>
+            <p>Browse our comprehensive inventory of historical datasets, organized by country and region.</p>
+            <a href="#">Browse Catalogue</a><!-- TODO: update URL when catalogue page is live -->
+        </div>
+
+        <div class="jg-feature-card">
+            <div class="jg-feature-card__icon">🌍</div>
+            <h3>Communities Database</h3>
+            <p>Uncover historical, geographical, and linguistic details about Jewish towns worldwide.</p>
+            <a href="https://www.jewishgen.org/Communities/Search.asp">Explore Towns</a>
+        </div>
+
+        <!-- PLACEHOLDER CARDS — replace with confirmed content -->
+        <div class="jg-feature-card jg-feature-card--placeholder">
+            <div class="jg-feature-card__icon">🔖</div>
+            <h3>Lorem Ipsum</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.</p>
+            <a href="#" tabindex="-1" aria-hidden="true">Learn More</a>
+        </div>
+
+        <div class="jg-feature-card jg-feature-card--placeholder">
+            <div class="jg-feature-card__icon">🧭</div>
+            <h3>Lorem Ipsum</h3>
+            <p>Ut labore et dolore magna aliqua. Quis nostrud exercitation ullamco laboris nisi aliquip.</p>
+            <a href="#" tabindex="-1" aria-hidden="true">Learn More</a>
+        </div>
+
+        <div class="jg-feature-card jg-feature-card--placeholder">
+            <div class="jg-feature-card__icon">📜</div>
+            <h3>Lorem Ipsum</h3>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
+            <a href="#" tabindex="-1" aria-hidden="true">Learn More</a>
+        </div>
+
+        <div class="jg-feature-card jg-feature-card--placeholder">
+            <div class="jg-feature-card__icon">🕍</div>
+            <h3>Lorem Ipsum</h3>
+            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.</p>
+            <a href="#" tabindex="-1" aria-hidden="true">Learn More</a>
+        </div>
+
     </div>
-
-    <div class="jg-feature-card">
-        <div class="jg-feature-card__icon">📖</div>
-        <h3>Yizkor Books</h3>
-        <p>Read translated memorial books documenting Jewish life and history in destroyed communities.</p>
-        <a href="https://www.jewishgen.org/Yizkor/translations/">Read Translations</a>
-    </div>
-
-    <div class="jg-feature-card">
-        <div class="jg-feature-card__icon">🗂️</div>
-        <h3>Catalogue of Records</h3>
-        <p>Browse our comprehensive inventory of historical datasets, organized by country and region.</p>
-        <a href="#">Browse Catalogue</a><!-- TODO: update URL when catalogue page is live -->
-    </div>
-
-    <div class="jg-feature-card">
-        <div class="jg-feature-card__icon">🌍</div>
-        <h3>Communities Database</h3>
-        <p>Uncover historical, geographical, and linguistic details about Jewish towns worldwide.</p>
-        <a href="https://www.jewishgen.org/Communities/Search.asp">Explore Towns</a>
-    </div>
-
-    <!-- PLACEHOLDER CARDS — replace with confirmed content -->
-    <div class="jg-feature-card jg-feature-card--placeholder">
-        <div class="jg-feature-card__icon">🔖</div>
-        <h3>Lorem Ipsum</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.</p>
-        <a href="#" tabindex="-1" aria-hidden="true">Learn More</a>
-    </div>
-
-    <div class="jg-feature-card jg-feature-card--placeholder">
-        <div class="jg-feature-card__icon">🧭</div>
-        <h3>Lorem Ipsum</h3>
-        <p>Ut labore et dolore magna aliqua. Quis nostrud exercitation ullamco laboris nisi aliquip.</p>
-        <a href="#" tabindex="-1" aria-hidden="true">Learn More</a>
-    </div>
-
-    <div class="jg-feature-card jg-feature-card--placeholder">
-        <div class="jg-feature-card__icon">📜</div>
-        <h3>Lorem Ipsum</h3>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
-        <a href="#" tabindex="-1" aria-hidden="true">Learn More</a>
-    </div>
-
-    <div class="jg-feature-card jg-feature-card--placeholder">
-        <div class="jg-feature-card__icon">🕍</div>
-        <h3>Lorem Ipsum</h3>
-        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.</p>
-        <a href="#" tabindex="-1" aria-hidden="true">Learn More</a>
-    </div>
-
-</div>
-```
-
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════
@@ -141,66 +130,61 @@
      To edit: update text and links directly here.
      TODO: replace placeholder photo with hosted image on jewishgen.org
 ═══════════════════════════════════════════════════════════ -->
-
 <div class="jg-kalikow">
     <div class="jg-kalikow__inner">
 
-```
-    <div class="jg-kalikow__photo">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOftAKb33doQ9HQsRocXJvU1YaNMzr55I8au8rNW0djA&s"
-             alt="Two researchers working at computers at the Peter and Mary Kalikow Jewish Genealogy Research Center">
-    </div>
-
-    <div class="jg-kalikow__text">
-        <h2>Visiting New York City?</h2>
-        <p>The <strong>Peter and Mary Kalikow Jewish Genealogy Research Center</strong>
-           is the physical presence of JewishGen, located at the Museum of Jewish Heritage.
-           Our expert genealogists are on hand to assist in uncovering your family's past,
-           and to help you navigate JewishGen and many other critical resources
-           accessible at the Center.</p>
-    </div>
-
-    <div class="jg-kalikow__cta">
-        <a href="https://www.jewishgen.org/kalikow/"
-           class="jg-kalikow__cta-btn"
-           target="_blank"
-           rel="noopener noreferrer">
-            📅 Book an Appointment
-        </a>
-        <div class="jg-kalikow__cta-email">
-            or email us at <a href="mailto:kalikow@jewishgen.org">kalikow@jewishgen.org</a>
+        <div class="jg-kalikow__photo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOftAKb33doQ9HQsRocXJvU1YaNMzr55I8au8rNW0djA&s"
+                 alt="Two researchers working at computers at the Peter and Mary Kalikow Jewish Genealogy Research Center">
         </div>
-        <p class="jg-kalikow__cta-note">
-            Appointments are recommended but not required.
-            Museum tickets are required to visit the Center.
-        </p>
+
+        <div class="jg-kalikow__text">
+            <h2>Visiting New York City?</h2>
+            <p>The <strong>Peter and Mary Kalikow Jewish Genealogy Research Center</strong>
+               is the physical presence of JewishGen, located at the Museum of Jewish Heritage.
+               Our expert genealogists are on hand to assist in uncovering your family's past,
+               and to help you navigate JewishGen and many other critical resources
+               accessible at the Center.</p>
+        </div>
+
+        <div class="jg-kalikow__cta">
+            <a href="https://www.jewishgen.org/kalikow/"
+               class="jg-kalikow__cta-btn"
+               target="_blank"
+               rel="noopener noreferrer">
+                📅 Book an Appointment
+            </a>
+            <div class="jg-kalikow__cta-email">
+                or email us at <a href="mailto:kalikow@jewishgen.org">kalikow@jewishgen.org</a>
+            </div>
+            <p class="jg-kalikow__cta-note">
+                Appointments are recommended but not required.
+                Museum tickets are required to visit the Center.
+            </p>
+        </div>
+
     </div>
-
-</div>
-```
-
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════
-     UPCOMING EVENTS — loaded from HomeCal.html
-     To edit: open HomeCal.html
-     Cards populated by JGEvents.initHomeCal() in initPage()
+     UPCOMING EVENTS
+     Cards populated by JGEvents.initHomeCal() below.
+     To update events: edit the MJH event listing directly.
 ═══════════════════════════════════════════════════════════ -->
-
-<div id="home-cal"></div>
+<div class="jg-grid-3" id="jg-homecal-grid" role="region" aria-label="Upcoming Events">
+    <p class="jg-events-loading" aria-live="polite">Loading upcoming events&hellip;</p>
+</div>
 
 <!-- ═══════════════════════════════════════════════════════════
      PUBLICATIONS LIBRARY — loaded from PubLib.html
      To edit: open PubLib.html
 ═══════════════════════════════════════════════════════════ -->
-
 <div id="pub-lib"></div>
 
 <!-- ═══════════════════════════════════════════════════════════
      FOOTER — loaded from Footer.html
      To edit: open Footer.html
 ═══════════════════════════════════════════════════════════ -->
-
 <div id="site-footer"></div>
 
 <!-- ═══════════════════════════════════════════════════════════
@@ -208,11 +192,9 @@
 ═══════════════════════════════════════════════════════════ -->
 
 <!-- Bootstrap JS -->
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- JewishGen Events Module -->
-
 <script src="jg-events.js"></script>
 
 <script>
@@ -240,7 +222,6 @@ Promise.all([
     loadComponent('site-header',  'Header_NavBar.html'),
     loadComponent('hero-search',  'HeroSearch.html'),
     loadComponent('announcement', 'Announcement.html'),
-    loadComponent('home-cal',     'HomeCal.html'),
     loadComponent('pub-lib',      'PubLib.html'),
     loadComponent('site-footer',  'Footer.html')
 ]).then(function() {
@@ -281,10 +262,10 @@ function initPage() {
             slides[current].classList.add('active');
         }, 6000);
     })();
-
-    /* Upcoming Events: fetch and render HomeCal cards */
-    JGEvents.initHomeCal();
 }
+
+/* -- Events: fires immediately since #jg-homecal-grid is inline ── */
+JGEvents.initHomeCal();
 
 /* -- Auth State Toggle (demo only — remove before go-live) -- */
 var loggedIn = false;
