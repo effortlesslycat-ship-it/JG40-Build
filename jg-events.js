@@ -60,7 +60,6 @@
      RENDER -- single event card
   ---------------------------------------------------------- */
   function renderCard(ev) {
-    var title      = decodeHTML(ev.title);
     var rawTitle   = decodeHTML(ev.title);
     var desc       = decodeHTML(ev.short_description || 'No description available.');
     var date       = formatDate(ev.start_datetime);
@@ -69,20 +68,19 @@
     var hasTicket  = ev.event_ticket_url && ev.event_ticket_url.trim() !== '';
     var btnUrl     = hasTicket ? ev.event_ticket_url : ev.event_url;
 
-    // If title starts with "JewishGen Talks:", split it into type + short title
-    var typeLabel  = '';
-    var title      = rawTitle;
-    var colonPos   = rawTitle.indexOf('JewishGen Talks:');
-    if (colonPos !== -1) {
+    // If title contains "JewishGen Talks", strip the prefix and show it as type label
+    var typeLabel = '';
+    var title     = rawTitle;
+    var jgtPos    = rawTitle.toLowerCase().indexOf('jewishgen talks');
+    if (jgtPos !== -1) {
       typeLabel = 'JewishGen Talks';
-      title     = rawTitle.substring(colonPos + 16).trim(); // 16 = length of 'JewishGen Talks:'
-    }
-    // Also handle em-dash separator (some titles use -- instead of :)
-    if (!typeLabel) {
-      var dashPos = rawTitle.indexOf('JewishGen Talks \u2013');
-      if (dashPos !== -1) {
-        typeLabel = 'JewishGen Talks';
-        title     = rawTitle.substring(dashPos + 18).trim();
+      // Find the first colon or dash after the prefix and cut there
+      var rest = rawTitle.substring(jgtPos + 15); // 15 = length of 'jewishgen talks'
+      var sepPos = rest.search(/[:\u2013\u2014-]/); // colon, en-dash, em-dash, hyphen
+      if (sepPos !== -1) {
+        title = rest.substring(sepPos + 1).trim();
+      } else {
+        title = rest.trim();
       }
     }
 
