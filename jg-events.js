@@ -155,6 +155,39 @@
     console.info('[JGEvents] initCalendarPage -- not yet implemented.');
   }
 
+  function renderTalkCard(ev) {
+    var rawTitle  = decodeHTML(ev.title);
+    var desc      = decodeHTML(ev.short_description || '');
+    var hasTicket = ev.event_ticket_url && ev.event_ticket_url.trim() !== '';
+    var btnUrl    = hasTicket ? ev.event_ticket_url : ev.event_url;
+
+    // Normalize non-breaking spaces then strip JewishGen Talks prefix
+    var normalTitle = rawTitle.replace(/\u00a0/g, ' ').trim();
+    var jgtPos = normalTitle.toLowerCase().indexOf('jewishgen talks');
+    var title = normalTitle;
+    if (jgtPos !== -1) {
+      var rest = normalTitle.substring(jgtPos + 15);
+      var sepPos = rest.search(/[:\u2013\u2014-]/);
+      title = sepPos !== -1 ? rest.substring(sepPos + 1).trim() : rest.trim();
+    }
+
+    // Date: "Apr 22, 2026" format
+    var dateStr = new Date(ev.start_datetime).toLocaleDateString('en-US', {
+      month: 'short', day: 'numeric', year: 'numeric', timeZone: 'America/New_York'
+    });
+    // Time: "2PM ET" format
+    var timeStr = new Date(ev.start_datetime).toLocaleTimeString('en-US', {
+      hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York'
+    }).replace(':00', '').replace('\u00a0', '') + ' ET';
+
+    return '<a href="' + btnUrl + '" target="_blank" rel="noopener noreferrer" class="talk-card" aria-label="' + title + '">' +
+             '<span class="talk-date">' + dateStr + ' | ' + timeStr + '</span>' +
+             '<p class="talk-title">' + title + '</p>' +
+             '<p class="talk-desc">' + desc + '</p>' +
+             '<span class="talk-register">Register now! \u203a</span>' +
+           '</a>';
+  }
+
   function initTalksPage() {
     var container = document.getElementById('jg-talks-grid');
     if (!container) return;
@@ -164,7 +197,7 @@
         container.innerHTML = renderEmpty();
         return;
       }
-      container.innerHTML = events.map(renderCard).join('');
+      container.innerHTML = events.map(renderTalkCard).join('');
     }).catch(function (err) {
       console.warn('[JGEvents] initTalksPage failed:', err);
       container.innerHTML = renderError();
