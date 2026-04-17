@@ -11,6 +11,10 @@
 
     <!-- 2. JewishGen Global Design System (always wins the cascade) -->
     <link rel="stylesheet" href="jg-global.css">
+        
+    <!-- 3. JewishGen Events Module -->
+    <script src="jg-events.js"></script>
+
 </head>
 <body>
 
@@ -40,6 +44,11 @@
     </span>
 </div>
 
+<!-- ═══════════════════════════════════════════════════════════
+Upcoming Events: fetch and render HomeCal cards 
+═══════════════════════════════════════════════════════════ -->
+JGEvents.initHomeCal();
+}
 <!-- ═══════════════════════════════════════════════════════════
      HERO SEARCH — loaded from HeroSearch.html
      To edit: open HeroSearch.html
