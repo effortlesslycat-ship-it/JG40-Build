@@ -19,13 +19,13 @@ API:  https://mjhnyc.org/wp-json/wp/v2/upcoming_events
 ============================================================= */
 
 (function (global) {
-‘use strict’;
+'use strict';
 
 /* –––––––––––––––––––––––––––––
 CONFIG
 ––––––––––––––––––––––––––––– */
-const API_BASE = ‘https://mjhnyc.org/wp-json/wp/v2/upcoming_events’;
-const CATEGORY = ‘genealogy’;
+const API_BASE = 'https://mjhnyc.org/wp-json/wp/v2/upcoming_events';
+const CATEGORY = 'genealogy';
 
 /* –––––––––––––––––––––––––––––
 HELPERS
@@ -37,8 +37,8 @@ HELPERS
 - Uses a temporary textarea — safe, no innerHTML risk.
   */
   function decodeHTML(str) {
-  if (!str) return ‘’;
-  const el = document.createElement(‘textarea’);
+  if (!str) return '';
+  const el = document.createElement('textarea');
   el.innerHTML = str;
   return el.value;
   }
@@ -49,11 +49,11 @@ HELPERS
 - Always displayed in Eastern Time.
   */
   function formatDate(iso) {
-  return new Date(iso).toLocaleDateString(‘en-US’, {
-  month: ‘long’,
-  day: ‘numeric’,
-  year: ‘numeric’,
-  timeZone: ‘America/New_York’
+  return new Date(iso).toLocaleDateString('en-US', {
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+  timeZone: 'America/New_York'
   });
   }
 
@@ -62,11 +62,11 @@ HELPERS
 - Format ISO 8601 datetime → “2:00 PM ET”
   */
   function formatTime(iso) {
-  return new Date(iso).toLocaleTimeString(‘en-US’, {
-  hour: ‘numeric’,
-  minute: ‘2-digit’,
-  timeZone: ‘America/New_York’
-  }) + ‘\u00a0ET’; // non-breaking space before ET
+  return new Date(iso).toLocaleTimeString('en-US', {
+  hour: 'numeric',
+  minute: '2-digit',
+  timeZone: 'America/New_York'
+  }) + '\u00a0ET'; // non-breaking space before ET
   }
 
 /**
@@ -75,10 +75,10 @@ HELPERS
 - Handles hybrid events where both are true.
   */
   function getFormatLabel(event) {
-  if (event.is_virtual && event.is_in_person) return ‘\uD83D\uDCBB\uD83D\uDCCD Hybrid’;
-  if (event.is_virtual)                       return ‘\uD83D\uDCBB Online’;
-  if (event.is_in_person)                     return ‘\uD83D\uDCCD In Person’;
-  return ‘’;
+  if (event.is_virtual && event.is_in_person) return '\uD83D\uDCBB\uD83D\uDCCD Hybrid';
+  if (event.is_virtual)                       return '\uD83D\uDCBB Online';
+  if (event.is_in_person)                     return '\uD83D\uDCCD In Person';
+  return '';
   }
 
 /* –––––––––––––––––––––––––––––
@@ -88,7 +88,7 @@ Drops .jg-card__type and .jg-card__speaker (not in API).
 ––––––––––––––––––––––––––––– */
 function renderCard(event) {
 const title   = decodeHTML(event.title);
-const desc    = decodeHTML(event.short_description || ‘No description available.’);
+const desc    = decodeHTML(event.short_description || 'No description available.');
 const date    = formatDate(event.start_datetime);
 const time    = formatTime(event.start_datetime);
 const format  = getFormatLabel(event);
@@ -160,10 +160,10 @@ INIT — Homepage (HomeCal)
 Container: <div class="jg-grid-3" id="jg-homecal-grid">
 ––––––––––––––––––––––––––––– */
 async function initHomeCal() {
-const container = document.getElementById(‘jg-homecal-grid’);
+const container = document.getElementById('jg-homecal-grid');
 if (!container) {
-document.body.insertAdjacentHTML(‘afterbegin’,
-‘<div style="background:red;color:white;padding:1rem;font-size:1rem;">JGEvents DEBUG: #jg-homecal-grid not found in DOM</div>’);
+document.body.insertAdjacentHTML('afterbegin',
+'<div style="background:red;color:white;padding:1rem;font-size:1rem;">JGEvents DEBUG: #jg-homecal-grid not found in DOM</div>');
 return;
 }
 
@@ -192,11 +192,11 @@ INIT — Calendar page & Talks page
 (Stubs — will be built out when those pages are wired)
 ––––––––––––––––––––––––––––– */
 async function initCalendarPage() {
-console.info(’[JGEvents] initCalendarPage — not yet implemented.’);
+console.info('[JGEvents] initCalendarPage — not yet implemented.');
 }
 
 async function initTalksPage() {
-console.info(’[JGEvents] initTalksPage — not yet implemented.’);
+console.info('[JGEvents] initTalksPage — not yet implemented.');
 }
 
 /* –––––––––––––––––––––––––––––
