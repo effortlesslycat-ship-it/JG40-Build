@@ -535,24 +535,6 @@ body.dark-mode .jg-events-links { border-top-color: #333; }
 .jg-events-links a { display: flex; align-items: center; gap: 0.5rem; color: var(--navy); font-weight: bold; font-size: 0.9375rem; text-decoration: none; }
 .jg-events-links a:hover { color: var(--sage); }
 
-.jg-events-loading {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 2rem 0;
-    color: var(--charcoal);
-    opacity: 0.6;
-    font-style: italic;
-}
-
-body.dark-mode .jg-speaker-bio {
-    background-color: #2a2a2a;
-    border: 1px solid #444;
-}
-body.dark-mode .jg-speaker-bio::after {
-    border-color: #2a2a2a transparent transparent transparent;
-}
-
-
 /* ══════════════════════════════════════════════════════
    PUBLICATIONS
 ══════════════════════════════════════════════════════ */
