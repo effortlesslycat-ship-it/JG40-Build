@@ -69,13 +69,14 @@
     var btnUrl     = hasTicket ? ev.event_ticket_url : ev.event_url;
 
     // If title contains "JewishGen Talks", strip the prefix and show it as type label
-    var typeLabel = '';
-    var title     = rawTitle;
-    var jgtPos    = rawTitle.toLowerCase().indexOf('jewishgen talks');
+    var typeLabel    = '';
+    var normalTitle  = rawTitle.replace(/\u00a0/g, ' ').trim();
+    var title        = normalTitle;
+    var jgtPos       = normalTitle.toLowerCase().indexOf('jewishgen talks');
     if (jgtPos !== -1) {
       typeLabel = 'JewishGen Talks';
       // Find the first colon or dash after the prefix and cut there
-      var rest = rawTitle.substring(jgtPos + 15); // 15 = length of 'jewishgen talks'
+      var rest = normalTitle.substring(jgtPos + 15);
       var sepPos = rest.search(/[:\u2013\u2014-]/); // colon, en-dash, em-dash, hyphen
       if (sepPos !== -1) {
         title = rest.substring(sepPos + 1).trim();
