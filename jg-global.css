@@ -83,7 +83,7 @@ body.dark-mode .jg-header::after {
  
 .jg-header__logo a { display: block; line-height: 0; }
 .jg-header__logo img {
-    height: 85px;
+    height: 130px;
     width: auto;
     object-fit: contain;
 }
@@ -93,7 +93,8 @@ body.dark-mode .jg-header::after {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
+    gap: 20px;
     min-width: 0;
     padding-top: 5px;
 }
