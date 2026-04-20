@@ -9,19 +9,16 @@
        - /JG/Scripts/Trail.js
 
      STRUCTURE NOTE:
-     The <nav class="jg-nav"> now lives INSIDE <header> as part
-     of a three-column flex layout:
+     The <nav class="jg-nav"> lives INSIDE <header> as part of a
+     three-column flex layout:
        [JewishGen logo] [utility + nav stack] [MJH logo]
      The inset rule below the nav is a ::after pseudo on .jg-header.
+
+     Utility row has dividers between every item:
+       Sign Up | div | profile icon | div | dark toggle
      ============================================================
 
      ── CSS BLOCK (mirrors jg-global.css) ──────────────────────
-
-     @font-face {
-         font-family: 'Gotham';
-         src: url('/JG/font/GothamMedium.otf') format('opentype');
-         font-weight: 500;
-     }
 
      :root {
          --cream:       #e8e1d1;
@@ -33,234 +30,9 @@
          --light-green: #c7cc82;   /* headings/accents on navy; does not flip in dark mode */
      }
 
-     body.dark-mode {
-         --cream:    #1e1e1e;
-         --sage:     #a8b361;
-         --navy:     #e0e0e0;
-         --charcoal: #a0a0a0;
-         --white:    #121212;
-     }
+     .jg-header__divider { width: 1px; height: 18px; background-color: rgba(255,255,255,0.3); }
 
-     /* ── Header ─────────────────────────────────────────────
-        Background is HARDCODED navy — never use var(--navy)
-        here as it flips in dark mode. */
-     .jg-header {
-         display: flex;
-         align-items: stretch;
-         justify-content: space-between;
-         gap: 30px;
-         padding: 20px 40px 0 40px;
-         min-height: 180px;
-         background-color: #09497a;
-         font-family: 'Gotham', 'Arial', sans-serif;
-         position: relative;
-     }
-     body.dark-mode .jg-header { background-color: #1a1a1a; }
-
-     /* Inset rule at bottom of header — spans nav width only */
-     .jg-header::after {
-         content: '';
-         position: absolute;
-         left: 40px;
-         right: 40px;
-         bottom: 0;
-         height: 1px;
-         background-color: rgba(255,255,255,0.25);
-     }
-     body.dark-mode .jg-header::after {
-         background-color: rgba(255,255,255,0.15);
-     }
-
-     /* Left column: JewishGen logo */
-     .jg-header__logo { display: flex; align-items: center; }
-     .jg-header__logo a { display: block; line-height: 0; }
-     .jg-header__logo img {
-         height: 140px;
-         width: auto;
-         object-fit: contain;
-     }
-
-     /* Center column: utility row (top) + nav row (bottom) */
-     .jg-header__center {
-         flex: 1;
-         display: flex;
-         flex-direction: column;
-         justify-content: space-between;
-         min-width: 0;
-         padding-top: 5px;
-     }
-
-     /* Utility row: auth + icons + divider, pushed right */
-     .jg-header__utility {
-         display: flex;
-         align-items: center;
-         justify-content: flex-end;
-         gap: 16px;
-     }
-
-     .jg-auth-buttons {
-         display: flex;
-         align-items: center;
-         gap: 12px;
-     }
-
-     /* Sign Up / Sign Out — light-green text link on navy.
-        --light-green does not flip in dark mode, so no override needed. */
-     .jg-auth-link {
-         color: var(--light-green);
-         font-weight: bold;
-         font-size: 15px;
-         text-decoration: none;
-         text-transform: uppercase;
-         letter-spacing: 1px;
-         font-family: 'Gotham', 'Arial', sans-serif;
-         padding: 4px 6px;
-         transition: color 0.2s ease;
-     }
-     .jg-auth-link:hover { color: #ffffff; }
-
-     /* Profile icon (greenprof.png) */
-     .jg-profile-icon {
-         display: inline-flex;
-         align-items: center;
-         justify-content: center;
-         padding: 4px;
-         transition: opacity 0.2s ease;
-     }
-     .jg-profile-icon img { height: 28px; width: auto; display: block; }
-     .jg-profile-icon:hover { opacity: 0.8; }
-
-     /* Dark mode toggle (icon-only, darkmode.png) */
-     .jg-dark-toggle {
-         background: transparent;
-         border: none;
-         padding: 4px;
-         cursor: pointer;
-         display: inline-flex;
-         align-items: center;
-         justify-content: center;
-         transition: opacity 0.2s ease;
-     }
-     .jg-dark-toggle:hover { opacity: 0.8; }
-     .jg-dark-toggle img { height: 24px; width: auto; display: block; }
-
-     /* Vertical divider between icon cluster and MJH */
-     .jg-header__divider {
-         width: 1px;
-         height: 36px;
-         background-color: rgba(255,255,255,0.3);
-     }
-     body.dark-mode .jg-header__divider {
-         background-color: rgba(255,255,255,0.15);
-     }
-
-     /* Right column: MJH affiliation (single image, text baked in) */
-     .jg-header__affiliation { display: flex; align-items: center; }
-     .jg-header__affiliation a { display: block; line-height: 0; }
-     .jg-mjh-logo { height: 130px; width: auto; }
-
-     /* ── Navigation ─────────────────────────────────────────
-        Now inside .jg-header__center. Background is transparent
-        since the parent header provides the navy backdrop.
-        Colors below are HARDCODED — variables flip in dark mode. */
-     .jg-nav {
-         background-color: transparent;
-         display: flex;
-         justify-content: center;
-         flex-wrap: wrap;
-         font-family: 'Gotham', 'Arial', sans-serif;
-         font-weight: bold;
-         text-transform: uppercase;
-         letter-spacing: 1px;
-         font-size: 13px;
-         padding-bottom: 15px; /* breathing room before the ::after rule */
-     }
-     body.dark-mode .jg-nav { background-color: transparent; }
-
-     .jg-nav .dropdown { position: relative; display: inline-block; }
-     .jg-nav .dropbtn {
-         display: block;
-         padding: 14px 18px;
-         cursor: pointer;
-         color: #ffffff;
-         user-select: none;
-     }
-     .jg-nav .dropdown:hover .dropbtn,
-     .jg-nav .dropbtn:focus { color: #939b51; outline: none; }
-
-     .jg-nav .dropdown-content {
-         display: none;
-         position: absolute;
-         background-color: #ffffff;
-         min-width: 260px;
-         box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-         z-index: 100;
-         top: 100%;
-         left: 0;
-         border-top: 3px solid #939b51;
-         border-radius: 0 0 6px 6px;
-         overflow: hidden;
-     }
-     body.dark-mode .jg-nav .dropdown-content {
-         background-color: #1e1e1e;
-         border-top-color: #a8b361;
-     }
-
-     .jg-nav .dropdown-content a {
-         color: #09497a;
-         padding: 11px 20px;
-         text-decoration: none;
-         display: block;
-         text-transform: none;
-         font-weight: normal;
-         font-size: 14px;
-         letter-spacing: 0;
-         border-bottom: 1px solid #e8e1d1;
-         font-family: 'Gotham', 'Arial', sans-serif;
-     }
-     .jg-nav .dropdown-content a:last-child { border-bottom: none; }
-     .jg-nav .dropdown-content a:hover { background-color: #e8e1d1; font-weight: bold; }
-     body.dark-mode .jg-nav .dropdown-content a { color: #e0e0e0; border-bottom-color: #333; }
-     body.dark-mode .jg-nav .dropdown-content a:hover { background-color: #2a2a2a; }
-
-     .jg-nav .dropdown:hover .dropdown-content,
-     .jg-nav .dropdown:focus-within .dropdown-content { display: block; }
-
-     /* ── Breadcrumb (unchanged) ───────────────────────────── */
-     .breadcrumb {
-         background-color: var(--cream);
-         padding: 10px 50px;
-         font-size: 13px;
-         color: var(--charcoal);
-         border-bottom: 1px solid #d1caba;
-         font-family: 'Gotham', 'Arial', sans-serif;
-     }
-     .breadcrumb a {
-         color: var(--navy);
-         font-weight: bold;
-         text-decoration: underline dotted;
-     }
-     .breadcrumb a:hover { color: var(--sage); }
-     .breadcrumb span { margin: 0 6px; color: var(--charcoal); opacity: 0.5; }
-     body.dark-mode .breadcrumb {
-         background-color: #1a1a1a;
-         border-bottom-color: #333;
-         color: #a0a0a0;
-     }
-     body.dark-mode .breadcrumb a { color: #a8b361; }
-
-     @media (max-width: 900px) {
-         .jg-header { flex-direction: column; padding: 15px 20px; gap: 15px; min-height: auto; }
-         .jg-header::after { left: 20px; right: 20px; }
-         .jg-header__logo img { height: 80px; }
-         .jg-mjh-logo { height: 70px; }
-         .jg-header__center { width: 100%; padding-top: 0; }
-         .jg-header__utility { justify-content: center; flex-wrap: wrap; }
-         .jg-header__divider { display: none; }
-         .jg-nav .dropbtn { padding: 10px 12px; font-size: 12px; }
-         .jg-nav .dropdown-content { left: 50%; transform: translateX(-50%); }
-         .breadcrumb { padding: 8px 20px; }
-     }
+     (Remaining rules are in jg-global.css — not duplicated here to avoid drift.)
 
      ── END CSS BLOCK ───────────────────────────────────────── -->
 
@@ -278,45 +50,66 @@
 ═══════════════════════════════════════════════════════════ -->
 <header class="jg-header" role="banner">
 
+    <!-- ── Left column: JewishGen logo ────────────────────── -->
     <div class="jg-header__logo">
         <a href="https://effortlesslycat-ship-it.github.io/JG40-Build/index.html" title="JewishGen Home Page">
-            <img src="/JG40-Build/LOGOJGStarTopWh.png" alt="JewishGen: The Global Home for Jewish Genealogy">
+            <img src="/JG40-Build/LOGOJGStarTopWh.png"
+                 alt="JewishGen: The Global Home for Jewish Genealogy">
         </a>
     </div>
 
+    <!-- ── Center column: utility row above nav row ───────── -->
     <div class="jg-header__center">
-        
+
+        <!-- Utility row: dividers between every item -->
         <div class="jg-header__utility">
+
+            <!-- LOGGED OUT: Sign Up | div | profile → login -->
             <div class="jg-auth-buttons" id="auth-logged-out">
-                <a href="https://www.jewishgen.org/jewishgen/register.asp" class="jg-auth-link" aria-label="Create a JewishGen account">Sign Up</a>
-                
+                <a href="https://www.jewishgen.org/jewishgen/register.asp"
+                   class="jg-auth-link"
+                   aria-label="Create a JewishGen account">Sign Up</a>
+
                 <div class="jg-header__divider" aria-hidden="true"></div>
-                
-                <a href="https://www.jewishgen.org/jewishgen/login.asp" class="jg-profile-icon" aria-label="Log in to JewishGen" title="Log in">
-                    <img src="/JG40-Build/greenprof.png" alt="Profile">
+
+                <a href="https://www.jewishgen.org/jewishgen/login.asp"
+                   class="jg-profile-icon"
+                   aria-label="Log in to JewishGen"
+                   title="Log in">
+                    <img src="/JG40-Build/greenprof.png" alt="">
                 </a>
             </div>
 
+            <!-- LOGGED IN: Sign Out | div | profile → profile -->
+            <div class="jg-auth-buttons" id="auth-logged-in" style="display:none;">
+                <a href="https://www.jewishgen.org/jewishgen/logout.asp"
+                   class="jg-auth-link"
+                   aria-label="Sign out of JewishGen">Sign Out</a>
+
+                <div class="jg-header__divider" aria-hidden="true"></div>
+
+                <a href="https://www.jewishgen.org/jewishgen/myprofile.asp"
+                   class="jg-profile-icon"
+                   aria-label="View your JewishGen profile"
+                   title="My Profile">
+                    <img src="/JG40-Build/greenprof.png" alt="">
+                </a>
+            </div>
+
+            <!-- Divider between auth block and dark toggle -->
             <div class="jg-header__divider" aria-hidden="true"></div>
 
-            <button class="jg-dark-toggle" onclick="document.body.classList.toggle('dark-mode')" aria-label="Toggle dark mode" title="Toggle dark mode">
-                <img src="/JG40-Build/darkmode.png" alt="Dark Toggle">
+            <!-- Dark mode toggle -->
+            <button class="jg-dark-toggle"
+                    onclick="document.body.classList.toggle('dark-mode')"
+                    aria-label="Toggle dark mode"
+                    title="Toggle dark mode">
+                <img src="/JG40-Build/darkmode.png" alt="">
             </button>
+
         </div>
 
-    </div>
-
-    <div class="jg-header__affiliation">
-        <a href="https://mjhnyc.org" target="_blank" rel="noopener noreferrer" title="Museum of Jewish Heritage">
-            <img src="/JG40-Build/LOGOGeneMJHWh.png" alt="The Genealogical Research Division of the Museum of Jewish Heritage — A Living Memorial to the Holocaust" class="jg-mjh-logo">
-        </a>
-    </div>
-
-</header>
-
-<!-- ═══════════════════════════════════════════════════════════
-     NavBar
-═══════════════════════════════════════════════════════════ -->
+        <!-- Nav row (full, all 6 dropdowns) -->
         <nav class="jg-nav" aria-label="Main navigation">
 
             <!-- Databases -->
@@ -369,8 +162,8 @@
                       aria-haspopup="true" aria-expanded="false"
                       aria-controls="nav-events">Events &amp; Programs ▾</span>
                 <div class="dropdown-content" id="nav-events" role="menu">
-                    <a href="/JG40-Build/Calendar.html" role="menuitem"> Upcoming Events Calendar</a>
-                    <a href="/JG40-Build/JGTalksMOCK.html" role="menuitem"> JewishGen Talks</a>
+                    <a href="/JG40-Build/Calendar.html" role="menuitem"><!-- TODO: new Events Calendar URL -->Upcoming Events Calendar</a>
+                    <a href="/JG40-Build/JGTalksMOCK.html" role="menuitem"><!-- TODO: new JewishGen Talks URL -->JewishGen Talks</a>
                     <a href="https://www.jewishgen.org/ldorvdor/" role="menuitem">Student Program in Poland</a>
                     <a href="https://jhtravel.org/poland-september-2025" role="menuitem">Study &amp; Service Tour of Poland</a>
                 </div>
