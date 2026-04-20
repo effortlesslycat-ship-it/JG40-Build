@@ -366,7 +366,7 @@ body.dark-mode .jg-search-container { background: transparent; border: none; }
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background-color: var(--light-sage);
+    background-color: var(--light-green);
     color: #09497a;                       /* hardcoded; var(--navy) flips in dark mode */
     border: none;
     padding: 0.625rem 1.25rem;
