@@ -87,7 +87,7 @@ body.dark-mode .jg-header::after {
  
 .jg-header__logo a { display: block; line-height: 0; }
 .jg-header__logo img {
-    height: 130px;
+    height: 200px;
     width: auto;
     object-fit: contain;
 }
