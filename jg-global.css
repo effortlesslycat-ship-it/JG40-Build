@@ -631,6 +631,8 @@ body.dark-mode .page-title-band {
 /* ══════════════════════════════════════════════════════
    RESOURCE CARDS
 ══════════════════════════════════════════════════════ */
+ 
+/* Section wrapper — cream background, rounded, centered */
 .jg-cards-section {
     background-color: var(--cream);
     border-radius: 12px;
@@ -639,32 +641,123 @@ body.dark-mode .page-title-band {
     max-width: 1100px;
 }
 body.dark-mode .jg-cards-section { background-color: #1a1a1a; }
-.jg-cards-section__intro { text-align: center; margin-bottom: 2.1875rem; }
-.jg-cards-section__intro h2 { color: var(--navy); font-size: 1.5rem; text-transform: uppercase; margin: 0 0 0.625rem 0; }
-.jg-cards-section__intro p { font-size: 0.9375rem; color: var(--charcoal); margin: 0; }
-
+ 
+.jg-cards-section__intro {
+    text-align: center;
+    margin-bottom: 2.1875rem;
+}
+.jg-cards-section__intro h2 {
+    color: var(--navy);
+    font-size: 1.75rem;
+    font-family: Georgia, 'Times New Roman', serif;   /* matches hero heading treatment */
+    font-weight: normal;
+    text-transform: none;                              /* was uppercase */
+    margin: 0 0 0.625rem 0;
+}
+.jg-cards-section__intro p {
+    font-size: 0.9375rem;
+    color: var(--charcoal);
+    margin: 0;
+}
+ 
+/* Grid (unchanged) */
 .jg-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
 .jg-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.875rem; }
-
+ 
+/* ── Cards ───────────────────────────────────────────
+   Whole card is an <a>. Uses flex column so the chevron
+   can be pushed to the bottom via margin-top: auto.     */
 .jg-feature-card {
-    background: var(--white);
-    border-top: 4px solid var(--sage);
-    padding: 1.5625rem 1.25rem;
-    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    background: var(--white);
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;                           /* equal height in grid row */
+}
+.jg-feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    text-decoration: none;
+    color: inherit;
+}
+.jg-feature-card:focus-visible {
+    outline: 2px solid var(--sage);
+    outline-offset: 3px;
+}
+body.dark-mode .jg-feature-card {
+    background: #1e1e1e;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+ 
+/* Icon area — fixed height container.
+   Handles both <img> (real cards) and emoji text (placeholders). */
+.jg-feature-card__icon {
+    height: 64px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;                      /* for emoji placeholders */
+    line-height: 1;
+}
+.jg-feature-card__icon img {
+    max-height: 100%;
+    width: auto;
+    display: block;
+}
+ 
+/* Light/dark icon swap (mirrors the .light-logo / .dark-logo pattern) */
+.jg-feature-card__icon-light { display: block; }
+.jg-feature-card__icon-dark  { display: none; }
+body.dark-mode .jg-feature-card__icon-light { display: none; }
+body.dark-mode .jg-feature-card__icon-dark  { display: block; }
+ 
+/* Title — sage/olive (flips to lighter variant in dark mode via --sage) */
+.jg-feature-card h3 {
+    color: var(--sage);
+    font-size: 1.125rem;
+    margin: 0 0 0.75rem 0;
+    font-weight: bold;
+}
+ 
+/* Description — navy body text, pushes chevron to bottom via flex: 1 */
+.jg-feature-card p {
+    color: var(--navy);
+    font-size: 0.875rem;
+    line-height: 1.55;
+    margin: 0 0 1.25rem 0;
+    flex: 1;
+}
+body.dark-mode .jg-feature-card p { color: #c0c0c0; }
+/* Note: var(--navy) flips to #e0e0e0 in dark mode, which is readable here.
+   Explicit override above just tightens it. */
+ 
+/* Chevron at bottom — slides right on card hover */
+.jg-feature-card__chevron {
+    display: block;
+    color: var(--sage);
+    font-size: 1.75rem;
+    font-weight: bold;
+    line-height: 1;
+    margin-top: auto;
     transition: transform 0.2s ease;
 }
-.jg-feature-card:hover { transform: translateY(-4px); }
-body.dark-mode .jg-feature-card { background: #1e1e1e; }
-.jg-feature-card__icon { font-size: 2rem; margin-bottom: 0.625rem; }
-.jg-feature-card h3 { color: var(--navy); font-size: 1.125rem; margin: 0.625rem 0; }
-.jg-feature-card p { font-size: 0.8125rem; color: var(--charcoal); line-height: 1.5; margin-bottom: 0.9375rem; }
-.jg-feature-card a { color: var(--navy); font-weight: bold; font-size: 0.8125rem; text-decoration: underline; }
-.jg-feature-card a:hover { color: var(--sage); }
-.jg-feature-card--placeholder { opacity: 0.5; border-top-color: #ccc; cursor: default; }
-.jg-feature-card--placeholder:hover { transform: none; }
-
+.jg-feature-card:hover .jg-feature-card__chevron {
+    transform: translateX(4px);
+}
+ 
+/* Placeholders — dimmed, non-interactive */
+.jg-feature-card--placeholder {
+    opacity: 0.45;
+    pointer-events: none;
+}
 /* ══════════════════════════════════════════════════════
    KALIKOW
 ══════════════════════════════════════════════════════ */
