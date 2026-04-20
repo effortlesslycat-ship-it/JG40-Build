@@ -705,6 +705,7 @@ body.dark-mode .jg-feature-card {
 /* Icon area — fixed height container.
    Handles both <img> (real cards) and emoji text (placeholders). */
 .jg-feature-card__icon {
+    width: 100%;
     height: 64px;
     margin-bottom: 1rem;
     display: flex;
