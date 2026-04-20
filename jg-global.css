@@ -68,14 +68,13 @@ body.dark-mode .dark-logo  { display: block !important; }
 }
    
 /* Inset rule at bottom of header — spans nav width only */
-.jg-header::after {
-    content: '';
-    position: absolute;
-    left: 40px;
-    right: 40px;
-    bottom: 0;
-    height: 1px;
-    background-color: rgba(255,255,255,0.25);
+.jg-nav {
+    /* ...existing rules stay... */
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+    padding-bottom: 10px;  /* adjust for breathing room; was 15px via other styling */
+}
+body.dark-mode .jg-nav {
+    border-bottom-color: rgba(255,255,255,0.15);
 }
 
 body.dark-mode .jg-header { background-color: #1a1a1a; 
