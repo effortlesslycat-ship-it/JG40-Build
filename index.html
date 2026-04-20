@@ -54,9 +54,15 @@
 <div id="announcement"></div>
 
 <!-- ═══════════════════════════════════════════════════════════
-     CORE RESOURCE TILES — inline (8 cards)
+     CORE RESOURCE TILES — inline (8 cards: 5 confirmed + 3 placeholders)
      To edit: update card content directly here.
      Keep total count at 8. Replace placeholder cards as confirmed.
+ 
+     PATTERN: whole card is an <a> link. Two <img> tags per icon —
+     the light/dark classes toggle visibility via jg-global.css.
+ 
+     PLACEHOLDERS: use <div> not <a>, and .jg-feature-card--placeholder
+     class dims + disables pointer events.
 ═══════════════════════════════════════════════════════════ -->
 <div class="jg-cards-section">
     <div class="jg-cards-section__intro">
@@ -64,64 +70,84 @@
         <p>Beyond the search engine, JewishGen offers powerful tools to help you break through your brick walls.</p>
     </div>
     <div class="jg-grid-4">
-
-        <div class="jg-feature-card">
-            <div class="jg-feature-card__icon">💬</div>
+ 
+        <!-- 1. Discussion Group -->
+        <a class="jg-feature-card" href="https://groups.jewishgen.org/g/main">
+            <div class="jg-feature-card__icon">
+                <img src="JG40-Build/discussion-group-reg.png"  alt="" class="jg-feature-card__icon-light">
+                <img src="JG40-Build/discussion-group-dark.png" alt="" class="jg-feature-card__icon-dark">
+            </div>
             <h3>Discussion Group</h3>
             <p>Get help solving your genealogy mysteries and check out our extensive message archive.</p>
-            <a href="https://groups.jewishgen.org/g/main">Join the Conversation</a>
-        </div>
-
-        <div class="jg-feature-card">
-            <div class="jg-feature-card__icon">📖</div>
+            <span class="jg-feature-card__chevron" aria-hidden="true">›</span>
+        </a>
+ 
+        <!-- 2. Yizkor Books -->
+        <a class="jg-feature-card" href="https://www.jewishgen.org/Yizkor/translations/">
+            <div class="jg-feature-card__icon">
+                <img src="JG40-Build/yizkor-book-reg.png"  alt="" class="jg-feature-card__icon-light">
+                <img src="JG40-Build/yizkor-book-dark.png" alt="" class="jg-feature-card__icon-dark">
+            </div>
             <h3>Yizkor Books</h3>
             <p>Read translated memorial books documenting Jewish life and history in destroyed communities.</p>
-            <a href="https://www.jewishgen.org/Yizkor/translations/">Read Translations</a>
-        </div>
-
-        <div class="jg-feature-card">
-            <div class="jg-feature-card__icon">🗂️</div>
+            <span class="jg-feature-card__chevron" aria-hidden="true">›</span>
+        </a>
+ 
+        <!-- 3. Catalogue of Records -->
+        <a class="jg-feature-card" href="#"><!-- TODO: update URL when catalogue page is live -->
+            <div class="jg-feature-card__icon">
+                <img src="JG40-Build/catalog-reg.png"  alt="" class="jg-feature-card__icon-light">
+                <img src="JG40-Build/catalog-dark.png" alt="" class="jg-feature-card__icon-dark">
+            </div>
             <h3>Catalogue of Records</h3>
             <p>Browse our comprehensive inventory of historical datasets, organized by country and region.</p>
-            <a href="#">Browse Catalogue</a><!-- TODO: update URL when catalogue page is live -->
-        </div>
-
-        <div class="jg-feature-card">
-            <div class="jg-feature-card__icon">🌍</div>
+            <span class="jg-feature-card__chevron" aria-hidden="true">›</span>
+        </a>
+ 
+        <!-- 4. Communities Database -->
+        <a class="jg-feature-card" href="https://www.jewishgen.org/Communities/Search.asp">
+            <div class="jg-feature-card__icon">
+                <img src="JG40-Build/communities-reg.png"  alt="" class="jg-feature-card__icon-light">
+                <img src="JG40-Build/communities-dark.png" alt="" class="jg-feature-card__icon-dark">
+            </div>
             <h3>Communities Database</h3>
             <p>Uncover historical, geographical, and linguistic details about Jewish towns worldwide.</p>
-            <a href="https://www.jewishgen.org/Communities/Search.asp">Explore Towns</a>
-        </div>
-
-        <!-- PLACEHOLDER CARDS — replace with confirmed content -->
-        <div class="jg-feature-card jg-feature-card--placeholder">
+            <span class="jg-feature-card__chevron" aria-hidden="true">›</span>
+        </a>
+ 
+        <!-- 5. Burial Registry (JOWBR) -->
+        <a class="jg-feature-card" href="https://effortlesslycat-ship-it.github.io/JG40-Build/JOWBR.html">
+            <div class="jg-feature-card__icon">
+                <img src="JG40-Build/jowbr-reg.png"  alt="" class="jg-feature-card__icon-light">
+                <img src="JG40-Build/jowbr-dark.png" alt="" class="jg-feature-card__icon-dark">
+            </div>
+            <h3>Burial Registry (JOWBR)</h3>
+            <p>Search cemetery and burial records from Jewish communities around the world.</p>
+            <span class="jg-feature-card__chevron" aria-hidden="true">›</span>
+        </a>
+ 
+        <!-- 6–8. PLACEHOLDERS — replace with confirmed content -->
+        <div class="jg-feature-card jg-feature-card--placeholder" aria-hidden="true">
             <div class="jg-feature-card__icon">🔖</div>
             <h3>Lorem Ipsum</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.</p>
-            <a href="#" tabindex="-1" aria-hidden="true">Learn More</a>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <span class="jg-feature-card__chevron" aria-hidden="true">›</span>
         </div>
-
-        <div class="jg-feature-card jg-feature-card--placeholder">
+ 
+        <div class="jg-feature-card jg-feature-card--placeholder" aria-hidden="true">
             <div class="jg-feature-card__icon">🧭</div>
             <h3>Lorem Ipsum</h3>
-            <p>Ut labore et dolore magna aliqua. Quis nostrud exercitation ullamco laboris nisi aliquip.</p>
-            <a href="#" tabindex="-1" aria-hidden="true">Learn More</a>
+            <p>Ut labore et dolore magna aliqua. Quis nostrud exercitation.</p>
+            <span class="jg-feature-card__chevron" aria-hidden="true">›</span>
         </div>
-
-        <div class="jg-feature-card jg-feature-card--placeholder">
+ 
+        <div class="jg-feature-card jg-feature-card--placeholder" aria-hidden="true">
             <div class="jg-feature-card__icon">📜</div>
             <h3>Lorem Ipsum</h3>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
-            <a href="#" tabindex="-1" aria-hidden="true">Learn More</a>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit.</p>
+            <span class="jg-feature-card__chevron" aria-hidden="true">›</span>
         </div>
-
-        <div class="jg-feature-card jg-feature-card--placeholder">
-            <div class="jg-feature-card__icon">🕍</div>
-            <h3>Lorem Ipsum</h3>
-            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.</p>
-            <a href="#" tabindex="-1" aria-hidden="true">Learn More</a>
-        </div>
-
+ 
     </div>
 </div>
 
