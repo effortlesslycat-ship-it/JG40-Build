@@ -33,18 +33,19 @@
          --white:    #121212;
      }
 
+     /* ── Header ─────────────────────────────────────────────
+        Background is HARDCODED navy — never use var(--navy)
+        here as it flips in dark mode. */
      .jg-header {
          display: flex;
          justify-content: space-between;
          align-items: center;
          padding: 10px 40px;
-         background-color: var(--white);
-         border-bottom: 2px solid var(--cream);
+         background-color: #09497a;
          font-family: 'Gotham', 'Arial', sans-serif;
      }
      body.dark-mode .jg-header {
-         background-color: #121212;
-         border-bottom-color: #333;
+         background-color: #1a1a1a;
      }
 
      .jg-header__logo a {
@@ -71,19 +72,18 @@
      }
 
      .jg-dark-toggle {
-         background: var(--cream);
-         color: #09497a;
-         border: 1px solid #d1caba;
+         background: transparent;
+         color: #ffffff;
+         border: 1px solid rgba(255,255,255,0.4);
          padding: 4px 12px;
          border-radius: 20px;
          cursor: pointer;
          font-size: 11px;
          font-weight: bold;
          font-family: 'Gotham', 'Arial', sans-serif;
-         box-shadow: 0 1px 3px rgba(0,0,0,0.08);
          transition: background 0.2s ease;
      }
-     .jg-dark-toggle:hover { background: #d8d0bf; }
+     .jg-dark-toggle:hover { background: rgba(255,255,255,0.15); }
      body.dark-mode .jg-dark-toggle {
          background: #2a2a2a;
          color: #e0e0e0;
@@ -122,15 +122,15 @@
          border-color: #a8b361;
      }
 
-     /* Secondary: navy outline — Sign Up / Sign Out */
+     /* Secondary: white outline on navy header — Sign Up / Sign Out */
      .jg-btn--secondary {
          background-color: transparent;
-         color: #09497a;
-         border-color: #09497a;
+         color: #ffffff;
+         border-color: #ffffff;
      }
      .jg-btn--secondary:hover {
-         background-color: #09497a;
-         color: #ffffff;
+         background-color: #ffffff;
+         color: #09497a;
          filter: none;
      }
      body.dark-mode .jg-btn--secondary {
@@ -146,8 +146,6 @@
          display: flex;
          align-items: center;
          gap: 8px;
-         font-size: 10px;
-         color: var(--charcoal);
          font-family: 'Gotham', 'Arial', sans-serif;
      }
 
@@ -166,10 +164,11 @@
          text-transform: uppercase;
          letter-spacing: 1px;
          font-size: 13px;
+         border-top: 1px solid rgba(255,255,255,0.15);
      }
      body.dark-mode .jg-nav {
          background-color: #1a1a1a;
-         border-bottom: 1px solid #333;
+         border-top: 1px solid #333;
      }
 
      .jg-nav .dropdown { position: relative; display: inline-block; }
@@ -325,9 +324,8 @@
 
         </div>
 
-        <!-- MJH affiliation -->
+        <!-- MJH affiliation — logo only, no text -->
         <div class="jg-header__affiliation">
-            <span>The Genealogical Research Division of</span>
             <a href="https://mjhnyc.org"
                target="_blank"
                rel="noopener noreferrer"
