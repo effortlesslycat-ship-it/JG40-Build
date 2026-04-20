@@ -591,9 +591,9 @@ body.dark-mode .jg-btn-search { background-color: #a8b361; }
     letter-spacing: 0.5px;
 }
 body.dark-mode .jg-announcement { background-color: #1a1a1a; border-bottom: 1px solid #333; }
-.jg-announcement__label { color: #939b51; font-weight: bold; margin-right: 0.5rem; }
+.jg-announcement__label { color: #ffffff; font-weight: bold; margin-right: 0.5rem; }
 .jg-announcement a { color: #ffffff; text-decoration: underline; }
-.jg-announcement a:hover { color: #939b51; }
+.jg-announcement a:hover { color: #09497a; }
 
 /* ══════════════════════════════════════════════════════
    TITLE BAND DARK MODE FIX
