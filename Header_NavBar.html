@@ -278,64 +278,62 @@
 ═══════════════════════════════════════════════════════════ -->
 <header class="jg-header" role="banner">
 
-    <!-- ── Left column: JewishGen logo ────────────────────── -->
     <div class="jg-header__logo">
         <a href="https://effortlesslycat-ship-it.github.io/JG40-Build/index.html" title="JewishGen Home Page">
-            <img src="/JG40-Build/LOGOJGStarTopWh.png"
-                 alt="JewishGen: The Global Home for Jewish Genealogy">
+            <img src="/JG40-Build/LOGOJGStarTopWh.png" alt="JewishGen: The Global Home for Jewish Genealogy">
         </a>
     </div>
 
-    <!-- ── Center column: utility row above nav row ───────── -->
     <div class="jg-header__center">
-
-        <!-- Utility row: Sign Up/Out + profile icon + dark toggle + divider -->
+        
         <div class="jg-header__utility">
-
-            <!-- LOGGED OUT: Sign Up link + profile icon → login -->
             <div class="jg-auth-buttons" id="auth-logged-out">
-                <a href="https://www.jewishgen.org/jewishgen/register.asp"
-                   class="jg-auth-link"
-                   aria-label="Create a JewishGen account">Sign Up</a>
-                 <div class="jg-header__divider" aria-hidden="true">
-                <a href="https://www.jewishgen.org/jewishgen/login.asp"
-                   class="jg-profile-icon"
-                   aria-label="Log in to JewishGen"
-                   title="Log in">
+                <a href="https://www.jewishgen.org/jewishgen/register.asp" class="jg-auth-link" aria-label="Create a JewishGen account">Sign Up</a>
+                
+                <div class="jg-header__divider" aria-hidden="true"></div>
+                
+                <a href="https://www.jewishgen.org/jewishgen/login.asp" class="jg-profile-icon" aria-label="Log in to JewishGen" title="Log in">
                     <img src="/JG40-Build/greenprof.png" alt="Profile">
                 </a>
-               <div class="jg-header__divider" aria-hidden="true"></div>
             </div>
 
-            <!-- LOGGED IN: Sign Out link + profile icon → profile -->
-            <div class="jg-auth-buttons" id="auth-logged-in" style="display:none;">
-                <a href="https://www.jewishgen.org/jewishgen/logout.asp"
-                   class="jg-auth-link"
-                   aria-label="Sign out of JewishGen">Sign Out</a>
-                 <div class="jg-header__divider" aria-hidden="true"></div>
-                <a href="https://www.jewishgen.org/jewishgen/myprofile.asp"
-                   class="jg-profile-icon"
-                   aria-label="View your JewishGen profile"
-                   title="My Profile">
-                    <img src="/JG40-Build/greenprof.png" alt="">
-                </a>
-                 <div class="jg-header__divider" aria-hidden="true"></div>
-            </div>
-
-            <!-- Dark mode toggle -->
-            <button class="jg-dark-toggle"
-                    onclick="document.body.classList.toggle('dark-mode')"
-                    aria-label="Toggle dark mode"
-                    title="Toggle dark mode">
-                <img src="/JG40-Build/darkmode.png" alt="">
-            </button>
-
-            <!-- Vertical divider -->
             <div class="jg-header__divider" aria-hidden="true"></div>
 
+            <button class="jg-dark-toggle" onclick="document.body.classList.toggle('dark-mode')" aria-label="Toggle dark mode" title="Toggle dark mode">
+                <img src="/JG40-Build/darkmode.png" alt="Dark Toggle">
+            </button>
         </div>
 
-        <!-- Nav row -->
+        <nav class="jg-nav" aria-label="Main navigation">
+            <div class="dropdown">
+                <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="nav-databases">Databases ▾</span>
+                <div class="dropdown-content" id="nav-databases" role="menu">
+                    <a href="https://effortlesslycat-ship-it.github.io/JG40-Build/Global_Search.html" role="menuitem">Global Search</a>
+                    <a href="https://www.jewishgen.org/databases/" role="menuitem">Country &amp; Regional Databases</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <span class="dropbtn" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="nav-communities">Communities ▾</span>
+                <div class="dropdown-content" id="nav-communities" role="menu">
+                    <a href="https://www.jewishgen.org/Communities/Search.asp" role="menuitem">Town Finder</a>
+                </div>
+            </div>
+            
+            </nav>
+    </div>
+
+    <div class="jg-header__affiliation">
+        <a href="https://mjhnyc.org" target="_blank" rel="noopener noreferrer" title="Museum of Jewish Heritage">
+            <img src="/JG40-Build/LOGOGeneMJHWh.png" alt="The Genealogical Research Division of the Museum of Jewish Heritage — A Living Memorial to the Holocaust" class="jg-mjh-logo">
+        </a>
+    </div>
+
+</header>
+
+<!-- ═══════════════════════════════════════════════════════════
+     NavBar
+═══════════════════════════════════════════════════════════ -->
         <nav class="jg-nav" aria-label="Main navigation">
 
             <!-- Databases -->
