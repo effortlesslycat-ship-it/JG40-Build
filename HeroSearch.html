@@ -17,8 +17,9 @@
        --navy        #09497a  (hardcoded in .jg-hero to avoid dark-mode flip)
        --light-green #c7cc82  (headings, tips button bg)
        --light-blue  #dce5ea  (form field backgrounds)
-       --sage        #939b51  (search submit button)
+       --light-sage        #939b51  (search submit button)
        --charcoal    #232b2b  (input text, tips panel body)
+
 
      Structure reminder:
        .jg-hero
@@ -51,7 +52,8 @@
 
         <!-- Left: headline and description -->
         <div class="jg-hero__intro">
-            <h1>Welcome to JewishGen &mdash; The Global Home for Jewish Genealogy</h1>
+            <h1>Welcome to JewishGen &mdash;
+                 <br>The Global Home for Jewish Genealogy</h1>
             <p>The largest online Jewish genealogy and history resource.
                Explore millions of records from around the world, identify relatives,
                discover the towns of your ancestors, experience how they lived,
@@ -71,7 +73,6 @@
                             aria-expanded="false"
                             aria-controls="jg-tips-panel"
                             onclick="jgToggleTips(this)">
-                        <span aria-hidden="true">💡</span>
                         Tips &amp; Tricks
                     </button>
                 </div>
