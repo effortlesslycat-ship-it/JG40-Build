@@ -65,6 +65,7 @@ body.dark-mode .dark-logo  { display: block !important; }
     min-height: 180px;
     background-color: #09497a;  
     position: relative;
+}
    
 /* Inset rule at bottom of header — spans nav width only */
 .jg-header::after {
