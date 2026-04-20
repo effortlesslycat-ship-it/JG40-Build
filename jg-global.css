@@ -636,13 +636,13 @@ body.dark-mode .page-title-band {
 .jg-cards-section {
     background-color: var(--cream);
     margin: 2.5rem 0;
-    padding: 3rem 2rem;
+    padding: 3rem 4rem;
 }
 body.dark-mode .jg-cards-section { background-color: #1a1a1a; }
  
 .jg-cards-section__intro {
     text-align: center;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto 2.1875rem auto;
 }
 
@@ -661,7 +661,13 @@ body.dark-mode .jg-cards-section { background-color: #1a1a1a; }
 }
  
 /* Grid*/
-.jg-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+.jg-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 .jg-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.875rem; }
  
 /* ── Cards ───────────────────────────────────────────
