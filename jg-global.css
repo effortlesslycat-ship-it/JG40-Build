@@ -252,13 +252,12 @@ body.dark-mode .jg-nav .dropdown-content a:hover { background-color: #2a2a2a; }
    SPONSOR BANNER
 ══════════════════════════════════════════════════════ */
 .jg-sponsor-banner {
-    background-color: var(--cream);
-    color: var(--charcoal);
+    background-color: var(--light-blue);
+    color: var(--navy);
     text-align: center;
     padding: 0.75rem 1.25rem 0.5rem 1.25rem;
     font-size: 0.9375rem;
     font-style: italic;
-    border-bottom: 1px solid #d1caba;
     letter-spacing: 0.5px;
     position: relative;
 }
