@@ -58,31 +58,94 @@ body.dark-mode .dark-logo  { display: block !important; }
     justify-content: space-between;
     align-items: center;
     padding: 10px 40px;
-    background-color: var(--white);
-    border-bottom: 2px solid var(--cream);
+    background-color: #09497a;            /* hardcoded navy; do not use var(--navy) here */
+    /* border-bottom removed — nav sits flush below */
 }
-body.dark-mode .jg-header { background-color: #121212; border-bottom-color: #333; }
+body.dark-mode .jg-header {
+    background-color: #1a1a1a;
+}
+ 
 .jg-header__logo a { display: block; line-height: 0; }
-.jg-header__logo img { height: 65px; width: auto; object-fit: contain; }
-.jg-header__utility { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
-.jg-header__top-row { display: flex; align-items: center; gap: 12px; }
-
-.jg-dark-toggle {
-    background: var(--cream);
-    color: #09497a;
-    border: 1px solid #d1caba;
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 0.6875rem;
-    font-weight: bold;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-    transition: background 0.2s ease;
+.jg-header__logo img {
+    height: 65px;
+    width: auto;
+    object-fit: contain;
 }
-.jg-dark-toggle:hover { background: #d8d0bf; }
-body.dark-mode .jg-dark-toggle { background: #2a2a2a; color: #e0e0e0; border-color: #444; }
-
-.jg-auth-buttons { display: flex; gap: 8px; align-items: center; }
+ 
+/* Utility row: horizontal cluster on the right */
+.jg-header__utility {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+ 
+/* Auth cluster: SIGN UP text + greenprof icon */
+.jg-auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+ 
+/* Sign Up / Sign Out — sage text link on navy.
+   Color is HARDCODED because vars flip in dark mode. */
+.jg-auth-link {
+    color: #939b51;
+    font-weight: bold;
+    font-size: 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: inherit;
+    padding: 4px 6px;
+    transition: color 0.2s ease;
+}
+.jg-auth-link:hover { color: #ffffff; }
+body.dark-mode .jg-auth-link { color: #a8b361; }
+body.dark-mode .jg-auth-link:hover { color: #ffffff; }
+ 
+/* Profile icon (greenprof.png) */
+.jg-profile-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    transition: opacity 0.2s ease;
+}
+.jg-profile-icon img {
+    height: 28px;
+    width: auto;
+    display: block;
+}
+.jg-profile-icon:hover { opacity: 0.8; }
+/* Dark mode toggle (icon-only, darkmode.png) */
+.jg-dark-toggle {
+    background: transparent;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease;
+    /* All prior text-button styling removed */
+}
+.jg-dark-toggle:hover { opacity: 0.8; }
+.jg-dark-toggle img {
+    height: 24px;
+    width: auto;
+    display: block;
+}
+body.dark-mode .jg-dark-toggle { background: transparent; }
+ 
+/* Vertical divider between icon cluster and MJH */
+.jg-header__divider {
+    width: 1px;
+    height: 48px;
+    background-color: rgba(255,255,255,0.3);
+}
+body.dark-mode .jg-header__divider {
+    background-color: rgba(255,255,255,0.15);
+}
 .jg-btn {
     display: inline-block;
     padding: 0.4375rem 0.9375rem;
@@ -102,8 +165,13 @@ body.dark-mode .jg-btn--primary  { background-color: #a8b361; border-color: #a8b
 body.dark-mode .jg-btn--secondary { color: #e0e0e0; border-color: #e0e0e0; }
 body.dark-mode .jg-btn--secondary:hover { background-color: #e0e0e0; color: #121212; }
 
-.jg-header__affiliation { display: flex; align-items: center; gap: 8px; font-size: 0.625rem; color: var(--charcoal); }
-.jg-mjh-logo { height: 36px; width: auto; }
+/* MJH affiliation — single image, all text baked in */
+.jg-header__affiliation {
+    display: flex;
+    align-items: center;
+}
+.jg-header__affiliation a { display: block; line-height: 0; }
+.jg-mjh-logo { height: 60px; width: auto; }
 
 /* ══════════════════════════════════════════════════════
    NAVIGATION
@@ -596,7 +664,8 @@ body.dark-mode .jg-footer__legal a:hover { color: #a8b361; }
 }
 @media (max-width: 768px) {
     .jg-header { flex-direction: column; align-items: center; gap: 12px; padding: 15px 20px; text-align: center; }
-    .jg-header__utility { align-items: center; }
+    .jg-header__utility { flex-wrap: wrap; justify-content: center; }
+    .jg-header__divider { display: none; }
     .jg-nav .dropbtn { padding: 10px 12px; font-size: 0.75rem; }
     .jg-nav .dropdown-content { left: 50%; transform: translateX(-50%); }
     .jg-hero { padding: 25px 15px; }
