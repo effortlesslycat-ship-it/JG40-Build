@@ -1,321 +1,38 @@
 <!-- ============================================================
-     JewishGen Redesign -- HeroSearch.html (Project Shorashim)
-     Sits between SponsorBanner.html and Announcement.html.
-     CSS: Classes below belong in GlobalStyles.css / HeadSection.txt
+     JewishGen Redesign — HeroSearch.html (Project Shorashim)
+     Sits between SponsorBanner (inline in index) and Announcement.html.
+     CSS: authoritative copy lives in jg-global.css.
 
      FORM NOTE: Posts to jgform.php.
      Hidden field parameters are stubbed with TODO comments.
      Confirm exact field names and values with Gary before going live.
 
-     LAYOUT: Split hero -- headline/intro left, search form right.
+     LAYOUT: Split hero on navy — headline/intro left, search form right.
      Star asset: placeholder commented out below (TODO: add path).
-     New CSS variable: --light-blue: #dce5ea (add to :root in GlobalStyles).
      ============================================================
 
-     ── CSS BLOCK (move to GlobalStyles.css when ready) ────────
+     ── CSS REFERENCE (mirrors jg-global.css — keep in sync) ──
 
-     /* --light-blue: #dce5ea; */
-     /* ADD THIS LINE to :root in GlobalStyles alongside the existing four variables */
+     Tokens used:
+       --navy        #09497a  (hardcoded in .jg-hero to avoid dark-mode flip)
+       --light-green #c7cc82  (headings, tips button bg)
+       --light-blue  #dce5ea  (form field backgrounds)
+       --sage        #939b51  (search submit button)
+       --charcoal    #232b2b  (input text, tips panel body)
 
-     .jg-hero {
-         background-color: #dce5ea;
-         padding: 50px 40px;
-         position: relative;
-         overflow: hidden;
-     }
-     body.dark-mode .jg-hero { background-color: #1a1a1a; }
+     Structure reminder:
+       .jg-hero
+         .jg-hero__layout  (flex row)
+           .jg-hero__intro          (left column)
+           .jg-hero__search-col     (right column)
+             .jg-search-container
+               .jg-search-header    (h2 + tips button, space-between)
+               .jg-tips-panel       (expandable)
+               <form>               (rows → region → subregion → submit)
 
-     /* Split layout wrapper */
-     .jg-hero__layout {
-         display: flex;
-         align-items: flex-start;
-         gap: 48px;
-         max-width: 1200px;
-         margin: 0 auto;
-         position: relative;
-         z-index: 1;
-     }
+     (Full rules are in jg-global.css — not duplicated here to avoid drift.)
 
-     /* Left column: headline + description */
-     .jg-hero__intro {
-         flex: 0 0 340px;
-         text-align: left;
-         padding-top: 8px;
-     }
-
-     .jg-hero__intro h1 {
-         color: #09497a;
-         font-size: 2rem;
-         margin: 0 0 1rem 0;
-         line-height: 1.25;
-         font-family: 'Gotham', 'Arial', sans-serif;
-         font-weight: bold;
-     }
-     body.dark-mode .jg-hero__intro h1 { color: #e0e0e0; }
-
-     .jg-hero__intro p {
-         font-size: 0.875rem;
-         color: #232b2b;
-         line-height: 1.65;
-         margin: 0 0 0.75rem 0;
-         font-family: 'Gotham', 'Arial', sans-serif;
-     }
-     body.dark-mode .jg-hero__intro p { color: #a0a0a0; }
-
-     .jg-hero__tagline {
-         font-size: 0.875rem;
-         color: #09497a;
-         font-style: italic;
-         font-weight: bold;
-         margin: 0;
-     }
-     body.dark-mode .jg-hero__tagline { color: #a8b361; }
-
-     /* Right column: search form */
-     .jg-hero__search-col {
-         flex: 1;
-         min-width: 0;
-     }
-
-     /* Star decoration -- positioned right edge of hero */
-     /* TODO: uncomment and set src path once asset is available */
-     /*
-     .jg-hero__star {
-         position: absolute;
-         right: -60px;
-         top: 50%;
-         transform: translateY(-50%);
-         width: 340px;
-         height: auto;
-         opacity: 0.12;
-         pointer-events: none;
-         z-index: 0;
-     }
-     */
-
-     .jg-search-container {
-         background: #ffffff;
-         border: 2px solid #09497a;
-         border-radius: 12px;
-         padding: 25px 30px;
-         box-shadow: 0 4px 18px rgba(9,73,122,0.1);
-         text-align: left;
-     }
-     body.dark-mode .jg-search-container {
-         background: #1e1e1e;
-         border-color: #444;
-     }
-
-     .jg-search-container h2 {
-         color: #09497a;
-         font-size: 1.125rem;
-         text-align: center;
-         margin: 0 0 0.9375rem 0;
-         text-transform: uppercase;
-         letter-spacing: 1px;
-         font-family: 'Gotham', 'Arial', sans-serif;
-     }
-     body.dark-mode .jg-search-container h2 { color: #e0e0e0; }
-
-     .jg-tips-toggle {
-         display: block;
-         margin: 0 auto 1.25rem auto;
-         background-color: #dce5ea;
-         color: #09497a;
-         border: 1px solid #b5c8d2;
-         padding: 0.5rem 1.25rem;
-         border-radius: 20px;
-         font-size: 0.8125rem;
-         font-weight: bold;
-         cursor: pointer;
-         font-family: 'Gotham', 'Arial', sans-serif;
-         box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-         transition: background 0.2s ease;
-     }
-     .jg-tips-toggle:hover { background: #c8d8e0; }
-     body.dark-mode .jg-tips-toggle {
-         background: #2a2a2a;
-         color: #e0e0e0;
-         border-color: #444;
-     }
-
-     .jg-tips-panel {
-         display: block;
-         max-height: 0;
-         overflow: hidden;
-         opacity: 0;
-         transition: max-height 0.4s ease-out, opacity 0.3s ease, margin 0.4s ease, padding 0.4s ease;
-         background: #eef4f7;
-         border-left: 4px solid #939b51;
-         border-radius: 4px;
-         padding: 0 1.25rem;
-         margin-bottom: 0;
-         font-size: 0.8125rem;
-         line-height: 1.5;
-         color: #232b2b;
-     }
-     .jg-tips-panel.open {
-         max-height: 600px;
-         opacity: 1;
-         padding: 1.25rem;
-         margin-bottom: 1.25rem;
-     }
-     body.dark-mode .jg-tips-panel { background: #1a1a1a; color: #e0e0e0; }
-
-     .jg-tips-panel__grid {
-         display: grid;
-         grid-template-columns: repeat(2, 1fr);
-         gap: 0.9rem;
-     }
-
-     .jg-tips-panel__footer {
-         margin-top: 0.9rem;
-         border-top: 1px solid #c8d8e0;
-         padding-top: 0.625rem;
-         text-align: right;
-     }
-     body.dark-mode .jg-tips-panel__footer { border-top-color: #333; }
-     .jg-tips-panel__footer a {
-         font-size: 0.75rem;
-         color: #09497a;
-         font-weight: bold;
-         font-style: italic;
-         text-decoration: underline;
-     }
-     .jg-tips-panel__footer a:hover { color: #939b51; }
-
-     .jg-search-row {
-         display: flex;
-         gap: 0.625rem;
-         margin-bottom: 0.625rem;
-         align-items: flex-end;
-     }
-     .jg-search-row__narrow { flex: 1; }
-     .jg-search-row__wide   { flex: 2; }
-
-     .jg-field-label {
-         font-size: 0.6875rem;
-         font-weight: bold;
-         color: #09497a;
-         margin-bottom: 0.3rem;
-         display: block;
-         text-transform: uppercase;
-         letter-spacing: 0.5px;
-         font-family: 'Gotham', 'Arial', sans-serif;
-     }
-     body.dark-mode .jg-field-label { color: #a0a0a0; }
-
-     .jg-search-container select,
-     .jg-search-container input[type="text"] {
-         width: 100%;
-         padding: 0.5rem 0.625rem;
-         border: 1px solid #b5c8d2;
-         border-radius: 6px;
-         font-size: 0.875rem;
-         color: #232b2b;
-         background-color: #ffffff;
-         font-family: 'Gotham', 'Arial', sans-serif;
-         transition: border-color 0.2s ease;
-     }
-     .jg-search-container select:focus,
-     .jg-search-container input[type="text"]:focus {
-         border-color: #09497a;
-         outline: none;
-         box-shadow: 0 0 0 2px rgba(9,73,122,0.15);
-     }
-     body.dark-mode .jg-search-container select,
-     body.dark-mode .jg-search-container input[type="text"] {
-         background: #121212;
-         color: #e0e0e0;
-         border-color: #444;
-     }
-
-     .jg-region-select {
-         width: 100%;
-         padding: 0.5rem 0.625rem;
-         border: 1px solid #b5c8d2;
-         border-radius: 6px;
-         font-size: 0.875rem;
-         color: #232b2b;
-         background-color: #ffffff;
-         margin-bottom: 0.625rem;
-         font-family: 'Gotham', 'Arial', sans-serif;
-     }
-     .jg-region-select:focus {
-         border-color: #09497a;
-         outline: none;
-         box-shadow: 0 0 0 2px rgba(9,73,122,0.15);
-     }
-     body.dark-mode .jg-region-select { background: #121212; color: #e0e0e0; border-color: #444; }
-
-     .jg-subregion-container {
-         display: none;
-         margin-bottom: 0.625rem;
-         padding: 1.25rem;
-         border: 1px solid #dce5ea;
-         background: #f4f8fa;
-         border-radius: 8px;
-         animation: jgFadeIn 0.3s ease-in;
-     }
-     body.dark-mode .jg-subregion-container { background: #1a1a1a; border-color: #333; }
-
-     @keyframes jgFadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-     .jg-subregion-label {
-         font-size: 0.875rem;
-         font-weight: bold;
-         color: #09497a;
-         display: block;
-         margin-bottom: 0.5rem;
-         text-transform: uppercase;
-         letter-spacing: 0.5px;
-         font-family: 'Gotham', 'Arial', sans-serif;
-     }
-     body.dark-mode .jg-subregion-label { color: #a0a0a0; }
-
-     .jg-btn-search {
-         display: block;
-         width: 100%;
-         max-width: 320px;
-         margin: 1.25rem auto 0 auto;
-         background-color: #939b51;
-         color: #ffffff;
-         border: none;
-         padding: 0.75rem 1.5625rem;
-         font-size: 0.9375rem;
-         font-weight: bold;
-         border-radius: 6px;
-         cursor: pointer;
-         text-transform: uppercase;
-         letter-spacing: 1px;
-         font-family: 'Gotham', 'Arial', sans-serif;
-         transition: filter 0.2s ease;
-     }
-     .jg-btn-search:hover { filter: brightness(1.1); }
-     .jg-btn-search:focus { outline: 3px solid #09497a; outline-offset: 2px; }
-     body.dark-mode .jg-btn-search { background-color: #a8b361; }
-
-     @media (max-width: 900px) {
-         .jg-hero { padding: 35px 25px; }
-         .jg-hero__layout { flex-direction: column; gap: 28px; }
-         .jg-hero__intro {
-             flex: none;
-             width: 100%;
-             text-align: center;
-         }
-         .jg-hero__intro h1 { font-size: 1.5rem; }
-     }
-
-     @media (max-width: 600px) {
-         .jg-hero { padding: 25px 15px; }
-         .jg-search-container { padding: 20px; }
-         .jg-search-row { flex-direction: column; gap: 0.75rem; }
-         .jg-search-row__narrow,
-         .jg-search-row__wide { flex: none; width: 100%; }
-         .jg-tips-panel__grid { grid-template-columns: 1fr; }
-     }
-
-     ── END CSS BLOCK ───────────────────────────────────────── -->
+     ── END CSS REFERENCE ─────────────────────────────────── -->
 
 
 <!-- ═══════════════════════════════════════════════════════════
@@ -335,38 +52,41 @@
         <!-- Left: headline and description -->
         <div class="jg-hero__intro">
             <h1>Welcome to JewishGen &mdash; The Global Home for Jewish Genealogy</h1>
-            <p><strong>The largest online Jewish genealogy and history resource.</strong>
+            <p>The largest online Jewish genealogy and history resource.
                Explore millions of records from around the world, identify relatives,
                discover the towns of your ancestors, experience how they lived,
                connect with our global JewishGen community, and more!</p>
-            <p class="jg-hero__tagline">Begin your research below, or use the links above.</p>
+            <p class="jg-hero__tagline">Begin your research here, or use the links above.</p>
         </div>
 
         <!-- Right: search form -->
         <div class="jg-hero__search-col">
             <div class="jg-search-container">
 
-                <h2>Start Your Research</h2>
-
-                <button class="jg-tips-toggle"
-                        type="button"
-                        aria-expanded="false"
-                        aria-controls="jg-tips-panel"
-                        onclick="jgToggleTips(this)">
-                    💡 Search Tips and Tricks
-                </button>
+                <!-- Heading row: title left, tips pill right -->
+                <div class="jg-search-header">
+                    <h2>Start Your Research</h2>
+                    <button class="jg-tips-toggle"
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="jg-tips-panel"
+                            onclick="jgToggleTips(this)">
+                        <span aria-hidden="true">💡</span>
+                        Tips &amp; Tricks
+                    </button>
+                </div>
 
                 <div class="jg-tips-panel" id="jg-tips-panel" role="region" aria-label="Search tips">
-                    <strong style="color:#09497a; font-size:0.875rem; display:block; margin-bottom:0.9rem;">
+                    <strong class="jg-tips-panel__title">
                         JewishGen Search Tips:
                     </strong>
                     <div class="jg-tips-panel__grid">
-                        <div><strong>Comma = OR:</strong> Search for either name.<br><em style="color:#666;">Example: Schwartz, Weiss (Finds either)</em></div>
-                        <div><strong>Space = AND:</strong> Search for both names.<br><em style="color:#666;">Example: Schwartz Weiss (Finds both)</em></div>
-                        <div><strong>Wildcards (*):</strong> Fill in blanks for bad handwriting.<br><em style="color:#666;">Example: Sp*l*ng (Finds Spelling, Sperling)</em></div>
-                        <div><strong>Brackets [ ]:</strong> Force a specific starting letter.<br><em style="color:#666;">Example: [F]isch (Finds Fish, not Visz)</em></div>
-                        <div><strong>Synonyms:</strong> Exact search includes standard variants.<br><em style="color:#666;">Example: Jankel = Jakob = Jacob = Jack</em></div>
-                        <div><strong>Starts With / Contains:</strong> Finds root words.<br><em style="color:#666;">Example: "Gold" finds FeinGold</em></div>
+                        <div><strong>Comma = OR:</strong> Search for either name.<br><em>Example: Schwartz, Weiss (Finds either)</em></div>
+                        <div><strong>Space = AND:</strong> Search for both names.<br><em>Example: Schwartz Weiss (Finds both)</em></div>
+                        <div><strong>Wildcards (*):</strong> Fill in blanks for bad handwriting.<br><em>Example: Sp*l*ng (Finds Spelling, Sperling)</em></div>
+                        <div><strong>Brackets [ ]:</strong> Force a specific starting letter.<br><em>Example: [F]isch (Finds Fish, not Visz)</em></div>
+                        <div><strong>Synonyms:</strong> Exact search includes standard variants.<br><em>Example: Jankel = Jakob = Jacob = Jack</em></div>
+                        <div><strong>Starts With / Contains:</strong> Finds root words.<br><em>Example: "Gold" finds FeinGold</em></div>
                     </div>
                     <div class="jg-tips-panel__footer">
                         <a href="#"><!-- TODO: link to How to JewishGen page -->
@@ -412,7 +132,7 @@
                             <input type="text"
                                    id="jg-term-1"
                                    name="srch1"
-                                   placeholder="e.g., Hollander"
+                                   placeholder="e.g. Hollander"
                                    maxlength="50"
                                    autocomplete="off"
                                    aria-label="Search term, row 1">
@@ -425,7 +145,7 @@
                             <label class="jg-field-label" for="jg-datatype-2">Data Type</label>
                             <select id="jg-datatype-2" name="srch2_type" aria-label="Search field type, row 2">
                                 <option value="S">Surname</option>
-                                <option value="G" selected>Given Name</option>
+                                <option value="G">Given Name</option>
                                 <option value="T">Town</option>
                                 <option value="A">Any Field</option>
                             </select>
@@ -447,7 +167,7 @@
                             <input type="text"
                                    id="jg-term-2"
                                    name="srch2"
-                                   placeholder="e.g., Miriam"
+                                   placeholder="e.g. Hollander"
                                    maxlength="50"
                                    autocomplete="off"
                                    aria-label="Search term, row 2">
@@ -455,14 +175,14 @@
                     </div>
 
                     <!-- Region / Collection picker -->
-                    <div>
-                        <label class="jg-field-label" for="jg-region-select">Region / Collection</label>
+                    <div class="jg-region-wrapper">
+                        <label class="jg-field-label" for="jg-region-select">Region/Collection</label>
                         <select id="jg-region-select"
                                 name="allcountry"
                                 class="jg-region-select"
                                 aria-label="Region or collection to search"
                                 onchange="jgToggleSubRegion()">
-                            <option value="all">Region / Collection: ALL</option>
+                            <option value="all">Region/Collection: ALL</option>
                             <optgroup label="Topical Databases">
                                 <option value="JOWBR">Cemetery Records</option>
                                 <option value="ALLHOLOCAUST">Holocaust Records</option>
@@ -518,7 +238,7 @@
                         </select>
                     </div>
 
-                    <!-- Sub-region (shown dynamically) -->
+                    <!-- Sub-region (shown dynamically; button below flows down naturally) -->
                     <div class="jg-subregion-container"
                          id="jg-subregion-container"
                          aria-live="polite">
@@ -530,7 +250,7 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="jg-btn-search">Search Databases</button>
+                    <button type="submit" class="jg-btn-search">Search Database</button>
 
                 </form>
             </div><!-- /.jg-search-container -->
