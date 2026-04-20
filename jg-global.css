@@ -20,6 +20,7 @@ html { font-size: 100%; }
     --charcoal: #232b2b;
     --white:    #ffffff;
     --light-blue: #dce5ea;
+    --light-green: #C7CC82;
 }
 
 /* ── Base Body ────────────────────────────────────────────── */
@@ -42,6 +43,8 @@ body.dark-mode {
     --navy:     #e0e0e0;
     --charcoal: #a0a0a0;
     --white:    #121212;
+    --light-blue: #dce5ea;
+    --light-green: #C7CC82;
 }
 
 /* ── Logo Swap ────────────────────────────────────────────── */
@@ -55,41 +58,63 @@ body.dark-mode .dark-logo  { display: block !important; }
 ══════════════════════════════════════════════════════ */
 .jg-header {
     display: flex;
+    align-items: stretch;
     justify-content: space-between;
-    align-items: center;
-    padding: 10px 40px;
-    background-color: #09497a;            /* hardcoded navy; do not use var(--navy) here */
-    /* border-bottom removed — nav sits flush below */
+    gap: 30px;
+    padding: 20px 40px 0 40px;
+    min-height: 180px;
+    background-color: #09497a;  
+    position: relative;
+   
+/* Inset rule at bottom of header — spans nav width only */
+.jg-header::after {
+    content: '';
+    position: absolute;
+    left: 40px;
+    right: 40px;
+    bottom: 0;
+    height: 1px;
+    background-color: rgba(255,255,255,0.25);
 }
-body.dark-mode .jg-header {
-    background-color: #1a1a1a;
+body.dark-mode .jg-header::after {
+    background-color: rgba(255,255,255,0.15);
 }
  
 .jg-header__logo a { display: block; line-height: 0; }
 .jg-header__logo img {
-    height: 65px;
+    height: 85px;
     width: auto;
     object-fit: contain;
 }
+   
+/* Center column: utility row (top) + nav row (bottom) */
+.jg-header__center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+    padding-top: 5px;
+}
  
-/* Utility row: horizontal cluster on the right */
+/* Utility row: auth + icons + divider, pushed right */
 .jg-header__utility {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 16px;
 }
  
-/* Auth cluster: SIGN UP text + greenprof icon */
 .jg-auth-buttons {
     display: flex;
     align-items: center;
     gap: 12px;
 }
  
-/* Sign Up / Sign Out — sage text link on navy.
-   Color is HARDCODED because vars flip in dark mode. */
+/* Sign Up / Sign Out — light-green text link on navy.
+   --light-green does not flip in dark mode, so no override needed. */
 .jg-auth-link {
-    color: #939b51;
+    color: var(--light-green);
     font-weight: bold;
     font-size: 15px;
     text-decoration: none;
@@ -99,6 +124,8 @@ body.dark-mode .jg-header {
     padding: 4px 6px;
     transition: color 0.2s ease;
 }
+   
+.jg-auth-link:hover { color: #ffffff; }
 .jg-auth-link:hover { color: #ffffff; }
 body.dark-mode .jg-auth-link { color: #a8b361; }
 body.dark-mode .jg-auth-link:hover { color: #ffffff; }
@@ -111,12 +138,9 @@ body.dark-mode .jg-auth-link:hover { color: #ffffff; }
     padding: 4px;
     transition: opacity 0.2s ease;
 }
-.jg-profile-icon img {
-    height: 28px;
-    width: auto;
-    display: block;
-}
+.jg-profile-icon img { height: 28px; width: auto; display: block; }
 .jg-profile-icon:hover { opacity: 0.8; }
+   
 /* Dark mode toggle (icon-only, darkmode.png) */
 .jg-dark-toggle {
     background: transparent;
@@ -127,25 +151,12 @@ body.dark-mode .jg-auth-link:hover { color: #ffffff; }
     align-items: center;
     justify-content: center;
     transition: opacity 0.2s ease;
-    /* All prior text-button styling removed */
 }
 .jg-dark-toggle:hover { opacity: 0.8; }
-.jg-dark-toggle img {
-    height: 24px;
-    width: auto;
-    display: block;
-}
+.jg-dark-toggle img { height: 24px; width: auto; display: block; }
 body.dark-mode .jg-dark-toggle { background: transparent; }
  
-/* Vertical divider between icon cluster and MJH */
-.jg-header__divider {
-    width: 1px;
-    height: 48px;
-    background-color: rgba(255,255,255,0.3);
-}
-body.dark-mode .jg-header__divider {
-    background-color: rgba(255,255,255,0.15);
-}
+
 .jg-btn {
     display: inline-block;
     padding: 0.4375rem 0.9375rem;
@@ -165,13 +176,20 @@ body.dark-mode .jg-btn--primary  { background-color: #a8b361; border-color: #a8b
 body.dark-mode .jg-btn--secondary { color: #e0e0e0; border-color: #e0e0e0; }
 body.dark-mode .jg-btn--secondary:hover { background-color: #e0e0e0; color: #121212; }
 
-/* MJH affiliation — single image, all text baked in */
-.jg-header__affiliation {
-    display: flex;
-    align-items: center;
+/* Vertical divider (utility row, right end) */
+.jg-header__divider {
+    width: 1px;
+    height: 36px;
+    background-color: rgba(255,255,255,0.3);
 }
+body.dark-mode .jg-header__divider {
+    background-color: rgba(255,255,255,0.15);
+}
+ 
+/* Right column: MJH (single image, text baked in) */
+.jg-header__affiliation { display: flex; align-items: center; }
 .jg-header__affiliation a { display: block; line-height: 0; }
-.jg-mjh-logo { height: 60px; width: auto; }
+.jg-mjh-logo { height: 130px; width: auto; }
 
 /* ══════════════════════════════════════════════════════
    NAVIGATION
@@ -185,8 +203,9 @@ body.dark-mode .jg-btn--secondary:hover { background-color: #e0e0e0; color: #121
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 0.8125rem;
+
 }
-body.dark-mode .jg-nav { background-color: #1a1a1a; border-bottom: 1px solid #333; }
+body.dark-mode .jg-nav { background-color: #1a1a1a; }
 .jg-nav .dropdown { position: relative; display: inline-block; }
 .jg-nav .dropbtn { display: block; padding: 0.875rem 1.125rem; cursor: pointer; color: #ffffff; user-select: none; }
 .jg-nav .dropdown:hover .dropbtn,
@@ -663,8 +682,11 @@ body.dark-mode .jg-footer__legal a:hover { color: #a8b361; }
     .jg-grid-4 { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 768px) {
-    .jg-header { flex-direction: column; align-items: center; gap: 12px; padding: 15px 20px; text-align: center; }
-    .jg-header__utility { flex-wrap: wrap; justify-content: center; }
+    .jg-header { flex-direction: column; padding: 15px 20px; gap: 15px; min-height: auto; }
+    .jg-header__logo img { height: 80px; }
+    .jg-mjh-logo { height: 70px; }
+    .jg-header__center { width: 100%; padding-top: 0; }
+    .jg-header__utility { justify-content: center; flex-wrap: wrap; }
     .jg-header__divider { display: none; }
     .jg-nav .dropbtn { padding: 10px 12px; font-size: 0.75rem; }
     .jg-nav .dropdown-content { left: 50%; transform: translateX(-50%); }
