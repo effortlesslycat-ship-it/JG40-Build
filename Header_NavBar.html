@@ -33,11 +33,6 @@
          --white:    #121212;
      }
 
-     .light-logo { display: block; }
-     .dark-logo  { display: none; }
-     body.dark-mode .light-logo { display: none !important; }
-     body.dark-mode .dark-logo  { display: block !important; }
-
      .jg-header {
          display: flex;
          justify-content: space-between;
@@ -276,16 +271,10 @@
 ═══════════════════════════════════════════════════════════ -->
 <header class="jg-header" role="banner">
 
-    <!-- Logo — only one renders at a time via display:block/none -->
     <div class="jg-header__logo">
         <a href="https://effortlesslycat-ship-it.github.io/JG40-Build/index.html" title="JewishGen Home Page">
-            <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg"
-                 alt="JewishGen: The Global Home for Jewish Genealogy"
-                 class="light-logo"
-                 onerror="this.onerror=null; this.src='https://www.jewishgen.org/JG/images/JGnewcuts_01.gif'">
-            <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png"
-                 alt="JewishGen: The Global Home for Jewish Genealogy"
-                 class="dark-logo">
+            <img src="/JG40-Build/LOGOJGStarTopWh.png"
+                 alt="JewishGen: The Global Home for Jewish Genealogy">
         </a>
     </div>
 
@@ -343,12 +332,9 @@
                target="_blank"
                rel="noopener noreferrer"
                title="Museum of Jewish Heritage — A Living Memorial to the Holocaust">
-                <img src="https://www.jewishgen.org/images/MJH-Circle-Logo.svg"
+                <img src="/JG40-Build/LOGOGeneMJHWh.png"
                      alt="Museum of Jewish Heritage — A Living Memorial to the Holocaust"
-                     class="light-logo jg-mjh-logo">
-                <img src="https://d3k74ww17vqc8e.cloudfront.net/app/uploads/2019/10/18145838/MJH-Circle-icon_Logo.png"
-                     alt="Museum of Jewish Heritage — A Living Memorial to the Holocaust"
-                     class="dark-logo jg-mjh-logo">
+                     class="jg-mjh-logo">
             </a>
         </div>
 
