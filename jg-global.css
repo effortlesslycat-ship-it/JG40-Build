@@ -944,23 +944,40 @@ body.dark-mode .jg-events-links { border-top-color: #333; }
 
 /* ══════════════════════════════════════════════════════
    PUBLICATIONS
+   Outer section is a full-width light-blue band; inner
+   wrapper constrains content to 1100px.
 ══════════════════════════════════════════════════════ */
+
+/* Outer: full-width light-blue band. --light-blue does not flip,
+   so we override directly for dark mode. */
 .jg-publications {
-    background-color: var(--cream);
-    border-radius: 12px;
-    margin-bottom: 3.125rem;
+    background-color: var(--light-blue);
+    padding: 3rem 3.125rem;
 }
 body.dark-mode .jg-publications { background-color: #1a1a1a; }
+
+/* Inner: constrained wrapper */
+.jg-publications__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Header: centered title, no bottom border (band provides separation) */
 .jg-publications__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    border-bottom: 2px solid var(--navy);
-    padding-bottom: 0.625rem;
+    text-align: center;
     margin-bottom: 1.875rem;
 }
-.jg-publications__header h2 { color: var(--navy); font-size: 1.5rem; text-transform: uppercase; margin: 0; }
+.jg-publications__header h2 {
+    color: var(--navy);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: normal;
+    font-size: 1.75rem;
+    text-transform: none;
+    letter-spacing: normal;
+    margin: 0;
+}
 
+/* Publication cards (white on light-blue) */
 .jg-card--pub {
     background-color: var(--white) !important;
     border: 1px solid #d1caba !important;
@@ -970,6 +987,35 @@ body.dark-mode .jg-card--pub { background-color: #1e1e1e !important; border-colo
 .jg-card--pub h3 { color: var(--navy); margin: 0 0 0.5rem 0; font-size: 1.0625rem; }
 .jg-card--pub p  { font-size: 0.8125rem; color: var(--charcoal); margin-bottom: 0.9375rem; }
 
+/* ── Mailing list band (sits between publications & footer) ── */
+.jg-mailing-band {
+    background-color: var(--sage);
+    padding: 1.25rem 2.5rem;
+    text-align: center;
+}
+body.dark-mode .jg-mailing-band { background-color: #a8b361; }
+
+.jg-mailing-band a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    transition: opacity 0.2s ease;
+}
+.jg-mailing-band a:hover { opacity: 0.85; color: #ffffff; text-decoration: none; }
+.jg-mailing-band a:focus-visible { outline: 2px solid #ffffff; outline-offset: 4px; }
+
+.jg-mailing-band__chevron {
+    font-size: 1.25rem;
+    line-height: 1;
+    font-weight: normal;
+}
 /* ══════════════════════════════════════════════════════
    FOOTER
 ══════════════════════════════════════════════════════ */
