@@ -1079,6 +1079,9 @@ body.dark-mode .jg-footer__legal a:hover { color: #a8b361; }
     .jg-footer__mjh { justify-content: center; }
     .jg-speaker-bio { visibility: visible; opacity: 1; position: static; width: 100%; margin: 0 0 0.75rem 0; box-shadow: none; }
     .jg-speaker-bio::after { display: none; }
+    .jg-publications { padding: 2rem 1.25rem; }
+    .jg-mailing-band { padding: 1rem 1.25rem; }
+    .jg-mailing-band a { font-size: 0.875rem; letter-spacing: 1px; }
 }
 
 /* ══════════════════════════════════════════════════════
