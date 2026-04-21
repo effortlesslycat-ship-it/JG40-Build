@@ -716,7 +716,6 @@ body.dark-mode .jg-feature-card {
 .jg-feature-card__icon img {
     max-height: 100%;
     width: auto;
-    display: block;
 }
  
 /* Light/dark icon swap (mirrors the .light-logo / .dark-logo pattern) */
