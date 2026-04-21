@@ -66,8 +66,20 @@ body.dark-mode .dark-logo  { display: block !important; }
     min-height: 180px;
     background-color: #09497a;  
     position: relative;
-   border-bottom: 1px solid rgba(255,255,255,0.25);
 
+}
+
+.jg-header::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 40px;
+    right: 40px;
+    height: 2px;
+    background-color: rgba(255,255,255,0.4);
+}
+body.dark-mode .jg-header::after {
+    background-color: rgba(255,255,255,0.2);
 }
    
 /* Inset rule at bottom of header — spans nav width only */
@@ -76,7 +88,7 @@ body.dark-mode .dark-logo  { display: block !important; }
 }
 
 body.dark-mode .jg-header { background-color: #1a1a1a; 
-   border-bottom-color: rgba(255,255,255,0.15);
+
 }
 
  
@@ -1051,6 +1063,7 @@ body.dark-mode .jg-footer__legal a:hover { color: #a8b361; }
     .jg-header__center { width: 100%; padding-top: 0; }
     .jg-header__utility { justify-content: center; flex-wrap: wrap; }
     .jg-header__divider { display: none; }
+   .jg-header::after { left: 20px; right: 20px; }
     .jg-nav .dropbtn { padding: 10px 12px; font-size: 0.75rem; }
     .jg-nav .dropdown-content { left: 50%; transform: translateX(-50%); }
     .jg-hero { padding: 30px 15px; }
