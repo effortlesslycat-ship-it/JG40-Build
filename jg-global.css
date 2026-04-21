@@ -47,6 +47,7 @@ body.dark-mode {
     --white:    #121212;
     --light-blue: #dce5ea;
     --light-green: #C7CC82;
+   --ecru: #1a1a1a;
 }
 
 /* ── Logo Swap ────────────────────────────────────────────── */
@@ -642,10 +643,11 @@ body.dark-mode .page-title-band {
  
 /* Section wrapper — cream background, rounded, centered */
 .jg-cards-section {
-    background-color: var(--ecru);
+    background-color: var(--cream-subtle);   /* ← changed from var(--cream) */
     padding: 3rem 4rem;
 }
-body.dark-mode .jg-cards-section { background-color: #1a1a1a; }
+body.dark-mode .jg-cards-section { background-color: #121212; }
+
  
 .jg-cards-section__intro {
     text-align: center;
