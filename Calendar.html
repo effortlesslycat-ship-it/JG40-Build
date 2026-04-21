@@ -41,27 +41,26 @@
         /* -- Main container ------------------------------------ */
         .page-container { max-width: 1100px; margin: 0 auto; padding: 36px 50px 60px; }
 
-        /* -- Plan-your-visit band (full-width ecru) ------------ */
-        .cal-plan-band {
-            background-color: var(--ecru);
-            padding: 3rem 4rem;
-            margin-bottom: 36px;
-        }
-        .cal-plan-inner {
+        /* -- Page layout: calendar (70) + sidebar (30) --------- */
+        .cal-layout {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: minmax(0, 70fr) minmax(0, 30fr);
+            gap: 2rem;
+            align-items: start;
+        }
+        .cal-main   { min-width: 0; }
+        .cal-sidebar {
+            display: flex;
+            flex-direction: column;
             gap: 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
-        /* -- Cards: Kalikow + CTA ------------------------------ */
+        /* -- Sidebar cards: Kalikow + Talks -------------------- */
         .kalikow-block,
         .cta-block {
-            background-color: var(--white);
+            background-color: var(--ecru);
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            padding: 28px 32px;
+            padding: 24px 28px;
         }
         .kalikow-block h2,
         .cta-block h2 {
@@ -193,9 +192,9 @@
         body.dark-mode .page-title-band      { background-color: #0d2a45; }
         body.dark-mode .page-title-band h1   { color: #ffffff; }
         body.dark-mode .page-title-band p    { color: rgba(255,255,255,0.85); }
-        /* .cal-plan-band: --ecru flips to #1a1a1a automatically */
+        /* Sidebar cards: ecru flips to #1a1a1a (same as page bg), so pin to #1e1e1e */
         body.dark-mode .kalikow-block,
-        body.dark-mode .cta-block            { background-color: #1e1e1e; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        body.dark-mode .cta-block            { background-color: #1e1e1e; }
         body.dark-mode .kalikow-block h2,
         body.dark-mode .cta-block h2         { color: #c8c0b0; }
         body.dark-mode .kalikow-block .kalikow-name { color: var(--sage); }
@@ -234,8 +233,8 @@
             .page-title-band { padding: 32px 20px; }
             .page-title-band h1 { font-size: 1.75rem; }
             .page-container { padding: 24px 20px 48px; }
-            .cal-plan-band { padding: 2rem 1.25rem; margin-bottom: 24px; }
-            .cal-plan-inner { grid-template-columns: 1fr; gap: 1rem; }
+            .cal-layout { grid-template-columns: 1fr; gap: 1.5rem; }
+            .cal-sidebar { order: 2; }
             .calendar-grid-wrap { display: none !important; }
             .calendar-list-wrap { display: block !important; }
             .view-toggle { display: none; }
@@ -272,9 +271,64 @@
 ══════════════════════════════════════════ -->
 <main>
 
-    <!-- PLAN-YOUR-VISIT BAND (full-width ecru) -->
-    <section class="cal-plan-band" aria-label="Kalikow Center and quick links">
-        <div class="cal-plan-inner">
+<div class="page-container">
+
+    <div class="cal-layout">
+
+        <!-- LEFT: calendar controls, grid/list, legend -->
+        <div class="cal-main">
+
+            <!-- CONTROLS BAR -->
+            <div class="controls-bar">
+                <div class="month-nav" role="group" aria-label="Navigate calendar months">
+                    <button id="prev-month" aria-label="Previous month">&#8249;</button>
+                    <span class="month-label" id="month-label" aria-live="polite"></span>
+                    <button id="next-month" aria-label="Next month">&#8250;</button>
+                </div>
+                <div class="view-toggle" role="group" aria-label="Switch calendar view">
+                    <button id="btn-grid" class="active" aria-pressed="true"  onclick="setView('grid')">📅 Grid</button>
+                    <button id="btn-list" aria-pressed="false" onclick="setView('list')">☰ List</button>
+                </div>
+            </div>
+
+            <!-- GRID VIEW -->
+            <div class="calendar-grid-wrap" id="grid-view" aria-label="Monthly calendar grid">
+                <div class="cal-header-row" aria-hidden="true">
+                    <span>Sun</span><span>Mon</span><span>Tue</span>
+                    <span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                </div>
+                <div class="cal-body" id="cal-body"></div>
+            </div>
+
+            <!-- LIST VIEW -->
+            <div class="calendar-list-wrap" id="list-view">
+                <ul class="event-list" id="event-list" aria-label="Upcoming events list"></ul>
+            </div>
+
+            <!-- LEGEND -->
+            <div class="legend" id="cal-legend" aria-label="Calendar legend">
+                <div class="legend-item">
+                    <div class="legend-swatch swatch-kalikow" aria-hidden="true"></div>
+                    <span>Kalikow Center open</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-swatch swatch-event" aria-hidden="true"></div>
+                    <span>In-person event</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-swatch swatch-virtual" aria-hidden="true"></div>
+                    <span>Virtual event</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-swatch swatch-today" aria-hidden="true"></div>
+                    <span>Today</span>
+                </div>
+            </div>
+
+        </div><!-- /.cal-main -->
+
+        <!-- RIGHT: stacked sidebar cards -->
+        <aside class="cal-sidebar" aria-label="Kalikow Center and quick links">
 
             <div class="kalikow-block">
                 <h2>Visit Us In Person</h2>
@@ -309,57 +363,9 @@
                 </a>
             </div>
 
-        </div>
-    </section>
+        </aside>
 
-<div class="page-container">
-
-    <!-- CONTROLS BAR -->
-    <div class="controls-bar">
-        <div class="month-nav" role="group" aria-label="Navigate calendar months">
-            <button id="prev-month" aria-label="Previous month">&#8249;</button>
-            <span class="month-label" id="month-label" aria-live="polite"></span>
-            <button id="next-month" aria-label="Next month">&#8250;</button>
-        </div>
-        <div class="view-toggle" role="group" aria-label="Switch calendar view">
-            <button id="btn-grid" class="active" aria-pressed="true"  onclick="setView('grid')">📅 Grid</button>
-            <button id="btn-list" aria-pressed="false" onclick="setView('list')">☰ List</button>
-        </div>
-    </div>
-
-    <!-- GRID VIEW -->
-    <div class="calendar-grid-wrap" id="grid-view" aria-label="Monthly calendar grid">
-        <div class="cal-header-row" aria-hidden="true">
-            <span>Sun</span><span>Mon</span><span>Tue</span>
-            <span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
-        </div>
-        <div class="cal-body" id="cal-body"></div>
-    </div>
-
-    <!-- LIST VIEW -->
-    <div class="calendar-list-wrap" id="list-view">
-        <ul class="event-list" id="event-list" aria-label="Upcoming events list"></ul>
-    </div>
-
-    <!-- LEGEND -->
-    <div class="legend" id="cal-legend" aria-label="Calendar legend">
-        <div class="legend-item">
-            <div class="legend-swatch swatch-kalikow" aria-hidden="true"></div>
-            <span>Kalikow Center open</span>
-        </div>
-        <div class="legend-item">
-            <div class="legend-swatch swatch-event" aria-hidden="true"></div>
-            <span>In-person event</span>
-        </div>
-        <div class="legend-item">
-            <div class="legend-swatch swatch-virtual" aria-hidden="true"></div>
-            <span>Virtual event</span>
-        </div>
-        <div class="legend-item">
-            <div class="legend-swatch swatch-today" aria-hidden="true"></div>
-            <span>Today</span>
-        </div>
-    </div>
+    </div><!-- /.cal-layout -->
 
 </div><!-- /.page-container -->
 </main>
