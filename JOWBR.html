@@ -15,29 +15,6 @@
     <!-- 3. Page-specific styles -->
     <style>
 
-        /* ── Breadcrumb ─────────────────────────────────────── */
-        .jg-breadcrumb {
-            background-color: var(--cream);
-            padding: 9px 50px;
-            font-size: 0.8125rem;
-            color: var(--charcoal);
-            border-bottom: 1px solid #d1caba;
-        }
-        body.dark-mode .jg-breadcrumb {
-            background-color: #1a1a1a;
-            border-bottom-color: #333;
-        }
-        .jg-breadcrumb a {
-            color: var(--navy);
-            font-weight: bold;
-            text-decoration: underline dotted;
-        }
-        .jg-breadcrumb a:hover { color: var(--sage); }
-        .jg-breadcrumb .sep {
-            margin: 0 6px;
-            opacity: 0.45;
-        }
-
         /* ── Page Title Band ────────────────────────────────── */
         .jg-page-band {
             background-color: #09497a;
@@ -371,7 +348,6 @@
                 grid-column: 2 / -1;
             }
             .jowbr-about__grid { grid-template-columns: 1fr 1fr; }
-            .jg-breadcrumb { padding: 9px 20px; }
             .jg-page-band { padding: 28px 20px; }
             .jowbr-nav { padding: 0 20px; }
             .jowbr-stats { padding: 16px 20px; }
@@ -398,16 +374,6 @@
 <!-- Header injected here -->
 <div id="site-header"></div>
 
-<!-- ═══════════════════════════════════════════════════════
-     BREADCRUMB
-═══════════════════════════════════════════════════════ -->
-<nav class="jg-breadcrumb" aria-label="Breadcrumb">
-    <a href="/">JewishGen Home</a>
-    <span class="sep" aria-hidden="true">›</span>
-    <a href="#">Databases</a>
-    <span class="sep" aria-hidden="true">›</span>
-    <span aria-current="page">Burial Registry (JOWBR)</span>
-</nav>
 
 <!-- ═══════════════════════════════════════════════════════
      PAGE TITLE BAND
