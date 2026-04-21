@@ -298,6 +298,9 @@ function initPage() {
 /* -- Events: fires immediately since #jg-homecal-grid is inline ── */
 JGEvents.initHomeCal();
 
+/* -- Kalikow: fires immediately since #jg-kalikow-book-btn is inline ── */
+jgUpdateKalikowLink();
+
 /* -- Auth State Toggle (demo only — remove before go-live) -- */
 var loggedIn = false;
 function toggleAuthState() {
