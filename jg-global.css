@@ -973,7 +973,7 @@ body.dark-mode .jg-card--pub { background-color: #1e1e1e !important; border-colo
 /* ══════════════════════════════════════════════════════
    FOOTER
 ══════════════════════════════════════════════════════ */
-.jg-footer { background-color: var(--cream); border-top: 4px solid #09497a; padding: 30px 50px 20px 50px; }
+.jg-footer { background-color: var(--white); padding: 30px 50px 20px 50px; }
 body.dark-mode .jg-footer { background-color: #1a1a1a; border-top-color: #a8b361; }
 .jg-footer__main { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
 .jg-footer__logo { flex: 1; min-width: 200px; }
