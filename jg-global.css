@@ -650,7 +650,7 @@ body.dark-mode .page-title-band {
  
 /* Section wrapper — cream background, rounded, centered */
 .jg-cards-section {
-    background-color: var(--cream-subtle);   /* ← changed from var(--cream) */
+    background-color: var(--ecru);  
     padding: 3rem 4rem;
 }
 body.dark-mode .jg-cards-section { background-color: #121212; }
