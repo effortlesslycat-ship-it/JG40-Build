@@ -20,33 +20,65 @@
         /* -- Page title band ----------------------------------- */
         .page-title-band {
             background-color: var(--navy);
-            color: var(--white);
-            padding: 28px 50px;
+            color: #ffffff;
+            padding: 48px 50px;
+            text-align: center;
         }
-        .page-title-band h1 { margin: 0 0 4px 0; font-size: 26px; font-weight: bold; }
-        .page-title-band p  { margin: 0; font-size: 14px; color: rgba(255,255,255,0.75); }
+        .page-title-band h1 {
+            margin: 0 0 8px 0;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 2.5rem;
+            font-weight: normal;
+            line-height: 1.15;
+            color: #ffffff;
+        }
+        .page-title-band p {
+            margin: 0;
+            font-size: 0.9375rem;
+            color: rgba(255,255,255,0.85);
+        }
 
         /* -- Main container ------------------------------------ */
         .page-container { max-width: 1100px; margin: 0 auto; padding: 36px 50px 60px; }
 
-        /* -- Top panel: Kalikow + CTAs ------------------------- */
-        .top-panel {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-            border: 2px solid var(--navy);
-            border-radius: 10px;
-            overflow: hidden;
+        /* -- Plan-your-visit band (full-width ecru) ------------ */
+        .cal-plan-band {
+            background-color: var(--ecru);
+            padding: 3rem 4rem;
             margin-bottom: 36px;
         }
-
-        .kalikow-block {
-            background-color: var(--cream);
-            padding: 24px 28px;
-            border-right: 2px solid var(--navy);
+        .cal-plan-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        .kalikow-block h2 { margin: 0 0 4px 0; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--charcoal); font-weight: bold; }
-        .kalikow-block .kalikow-name { font-size: 16px; font-weight: bold; color: var(--navy); margin: 0 0 16px 0; }
+
+        /* -- Cards: Kalikow + CTA ------------------------------ */
+        .kalikow-block,
+        .cta-block {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 28px 32px;
+        }
+        .kalikow-block h2,
+        .cta-block h2 {
+            margin: 0 0 4px 0;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--charcoal);
+            font-weight: bold;
+        }
+        .kalikow-block .kalikow-name,
+        .cta-block .talks-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--navy);
+            margin: 0 0 16px 0;
+        }
 
         .hours-grid { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: 14px; }
         .hours-day  { font-weight: bold; color: var(--charcoal); }
@@ -54,15 +86,11 @@
         .closure-notice { margin-top: 14px; font-size: 12px; color: var(--charcoal); opacity: 0.75; font-style: italic; }
 
         .cta-block {
-            background-color: var(--cream);
-            padding: 24px 28px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             gap: 14px;
         }
-        .cta-block h2 { margin: 0 0 4px 0; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--charcoal); font-weight: bold; }
-        .cta-block .talks-name { font-size: 16px; font-weight: bold; color: var(--navy); margin: 0 0 16px 0; }
 
         .cta-btn {
             display: block; text-align: center; padding: 13px 20px; border-radius: 7px;
@@ -162,17 +190,18 @@
         .modal-link:hover { opacity: 0.82; }
 
         /* -- Dark mode: page-specific overrides ---------------- */
-        body.dark-mode .page-title-band      { background-color: #0a3a5c; }
-        body.dark-mode .page-title-band h1   {color: #ffffff;}
-        body.dark-mode .top-panel            { border-color: #3a4a4a; }
-        body.dark-mode .kalikow-block        { background-color: #2a2f2f; border-right-color: #3a4a4a; }
-        body.dark-mode .kalikow-block h2     { color: #c8c0b0; }
+        body.dark-mode .page-title-band      { background-color: #0d2a45; }
+        body.dark-mode .page-title-band h1   { color: #ffffff; }
+        body.dark-mode .page-title-band p    { color: rgba(255,255,255,0.85); }
+        /* .cal-plan-band: --ecru flips to #1a1a1a automatically */
+        body.dark-mode .kalikow-block,
+        body.dark-mode .cta-block            { background-color: #1e1e1e; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        body.dark-mode .kalikow-block h2,
+        body.dark-mode .cta-block h2         { color: #c8c0b0; }
         body.dark-mode .kalikow-block .kalikow-name { color: var(--sage); }
         body.dark-mode .hours-day            { color: #e8e1d1; }
         body.dark-mode .hours-time           { color: #c8c0b0; }
         body.dark-mode .closure-notice       { color: #a09888; }
-        body.dark-mode .cta-block            { background-color: #2a2f2f; }
-        body.dark-mode .cta-block h2         { color: #c8c0b0; }
         body.dark-mode .cta-block p          { color: #c8c0b0; }
         body.dark-mode .talks-name           { color: var(--sage); }
         body.dark-mode .month-nav button     { border-color: var(--sage); color: var(--sage); }
@@ -202,12 +231,11 @@
 
         /* -- Responsive ---------------------------------------- */
         @media (max-width: 768px) {
-            .page-title-band { padding: 22px 20px; }
-            .page-title-band h1 { font-size: 20px; }
+            .page-title-band { padding: 32px 20px; }
+            .page-title-band h1 { font-size: 1.75rem; }
             .page-container { padding: 24px 20px 48px; }
-            .top-panel { grid-template-columns: 1fr; }
-            .kalikow-block { border-right: none; border-bottom: 2px solid var(--navy); }
-            body.dark-mode .kalikow-block { border-bottom-color: #3a4a4a; }
+            .cal-plan-band { padding: 2rem 1.25rem; margin-bottom: 24px; }
+            .cal-plan-inner { grid-template-columns: 1fr; gap: 1rem; }
             .calendar-grid-wrap { display: none !important; }
             .calendar-list-wrap { display: block !important; }
             .view-toggle { display: none; }
@@ -217,8 +245,7 @@
         }
 
         @media (max-width: 480px) {
-            .top-panel { border-radius: 8px; }
-            .kalikow-block, .cta-block { padding: 18px 20px; }
+            .kalikow-block, .cta-block { padding: 22px 20px; }
         }
 
     </style>
@@ -244,45 +271,48 @@
      MAIN CONTENT
 ══════════════════════════════════════════ -->
 <main>
-<div class="page-container">
 
-    <!-- TOP PANEL -->
-    <section class="top-panel" aria-label="Kalikow Center and quick links">
+    <!-- PLAN-YOUR-VISIT BAND (full-width ecru) -->
+    <section class="cal-plan-band" aria-label="Kalikow Center and quick links">
+        <div class="cal-plan-inner">
 
-        <div class="kalikow-block">
-            <h2>Visit Us In Person</h2>
-            <p class="kalikow-name">Peter &amp; Mary Kalikow<br>Jewish Genealogy Center</p>
-            <div class="hours-grid" role="list" aria-label="Kalikow Center hours">
-                <span class="hours-day" role="listitem">Wednesday</span>
-                <span class="hours-time">12:00 PM – 5:00 PM</span>
-                <span class="hours-day" role="listitem">Thursday</span>
-                <span class="hours-time">12:00 PM – 8:00 PM</span>
-                <span class="hours-day" role="listitem">Sunday</span>
-                <span class="hours-time">10:00 AM – 5:00 PM</span>
+            <div class="kalikow-block">
+                <h2>Visit Us In Person</h2>
+                <p class="kalikow-name">Peter &amp; Mary Kalikow<br>Jewish Genealogy Center</p>
+                <div class="hours-grid" role="list" aria-label="Kalikow Center hours">
+                    <span class="hours-day" role="listitem">Wednesday</span>
+                    <span class="hours-time">12:00 PM – 5:00 PM</span>
+                    <span class="hours-day" role="listitem">Thursday</span>
+                    <span class="hours-time">12:00 PM – 8:00 PM</span>
+                    <span class="hours-day" role="listitem">Sunday</span>
+                    <span class="hours-time">10:00 AM – 5:00 PM</span>
+                </div>
+                <p class="closure-notice">Hours subject to change when the museum is closed.<br>
+                    Highlighted days on the calendar reflect standard open days.</p>
+                <a href="#" class="cta-btn cta-primary" style="margin-top: 18px;"
+                   aria-label="Schedule an appointment at the Kalikow Center">
+                    📅 Book an Appointment
+                </a>
             </div>
-            <p class="closure-notice">Hours subject to change when the museum is closed.<br>
-                Highlighted days on the calendar reflect standard open days.</p>
-            <a href="#" class="cta-btn cta-primary" style="margin-top: 18px;"
-               aria-label="Schedule an appointment at the Kalikow Center">
-                📅 Book an Appointment
-            </a>
-        </div>
 
-        <div class="cta-block">
-            <div>
-                <h2>Miss a JewishGen Talk?</h2>
-                <p class="talks-name">JewishGen Talks Archive</p>
-                <p style="font-size: 14px; color: var(--charcoal); margin: 0; line-height: 1.5;">
-                    Expert lectures on Jewish genealogy and history — new talks added regularly.
-                </p>
+            <div class="cta-block">
+                <div>
+                    <h2>Miss a JewishGen Talk?</h2>
+                    <p class="talks-name">JewishGen Talks Archive</p>
+                    <p style="font-size: 14px; color: var(--charcoal); margin: 0; line-height: 1.5;">
+                        Expert lectures on Jewish genealogy and history — new talks added regularly.
+                    </p>
+                </div>
+                <a href="JGTalksMOCK.html" class="cta-btn cta-secondary"
+                   aria-label="Watch the JewishGen Talks archive">
+                    🎥 Watch Now
+                </a>
             </div>
-            <a href="JGTalksMOCK.html" class="cta-btn cta-secondary"
-               aria-label="Watch the JewishGen Talks archive">
-                🎥 Watch Now
-            </a>
-        </div>
 
+        </div>
     </section>
+
+<div class="page-container">
 
     <!-- CONTROLS BAR -->
     <div class="controls-bar">
