@@ -946,7 +946,7 @@ body.dark-mode .jg-card__meta { color: #a0a0a0; border-top-color: #333; }
     display: inline-block;
     margin-top: 0.75rem;
     padding: 0.5rem 0.9375rem;
-    background-color: var(--navy);
+    background-color: #09497a;
     color: #ffffff;
     border-radius: 4px;
     font-size: 0.8125rem;
