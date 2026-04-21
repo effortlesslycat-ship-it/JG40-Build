@@ -286,8 +286,8 @@ body.dark-mode .jg-sponsor-banner strong { color: #e0e0e0; }
     background-color: #09497a;
     background-image: url('/JG40-Build/JGStarT.png');
     background-repeat: no-repeat;
-    background-position: right -80px bottom -80px;
-   background-size: 800px auto;
+    background-position: right -100px bottom -400px;
+    background-size: 800px auto;
     padding: 60px 40px;
     position: relative;
     overflow: hidden;
