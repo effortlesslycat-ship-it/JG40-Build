@@ -152,37 +152,39 @@
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════
-     KALIKOW CENTER BANNER — inline
-     To edit: update text and links directly here.
-     TODO: replace placeholder photo with hosted image on jewishgen.org
+     KALIKOW CENTER BANNER — full-width navy band
+     Link: jgUpdateKalikowLink() rewrites the button href to
+     today's date in NYC time. Default href is the MJH genealogy
+     fallback page, which stays if the JS ever fails.
 ═══════════════════════════════════════════════════════════ -->
-<div class="jg-kalikow">
+<section class="jg-kalikow" aria-label="Kalikow Center">
     <div class="jg-kalikow__inner">
 
         <div class="jg-kalikow__photo">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOftAKb33doQ9HQsRocXJvU1YaNMzr55I8au8rNW0djA&s"
-                 alt="Two researchers working at computers at the Peter and Mary Kalikow Jewish Genealogy Research Center">
+                 alt="Researchers working at the Peter and Mary Kalikow Jewish Genealogy Research Center">
         </div>
 
-        <div class="jg-kalikow__text">
+        <div class="jg-kalikow__body">
             <h2>Visiting New York City?</h2>
             <p>The <strong>Peter and Mary Kalikow Jewish Genealogy Research Center</strong>
                is the physical presence of JewishGen, located at the Museum of Jewish Heritage.
                Our expert genealogists are on hand to assist in uncovering your family's past,
                and to help you navigate JewishGen and many other critical resources
                accessible at the Center.</p>
-        </div>
 
-        <div class="jg-kalikow__cta">
-            <a href="https://www.jewishgen.org/kalikow/"
+            <a id="jg-kalikow-book-btn"
+               href="https://mjhnyc.org/genealogy/"
                class="jg-kalikow__cta-btn"
                target="_blank"
                rel="noopener noreferrer">
-                📅 Book an Appointment
+                Book an Appointment
             </a>
+
             <div class="jg-kalikow__cta-email">
                 or email us at <a href="mailto:kalikow@jewishgen.org">kalikow@jewishgen.org</a>
             </div>
+
             <p class="jg-kalikow__cta-note">
                 Appointments are recommended but not required.
                 Museum tickets are required to visit the Center.
@@ -190,7 +192,7 @@
         </div>
 
     </div>
-</div>
+</section>
 
 <!-- ═══════════════════════════════════════════════════════════
      UPCOMING EVENTS
@@ -366,6 +368,34 @@ function jgToggleSubRegion() {
         container.style.display = 'block';
     } else {
         container.style.display = 'none';
+    }
+}
+
+    /* -- Kalikow: rewrite booking link to today's date in NYC time ──
+   Format the URL requires: DDMmmYYYY (e.g. 22Apr2026).
+   If anything fails, href keeps its fallback (MJH genealogy page).
+---------------------------------------------------------- */
+function jgUpdateKalikowLink() {
+    var link = document.getElementById('jg-kalikow-book-btn');
+    if (!link) return;
+
+    try {
+        var parts = new Intl.DateTimeFormat('en-US', {
+            timeZone: 'America/New_York',
+            day:   '2-digit',
+            month: 'short',
+            year:  'numeric'
+        }).formatToParts(new Date());
+
+        var day   = parts.find(function(p) { return p.type === 'day';   }).value;
+        var month = parts.find(function(p) { return p.type === 'month'; }).value;
+        var year  = parts.find(function(p) { return p.type === 'year';  }).value;
+
+        link.href = 'https://898a.blackbaudhosting.com/898a/'
+                  + 'Peter-and-Mary-Kalikow-Jewish-Genealogy-Research-Center-Appointment-'
+                  + day + month + year;
+    } catch (err) {
+        console.warn('Kalikow link: falling back to MJH genealogy page.', err);
     }
 }
 </script>
