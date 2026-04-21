@@ -668,6 +668,19 @@ body.dark-mode .jg-cards-section { background-color: #121212; }
     color: var(--charcoal);
     margin: 0;
 }
+
+/* Event cards reuse .jg-cards-section wrapper — override to white on ecru */
+.jg-cards-section .jg-card {
+    background-color: var(--white);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.jg-cards-section .jg-card:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+body.dark-mode .jg-cards-section .jg-card {
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
  
 /* Grid*/
 .jg-grid-4 {
@@ -677,7 +690,13 @@ body.dark-mode .jg-cards-section { background-color: #121212; }
     max-width: 1200px;
     margin: 0 auto;
 }
-.jg-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.875rem; }
+.jg-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.875rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
  
 /* ── Cards ───────────────────────────────────────────
    Whole card is an <a>. Uses flex column so the chevron
@@ -941,12 +960,17 @@ body.dark-mode .jg-card__meta { color: #a0a0a0; border-top-color: #333; }
 .jg-events-links {
     display: flex;
     justify-content: center;
-    gap: 2.5rem;
+    align-items: center;
+    gap: 1.5rem;
     margin-top: 2.5rem;
-    padding-top: 1.25rem;
-    border-top: 2px solid var(--cream);
 }
-body.dark-mode .jg-events-links { border-top-color: #333; }
+
+.jg-events-links__sep {
+    color: var(--charcoal);
+    opacity: 0.35;
+    font-weight: normal;
+    user-select: none;
+}
 .jg-events-links a { display: flex; align-items: center; gap: 0.5rem; color: var(--navy); font-weight: bold; font-size: 0.9375rem; text-decoration: none; }
 .jg-events-links a:hover { color: var(--sage); }
 
@@ -1083,6 +1107,7 @@ body.dark-mode .jg-footer__legal a:hover { color: #a8b361; }
     .jg-kalikow__photo { flex: none; }
     .jg-kalikow__photo img { width: 200px; height: 200px; }
     .jg-events-links { flex-direction: column; gap: 1.25rem; text-align: center; }
+    .jg-events-links__sep { display: none; }
     .jg-footer { padding: 25px 20px 15px 20px; }
     .jg-footer__main { flex-direction: column; align-items: center; text-align: center; }
     .jg-footer__mjh { justify-content: center; }
