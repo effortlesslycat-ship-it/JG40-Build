@@ -283,12 +283,19 @@ body.dark-mode .jg-sponsor-banner strong { color: #e0e0e0; }
    HERO SEARCH
 ══════════════════════════════════════════════════════ */
 .jg-hero {
-    background-color: #09497a;           /* hardcoded navy (var would flip) */
+    background-color: #09497a;
+    background-image: url('/JG40-Build/JGStarT.png');
+    background-repeat: no-repeat;
+    background-position: right -80px bottom -80px;
+   background-size: 600px auto;
     padding: 60px 40px;
     position: relative;
     overflow: hidden;
 }
-body.dark-mode .jg-hero { background-color: #1a1a1a; }
+body.dark-mode .jg-hero {
+    background-color: #1a1a1a;
+    background-image: none;
+}
  
 /* Split layout: intro left, search right */
 .jg-hero__layout {
@@ -1089,6 +1096,7 @@ body.dark-mode .jg-footer__legal a:hover { color: #a8b361; }
 @media (max-width: 900px) {
     .jg-grid-4 { grid-template-columns: repeat(2, 1fr); }
     .jg-hero { padding: 40px 25px; }
+    .jg-hero { background-image: none; }
     .jg-hero__layout { flex-direction: column; gap: 28px; }
     .jg-hero__intro { flex: none; width: 100%; text-align: center; }
     .jg-hero__intro h1 { font-size: 2rem; }
