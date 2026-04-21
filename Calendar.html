@@ -16,18 +16,6 @@
 
         a { text-decoration: none; color: inherit; }
 
-        /* -- Breadcrumb ---------------------------------------- */
-        .breadcrumb {
-            background-color: var(--cream);
-            padding: 10px 50px;
-            font-size: 13px;
-            color: var(--charcoal);
-            border-bottom: 1px solid #d1caba;
-            margin: 0;
-        }
-        .breadcrumb a { color: var(--navy); font-weight: bold; text-decoration: underline dotted; }
-        .breadcrumb a:hover { color: var(--sage); }
-        .breadcrumb span { margin: 0 6px; color: var(--charcoal); opacity: 0.5; }
 
         /* -- Page title band ----------------------------------- */
         .page-title-band {
@@ -174,8 +162,6 @@
         .modal-link:hover { opacity: 0.82; }
 
         /* -- Dark mode: page-specific overrides ---------------- */
-        body.dark-mode .breadcrumb           { background-color: #2a2f2f; color: #c8c0b0; border-bottom-color: #333; }
-        body.dark-mode .breadcrumb a         { color: var(--sage); }
         body.dark-mode .page-title-band      { background-color: #0a3a5c; }
         body.dark-mode .page-title-band h1   {color: #ffffff;}
         body.dark-mode .top-panel            { border-color: #3a4a4a; }
@@ -216,7 +202,6 @@
 
         /* -- Responsive ---------------------------------------- */
         @media (max-width: 768px) {
-            .breadcrumb { padding: 10px 20px; }
             .page-title-band { padding: 22px 20px; }
             .page-title-band h1 { font-size: 20px; }
             .page-container { padding: 24px 20px 48px; }
@@ -244,17 +229,6 @@
      HEADER + NAV — loaded from Header_NavBar.html
 ═══════════════════════════════════════════════════════════ -->
 <div id="site-header"></div>
-
-<!-- ══════════════════════════════════════════
-     BREADCRUMB
-══════════════════════════════════════════ -->
-<nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="index.html">JewishGen Home</a>
-    <span aria-hidden="true">›</span>
-    <a href="#">Events &amp; Programs</a>
-    <span aria-hidden="true">›</span>
-    <span aria-current="page">Upcoming Events Calendar</span>
-</nav>
 
 <!-- ══════════════════════════════════════════
      PAGE TITLE BAND
