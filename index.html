@@ -197,15 +197,29 @@
 <!-- ═══════════════════════════════════════════════════════════
      UPCOMING EVENTS
      Cards populated by JGEvents.initHomeCal() below.
+     Reuses .jg-cards-section wrapper for consistent ecru band.
      To update events: edit the MJH event listing directly.
+     TODO: confirm URL for "Submit a Program Idea"
 ═══════════════════════════════════════════════════════════ -->
-<div class="jg-section">
-    <h2 class="jg-section-title">Upcoming Events</h2>
+<section class="jg-cards-section" aria-label="Upcoming Events">
+
+    <div class="jg-cards-section__intro">
+        <h2>Upcoming Events</h2>
+    </div>
+
     <div class="jg-grid-3" id="jg-homecal-grid" role="region" aria-label="Upcoming Events">
         <p class="jg-events-loading" aria-live="polite">Loading upcoming events&hellip;</p>
     </div>
-</div>
 
+    <div class="jg-events-links">
+        <a href="/JG40-Build/JGTalksMOCK.html">Watch Past JewishGen Talks</a>
+        <span class="jg-events-links__sep" aria-hidden="true">|</span>
+        <a href="/JG40-Build/Calendar.html">View Full Events Calendar</a>
+        <span class="jg-events-links__sep" aria-hidden="true">|</span>
+        <a href="#"><!-- TODO: real URL -->Submit a Program Idea</a>
+    </div>
+
+</section>
 <!-- ═══════════════════════════════════════════════════════════
      PUBLICATIONS LIBRARY — loaded from PubLib.html
      To edit: open PubLib.html
