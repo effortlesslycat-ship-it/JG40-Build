@@ -1206,8 +1206,7 @@ body.dark-mode .jg-locked-overlay__text strong { color: #a8b361; }
 /*Footer */
 
  .jg-footer {
-         background-color: var(--cream);
-         border-top: 4px solid #09497a;
+         background-color: var(--white);
          padding: 35px 50px 20px 50px;
          font-family: 'Gotham', 'Arial', sans-serif;
      }
