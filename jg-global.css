@@ -1083,6 +1083,104 @@ body.dark-mode .jg-locked-overlay {
 body.dark-mode .jg-locked-overlay__text { color: #c0c0c0; }
 body.dark-mode .jg-locked-overlay__text strong { color: #a8b361; }
 
+/*Footer */
+
+ .jg-footer {
+         background-color: var(--cream);
+         border-top: 4px solid #09497a;
+         padding: 35px 50px 20px 50px;
+         font-family: 'Gotham', 'Arial', sans-serif;
+     }
+     body.dark-mode .jg-footer {
+         background-color: #1a1a1a;
+         border-top-color: #a8b361;
+     }
+
+     .jg-footer__logos {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         gap: 30px;
+         margin-bottom: 20px;
+     }
+
+     .jg-footer__logo-jg a { display: block; line-height: 0; }
+     .jg-footer__logo-jg img {
+         height: 75px;
+         width: auto;
+         object-fit: contain;
+     }
+
+     .jg-footer__logo-divider {
+         width: 1px;
+         height: 75px;
+         background-color: #09497a;
+     }
+     body.dark-mode .jg-footer__logo-divider {
+         background-color: #a8b361;
+     }
+
+     .jg-footer__logo-mjh a { display: block; line-height: 0; }
+     .jg-footer__logo-mjh img {
+         height: 75px;
+         width: auto;
+         object-fit: contain;
+     }
+
+     .jg-footer__address {
+         text-align: center;
+         font-size: 13px;
+         line-height: 1.8;
+         color: var(--charcoal);
+         margin-bottom: 15px;
+     }
+     .jg-footer__address a {
+         color: var(--navy);
+         text-decoration: underline;
+         font-weight: bold;
+     }
+     .jg-footer__address a:hover { color: var(--sage); }
+     body.dark-mode .jg-footer__address { color: #a0a0a0; }
+     body.dark-mode .jg-footer__address a { color: #a8b361; }
+
+     .jg-footer__legal {
+         padding-top: 15px;
+         border-top: 1px solid #d1caba;
+         text-align: center;
+         font-size: 12px;
+         color: var(--charcoal);
+         opacity: 0.75;
+     }
+     body.dark-mode .jg-footer__legal {
+         border-top-color: #333;
+         color: #a0a0a0;
+     }
+     .jg-footer__legal a {
+         color: var(--charcoal);
+         text-decoration: none;
+         font-weight: normal;
+     }
+     .jg-footer__legal a:hover {
+         color: var(--sage);
+         text-decoration: underline;
+     }
+     body.dark-mode .jg-footer__legal a { color: #a0a0a0; }
+     body.dark-mode .jg-footer__legal a:hover { color: #a8b361; }
+
+     .jg-footer__legal-sep {
+         margin: 0 8px;
+         opacity: 0.4;
+     }
+
+     @media (max-width: 768px) {
+         .jg-footer { padding: 25px 20px 15px 20px; }
+         .jg-footer__logos { flex-direction: column; gap: 15px; }
+         .jg-footer__logo-divider { display: none; }
+         .jg-footer__logo-jg img,
+         .jg-footer__logo-mjh img { height: 60px; }
+         .jg-footer__legal { font-size: 11px; }
+     }
+
 /* Mobile */
 @media (max-width: 640px) {
     .jg-locked-overlay__inner { flex-direction: column; text-align: center; }
