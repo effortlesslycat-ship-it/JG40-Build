@@ -22,6 +22,7 @@ html { font-size: 100%; }
     --light-blue: #dce5ea;
     --light-green: #C7CC82;
     --light-sage: #949c51
+    --ecru: #f7f4f2
 }
 
 /* ── Base Body ────────────────────────────────────────────── */
@@ -641,7 +642,7 @@ body.dark-mode .page-title-band {
  
 /* Section wrapper — cream background, rounded, centered */
 .jg-cards-section {
-    background-color: var(--cream);
+    background-color: var(--ecru);
     padding: 3rem 4rem;
 }
 body.dark-mode .jg-cards-section { background-color: #1a1a1a; }
