@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yizkor Book Translations – JewishGen</title>
+
+<!-- 1. Bootstrap -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<!-- 2. JewishGen Global Design System -->
+<link rel="stylesheet" href="/JG40-Build/jg-global.css">
+<!-- 3. Page-specific styles -->
+<style>
+a { text-decoration: none; color: inherit; }
+
+/* ── Dark mode page-specific overrides ── */
+body.dark-mode .page-title-band { background-color: #0d2a45 !important; }
+body.dark-mode .page-title-band p.hero-subtitle { color: rgba(255,255,255,0.85) !important; }
+body.dark-mode .intro-section p { color: #c8c8c8 !important; }
+body.dark-mode .intro-section h2 { color: #e0e0e0 !important; }
+body.dark-mode .donate-strip { background-color: #1e1e1e !important; border-left-color: #a8b361 !important; }
+body.dark-mode .donate-strip p,
+body.dark-mode .donate-strip strong { color: #e0e0e0 !important; }
+body.dark-mode .jump-bar { background-color: #1e1e1e !important; border-color: #333 !important; }
+body.dark-mode .jump-bar a { color: #e0e0e0 !important; }
+body.dark-mode .jump-bar a:hover { background-color: #2a2a2a !important; color: var(--sage) !important; }
+body.dark-mode .jump-bar a.disabled { color: #555 !important; }
+body.dark-mode .alpha-section h3 { color: #e0e0e0 !important; border-bottom-color: #333 !important; }
+body.dark-mode .project-row { border-bottom-color: #2e2e2e !important; }
+body.dark-mode .row-town { color: #e0e0e0 !important; }
+body.dark-mode .row-country { color: #999 !important; }
+body.dark-mode .row-town.muted { color: #666 !important; }
+body.dark-mode .btn-community { border-color: #8ab0c9 !important; color: #8ab0c9 !important; }
+body.dark-mode .btn-community:hover { background-color: #8ab0c9 !important; color: #121212 !important; }
+body.dark-mode .btn-yizkor { border-color: #666 !important; color: #aaa !important; }
+body.dark-mode .btn-yizkor:hover { background-color: #555 !important; color: #fff !important; border-color: #888 !important; }
+body.dark-mode .badge-soon { background-color: #2a2a2a !important; border-color: #444 !important; color: #888 !important; }
+body.dark-mode .donate-card { background-color: #1e1e1e !important; border-color: #333 !important; border-top-color: #a8b361 !important; }
+body.dark-mode .donate-card h2 { color: #e0e0e0 !important; }
+body.dark-mode .donate-card p { color: #c8c8c8 !important; }
+body.dark-mode .also-see { color: #a0a0a0 !important; }
+
+/* ── Page title band ── */
+.page-title-band {
+    background-color: var(--navy);
+    padding: 44px 50px;
+    text-align: center;
+}
+.page-title-band .tagline {
+    display: block;
+    color: var(--light-green);
+    font-size: 0.875rem;
+    font-style: italic;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+.page-title-band h1 {
+    margin: 0 0 10px 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2.25rem;
+    font-weight: normal;
+    line-height: 1.15;
+    color: #ffffff;
+}
+.page-title-band p.hero-subtitle {
+    margin: 0 auto;
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 720px;
+    line-height: 1.6;
+}
+
+/* ── Ecru content wrap ── */
+.yb-ecru-wrap {
+    background-color: var(--ecru);
+    padding: 3rem 2rem;
+}
+.yb-ecru-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* ── Section heading pattern (matches Support.html) ── */
+.section-heading {
+    margin: 0 0 18px 0;
+    font-size: 20px;
+    color: var(--navy);
+    position: relative;
+    padding-bottom: 8px;
+    font-weight: bold;
+}
+.section-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--sage);
+    border-radius: 2px;
+}
+
+/* ── Intro ── */
+.intro-section { margin-bottom: 28px; }
+.intro-section p {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--charcoal);
+    margin: 0 0 12px 0;
+}
+.intro-section p:last-child { margin: 0; }
+.intro-section strong { color: var(--navy); }
+
+/* ── Top donate strip ── */
+.donate-strip {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: var(--white);
+    border: 1px solid #d1caba;
+    border-left: 4px solid var(--sage);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 22px;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+}
+.donate-strip p {
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--charcoal);
+    margin: 0;
+    flex: 1;
+    min-width: 220px;
+}
+.donate-strip strong { color: var(--navy); }
+.btn-donate-sm {
+    display: inline-block;
+    background-color: var(--sage);
+    color: #ffffff;
+    padding: 9px 20px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.75px;
+    white-space: nowrap;
+    transition: filter 0.15s, transform 0.15s;
+    flex-shrink: 0;
+}
+.btn-donate-sm:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    color: #ffffff;
+}
+body.dark-mode .btn-donate-sm { background-color: #a8b361; color: #121212; }
+
+/* ── Alpha jump bar ── */
+.jump-bar {
+    background-color: var(--white);
+    border: 1px solid #d1caba;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.jump-bar__label {
+    font-size: 0.6875rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--charcoal);
+    opacity: 0.6;
+    padding: 6px 8px 6px 4px;
+    margin-right: 4px;
+    align-self: center;
+}
+.jump-bar a {
+    display: inline-block;
+    padding: 6px 9px;
+    font-size: 0.8125rem;
+    font-weight: bold;
+    color: var(--navy);
+    border-radius: 4px;
+    transition: background-color 0.15s, color 0.15s;
+    min-width: 28px;
+    text-align: center;
+}
+.jump-bar a:hover,
+.jump-bar a:focus {
+    background-color: rgba(147,155,81,0.15);
+    color: var(--sage);
+    outline: none;
+}
+.jump-bar a.disabled {
+    color: #c0b9a9;
+    pointer-events: none;
+    cursor: default;
+}
+
+/* ── Alpha sections ── */
+.alpha-section {
+    margin-bottom: 24px;
+    scroll-margin-top: 80px;
+}
+.alpha-section h3 {
+    font-size: 1.75rem;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: normal;
+    color: var(--navy);
+    margin: 0 0 8px 0;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--sage);
+    width: 40px;
+    text-align: center;
+}
+
+/* ── Project rows: 2-col grid (info | actions) ── */
+.project-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: center;
+    padding: 12px 4px;
+    border-bottom: 1px solid #e0dbd0;
+}
+.project-row:last-child { border-bottom: none; }
+
+.row-info {
+    min-width: 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.row-town {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--navy);
+    line-height: 1.2;
+}
+.row-town.muted {
+    color: var(--charcoal);
+    opacity: 0.55;
+}
+.row-country {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--charcoal);
+    opacity: 0.55;
+    font-weight: 600;
+}
+
+/* ── Row actions: 3-column grid so empty slots preserve alignment ── */
+.row-actions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(110px, 1fr));
+    gap: 7px;
+    align-items: center;
+}
+.row-actions > * {
+    width: 100%;
+    text-align: center;
+}
+
+/* ── Buttons ── */
+.btn-sm {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    white-space: nowrap;
+    transition: all 0.15s;
+    line-height: 1.4;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+.btn-project {
+    background-color: var(--sage);
+    color: #ffffff;
+    border: 1.5px solid var(--sage);
+}
+.btn-project:hover {
+    background-color: var(--navy);
+    border-color: var(--navy);
+    color: #ffffff;
+}
+.btn-community {
+    border: 1.5px solid var(--navy);
+    color: var(--navy);
+    background: transparent;
+}
+.btn-community:hover {
+    background-color: var(--navy);
+    color: #ffffff;
+}
+.btn-yizkor {
+    border: 1.5px solid #999;
+    color: var(--charcoal);
+    background: transparent;
+    opacity: 0.75;
+}
+.btn-yizkor:hover {
+    opacity: 1;
+    background-color: var(--charcoal);
+    color: #ffffff;
+    border-color: var(--charcoal);
+}
+.badge-soon {
+    display: inline-block;
+    background-color: var(--cream);
+    color: var(--charcoal);
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-size: 0.6875rem;
+    font-weight: bold;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    border: 1px solid #c8c0b0;
+    opacity: 0.8;
+}
+/* Empty action slot: preserves grid alignment */
+.row-actions .empty {
+    visibility: hidden;
+}
+
+/* ── Bottom donate card (framed, per mockup intent) ── */
+.donate-card {
+    background-color: var(--white);
+    border: 1px solid #d1caba;
+    border-top: 4px solid var(--navy);
+    border-radius: 8px;
+    padding: 36px 40px 34px 40px;
+    text-align: center;
+    max-width: 640px;
+    margin: 48px auto 20px auto;
+}
+.donate-card h2 {
+    font-size: 1.25rem;
+    color: var(--navy);
+    margin: 0 0 12px 0;
+    font-weight: bold;
+}
+.donate-card p {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--charcoal);
+    margin: 0 auto 20px auto;
+    max-width: 500px;
+}
+.donate-card a.inline { color: var(--navy); font-weight: bold; text-decoration: underline dotted; }
+.donate-card a.inline:hover { color: var(--sage); }
+body.dark-mode .donate-card a.inline { color: #8ab0c9; }
+body.dark-mode .donate-card a.inline:hover { color: var(--sage); }
+
+.btn-donate-primary {
+    display: inline-block;
+    background-color: var(--sage);
+    color: #ffffff;
+    padding: 12px 32px;
+    border-radius: 6px;
+    font-size: 0.8125rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: filter 0.15s, transform 0.15s;
+}
+.btn-donate-primary:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    color: #ffffff;
+}
+body.dark-mode .btn-donate-primary { background-color: #a8b361; color: #121212; }
+
+.also-see {
+    text-align: center;
+    font-size: 0.8125rem;
+    color: var(--charcoal);
+    opacity: 0.8;
+    margin: 0 0 8px 0;
+}
+.also-see a {
+    color: var(--navy);
+    font-weight: bold;
+    text-decoration: underline dotted;
+}
+.also-see a:hover { color: var(--sage); }
+body.dark-mode .also-see a { color: #8ab0c9; }
+
+/* ── Responsive ── */
+@media (max-width: 760px) {
+    .page-title-band { padding: 30px 20px; }
+    .page-title-band h1 { font-size: 1.75rem; }
+    .yb-ecru-wrap { padding: 2rem 1rem; }
+    .project-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .row-actions {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+    }
+    .jump-bar { position: static; }
+}
+@media (max-width: 480px) {
+    .row-actions { grid-template-columns: 1fr; }
+    .btn-sm { font-size: 0.6875rem; padding: 7px 8px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="site-header"></div>
+
+<!-- PAGE TITLE BAND -->
+<div class="page-title-band">
+    <span class="tagline">JewishGen-erosity · Category</span>
+    <h1>Yizkor Book Translations</h1>
+    <p class="hero-subtitle">Support the preservation and translation of Jewish memorial books — a vital record of pre-war Jewish life and the communities destroyed in the Holocaust.</p>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="yb-ecru-wrap">
+<div class="yb-ecru-inner">
+
+    <!-- INTRO -->
+    <section class="intro-section" aria-labelledby="intro-heading">
+        <h2 id="intro-heading" class="section-heading">About Yizkor Books</h2>
+        <p><strong>Yizkor books</strong> open a unique and important window into Jewish life before World War II and during the Holocaust. After the war, survivors gathered to memorialize their families and the destroyed communities they came from. The memorial books they produced &mdash; written in Hebrew, Yiddish, and occasionally other languages &mdash; preserve both a record of the Holocaust and a portrait of pre-war Jewish civilization that no official source could replicate.</p>
+        <p>JewishGen launched its Yizkor Book translation project in 1994. Of approximately 2,000 Yizkor books ever written, JewishGen has translated over 100 &mdash; and aims to eventually translate all of them. Each translation costs between $15,000 and $20,000 depending on length.</p>
+    </section>
+
+    <!-- TOP DONATE STRIP -->
+    <div class="donate-strip" role="note" aria-label="Support this work">
+        <p><strong>Support this work.</strong> Your gift to the Yizkor Book General Fund helps ensure these memorial books reach readers for generations to come.</p>
+        <a href="https://www.jewishgen.org/jewishgen-erosity/" class="btn-donate-sm">Donate Now</a>
+    </div>
+
+    <!-- A-Z JUMP BAR -->
+    <nav class="jump-bar" aria-label="Jump to letter" role="navigation">
+        <span class="jump-bar__label">Jump to</span>
+        <a href="#sec-A">A</a>
+        <a href="#sec-B">B</a>
+        <a href="#" class="disabled" aria-disabled="true">C</a>
+        <a href="#" class="disabled" aria-disabled="true">D</a>
+        <a href="#" class="disabled" aria-disabled="true">E</a>
+        <a href="#" class="disabled" aria-disabled="true">F</a>
+        <a href="#sec-G">G</a>
+        <a href="#" class="disabled" aria-disabled="true">H</a>
+        <a href="#sec-I">I</a>
+        <a href="#" class="disabled" aria-disabled="true">J</a>
+        <a href="#sec-K">K</a>
+        <a href="#sec-L">L</a>
+        <a href="#sec-M">M</a>
+        <a href="#sec-N">N</a>
+        <a href="#sec-O">O</a>
+        <a href="#" class="disabled" aria-disabled="true">P</a>
+        <a href="#" class="disabled" aria-disabled="true">Q</a>
+        <a href="#sec-R">R</a>
+        <a href="#sec-S">S</a>
+        <a href="#sec-T">T</a>
+        <a href="#" class="disabled" aria-disabled="true">U</a>
+        <a href="#" class="disabled" aria-disabled="true">V</a>
+        <a href="#sec-W">W</a>
+        <a href="#" class="disabled" aria-disabled="true">X</a>
+        <a href="#" class="disabled" aria-disabled="true">Y</a>
+        <a href="#sec-Z">Z</a>
+    </nav>
+
+    <!-- PROJECT LIST -->
+    <section class="projects-section" aria-labelledby="projects-heading">
+        <h2 id="projects-heading" class="section-heading">Current Translation Projects</h2>
+
+        <!-- A -->
+        <div class="alpha-section" id="sec-A">
+            <h3>A</h3>
+            <!-- No projects yet starting with A in mockup; reserved for future additions -->
+        </div>
+
+        <!-- B -->
+        <div class="alpha-section" id="sec-B">
+            <h3>B</h3>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town muted">Babruysk</span>
+                    <span class="row-country">Belarus</span>
+                </div>
+                <div class="row-actions">
+                    <span class="badge-soon">Coming Soon</span>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-1940996" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/yizkor/bobruisk/bysktoc1.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Balti (Beltsy)</span>
+                    <span class="row-country">Moldova</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Beltsy.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-2276030" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/Yizkor/Balti/Balti.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Białystok</span>
+                    <span class="row-country">Poland</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_bialystok.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-493500" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/yizkor/Bialystok/Bialystok.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Bielsk-Podlaski</span>
+                    <span class="row-country">Poland</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Bielsk.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-493706" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/yizkor/bielsk/bielsk.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Brzesko</span>
+                    <span class="row-country">Poland</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_brzesko.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-495469" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <span class="empty" aria-hidden="true"></span>
+                </div>
+            </div>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Bulgaria</span>
+                    <span class="row-country">Bulgaria &mdash; Regional</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Bulgaria.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <span class="empty" aria-hidden="true"></span>
+                    <a href="https://www.jewishgen.org/Yizkor/bulgaria/Bulgaria.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- G -->
+        <div class="alpha-section" id="sec-G">
+            <h3>G</h3>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Gargždai</span>
+                    <span class="row-country">Lithuania</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Gargzdai.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-2614231" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/yizkor/Gargzdai/Gargzdai.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Grabowiec</span>
+                    <span class="row-country">Poland</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/yb_grabowiec.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-503028" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/yizkor/Grabowiec/Grabowiec.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- I -->
+        <div class="alpha-section" id="sec-I">
+            <h3>I</h3>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Indura (Amdur)</span>
+                    <span class="row-country">Belarus</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_indura.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-2915671" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/Yizkor/indura/Indura.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- K -->
+        <div class="alpha-section" id="sec-K">
+            <h3>K</h3>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Khotyn</span>
+                    <span class="row-country">Ukraine</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Khotyn.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-1041561" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/yizkor/Khotyn/Khotyn.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Koidonov (Dzyarzhynsk)</span>
+                    <span class="row-country">Belarus</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Koidonov.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-1942832" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/yizkor/Dzyarzhynsk/Dzyarzhynsk.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Kolo</span>
+                    <span class="row-country">Poland</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Kolo.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-508539" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://jewishgen.org/yizkor/kolo/kolo.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town muted">Kraśnik</span>
+                    <span class="row-country">Poland</span>
+                </div>
+                <div class="row-actions">
+                    <span class="badge-soon">Coming Soon</span>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-510726" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/yizkor/Krasnik/Krasnik.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Kurów</span>
+                    <span class="row-country">Poland</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_kurow.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-511922" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/yizkor/kurow/kurow.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- L -->
+        <div class="alpha-section" id="sec-L">
+            <h3>L</h3>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Lakhva</span>
+                    <span class="row-country">Belarus</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Lakhva.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-1945204" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/yizkor/Lakhva/Lakhva.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Leczyca</span>
+                    <span class="row-country">Poland</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Leczyca.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-512817" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/yizkor/Leczyca/Leczyca.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Lida</span>
+                    <span class="row-country">Belarus</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Lida.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-1945387" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://jewishgen.org/yizkor/lida/lida.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Lipcani</span>
+                    <span class="row-country">Moldova</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Lipkany.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-2276778" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/yizkor/lipkany1/lipkany1.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Lita (Lithuania)</span>
+                    <span class="row-country">Lithuania &mdash; Regional</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Lita.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/yizkor/lita/lita.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Vol. I</a>
+                    <a href="https://www.jewishgen.org/yizkor/lita2/lita2.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Vol. II</a>
+                </div>
+            </div>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Lubartów</span>
+                    <span class="row-country">Poland</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Lubartow.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-514165" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/yizkor/lubartow/lubartow.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Lublin</span>
+                    <span class="row-country">Poland</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Lublin.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-514340" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://jewishgen.org/Yizkor/lublin/lublin.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Lutsk</span>
+                    <span class="row-country">Ukraine</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Lutsk.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-1045249" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://jewishgen.org/yizkor/Lutsk1/lutsk1.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- M -->
+        <div class="alpha-section" id="sec-M">
+            <h3>M</h3>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Międzyrzec Podlaski</span>
+                    <span class="row-country">Poland</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Miedzyrzec.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-516296" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/yizkor/Miedzyrzec_Podlaski/Miedzyrzec_Podlaski.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- N -->
+        <div class="alpha-section" id="sec-N">
+            <h3>N</h3>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Novograd-Volynskiy</span>
+                    <span class="row-country">Ukraine</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Zvhil.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-1048276" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/Yizkor/zvhil/zvhil.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- O -->
+        <div class="alpha-section" id="sec-O">
+            <h3>O</h3>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Opatów</span>
+                    <span class="row-country">Poland</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Opatow.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-519939" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/yizkor/opatow/opatow.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Ostroh</span>
+                    <span class="row-country">Ukraine</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Ostroh.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-1049602" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/yizkor/ostroh/Ostroh.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Ostrowiec</span>
+                    <span class="row-country">Poland</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Ostrowiec.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-520544" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/yizkor/ostrowiec/ostrowiec.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Otaci</span>
+                    <span class="row-country">Moldova</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Otaci.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-2276004" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/yizkor/otaci/otaci.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- R -->
+        <div class="alpha-section" id="sec-R">
+            <h3>R</h3>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town muted">Różan</span>
+                    <span class="row-country">Poland</span>
+                </div>
+                <div class="row-actions">
+                    <span class="badge-soon">Coming Soon</span>
+                    <span class="empty" aria-hidden="true"></span>
+                    <span class="empty" aria-hidden="true"></span>
+                </div>
+            </div>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Rypin</span>
+                    <span class="row-country">Poland</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Rypin.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-526806" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/Rypin/Rypin.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Rzeszów</span>
+                    <span class="row-country">Poland</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/yb_Rzeszow.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-527004" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/yizkor/rzeszow/rzeszow.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- S -->
+        <div class="alpha-section" id="sec-S">
+            <h3>S</h3>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Sanok</span>
+                    <span class="row-country">Poland</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_sanok.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-527272" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/yizkor/sanok/sanok.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- T -->
+        <div class="alpha-section" id="sec-T">
+            <h3>T</h3>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Telsiai (Telz)</span>
+                    <span class="row-country">Lithuania</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Telsiai.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-2619849" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/yizkor/Telsiai/telsiai.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- W -->
+        <div class="alpha-section" id="sec-W">
+            <h3>W</h3>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Wadowice</span>
+                    <span class="row-country">Poland</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Wadowice.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-534197" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/Yizkor/wadowice/wadowice.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Wislica</span>
+                    <span class="row-country">Poland</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_wislica.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-535716" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/yizkor/wislica/wislica.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Wojsławice</span>
+                    <span class="row-country">Poland</span>
+                </div>
+                <div class="row-actions">
+                    <span class="empty" aria-hidden="true"></span>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-536186" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/yizkor/Wojslawice/Wojslawice.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Z -->
+        <div class="alpha-section" id="sec-Z">
+            <h3>Z</h3>
+            <div class="project-row">
+                <div class="row-info">
+                    <span class="row-town">Zawiercie</span>
+                    <span class="row-country">Poland</span>
+                </div>
+                <div class="row-actions">
+                    <a href="https://www.jewishgen.org/JewishGen-erosity/projectdesc/YB_Zawiercie.html" class="btn-sm btn-project" target="_blank" rel="noopener">View Project</a>
+                    <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-539039" class="btn-sm btn-community" target="_blank" rel="noopener">Community Page</a>
+                    <a href="https://www.jewishgen.org/Yizkor/Zawiercie/Zawiercie.html" class="btn-sm btn-yizkor" target="_blank" rel="noopener">Read Translations</a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- BOTTOM DONATE CARD -->
+    <aside class="donate-card" aria-labelledby="donate-footer-heading">
+        <h2 id="donate-footer-heading">Support Yizkor Book Translations</h2>
+        <p>Your gift to the Yizkor Book General Fund helps preserve the memory of destroyed Jewish communities for generations to come. Interested in making a major contribution? <a class="inline" href="mailto:info@jewishgen.org">Contact us directly.</a></p>
+        <a href="https://www.jewishgen.org/jewishgen-erosity/" class="btn-donate-primary">Donate to the General Fund</a>
+    </aside>
+
+    <p class="also-see">Browse completed translations: <a href="https://www.jewishgen.org/Yizkor/" target="_blank" rel="noopener">JewishGen Yizkor Book Project &rsaquo;</a></p>
+
+</div>
+</main>
+
+<!-- FOOTER -->
+<div id="site-footer"></div>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function loadComponent(id, file) {
+    return fetch(file)
+        .then(r => { if (!r.ok) throw new Error('Could not load ' + file); return r.text(); })
+        .then(html => { document.getElementById(id).innerHTML = html; })
+        .catch(err => console.warn(err));
+}
+
+Promise.all([
+    loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
+    loadComponent('site-footer', '/JG40-Build/Footer.html')
+]).then(() => {
+    document.querySelectorAll('.jg-nav .dropbtn').forEach(btn => {
+        btn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const expanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', String(!expanded));
+                const menu = document.getElementById(this.getAttribute('aria-controls'));
+                if (menu) menu.style.display = expanded ? 'none' : 'block';
+            }
+            if (e.key === 'Escape') {
+                this.setAttribute('aria-expanded', 'false');
+                const menu = document.getElementById(this.getAttribute('aria-controls'));
+                if (menu) menu.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+
+</body>
+</html>
