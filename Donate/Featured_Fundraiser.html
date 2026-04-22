@@ -1,0 +1,158 @@
+<!--
+  FEATURED FUNDRAISER COMPONENT
+  -----------------------------
+  This file is fetched into #featured-fundraiser on Support.html.
+  To swap the featured campaign, edit the fields below.
+  The optional <div class="ff-image"> block can be deleted
+  entirely if the campaign has no accompanying image.
+-->
+
+<section class="featured-fundraiser" aria-labelledby="ff-title">
+    <div class="ff-inner">
+
+        <!-- OPTIONAL IMAGE - delete this whole div if no image -->
+        <div class="ff-image">
+            <img src="/JG40-Build/JGStar.png" alt="">
+        </div>
+
+        <!-- CONTENT -->
+        <div class="ff-content">
+            <span class="ff-eyebrow">Featured Campaign</span>
+            <h2 id="ff-title">The JewishGen Annual Fund</h2>
+            <p>Your gift fuels JewishGen's mission to preserve the precious history of the Jewish people, and enables us to increase the information we provide to all who have an interest in researching their Jewish ancestry.</p>
+            <a class="ff-cta" href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=25">
+                Donate Now
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<style>
+/* ==========================================================
+   FEATURED FUNDRAISER  -  component self-contained per hazard note
+   Uses tokens only. Cream bg flips in dark mode automatically.
+   ========================================================== */
+.featured-fundraiser {
+    background-color: var(--cream);
+    border-left: 6px solid var(--navy);
+    border-radius: 6px;
+    padding: 30px 34px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+body.dark-mode .featured-fundraiser {
+    background-color: #1e1e1e;
+    border-left-color: #a8b361;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.35);
+}
+
+.ff-inner {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.ff-image {
+    flex: 0 0 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ff-image img {
+    max-width: 100%;
+    height: auto;
+    max-height: 180px;
+    display: block;
+    object-fit: contain;
+}
+
+.ff-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.ff-eyebrow {
+    display: inline-block;
+    background-color: var(--sage);
+    color: #ffffff;
+    font-size: 0.6875rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 4px 12px;
+    border-radius: 3px;
+    margin-bottom: 14px;
+}
+body.dark-mode .ff-eyebrow {
+    background-color: #a8b361;
+    color: #121212;
+}
+
+.featured-fundraiser h2 {
+    color: var(--navy);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.75rem;
+    font-weight: normal;
+    line-height: 1.2;
+    margin: 0 0 12px 0;
+}
+body.dark-mode .featured-fundraiser h2 {
+    color: #ffffff;
+}
+
+.featured-fundraiser p {
+    color: var(--charcoal);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    margin: 0 0 20px 0;
+}
+body.dark-mode .featured-fundraiser p {
+    color: #c8c8c8;
+}
+
+.ff-cta {
+    display: inline-block;
+    background-color: var(--sage);
+    color: #ffffff;
+    font-size: 0.9375rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 12px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: filter 0.15s ease, transform 0.15s ease;
+}
+.ff-cta:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    color: #ffffff;
+}
+.ff-cta:focus {
+    outline: 3px solid var(--light-green);
+    outline-offset: 2px;
+    color: #ffffff;
+}
+body.dark-mode .ff-cta {
+    background-color: #a8b361;
+    color: #121212;
+}
+body.dark-mode .ff-cta:hover,
+body.dark-mode .ff-cta:focus { color: #121212; }
+
+/* Mobile - stack image above content */
+@media (max-width: 700px) {
+    .featured-fundraiser { padding: 24px 22px; }
+    .ff-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    .ff-image {
+        flex: none;
+        width: 100%;
+        max-width: 220px;
+    }
+    .featured-fundraiser h2 { font-size: 1.4rem; }
+}
+</style>
