@@ -436,7 +436,7 @@ function loadComponent(id, file) {
 Promise.all([
     loadComponent('site-header',         '/JG40-Build/Header_NavBar.html'),
     loadComponent('site-footer',         '/JG40-Build/Footer.html'),
-    loadComponent('featured-fundraiser', '/JG40-Build/Featured_Fundraiser.html')
+    loadComponent('featured-fundraiser', '/JG40-Build/Donate/Featured_Fundraiser.html')
 ]).then(() => {
     /* Re-bind nav keyboard handlers after header injection */
     document.querySelectorAll('.jg-nav .dropbtn').forEach(btn => {
