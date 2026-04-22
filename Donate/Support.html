@@ -13,172 +13,163 @@
 <style>
 a { text-decoration: none; color: inherit; }
 
-/* ==========================================================
-   PAGE TITLE BAND
-   Navy is hardcoded because var(--navy) washes out in dark mode.
-   ========================================================== */
+/* ── Dark mode page-specific overrides (matches JGTalks pattern) ── */
+body.dark-mode .page-title-band { background-color: #0d2a45 !important; }
+body.dark-mode .page-title-band p.hero-subtitle { color: rgba(255,255,255,0.85) !important; }
+body.dark-mode .ops-card,
+body.dark-mode .funds-box,
+body.dark-mode .ow-card { background-color: #1e1e1e !important; border-color: #333 !important; }
+body.dark-mode .ops-card:hover,
+body.dark-mode .ow-card:hover { border-color: var(--sage) !important; }
+body.dark-mode .funds-list li { border-bottom-color: #333 !important; }
+body.dark-mode .funds-list a { color: #e0e0e0 !important; }
+body.dark-mode .ops-card h3,
+body.dark-mode .ow-card h3,
+body.dark-mode .funds-box h2,
+body.dark-mode .ops-section h2,
+body.dark-mode .other-ways-section h2 { color: #e0e0e0 !important; }
+body.dark-mode .ops-card p,
+body.dark-mode .ow-card p { color: #c0c0c0 !important; }
+body.dark-mode .disclaimer { color: #a0a0a0 !important; }
+body.dark-mode .other-ways-section { border-top-color: #333 !important; }
+
+/* ── Page title band ── */
 .page-title-band {
-    background-color: #09497a;
-    color: #ffffff;
-    padding: 44px 50px 40px 50px;
+    background-color: var(--navy);
+    padding: 44px 50px;
     text-align: center;
-}
-body.dark-mode .page-title-band {
-    background-color: #0d2a45;
 }
 .page-title-band .tagline {
     display: block;
     color: var(--light-green);
-    font-size: 1rem;
+    font-size: 0.875rem;
     font-style: italic;
-    margin-bottom: 10px;
     letter-spacing: 0.5px;
+    margin-bottom: 10px;
 }
 .page-title-band h1 {
-    margin: 0 0 16px 0;
-    font-size: 2.1rem;
-    font-weight: bold;
+    margin: 0 0 10px 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2.25rem;
+    font-weight: normal;
+    line-height: 1.15;
     color: #ffffff;
 }
-.page-title-band p {
+.page-title-band p.hero-subtitle {
     margin: 0 auto;
     font-size: 0.9375rem;
-    color: #dce5ea;
-    max-width: 860px;
-    line-height: 1.65;
-}
-body.dark-mode .page-title-band p {
-    color: #ffffff;
-    opacity: 0.85;
+    color: rgba(255,255,255,0.85);
+    max-width: 720px;
+    line-height: 1.6;
 }
 
-/* ==========================================================
-   MAIN SUPPORT GRID  70 / 30
-   ========================================================== */
-.support-wrap {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 40px 20px 40px;
+/* ── Ecru content wrap (matches Calendar / JGTalks) ── */
+.support-ecru-wrap {
+    background-color: var(--ecru);
+    padding: 3rem 2rem;
 }
+.support-ecru-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* ── Main 70 / 30 grid ── */
 .support-grid {
     display: grid;
     grid-template-columns: minmax(0, 7fr) minmax(0, 3fr);
-    gap: 36px;
+    gap: 28px;
     align-items: start;
 }
 
-/* ==========================================================
-   LEFT COLUMN  -  Featured + General Ops
-   ========================================================== */
-.left-col > * + * { margin-top: 32px; }
-
-.ops-section h2,
-.funds-box h2 {
+/* ── Section headings with 40px sage underline bar ── */
+.section-heading {
+    margin: 0 0 18px 0;
+    font-size: 20px;
     color: var(--navy);
-    margin: 0 0 20px 0;
-    font-size: 1.125rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-bottom: 2px solid var(--sage);
+    position: relative;
     padding-bottom: 8px;
+    font-weight: bold;
 }
-body.dark-mode .ops-section h2,
-body.dark-mode .funds-box h2 {
-    color: #ffffff;
+.section-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--sage);
+    border-radius: 2px;
 }
 
+/* ── Left column stacking ── */
+.left-col > * + * { margin-top: 28px; }
+
+/* ── Ops cards (General Operations Support) ── */
 .ops-card {
     background-color: var(--white);
-    border-left: 4px solid var(--sage);
-    border-radius: 4px;
-    padding: 20px 26px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-    transition: box-shadow 0.2s ease, transform 0.15s ease;
+    border: 1px solid #d1caba;
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin-bottom: 12px;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
 }
 .ops-card:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.10);
-    transform: translateY(-1px);
-}
-body.dark-mode .ops-card {
-    background-color: #1e1e1e;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-body.dark-mode .ops-card:hover {
-    box-shadow: 0 4px 14px rgba(0,0,0,0.45);
+    border-color: var(--sage);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
 }
 .ops-card h3 {
     color: var(--navy);
-    margin: 0 0 8px 0;
-    font-size: 1.0625rem;
+    margin: 0 0 6px 0;
+    font-size: 1rem;
     font-weight: bold;
 }
-body.dark-mode .ops-card h3 { color: #ffffff; }
 .ops-card p {
-    margin: 0 0 12px 0;
-    font-size: 0.9rem;
-    line-height: 1.6;
+    margin: 0 0 10px 0;
+    font-size: 0.875rem;
+    line-height: 1.55;
     color: var(--charcoal);
 }
-body.dark-mode .ops-card p { color: #c8c8c8; }
 .ops-card a.ops-link {
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     font-weight: bold;
     color: var(--sage);
-    text-transform: uppercase;
-    letter-spacing: 0.75px;
+    letter-spacing: 0.3px;
 }
 .ops-card a.ops-link:hover { color: var(--navy); }
-body.dark-mode .ops-card a.ops-link { color: #a8b361; }
-body.dark-mode .ops-card a.ops-link:hover { color: #ffffff; }
 
-/* ==========================================================
-   RIGHT COLUMN  -  Regional & Topical Funds
-   Heading text is a placeholder; change anytime.
-   ========================================================== */
+/* ── Right column: Regional & Topical Funds ── */
 .funds-box {
-    background-color: var(--cream);
-    border-radius: 6px;
-    padding: 24px 26px;
+    background-color: var(--white);
+    border: 1px solid #d1caba;
+    border-radius: 8px;
+    padding: 18px 20px;
     position: sticky;
     top: 20px;
 }
-body.dark-mode .funds-box {
-    background-color: #1e1e1e;
-}
+.funds-box h2 { margin: 0 0 14px 0; font-size: 16px; }
+.funds-box h2::after { width: 34px; }
 .funds-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
-.funds-list li {
-    border-bottom: 1px dotted rgba(9,73,122,0.25);
-}
-body.dark-mode .funds-list li {
-    border-bottom-color: rgba(168,179,97,0.25);
-}
+.funds-list li { border-bottom: 1px dotted #d1caba; }
 .funds-list li:last-child { border-bottom: none; }
 .funds-list a {
     display: block;
-    padding: 9px 6px 9px 4px;
+    padding: 7px 4px;
     color: var(--navy);
-    font-size: 0.9rem;
+    font-size: 0.8125rem;
     line-height: 1.4;
-    transition: background-color 0.15s ease, padding-left 0.15s ease, color 0.15s ease;
-    position: relative;
+    transition: background-color 0.15s, padding-left 0.15s, color 0.15s;
 }
-body.dark-mode .funds-list a { color: #e8e1d1; }
 .funds-list a:hover,
 .funds-list a:focus {
-    background-color: rgba(147,155,81,0.12);
-    padding-left: 12px;
+    background-color: rgba(147,155,81,0.10);
+    padding-left: 10px;
     color: var(--navy);
     outline: none;
-}
-body.dark-mode .funds-list a:hover,
-body.dark-mode .funds-list a:focus {
-    background-color: rgba(168,179,97,0.15);
-    color: #ffffff;
 }
 .funds-list a::after {
     content: " \203A";
@@ -186,109 +177,100 @@ body.dark-mode .funds-list a:focus {
     font-weight: bold;
     opacity: 0;
     margin-left: 4px;
-    transition: opacity 0.15s ease;
+    transition: opacity 0.15s;
 }
 .funds-list a:hover::after,
 .funds-list a:focus::after { opacity: 1; }
 
-/* ==========================================================
-   OTHER WAYS TO GIVE  -  full width
-   ========================================================== */
+/* ── Other Ways to Give (sits in same ecru wrap) ── */
 .other-ways-section {
-    background-color: var(--cream);
-    padding: 50px 40px 40px 40px;
-    border-top: 3px solid var(--sage);
-    margin-top: 40px;
-}
-body.dark-mode .other-ways-section {
-    background-color: #1a1a1a;
-    border-top-color: #a8b361;
-}
-.other-ways-inner {
-    max-width: 1200px;
-    margin: 0 auto;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid #d1caba;
 }
 .other-ways-section h2 {
-    text-align: center;
+    text-align: left;
+    margin: 0 0 20px 0;
+    font-size: 20px;
     color: var(--navy);
-    margin: 0 0 32px 0;
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
+    position: relative;
+    padding-bottom: 8px;
+    font-weight: bold;
 }
-body.dark-mode .other-ways-section h2 { color: #ffffff; }
+.other-ways-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--sage);
+    border-radius: 2px;
+}
 
 .ow-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    gap: 16px;
+    margin-bottom: 24px;
 }
 .ow-card {
     background-color: var(--white);
-    padding: 22px 22px 20px 22px;
-    border-radius: 6px;
-    border-top: 4px solid var(--navy);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    border: 1px solid #d1caba;
+    border-radius: 8px;
+    padding: 18px 20px;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
 }
-body.dark-mode .ow-card {
-    background-color: #121212;
-    border-top-color: #a8b361;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+.ow-card:hover {
+    border-color: var(--sage);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
 }
 .ow-card h3 {
     color: var(--navy);
-    font-size: 1rem;
+    font-size: 0.8125rem;
     margin: 0 0 10px 0;
     font-weight: bold;
     text-transform: uppercase;
-    letter-spacing: 0.75px;
+    letter-spacing: 1px;
 }
-body.dark-mode .ow-card h3 { color: #ffffff; }
 .ow-card p {
-    font-size: 0.8625rem;
-    line-height: 1.55;
+    font-size: 0.8125rem;
+    line-height: 1.5;
     color: var(--charcoal);
     margin: 0 0 6px 0;
 }
-body.dark-mode .ow-card p { color: #c8c8c8; }
+.ow-card p:last-child { margin-bottom: 0; }
 .ow-card a {
     color: var(--navy);
     font-weight: bold;
     text-decoration: underline dotted;
 }
 .ow-card a:hover { color: var(--sage); }
-body.dark-mode .ow-card a { color: #a8b361; }
-body.dark-mode .ow-card a:hover { color: #ffffff; }
+body.dark-mode .ow-card a { color: #e0e0e0; }
+body.dark-mode .ow-card a:hover { color: var(--sage); }
 
 .disclaimer {
-    max-width: 960px;
-    margin: 30px auto 0 auto;
+    max-width: 900px;
+    margin: 0 auto;
     text-align: center;
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
     font-style: italic;
     color: var(--charcoal);
     line-height: 1.6;
-    opacity: 0.8;
+    opacity: 0.75;
 }
-body.dark-mode .disclaimer { color: #a0a0a0; }
 
-/* ==========================================================
-   RESPONSIVE
-   ========================================================== */
+/* ── Responsive ── */
 @media (max-width: 960px) {
-    .support-wrap { padding: 30px 24px 10px 24px; }
-    .support-grid {
-        grid-template-columns: 1fr;
-        gap: 28px;
-    }
+    .support-grid { grid-template-columns: 1fr; gap: 24px; }
     .funds-box { position: static; }
     .ow-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 768px) {
     .page-title-band { padding: 30px 20px; }
-    .page-title-band h1 { font-size: 1.625rem; }
-    .other-ways-section { padding: 36px 20px 28px 20px; }
-    .other-ways-section h2 { font-size: 1.25rem; }
+    .page-title-band h1 { font-size: 1.75rem; }
+    .support-ecru-wrap { padding: 2rem 1.25rem; }
 }
 @media (max-width: 520px) {
     .ow-grid { grid-template-columns: 1fr; }
@@ -304,90 +286,92 @@ body.dark-mode .disclaimer { color: #a0a0a0; }
 <div class="page-title-band">
     <span class="tagline">Your gift makes it all happen!</span>
     <h1>Support JewishGen</h1>
-    <p>JewishGen, the Jewish Genealogy Research Division of the Museum of Jewish Heritage - A Living Memorial to the Holocaust, is the premier online resource for Jewish genealogy. Your gifts, which are greatly appreciated, help to ensure our continued ability to serve the ever-growing worldwide JewishGen community. Please contribute whatever you are able at this time &ndash; it will make an immediate difference.</p>
+    <p class="hero-subtitle">JewishGen, the Jewish Genealogy Research Division of the Museum of Jewish Heritage - A Living Memorial to the Holocaust, is the premier online resource for Jewish genealogy. Your gifts, which are greatly appreciated, help to ensure our continued ability to serve the ever-growing worldwide JewishGen community. Please contribute whatever you are able at this time &ndash; it will make an immediate difference.</p>
 </div>
 
-<!-- MAIN SUPPORT GRID -->
-<main class="support-wrap">
-<div class="support-grid">
+<!-- MAIN CONTENT  -  all inside ecru wrap -->
+<main class="support-ecru-wrap">
+<div class="support-ecru-inner">
 
-    <!-- LEFT COLUMN: featured fundraiser + general operations -->
-    <div class="left-col">
+    <div class="support-grid">
 
-        <!-- FEATURED FUNDRAISER (fetched from separate file - swap the file to change the featured campaign) -->
-        <div id="featured-fundraiser" aria-live="polite"></div>
+        <!-- LEFT COLUMN: featured fundraiser + general operations -->
+        <div class="left-col">
 
-        <!-- GENERAL OPERATIONS SUPPORT -->
-        <section class="ops-section" aria-labelledby="ops-heading">
-            <h2 id="ops-heading">General Operations Support</h2>
-<!--HIDE IF THIS IS FEATURED
-            <article class="ops-card">
-                <h3>The JewishGen Annual Fund</h3>
-                <p>Your gift fuels JewishGen's mission to preserve the precious history of the Jewish people, and enables us to increase the information we provide to all who have an interest in researching their Jewish ancestry.</p>
-                <a class="ops-link" href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=25">Give Now &rsaquo;</a>
-            </article>
-END HIDE-->
-            <article class="ops-card">
-                <h3>Monthly Giving &amp; Chai Societies</h3>
-                <p>Please join our JewishGen &ldquo;Monthly Giving Society&rdquo; by committing to recurring automatic donations. These special gifts allow JewishGen to count on predictable, stable funding. Gifts of $8.34 per month (or less than $0.28 per day) qualify for Value Added Services. If you are in a position to contribute $18 or more per month, you will automatically become a member in our JewishGen &ldquo;Chai Society.&rdquo; No matter the amount, your recurring donation will make a difference, and you will feel secure in the knowledge that your gift is being used to its maximum potential.</p>
-                <a class="ops-link" href="https://jewishgen.net/project/redirect/546">Join Now &rsaquo;</a>
-            </article>
+            <!-- FEATURED FUNDRAISER (fetched from separate file - swap the file to change the featured campaign) -->
+            <div id="featured-fundraiser" aria-live="polite"></div>
 
-            <article class="ops-card">
-                <h3>Planned Giving Opportunities</h3>
-                <p>Contribute to the future of JewishGen by planning for a special kind of gift or bequest.</p>
-                <a class="ops-link" href="https://www.jewishgen.org/jewishgen-erosity/PlannedGiving.htm">Learn More &rsaquo;</a>
-            </article>
+            <!-- GENERAL OPERATIONS SUPPORT -->
+            <section class="ops-section" aria-labelledby="ops-heading">
+                <h2 id="ops-heading" class="section-heading">General Operations Support</h2>
 
-            <article class="ops-card">
-                <h3>JewishGen Wall of Honor</h3>
-                <p>Honor someone on a special occasion, or choose a unique way to express your appreciation, and have a message displayed on our Wall of Honor (honorees will be notified).</p>
-                <a class="ops-link" href="https://www.jewishgen.org/jewishgen-erosity/Honors/">Dedicate a Tribute &rsaquo;</a>
-            </article>
+<!-- HIDE IF THIS IS FEATURED
+                <article class="ops-card">
+                    <h3>The JewishGen Annual Fund</h3>
+                    <p>Your gift fuels JewishGen's mission to preserve the precious history of the Jewish people, and enables us to increase the information we provide to all who have an interest in researching their Jewish ancestry.</p>
+                    <a class="ops-link" href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=25">Give Now &rsaquo;</a>
+                </article>
+END HIDE -->
 
-            <article class="ops-card">
-                <h3>Dedicated Day of Research</h3>
-                <p>The Dedicated Day of Research is an amplification of the Wall of Honor, and allows donors to choose a specific day (it might be an anniversary, Yahrzeit, or other meaningful occasion), and have their dedication information displayed on the website. All researchers who visit the site will see it. In addition, we will send out an email at the beginning of each week, with the listing of &ldquo;research dedications&rdquo; which will occur during that time period.</p>
-                <a class="ops-link" href="https://www.jewishgen.org/JewishGen-erosity/Honors/">Choose a Day &rsaquo;</a>
-            </article>
+                <article class="ops-card">
+                    <h3>Monthly Giving &amp; Chai Societies</h3>
+                    <p>Please join our JewishGen &ldquo;Monthly Giving Society&rdquo; by committing to recurring automatic donations. These special gifts allow JewishGen to count on predictable, stable funding. Gifts of $8.34 per month (or less than $0.28 per day) qualify for Value Added Services. If you are in a position to contribute $18 or more per month, you will automatically become a member in our JewishGen &ldquo;Chai Society.&rdquo; No matter the amount, your recurring donation will make a difference, and you will feel secure in the knowledge that your gift is being used to its maximum potential.</p>
+                    <a class="ops-link" href="https://jewishgen.net/project/redirect/546">Join Now &rsaquo;</a>
+                </article>
 
-        </section>
+                <article class="ops-card">
+                    <h3>Planned Giving Opportunities</h3>
+                    <p>Contribute to the future of JewishGen by planning for a special kind of gift or bequest.</p>
+                    <a class="ops-link" href="https://www.jewishgen.org/jewishgen-erosity/PlannedGiving.htm">Learn More &rsaquo;</a>
+                </article>
+
+                <article class="ops-card">
+                    <h3>JewishGen Wall of Honor</h3>
+                    <p>Honor someone on a special occasion, or choose a unique way to express your appreciation, and have a message displayed on our Wall of Honor (honorees will be notified).</p>
+                    <a class="ops-link" href="https://www.jewishgen.org/jewishgen-erosity/Honors/">Dedicate a Tribute &rsaquo;</a>
+                </article>
+
+                <article class="ops-card">
+                    <h3>Dedicated Day of Research</h3>
+                    <p>The Dedicated Day of Research is an amplification of the Wall of Honor, and allows donors to choose a specific day (it might be an anniversary, Yahrzeit, or other meaningful occasion), and have their dedication information displayed on the website. All researchers who visit the site will see it. In addition, we will send out an email at the beginning of each week, with the listing of &ldquo;research dedications&rdquo; which will occur during that time period.</p>
+                    <a class="ops-link" href="https://www.jewishgen.org/JewishGen-erosity/Honors/">Choose a Day &rsaquo;</a>
+                </article>
+
+            </section>
+        </div>
+
+        <!-- RIGHT COLUMN: regional & topical funds -->
+        <aside class="funds-box" aria-labelledby="funds-heading">
+            <h2 id="funds-heading" class="section-heading">Regional &amp; Topical Funds</h2>
+            <ul class="funds-list">
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=8">Austria-Czech</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=1">Belarus</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=43">Bessarabia</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=32">Burial Registry (JOWBR)</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=31">Danzig/Gdańsk</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=52">Education Projects</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=74">Fall Appeal 2025/5786</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=12">France Projects</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=13">Germany</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=15">Hungary</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=72">JewishGen Press: Yizkor Books in Print</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=57">Latin America Research Division</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=16">Latvia</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=62">Peter &amp; Mary Kalikow Center</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=70">Poland</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=20">Romania</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=75">Sephardic</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=50">Sub-Carpathia</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=22">Ukraine</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=11">USA Research Division</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=23">Yizkor Book Translations</a></li>
+            </ul>
+        </aside>
+
     </div>
 
-    <!-- RIGHT COLUMN: regional & topical funds -->
-    <aside class="funds-box" aria-labelledby="funds-heading">
-        <h2 id="funds-heading">Regional &amp; Topical Funds</h2>
-        <ul class="funds-list">
-            <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=8">Austria-Czech</a></li>
-            <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=1">Belarus</a></li>
-            <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=43">Bessarabia</a></li>
-            <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=32">Burial Registry (JOWBR)</a></li>
-            <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=31">Danzig/Gdańsk</a></li>
-            <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=52">Education Projects</a></li>
-            <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=74">Fall Appeal 2025/5786</a></li>
-            <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=12">France Projects</a></li>
-            <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=13">Germany</a></li>
-            <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=15">Hungary</a></li>
-            <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=72">JewishGen Press: Yizkor Books in Print</a></li>
-            <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=57">Latin America Research Division</a></li>
-            <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=16">Latvia</a></li>
-            <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=62">Peter &amp; Mary Kalikow Center</a></li>
-            <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=70">Poland</a></li>
-            <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=20">Romania</a></li>
-            <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=75">Sephardic</a></li>
-            <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=50">Sub-Carpathia</a></li>
-            <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=22">Ukraine</a></li>
-            <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=11">USA Research Division</a></li>
-            <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=23">Yizkor Book Translations</a></li>
-        </ul>
-    </aside>
-
-</div>
-</main>
-
-<!-- OTHER WAYS TO GIVE -->
-<section class="other-ways-section" aria-labelledby="other-ways-heading">
-    <div class="other-ways-inner">
+    <!-- OTHER WAYS TO GIVE (same ecru wrap, separated by thin rule) -->
+    <section class="other-ways-section" aria-labelledby="other-ways-heading">
         <h2 id="other-ways-heading">Other Ways to Give</h2>
 
         <div class="ow-grid">
@@ -416,8 +400,10 @@ END HIDE-->
         </div>
 
         <p class="disclaimer">JewishGen is the Jewish Genealogy Research Division of the Museum of Jewish Heritage - A Living Memorial to the Holocaust, which is a qualified 501(c)(3) tax-exempt organization. All donations are tax-deductible to the full extent of the law. Our Tax ID# is 13-3376265.</p>
-    </div>
-</section>
+    </section>
+
+</div>
+</main>
 
 <!-- FOOTER -->
 <div id="site-footer"></div>
@@ -425,7 +411,6 @@ END HIDE-->
 <!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-/* Component loader - matches pattern used across JG40-Build */
 function loadComponent(id, file) {
     return fetch(file)
         .then(r => { if (!r.ok) throw new Error('Could not load ' + file); return r.text(); })
@@ -438,7 +423,6 @@ Promise.all([
     loadComponent('site-footer',         '/JG40-Build/Footer.html'),
     loadComponent('featured-fundraiser', '/JG40-Build/Donate/Featured_Fundraiser.html')
 ]).then(() => {
-    /* Re-bind nav keyboard handlers after header injection */
     document.querySelectorAll('.jg-nav .dropbtn').forEach(btn => {
         btn.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
