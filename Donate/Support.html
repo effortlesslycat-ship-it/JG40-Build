@@ -13,7 +13,7 @@
 <style>
 a { text-decoration: none; color: inherit; }
 
-/* ── Dark mode page-specific overrides (matches JGTalks pattern) ── */
+/* ── Dark mode page-specific overrides ── */
 body.dark-mode .page-title-band { background-color: #0d2a45 !important; }
 body.dark-mode .page-title-band p.hero-subtitle { color: rgba(255,255,255,0.85) !important; }
 body.dark-mode .ops-card,
@@ -31,7 +31,7 @@ body.dark-mode .other-ways-section h2 { color: #e0e0e0 !important; }
 body.dark-mode .ops-card p,
 body.dark-mode .ow-card p { color: #c0c0c0 !important; }
 body.dark-mode .disclaimer { color: #a0a0a0 !important; }
-body.dark-mode .other-ways-section { border-top-color: #333 !important; }
+body.dark-mode .other-ways-section { background-color: #141414 !important; border-top-color: #333 !important; border-bottom-color: #333 !important; }
 
 /* ── Page title band ── */
 .page-title-band {
@@ -63,7 +63,7 @@ body.dark-mode .other-ways-section { border-top-color: #333 !important; }
     line-height: 1.6;
 }
 
-/* ── Ecru content wrap (matches Calendar / JGTalks) ── */
+/* ── Ecru content wrap ── */
 .support-ecru-wrap {
     background-color: var(--ecru);
     padding: 3rem 2rem;
@@ -104,37 +104,48 @@ body.dark-mode .other-ways-section { border-top-color: #333 !important; }
 /* ── Left column stacking ── */
 .left-col > * + * { margin-top: 28px; }
 
-/* ── Ops cards (General Operations Support) ── */
+/* ── Ops grid: 2 columns, Annual Fund spans full width when present ── */
+.ops-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
 .ops-card {
     background-color: var(--white);
     border: 1px solid #d1caba;
     border-radius: 8px;
-    padding: 18px 22px;
-    margin-bottom: 12px;
+    padding: 16px 18px;
     transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    display: flex;
+    flex-direction: column;
 }
 .ops-card:hover {
     border-color: var(--sage);
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     transform: translateY(-2px);
 }
+.ops-card--wide { grid-column: 1 / -1; }
 .ops-card h3 {
     color: var(--navy);
     margin: 0 0 6px 0;
-    font-size: 1rem;
+    font-size: 0.9375rem;
     font-weight: bold;
+    line-height: 1.3;
 }
 .ops-card p {
     margin: 0 0 10px 0;
-    font-size: 0.875rem;
-    line-height: 1.55;
+    font-size: 0.8125rem;
+    line-height: 1.5;
     color: var(--charcoal);
+    flex: 1;
 }
 .ops-card a.ops-link {
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
     font-weight: bold;
     color: var(--sage);
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: auto;
 }
 .ops-card a.ops-link:hover { color: var(--navy); }
 
@@ -182,20 +193,25 @@ body.dark-mode .other-ways-section { border-top-color: #333 !important; }
 .funds-list a:hover::after,
 .funds-list a:focus::after { opacity: 1; }
 
-/* ── Other Ways to Give (sits in same ecru wrap) ── */
+/* ── Other Ways to Give: full-width cream band ── */
 .other-ways-section {
-    margin-top: 48px;
-    padding-top: 32px;
+    background-color: var(--cream);
     border-top: 1px solid #d1caba;
+    border-bottom: 1px solid #d1caba;
+    padding: 48px 2rem 44px 2rem;
+}
+.other-ways-inner {
+    max-width: 1100px;
+    margin: 0 auto;
 }
 .other-ways-section h2 {
-    text-align: left;
-    margin: 0 0 20px 0;
+    margin: 0 0 24px 0;
     font-size: 20px;
     color: var(--navy);
     position: relative;
     padding-bottom: 8px;
     font-weight: bold;
+    text-align: left;
 }
 .other-ways-section h2::after {
     content: '';
@@ -228,7 +244,7 @@ body.dark-mode .other-ways-section { border-top-color: #333 !important; }
 }
 .ow-card h3 {
     color: var(--navy);
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
     margin: 0 0 10px 0;
     font-weight: bold;
     text-transform: uppercase;
@@ -258,7 +274,7 @@ body.dark-mode .ow-card a:hover { color: var(--sage); }
     font-style: italic;
     color: var(--charcoal);
     line-height: 1.6;
-    opacity: 0.75;
+    opacity: 0.8;
 }
 
 /* ── Responsive ── */
@@ -267,10 +283,15 @@ body.dark-mode .ow-card a:hover { color: var(--sage); }
     .funds-box { position: static; }
     .ow-grid { grid-template-columns: repeat(2, 1fr); }
 }
+@media (max-width: 640px) {
+    .ops-grid { grid-template-columns: 1fr; }
+    .ops-card--wide { grid-column: auto; }
+}
 @media (max-width: 768px) {
     .page-title-band { padding: 30px 20px; }
     .page-title-band h1 { font-size: 1.75rem; }
     .support-ecru-wrap { padding: 2rem 1.25rem; }
+    .other-ways-section { padding: 36px 1.25rem 32px 1.25rem; }
 }
 @media (max-width: 520px) {
     .ow-grid { grid-template-columns: 1fr; }
@@ -289,7 +310,7 @@ body.dark-mode .ow-card a:hover { color: var(--sage); }
     <p class="hero-subtitle">JewishGen, the Jewish Genealogy Research Division of the Museum of Jewish Heritage - A Living Memorial to the Holocaust, is the premier online resource for Jewish genealogy. Your gifts, which are greatly appreciated, help to ensure our continued ability to serve the ever-growing worldwide JewishGen community. Please contribute whatever you are able at this time &ndash; it will make an immediate difference.</p>
 </div>
 
-<!-- MAIN CONTENT  -  all inside ecru wrap -->
+<!-- MAIN CONTENT  -  ecru wrap -->
 <main class="support-ecru-wrap">
 <div class="support-ecru-inner">
 
@@ -298,45 +319,50 @@ body.dark-mode .ow-card a:hover { color: var(--sage); }
         <!-- LEFT COLUMN: featured fundraiser + general operations -->
         <div class="left-col">
 
-            <!-- FEATURED FUNDRAISER (fetched from separate file - swap the file to change the featured campaign) -->
+            <!-- FEATURED FUNDRAISER (fetched from separate file) -->
             <div id="featured-fundraiser" aria-live="polite"></div>
 
             <!-- GENERAL OPERATIONS SUPPORT -->
             <section class="ops-section" aria-labelledby="ops-heading">
                 <h2 id="ops-heading" class="section-heading">General Operations Support</h2>
 
+                <div class="ops-grid">
+
 <!-- HIDE IF THIS IS FEATURED
-                <article class="ops-card">
-                    <h3>The JewishGen Annual Fund</h3>
-                    <p>Your gift fuels JewishGen's mission to preserve the precious history of the Jewish people, and enables us to increase the information we provide to all who have an interest in researching their Jewish ancestry.</p>
-                    <a class="ops-link" href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=25">Give Now &rsaquo;</a>
-                </article>
+                    Annual Fund card spans full width (grid-column: 1/-1) when shown.
+                    When hidden, remaining 4 cards form a clean 2x2.
+                    <article class="ops-card ops-card--wide">
+                        <h3>The JewishGen Annual Fund</h3>
+                        <p>Your gift fuels JewishGen's mission to preserve the precious history of the Jewish people, and enables us to increase the information we provide to all who have an interest in researching their Jewish ancestry.</p>
+                        <a class="ops-link" href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=25">Give Now &rsaquo;</a>
+                    </article>
 END HIDE -->
 
-                <article class="ops-card">
-                    <h3>Monthly Giving &amp; Chai Societies</h3>
-                    <p>Please join our JewishGen &ldquo;Monthly Giving Society&rdquo; by committing to recurring automatic donations. These special gifts allow JewishGen to count on predictable, stable funding. Gifts of $8.34 per month (or less than $0.28 per day) qualify for Value Added Services. If you are in a position to contribute $18 or more per month, you will automatically become a member in our JewishGen &ldquo;Chai Society.&rdquo; No matter the amount, your recurring donation will make a difference, and you will feel secure in the knowledge that your gift is being used to its maximum potential.</p>
-                    <a class="ops-link" href="https://jewishgen.net/project/redirect/546">Join Now &rsaquo;</a>
-                </article>
+                    <article class="ops-card">
+                        <h3>Monthly Giving &amp; Chai Societies</h3>
+                        <p>Join our &ldquo;Monthly Giving Society&rdquo; with recurring automatic donations that give JewishGen predictable, stable funding. Gifts of $8.34/month qualify for Value Added Services; $18/month or more makes you a member of our &ldquo;Chai Society.&rdquo;</p>
+                        <a class="ops-link" href="https://jewishgen.net/project/redirect/546">Join Now &rsaquo;</a>
+                    </article>
 
-                <article class="ops-card">
-                    <h3>Planned Giving Opportunities</h3>
-                    <p>Contribute to the future of JewishGen by planning for a special kind of gift or bequest.</p>
-                    <a class="ops-link" href="https://www.jewishgen.org/jewishgen-erosity/PlannedGiving.htm">Learn More &rsaquo;</a>
-                </article>
+                    <article class="ops-card">
+                        <h3>Planned Giving Opportunities</h3>
+                        <p>Contribute to the future of JewishGen by planning for a special kind of gift or bequest.</p>
+                        <a class="ops-link" href="https://www.jewishgen.org/jewishgen-erosity/PlannedGiving.htm">Learn More &rsaquo;</a>
+                    </article>
 
-                <article class="ops-card">
-                    <h3>JewishGen Wall of Honor</h3>
-                    <p>Honor someone on a special occasion, or choose a unique way to express your appreciation, and have a message displayed on our Wall of Honor (honorees will be notified).</p>
-                    <a class="ops-link" href="https://www.jewishgen.org/jewishgen-erosity/Honors/">Dedicate a Tribute &rsaquo;</a>
-                </article>
+                    <article class="ops-card">
+                        <h3>JewishGen Wall of Honor</h3>
+                        <p>Honor someone on a special occasion, or choose a unique way to express your appreciation, and have a message displayed on our Wall of Honor (honorees will be notified).</p>
+                        <a class="ops-link" href="https://www.jewishgen.org/jewishgen-erosity/Honors/">Dedicate a Tribute &rsaquo;</a>
+                    </article>
 
-                <article class="ops-card">
-                    <h3>Dedicated Day of Research</h3>
-                    <p>The Dedicated Day of Research is an amplification of the Wall of Honor, and allows donors to choose a specific day (it might be an anniversary, Yahrzeit, or other meaningful occasion), and have their dedication information displayed on the website. All researchers who visit the site will see it. In addition, we will send out an email at the beginning of each week, with the listing of &ldquo;research dedications&rdquo; which will occur during that time period.</p>
-                    <a class="ops-link" href="https://www.jewishgen.org/JewishGen-erosity/Honors/">Choose a Day &rsaquo;</a>
-                </article>
+                    <article class="ops-card">
+                        <h3>Dedicated Day of Research</h3>
+                        <p>An amplification of the Wall of Honor: choose a specific day (anniversary, Yahrzeit, or other meaningful occasion) and have your dedication displayed on the website. A weekly email announces upcoming dedications.</p>
+                        <a class="ops-link" href="https://www.jewishgen.org/JewishGen-erosity/Honors/">Choose a Day &rsaquo;</a>
+                    </article>
 
+                </div>
             </section>
         </div>
 
@@ -370,21 +396,25 @@ END HIDE -->
 
     </div>
 
-    <!-- OTHER WAYS TO GIVE (same ecru wrap, separated by thin rule) -->
-    <section class="other-ways-section" aria-labelledby="other-ways-heading">
+</div>
+</main>
+
+<!-- OTHER WAYS TO GIVE  -  full-width cream band -->
+<section class="other-ways-section" aria-labelledby="other-ways-heading">
+    <div class="other-ways-inner">
         <h2 id="other-ways-heading">Other Ways to Give</h2>
 
         <div class="ow-grid">
 
             <div class="ow-card">
                 <h3>By Mail</h3>
-                <p>Prefer to mail your gift? Please send your check, payable to &ldquo;Museum of Jewish Heritage,&rdquo; to: Museum of Jewish Heritage / JewishGen, 36 Battery Place, New York, NY 10280.</p>
-                <p><em>Please be sure to include &ldquo;JewishGen&rdquo; in the reference line.</em></p>
+                <p>Prefer to mail your gift? Send your check, payable to &ldquo;Museum of Jewish Heritage,&rdquo; to: Museum of Jewish Heritage / JewishGen, 36 Battery Place, New York, NY 10280.</p>
+                <p><em>Please include &ldquo;JewishGen&rdquo; in the reference line.</em></p>
             </div>
 
             <div class="ow-card">
                 <h3>By DAF</h3>
-                <p>We now accept DAF donations. <a href="https://www.jewishgen.org/daf/">Click here to start your DAF donation</a>.</p>
+                <p>We accept DAF donations. <a href="https://www.jewishgen.org/daf/">Click here to start your DAF donation</a>.</p>
             </div>
 
             <div class="ow-card">
@@ -394,16 +424,14 @@ END HIDE -->
 
             <div class="ow-card">
                 <h3>By Phone</h3>
-                <p>We will be happy to help you make your gift or answer any questions you may have. Contact the JewishGen office at <a href="tel:+16464942972">646-494-2972</a> or email <a href="mailto:info@JewishGen.org">info@JewishGen.org</a> for a call back.</p>
+                <p>Contact the JewishGen office at <a href="tel:+16464942972">646-494-2972</a> or email <a href="mailto:info@JewishGen.org">info@JewishGen.org</a> for a call back.</p>
             </div>
 
         </div>
 
         <p class="disclaimer">JewishGen is the Jewish Genealogy Research Division of the Museum of Jewish Heritage - A Living Memorial to the Holocaust, which is a qualified 501(c)(3) tax-exempt organization. All donations are tax-deductible to the full extent of the law. Our Tax ID# is 13-3376265.</p>
-    </section>
-
-</div>
-</main>
+    </div>
+</section>
 
 <!-- FOOTER -->
 <div id="site-footer"></div>
