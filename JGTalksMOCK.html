@@ -31,7 +31,7 @@
         body.dark-mode .video-card       { background-color: #1e1e1e !important; border-color: #333 !important; }
         body.dark-mode .video-card:hover,
         body.dark-mode .video-card:focus { border-color: var(--sage) !important; }
-        body.dark-mode .video-card.is-playing { border-color: var(--sage) !important; }
+        body.dark-mode .video-card.is-playing { border-color: var(--sage) !important; box-shadow: 0 0 0 3px rgba(168,179,97,0.2) !important; }
         body.dark-mode .card-title       { color: #e0e0e0 !important; }
         body.dark-mode .card-label       { color: var(--sage) !important; }
         body.dark-mode .section-heading-serif { color: #e0e0e0 !important; }
@@ -250,7 +250,7 @@
         .video-card { background-color: var(--white); border: 1px solid #d1caba; border-radius: 8px; overflow: hidden; cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s; }
         .video-card:hover { border-color: var(--sage); box-shadow: 0 4px 14px rgba(0,0,0,0.10); transform: translateY(-2px); }
         .video-card:focus { outline: 3px solid var(--sage); outline-offset: 2px; }
-        .video-card.is-playing { border: 2px solid var(--navy) !important; box-shadow: none !important; }
+        .video-card.is-playing { border-color: var(--navy) !important; box-shadow: 0 0 0 3px rgba(9,73,122,0.2) !important; }
         .thumb-wrap { position: relative; width: 100%; padding-bottom: 56.25%; background: #111; overflow: hidden; }
         .thumb-wrap img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 0.2s; }
         .video-card:hover .thumb-wrap img { opacity: 0.85; }
