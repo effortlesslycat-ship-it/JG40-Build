@@ -25,6 +25,7 @@
         body.dark-mode .talk-date        { color: #c8c0b0 !important; }
         body.dark-mode .talk-title       { color: #e0e0e0 !important; }
         body.dark-mode .talk-desc        { color: #c8c0b0 !important; }
+        body.dark-mode .talk-register    { color: var(--white) !important; }
         body.dark-mode .rss-error        { color: #a0a0a0 !important; }
         body.dark-mode .featured-meta    { background-color: #1e1e1e !important; border-color: #333 !important; }
         body.dark-mode .video-card       { background-color: #1e1e1e !important; border-color: #333 !important; }
@@ -175,6 +176,27 @@
 
         .talk-card .btn-sage-cta { margin-top: 6px; }
 
+        /* .talk-register is emitted by jg-events.js inside the card-wrapping <a>.
+           Style it to read as a solid sage CTA button (matches .btn-sage-cta). */
+        .talk-register {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background-color: var(--sage);
+            color: var(--white);
+            font-weight: bold;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 11px 22px;
+            border-radius: 4px;
+            margin-top: 6px;
+            width: fit-content;
+            transition: filter 0.2s;
+        }
+        .talk-card:hover .talk-register { filter: brightness(1.08); }
+
         .rss-loading, .rss-error, .rss-empty {
             font-size: 14px;
             color: var(--charcoal);
@@ -238,7 +260,7 @@
         .thumb-play svg { width: 17px; height: 17px; fill: #fff; margin-left: 3px; }
         .duration-badge { position: absolute; bottom: 5px; right: 5px; background: rgba(0,0,0,0.78); color: #fff; font-size: 11px; font-weight: bold; padding: 2px 5px; border-radius: 3px; }
         .card-body { padding: 10px 12px 13px; }
-        .card-label { font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: var(--charcoal); margin: 0 0 4px 0; }
+        .card-label { font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: var(--sage); margin: 0 0 4px 0; }
         .card-title { font-size: 13px; font-weight: bold; color: var(--navy); line-height: 1.35; margin: 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 
         /* ── Show All link (centered text with chevron) ─────────── */
