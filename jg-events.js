@@ -19,7 +19,7 @@
   'use strict';
 
   var API_BASE = 'https://mjhnyc.org/wp-json/wp/v2/upcoming_events';
-  var CATEGORY = 'genealogy';
+  var CATEGORY = 'genealogy';'JewishGen';
 
   /* ----------------------------------------------------------
      HELPERS
