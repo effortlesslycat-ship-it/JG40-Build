@@ -5,126 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Global Search — JewishGen</title>
 
+    <!-- 1. Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    
+    <!-- 2. JewishGen Global Design System -->
     <link rel="stylesheet" href="/JG40-Build/jg-global.css">
-
+    <!-- 3. Page-specific styles -->
     <style>
-        /* ── PAGE-SPECIFIC CSS ─────────────────────────────────────── */
+        /* ========================================================
+           GLOBAL SEARCH PAGE - PAGE-SPECIFIC STYLES
+           Shared search infrastructure (hero, card, tips, form rows,
+           locked overlay, btn-search) lives in jg-global.css.
+           Only page-specific overrides and one-off patterns here.
+           ======================================================== */
+
+        /* sr-only utility (accessibility) */
         .sr-only {
             position: absolute; width: 1px; height: 1px; padding: 0;
             margin: -1px; overflow: hidden; clip: rect(0,0,0,0);
             white-space: nowrap; border: 0;
         }
 
-        .search-wrapper { max-width: 860px; margin: 0 auto; padding: 40px 20px 60px; }
-        
-        .search-container {
-            background: var(--white);
-            border: 3px solid var(--navy);
-            border-radius: 12px;
-            padding: 36px 40px 32px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        /* 2-column grid for search tips */
+        .gs-tips-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
         }
 
-        /* Tips toggle */
-        .tips-trigger-wrap { text-align: center; margin-bottom: 24px; }
-        .tips-trigger {
-            background-color: var(--cream); color: var(--navy); border: 1px solid #d1caba;
-            padding: 8px 20px; border-radius: 20px; font-size: 13px; font-weight: bold;
-            cursor: pointer; font-family: inherit;
-        }
-        .tips-trigger:hover { filter: brightness(0.95); }
-
-        #search-hints-panel {
-            max-height: 0; overflow: hidden; opacity: 0;
-            transition: max-height 0.4s ease-out, opacity 0.3s ease, margin 0.4s ease;
-            background: #f0f4f7; border-left: 4px solid var(--sage); border-radius: 4px;
-            padding: 0 20px; margin-bottom: 0; font-size: 13px; line-height: 1.5; color: var(--charcoal);
-        }
-        #search-hints-panel.open { max-height: 500px; opacity: 1; padding: 20px; margin-bottom: 24px; }
-        .tips-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-
-        /* Column header row */
-        .col-header-row { display: flex; gap: 10px; margin-bottom: 4px; }
-        .field-label { font-size: 11px; font-weight: bold; color: var(--navy); display: block; text-transform: uppercase; letter-spacing: 0.5px; }
-
-        /* Search rows */
-        .search-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; }
-        .col-type  { flex: 1; } .col-match { flex: 1; } .col-term  { flex: 2; }
-
-        .search-row select, .search-row input[type="text"] {
-            width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;
-            font-size: 14px; font-family: inherit; background-color: var(--white); color: var(--charcoal);
-        }
-        .search-row select:focus, .search-row input[type="text"]:focus {
-            outline: 2px solid var(--navy); outline-offset: 2px;
-        }
-
-        /* Hover-to-Unlock Wrapper Logic */
-        .jg-locked-rows-wrapper { position: relative; margin-top: 14px; transition: padding-bottom 0.3s ease; }
-        .jg-locked-rows-wrapper:hover, .jg-locked-rows-wrapper.revealed { padding-bottom: 60px; }
-        
-        .search-row.locked { opacity: 0.45; pointer-events: none; }
-        .search-row.locked select, .search-row.locked input[type="text"] { background-color: #f2f2f2; }
-
-        .jg-locked-overlay {
-            position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-            background: rgba(232, 225, 209, 0.45); border-radius: 8px; border: 1px solid #d1caba;
-            z-index: 2; padding: 20px 28px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-        }
-        .jg-locked-rows-wrapper:hover .jg-locked-overlay, .jg-locked-rows-wrapper.revealed .jg-locked-overlay {
-            opacity: 1; pointer-events: auto;
-        }
-        .jg-locked-overlay__inner { display: flex; align-items: center; gap: 20px; max-width: 560px; width: 100%; }
-        .jg-locked-overlay__icon { font-size: 28px; flex-shrink: 0; line-height: 1; }
-        .jg-locked-overlay__text { flex: 1; font-size: 13px; color: var(--charcoal); line-height: 1.55; }
-        .jg-locked-overlay__text strong { color: var(--navy); font-size: 14px; display: block; margin-bottom: 3px; }
-        .jg-locked-overlay__text p { margin: 0 0 10px 0; }
-        
-        .jg-btn-unlock {
-            display: inline-block; background-color: var(--sage); color: var(--white);
-            padding: 9px 20px; border-radius: 6px; font-size: 13px; font-weight: bold;
-            white-space: nowrap; transition: filter 0.2s; border: none; cursor: pointer; text-decoration: none;
-        }
-        .jg-btn-unlock:hover { filter: brightness(1.1); color: var(--white); }
-
-        /* Region block */
+        /* Region / Collection block */
         .region-block { margin-top: 14px; }
+
         #sub-region-container {
-            display: none; margin-top: 14px; padding: 16px 20px; border: 1px solid var(--cream);
-            background: #fdfcf9; border-radius: 8px; animation: fadeIn 0.3s ease-in;
+            display: none;
+            margin-top: 12px;
+            padding: 14px 16px;
+            background: var(--light-blue);
+            border: 1px solid #c4d0d6;
+            border-radius: 6px;
+            animation: gsSubFadeIn 0.25s ease-in;
         }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .sub-region-label { font-size: 13px; font-weight: bold; color: var(--navy); display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        @keyframes gsSubFadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* Submit area */
-        .search-submit-wrap { text-align: center; margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--cream); }
-        .btn-search {
-            background-color: var(--sage); color: var(--white); border: none; padding: 14px 50px;
-            font-size: 17px; font-weight: bold; border-radius: 6px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; font-family: inherit;
+        .sub-region-label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 6px;
         }
-        .btn-search:hover { filter: brightness(1.1); }
 
-        /* ── Dark mode overrides ── */
-        body.dark-mode .search-container { border-color: #a8b361; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
-        body.dark-mode #search-hints-panel { background: #1a2533; border-left-color: #a8b361; color: #c8c8c8; }
-        body.dark-mode #sub-region-container { background: #1a1a1a; border-color: #333; }
-        body.dark-mode .search-row.locked select, body.dark-mode .search-row.locked input[type="text"] { background-color: #2a2a2a !important; }
-        body.dark-mode .tips-trigger { background-color: #1e1e1e; border-color: #444; color: #a8b361; }
+        /* Sub-region select: white bg so it reads against the light-blue container */
+        #sub-region-select {
+            background: var(--white) !important;
+        }
+
+        body.dark-mode #sub-region-container {
+            background: #1a2533;
+            border-color: #333;
+        }
+        body.dark-mode .sub-region-label { color: #c8c0b0; }
+        body.dark-mode #sub-region-select { background: #1e1e1e !important; }
+
+        /* Submit area separator */
+        .search-submit-wrap {
+            text-align: center;
+            margin-top: 26px;
+            padding-top: 20px;
+            border-top: 1px solid var(--cream);
+        }
         body.dark-mode .search-submit-wrap { border-top-color: #333; }
-        body.dark-mode .jg-locked-overlay { background: rgba(30, 30, 30, 0.6); border-color: #444; }
-        body.dark-mode .jg-locked-overlay__text { color: #c0c0c0; }
-        body.dark-mode .jg-locked-overlay__text strong { color: #a8b361; }
 
-        /* ── Responsive ── */
+        /* Responsive */
         @media (max-width: 640px) {
-            .search-container { padding: 24px 18px 20px; }
-            .search-row, .col-header-row { flex-direction: column; }
-            .col-type, .col-match, .col-term { flex: unset; width: 100%; }
-            .tips-grid { grid-template-columns: 1fr; }
-            .search-wrapper { padding: 28px 16px 48px; }
-            .jg-locked-overlay__inner { flex-direction: column; text-align: center; }
+            .gs-tips-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -132,206 +85,229 @@
 
 <div id="site-header"></div>
 
-<div class="page-title-band" style="background-color: var(--navy); color: var(--white); padding: 40px 50px; text-align: center;">
-    <span class="section-tag" style="display: inline-block; background: var(--sage); color: #ffffff; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; padding: 4px 12px; border-radius: 3px; margin-bottom: 12px;">Databases</span>
-    <h1 style="margin: 0 0 10px 0; font-size: 34px; font-weight: bold; color: var(--white);">Welcome to the JewishGen Global Search</h1>
-    <p style="margin: 0 auto; font-size: 16px; color: #a9c0d0; max-width: 680px; line-height: 1.65;">Explore millions of records from around the world — including Holocaust and burial records — all in one search.</p>
-</div>
-
 <main id="main-content">
-<div class="search-wrapper">
-    <div class="search-container" role="search" aria-label="JewishGen Global Database Search">
 
-        <div class="tips-trigger-wrap">
-            <button class="tips-trigger" onclick="toggleHints()" aria-expanded="false" aria-controls="search-hints-panel" id="tips-btn">
-                💡 Search Tips and Tricks
-            </button>
-        </div>
+    <!-- ================================================================
+         SEARCH HERO BAND - ecru wrap with centered heading + search card
+         ================================================================ -->
+    <section class="jg-search-hero" aria-label="Search JewishGen databases">
+        <div class="jg-search-hero__inner">
 
-        <div id="search-hints-panel" role="region" aria-labelledby="tips-btn">
-            <strong style="color: var(--navy); font-size: 14px; display: block; margin-bottom: 14px;">JewishGen Search Tips:</strong>
-            <div class="tips-grid">
-                <div><strong>Comma = OR:</strong> Use commas to search for either name.<br><span style="color: #666;"><em>Example: Schwartz, Weiss (Finds either)</em></span></div>
-                <div><strong>Space = AND:</strong> Use a space to search for both names.<br><span style="color: #666;"><em>Example: Schwartz Weiss (Finds both)</em></span></div>
-                <div><strong>Wildcards (*):</strong> Fill in the blanks for bad handwriting.<br><span style="color: #666;"><em>Example: Sp*l*ng (Finds Spelling, Sperling)</em></span></div>
-                <div><strong>Brackets [ ]:</strong> Force a specific starting letter.<br><span style="color: #666;"><em>Example: [F]isch (Finds Fish, but not Visz)</em></span></div>
-                <div><strong>Synonyms:</strong> Exact search includes standard variants.<br><span style="color: #666;"><em>Example: Jankel = Jakob = Jacob = Jack</em></span></div>
-                <div><strong>Starts With / Contains:</strong> Finds root words in the name.<br><span style="color: #666;"><em>Example: "Gold" finds FeinGold</em></span></div>
-            </div>
-        </div>
+            <header class="jg-search-hero__heading">
+                <h1>JewishGen Global Search</h1>
+                <p class="lede">Explore millions of records from around the world — including Holocaust and burial records — all in one search.</p>
+                <span class="stat-line">More than 32 million records across thousands of databases.</span>
+            </header>
 
-        <div class="col-header-row" aria-hidden="true">
-            <div class="col-type"><span class="field-label">Data Type</span></div>
-            <div class="col-match"><span class="field-label">Search Type</span></div>
-            <div class="col-term"><span class="field-label">Search Term</span></div>
-        </div>
+            <div class="jg-search-card" role="search" aria-label="JewishGen Global Database Search">
 
-        <div class="search-row">
-            <div class="col-type">
-                <label for="dtype-1" class="sr-only">Data type, row 1</label>
-                <select id="dtype-1" onchange="syncSearchType(this, 'stype-1')">
-                    <option value="surname" selected>Surname</option>
-                    <option value="givenname">Given Name</option>
-                    <option value="town">Town</option>
-                    <option value="anyfield">Any Field</option>
-                </select>
-            </div>
-            <div class="col-match">
-                <label for="stype-1" class="sr-only">Search type, row 1</label>
-                <select id="stype-1">
-                    <option value="phonetic" selected>Phonetically Like</option>
-                    <option value="soundslike">Sounds Like</option>
-                    <option value="startswith">Starts With</option>
-                    <option value="exactly">Is Exactly</option>
-                    <option value="fuzzy">Fuzzy Match</option>
-                    <option value="fuzzier">Fuzzier Match</option>
-                    <option value="fuzziest">Fuzziest Match</option>
-                </select>
-            </div>
-            <div class="col-term">
-                <label for="term-1" class="sr-only">Search term, row 1</label>
-                <input type="text" id="term-1" placeholder="e.g., Hollander">
-            </div>
-        </div>
-
-        <div class="search-row">
-            <div class="col-type">
-                <label for="dtype-2" class="sr-only">Data type, row 2</label>
-                <select id="dtype-2" onchange="syncSearchType(this, 'stype-2')">
-                    <option value="" selected disabled>Data Type</option>
-                    <option value="surname">Surname</option>
-                    <option value="givenname">Given Name</option>
-                    <option value="town">Town</option>
-                    <option value="anyfield">Any Field</option>
-                </select>
-            </div>
-            <div class="col-match">
-                <label for="stype-2" class="sr-only">Search type, row 2</label>
-                <select id="stype-2">
-                    <option value="" selected disabled>Search Type</option>
-                    <option value="phonetic">Phonetically Like</option>
-                    <option value="soundslike">Sounds Like</option>
-                    <option value="startswith">Starts With</option>
-                    <option value="exactly">Is Exactly</option>
-                    <option value="fuzzy">Fuzzy Match</option>
-                    <option value="fuzzier">Fuzzier Match</option>
-                    <option value="fuzziest">Fuzziest Match</option>
-                </select>
-            </div>
-            <div class="col-term">
-                <label for="term-2" class="sr-only">Search term, row 2</label>
-                <input type="text" id="term-2" placeholder="Search term">
-            </div>
-        </div>
-
-        <div class="jg-locked-rows-wrapper" onmouseenter="this.classList.add('revealed')">
-            <div aria-hidden="true">
-                <div class="search-row locked">
-                    <div class="col-type"><select tabindex="-1" disabled><option>Data Type</option></select></div>
-                    <div class="col-match"><select tabindex="-1" disabled><option>Search Type</option></select></div>
-                    <div class="col-term"><input type="text" tabindex="-1" disabled placeholder="Search term"></div>
+                <!-- Card header: title left, tips link right -->
+                <div class="jg-search-card__header">
+                    <h2>Search All Records</h2>
+                    <button type="button"
+                            class="jg-tips-link"
+                            aria-expanded="false"
+                            aria-controls="gs-tips-panel"
+                            onclick="toggleHints(this)">
+                        Tips &amp; Tricks
+                        <img src="/JG40-Build/TipsBulbReg.png"  alt="" class="jg-tips-link__icon light-logo" aria-hidden="true">
+                        <img src="/JG40-Build/TipsBulbDark.png" alt="" class="jg-tips-link__icon dark-logo"  aria-hidden="true">
+                    </button>
                 </div>
+                <hr class="jg-search-card__rule" aria-hidden="true">
 
-                <div class="search-row locked" style="margin-bottom: 0;">
-                    <div class="col-type"><select tabindex="-1" disabled><option>Data Type</option></select></div>
-                    <div class="col-match"><select tabindex="-1" disabled><option>Search Type</option></select></div>
-                    <div class="col-term"><input type="text" tabindex="-1" disabled placeholder="Search term"></div>
-                </div>
-            </div>
-
-            <div class="jg-locked-overlay" role="note" aria-label="Value-added feature — donate to unlock">
-                <div class="jg-locked-overlay__inner">
-                    <div class="jg-locked-overlay__icon" aria-hidden="true">🔓</div>
-                    <div class="jg-locked-overlay__text">
-                        <strong>Unlock Two Additional Search Rows</strong>
-                        <p>A donation of $100 or more to the JewishGen General Fund unlocks multi-field search, letting you combine up to four simultaneous criteria for more precise results.</p>
-                        <a href="https://www.jewishgen.org/jewishgen-secure/donate.asp" class="jg-btn-unlock" target="_blank" rel="noopener noreferrer">
-                            Donate Now to Unlock →
-                        </a>
+                <!-- Tips panel (collapsed by default) -->
+                <div class="jg-tips-card-panel" id="gs-tips-panel" role="region" aria-label="Search tips">
+                    <div class="gs-tips-grid">
+                        <div><strong>Comma = OR:</strong> Search for either of two names.<br><em>Example: Schwartz, Weiss</em></div>
+                        <div><strong>Space = AND:</strong> Require both names in the same record.<br><em>Example: Schwartz Weiss</em></div>
+                        <div><strong>Wildcards (*):</strong> Fill in blanks for poor handwriting.<br><em>Example: Sp*l*ng finds Spelling, Sperling</em></div>
+                        <div><strong>Brackets [ ]:</strong> Force a specific starting letter.<br><em>Example: [F]isch finds Fish but not Visz</em></div>
+                        <div><strong>Synonyms:</strong> Exact search includes standard variants.<br><em>Example: Jankel = Jakob = Jacob = Jack</em></div>
+                        <div><strong>Starts With / Contains:</strong> Finds root words in the name.<br><em>Example: "Gold" finds FeinGold</em></div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="region-block">
-            <label class="field-label" for="main-region-select">Region / Collection</label>
-            <select id="main-region-select" onchange="toggleSubRegion()" style="padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; width: 100%; margin-top: 5px;">
-                <option value="all">Region / Collection: ALL</option>
-                    <optgroup label="Topical Databases">
-                        <option value="JOWBR">Cemetery Records</option>
-                        <option value="ALLHOLOCAUST">Holocaust Records</option>
-                        <option value="sephardic">Sephardic</option>
-                    </optgroup>
-                    <optgroup label="Africa">
-                        <option value="algeria">Algeria</option>
-                        <option value="egypt">Egypt</option>
-                        <option value="libya">Libya</option>
-                        <option value="morocco">Morocco</option>
-                        <option value="safrica">South Africa</option>
-                        <option value="tunisia">Tunisia</option>
-                    </optgroup>
-                    <optgroup label="Asia &amp; The Middle East">
-                        <option value="india">India</option>
-                        <option value="iraq">Iraq</option>
-                        <option value="israel">Israel</option>
-                        <option value="lebanon">Lebanon</option>
-                        <option value="syria">Syria</option>
-                        <option value="turkey">Turkey</option>
-                    </optgroup>
-                    <optgroup label="Eastern &amp; Central Europe">
-                        <option value="austria">Austria / Czechia</option>
-                        <option value="belarus">Belarus</option>
-                        <option value="bulgaria">Bulgaria</option>
-                        <option value="germany">Germany</option>
-                        <option value="hungary">Hungary / Slovakia</option>
-                        <option value="latvia">Latvia</option>
-                        <option value="lithuania">Lithuania</option>
-                        <option value="poland">Poland</option>
-                        <option value="romania">Romania / Moldova</option>
-                        <option value="ukraine">Ukraine</option>
-                    </optgroup>
-                    <optgroup label="Western &amp; Southern Europe">
-                        <option value="france">France</option>
-                        <option value="greece">Greece</option>
-                        <option value="italy">Italy</option>
-                        <option value="netherlands">Netherlands</option>
-                        <option value="portugal">Portugal</option>
-                        <option value="scandinavia">Scandinavia</option>
-                        <option value="spain">Spain</option>
-                        <option value="ukireland">United Kingdom &amp; Ireland</option>
-                    </optgroup>
-                    <optgroup label="North America">
-                        <option value="canada">Canada</option>
-                        <option value="usa">United States</option>
-                    </optgroup>
-                    <optgroup label="Central &amp; South America">
-                        <option value="argentina">Argentina</option>
-                        <option value="latinam">Latin America</option>
-                        <option value="venezuela">Venezuela</option>
-                    </optgroup>
-                </select>        
-            </select>
-        
-            <!-- Sub-region (shown dynamically) -->
+                <!-- Free row 1 -->
+                <div class="search-row">
+                    <div class="sf n">
+                        <label class="field-label" for="dtype-1">Data Type</label>
+                        <select id="dtype-1" onchange="syncSearchType(this, 'stype-1')">
+                            <option value="surname" selected>Surname</option>
+                            <option value="givenname">Given Name</option>
+                            <option value="town">Town</option>
+                            <option value="anyfield">Any Field</option>
+                        </select>
+                    </div>
+                    <div class="sf n">
+                        <label class="field-label" for="stype-1">Search Type</label>
+                        <select id="stype-1">
+                            <option value="phonetic" selected>Phonetically Like</option>
+                            <option value="soundslike">Sounds Like</option>
+                            <option value="startswith">Starts With</option>
+                            <option value="exactly">Is Exactly</option>
+                            <option value="fuzzy">Fuzzy Match</option>
+                            <option value="fuzzier">Fuzzier Match</option>
+                            <option value="fuzziest">Fuzziest Match</option>
+                        </select>
+                    </div>
+                    <div class="sf w">
+                        <label class="field-label" for="term-1">Search Term</label>
+                        <input type="text" id="term-1" placeholder="e.g. Hollander" maxlength="50" autocomplete="off">
+                    </div>
+                </div>
 
-            <div id="sub-region-container" role="region" aria-live="polite">
-                <span class="sub-region-label" id="sub-region-title">Refine Search:</span>
-                <select id="sub-region-select" style="padding: 10px; border: 2px solid var(--navy); border-radius: 6px; font-size: 14px; width: 100%; background-color: var(--white);" aria-labelledby="sub-region-title">
-                </select>
-            </div>
-        </div>
+                <!-- Free row 2 -->
+                <div class="search-row">
+                    <div class="sf n">
+                        <label class="field-label" for="dtype-2">Data Type</label>
+                        <select id="dtype-2" onchange="syncSearchType(this, 'stype-2')">
+                            <option value="" selected disabled>Data Type</option>
+                            <option value="surname">Surname</option>
+                            <option value="givenname">Given Name</option>
+                            <option value="town">Town</option>
+                            <option value="anyfield">Any Field</option>
+                        </select>
+                    </div>
+                    <div class="sf n">
+                        <label class="field-label" for="stype-2">Search Type</label>
+                        <select id="stype-2">
+                            <option value="" selected disabled>Search Type</option>
+                            <option value="phonetic">Phonetically Like</option>
+                            <option value="soundslike">Sounds Like</option>
+                            <option value="startswith">Starts With</option>
+                            <option value="exactly">Is Exactly</option>
+                            <option value="fuzzy">Fuzzy Match</option>
+                            <option value="fuzzier">Fuzzier Match</option>
+                            <option value="fuzziest">Fuzziest Match</option>
+                        </select>
+                    </div>
+                    <div class="sf w">
+                        <label class="field-label" for="term-2">Search Term</label>
+                        <input type="text" id="term-2" placeholder="Search term" maxlength="50" autocomplete="off">
+                    </div>
+                </div>
 
-        <div class="search-submit-wrap">
-            <button class="btn-search" type="button" onclick="submitSearch()">Search Databases</button>
-        </div>
+                <!-- Locked rows + persistent overlay -->
+                <div class="jg-locked-rows-wrapper">
 
-    </div></div>
+                    <!-- Decorative locked rows: hidden from AT, tabindex blocked -->
+                    <div aria-hidden="true">
+                        <div class="search-row locked">
+                            <div class="sf n"><select tabindex="-1" disabled><option>Data Type</option></select></div>
+                            <div class="sf n"><select tabindex="-1" disabled><option>Search Type</option></select></div>
+                            <div class="sf w"><input type="text" tabindex="-1" disabled placeholder="Search term"></div>
+                        </div>
+                        <div class="search-row locked" style="margin-bottom: 0;">
+                            <div class="sf n"><select tabindex="-1" disabled><option>Data Type</option></select></div>
+                            <div class="sf n"><select tabindex="-1" disabled><option>Search Type</option></select></div>
+                            <div class="sf w"><input type="text" tabindex="-1" disabled placeholder="Search term"></div>
+                        </div>
+                    </div>
+
+                    <!-- Persistent unlock overlay -->
+                    <div class="jg-locked-overlay" role="note" aria-label="Value-added feature: donate to unlock additional search rows">
+                        <div class="jg-locked-overlay__inner">
+                            <div class="jg-locked-overlay__icon" aria-hidden="true">🔓</div>
+                            <div class="jg-locked-overlay__text">
+                                <strong>Unlock Two Additional Search Rows</strong>
+                                <p>A donation of $100 or more to the JewishGen General Fund unlocks multi-field search, letting you combine up to four simultaneous criteria for more precise results.</p>
+                                <a href="https://www.jewishgen.org/jewishgen-secure/donate.asp"
+                                   class="jg-btn-unlock"
+                                   target="_blank"
+                                   rel="noopener noreferrer">
+                                    Donate Now to Unlock &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- /.jg-locked-rows-wrapper -->
+
+                <!-- Region / Collection -->
+                <div class="region-block">
+                    <div class="sf">
+                        <label class="field-label" for="main-region-select">Region / Collection</label>
+                        <select id="main-region-select" onchange="toggleSubRegion()">
+                            <option value="all">Region / Collection: ALL</option>
+                            <optgroup label="Topical Databases">
+                                <option value="JOWBR">Cemetery Records</option>
+                                <option value="ALLHOLOCAUST">Holocaust Records</option>
+                                <option value="sephardic">Sephardic</option>
+                            </optgroup>
+                            <optgroup label="Africa">
+                                <option value="algeria">Algeria</option>
+                                <option value="egypt">Egypt</option>
+                                <option value="libya">Libya</option>
+                                <option value="morocco">Morocco</option>
+                                <option value="safrica">South Africa</option>
+                                <option value="tunisia">Tunisia</option>
+                            </optgroup>
+                            <optgroup label="Asia &amp; The Middle East">
+                                <option value="india">India</option>
+                                <option value="iraq">Iraq</option>
+                                <option value="israel">Israel</option>
+                                <option value="lebanon">Lebanon</option>
+                                <option value="syria">Syria</option>
+                                <option value="turkey">Turkey</option>
+                            </optgroup>
+                            <optgroup label="Eastern &amp; Central Europe">
+                                <option value="austria">Austria / Czechia</option>
+                                <option value="belarus">Belarus</option>
+                                <option value="bulgaria">Bulgaria</option>
+                                <option value="germany">Germany</option>
+                                <option value="hungary">Hungary / Slovakia</option>
+                                <option value="latvia">Latvia</option>
+                                <option value="lithuania">Lithuania</option>
+                                <option value="poland">Poland</option>
+                                <option value="romania">Romania / Moldova</option>
+                                <option value="ukraine">Ukraine</option>
+                            </optgroup>
+                            <optgroup label="Western &amp; Southern Europe">
+                                <option value="france">France</option>
+                                <option value="greece">Greece</option>
+                                <option value="italy">Italy</option>
+                                <option value="netherlands">Netherlands</option>
+                                <option value="portugal">Portugal</option>
+                                <option value="scandinavia">Scandinavia</option>
+                                <option value="spain">Spain</option>
+                                <option value="ukireland">United Kingdom &amp; Ireland</option>
+                            </optgroup>
+                            <optgroup label="North America">
+                                <option value="canada">Canada</option>
+                                <option value="usa">United States</option>
+                            </optgroup>
+                            <optgroup label="Central &amp; South America">
+                                <option value="argentina">Argentina</option>
+                                <option value="latinam">Latin America</option>
+                                <option value="venezuela">Venezuela</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <!-- Sub-region (shown dynamically when a refineable region is selected) -->
+                    <div id="sub-region-container" role="region" aria-live="polite">
+                        <span class="sub-region-label" id="sub-region-title">Refine Search:</span>
+                        <select id="sub-region-select" aria-labelledby="sub-region-title"></select>
+                    </div>
+
+                </div><!-- /.region-block -->
+
+                <div class="search-submit-wrap">
+                    <button class="btn-search" type="button" onclick="submitSearch()">Search Databases</button>
+                </div>
+
+            </div><!-- /.jg-search-card -->
+        </div><!-- /.jg-search-hero__inner -->
+    </section>
+
 </main>
 
 <div id="site-footer"></div>
 
 <script>
-    /* ── Component Loader (From JOWBR.html) ────────────────── */
+
+    /* -- Component loader -------------------------------------------------- */
     function loadComponent(id, file) {
         return fetch(file)
             .then(function(r) {
@@ -348,7 +324,6 @@
         loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
         loadComponent('site-footer', '/JG40-Build/Footer.html')
     ]).then(function() {
-        // Init Nav accessibility
         document.querySelectorAll('.jg-nav .dropbtn, .main-nav .dropbtn').forEach(function(btn) {
             btn.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' || e.key === ' ') {
@@ -364,16 +339,15 @@
         });
     });
 
-    /* ── Tips panel ── */
-    function toggleHints() {
-        const panel = document.getElementById('search-hints-panel');
-        const btn   = document.getElementById('tips-btn');
-        const isOpen = panel.classList.toggle('open');
-        btn.setAttribute('aria-expanded', isOpen);
+    /* -- Tips panel toggle ------------------------------------------------- */
+    function toggleHints(btn) {
+        var panel = document.getElementById('gs-tips-panel');
+        var isOpen = panel.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(isOpen));
     }
 
-    /* ── Search Type sync ── */
-    const FULL_OPTIONS = [
+    /* -- Search Type sync (when Any Field is selected, options narrow) ------ */
+    var FULL_OPTIONS = [
         { value: '',           label: 'Search Type',    disabled: true },
         { value: 'phonetic',   label: 'Phonetically Like' },
         { value: 'soundslike', label: 'Sounds Like'    },
@@ -381,28 +355,28 @@
         { value: 'exactly',    label: 'Is Exactly'     },
         { value: 'fuzzy',      label: 'Fuzzy Match'    },
         { value: 'fuzzier',    label: 'Fuzzier Match'  },
-        { value: 'fuzziest',   label: 'Fuzziest Match' },
+        { value: 'fuzziest',   label: 'Fuzziest Match' }
     ];
 
-    const ANYFIELD_OPTIONS = [
-        { value: 'contains', label: 'contains' },
+    var ANYFIELD_OPTIONS = [
+        { value: 'contains', label: 'Contains' }
     ];
 
     function buildOptions(select, options) {
         select.innerHTML = '';
-        options.forEach(opt => {
-            const el = document.createElement('option');
+        options.forEach(function(opt) {
+            var el = document.createElement('option');
             el.value = opt.value;
             el.textContent = opt.label;
             if (opt.disabled) el.disabled = true;
             select.appendChild(el);
         });
-        const first = options.find(o => !o.disabled);
+        var first = options.find(function(o) { return !o.disabled; });
         if (first) select.value = first.value;
     }
 
     function syncSearchType(dataTypeSelect, searchTypeId) {
-        const stSelect = document.getElementById(searchTypeId);
+        var stSelect = document.getElementById(searchTypeId);
         if (dataTypeSelect.value === 'anyfield') {
             buildOptions(stSelect, ANYFIELD_OPTIONS);
         } else {
@@ -410,60 +384,81 @@
         }
     }
 
-    /* ── Sub-region toggle ── */
+    /* -- Sub-region toggle (matches home hero jgToggleSubRegion exactly) --- */
     function toggleSubRegion() {
-        const val       = document.getElementById('main-region-select').value;
-        const container = document.getElementById('sub-region-container');
-        const title     = document.getElementById('sub-region-title');
-        const subSelect = document.getElementById('sub-region-select');
+        var mainSelect = document.getElementById('main-region-select');
+        var container  = document.getElementById('sub-region-container');
+        var subSelect  = document.getElementById('sub-region-select');
+        var title      = document.getElementById('sub-region-title');
+        var val = mainSelect.value;
+        var optionsHtml = '<option value="all">All Sub-Regions</option>';
+        var show = true;
 
-        let show = true;
-        let html = '<option value="">— Select —</option>';
+        if (val === 'austria') {
+            title.innerText = "Refine by Region (Austria / Czechia / Galicia):";
+            optionsHtml += '<option value="bohemia" style="font-weight:bold;">Bohemia (Bohmen)</option><option value="prague">&nbsp;&nbsp;&nbsp;Prague (Prag)</option><option value="bukovina_aus" style="font-weight:bold;">Bukovina (Bucovina / Bukowina)</option><option value="chernivtsi_aus">&nbsp;&nbsp;&nbsp;Czernowitz (Chernivtsi/Cernauti)</option><option value="burgenland" style="font-weight:bold;">Burgenland</option><option value="galicia_aus" style="font-weight:bold;">Galicia (Galizien)</option><option value="krakow_aus">&nbsp;&nbsp;&nbsp;Krakow (Krakau)</option><option value="lviv_aus">&nbsp;&nbsp;&nbsp;Lemberg (Lwow/Lviv)</option><option value="stanislau_aus">&nbsp;&nbsp;&nbsp;Stanislau (Ivano-Frankivsk/Stanislawow)</option><option value="tarnopol_aus">&nbsp;&nbsp;&nbsp;Tarnopol (Ternopil)</option><option value="lower_austria_vienna" style="font-weight:bold;">Lower Austria &amp; Vienna</option><option value="lower_austria_p">&nbsp;&nbsp;&nbsp;Lower Austria (Niederosterreich)</option><option value="vienna">&nbsp;&nbsp;&nbsp;Vienna (Wien)</option><option value="moravia" style="font-weight:bold;">Moravia (Mahren)</option>';
 
-         if (val === 'austria') {
-        title.innerText = "Refine by Region (Austria / Czechia / Galicia):";
-        optionsHtml += '<option value="bohemia" style="font-weight:bold;">Bohemia (Böhmen)</option><option value="prague">&nbsp;&nbsp;&nbsp;Prague (Prag)</option><option value="bukovina_aus" style="font-weight:bold;">Bukovina (Bucovina / Bukowina)</option><option value="chernivtsi_aus">&nbsp;&nbsp;&nbsp;Czernowitz (Chernivtsi/Cernăuți)</option><option value="burgenland" style="font-weight:bold;">Burgenland</option><option value="galicia_aus" style="font-weight:bold;">Galicia (Galizien)</option><option value="krakow_aus">&nbsp;&nbsp;&nbsp;Kraków (Krakau)</option><option value="lviv_aus">&nbsp;&nbsp;&nbsp;Lemberg (Lwów/Lviv)</option><option value="stanislau_aus">&nbsp;&nbsp;&nbsp;Stanislau (Ivano-Frankivsk/Stanisławów)</option><option value="tarnopol_aus">&nbsp;&nbsp;&nbsp;Tarnopol (Ternopil)</option><option value="lower_austria_vienna" style="font-weight:bold;">Lower Austria &amp; Vienna</option><option value="lower_austria_p">&nbsp;&nbsp;&nbsp;Lower Austria (Niederösterreich)</option><option value="vienna">&nbsp;&nbsp;&nbsp;Vienna (Wien)</option><option value="moravia" style="font-weight:bold;">Moravia (Mähren)</option>';
-    } else if (val === 'belarus') {
-        title.innerText = "Refine by Historical Region (Belarus):";
-        optionsHtml += '<option value="grodno_bel">Grodno (Grodnenskaya Guberniya)</option><option value="minsk">Minsk (Minskaya Guberniya)</option><option value="mogilev">Mogilev (Mogilevskaya Guberniya)</option><option value="vilna_bel">Vilna (Vilenskaya Guberniya)</option><option value="vitebsk">Vitebsk (Vitebskaya Guberniya)</option>';
-    } else if (val === 'canada') {
-        title.innerText = "Refine by Province/Territory (Canada):";
-        ["Alberta","British Columbia","Manitoba","New Brunswick","Newfoundland and Labrador","Nova Scotia","Northwest Territories","Nunavut","Ontario","Prince Edward Island","Québec","Saskatchewan","Yukon"].forEach(function(p) { optionsHtml += '<option value="' + p.toLowerCase() + '">' + p + '</option>'; });
-    } else if (val === 'hungary') {
-        title.innerText = "Refine by Historical Region (Hungary / Slovakia / Croatia):";
-        optionsHtml += '<option value="banat" style="font-weight:bold;">Banat / Bačka (Bánság / Bácska)</option><option value="croatia_slavonia" style="font-weight:bold;">Croatia-Slavonia (Hrvatska-Slavonija)</option><option value="hungary_mod" style="font-weight:bold;">Hungary (Magyarország)</option><option value="budapest">&nbsp;&nbsp;&nbsp;Budapest &amp; Pest</option><option value="zemplen_hun">&nbsp;&nbsp;&nbsp;Zemplén (Southern portion)</option><option value="maramures" style="font-weight:bold;">Maramureș (Máramaros)</option><option value="slovakia" style="font-weight:bold;">Slovakia (Slovensko / Felvidék)</option><option value="zemplen_svk">&nbsp;&nbsp;&nbsp;Zemplín (Northern portion)</option><option value="subcarpathia" style="font-weight:bold;">Subcarpathia (Zakarpattia / Kárpátalja)</option><option value="transylvania" style="font-weight:bold;">Transylvania (Transilvania / Erdély)</option>';
-    } else if (val === 'latvia') {
-        title.innerText = "Refine by Historical Region (Latvia):";
-        optionsHtml += '<option value="courland">Courland (Kurland)</option><option value="estland">Estland (Estonia)</option><option value="livland">Livland (Vidzeme)</option><option value="vitebsk_lat">Vitebsk (Latgale)</option>';
-    } else if (val === 'lithuania') {
-        title.innerText = "Refine by Historical Region (Lithuania):";
-        optionsHtml += '<option value="kovno_all" style="font-weight:bold;">Kovno Gubernia (Kauno gubernija)</option><option value="kaunas">&nbsp;&nbsp;&nbsp;Kaunas (Kovno uyezd)</option><option value="panevezys">&nbsp;&nbsp;&nbsp;Panevėžys (Ponevezh uyezd)</option><option value="raseiniai">&nbsp;&nbsp;&nbsp;Raseiniai (Rossieny uyezd)</option><option value="siauliai">&nbsp;&nbsp;&nbsp;Šiauliai (Shavl uyezd)</option><option value="telsiai">&nbsp;&nbsp;&nbsp;Telšiai (Telshi uyezd)</option><option value="ukmerge">&nbsp;&nbsp;&nbsp;Ukmergė (Vilkomir uyezd)</option><option value="zarasai">&nbsp;&nbsp;&nbsp;Zarasai (Novo-Aleksandrovsk uyezd)</option><option value="prussia_lit" style="font-weight:bold;">Prussia (Preußen)</option><option value="suwalki_all" style="font-weight:bold;">Suwalki Gubernia (Suvalkų gubernija)</option><option value="kalvarija">&nbsp;&nbsp;&nbsp;Kalvarija (Kalwarya uyezd)</option><option value="naumiestis">&nbsp;&nbsp;&nbsp;Kudirkos Naumiestis (Władysławów uyezd)</option><option value="marijampole">&nbsp;&nbsp;&nbsp;Marijampolė (Mariampol uyezd)</option><option value="sejny_uyezd">&nbsp;&nbsp;&nbsp;Sejny (Sejny uyezd)</option><option value="vilkaviskis">&nbsp;&nbsp;&nbsp;Vilkaviškis (Wyłkowyszki uyezd)</option><option value="vilna_all" style="font-weight:bold;">Vilna Gubernia (Vilniaus gubernija)</option><option value="ashmyany">&nbsp;&nbsp;&nbsp;Ashmyany (Oshmyany uyezd)</option><option value="disna">&nbsp;&nbsp;&nbsp;Disna (Disna uyezd)</option><option value="lida">&nbsp;&nbsp;&nbsp;Lida (Lida uyezd)</option><option value="svencionys">&nbsp;&nbsp;&nbsp;Švenčionys (Sventsyany uyezd)</option><option value="trakai">&nbsp;&nbsp;&nbsp;Trakai (Troki uyezd)</option><option value="vileyka">&nbsp;&nbsp;&nbsp;Vileyka (Vilejka uyezd)</option><option value="vilnius_uyezd">&nbsp;&nbsp;&nbsp;Vilnius (Vilna uyezd)</option>';
-    } else if (val === 'poland') {
-        title.innerText = "Refine by Historical Region (Poland):";
-        optionsHtml += '<option value="congress_poland" style="font-weight:bold;">Congress Poland (Russian Empire)</option><option value="kalisz">&nbsp;&nbsp;&nbsp;Kalisz</option><option value="kielce">&nbsp;&nbsp;&nbsp;Kielce</option><option value="lomza">&nbsp;&nbsp;&nbsp;Łomża</option><option value="lublin">&nbsp;&nbsp;&nbsp;Lublin</option><option value="piotrkow">&nbsp;&nbsp;&nbsp;Piotrków</option><option value="plock">&nbsp;&nbsp;&nbsp;Płock</option><option value="radom">&nbsp;&nbsp;&nbsp;Radom</option><option value="siedlce">&nbsp;&nbsp;&nbsp;Siedlce</option><option value="suwalki_pol">&nbsp;&nbsp;&nbsp;Suwałki</option><option value="warszawa">&nbsp;&nbsp;&nbsp;Warsaw (Warszawa)</option><option value="galicia_pol" style="font-weight:bold;">Galicia (Galizien)</option><option value="krakow">&nbsp;&nbsp;&nbsp;Kraków (Krakau)</option><option value="lwow_pol">&nbsp;&nbsp;&nbsp;Lwów (Lviv/Lemberg)</option><option value="stanislawow_pol">&nbsp;&nbsp;&nbsp;Stanisławów (Ivano-Frankivsk)</option><option value="tarnopol_pol">&nbsp;&nbsp;&nbsp;Tarnopol (Ternopil)</option><option value="pale_pol" style="font-weight:bold;">Pale of Settlement (Russian Empire)</option><option value="grodno_pol">&nbsp;&nbsp;&nbsp;Grodno (Hrodna)</option><option value="vilna_pol">&nbsp;&nbsp;&nbsp;Vilna (Vilnius)</option><option value="volhynia_pol">&nbsp;&nbsp;&nbsp;Volhynia (Volyn)</option><option value="prussia_pol" style="font-weight:bold;">Prussia (Preußen)</option>';
-    } else if (val === 'romania') {
-        title.innerText = "Refine by Historical Region (Romania / Moldova):";
-        optionsHtml += '<option value="aus_rom" style="font-weight:bold;">Bukovina (Austrian Empire)</option><option value="chernivtsi_rom">&nbsp;&nbsp;&nbsp;Cernăuți (Chernivtsi/Czernowitz)</option><option value="russian_rom" style="font-weight:bold;">Former Russian Empire (Republic of Moldova)</option><option value="bessarabia">&nbsp;&nbsp;&nbsp;Bessarabia</option><option value="transnistria">&nbsp;&nbsp;&nbsp;Transnistria</option><option value="kingdom_romania" style="font-weight:bold;">Kingdom of Romania</option><option value="dobrogea">&nbsp;&nbsp;&nbsp;Dobrogea</option><option value="moldavia">&nbsp;&nbsp;&nbsp;Moldavia (Moldova)</option><option value="muntenia_oltenia">&nbsp;&nbsp;&nbsp;Wallachia (Muntenia/Oltenia)</option><option value="hung_rom" style="font-weight:bold;">Pre-WWI Hungary</option><option value="banat">&nbsp;&nbsp;&nbsp;Banat</option><option value="crisana">&nbsp;&nbsp;&nbsp;Crișana</option><option value="maramures">&nbsp;&nbsp;&nbsp;Maramureș (Máramaros)</option><option value="transylvania">&nbsp;&nbsp;&nbsp;Transylvania (Transilvania / Erdély)</option>';
-    } else if (val === 'scandinavia') {
-        title.innerText = "Refine by Country (Scandinavia):";
-        optionsHtml += '<option value="denmark">Denmark (Danmark)</option><option value="finland">Finland (Suomi)</option><option value="norway">Norway (Norge)</option><option value="sweden">Sweden (Sverige)</option>';
-    } else if (val === 'ukraine') {
-        title.innerText = "Refine by Historical Region (Ukraine):";
-        optionsHtml += '<option value="bukovina_ukr" style="font-weight:bold;">Bukovina (Bucovina / Bukowina)</option><option value="chernivtsi_ukr">&nbsp;&nbsp;&nbsp;Chernivtsi (Czernowitz)</option><option value="galicia_ukr" style="font-weight:bold;">Eastern Galicia (Austrian Partition)</option><option value="lviv_ukr">&nbsp;&nbsp;&nbsp;Lviv (Lemberg / Lwów)</option><option value="stanislau_ukr">&nbsp;&nbsp;&nbsp;Stanislau (Ivano-Frankivsk / Stanisławów)</option><option value="ternopil_ukr">&nbsp;&nbsp;&nbsp;Ternopil (Tarnopol)</option><option value="pale_ukr" style="font-weight:bold;">Pale of Settlement (Russian Partition)</option><option value="chernigov">&nbsp;&nbsp;&nbsp;Chernigov (Chernihiv)</option><option value="kherson">&nbsp;&nbsp;&nbsp;Kherson</option><option value="kiev_ukr">&nbsp;&nbsp;&nbsp;Kiev (Kyiv / Kijów)</option><option value="podolia">&nbsp;&nbsp;&nbsp;Podolia (Podillia / Podole)</option><option value="poltava">&nbsp;&nbsp;&nbsp;Poltava</option><option value="volhynia">&nbsp;&nbsp;&nbsp;Volhynia (Volyn / Wołyń)</option><option value="yekaterinoslav">&nbsp;&nbsp;&nbsp;Yekaterinoslav (Dnipro)</option><option value="southern_ukraine" style="font-weight:bold;">Southern Ukraine &amp; Crimea</option><option value="crimea">&nbsp;&nbsp;&nbsp;Crimea (Krym)</option><option value="odessa">&nbsp;&nbsp;&nbsp;Odessa (Odesa)</option><option value="transcarpathia_ukr" style="font-weight:bold;">Transcarpathia (Hungarian Partition)</option><option value="sub_ukr">&nbsp;&nbsp;&nbsp;Subcarpathia (Zakarpattia / Kárpátalja)</option>';
-    } else if (val === 'usa') {
-        title.innerText = "Refine by State (United States):";
-        ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"].forEach(function(s) { optionsHtml += '<option value="' + s.toLowerCase() + '">' + s + '</option>'; });
-    } else {
-        show = false;
+        } else if (val === 'belarus') {
+            title.innerText = "Refine by Historical Region (Belarus):";
+            optionsHtml += '<option value="grodno_bel">Grodno (Grodnenskaya Guberniya)</option><option value="minsk">Minsk (Minskaya Guberniya)</option><option value="mogilev">Mogilev (Mogilevskaya Guberniya)</option><option value="vilna_bel">Vilna (Vilenskaya Guberniya)</option><option value="vitebsk">Vitebsk (Vitebskaya Guberniya)</option>';
+
+        } else if (val === 'canada') {
+            title.innerText = "Refine by Province/Territory (Canada):";
+            ["Alberta","British Columbia","Manitoba","New Brunswick","Newfoundland and Labrador","Nova Scotia","Northwest Territories","Nunavut","Ontario","Prince Edward Island","Quebec","Saskatchewan","Yukon"].forEach(function(p) {
+                optionsHtml += '<option value="' + p.toLowerCase().replace(/ /g, '_') + '">' + p + '</option>';
+            });
+
+        } else if (val === 'hungary') {
+            title.innerText = "Refine by Historical Region (Hungary / Slovakia / Croatia):";
+            optionsHtml += '<option value="banat" style="font-weight:bold;">Banat / Backa (Bansag / Bacska)</option><option value="croatia_slavonia" style="font-weight:bold;">Croatia-Slavonia (Hrvatska-Slavonija)</option><option value="hungary_mod" style="font-weight:bold;">Hungary (Magyarorszag)</option><option value="budapest">&nbsp;&nbsp;&nbsp;Budapest &amp; Pest</option><option value="zemplen_hun">&nbsp;&nbsp;&nbsp;Zemplen (Southern portion)</option><option value="maramures" style="font-weight:bold;">Maramures (Maramaros)</option><option value="slovakia" style="font-weight:bold;">Slovakia (Slovensko / Felvidek)</option><option value="zemplen_svk">&nbsp;&nbsp;&nbsp;Zemplin (Northern portion)</option><option value="subcarpathia" style="font-weight:bold;">Subcarpathia (Zakarpattia / Karpatalja)</option><option value="transylvania" style="font-weight:bold;">Transylvania (Transilvania / Erdely)</option>';
+
+        } else if (val === 'latvia') {
+            title.innerText = "Refine by Historical Region (Latvia):";
+            optionsHtml += '<option value="courland">Courland (Kurland)</option><option value="estland">Estland (Estonia)</option><option value="livland">Livland (Vidzeme)</option><option value="vitebsk_lat">Vitebsk (Latgale)</option>';
+
+        } else if (val === 'lithuania') {
+            title.innerText = "Refine by Historical Region (Lithuania):";
+            optionsHtml += '<option value="kovno_all" style="font-weight:bold;">Kovno Gubernia (Kauno gubernija)</option><option value="kaunas">&nbsp;&nbsp;&nbsp;Kaunas (Kovno uyezd)</option><option value="panevezys">&nbsp;&nbsp;&nbsp;Panevezys (Ponevezh uyezd)</option><option value="raseiniai">&nbsp;&nbsp;&nbsp;Raseiniai (Rossieny uyezd)</option><option value="siauliai">&nbsp;&nbsp;&nbsp;Siauliai (Shavl uyezd)</option><option value="telsiai">&nbsp;&nbsp;&nbsp;Telsiai (Telshi uyezd)</option><option value="ukmerge">&nbsp;&nbsp;&nbsp;Ukmerge (Vilkomir uyezd)</option><option value="zarasai">&nbsp;&nbsp;&nbsp;Zarasai (Novo-Aleksandrovsk uyezd)</option><option value="prussia_lit" style="font-weight:bold;">Prussia (Preussen)</option><option value="suwalki_all" style="font-weight:bold;">Suwalki Gubernia (Suvalku gubernija)</option><option value="kalvarija">&nbsp;&nbsp;&nbsp;Kalvarija (Kalwarya uyezd)</option><option value="naumiestis">&nbsp;&nbsp;&nbsp;Kudirkos Naumiestis (Wladyslawow uyezd)</option><option value="marijampole">&nbsp;&nbsp;&nbsp;Marijampole (Mariampol uyezd)</option><option value="sejny_uyezd">&nbsp;&nbsp;&nbsp;Sejny (Sejny uyezd)</option><option value="vilkaviskis">&nbsp;&nbsp;&nbsp;Vilkaviskis (Wylkowyszki uyezd)</option><option value="vilna_all" style="font-weight:bold;">Vilna Gubernia (Vilniaus gubernija)</option><option value="ashmyany">&nbsp;&nbsp;&nbsp;Ashmyany (Oshmyany uyezd)</option><option value="disna">&nbsp;&nbsp;&nbsp;Disna (Disna uyezd)</option><option value="lida">&nbsp;&nbsp;&nbsp;Lida (Lida uyezd)</option><option value="svencionys">&nbsp;&nbsp;&nbsp;Svencionys (Sventsyany uyezd)</option><option value="trakai">&nbsp;&nbsp;&nbsp;Trakai (Troki uyezd)</option><option value="vileyka">&nbsp;&nbsp;&nbsp;Vileyka (Vilejka uyezd)</option><option value="vilnius_uyezd">&nbsp;&nbsp;&nbsp;Vilnius (Vilna uyezd)</option>';
+
+        } else if (val === 'poland') {
+            title.innerText = "Refine by Historical Region (Poland):";
+            optionsHtml += '<option value="congress_poland" style="font-weight:bold;">Congress Poland (Russian Empire)</option><option value="kalisz">&nbsp;&nbsp;&nbsp;Kalisz</option><option value="kielce">&nbsp;&nbsp;&nbsp;Kielce</option><option value="lomza">&nbsp;&nbsp;&nbsp;Lomza</option><option value="lublin">&nbsp;&nbsp;&nbsp;Lublin</option><option value="piotrkow">&nbsp;&nbsp;&nbsp;Piotrkow</option><option value="plock">&nbsp;&nbsp;&nbsp;Plock</option><option value="radom">&nbsp;&nbsp;&nbsp;Radom</option><option value="siedlce">&nbsp;&nbsp;&nbsp;Siedlce</option><option value="suwalki_pol">&nbsp;&nbsp;&nbsp;Suwalki</option><option value="warszawa">&nbsp;&nbsp;&nbsp;Warsaw (Warszawa)</option><option value="galicia_pol" style="font-weight:bold;">Galicia (Galizien)</option><option value="krakow">&nbsp;&nbsp;&nbsp;Krakow (Krakau)</option><option value="lwow_pol">&nbsp;&nbsp;&nbsp;Lwow (Lviv/Lemberg)</option><option value="stanislawow_pol">&nbsp;&nbsp;&nbsp;Stanislawow (Ivano-Frankivsk)</option><option value="tarnopol_pol">&nbsp;&nbsp;&nbsp;Tarnopol (Ternopil)</option><option value="pale_pol" style="font-weight:bold;">Pale of Settlement (Russian Empire)</option><option value="grodno_pol">&nbsp;&nbsp;&nbsp;Grodno (Hrodna)</option><option value="vilna_pol">&nbsp;&nbsp;&nbsp;Vilna (Vilnius)</option><option value="volhynia_pol">&nbsp;&nbsp;&nbsp;Volhynia (Volyn)</option><option value="prussia_pol" style="font-weight:bold;">Prussia (Preussen)</option>';
+
+        } else if (val === 'romania') {
+            title.innerText = "Refine by Historical Region (Romania / Moldova):";
+            optionsHtml += '<option value="aus_rom" style="font-weight:bold;">Bukovina (Austrian Empire)</option><option value="chernivtsi_rom">&nbsp;&nbsp;&nbsp;Cernauti (Chernivtsi/Czernowitz)</option><option value="russian_rom" style="font-weight:bold;">Former Russian Empire (Republic of Moldova)</option><option value="bessarabia">&nbsp;&nbsp;&nbsp;Bessarabia</option><option value="transnistria">&nbsp;&nbsp;&nbsp;Transnistria</option><option value="kingdom_romania" style="font-weight:bold;">Kingdom of Romania</option><option value="dobrogea">&nbsp;&nbsp;&nbsp;Dobrogea</option><option value="moldavia">&nbsp;&nbsp;&nbsp;Moldavia (Moldova)</option><option value="muntenia_oltenia">&nbsp;&nbsp;&nbsp;Wallachia (Muntenia/Oltenia)</option><option value="hung_rom" style="font-weight:bold;">Pre-WWI Hungary</option><option value="banat">&nbsp;&nbsp;&nbsp;Banat</option><option value="crisana">&nbsp;&nbsp;&nbsp;Crisana</option><option value="maramures">&nbsp;&nbsp;&nbsp;Maramures (Maramaros)</option><option value="transylvania">&nbsp;&nbsp;&nbsp;Transylvania (Transilvania / Erdely)</option>';
+
+        } else if (val === 'scandinavia') {
+            title.innerText = "Refine by Country (Scandinavia):";
+            optionsHtml += '<option value="denmark">Denmark (Danmark)</option><option value="finland">Finland (Suomi)</option><option value="norway">Norway (Norge)</option><option value="sweden">Sweden (Sverige)</option>';
+
+        } else if (val === 'ukraine') {
+            title.innerText = "Refine by Historical Region (Ukraine):";
+            optionsHtml += '<option value="bukovina_ukr" style="font-weight:bold;">Bukovina (Bucovina / Bukowina)</option><option value="chernivtsi_ukr">&nbsp;&nbsp;&nbsp;Chernivtsi (Czernowitz)</option><option value="galicia_ukr" style="font-weight:bold;">Eastern Galicia (Austrian Partition)</option><option value="lviv_ukr">&nbsp;&nbsp;&nbsp;Lviv (Lemberg / Lwow)</option><option value="stanislau_ukr">&nbsp;&nbsp;&nbsp;Stanislau (Ivano-Frankivsk / Stanislawow)</option><option value="ternopil_ukr">&nbsp;&nbsp;&nbsp;Ternopil (Tarnopol)</option><option value="pale_ukr" style="font-weight:bold;">Pale of Settlement (Russian Partition)</option><option value="chernigov">&nbsp;&nbsp;&nbsp;Chernigov (Chernihiv)</option><option value="kherson">&nbsp;&nbsp;&nbsp;Kherson</option><option value="kiev_ukr">&nbsp;&nbsp;&nbsp;Kiev (Kyiv / Kijow)</option><option value="podolia">&nbsp;&nbsp;&nbsp;Podolia (Podillia / Podole)</option><option value="poltava">&nbsp;&nbsp;&nbsp;Poltava</option><option value="volhynia">&nbsp;&nbsp;&nbsp;Volhynia (Volyn / Wolyn)</option><option value="yekaterinoslav">&nbsp;&nbsp;&nbsp;Yekaterinoslav (Dnipro)</option><option value="southern_ukraine" style="font-weight:bold;">Southern Ukraine &amp; Crimea</option><option value="crimea">&nbsp;&nbsp;&nbsp;Crimea (Krym)</option><option value="odessa">&nbsp;&nbsp;&nbsp;Odessa (Odesa)</option><option value="transcarpathia_ukr" style="font-weight:bold;">Transcarpathia (Hungarian Partition)</option><option value="sub_ukr">&nbsp;&nbsp;&nbsp;Subcarpathia (Zakarpattia / Karpatalja)</option>';
+
+        } else if (val === 'usa') {
+            title.innerText = "Refine by State (United States):";
+            ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"].forEach(function(s) {
+                optionsHtml += '<option value="' + s.toLowerCase().replace(/ /g, '_') + '">' + s + '</option>';
+            });
+
+        } else {
+            show = false;
+        }
+
+        if (show) {
+            subSelect.innerHTML = optionsHtml;
+            container.style.display = 'block';
+        } else {
+            container.style.display = 'none';
+        }
     }
 
-    if (show) { subSelect.innerHTML = optionsHtml; container.style.display = 'block'; }
-    else       { container.style.display = 'none'; }
-}
-
+    /* -- Search submit (stub) ---------------------------------------------- */
     function submitSearch() {
         console.log('Search submitted');
     }
+
 </script>
 
 </body>
