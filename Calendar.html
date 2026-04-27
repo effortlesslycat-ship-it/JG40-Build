@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upcoming Events Calendar — JewishGen</title>
-<!-- TODO: calendar feels visually squished - revisit spacing/proportions -->
+
     <!-- 1. Bootstrap (layout only — design tokens override below) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 
@@ -17,25 +17,24 @@
         a { text-decoration: none; color: inherit; }
 
 
-        /* -- Page title band ----------------------------------- */
-        .page-title-band {
-            background-color: var(--navy);
-            color: #ffffff;
-            padding: 48px 50px;
+        /* -- Page heading (serif, on ecru) --------------------- */
+        .cal-page-heading {
             text-align: center;
+            margin-bottom: 2.5rem;
         }
-        .page-title-band h1 {
+        .cal-page-heading h1 {
             margin: 0 0 8px 0;
             font-family: Georgia, 'Times New Roman', serif;
             font-size: 2.5rem;
             font-weight: normal;
             line-height: 1.15;
-            color: #ffffff;
+            color: var(--navy);
         }
-        .page-title-band p {
+        .cal-page-heading p {
             margin: 0;
             font-size: 0.9375rem;
-            color: rgba(255,255,255,0.85);
+            color: var(--charcoal);
+            opacity: 0.85;
         }
 
         /* -- Full-width ecru wrapper --------------------------- */
@@ -56,13 +55,26 @@
             margin-bottom: 2rem;
         }
 
-        /* -- Cards: Kalikow + Talks (white on ecru) ------------ */
+        /* -- Cards: Kalikow + Talks (icon left, content right) - */
         .kalikow-block,
         .cta-block {
             background-color: var(--white);
             border-radius: 8px;
             padding: 28px 32px;
+            display: grid;
+            grid-template-columns: 64px 1fr;
+            column-gap: 24px;
         }
+
+        .card-icon { width: 64px; height: 64px; display: block; }
+        .card-icon .light-logo { display: block; }
+        .card-icon .dark-logo  { display: none; }
+        body.dark-mode .card-icon .light-logo { display: none; }
+        body.dark-mode .card-icon .dark-logo  { display: block; }
+        .card-icon img { width: 100%; height: auto; display: block; }
+
+        .card-body { display: flex; flex-direction: column; }
+
         .kalikow-block h2,
         .cta-block h2 {
             margin: 0 0 4px 0;
@@ -78,45 +90,132 @@
             font-weight: bold;
             color: var(--navy);
             margin: 0 0 16px 0;
+            line-height: 1.35;
         }
 
-        .hours-grid { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: 14px; }
+        /* Hours: day label + time on the same row */
+        .hours-grid {
+            display: grid;
+            grid-template-columns: max-content 1fr;
+            gap: 6px 28px;
+            font-size: 14px;
+            margin-bottom: 14px;
+        }
         .hours-day  { font-weight: bold; color: var(--charcoal); }
         .hours-time { color: var(--charcoal); }
-        .closure-notice { margin-top: 14px; font-size: 12px; color: var(--charcoal); opacity: 0.75; font-style: italic; }
-
-        .cta-block {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 14px;
+        .closure-notice {
+            font-size: 12px;
+            color: var(--charcoal);
+            opacity: 0.75;
+            font-style: italic;
+            line-height: 1.5;
+            margin: 0 0 18px 0;
         }
 
-        .cta-btn {
-            display: block; text-align: center; padding: 13px 20px; border-radius: 7px;
-            font-size: 14px; font-weight: bold; cursor: pointer;
-            transition: opacity 0.2s ease; line-height: 1.3;
+        /* Talks card description (3 prose lines) */
+        .cta-desc {
+            font-size: 14px;
+            color: var(--charcoal);
+            line-height: 1.55;
+            margin: 0 0 18px 0;
         }
-        .cta-btn:hover { opacity: 0.88; }
-        .cta-primary   { background-color: var(--sage); color: var(--white); }
-        .cta-secondary { background-color: var(--navy); color: var(--white); border: 2px solid var(--navy); }
+
+        /* -- Sage CTA button (Book / Watch) -------------------- */
+        .btn-sage-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background-color: var(--sage);
+            color: var(--white);
+            font-weight: bold;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 11px 22px;
+            border-radius: 4px;
+            border: none;
+            transition: filter 0.2s;
+            width: fit-content;
+            cursor: pointer;
+            margin-top: auto;
+        }
+        .btn-sage-cta:hover { filter: brightness(1.08); color: var(--white); }
+
+        /* -- Section divider (navy rule, separating cards from calendar) -- */
+        .section-divider {
+            height: 2px;
+            background-color: var(--navy);
+            border: none;
+            margin: 0 0 24px 0;
+        }
 
         /* -- Controls bar -------------------------------------- */
-        .controls-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
-
-        .month-nav { display: flex; align-items: center; gap: 14px; }
-        .month-nav button {
-            background: none; border: 2px solid var(--navy); color: var(--navy);
-            width: 34px; height: 34px; border-radius: 6px; font-size: 16px; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; transition: background-color 0.2s ease;
+        .controls-bar {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            margin-bottom: 24px;
+            gap: 12px;
         }
-        .month-nav button:hover { background-color: var(--navy); color: var(--white); }
-        .month-label { font-size: 18px; font-weight: bold; color: var(--navy); min-width: 180px; text-align: center; }
+        .controls-spacer { /* left grid cell, keeps month-nav centered */ }
 
-        .view-toggle { display: flex; border: 2px solid var(--navy); border-radius: 7px; overflow: hidden; }
-        .view-toggle button { background: none; border: none; padding: 7px 16px; font-size: 13px; font-weight: bold; cursor: pointer; color: var(--navy); transition: background-color 0.2s ease, color 0.2s ease; }
-        .view-toggle button.active { background-color: var(--navy); color: var(--white); }
-        .view-toggle button:not(.active):hover { background-color: var(--cream); }
+        .month-nav {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            justify-content: center;
+        }
+        .month-nav button {
+            background: none;
+            border: none;
+            color: var(--sage);
+            width: 32px; height: 32px;
+            font-size: 22px; line-height: 1;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: color 0.2s ease, transform 0.15s ease;
+            padding: 0;
+        }
+        .month-nav button:hover  { color: var(--navy); }
+        .month-nav button:focus-visible { outline: 2px solid var(--sage); outline-offset: 2px; border-radius: 4px; }
+        .month-nav button:active { transform: scale(0.92); }
+
+        .month-label {
+            font-size: 18px;
+            color: var(--navy);
+            min-width: 180px;
+            text-align: center;
+        }
+        .month-label .month-name { font-weight: bold; }
+        .month-label .month-year { font-weight: normal; margin-left: 6px; }
+
+        /* Grid/List toggle - lightweight, icon + label */
+        .view-toggle {
+            display: flex;
+            gap: 14px;
+            justify-content: flex-end;
+        }
+        .view-toggle button {
+            background: none;
+            border: none;
+            padding: 4px 6px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--navy);
+            opacity: 0.55;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: opacity 0.2s ease;
+        }
+        .view-toggle button:hover  { opacity: 0.85; }
+        .view-toggle button.active { opacity: 1; }
+        .view-toggle button:focus-visible { outline: 2px solid var(--sage); outline-offset: 2px; border-radius: 4px; }
+        .view-toggle .toggle-icon { font-size: 14px; line-height: 1; }
 
         /* -- Grid calendar ------------------------------------- */
         .calendar-grid-wrap { display: block; }
@@ -190,27 +289,25 @@
         .modal-link:hover { opacity: 0.82; }
 
         /* -- Dark mode: page-specific overrides ---------------- */
-        body.dark-mode .page-title-band      { background-color: #0d2a45; }
-        body.dark-mode .page-title-band h1   { color: #ffffff; }
-        body.dark-mode .page-title-band p    { color: rgba(255,255,255,0.85); }
+        body.dark-mode .cal-page-heading h1  { color: #e0e0e0; }
+        body.dark-mode .cal-page-heading p   { color: #c8c0b0; }
         /* Ecru wrap flips to #1a1a1a automatically; white cards pin to #1e1e1e to stay distinguishable */
         body.dark-mode .kalikow-block,
         body.dark-mode .cta-block            { background-color: #1e1e1e; }
         body.dark-mode .kalikow-block h2,
         body.dark-mode .cta-block h2         { color: #c8c0b0; }
-        body.dark-mode .kalikow-block .kalikow-name { color: var(--sage); }
+        body.dark-mode .kalikow-block .kalikow-name,
+        body.dark-mode .cta-block .talks-name { color: var(--sage); }
         body.dark-mode .hours-day            { color: #e8e1d1; }
         body.dark-mode .hours-time           { color: #c8c0b0; }
         body.dark-mode .closure-notice       { color: #a09888; }
-        body.dark-mode .cta-block p          { color: #c8c0b0; }
-        body.dark-mode .talks-name           { color: var(--sage); }
-        body.dark-mode .month-nav button     { border-color: var(--sage); color: var(--sage); }
-        body.dark-mode .month-nav button:hover { background-color: var(--sage); color: var(--white); }
-        body.dark-mode .month-label          { color: var(--sage); }
-        body.dark-mode .view-toggle          { border-color: var(--sage); }
-        body.dark-mode .view-toggle button   { color: var(--sage); }
-        body.dark-mode .view-toggle button.active { background-color: var(--sage); color: var(--white); }
-        body.dark-mode .view-toggle button:not(.active):hover { background-color: #2a2f2f; }
+        body.dark-mode .cta-desc             { color: #c8c0b0; }
+        body.dark-mode .btn-sage-cta         { color: var(--white); }
+        body.dark-mode .section-divider      { background-color: #3a4a4a; }
+        body.dark-mode .month-nav button     { color: var(--sage); }
+        body.dark-mode .month-nav button:hover { color: #e0e0e0; }
+        body.dark-mode .month-label          { color: #e0e0e0; }
+        body.dark-mode .view-toggle button   { color: #e0e0e0; }
         body.dark-mode .cal-header-row       { background-color: #0a3a5c; }
         body.dark-mode .cal-body             { border-color: #3a4a4a; }
         body.dark-mode .cal-day              { background-color: #1e2424; border-color: #3a4a4a; }
@@ -231,16 +328,21 @@
 
         /* -- Responsive ---------------------------------------- */
         @media (max-width: 768px) {
-            .page-title-band { padding: 32px 20px; }
-            .page-title-band h1 { font-size: 1.75rem; }
+            .cal-page-heading h1 { font-size: 1.75rem; }
+            .cal-page-heading { margin-bottom: 1.75rem; }
             .cal-ecru-wrap { padding: 2rem 1rem; }
             .cal-top-row { grid-template-columns: 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+            /* 2a: drop card icons on mobile */
+            .kalikow-block, .cta-block { grid-template-columns: 1fr; }
+            .card-icon { display: none; }
+            .controls-bar { grid-template-columns: 1fr; gap: 16px; }
+            .month-nav { justify-content: center; }
+            .view-toggle { justify-content: center; }
             .calendar-grid-wrap { display: none !important; }
             .calendar-list-wrap { display: block !important; }
             .view-toggle { display: none; }
             .event-list-item { grid-template-columns: 64px 1fr; grid-template-rows: auto auto; }
             .event-learn-btn { grid-column: 2; margin-top: 10px; display: inline-block; width: fit-content; }
-            .controls-bar { justify-content: center; }
         }
 
         @media (max-width: 480px) {
@@ -257,16 +359,6 @@
 <div id="site-header"></div>
 
 <!-- ══════════════════════════════════════════
-     PAGE TITLE BAND
-══════════════════════════════════════════ -->
-<div class="page-title-band">
-    <div style="max-width: 1100px; margin: 0 auto;">
-        <h1>Upcoming Events Calendar</h1>
-        <p>Programs from JewishGen and the Museum of Jewish Heritage</p>
-    </div>
-</div>
-
-<!-- ══════════════════════════════════════════
      MAIN CONTENT
 ══════════════════════════════════════════ -->
 <main>
@@ -274,54 +366,80 @@
 <div class="cal-ecru-wrap">
     <div class="cal-ecru-inner">
 
+        <!-- PAGE HEADING -->
+        <header class="cal-page-heading">
+            <h1>Upcoming Events Calendar</h1>
+            <p>Programs from JewishGen and the Museum of Jewish Heritage</p>
+        </header>
+
         <!-- TOP ROW: Kalikow + Talks cards -->
         <section class="cal-top-row" aria-label="Kalikow Center and quick links">
 
             <div class="kalikow-block">
-                <h2>Visit Us In Person</h2>
-                <p class="kalikow-name">Peter &amp; Mary Kalikow<br>Jewish Genealogy Center</p>
-                <div class="hours-grid" role="list" aria-label="Kalikow Center hours">
-                    <span class="hours-day" role="listitem">Wednesday</span>
-                    <span class="hours-time">12:00 PM – 5:00 PM</span>
-                    <span class="hours-day" role="listitem">Thursday</span>
-                    <span class="hours-time">12:00 PM – 8:00 PM</span>
-                    <span class="hours-day" role="listitem">Sunday</span>
-                    <span class="hours-time">10:00 AM – 5:00 PM</span>
+                <div class="card-icon" aria-hidden="true">
+                    <img src="KalCalReg.png"  alt="" class="light-logo">
+                    <img src="KalCalDark.png" alt="" class="dark-logo">
                 </div>
-                <p class="closure-notice">Hours subject to change when the museum is closed.<br>
-                    Highlighted days on the calendar reflect standard open days.</p>
-                <a href="#" class="cta-btn cta-primary" style="margin-top: 18px;"
-                   aria-label="Schedule an appointment at the Kalikow Center">
-                    📅 Book an Appointment
-                </a>
+                <div class="card-body">
+                    <h2>Visit Us In Person</h2>
+                    <p class="kalikow-name">Peter &amp; Mary Kalikow<br>Jewish Genealogy Center</p>
+                    <div class="hours-grid" role="list" aria-label="Kalikow Center hours">
+                        <span class="hours-day"  role="listitem">Wednesday</span>
+                        <span class="hours-time">12:00 PM &ndash; 5:00 PM</span>
+                        <span class="hours-day"  role="listitem">Thursday</span>
+                        <span class="hours-time">12:00 PM &ndash; 8:00 PM</span>
+                        <span class="hours-day"  role="listitem">Sunday</span>
+                        <span class="hours-time">10:00 AM &ndash; 5:00 PM</span>
+                    </div>
+                    <p class="closure-notice">
+                        Hours subject to change when the museum is closed.<br>
+                        Highlighted days on the calendar reflect standard open days.
+                    </p>
+                    <a href="#" class="btn-sage-cta"
+                       aria-label="Schedule an appointment at the Kalikow Center">
+                        Book an Appointment
+                    </a>
+                </div>
             </div>
 
             <div class="cta-block">
-                <div>
+                <div class="card-icon" aria-hidden="true">
+                    <img src="CameraReg.png"  alt="" class="light-logo">
+                    <img src="CameraDark.png" alt="" class="dark-logo">
+                </div>
+                <div class="card-body">
                     <h2>Miss a JewishGen Talk?</h2>
                     <p class="talks-name">JewishGen Talks Archive</p>
-                    <p style="font-size: 14px; color: var(--charcoal); margin: 0; line-height: 1.5;">
-                        Expert lectures on Jewish genealogy and history — new talks added regularly.
+                    <p class="cta-desc">
+                        Expert talks on Jewish genealogy and history from JewishGen and the Museum of Jewish Heritage. New talks added regularly &mdash; free to watch anytime.
                     </p>
+                    <a href="JGTalksMOCK.html" class="btn-sage-cta"
+                       aria-label="Watch the JewishGen Talks archive">
+                        Watch Now
+                    </a>
                 </div>
-                <a href="JGTalksMOCK.html" class="cta-btn cta-secondary"
-                   aria-label="Watch the JewishGen Talks archive">
-                    🎥 Watch Now
-                </a>
             </div>
 
         </section>
 
+        <!-- ─── Navy rule: separates cards from calendar grid ─── -->
+        <hr class="section-divider" aria-hidden="true">
+
         <!-- CONTROLS BAR -->
         <div class="controls-bar">
+            <div class="controls-spacer" aria-hidden="true"></div>
             <div class="month-nav" role="group" aria-label="Navigate calendar months">
                 <button id="prev-month" aria-label="Previous month">&#8249;</button>
                 <span class="month-label" id="month-label" aria-live="polite"></span>
                 <button id="next-month" aria-label="Next month">&#8250;</button>
             </div>
             <div class="view-toggle" role="group" aria-label="Switch calendar view">
-                <button id="btn-grid" class="active" aria-pressed="true"  onclick="setView('grid')">📅 Grid</button>
-                <button id="btn-list" aria-pressed="false" onclick="setView('list')">☰ List</button>
+                <button id="btn-grid" class="active" aria-pressed="true"  onclick="setView('grid')">
+                    <span class="toggle-icon" aria-hidden="true">▦</span> Grid
+                </button>
+                <button id="btn-list" aria-pressed="false" onclick="setView('list')">
+                    <span class="toggle-icon" aria-hidden="true">☰</span> List
+                </button>
             </div>
         </div>
 
@@ -477,7 +595,9 @@ Promise.all([
        GRID RENDER
     --------------------------------------------------------- */
     function renderGrid() {
-        document.getElementById('month-label').textContent = `${MONTH_NAMES[currentMonth]} ${currentYear}`;
+        document.getElementById('month-label').innerHTML =
+            '<span class="month-name">' + MONTH_NAMES[currentMonth] + '</span>' +
+            '<span class="month-year">' + currentYear + '</span>';
         const body = document.getElementById('cal-body');
         body.innerHTML = '';
         const firstDow = new Date(currentYear, currentMonth, 1).getDay();
