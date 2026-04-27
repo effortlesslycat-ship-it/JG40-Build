@@ -1218,6 +1218,372 @@ body.dark-mode .jg-locked-overlay {
 body.dark-mode .jg-locked-overlay__text { color: #c0c0c0; }
 body.dark-mode .jg-locked-overlay__text strong { color: #a8b361; }
 
+/* ==========================================================================
+   SHARED SEARCH PAGE SYSTEM
+   Append this block to jg-global.css.
+   Used by: Global_Search.html, Holocaust.html, JOWBR.html (and future search pages)
+   After appending, remove duplicate rules from Holocaust.html page <style> block:
+     .jg-search-hero, .jg-search-card, .jg-tips-link, .jg-tips-card-panel,
+     .search-row (scoped), .sf, .field-label (scoped), .jg-search-card select/input,
+     .btn-search
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   SEARCH HERO BAND
+   Full-width ecru band wrapping page heading + search card.
+   Replaces the old navy .page-title-band on all search pages.
+   -------------------------------------------------------------------------- */
+.jg-search-hero {
+    background-color: var(--ecru);
+    padding: 3rem 2rem 2.5rem;
+}
+.jg-search-hero__inner {
+    max-width: 980px;
+    margin: 0 auto;
+}
+.jg-search-hero__heading {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.jg-search-hero__heading h1 {
+    margin: 0 0 10px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2.5rem;
+    font-weight: normal;
+    line-height: 1.15;
+    color: var(--navy);
+}
+.jg-search-hero__heading .lede {
+    margin: 0 auto;
+    max-width: 640px;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--charcoal);
+    opacity: 0.85;
+}
+.jg-search-hero__heading .stat-line {
+    display: block;
+    margin-top: 0.75rem;
+    font-size: 0.8125rem;
+    font-style: italic;
+    color: var(--charcoal);
+    opacity: 0.65;
+}
+/* --navy flips to #e0e0e0 in dark mode - acceptable for heading on dark ecru */
+body.dark-mode .jg-search-hero__heading .lede,
+body.dark-mode .jg-search-hero__heading .stat-line {
+    color: #c8c0b0;
+    opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   SEARCH CARD
+   White card floating on ecru. Shadow only -- no border.
+   Note: --ecru flips to #1a1a1a; --white flips to #121212.
+   Pin card to #1e1e1e so it stays visually distinct from the band.
+   -------------------------------------------------------------------------- */
+.jg-search-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 1.75rem 2rem 1.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+body.dark-mode .jg-search-card {
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+/* Card header: h2 left, tips link right */
+.jg-search-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.jg-search-card__header h2 {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.5rem;
+    font-weight: normal;
+    color: var(--navy);
+    line-height: 1.25;
+}
+body.dark-mode .jg-search-card__header h2 { color: #e0e0e0; }
+
+/* Sage rule beneath the header row */
+.jg-search-card__rule {
+    border: none;
+    border-top: 2px solid var(--sage);
+    margin: 0.875rem 0 1.25rem;
+    opacity: 0.85;
+}
+
+/* --------------------------------------------------------------------------
+   TIPS LINK
+   Text-link toggle with lightbulb icon and sage dotted underline.
+   Uses .light-logo / .dark-logo swap pattern (same as footer logos).
+   -------------------------------------------------------------------------- */
+.jg-tips-link {
+    background: none;
+    border: none;
+    padding: 4px 6px;
+    margin: 0;
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--navy);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: underline dotted;
+    text-decoration-color: var(--sage);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+    transition: color 0.15s, text-decoration-color 0.15s;
+}
+.jg-tips-link:hover,
+.jg-tips-link:focus-visible {
+    color: var(--sage);
+}
+.jg-tips-link[aria-expanded="true"] {
+    color: var(--sage);
+    text-decoration-style: solid;
+}
+body.dark-mode .jg-tips-link { color: #e0e0e0; }
+body.dark-mode .jg-tips-link:hover,
+body.dark-mode .jg-tips-link:focus-visible,
+body.dark-mode .jg-tips-link[aria-expanded="true"] { color: #a8b361; }
+
+/* Lightbulb icon inside the flex button row.
+   Override global .light-logo { display: block } so images stay inline. */
+.jg-tips-link__icon {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+.jg-tips-link .light-logo,
+.jg-tips-link .dark-logo { display: none; }
+.jg-tips-link .light-logo { display: inline-block; }
+body.dark-mode .jg-tips-link .light-logo { display: none !important; }
+body.dark-mode .jg-tips-link .dark-logo { display: inline-block !important; }
+
+/* --------------------------------------------------------------------------
+   TIPS CARD PANEL
+   Expandable panel beneath the card header rule.
+   Uses --light-blue which does NOT flip in dark mode -- safe on all backgrounds.
+   -------------------------------------------------------------------------- */
+.jg-tips-card-panel {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.35s ease, margin 0.35s ease;
+    background: var(--light-blue);
+    border-left: 4px solid var(--sage);
+    border-radius: 4px;
+    padding: 0 1rem;
+    margin-bottom: 0;
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    color: var(--charcoal);
+}
+.jg-tips-card-panel.open {
+    max-height: 500px;
+    opacity: 1;
+    padding: 1rem;
+    margin-bottom: 1.25rem;
+}
+.jg-tips-card-panel strong { color: var(--navy); }
+body.dark-mode .jg-tips-card-panel { background: #2a2a2a; color: #c8c0b0; }
+body.dark-mode .jg-tips-card-panel strong { color: #a8b361; }
+
+/* --------------------------------------------------------------------------
+   SEARCH FORM ROWS
+   .sf wrappers place label directly above its input (no separate header row).
+   Scoped to .jg-search-card to avoid cascade conflicts on other pages.
+   -------------------------------------------------------------------------- */
+.jg-search-card .search-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: flex-end;
+}
+.jg-search-card .sf {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.jg-search-card .sf.n { flex: 1.1; min-width: 130px; }
+.jg-search-card .sf.w { flex: 2; }
+.jg-search-card .field-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 2px;
+}
+
+/* Input and select fields */
+.jg-search-card select,
+.jg-search-card input[type="text"] {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #c4d0d6;
+    border-radius: 4px;
+    font-size: 13.5px;
+    color: var(--charcoal);
+    background: var(--light-blue);
+    font-family: inherit;
+    transition: border-color 0.2s, background 0.2s;
+}
+.jg-search-card select:focus,
+.jg-search-card input[type="text"]:focus {
+    border-color: var(--navy);
+    outline: none;
+    background: var(--white);
+    box-shadow: 0 0 0 2px rgba(9,73,122,0.12);
+}
+body.dark-mode .jg-search-card select,
+body.dark-mode .jg-search-card input[type="text"] {
+    background: #2a2a2a;
+    border-color: #444;
+    color: #e0e0e0;
+}
+body.dark-mode .jg-search-card select:focus,
+body.dark-mode .jg-search-card input[type="text"]:focus {
+    background: #1e1e1e;
+    border-color: #a8b361;
+}
+
+/* --------------------------------------------------------------------------
+   LOCKED ROWS OVERLAY (persistent -- always visible, not hover-reveal)
+   The overlay covers the locked rows at all times to communicate the
+   value-added feature. No hover/revealed toggling.
+   -------------------------------------------------------------------------- */
+.jg-locked-rows-wrapper {
+    position: relative;
+    margin-top: 14px;
+    padding-bottom: 68px; /* fixed space for the overlay CTA */
+}
+.search-row.locked {
+    opacity: 0.35;
+    pointer-events: none;
+}
+.jg-search-card .search-row.locked select,
+.jg-search-card .search-row.locked input[type="text"] {
+    background-color: #e4e9ec;
+}
+body.dark-mode .jg-search-card .search-row.locked select,
+body.dark-mode .jg-search-card .search-row.locked input[type="text"] {
+    background-color: #222;
+}
+
+.jg-locked-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(232,225,209,0.6);
+    border-radius: 8px;
+    border: 1px solid #d1caba;
+    z-index: 2;
+    padding: 20px 28px;
+}
+body.dark-mode .jg-locked-overlay {
+    background: rgba(30,30,30,0.78);
+    border-color: #444;
+}
+
+.jg-locked-overlay__inner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    max-width: 560px;
+    width: 100%;
+}
+.jg-locked-overlay__icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+}
+.jg-locked-overlay__text {
+    flex: 1;
+    font-size: 13px;
+    color: var(--charcoal);
+    line-height: 1.55;
+}
+.jg-locked-overlay__text strong {
+    color: var(--navy);
+    font-size: 14px;
+    display: block;
+    margin-bottom: 3px;
+}
+.jg-locked-overlay__text p { margin: 0 0 10px; }
+body.dark-mode .jg-locked-overlay__text { color: #c0c0c0; }
+body.dark-mode .jg-locked-overlay__text strong { color: #a8b361; }
+
+.jg-btn-unlock {
+    display: inline-block;
+    background-color: var(--sage);
+    color: #ffffff;
+    padding: 9px 20px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    white-space: nowrap;
+    transition: filter 0.2s;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+.jg-btn-unlock:hover { filter: brightness(1.1); color: #ffffff; }
+.jg-btn-unlock:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
+body.dark-mode .jg-btn-unlock { background-color: #a8b361; color: #1a1a1a; }
+body.dark-mode .jg-btn-unlock:hover { color: #1a1a1a; }
+
+/* --------------------------------------------------------------------------
+   SEARCH SUBMIT BUTTON
+   Compact centered block replacing the old wide pill.
+   -------------------------------------------------------------------------- */
+.btn-search {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    background-color: var(--sage);
+    color: #ffffff;
+    border: none;
+    padding: 11px 24px;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-family: inherit;
+    transition: filter 0.2s;
+}
+.btn-search:hover { filter: brightness(1.1); }
+.btn-search:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
+body.dark-mode .btn-search { background-color: #a8b361; color: #1a1a1a; }
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+    .jg-search-hero { padding: 2rem 1.25rem 2rem; }
+    .jg-search-card { padding: 1.25rem 1.125rem 1rem; }
+    .jg-search-card .search-row { flex-direction: column; align-items: stretch; }
+    .jg-search-card .sf.n,
+    .jg-search-card .sf.w { flex: unset; width: 100%; min-width: unset; }
+    .jg-locked-overlay__inner { flex-direction: column; text-align: center; }
+    .jg-locked-overlay { padding: 16px; }
+}
+
 /* ══════════════════════════════════════════════════════
    FOOTER
 ══════════════════════════════════════════════════════ */
