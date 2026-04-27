@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contribute Data — JOWBR — JewishGen</title>
+    <meta name="description" content="Help grow the JewishGen Online Worldwide Burial Registry. Learn how to volunteer, adopt a cemetery, and submit burial records to JOWBR.">
+
+    <!-- 1. Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- 2. JewishGen Global Design System -->
+    <link rel="stylesheet" href="/JG40-Build/jg-global.css">
+    <!-- 3. Page-specific styles -->
+    <style>
+        /* =====================================================
+           JOWBR CONTRIBUTE DATA PAGE - PAGE-SPECIFIC STYLES
+           ===================================================== */
+
+        /* ── Page Title Band ─────────────────────────────── */
+        .jg-page-band {
+            background-color: #09497a;
+            padding: 34px 50px;
+            text-align: center;
+        }
+        body.dark-mode .jg-page-band { background-color: #0d2a45; }
+        .jg-page-band h1 {
+            margin: 0 0 8px;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 2.25rem;
+            font-weight: normal;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+        .jg-page-band__sub {
+            font-size: 1rem;
+            color: #a9c0d0;
+            margin: 0 auto;
+            max-width: 560px;
+            line-height: 1.6;
+        }
+
+        /* ── Stats Bar ───────────────────────────────────── */
+        .jowbr-stats {
+            background-color: var(--cream);
+            border-bottom: 1px solid #d1caba;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        body.dark-mode .jowbr-stats {
+            background-color: #1a1a1a;
+            border-bottom-color: #333;
+        }
+        .jowbr-stat {
+            text-align: center;
+            padding: 10px 40px;
+            border-right: 1px solid #c5bca8;
+        }
+        .jowbr-stat:last-child { border-right: none; }
+        .jowbr-stat__num {
+            display: block;
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: #09497a;
+            line-height: 1.1;
+        }
+        body.dark-mode .jowbr-stat__num { color: #a8b361; }
+        .jowbr-stat__label {
+            display: block;
+            font-size: 0.6875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--charcoal);
+            margin-top: 3px;
+        }
+
+        /* ── Section Nav ─────────────────────────────────── */
+        .jowbr-nav {
+            background-color: var(--white);
+            border-bottom: 2px solid var(--cream);
+            padding: 0 50px;
+            display: flex;
+            justify-content: center;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        body.dark-mode .jowbr-nav {
+            background-color: #121212;
+            border-bottom-color: #333;
+        }
+        .jowbr-nav a {
+            display: inline-block;
+            padding: 13px 18px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+            text-decoration: none;
+            transition: color 0.15s, border-color 0.15s;
+        }
+        .jowbr-nav a:hover { color: var(--navy); border-bottom-color: var(--sage); }
+        .jowbr-nav a.active { color: var(--navy); border-bottom-color: var(--navy); }
+        body.dark-mode .jowbr-nav a { color: #a0a0a0; }
+        body.dark-mode .jowbr-nav a:hover,
+        body.dark-mode .jowbr-nav a.active { color: #e0e0e0; border-bottom-color: #a8b361; }
+
+        /* ── Content Band + Inner Container ──────────────── */
+        .jowbr-content-band {
+            background-color: var(--ecru);
+            padding: 2.75rem 2rem 4rem;
+        }
+        .jowbr-content-inner {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        /* ── Content Sections ────────────────────────────── */
+        .jowbr-section {
+            margin-bottom: 2.75rem;
+        }
+        .jowbr-section:last-child { margin-bottom: 0; }
+
+        .jowbr-section__heading {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.375rem;
+            font-weight: normal;
+            color: var(--navy);
+            margin: 0 0 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--sage);
+        }
+        body.dark-mode .jowbr-section__heading { color: #e0e0e0; border-bottom-color: #a8b361; }
+
+        .jowbr-section p {
+            font-size: 0.9375rem;
+            line-height: 1.7;
+            color: var(--charcoal);
+            margin: 0 0 0.75rem;
+        }
+        .jowbr-section p:last-child { margin-bottom: 0; }
+        .jowbr-section a {
+            color: var(--navy);
+            font-weight: 600;
+            text-decoration: underline dotted;
+            text-decoration-color: var(--sage);
+        }
+        .jowbr-section a:hover { color: var(--sage); }
+        body.dark-mode .jowbr-section a { color: #a8b361; }
+
+        /* ── Restriction Callout ─────────────────────────── */
+        /* Uses --light-blue which does NOT flip in dark mode */
+        .jowbr-restriction {
+            background: var(--light-blue);
+            border-left: 4px solid var(--navy);
+            border-radius: 4px;
+            padding: 14px 20px;
+            font-size: 0.9rem;
+            color: var(--charcoal);
+            line-height: 1.65;
+            margin: 1.25rem 0 0;
+        }
+        .jowbr-restriction strong { color: var(--navy); }
+        body.dark-mode .jowbr-restriction { background: #1a2533; color: #c8c0b0; }
+        body.dark-mode .jowbr-restriction strong { color: #a8b361; }
+
+        /* ── Two-Path Cards (Volunteer / Adopt) ──────────── */
+        .jowbr-paths {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-top: 1.25rem;
+        }
+        .jowbr-path {
+            background: var(--white);
+            border: 1px solid #d1caba;
+            border-radius: 8px;
+            padding: 22px 24px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        body.dark-mode .jowbr-path {
+            background: #1e1e1e;
+            border-color: #333;
+        }
+        .jowbr-path__heading {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.0625rem;
+            font-weight: normal;
+            color: var(--navy);
+            margin: 0;
+        }
+        body.dark-mode .jowbr-path__heading { color: #e0e0e0; }
+        .jowbr-path p {
+            font-size: 0.875rem;
+            color: var(--charcoal);
+            line-height: 1.65;
+            margin: 0;
+            flex: 1;
+        }
+        body.dark-mode .jowbr-path p { color: #a0a0a0; }
+
+        /* ── Forms / Resources List ──────────────────────── */
+        .jowbr-forms-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .jowbr-forms-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: var(--white);
+            border: 1px solid #d1caba;
+            border-radius: 6px;
+            padding: 14px 18px;
+        }
+        body.dark-mode .jowbr-forms-list li { background: #1e1e1e; border-color: #333; }
+
+        .jowbr-form-num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            flex-shrink: 0;
+            background: var(--sage);
+            color: #ffffff;
+            border-radius: 50%;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-top: 1px;
+        }
+        body.dark-mode .jowbr-form-num { background: #a8b361; color: #1a1a1a; }
+
+        .jowbr-form-body { flex: 1; }
+        .jowbr-form-body strong {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--navy);
+            margin-bottom: 3px;
+        }
+        body.dark-mode .jowbr-form-body strong { color: #e0e0e0; }
+        .jowbr-form-body span {
+            font-size: 0.8125rem;
+            color: var(--charcoal);
+            line-height: 1.5;
+        }
+        body.dark-mode .jowbr-form-body span { color: #a0a0a0; }
+        .jowbr-form-body a {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 0.8125rem;
+            font-weight: bold;
+            color: var(--navy);
+            text-decoration: underline;
+        }
+        .jowbr-form-body a:hover { color: var(--sage); }
+        body.dark-mode .jowbr-form-body a { color: #a8b361; }
+
+        /* ── Screencasts CTA ─────────────────────────────── */
+        .jowbr-screencasts {
+            background: var(--white);
+            border: 1px solid #d1caba;
+            border-radius: 6px;
+            padding: 16px 20px;
+            margin-top: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        body.dark-mode .jowbr-screencasts { background: #1e1e1e; border-color: #333; }
+        .jowbr-screencasts p {
+            margin: 0;
+            font-size: 0.875rem;
+            color: var(--charcoal);
+        }
+        body.dark-mode .jowbr-screencasts p { color: #a0a0a0; }
+        .jowbr-screencasts a {
+            display: inline-block;
+            background: var(--navy);
+            color: #ffffff;
+            font-size: 0.8125rem;
+            font-weight: bold;
+            padding: 8px 18px;
+            border-radius: 4px;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: filter 0.2s;
+        }
+        .jowbr-screencasts a:hover { filter: brightness(1.15); color: #ffffff; }
+        body.dark-mode .jowbr-screencasts a { background: #0d2a45; }
+
+        /* ── Data Fields Grid ────────────────────────────── */
+        .jowbr-fields-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            margin-top: 1rem;
+            background: var(--light-blue);
+            border: 1px solid #c4d0d6;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        body.dark-mode .jowbr-fields-grid { background: #1a2533; border-color: #2a3a4a; }
+
+        .jowbr-field-item {
+            font-size: 0.8125rem;
+            color: var(--charcoal);
+            padding: 8px 12px;
+            border-bottom: 1px solid #c4d0d6;
+            border-right: 1px solid #c4d0d6;
+            line-height: 1.4;
+        }
+        .jowbr-field-item:nth-child(4n) { border-right: none; }
+        .jowbr-field-item:nth-last-child(-n+4) { border-bottom: none; }
+        body.dark-mode .jowbr-field-item {
+            color: #c8c0b0;
+            border-color: #2a3a4a;
+        }
+
+        .jowbr-fields-note {
+            font-size: 0.8125rem;
+            color: var(--charcoal);
+            font-style: italic;
+            margin-top: 10px;
+        }
+        body.dark-mode .jowbr-fields-note { color: #888; }
+        .jowbr-fields-note a { color: var(--navy); font-weight: 600; text-decoration: underline; }
+        .jowbr-fields-note a:hover { color: var(--sage); }
+        body.dark-mode .jowbr-fields-note a { color: #a8b361; }
+
+        /* ── Responsive ──────────────────────────────────── */
+        @media (max-width: 900px) {
+            .jg-page-band { padding: 28px 20px; }
+            .jowbr-nav { padding: 0 20px; }
+            .jowbr-stats { padding: 16px 20px; }
+            .jowbr-stat { padding: 10px 20px; }
+            .jowbr-content-band { padding: 2rem 1.25rem 3rem; }
+            .jowbr-fields-grid { grid-template-columns: repeat(2, 1fr); }
+            .jowbr-field-item:nth-child(4n) { border-right: 1px solid #c4d0d6; }
+            .jowbr-field-item:nth-last-child(-n+4) { border-bottom: 1px solid #c4d0d6; }
+            .jowbr-field-item:nth-child(2n) { border-right: none; }
+            .jowbr-field-item:nth-last-child(-n+2) { border-bottom: none; }
+            body.dark-mode .jowbr-field-item:nth-child(4n) { border-right-color: #2a3a4a; }
+            body.dark-mode .jowbr-field-item:nth-last-child(-n+4) { border-bottom-color: #2a3a4a; }
+        }
+        @media (max-width: 640px) {
+            .jowbr-paths { grid-template-columns: 1fr; }
+            .jowbr-stat { border-right: none; border-bottom: 1px solid #c5bca8; width: 50%; }
+            .jowbr-stat:nth-child(odd) { border-right: 1px solid #c5bca8; }
+            .jg-page-band h1 { font-size: 1.75rem; }
+            .jowbr-fields-grid { grid-template-columns: 1fr 1fr; }
+            .jowbr-screencasts { flex-direction: column; align-items: flex-start; }
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main id="main-content">
+
+    <!-- =======================================================
+         PAGE TITLE BAND
+         ======================================================= -->
+    <div class="jg-page-band">
+        <h1>Burial Registry (JOWBR)</h1>
+        <p class="jg-page-band__sub">Contribute Data to the Registry</p>
+    </div>
+
+    <!-- =======================================================
+         STATS BAR
+         ======================================================= -->
+    <div class="jowbr-stats" aria-label="JOWBR database statistics">
+        <div class="jowbr-stat">
+            <span class="jowbr-stat__num">7M+</span>
+            <span class="jowbr-stat__label">Burial Records</span>
+        </div>
+        <div class="jowbr-stat">
+            <span class="jowbr-stat__num">908K+</span>
+            <span class="jowbr-stat__label">Headstone Photos</span>
+        </div>
+        <div class="jowbr-stat">
+            <span class="jowbr-stat__num">12,114</span>
+            <span class="jowbr-stat__label">Cemeteries</span>
+        </div>
+        <div class="jowbr-stat">
+            <span class="jowbr-stat__num">144</span>
+            <span class="jowbr-stat__label">Countries</span>
+        </div>
+    </div>
+
+    <!-- =======================================================
+         SECTION NAV
+         ======================================================= -->
+    <div role="navigation" class="jowbr-nav" aria-label="JOWBR section navigation">
+        <a href="/JG40-Build/JOWBR.html">Search</a>
+        <a href="https://www.jewishgen.org/databases/Cemetery/tree/CemList.php" target="_blank" rel="noopener">Browse Cemeteries</a>
+        <a href="/JG40-Build/jowbr-faq.html">About &amp; FAQ</a>
+        <a href="/JG40-Build/jowbr-contribute.html" class="active">Contribute Data</a>
+    </div>
+
+    <!-- =======================================================
+         CONTENT
+         ======================================================= -->
+    <div class="jowbr-content-band">
+        <div class="jowbr-content-inner">
+
+            <!-- How JOWBR grows -->
+            <section class="jowbr-section" aria-labelledby="how-heading">
+                <h2 class="jowbr-section__heading" id="how-heading">How JOWBR Grows</h2>
+                <p>Every record in JOWBR was contributed by a volunteer — photographed, transcribed, and in many cases translated. The project is coordinated by <a href="https://www.jewishgen.org/JewishGen/Contact.asp?to=5089NA">Nolan Altman</a>, who oversees a global team of indexers and translators working from Hebrew, Cyrillic, and other languages.</p>
+                <p>JewishGen has also launched an <strong>Adopt a Cemetery</strong> program, inviting Special Interest Groups, local Jewish genealogy societies, synagogue youth groups, Jewish Federations, and other interested parties to take responsibility for indexing a specific cemetery or landsmanschaft plot.</p>
+
+                <div class="jowbr-restriction" role="note">
+                    <strong>Please note:</strong> JOWBR only accepts data from an <strong>entire cemetery</strong> or an entire landsmanschaft/organization plot within a larger cemetery. We are unable to accept individual family burial records.
+                </div>
+            </section>
+
+            <!-- Two paths to get involved -->
+            <section class="jowbr-section" aria-labelledby="involved-heading">
+                <h2 class="jowbr-section__heading" id="involved-heading">Get Involved</h2>
+                <div class="jowbr-paths">
+
+                    <div class="jowbr-path">
+                        <h3 class="jowbr-path__heading">Volunteer to Index or Translate</h3>
+                        <p>Help create spreadsheets from headstone photographs, or translate inscriptions from Hebrew, Cyrillic, or other languages into English. No prior experience required — training is provided.</p>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdAy8iOeSDtzYUS2TQ9aqENK7V8mngzVoRdG5sYtwJXvrvt8w/viewform"
+                           class="btn-search"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           style="display:inline-block; width:auto; text-align:center;">
+                            Volunteer Sign-Up Form
+                        </a>
+                    </div>
+
+                    <div class="jowbr-path">
+                        <h3 class="jowbr-path__heading">Adopt a Cemetery</h3>
+                        <p>Take responsibility for indexing a specific cemetery or organization plot and submitting its records to JOWBR. Individuals, groups, and organizations are all welcome to participate.</p>
+                        <a href="https://www.jewishgen.org/JewishGen/Contact.asp?to=5089NA"
+                           class="btn-search"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           style="display:inline-block; width:auto; text-align:center;">
+                            Contact Nolan Altman
+                        </a>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Submitting data -->
+            <section class="jowbr-section" aria-labelledby="submit-heading">
+                <h2 class="jowbr-section__heading" id="submit-heading">Submitting Data</h2>
+                <p>If you have access to a cemetery or organization plot not yet in JOWBR and are ready to submit, three resources are required. Complete them in order:</p>
+
+                <ol class="jowbr-forms-list" role="list">
+                    <li>
+                        <div class="jowbr-form-num" aria-hidden="true">1</div>
+                        <div class="jowbr-form-body">
+                            <strong>Donor Agreement</strong>
+                            <span>Required before submitting any data. Grants JewishGen permission to publish and maintain the records online.</span>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScqSUW3Jk2DX_EBFXZ2VhRqBKvpPNIbh5t2C8w7mU9F57ONPA/viewform"
+                               target="_blank" rel="noopener noreferrer">Complete the Donor Agreement &rarr;</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="jowbr-form-num" aria-hidden="true">2</div>
+                        <div class="jowbr-form-body">
+                            <strong>Data Entry Template</strong>
+                            <span>An Excel spreadsheet with the required fields pre-formatted. Enter one burial record per row. Only fill in the fields for which you have information.</span>
+                            <a href="https://www.jewishgen.org/databases/Cemetery/working/jowbrtemplate.xls">Download the Excel Template &rarr;</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="jowbr-form-num" aria-hidden="true">3</div>
+                        <div class="jowbr-form-body">
+                            <strong>Field Instructions</strong>
+                            <span>Detailed explanations of each data field — what to include, how to format dates, how to handle Hebrew names, and more.</span>
+                            <a href="https://www.jewishgen.org/databases/Cemetery/JOWBRinstructions.htm"
+                               target="_blank" rel="noopener noreferrer">Read the Field Instructions &rarr;</a>
+                        </div>
+                    </li>
+                </ol>
+
+                <div class="jowbr-screencasts">
+                    <p><strong>Prefer to watch?</strong> JewishGen's screencast series walks through the entire submission process step by step.</p>
+                    <a href="https://www.jewishgen.org/databases/Cemetery/Screencasts"
+                       target="_blank" rel="noopener noreferrer">Watch the Screencasts</a>
+                </div>
+            </section>
+
+            <!-- Data fields -->
+            <section class="jowbr-section" aria-labelledby="fields-heading">
+                <h2 class="jowbr-section__heading" id="fields-heading">Data Fields</h2>
+                <p>The following fields are available in the submission template. Include only those fields for which you have information — partial records are accepted and valuable.</p>
+
+                <div class="jowbr-fields-grid" role="list" aria-label="JOWBR data entry fields">
+                    <div class="jowbr-field-item" role="listitem">Plot Location</div>
+                    <div class="jowbr-field-item" role="listitem">Place of Death</div>
+                    <div class="jowbr-field-item" role="listitem">Hebrew Name</div>
+                    <div class="jowbr-field-item" role="listitem">Other Surnames</div>
+                    <div class="jowbr-field-item" role="listitem">Surname</div>
+                    <div class="jowbr-field-item" role="listitem">Date of Death (English)</div>
+                    <div class="jowbr-field-item" role="listitem">Spouse's Name</div>
+                    <div class="jowbr-field-item" role="listitem">All Towns</div>
+                    <div class="jowbr-field-item" role="listitem">Given Name(s)</div>
+                    <div class="jowbr-field-item" role="listitem">Date of Death (Hebrew)</div>
+                    <div class="jowbr-field-item" role="listitem">Father's Name</div>
+                    <div class="jowbr-field-item" role="listitem">Photo Filename</div>
+                    <div class="jowbr-field-item" role="listitem">Place of Birth</div>
+                    <div class="jowbr-field-item" role="listitem">Age at Death</div>
+                    <div class="jowbr-field-item" role="listitem">Mother's Name</div>
+                    <div class="jowbr-field-item" role="listitem">Comments / Notes</div>
+                    <div class="jowbr-field-item" role="listitem">Date of Birth</div>
+                    <div class="jowbr-field-item" role="listitem">Date of Burial</div>
+                    <div class="jowbr-field-item" role="listitem">&nbsp;</div>
+                    <div class="jowbr-field-item" role="listitem">&nbsp;</div>
+                </div>
+
+                <p class="jowbr-fields-note">For full definitions and formatting guidance for each field, see the <a href="https://www.jewishgen.org/databases/Cemetery/JOWBRinstructions.htm" target="_blank" rel="noopener noreferrer">JOWBR data entry instructions</a>.</p>
+            </section>
+
+        </div><!-- /.jowbr-content-inner -->
+    </div><!-- /.jowbr-content-band -->
+
+</main>
+
+<div id="site-footer"></div>
+
+<script>
+    function loadComponent(id, file) {
+        return fetch(file)
+            .then(function(r) {
+                if (!r.ok) throw new Error('Could not load ' + file);
+                return r.text();
+            })
+            .then(function(html) {
+                document.getElementById(id).innerHTML = html;
+            })
+            .catch(function(err) { console.warn(err); });
+    }
+
+    Promise.all([
+        loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
+        loadComponent('site-footer', '/JG40-Build/Footer.html')
+    ]).then(function() {
+        document.querySelectorAll('.jg-nav .dropbtn, .main-nav .dropbtn').forEach(function(btn) {
+            btn.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    var menu = this.nextElementSibling;
+                    if (menu) menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+                }
+                if (e.key === 'Escape') {
+                    var menu = this.nextElementSibling;
+                    if (menu) menu.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
