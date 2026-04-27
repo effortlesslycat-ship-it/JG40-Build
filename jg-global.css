@@ -1029,7 +1029,7 @@ body.dark-mode .jg-card--pub { background-color: #1e1e1e !important; border-colo
 /* ── Mailing list band (sits between publications & footer) ── */
 .jg-mailing-band {
     background-color: var(--sage);
-    padding: 1.25rem 2.5rem;
+    padding: 0.5rem 2.5rem;
     text-align: center;
 }
 body.dark-mode .jg-mailing-band { background-color: #a8b361; }
