@@ -137,7 +137,14 @@ body.dark-mode .jg-tips-link { color: #e0e0e0; }
 body.dark-mode .jg-tips-link:hover,
 body.dark-mode .jg-tips-link:focus-visible,
 body.dark-mode .jg-tips-link[aria-expanded="true"] { color: #a8b361; }
-.jg-tips-link__icon { font-size: 1rem; line-height: 1; }
+.jg-tips-link__icon {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
 
 /* --------------------------------------------------------------------------
    TIPS PANEL - reuses Hero's structure but scoped to this page's class
@@ -188,7 +195,7 @@ body.dark-mode .jg-tips-card-panel strong { color: #a8b361; }
     border-radius: 4px;
     font-size: 13.5px;
     color: var(--charcoal);
-    background: #DCE5EA
+    background: #f5f1e8;
     font-family: inherit;
     transition: border-color 0.2s, background 0.2s;
 }
@@ -849,13 +856,14 @@ body.dark-mode #no-results h3 { color: #e0e0e0; }
 
         <div class="jg-search-card">
             <div class="jg-search-card__header">
-                <h2>Search the Holocaust Database</h2>
+                <h2>Start Search Holocaust Records Research</h2>
                 <button type="button"
                         class="jg-tips-link"
                         aria-expanded="false"
                         aria-controls="hol-tips-panel"
                         onclick="toggleHolTips(this)">
-                    <span class="jg-tips-link__icon" aria-hidden="true">💡</span>
+                    <img src="/JG40-Build/TipsBulbReg.png"  alt="" class="jg-tips-link__icon light-logo" aria-hidden="true">
+                    <img src="/JG40-Build/TipsBulbDark.png" alt="" class="jg-tips-link__icon dark-logo"  aria-hidden="true">
                     Tips &amp; Tricks
                 </button>
             </div>
