@@ -19,7 +19,7 @@
   'use strict';
 
   var API_BASE = 'https://mjhnyc.org/wp-json/wp/v2/upcoming_events';
-  var CATEGORY = 'genealogy';'JewishGen';
+  var CATEGORIES = ['genealogy', 'jewishgen'];
 
   /* ----------------------------------------------------------
      HELPERS
@@ -122,7 +122,10 @@
      FETCH
   ---------------------------------------------------------- */
   function fetchEvents(count) {
-    var url = API_BASE + '?event_category=' + CATEGORY + '&per_page=' + count;
+    var catParams = CATEGORIES.map(function(c) {
+      return 'event_category[]=' + encodeURIComponent(c);
+    }).join('&');
+    var url = API_BASE + '?' + catParams + '&per_page=' + count;
     return fetch(url).then(function (res) {
       if (!res.ok) throw new Error('MJH API responded ' + res.status);
       return res.json();
