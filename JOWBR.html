@@ -6,16 +6,19 @@
     <title>Burial Registry (JOWBR) — JewishGen</title>
     <meta name="description" content="Search over 7 million Jewish burial records from 12,000+ cemeteries in 144 countries. The JewishGen Online Worldwide Burial Registry (JOWBR).">
 
-    <!-- 1. Bootstrap (layout only) -->
+    <!-- 1. Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-
     <!-- 2. JewishGen Global Design System -->
-    <link rel="stylesheet" href="jg-global.css">
-
+    <link rel="stylesheet" href="/JG40-Build/jg-global.css">
     <!-- 3. Page-specific styles -->
     <style>
+        /* =====================================================
+           JOWBR PAGE - PAGE-SPECIFIC STYLES
+           Shared search infrastructure (jg-search-card, sf rows,
+           locked overlay, tips panel, btn-search) is in jg-global.css.
+           ===================================================== */
 
-        /* ── Page Title Band ────────────────────────────────── */
+        /* ── Page Title Band ─────────────────────────────── */
         .jg-page-band {
             background-color: #09497a;
             padding: 34px 50px;
@@ -23,22 +26,11 @@
         }
         body.dark-mode .jg-page-band { background-color: #0d2a45; }
 
-        .jg-page-band__tag {
-            display: inline-block;
-            background-color: var(--sage);
-            color: #ffffff;
-            font-size: 0.6875rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            padding: 3px 12px;
-            border-radius: 3px;
-            margin-bottom: 12px;
-        }
         .jg-page-band h1 {
             margin: 0 0 8px;
-            font-size: 2.125rem;
-            font-weight: bold;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 2.25rem;
+            font-weight: normal;
             color: #ffffff;
             line-height: 1.2;
         }
@@ -50,13 +42,14 @@
             line-height: 1.6;
         }
 
-        /* ── JOWBR Section Nav ──────────────────────────────── */
+        /* ── JOWBR Section Nav ───────────────────────────── */
+        /* Uses div[role=navigation] to avoid global nav {} cascade */
         .jowbr-nav {
             background-color: var(--white);
             border-bottom: 2px solid var(--cream);
             padding: 0 50px;
-            text-align: center;
             display: flex;
+            justify-content: center;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
         }
@@ -67,7 +60,6 @@
         .jowbr-nav a {
             display: inline-block;
             padding: 13px 18px;
-            text-align: center;
             font-size: 0.875rem;
             font-weight: 600;
             color: var(--charcoal);
@@ -81,17 +73,17 @@
             border-bottom-color: var(--sage);
         }
         .jowbr-nav a.active {
-            color: #09497a;
-            border-bottom-color: #09497a;
+            color: var(--navy);
+            border-bottom-color: var(--navy);
         }
         body.dark-mode .jowbr-nav a { color: #a0a0a0; }
         body.dark-mode .jowbr-nav a:hover,
         body.dark-mode .jowbr-nav a.active {
             color: #e0e0e0;
-            border-bottom-color: var(--sage);
+            border-bottom-color: #a8b361;
         }
 
-        /* ── Stat Bar ───────────────────────────────────────── */
+        /* ── Stat Bar ─────────────────────────────────────── */
         .jowbr-stats {
             background-color: var(--cream);
             border-bottom: 1px solid #d1caba;
@@ -127,39 +119,30 @@
             margin-top: 3px;
         }
 
-        /* ── Search Section Wrapper ─────────────────────────── */
+        /* ── Search Band + Wrapper ───────────────────────── */
+        .jowbr-search-band {
+            background-color: var(--ecru);
+            padding: 2.5rem 1.5rem 3rem;
+        }
         .jowbr-search-wrap {
             max-width: 900px;
             margin: 0 auto;
-            padding: 40px 20px 10px;
         }
 
-        /* Reuse jg-search-container from global, extend for JOWBR rows */
-        .jowbr-search-title {
-            font-size: 0.75rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--sage);
-            margin-bottom: 20px;
+        /* Submit button inline override (sits beside Clear in flex row) */
+        .jowbr-search-actions .btn-search {
+            display: inline-block;
+            width: auto;
         }
 
-        /* Each of the 4 search rows */
-        .jowbr-row {
+        /* ── Tips grid (2-column inside the panel) ───────── */
+        .jowbr-tips-grid {
             display: grid;
-            grid-template-columns: 42px 170px 190px 1fr;
-            gap: 10px;
-            align-items: end;
-            margin-bottom: 14px;
-        }
-        .jowbr-row__num {
-            font-size: 0.75rem;
-            font-weight: bold;
-            color: var(--sage);
-            padding-bottom: 10px;
-            text-align: center;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
         }
 
+        /* ── Divider between search rows and controls ─────── */
         .jowbr-row-divider {
             border: none;
             border-top: 1px solid var(--cream);
@@ -167,35 +150,7 @@
         }
         body.dark-mode .jowbr-row-divider { border-top-color: #333; }
 
-         /* Locked rows */
-    .search-row.locked {
-        opacity: 0.42;
-        pointer-events: none;
-    }
-    .search-row.locked select,
-    .search-row.locked input[type="text"] {
-        background-color: #f2f2f2;
-    }
-
-    /* Donate nudge */
-    .donate-nudge {
-        background-color: #f0f4f7;
-        border-left: 4px solid var(--navy);
-        border-radius: 4px;
-        padding: 10px 14px;
-        font-size: 13px;
-        color: var(--charcoal);
-        margin: 14px 0 10px;
-        line-height: 1.5;
-    }
-    .donate-nudge a {
-        color: var(--navy);
-        font-weight: bold;
-        text-decoration: underline;
-    }
-    .donate-nudge a:hover { color: var(--sage); }
-
-        /* Controls row */
+        /* ── Controls row (AND/OR toggle + geo filter) ───── */
         .jowbr-controls {
             display: flex;
             justify-content: space-between;
@@ -218,9 +173,7 @@
             margin-bottom: 6px;
             display: block;
         }
-        .jowbr-match-group .form-check {
-            margin-bottom: 4px;
-        }
+        .jowbr-match-group .form-check { margin-bottom: 4px; }
         .jowbr-match-group .form-check-input { accent-color: #09497a; }
         .jowbr-match-group .form-check-label {
             font-size: 0.875rem;
@@ -229,18 +182,19 @@
         }
         body.dark-mode .jowbr-match-group .form-check-label { color: #a0a0a0; }
 
-        .jowbr-geo-group select {
-            min-width: 230px;
-        }
+        .jowbr-geo-group select { min-width: 230px; }
 
+        /* ── Search actions (Submit + Clear) ─────────────── */
         .jowbr-search-actions {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 12px;
             margin-top: 28px;
             flex-wrap: wrap;
         }
 
+        /* Clear / Reset button */
         .jg-btn-reset {
             display: inline-block;
             background-color: transparent;
@@ -249,7 +203,7 @@
             padding: 0.6875rem 1.5rem;
             font-size: 0.875rem;
             font-weight: bold;
-            border-radius: 6px;
+            border-radius: 4px;
             cursor: pointer;
             font-family: inherit;
             text-transform: uppercase;
@@ -260,23 +214,25 @@
         body.dark-mode .jg-btn-reset { color: #e0e0e0; border-color: #555; }
         body.dark-mode .jg-btn-reset:hover { background-color: #2a2a2a; }
 
-        /* ── "New to JOWBR" nudge bar ───────────────────────── */
+        /* ── "New to JOWBR?" nudge ───────────────────────── */
         .jowbr-nudge {
             text-align: center;
-            padding: 14px 20px 24px;
+            padding: 16px 20px 28px;
             font-size: 0.875rem;
             color: var(--charcoal);
+            background-color: var(--ecru);
         }
         .jowbr-nudge a {
-            color: #09497a;
+            color: var(--navy);
             font-weight: bold;
             text-decoration: underline dotted;
+            text-decoration-color: var(--sage);
         }
         .jowbr-nudge a:hover { color: var(--sage); }
 
-        /* ── About Section ──────────────────────────────────── */
+        /* ── About Section ───────────────────────────────── */
         .jowbr-about {
-            background-color: #f5f2eb;
+            background-color: var(--ecru);
             border-top: 4px solid #09497a;
             padding: 56px 50px 64px;
         }
@@ -294,8 +250,10 @@
             margin: 0 auto 44px;
         }
         .jowbr-about__intro h2 {
-            font-size: 1.5rem;
-            color: #09497a;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.75rem;
+            font-weight: normal;
+            color: var(--navy);
             margin: 0 0 12px;
         }
         body.dark-mode .jowbr-about__intro h2 { color: #e0e0e0; }
@@ -319,7 +277,7 @@
         .jowbr-about__reason h3 {
             font-size: 0.875rem;
             font-weight: bold;
-            color: #09497a;
+            color: var(--navy);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin: 0 0 8px;
@@ -339,32 +297,25 @@
             flex-wrap: wrap;
         }
 
-        /* ── Responsive ─────────────────────────────────────── */
+        /* ── Responsive ──────────────────────────────────── */
         @media (max-width: 900px) {
-            .jowbr-row {
-                grid-template-columns: 28px 1fr 1fr;
-            }
-            .jowbr-row > :last-child {
-                grid-column: 2 / -1;
-            }
             .jowbr-about__grid { grid-template-columns: 1fr 1fr; }
             .jg-page-band { padding: 28px 20px; }
             .jowbr-nav { padding: 0 20px; }
             .jowbr-stats { padding: 16px 20px; }
             .jowbr-stat { padding: 10px 20px; }
+            .jowbr-search-band { padding: 2rem 1.25rem 2.5rem; }
         }
 
-        @media (max-width: 600px) {
-            .jowbr-row {
-                grid-template-columns: 1fr;
-            }
-            .jowbr-row__num { text-align: left; padding-bottom: 0; }
+        @media (max-width: 640px) {
+            .jg-search-card .search-row { flex-direction: column; align-items: stretch; }
             .jowbr-stat { border-right: none; border-bottom: 1px solid #c5bca8; width: 50%; }
             .jowbr-stat:nth-child(odd) { border-right: 1px solid #c5bca8; }
             .jowbr-controls { flex-direction: column; }
             .jowbr-about { padding: 36px 20px 44px; }
             .jowbr-about__grid { grid-template-columns: 1fr; }
-            .jg-page-band h1 { font-size: 1.625rem; }
+            .jg-page-band h1 { font-size: 1.75rem; }
+            .jowbr-tips-grid { grid-template-columns: 1fr; }
         }
 
     </style>
@@ -374,410 +325,432 @@
 <!-- Header injected here -->
 <div id="site-header"></div>
 
-
-<!-- ═══════════════════════════════════════════════════════
-     PAGE TITLE BAND
-═══════════════════════════════════════════════════════ -->
-<div class="jg-page-band">
-    <div class="jg-page-band__tag">Research</div>
-    <h1>Burial Registry (JOWBR)</h1>
-    <p class="jg-page-band__sub">The JewishGen Online Worldwide Burial Registry — search millions of Jewish burial records from cemeteries around the world.</p>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════
-     JOWBR SECTION NAV
-═══════════════════════════════════════════════════════ -->
-<nav class="jowbr-nav" aria-label="JOWBR section navigation">
-    <a href="jowbr-search.html" class="active">Search</a>
-    <a href="jowbr-browse.html">Browse Cemeteries</a>
-    <a href="jowbr-about.html">About &amp; FAQ</a>
-    <a href="jowbr-contribute.html">Contribute Data</a>
-</nav>
-
-<!-- ═══════════════════════════════════════════════════════
-     STATS BAR
-═══════════════════════════════════════════════════════ -->
-<div class="jowbr-stats" aria-label="JOWBR database statistics">
-    <div class="jowbr-stat">
-        <span class="jowbr-stat__num">7M+</span>
-        <span class="jowbr-stat__label">Burial Records</span>
-    </div>
-    <div class="jowbr-stat">
-        <span class="jowbr-stat__num">908K+</span>
-        <span class="jowbr-stat__label">Headstone Photos</span>
-    </div>
-    <div class="jowbr-stat">
-        <span class="jowbr-stat__num">12,114</span>
-        <span class="jowbr-stat__label">Cemeteries</span>
-    </div>
-    <div class="jowbr-stat">
-        <span class="jowbr-stat__num">144</span>
-        <span class="jowbr-stat__label">Countries</span>
-    </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════
-     SEARCH FORM
-═══════════════════════════════════════════════════════ -->
 <main id="main-content">
-<div class="jowbr-search-wrap">
-    <div class="jg-search-container">
 
-        <p class="jowbr-search-title">Search the Database</p>
-
-        <form action="#" method="get" aria-label="JOWBR burial record search">
-
-            <!-- Row 1 -->
-            <div class="jowbr-row">
-                <div class="jowbr-row__num" aria-hidden="true">1</div>
-                <div>
-                    <label class="jg-field-label" for="dtype1">Search Field</label>
-                    <select id="dtype1" name="dtype1">
-                        <option value="surname">Surname</option>
-                        <option value="givenname">Given Name</option>
-                        <option value="town">Town</option>
-                        <option value="any">Any Field</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="jg-field-label" for="stype1">Search Type</label>
-                    <select id="stype1" name="stype1">
-                        <option value="Q">Phonetically Like</option>
-                        <option value="E">is Exactly</option>
-                        <option value="SW">Starts With</option>
-                        <option value="DM">Sounds Like (DM)</option>
-                        <option value="FZ">Fuzzy</option>
-                        <option value="FZR">Fuzzier</option>
-                        <option value="FZST">Fuzziest</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="jg-field-label" for="val1">Search Term</label>
-                    <input type="text" id="val1" name="val1" placeholder="Enter name or town…" autocomplete="off">
-                </div>
-            </div>
-
-            <!-- Row 2 -->
-            <div class="jowbr-row">
-                <div class="jowbr-row__num" aria-hidden="true">2</div>
-                <div>
-                    <label class="jg-field-label" for="dtype2">Search Field</label>
-                    <select id="dtype2" name="dtype2">
-                        <option value="surname">Surname</option>
-                        <option value="givenname">Given Name</option>
-                        <option value="town">Town</option>
-                        <option value="any">Any Field</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="jg-field-label" for="stype2">Search Type</label>
-                    <select id="stype2" name="stype2">
-                        <option value="Q">Phonetically Like</option>
-                        <option value="E">is Exactly</option>
-                        <option value="SW">Starts With</option>
-                        <option value="DM">Sounds Like (DM)</option>
-                        <option value="FZ">Fuzzy</option>
-                        <option value="FZR">Fuzzier</option>
-                        <option value="FZST">Fuzziest</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="jg-field-label" for="val2">Search Term</label>
-                    <input type="text" id="val2" name="val2" placeholder="" autocomplete="off">
-                </div>
-            </div>
-
-            <!-- Donate nudge — separates active rows from locked rows -->
-        <div class="donate-nudge" role="note">
-            ★ <strong>Value Added Services:</strong> Basic search allows two simultaneous fields.
-            <a href="https://www.jewishgen.org/jewishgen-secure/donate.asp" target="_blank" rel="noopener">Donate $100 or more</a>
-            to unlock two additional search rows for more complex multi-field queries.
-        </div>
-
-        <!-- Row 3 — Locked -->
-        <div class="search-row locked" aria-hidden="true">
-            <div class="col-type">
-                <select tabindex="-1" disabled><option>Data Type</option></select>
-            </div>
-            <div class="col-match">
-                <select tabindex="-1" disabled><option>Search Type</option></select>
-            </div>
-            <div class="col-term">
-                <input type="text" tabindex="-1" disabled placeholder="🔒 Unlock with a donation">
-            </div>
-        </div>
-
-        <!-- Row 4 — Locked -->
-        <div class="search-row locked" aria-hidden="true">
-            <div class="col-type">
-                <select tabindex="-1" disabled><option>Data Type</option></select>
-            </div>
-            <div class="col-match">
-                <select tabindex="-1" disabled><option>Search Type</option></select>
-            </div>
-            <div class="col-term">
-                <input type="text" tabindex="-1" disabled placeholder="🔒 Unlock with a donation">
-            </div>
-        </div>
-            </div>
-
-            <hr class="jowbr-row-divider">
-
-            <!-- Controls: Match toggle + Geographic filter -->
-            <div class="jowbr-controls">
-
-                <fieldset class="jowbr-match-group" style="border:none; margin:0; padding:0;">
-                    <legend>Match rows using</legend>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="match" id="match-all" value="all" checked>
-                        <label class="form-check-label" for="match-all">Match <strong>ALL</strong> of the above (AND)</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="match" id="match-any" value="any">
-                        <label class="form-check-label" for="match-any">Match <strong>ANY</strong> of the above (OR)</label>
-                    </div>
-                </fieldset>
-
-                <div class="jowbr-geo-group">
-                    <label class="jg-field-label" for="geo-region">Geographic Region</label>
-                    <select id="geo-region" name="geo" class="jg-region-select" aria-label="Geographic Region to Search" style="min-width:230px;">
-                    <optgroup label="Africa">
-                        <option value="algeria">Algeria</option>
-                        <option value="angola">Angola</option>
-                        <option value="benin">Benin</option>
-                        <option value="botswana">Botswana</option>
-                        <option value="capeverde">Cape Verde</option>
-                        <option value="congo">Congo</option>
-                        <option value="djibuti">Djibuti</option>
-                        <option value="egypt">Egypt</option>
-                        <option value="eritrea">Eritrea</option>
-                        <option value="ethiopia">Ethiopia</option>
-                        <option value="gambia">Gambia</option>
-                        <option value="ghana">Ghana</option>
-                        <option value="kenya">Kenya</option>
-                        <option value="liberia">Liberia</option>
-                        <option value="libya">Libya</option>
-                        <option value="madagascar">Madagascar</option>
-                        <option value="malawi">Malawi</option>
-                        <option value="mauritania">Mauritania</option>
-                        <option value="mauritius">Mauritius</option>
-                        <option value="morocco">Morocco</option>
-                        <option value="mozambique">Mozambique</option>
-                        <option value="namibia">Namibia</option>
-                        <option value="nigeria">Nigeria</option>
-                        <option value="rwanda">Rwanda</option>
-                        <option value="senegal">Senegal</option>
-                        <option value="sierraleone">Sierra Leone</option>
-                        <option value="somalia">Somalia</option>
-                        <option value="safrica">South Africa</option>
-                        <option value="sudan">Sudan</option>
-                        <option value="tanzania">Tanzania</option>
-                        <option value="tunisia">Tunisia</option>
-                        <option value="zambia">Zambia</option>
-                        <option value="zimbabwe">Zimbabwe</option>
-                    </optgroup>
-                    <optgroup label="Asia &amp; The Middle East">
-                        <option value="azerbaijan">Azerbaijan</option>
-                        <option value="bahrain">Bahrain</option>
-                        <option value="bangladesh">Bangladesh</option>
-                        <option value="cambodia">Cambodia</option>
-                        <option value="china">China</option>
-                        <option value="india">India</option>
-                        <option value="indonesia">Indonesia</option>
-                        <option value="iran">Iran</option>
-                        <option value="iraq">Iraq</option>
-                        <option value="israel">Israel</option>
-                        <option value="japan">Japan</option>
-                        <option value="kazakhstan">Kazakhstan</option>
-                        <option value="kyrgyzstan">Kyrgyzstan</option>
-                        <option value="lebanon">Lebanon</option>
-                        <option value="malaysia">Malaysia</option>
-                        <option value="mongolia">Mongolia</option>
-                        <option value="myanmar">Myanmar</option>
-                        <option value="pakistan">Pakistan</option>
-                        <option value="philippines">Philippines</option>
-                        <option value="saudiarabia">Saudi Arabia</option>
-                        <option value="singapore">Singapore</option>
-                        <option value="southkorea">South Korea</option>
-                        <option value="srilanka">Sri Lanka</option>
-                        <option value="syria">Syria</option>
-                        <option value="taiwan">Taiwan</option>
-                        <option value="tajikistan">Tajikistan</option>
-                        <option value="thailand">Thailand</option>
-                        <option value="turkey">Turkey</option>
-                        <option value="uzbekistan">Uzbekistan</option>
-                        <option value="yemen">Yemen</option>
-                    </optgroup>
-                    <optgroup label="Eastern &amp; Central Europe">
-                        <option value="albania">Albania</option>
-                        <option value="austria">Austria</option>
-                        <option value="belarus">Belarus</option>
-                        <option value="bosniaherzegovina">Bosnia-Herzegovina</option>
-                        <option value="bulgaria">Bulgaria</option>
-                        <option value="croatia">Croatia</option>
-                        <option value="czechrepublic">Czech Republic</option>
-                        <option value="estonia">Estonia</option>
-                        <option value="georgia">Georgia</option>
-                        <option value="hungary">Hungary</option>
-                        <option value="latvia">Latvia</option>
-                        <option value="lithuania">Lithuania</option>
-                        <option value="macedonia">Macedonia</option>
-                        <option value="moldova">Moldova</option>
-                        <option value="montenegro">Montenegro</option>
-                        <option value="poland">Poland</option>
-                        <option value="romania">Romania</option>
-                        <option value="russia">Russia</option>
-                        <option value="serbia">Serbia</option>
-                        <option value="slovakia">Slovakia</option>
-                        <option value="slovenia">Slovenia</option>
-                        <option value="ukraine">Ukraine</option>
-                    </optgroup>
-                    <optgroup label="Western &amp; Southern Europe">
-                        <option value="belgium">Belgium</option>
-                        <option value="channelislands">Channel Islands</option>
-                        <option value="cyprus">Cyprus</option>
-                        <option value="denmark">Denmark</option>
-                        <option value="england">England</option>
-                        <option value="finland">Finland</option>
-                        <option value="france">France</option>
-                        <option value="germany">Germany</option>
-                        <option value="gibraltar">Gibraltar</option>
-                        <option value="greece">Greece</option>
-                        <option value="iceland">Iceland</option>
-                        <option value="ireland">Ireland</option>
-                        <option value="isleofman">Isle of Man</option>
-                        <option value="italy">Italy</option>
-                        <option value="lichtenstein">Lichtenstein</option>
-                        <option value="luxembourg">Luxembourg</option>
-                        <option value="malta">Malta</option>
-                        <option value="monaco">Monaco</option>
-                        <option value="netherlands">Netherlands</option>
-                        <option value="northernireland">Northern Ireland</option>
-                        <option value="norway">Norway</option>
-                        <option value="portugal">Portugal</option>
-                        <option value="scotland">Scotland</option>
-                        <option value="spain">Spain</option>
-                        <option value="sweden">Sweden</option>
-                        <option value="switzerland">Switzerland</option>
-                        <option value="wales">Wales</option>
-                    </optgroup>
-                    <optgroup label="North America &amp; Caribbean">
-                        <option value="bahamas">Bahamas</option>
-                        <option value="barbados">Barbados</option>
-                        <option value="bermuda">Bermuda</option>
-                        <option value="canada">Canada</option>
-                        <option value="cuba">Cuba</option>
-                        <option value="dominicanrepublic">Dominican Republic</option>
-                        <option value="haiti">Haiti</option>
-                        <option value="jamaica">Jamaica</option>
-                        <option value="martinique">Martinique</option>
-                        <option value="netherlandsantilles">Netherlands Antilles</option>
-                        <option value="stkittsnevis">St. Kitts and Nevis</option>
-                        <option value="trinidadtobago">Trinidad &amp; Tobago</option>
-                        <option value="usa">United States of America</option>
-                        <option value="virginislands">Virgin Islands</option>
-                    </optgroup>
-                    <optgroup label="Central &amp; South America">
-                        <option value="argentina">Argentina</option>
-                        <option value="belize">Belize</option>
-                        <option value="bolivia">Bolivia</option>
-                        <option value="brazil">Brazil</option>
-                        <option value="chile">Chile</option>
-                        <option value="colombia">Colombia</option>
-                        <option value="costarica">Costa Rica</option>                        
-                        <option value="ecuador">Ecuador</option>
-                        <option value="mexico">Mexico</option>
-                        <option value="nicaragua">Nicaragua</option>
-                        <option value="panama">Panama</option>
-                        <option value="peru">Peru</option>
-                        <option value="suriname">Suriname</option>
-                        <option value="uruguay">Uruguay</option>
-                        <option value="venezuela">Venezuela</option> 
-                    </optgroup>
-                    <optgroup label="Oceania">
-                    <option value="australia">Australia</option>
-                    <option value="newzealand">New Zealand</option>
-                    <option value="papuanewguinea">Papua New Guinea</option>
-                </optgroup>
-                    </optgroup>
-                </select>
-            </div>
-
-
-            </div>
-
-            <!-- Submit / Reset -->
-            <div class="jowbr-search-actions">
-                <button type="submit" class="jg-btn-search" style="max-width:220px; margin:0;">
-                    Search Burials
-                </button>
-                <button type="reset" class="jg-btn-reset">
-                    Clear
-                </button>
-            </div>
-
-        </form>
-    </div><!-- /.jg-search-container -->
-</div><!-- /.jowbr-search-wrap -->
-
-<!-- ─── "New to JOWBR?" nudge ──────────────────────────── -->
-<div class="jowbr-nudge">
-    New to JOWBR? <a href="#jowbr-about" onclick="scrollToAbout(event)">Learn what's in the database and how to contribute ↓</a>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════
-     ABOUT SECTION (below fold)
-═══════════════════════════════════════════════════════ -->
-<section class="jowbr-about" id="jowbr-about" aria-labelledby="about-heading">
-    <div class="jowbr-about__inner">
-
-        <div class="jowbr-about__intro">
-            <h2 id="about-heading">What Is JOWBR?</h2>
-            <p>The JewishGen Online Worldwide Burial Registry is the world's largest centralized database of Jewish burial records — a permanent digital archive of headstone inscriptions, cemetery registers, and historical burial data from every corner of the globe. Records are freely searchable by anyone and updated twice annually.</p>
-        </div>
-
-        <div class="jowbr-about__grid">
-
-            <div class="jowbr-about__reason">
-                <h3>A Permanent Archive</h3>
-                <p>Cemeteries fall into disrepair. Landsmanshaft societies dissolve. JOWBR ensures records survive — a virtual resting place even when the physical one is lost.</p>
-            </div>
-
-            <div class="jowbr-about__reason">
-                <h3>Unique Genealogical Data</h3>
-                <p>Headstones preserve Hebrew names, fathers' names, and death dates unavailable anywhere else — essential for tracing ancestry back to the old country.</p>
-            </div>
-
-            <div class="jowbr-about__reason">
-                <h3>One Central Search</h3>
-                <p>Instead of contacting individual cemeteries worldwide, researchers and families can find burial sites in one place — across 144 countries and counting.</p>
-            </div>
-
-            <div class="jowbr-about__reason">
-                <h3>Volunteer-Powered</h3>
-                <p>Every record was contributed by a volunteer: photographed, transcribed, and translated. You can help grow the registry for future generations.</p>
-            </div>
-
-            <div class="jowbr-about__reason">
-                <h3>Headstone Photos</h3>
-                <p>Over 908,000 gravestone photographs are linked directly to burial records. Can't read Hebrew? JewishGen's ViewMate community can help with translation.</p>
-            </div>
-
-            <div class="jowbr-about__reason">
-                <h3>A Mitzvah</h3>
-                <p>Preserving burial records honors the deceased and comforts the living. Hebrew dates of death support yahrzeit observance for families worldwide.</p>
-            </div>
-
-        </div>
-
-        <div class="jowbr-about__cta">
-            <a href="jowbr-browse.html" class="jg-btn-card">Browse Cemeteries</a>
-            <a href="jowbr-contribute.html" class="jg-btn-card jg-btn-card--sage">Contribute Data</a>
-            <a href="jowbr-about.html" class="jg-btn-card" style="background-color: transparent; color: var(--navy); border: 2px solid var(--navy);">About &amp; FAQ</a>
-        </div>
-
+    <!-- =======================================================
+         PAGE TITLE BAND
+         ======================================================= -->
+    <div class="jg-page-band">
+        <h1>Burial Registry (JOWBR)</h1>
+        <p class="jg-page-band__sub">The JewishGen Online Worldwide Burial Registry — search millions of Jewish burial records from cemeteries around the world.</p>
     </div>
-</section>
+
+    <!-- =======================================================
+         JOWBR SECTION NAV
+         div[role=navigation] avoids global nav {} cascade hazard
+         ======================================================= -->
+    <div role="navigation" class="jowbr-nav" aria-label="JOWBR section navigation">
+        <a href="jowbr-search.html" class="active">Search</a>
+        <a href="jowbr-browse.html">Browse Cemeteries</a>
+        <a href="jowbr-about.html">About &amp; FAQ</a>
+        <a href="jowbr-contribute.html">Contribute Data</a>
+    </div>
+
+    <!-- =======================================================
+         STATS BAR
+         ======================================================= -->
+    <div class="jowbr-stats" aria-label="JOWBR database statistics">
+        <div class="jowbr-stat">
+            <span class="jowbr-stat__num">7M+</span>
+            <span class="jowbr-stat__label">Burial Records</span>
+        </div>
+        <div class="jowbr-stat">
+            <span class="jowbr-stat__num">908K+</span>
+            <span class="jowbr-stat__label">Headstone Photos</span>
+        </div>
+        <div class="jowbr-stat">
+            <span class="jowbr-stat__num">12,114</span>
+            <span class="jowbr-stat__label">Cemeteries</span>
+        </div>
+        <div class="jowbr-stat">
+            <span class="jowbr-stat__num">144</span>
+            <span class="jowbr-stat__label">Countries</span>
+        </div>
+    </div>
+
+    <!-- =======================================================
+         SEARCH SECTION
+         ======================================================= -->
+    <div class="jowbr-search-band">
+        <div class="jowbr-search-wrap">
+            <div class="jg-search-card">
+
+                <!-- Card header: title left, tips link right -->
+                <div class="jg-search-card__header">
+                    <h2>Search Burial Records</h2>
+                    <button type="button"
+                            class="jg-tips-link"
+                            aria-expanded="false"
+                            aria-controls="jowbr-tips-panel"
+                            onclick="toggleTips(this)">
+                        Tips &amp; Tricks
+                        <img src="/JG40-Build/TipsBulbReg.png"  alt="" class="jg-tips-link__icon light-logo" aria-hidden="true">
+                        <img src="/JG40-Build/TipsBulbDark.png" alt="" class="jg-tips-link__icon dark-logo"  aria-hidden="true">
+                    </button>
+                </div>
+                <hr class="jg-search-card__rule" aria-hidden="true">
+
+                <!-- Tips panel -->
+                <div class="jg-tips-card-panel" id="jowbr-tips-panel" role="region" aria-label="Search tips">
+                    <div class="jowbr-tips-grid">
+                        <div><strong>Phonetically Like:</strong> Finds names that sound similar — best for surnames with variable spelling across languages.<br><em>Example: Schwartz also finds Shvarts, Cvartz</em></div>
+                        <div><strong>Wildcards (*):</strong> Substitute unknown letters anywhere in the name.<br><em>Example: Sch*artz finds Schwartz, Schvartz</em></div>
+                        <div><strong>Is Exactly:</strong> Includes JewishGen's built-in synonyms — a search for <em>Chana</em> also returns <em>Hannah</em> and <em>Anna</em>.</div>
+                        <div><strong>Geographic Region:</strong> Narrow results to a single country — useful when a surname spans multiple communities.</div>
+                    </div>
+                </div>
+
+                <form action="#" method="get" aria-label="JOWBR burial record search">
+
+                    <!-- Row 1 -->
+                    <div class="search-row">
+                        <div class="sf n">
+                            <label class="field-label" for="dtype1">Search Field</label>
+                            <select id="dtype1" name="dtype1">
+                                <option value="surname">Surname</option>
+                                <option value="givenname">Given Name</option>
+                                <option value="town">Town</option>
+                                <option value="any">Any Field</option>
+                            </select>
+                        </div>
+                        <div class="sf n">
+                            <label class="field-label" for="stype1">Search Type</label>
+                            <select id="stype1" name="stype1">
+                                <option value="Q">Phonetically Like</option>
+                                <option value="E">is Exactly</option>
+                                <option value="SW">Starts With</option>
+                                <option value="DM">Sounds Like (DM)</option>
+                                <option value="FZ">Fuzzy</option>
+                                <option value="FZR">Fuzzier</option>
+                                <option value="FZST">Fuzziest</option>
+                            </select>
+                        </div>
+                        <div class="sf w">
+                            <label class="field-label" for="val1">Search Term</label>
+                            <input type="text" id="val1" name="val1" placeholder="Enter name or town…" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="search-row">
+                        <div class="sf n">
+                            <label class="field-label" for="dtype2">Search Field</label>
+                            <select id="dtype2" name="dtype2">
+                                <option value="surname">Surname</option>
+                                <option value="givenname">Given Name</option>
+                                <option value="town">Town</option>
+                                <option value="any">Any Field</option>
+                            </select>
+                        </div>
+                        <div class="sf n">
+                            <label class="field-label" for="stype2">Search Type</label>
+                            <select id="stype2" name="stype2">
+                                <option value="Q">Phonetically Like</option>
+                                <option value="E">is Exactly</option>
+                                <option value="SW">Starts With</option>
+                                <option value="DM">Sounds Like (DM)</option>
+                                <option value="FZ">Fuzzy</option>
+                                <option value="FZR">Fuzzier</option>
+                                <option value="FZST">Fuzziest</option>
+                            </select>
+                        </div>
+                        <div class="sf w">
+                            <label class="field-label" for="val2">Search Term</label>
+                            <input type="text" id="val2" name="val2" placeholder="" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <!-- Locked rows + persistent overlay -->
+                    <div class="jg-locked-rows-wrapper">
+
+                        <div aria-hidden="true">
+                            <div class="search-row locked">
+                                <div class="sf n"><select tabindex="-1" disabled><option>Search Field</option></select></div>
+                                <div class="sf n"><select tabindex="-1" disabled><option>Search Type</option></select></div>
+                                <div class="sf w"><input type="text" tabindex="-1" disabled placeholder="Search term"></div>
+                            </div>
+                            <div class="search-row locked" style="margin-bottom: 0;">
+                                <div class="sf n"><select tabindex="-1" disabled><option>Search Field</option></select></div>
+                                <div class="sf n"><select tabindex="-1" disabled><option>Search Type</option></select></div>
+                                <div class="sf w"><input type="text" tabindex="-1" disabled placeholder="Search term"></div>
+                            </div>
+                        </div>
+
+                        <div class="jg-locked-overlay" role="note" aria-label="Value-added feature: donate to unlock additional search rows">
+                            <div class="jg-locked-overlay__inner">
+                                <div class="jg-locked-overlay__icon" aria-hidden="true">🔓</div>
+                                <div class="jg-locked-overlay__text">
+                                    <strong>Unlock Two Additional Search Rows</strong>
+                                    <p>A donation of $100 or more to the JewishGen General Fund unlocks multi-field search, letting you combine up to four simultaneous criteria for more precise results.</p>
+                                    <a href="https://www.jewishgen.org/jewishgen-secure/donate.asp"
+                                       class="jg-btn-unlock"
+                                       target="_blank"
+                                       rel="noopener noreferrer">
+                                        Donate Now to Unlock &rarr;
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><!-- /.jg-locked-rows-wrapper -->
+
+                    <hr class="jowbr-row-divider">
+
+                    <!-- Controls: AND/OR toggle + geographic filter -->
+                    <div class="jowbr-controls">
+
+                        <fieldset class="jowbr-match-group" style="border:none; margin:0; padding:0;">
+                            <legend>Match rows using</legend>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="match" id="match-all" value="all" checked>
+                                <label class="form-check-label" for="match-all">Match <strong>ALL</strong> of the above (AND)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="match" id="match-any" value="any">
+                                <label class="form-check-label" for="match-any">Match <strong>ANY</strong> of the above (OR)</label>
+                            </div>
+                        </fieldset>
+
+                        <div class="jowbr-geo-group">
+                            <label class="field-label" for="geo-region">Geographic Region</label>
+                            <select id="geo-region" name="geo" aria-label="Geographic Region to Search">
+                                <option value="">All Countries</option>
+                                <optgroup label="Africa">
+                                    <option value="algeria">Algeria</option>
+                                    <option value="angola">Angola</option>
+                                    <option value="benin">Benin</option>
+                                    <option value="botswana">Botswana</option>
+                                    <option value="capeverde">Cape Verde</option>
+                                    <option value="congo">Congo</option>
+                                    <option value="djibuti">Djibouti</option>
+                                    <option value="egypt">Egypt</option>
+                                    <option value="eritrea">Eritrea</option>
+                                    <option value="ethiopia">Ethiopia</option>
+                                    <option value="gambia">Gambia</option>
+                                    <option value="ghana">Ghana</option>
+                                    <option value="kenya">Kenya</option>
+                                    <option value="liberia">Liberia</option>
+                                    <option value="libya">Libya</option>
+                                    <option value="madagascar">Madagascar</option>
+                                    <option value="malawi">Malawi</option>
+                                    <option value="mauritania">Mauritania</option>
+                                    <option value="mauritius">Mauritius</option>
+                                    <option value="morocco">Morocco</option>
+                                    <option value="mozambique">Mozambique</option>
+                                    <option value="namibia">Namibia</option>
+                                    <option value="nigeria">Nigeria</option>
+                                    <option value="rwanda">Rwanda</option>
+                                    <option value="senegal">Senegal</option>
+                                    <option value="sierraleone">Sierra Leone</option>
+                                    <option value="somalia">Somalia</option>
+                                    <option value="safrica">South Africa</option>
+                                    <option value="sudan">Sudan</option>
+                                    <option value="tanzania">Tanzania</option>
+                                    <option value="tunisia">Tunisia</option>
+                                    <option value="zambia">Zambia</option>
+                                    <option value="zimbabwe">Zimbabwe</option>
+                                </optgroup>
+                                <optgroup label="Asia &amp; The Middle East">
+                                    <option value="azerbaijan">Azerbaijan</option>
+                                    <option value="bahrain">Bahrain</option>
+                                    <option value="bangladesh">Bangladesh</option>
+                                    <option value="cambodia">Cambodia</option>
+                                    <option value="china">China</option>
+                                    <option value="india">India</option>
+                                    <option value="indonesia">Indonesia</option>
+                                    <option value="iran">Iran</option>
+                                    <option value="iraq">Iraq</option>
+                                    <option value="israel">Israel</option>
+                                    <option value="japan">Japan</option>
+                                    <option value="kazakhstan">Kazakhstan</option>
+                                    <option value="kyrgyzstan">Kyrgyzstan</option>
+                                    <option value="lebanon">Lebanon</option>
+                                    <option value="malaysia">Malaysia</option>
+                                    <option value="mongolia">Mongolia</option>
+                                    <option value="myanmar">Myanmar</option>
+                                    <option value="pakistan">Pakistan</option>
+                                    <option value="philippines">Philippines</option>
+                                    <option value="saudiarabia">Saudi Arabia</option>
+                                    <option value="singapore">Singapore</option>
+                                    <option value="southkorea">South Korea</option>
+                                    <option value="srilanka">Sri Lanka</option>
+                                    <option value="syria">Syria</option>
+                                    <option value="taiwan">Taiwan</option>
+                                    <option value="tajikistan">Tajikistan</option>
+                                    <option value="thailand">Thailand</option>
+                                    <option value="turkey">Turkey</option>
+                                    <option value="uzbekistan">Uzbekistan</option>
+                                    <option value="yemen">Yemen</option>
+                                </optgroup>
+                                <optgroup label="Eastern &amp; Central Europe">
+                                    <option value="albania">Albania</option>
+                                    <option value="austria">Austria</option>
+                                    <option value="belarus">Belarus</option>
+                                    <option value="bosniaherzegovina">Bosnia-Herzegovina</option>
+                                    <option value="bulgaria">Bulgaria</option>
+                                    <option value="croatia">Croatia</option>
+                                    <option value="czechrepublic">Czech Republic</option>
+                                    <option value="estonia">Estonia</option>
+                                    <option value="georgia">Georgia</option>
+                                    <option value="hungary">Hungary</option>
+                                    <option value="latvia">Latvia</option>
+                                    <option value="lithuania">Lithuania</option>
+                                    <option value="macedonia">Macedonia</option>
+                                    <option value="moldova">Moldova</option>
+                                    <option value="montenegro">Montenegro</option>
+                                    <option value="poland">Poland</option>
+                                    <option value="romania">Romania</option>
+                                    <option value="russia">Russia</option>
+                                    <option value="serbia">Serbia</option>
+                                    <option value="slovakia">Slovakia</option>
+                                    <option value="slovenia">Slovenia</option>
+                                    <option value="ukraine">Ukraine</option>
+                                </optgroup>
+                                <optgroup label="Western &amp; Southern Europe">
+                                    <option value="belgium">Belgium</option>
+                                    <option value="channelislands">Channel Islands</option>
+                                    <option value="cyprus">Cyprus</option>
+                                    <option value="denmark">Denmark</option>
+                                    <option value="england">England</option>
+                                    <option value="finland">Finland</option>
+                                    <option value="france">France</option>
+                                    <option value="germany">Germany</option>
+                                    <option value="gibraltar">Gibraltar</option>
+                                    <option value="greece">Greece</option>
+                                    <option value="iceland">Iceland</option>
+                                    <option value="ireland">Ireland</option>
+                                    <option value="isleofman">Isle of Man</option>
+                                    <option value="italy">Italy</option>
+                                    <option value="lichtenstein">Liechtenstein</option>
+                                    <option value="luxembourg">Luxembourg</option>
+                                    <option value="malta">Malta</option>
+                                    <option value="monaco">Monaco</option>
+                                    <option value="netherlands">Netherlands</option>
+                                    <option value="northernireland">Northern Ireland</option>
+                                    <option value="norway">Norway</option>
+                                    <option value="portugal">Portugal</option>
+                                    <option value="scotland">Scotland</option>
+                                    <option value="spain">Spain</option>
+                                    <option value="sweden">Sweden</option>
+                                    <option value="switzerland">Switzerland</option>
+                                    <option value="wales">Wales</option>
+                                </optgroup>
+                                <optgroup label="North America &amp; Caribbean">
+                                    <option value="bahamas">Bahamas</option>
+                                    <option value="barbados">Barbados</option>
+                                    <option value="bermuda">Bermuda</option>
+                                    <option value="canada">Canada</option>
+                                    <option value="cuba">Cuba</option>
+                                    <option value="dominicanrepublic">Dominican Republic</option>
+                                    <option value="haiti">Haiti</option>
+                                    <option value="jamaica">Jamaica</option>
+                                    <option value="martinique">Martinique</option>
+                                    <option value="netherlandsantilles">Netherlands Antilles</option>
+                                    <option value="stkittsnevis">St. Kitts and Nevis</option>
+                                    <option value="trinidadtobago">Trinidad &amp; Tobago</option>
+                                    <option value="usa">United States of America</option>
+                                    <option value="virginislands">Virgin Islands</option>
+                                </optgroup>
+                                <optgroup label="Central &amp; South America">
+                                    <option value="argentina">Argentina</option>
+                                    <option value="belize">Belize</option>
+                                    <option value="bolivia">Bolivia</option>
+                                    <option value="brazil">Brazil</option>
+                                    <option value="chile">Chile</option>
+                                    <option value="colombia">Colombia</option>
+                                    <option value="costarica">Costa Rica</option>
+                                    <option value="ecuador">Ecuador</option>
+                                    <option value="mexico">Mexico</option>
+                                    <option value="nicaragua">Nicaragua</option>
+                                    <option value="panama">Panama</option>
+                                    <option value="peru">Peru</option>
+                                    <option value="suriname">Suriname</option>
+                                    <option value="uruguay">Uruguay</option>
+                                    <option value="venezuela">Venezuela</option>
+                                </optgroup>
+                                <optgroup label="Oceania">
+                                    <option value="australia">Australia</option>
+                                    <option value="newzealand">New Zealand</option>
+                                    <option value="papuanewguinea">Papua New Guinea</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                    </div><!-- /.jowbr-controls -->
+
+                    <!-- Submit / Reset -->
+                    <div class="jowbr-search-actions">
+                        <button type="submit" class="btn-search">
+                            Search Burials
+                        </button>
+                        <button type="reset" class="jg-btn-reset">
+                            Clear
+                        </button>
+                    </div>
+
+                </form>
+            </div><!-- /.jg-search-card -->
+        </div><!-- /.jowbr-search-wrap -->
+    </div><!-- /.jowbr-search-band -->
+
+    <!-- "New to JOWBR?" nudge -->
+    <div class="jowbr-nudge">
+        New to JOWBR? <a href="#jowbr-about" onclick="scrollToAbout(event)">Learn what's in the database and how to contribute ↓</a>
+    </div>
+
+    <!-- =======================================================
+         ABOUT SECTION
+         ======================================================= -->
+    <section class="jowbr-about" id="jowbr-about" aria-labelledby="about-heading">
+        <div class="jowbr-about__inner">
+
+            <div class="jowbr-about__intro">
+                <h2 id="about-heading">What Is JOWBR?</h2>
+                <p>The JewishGen Online Worldwide Burial Registry is the world's largest centralized database of Jewish burial records — a permanent digital archive of headstone inscriptions, cemetery registers, and historical burial data from every corner of the globe. Records are freely searchable by anyone and updated twice annually.</p>
+            </div>
+
+            <div class="jowbr-about__grid">
+
+                <div class="jowbr-about__reason">
+                    <h3>A Permanent Archive</h3>
+                    <p>Cemeteries fall into disrepair. Landsmanshaft societies dissolve. JOWBR ensures records survive — a virtual resting place even when the physical one is lost.</p>
+                </div>
+
+                <div class="jowbr-about__reason">
+                    <h3>Unique Genealogical Data</h3>
+                    <p>Headstones preserve Hebrew names, fathers' names, and death dates unavailable anywhere else — essential for tracing ancestry back to the old country.</p>
+                </div>
+
+                <div class="jowbr-about__reason">
+                    <h3>One Central Search</h3>
+                    <p>Instead of contacting individual cemeteries worldwide, researchers and families can find burial sites in one place — across 144 countries and counting.</p>
+                </div>
+
+                <div class="jowbr-about__reason">
+                    <h3>Volunteer-Powered</h3>
+                    <p>Every record was contributed by a volunteer: photographed, transcribed, and translated. You can help grow the registry for future generations.</p>
+                </div>
+
+                <div class="jowbr-about__reason">
+                    <h3>Headstone Photos</h3>
+                    <p>Over 908,000 gravestone photographs are linked directly to burial records. Can't read Hebrew? JewishGen's ViewMate community can help with translation.</p>
+                </div>
+
+                <div class="jowbr-about__reason">
+                    <h3>A Mitzvah</h3>
+                    <p>Preserving burial records honors the deceased and comforts the living. Hebrew dates of death support yahrzeit observance for families worldwide.</p>
+                </div>
+
+            </div>
+
+            <div class="jowbr-about__cta">
+                <a href="jowbr-browse.html" class="jg-btn-card">Browse Cemeteries</a>
+                <a href="jowbr-contribute.html" class="jg-btn-card jg-btn-card--sage">Contribute Data</a>
+                <a href="jowbr-about.html" class="jg-btn-card" style="background-color: transparent; color: var(--navy); border: 2px solid var(--navy);">About &amp; FAQ</a>
+            </div>
+
+        </div>
+    </section>
 
 </main>
 
@@ -785,54 +758,57 @@
 <div id="site-footer"></div>
 
 <script>
-/* ── Component Loader ──────────────────────────────────── */
-function loadComponent(id, file) {
-    return fetch(file)
-        .then(function(r) {
-            if (!r.ok) throw new Error('Could not load ' + file);
-            return r.text();
-        })
-        .then(function(html) {
-            document.getElementById(id).innerHTML = html;
-        })
-        .catch(function(err) { console.warn(err); });
-}
 
-Promise.all([
-    loadComponent('site-header', 'Header_NavBar.html'),
-    loadComponent('site-footer', 'Footer.html')
-]).then(function() {
-    initPage();
-});
+    /* -- Component loader -------------------------------------------------- */
+    function loadComponent(id, file) {
+        return fetch(file)
+            .then(function(r) {
+                if (!r.ok) throw new Error('Could not load ' + file);
+                return r.text();
+            })
+            .then(function(html) {
+                document.getElementById(id).innerHTML = html;
+            })
+            .catch(function(err) { console.warn(err); });
+    }
 
-/* ── Page Init ─────────────────────────────────────────── */
-function initPage() {
-    /* Nav keyboard accessibility */
-    document.querySelectorAll('.jg-nav .dropbtn, .main-nav .dropbtn').forEach(function(btn) {
-        btn.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                var menu = this.nextElementSibling;
-                if (menu) menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-            }
-            if (e.key === 'Escape') {
-                var menu = this.nextElementSibling;
-                if (menu) menu.style.display = 'none';
-            }
+    Promise.all([
+        loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
+        loadComponent('site-footer', '/JG40-Build/Footer.html')
+    ]).then(function() {
+        document.querySelectorAll('.jg-nav .dropbtn, .main-nav .dropbtn').forEach(function(btn) {
+            btn.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    var menu = this.nextElementSibling;
+                    if (menu) menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+                }
+                if (e.key === 'Escape') {
+                    var menu = this.nextElementSibling;
+                    if (menu) menu.style.display = 'none';
+                }
+            });
         });
     });
-}
 
-/* ── Smooth scroll to About section ───────────────────── */
-function scrollToAbout(e) {
-    e.preventDefault();
-    var target = document.getElementById('jowbr-about');
-    if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        target.setAttribute('tabindex', '-1');
-        target.focus({ preventScroll: true });
+    /* -- Tips panel toggle ------------------------------------------------- */
+    function toggleTips(btn) {
+        var panel = document.getElementById('jowbr-tips-panel');
+        var isOpen = panel.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(isOpen));
     }
-}
+
+    /* -- Smooth scroll to About section ------------------------------------ */
+    function scrollToAbout(e) {
+        e.preventDefault();
+        var target = document.getElementById('jowbr-about');
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            target.setAttribute('tabindex', '-1');
+            target.focus({ preventScroll: true });
+        }
+    }
+
 </script>
 
 </body>
