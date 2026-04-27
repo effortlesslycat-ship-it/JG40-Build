@@ -246,26 +246,58 @@
         .cal-day.today .day-num { background-color: var(--sage); color: var(--white); width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
 
         /* -- List view ----------------------------------------- */
-        .event-list { list-style: none; margin: 0; padding: 0; }
-        .event-list-item { display: grid; grid-template-columns: 80px 1fr auto; gap: 0 20px; align-items: start; padding: 18px 0; border-bottom: 1px solid #d1caba; }
-        .event-list-item:last-child { border-bottom: none; }
+        .event-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+        .event-list-item {
+            display: grid;
+            grid-template-columns: 92px 1fr auto;
+            gap: 0 24px;
+            align-items: center;
+            padding: 22px 28px;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
 
         .event-date-col   { text-align: center; }
-        .event-date-month { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--sage); font-weight: bold; display: block; }
-        .event-date-day   { font-size: 30px; font-weight: bold; color: var(--navy); line-height: 1; display: block; }
-        .event-date-dow   { font-size: 11px; color: var(--charcoal); opacity: 0.7; display: block; }
+        .event-date-month { font-size: 13px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--navy); font-weight: bold; display: block; }
+        .event-date-day   { font-size: 38px; font-weight: bold; color: var(--navy); line-height: 1; display: block; margin-top: 2px; }
+        .event-date-dow   { display: none; }  /* day-of-week now lives in subtitle */
 
-        .event-info h3 { margin: 0 0 6px 0; font-size: 15px; color: var(--navy); line-height: 1.3; }
-        .event-info h3 a { color: var(--navy); }
+        .event-info h3 { margin: 0 0 6px 0; font-size: 17px; line-height: 1.35; }
+        .event-info h3 a { color: var(--navy); font-weight: bold; }
         .event-info h3 a:hover { color: var(--sage); text-decoration: underline; }
-        .event-time { font-size: 13px; color: var(--charcoal); margin-bottom: 6px; }
+        .event-time { font-size: 14px; color: var(--charcoal); margin: 0 0 8px 0; }
 
-        .event-badge { display: inline-block; font-size: 11px; font-weight: bold; padding: 2px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .event-badge { display: inline-block; font-size: 11px; font-weight: bold; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
         .badge-virtual  { background-color: var(--sage); color: var(--white); }
         .badge-inperson { background-color: var(--navy); color: var(--white); }
 
-        .event-learn-btn { align-self: center; white-space: nowrap; padding: 8px 16px; background-color: var(--navy); color: var(--white); font-size: 13px; font-weight: bold; border-radius: 6px; transition: opacity 0.2s ease; }
-        .event-learn-btn:hover { opacity: 0.82; }
+        /* Circular sage CTA arrow button */
+        .event-learn-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background-color: var(--sage);
+            color: var(--white);
+            border-radius: 50%;
+            transition: filter 0.2s, transform 0.15s;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .event-learn-btn:hover { filter: brightness(1.08); transform: translateX(2px); color: var(--white); }
+        .event-learn-btn::before {
+            content: '';
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-top: 2px solid var(--white);
+            border-right: 2px solid var(--white);
+            transform: rotate(45deg);
+            margin-left: -3px;  /* visual centering */
+        }
+        .event-learn-btn .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
         .no-events { text-align: center; padding: 48px 0; color: var(--charcoal); opacity: 0.55; font-size: 15px; }
 
@@ -316,7 +348,9 @@
         body.dark-mode .cal-day.kalikow-open { background-color: #1e2b1e; }
         body.dark-mode .day-num              { color: #c8c0b0; }
         body.dark-mode .kalikow-open .day-num { color: var(--sage); }
-        body.dark-mode .event-list-item      { border-color: #3a4a4a; }
+        body.dark-mode .event-list-item      { background-color: #1e1e1e; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+        body.dark-mode .event-date-month     { color: var(--sage); }
+        body.dark-mode .event-date-day       { color: var(--sage); }
         body.dark-mode .event-info h3 a      { color: var(--sage); }
         body.dark-mode .event-time           { color: #c8c0b0; }
         body.dark-mode .modal-box            { background-color: #1e2424; color: #e8e1d1; }
@@ -342,8 +376,8 @@
             .calendar-grid-wrap { display: none !important; }
             .calendar-list-wrap { display: block !important; }
             .view-toggle { display: none; }
-            .event-list-item { grid-template-columns: 64px 1fr; grid-template-rows: auto auto; }
-            .event-learn-btn { grid-column: 2; margin-top: 10px; display: inline-block; width: fit-content; }
+            .event-list-item { grid-template-columns: 72px 1fr 44px; gap: 0 16px; padding: 18px 20px; }
+            .event-date-day { font-size: 32px; }
         }
 
         @media (max-width: 480px) {
@@ -672,28 +706,26 @@ Promise.all([
             const mon = MONTH_NAMES[d.getMonth()].slice(0,3).toUpperCase();
             const day = d.getDate();
             const dow = DOW_NAMES[d.getDay()];
+            const dowFull = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d.getDay()];
             const li  = document.createElement('li');
             li.className = 'event-list-item';
             li.innerHTML = `
                 <div class="event-date-col" aria-hidden="true">
                     <span class="event-date-month">${mon}</span>
                     <span class="event-date-day">${day}</span>
-                    <span class="event-date-dow">${dow}</span>
                 </div>
                 <div class="event-info">
-                    <h3><a href="${evt.link}" target="_blank" rel="noopener">${evt.title}</a></h3>
-                    <p class="event-time">
-                        <time datetime="${evt.date}">${dow}, ${MONTH_NAMES[d.getMonth()]} ${day} &nbsp;·&nbsp; ${evt.time} ${evt.timezone}</time>
-                    </p>
                     <span class="event-badge ${evt.virtual ? 'badge-virtual' : 'badge-inperson'}">
                         ${evt.virtual ? 'Virtual' : 'In Person'}
                     </span>
+                    <h3><a href="${evt.link}" target="_blank" rel="noopener">${evt.title}</a></h3>
+                    <p class="event-time">
+                        <time datetime="${evt.date}">${dowFull}, ${MONTH_NAMES[d.getMonth()]} ${day} &nbsp;·&nbsp; ${evt.time} ${evt.timezone}</time>
+                    </p>
                 </div>
                 <a href="${evt.link}" target="_blank" rel="noopener"
                    class="event-learn-btn"
-                   aria-label="Learn more about ${evt.title}">
-                    Learn More ↗
-                </a>
+                   aria-label="Learn more about ${evt.title}"></a>
             `;
             list.appendChild(li);
         });
