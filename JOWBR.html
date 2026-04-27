@@ -336,17 +336,6 @@
     </div>
 
     <!-- =======================================================
-         JOWBR SECTION NAV
-         div[role=navigation] avoids global nav {} cascade hazard
-         ======================================================= -->
-    <div role="navigation" class="jowbr-nav" aria-label="JOWBR section navigation">
-        <a href="jowbr-search.html" class="active">Search</a>
-        <a href="jowbr-browse.html">Browse Cemeteries</a>
-        <a href="jowbr-about.html">About &amp; FAQ</a>
-        <a href="jowbr-contribute.html">Contribute Data</a>
-    </div>
-
-    <!-- =======================================================
          STATS BAR
          ======================================================= -->
     <div class="jowbr-stats" aria-label="JOWBR database statistics">
@@ -366,6 +355,17 @@
             <span class="jowbr-stat__num">144</span>
             <span class="jowbr-stat__label">Countries</span>
         </div>
+    </div>
+
+    <!-- =======================================================
+         JOWBR SECTION NAV
+         div[role=navigation] avoids global nav {} cascade hazard
+         ======================================================= -->
+    <div role="navigation" class="jowbr-nav" aria-label="JOWBR section navigation">
+        <a href="jowbr-search.html" class="active">Search</a>
+        <a href="jowbr-browse.html">Browse Cemeteries</a>
+        <a href="jowbr-about.html">About &amp; FAQ</a>
+        <a href="jowbr-contribute.html">Contribute Data</a>
     </div>
 
     <!-- =======================================================
@@ -459,40 +459,6 @@
                             <input type="text" id="val2" name="val2" placeholder="" autocomplete="off">
                         </div>
                     </div>
-
-                    <!-- Locked rows + persistent overlay -->
-                    <div class="jg-locked-rows-wrapper">
-
-                        <div aria-hidden="true">
-                            <div class="search-row locked">
-                                <div class="sf n"><select tabindex="-1" disabled><option>Search Field</option></select></div>
-                                <div class="sf n"><select tabindex="-1" disabled><option>Search Type</option></select></div>
-                                <div class="sf w"><input type="text" tabindex="-1" disabled placeholder="Search term"></div>
-                            </div>
-                            <div class="search-row locked" style="margin-bottom: 0;">
-                                <div class="sf n"><select tabindex="-1" disabled><option>Search Field</option></select></div>
-                                <div class="sf n"><select tabindex="-1" disabled><option>Search Type</option></select></div>
-                                <div class="sf w"><input type="text" tabindex="-1" disabled placeholder="Search term"></div>
-                            </div>
-                        </div>
-
-                        <div class="jg-locked-overlay" role="note" aria-label="Value-added feature: donate to unlock additional search rows">
-                            <div class="jg-locked-overlay__inner">
-                                <div class="jg-locked-overlay__icon" aria-hidden="true">🔓</div>
-                                <div class="jg-locked-overlay__text">
-                                    <strong>Unlock Two Additional Search Rows</strong>
-                                    <p>A donation of $100 or more to the JewishGen General Fund unlocks multi-field search, letting you combine up to four simultaneous criteria for more precise results.</p>
-                                    <a href="https://www.jewishgen.org/jewishgen-secure/donate.asp"
-                                       class="jg-btn-unlock"
-                                       target="_blank"
-                                       rel="noopener noreferrer">
-                                        Donate Now to Unlock &rarr;
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div><!-- /.jg-locked-rows-wrapper -->
 
                     <hr class="jowbr-row-divider">
 
