@@ -9,7 +9,7 @@
 
     <style>
         /* ==========================================================================
-           DATASET PAGE - CUSTOM REFINEMENTS
+           DATASET PAGE - FINAL CLEAN REFINEMENT
            ========================================================================== */
         
         a { text-decoration: none; color: inherit; }
@@ -38,7 +38,7 @@
         }
         body.dark-mode .jg-sidebar-card { background: #1e1e1e; border-left-color: #5a7a95; }
 
-        /* At a Glance Card */
+        /* At a Glance Header */
         .jg-sidebar-card__header--green {
             background-color: var(--sage);
             color: var(--white);
@@ -52,6 +52,7 @@
 
         .sidebar-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; font-size: 13px; }
         .sidebar-icon { width: 18px; flex-shrink: 0; margin-top: 2px; }
+        .sidebar-icon img { width: 100%; height: auto; }
         .sidebar-label { font-size: 10px; font-weight: bold; text-transform: uppercase; opacity: 0.6; margin-bottom: 2px; }
         .sidebar-value { font-weight: bold; color: var(--navy); font-size: 14px; line-height: 1.3; }
         body.dark-mode .sidebar-value { color: #e0e0e0; }
@@ -68,30 +69,32 @@
         .sidebar-search-input { 
             width: 100%; padding: 10px; border: none; border-radius: 4px; 
             background: var(--light-blue); margin-bottom: 12px; font-size: 13px; 
+            box-sizing: border-box;
         }
         .sidebar-search-btn { 
             width: 100%; background: var(--sage); color: white; border: none; 
             padding: 10px; font-weight: bold; text-transform: uppercase; border-radius: 4px; 
+            cursor: pointer;
         }
 
         /* ── MAIN CONTENT ── */
         .main-column { flex: 1; min-width: 0; }
 
         /* Typography & Dividers */
-        .dataset-title { font-family: Georgia, serif; font-size: 2.25rem; color: var(--navy); margin: 0 0 10px; }
+        .dataset-title { font-family: Georgia, serif; font-size: 2.25rem; color: var(--navy); margin: 0; }
         body.dark-mode .dataset-title { color: #e0e0e0; }
         
         .jg-hr-navy { border: none; border-top: 3px solid var(--navy); margin: 25px 0; }
         body.dark-mode .jg-hr-navy { border-top-color: var(--sage); }
 
-        .section-heading { font-size: 15px; font-weight: bold; text-transform: uppercase; color: var(--navy); margin-bottom: 8px; }
+        .section-heading { font-size: 15px; font-weight: bold; text-transform: uppercase; color: var(--navy); margin-bottom: 8px; display: block; }
         .green-accent-line { width: 40px; height: 3px; background-color: var(--sage); margin-bottom: 20px; }
         body.dark-mode .section-heading { color: #e0e0e0; }
 
         /* Cards */
         .white-card { 
             background: var(--white); border-radius: 6px; padding: 25px; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.07); margin-bottom: 20px; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07); margin-bottom: 25px; 
         }
         body.dark-mode .white-card { background: #1e1e1e; }
 
@@ -107,11 +110,11 @@
 
         /* Fields Grid */
         .fields-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 40px; }
-        .field-item { font-size: 14px; color: var(--navy); padding: 8px 0; }
-        body.dark-mode .field-item { color: #c8c0b0; }
+        .field-item { font-size: 14px; color: var(--navy); padding: 8px 0; border-bottom: 1px solid #dce5ea; }
+        body.dark-mode .field-item { color: #c8c0b0; border-bottom-color: #333; }
 
         /* Donation Box */
-        .donation-block { background-color: #dfe3cd; padding: 40px; text-align: center; border-radius: 6px; }
+        .donation-block { background-color: #dfe3cd; padding: 40px; text-align: center; border-radius: 6px; margin-top: 50px; }
         body.dark-mode .donation-block { background-color: #2a2d1e; }
         .btn-donate-solid { 
             background-color: var(--sage); color: white; padding: 12px 30px; 
@@ -141,15 +144,18 @@
                 <div class="jg-sidebar-card__header--green">At a Glance</div>
                 <div style="padding: 20px;">
                     <div class="sidebar-row">
-                        <div class="sidebar-icon"><img src="/JG40-Build/databases/DateReg.png" alt=""></div>
+                        <div class="sidebar-icon">img src="/JG40-Build/databases/DateReg.png" class="light-logo" alt="">
+                    <img src="/JG40-Build/databases/DateDark.png" class="dark-logo" alt=""></div>
                         <div><span class="sidebar-label">Date</span><span class="sidebar-value">1942</span></div>
                     </div>
                     <div class="sidebar-row">
-                        <div class="sidebar-icon"><img src="/JG40-Build/databases/RegionReg.png" alt=""></div>
+                        <div class="sidebar-icon">                    <img src="/JG40-Build/databases/RegionReg.png" class="light-logo" alt="">
+                    <img src="/JG40-Build/databases/RegionDark.png" class="dark-logo" alt=""></div>
                         <div><span class="sidebar-label">Region</span><span class="sidebar-value">Romania (all counties; Bucharest focus for T2 &amp; T3)</span></div>
                     </div>
                     <div class="sidebar-row">
-                        <div class="sidebar-icon"><img src="/JG40-Build/databases/TotalReg.png" alt=""></div>
+                        <<img src="/JG40-Build/databases/TotalReg.png" class="light-logo" alt="">
+                    <img src="/JG40-Build/databases/TotalDark.png" class="dark-logo" alt=""></div>
                         <div style="width: 100%;">
                             <span class="sidebar-label">Total Records</span>
                             <span class="sidebar-value">20,296</span>
@@ -160,93 +166,49 @@
                             </div>
                         </div>
                     </div>
-                    <div class="jg-sidebar-card">
-                <span class="sidebar-icon" aria-hidden="true">
-                    <img src="/JG40-Build/databases/TotalReg.png" class="light-logo" alt="">
-                    <img src="/JG40-Build/databases/TotalDark.png" class="dark-logo" alt="">
-                </span>
-                <div class="jg-meta-full-width">
-                    <span class="sidebar-label">Total Records</span>
-                    <span class="sidebar-value">20,296</span>
-                    <div class="jg-meta-split-grid">
-                        <div class="jg-meta-split-item">
-                            <div class="jg-meta-split-label">T1</div>
-                            <div class="jg-meta-split-val">10,574</div>
-                        </div>
-                        <div class="jg-meta-split-item">
-                            <div class="jg-meta-split-label">T2</div>
-                            <div class="jg-meta-split-val">8,493</div>
-                        </div>
-                        <div class="jg-meta-split-item">
-                            <div class="jg-meta-split-label">T3</div>
-                            <div class="jg-meta-split-val">1,229</div>
-                        </div>
+                    <div class="sidebar-row">
+                        <div class="sidebar-icon"><img src="/JG40-Build/databases/LangReg.png" class="light-logo" alt="">
+                    <img src="/JG40-Build/databases/LangDark.png" class="dark-logo" alt=""></div>
+                        <div><span class="sidebar-label">Source Language</span><span class="sidebar-value">Romanian</span></div>
                     </div>
-                </div>
-            </div>
-            
-            <div class="jg-sidebar-card">
-                <span class="sidebar-icon" aria-hidden="true">
-                    <img src="/JG40-Build/databases/LangReg.png" class="light-logo" alt="">
-                    <img src="/JG40-Build/databases/LangDark.png" class="dark-logo" alt="">
-                </span>
-                <div>
-                    <span class="sidebar-label">Source Language</span>
-                    <span class="sidebar-value">Romanian</span>
-                </div>
-            </div>
-            
-            <div class="jg-sidebar-card">
-                <span class="sidebar-icon" aria-hidden="true">
-                    <img src="/JG40-Build/databases/TypeReg.png" class="light-logo" alt="">
-                    <img src="/JG40-Build/databases/TypeDark.png" class="dark-logo" alt="">
-                </span>
-                <div>
-                    <span class="sidebar-label">Record Type</span>
-                    <span class="sidebar-value">Forced Labor Census</span>
-                </div>
-            </div>
-            
-            <div class="jg-sidebar-card">
-                <span class="sidebar-icon" aria-hidden="true">
-                    <img src="/JG40-Build/databases/SourceReg.png" class="light-logo" alt="">
-                    <img src="/JG40-Build/databases/SourceDark.png" class="dark-logo" alt="">
-                </span>
-                <div>
-                    <span class="sidebar-label">Source Archive</span>
-                    <span class="sidebar-value">Federation of Jewish Communities of Romania, Bucharest<br>
-                        <span class="jg-meta-subvalue">Fond #: III 400 E/1942</span>
-                    </span>
-                </div>
-            </div>
-            
-            <div class="jg-sidebar-card">
-                <span class="sidebar-icon" aria-hidden="true">
-                    <img src="/JG40-Build/databases/UpdatedReg.png" class="light-logo" alt="">
-                    <img src="/JG40-Build/databases/UpdatedDark.png" class="dark-logo" alt="">
-                </span>
-                <div>
-                    <span class="sidebar-label">Last Updated</span>
-                    <span class="sidebar-value">November 2004</span>
-                </div>
-            </div>
-        </div>
-
+                    
+                     <div class="sidebar-row">
+                        <div class="sidebar-icon"><img src="/JG40-Build/databases/TypeReg.png" class="light-logo" alt="">
+                    <img src="/JG40-Build/databases/TypeDark.png" class="dark-logo" alt=""></div>
+                        <div><span class="sidebar-label">Record Type</span><span class="sidebar-value">Forced Labor Census</span></div>
+                    </div>
+                    
+                      <div class="sidebar-row">
+                        <div class="sidebar-icon"><img src="/JG40-Build/databases/SourceReg.png" class="light-logo" alt="">
+                    <img src="/JG40-Build/databases/SourceDark.png" class="dark-logo" alt=""></div>
+                        <div><span class="sidebar-label">Source Archive</span><span class="sidebar-value">Federation of Jewish Communities of Romania, Bucharest<br>
+                        Fond #: III 400 E/1942</span></div>
+                    </div>
+                    
+                    <div class="sidebar-row">
+                        <div class="sidebar-icon"><img src="/JG40-Build/databases/UpdatedReg.png" class="light-logo" alt="">
+                    <img src="/JG40-Build/databases/UpdatedDark.png" class="dark-logo" alt=""></div>
+                        <div><span class="sidebar-label">Last Updated</span><span class="sidebar-value">November 2004</span></div>
+                    </div>
                 </div>
             </div>
 
             <div class="jg-sidebar-card jg-sidebar-card--search">
                 <div style="font-size: 13px; font-weight: bold; text-transform: uppercase; margin-bottom: 12px;">Search This Dataset</div>
                 <label style="font-size: 10px; font-weight: bold; opacity: 0.8; text-transform: uppercase; display: block; margin-bottom: 5px;">Surname or Given Name</label>
-                <input type="text" class="sidebar-search-input" placeholder="e.g. Hollander">
+                <input type="text" id="dataset-search-input" class="sidebar-search-input" placeholder="e.g. Hollander">
                 <button class="sidebar-search-btn">Search Records</button>
             </div>
 
             <div class="jg-sidebar-card" style="padding: 20px;">
-                <div class="section-heading" style="font-size: 13px; border-bottom: 1px solid #eee; padding-bottom: 5px;">Contributors</div>
-                <div style="margin-top: 15px;">
+                <div class="section-heading" style="font-size: 13px; border-bottom: 1px solid #eee; padding-bottom: 8px; margin-bottom: 15px;">Contributors</div>
+                <div style="margin-bottom: 12px;">
                     <span class="sidebar-label">Coordinator</span>
                     <span class="sidebar-value" style="font-size: 13px;">Terry Lasky</span>
+                </div>
+                <div style="margin-bottom: 12px;">
+                    <span class="sidebar-label">Data Input</span>
+                    <span class="sidebar-value" style="font-size: 12px;">Ellen Renck, Paula Zieselman, Israel Rabin, Terry Lasky</span>
                 </div>
             </div>
         </aside>
@@ -256,66 +218,75 @@
                 <h1 class="dataset-title">Tabele Barbatilor (1942)</h1>
                 <span style="font-size: 12px; font-weight: bold; opacity: 0.5;">20,296 RECORDS</span>
             </div>
-            <p style="color: var(--sage); font-weight: bold; font-size: 13px; text-transform: uppercase;">Holocaust · Census Records · Romania</p>
+            <p style="color: var(--sage); font-weight: bold; font-size: 13px; text-transform: uppercase; margin-top: 5px;">Holocaust · Census Records · Romania</p>
 
             <hr class="jg-hr-navy">
 
-            <div class="section-heading">Background</div>
+            <span class="section-heading">Background</span>
             <div class="green-accent-line"></div>
             
             <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px; margin-bottom: 40px;">
-                <p style="font-size: 15px; line-height: 1.7;">The <em>Tabele Barbatilor</em> ("Census of Men") lists were compiled in 1942 under the Antonescu regime. They form a systematic record of the Jewish male population created for demographic registration and forced labor assignment.</p>
+                <p style="font-size: 15px; line-height: 1.7; margin: 0;">The <em>Tabele Barbatilor</em> ("Census of Men") lists were compiled in 1942 under the
+                <strong>Antonescu regime</strong> in Romania. They form a systematic record of the Jewish male
+                population during one of the most dangerous periods of Romanian Jewish history, created for the
+                dual purpose of demographic registration and forced labor assignment.</p>
+
                 <div class="source-callout">
-                    <strong>Source & Acquisition</strong><br>
-                    Original documents held in the Archive of the Federation of Jewish Communities of Romania, Bucharest (Fond #: III 400 E/1942). Copies obtained by Prof. Ladislau Gyemant.
-                </div>
+                    <strong>Source &amp; Acquisition:</strong> The original documents are held in the Archive and Library of the Federation of Jewish Communities of Romania, in Bucharest 
+            (Fond #: III 400 E/1942). Copies were obtained in 2000 by <strong>Prof. Ladislau Gyemant</strong>, Director of the Mosche Carmilly Institute of Jewish History at the University of Cluj-Napoca, 
+            and were purchased from him by <a href="https://www.jewishgen.org/ROMSIG" target="_blank" rel="noopener">The JewishGen Romania Research Division</a>.
+        </div>
+
             </div>
 
             <hr class="jg-hr-navy">
 
-            <div class="section-heading">The Three Lists</div>
+            <span class="section-heading">The Three Lists</span>
             <div class="green-accent-line"></div>
             
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px;">
                 <div class="white-card text-center">
                     <span style="background: var(--light-blue); padding: 3px 10px; border-radius: 4px; font-weight: bold; font-size: 12px;">T1</span>
-                    <h4 style="font-family: Georgia; margin: 15px 0 10px; font-size: 15px;">Age 50+</h4>
-                    <p style="font-size: 12px; color: var(--charcoal); min-height: 45px;">Nationwide. Men above labor age exempt from camps.</p>
+                    <h4 style="font-family: Georgia; margin: 15px 0 10px; font-size: 15px;">Born 1881–1892 (Age 50+)</h4>
+                    <p style="font-size: 12px; color: var(--charcoal); min-height: 45px; margin: 0;">Nationwide. Men above labor age, exempt from forced labor camps due to age. Covers all counties and towns of Romania.</p>
                     <div class="card-internal-divider"></div>
-                    <div style="font-weight: bold; font-size: 12px;">10,574 RECORDS</div>
+                    <div style="font-weight: bold; font-size: 12px;">350 pages · 10,574 records</div>
                 </div>
                 <div class="white-card text-center">
                     <span style="background: var(--light-blue); padding: 3px 10px; border-radius: 4px; font-weight: bold; font-size: 12px;">T2</span>
-                    <h4 style="font-family: Georgia; margin: 15px 0 10px; font-size: 15px;">Ages 21–50</h4>
-                    <p style="font-size: 12px; color: var(--charcoal); min-height: 45px;">Bucharest only. Men assigned to local labor details.</p>
+                    <h4 style="font-family: Georgia; margin: 15px 0 10px; font-size: 15px;">Born 1893–1921 (Ages 21–50)</h4>
+                    <p style="font-size: 12px; color: var(--charcoal); min-height: 45px; margin: 0;">Bucharest only. Men assigned to labor details, typically working in the businesses of non-Jews.</p>
                     <div class="card-internal-divider"></div>
-                    <div style="font-weight: bold; font-size: 12px;">8,493 RECORDS</div>
+                    <div style="font-weight: bold; font-size: 12px;">352 pages · 8,493 records</div>
                 </div>
                 <div class="white-card text-center">
                     <span style="background: var(--light-blue); padding: 3px 10px; border-radius: 4px; font-weight: bold; font-size: 12px;">T3</span>
-                    <h4 style="font-family: Georgia; margin: 15px 0 10px; font-size: 15px;">Ages 15–16</h4>
-                    <p style="font-size: 12px; color: var(--charcoal); min-height: 45px;">Bucharest only. Boys, many still in school.</p>
+                    <h4 style="font-family: Georgia; margin: 15px 0 10px; font-size: 15px;">Born June 1926 – May 1928 (Ages 15–16)</h4>
+                    <p style="font-size: 12px; color: var(--charcoal); min-height: 45px; margin: 0;">Bucharest only. Boys, many still in school. Not placed in labor details.</p>
                     <div class="card-internal-divider"></div>
-                    <div style="font-weight: bold; font-size: 12px;">1,229 RECORDS</div>
+                    <div style="font-weight: bold; font-size: 12px;">71 pages · 1,229 records</div>
                 </div>
             </div>
-
+        <p>This database contains all <strong>20,296 records</strong> from T1, T2, and T3 combined.</p>
             <hr class="jg-hr-navy">
 
-            <div class="section-heading">Fields Recorded</div>
+            <span class="section-heading">Fields Recorded</span>
             <div class="green-accent-line"></div>
             <div class="fields-grid" style="margin-bottom: 40px;">
-                <div class="field-item" style="border-bottom: 1px solid var(--navy);">Surname & Given Name</div>
-                <div class="field-item" style="border-bottom: 1px solid var(--navy);">Level of Education</div>
-                <div class="field-item" style="border-bottom: 1px solid var(--navy);">Birthplace & County</div>
-                <div class="field-item" style="border-bottom: 1px solid var(--navy);">Profession / Occupation</div>
-                <div class="field-item" style="border-bottom: 1px solid var(--navy);">Birth Date</div>
-                <div class="field-item" style="border-bottom: 1px solid var(--navy);">Residence / Address</div>
+                <div class="field-item">Surname &amp; Given Name</div>
+                <div class="field-item">Birthplace &amp; County</div>
+                <div class="field-item">Birth Date</div>
+                <div class="field-item">Father's Given Name</div>
+                <div class="field-item">Mother's Given Name</div>
+                <div class="field-item">Profession / Occupation</div>
+                <div class="field-item">Residence / Address</div>
+                <div class="field-item">Assigned Labor Detail</div>
+                <div class="field-item">Census Number</div>
             </div>
 
             <hr class="jg-hr-navy">
 
-            <div class="section-heading">Research Notes</div>
+           <div class="section-heading">Research Notes</div>
             <div class="green-accent-line"></div>
                        
              <p>This database has several features that require context to use effectively.
@@ -431,22 +402,25 @@
                             </li>
                         </ul>
             </div>
-        <h2 class="section-heading">Acknowledgements</h2>
-        <div class="green-accent-line"></div>
-        <div style="font-size: 13px; line-height: 1.6; color: var(--charcoal); margin-bottom: 40px;">
-        <p style="margin-bottom: 8px;"><strong>T1:</strong> Data input by Ellen Renck and Paula Zieselman; validation by Paula Zieselman.</p>
-        <p style="margin-bottom: 8px;"><strong>T2:</strong> Data input primarily by Israel Rabin, with assistance from Ellen Renck, Paula Zieselman, Ina Margulis, and Harry Green; validation by Rony Shahan and Dr. Artur Hecht.</p>
-        <p style="margin-bottom: 12px;"><strong>T3:</strong> Data input by Terry Lasky; validation by Israel Rabin.</p>
-        <p style="margin-bottom: 0;">Translation assistance was provided by Prof. Ladislau Gyemant, Susanna Vendel, and Dr. Marcel Bratu. Archival copies were acquired through Prof. Gyemant, Director of the Mosche Carmilly Institute of Jewish History, University of Cluj-Napoca.</p>
-</div>
-            <div class="donation-block">
-                <p style="font-size: 16px; margin-bottom: 20px;">Your contribution helps fund the transcription and preservation of Romanian Jewish records.</p>
-                <a href="#" class="btn-donate-solid">Support the Romania Research Division</a>
+
+            <div class="white-card">
+                <h4 style="font-family: Georgia; color: var(--navy); margin: 0 0 5px;">Acknowledgements</h4>
+                <div class="green-accent-line" style="width: 30px; margin-bottom: 15px;"></div>
+                <p style="font-size: 13px; line-height: 1.6; margin-bottom: 10px;"><strong>T1:</strong> Data input by Ellen Renck and Paula Zieselman; validation by Paula Zieselman.</p>
+                <strong>T2:</strong> Data input primarily by Israel Rabin, with assistance from Ellen Renck, Paula Zieselman, Ina Margulis, and Harry Green; validation by Rony Shahan and Dr. Artur Hecht.</p>
+                <strong>T3:</strong> Data input by Terry Lasky; validation by Israel Rabin.</p>
+                <p style="font-size: 13px; line-height: 1.6; margin: 0;">Translation assistance was provided by Prof. Ladislau Gyemant, Susanna Vendel, and Dr. Marcel Bratu. Archival copies were acquired through Prof. Gyemant, Director of the Mosche Carmilly Institute of Jewish History, University of Cluj-Napoca.</p>
             </div>
 
-            <p style="margin-top: 30px; font-size: 12px; font-style: italic; opacity: 0.6;">
+            <div class="donation-block">
+                <p style="font-size: 16px; margin-bottom: 25px; color: var(--charcoal);"> Databases like this one are made possible entirely through volunteer effort and our generous donors.
+                    Your contribution helps fund transcription, translation, and preservation of Romanian Jewish records.</p>
+                <a href="https://www.jewishgen.org/jewishgen-erosity/" target="_blank" class="btn-donate-solid">Support the Romania Research Division</a>
+            </div>
+
+            <p style="margin-top: 30px; font-size: 12px; font-style: italic; opacity: 0.6; text-align: center;">
                 Database compiled 2000–2004. Last updated November 2004.<br>
-            For questions, contact the <a href="https://www.jewishgen.org/ROMSIG" target="_blank" rel="noopener">JewishGen Romania Research Division
+                For questions, contact the <a href="https://www.jewishgen.org/ROMSIG" target="_blank" style="font-weight: bold; text-decoration: underline;">JewishGen Romania Research Division</a>.
             </p>
         </main>
     </div>
@@ -460,6 +434,12 @@
     }
     loadComponent('site-header', '/JG40-Build/Header_NavBar.html');
     loadComponent('site-footer', '/JG40-Build/Footer.html');
+
+    document.querySelector('.sidebar-search-btn').addEventListener('click', () => {
+        const term = document.getElementById('dataset-search-input').value.trim();
+        const base = 'https://www.jewishgen.org/databases/Romania/';
+        window.location.href = term ? base + '?given=' + encodeURIComponent(term) : base;
+    });
 </script>
 
 </body>
