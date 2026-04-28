@@ -17,51 +17,15 @@
         a { text-decoration: none; color: inherit; }
 
         /* ============================================
-           PAGE TITLE BAND
+           SEARCH HERO OVERRIDES
+           Uses jg-search-hero / jg-search-card from
+           jg-global.css. Only page-specific tweaks here.
         ============================================ */
-        .sr-title-band {
-            background-color: #09497a;
-            padding: 40px 50px;
-            text-align: center;
-        }
-        body.dark-mode .sr-title-band {
-            background-color: #0d2a45;
-        }
-        .sr-title-band h1 {
-            font-family: Georgia, 'Times New Roman', serif;
-            font-size: 2.125rem;
-            font-weight: normal;
-            color: #ffffff;
-            margin: 0 0 8px 0;
-            line-height: 1.15;
-        }
-        .sr-title-band .sr-subtitle {
-            font-size: 0.9375rem;
-            color: #a9c0d0;
-            margin: 0;
-        }
 
-        /* ============================================
-           OUTER WRAPPER
-        ============================================ */
-        .sr-outer {
-            padding: 40px 20px 64px;
-        }
-
-        /* White card container */
-        .sr-card {
+        /* Widen inner to 1040px — results need more room than search form */
+        .sr-hero-inner {
             max-width: 1040px;
             margin: 0 auto;
-            background-color: #ffffff;
-            border: 3px solid #09497a;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-            overflow: hidden;
-        }
-        body.dark-mode .sr-card {
-            background-color: #1a1a1a;
-            border-color: #2a4060;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
         .sr-card-inner {
@@ -596,19 +560,18 @@
 <div id="site-header"></div>
 
 <!-- ============================================
-     PAGE TITLE BAND
-============================================ -->
-<div class="sr-title-band">
-    <h1>Search Results</h1>
-    <p class="sr-subtitle">All JewishGen Databases</p>
-</div>
-
-<!-- ============================================
      MAIN CONTENT
 ============================================ -->
-<main>
-    <div class="sr-outer">
-        <div class="sr-card">
+<main id="main-content">
+<section class="jg-search-hero" aria-label="Search results">
+    <div class="sr-hero-inner">
+
+        <header class="jg-search-hero__heading">
+            <h1>Search Results</h1>
+            <p class="lede">All JewishGen Databases</p>
+        </header>
+
+        <div class="jg-search-card">
             <div class="sr-card-inner">
 
                 <!-- Query summary -->
@@ -936,8 +899,10 @@
                 </div>
 
             </div><!-- /sr-card-inner -->
-        </div><!-- /sr-card -->
-    </div><!-- /sr-outer -->
+        </div><!-- /jg-search-card -->
+
+    </div><!-- /sr-hero-inner -->
+</section>
 </main>
 
 <!-- Footer loaded from shared component -->
