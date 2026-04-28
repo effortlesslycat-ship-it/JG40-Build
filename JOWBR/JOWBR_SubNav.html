@@ -1,0 +1,132 @@
+<style>
+/* =====================================================
+   JOWBR SHARED SUB-NAV COMPONENT
+   Injected via fetch() into #jowbr-subnav on all JOWBR pages.
+   Contains: stats bar + section navigation strip.
+   Active link set by each page after fetch resolves.
+   ===================================================== */
+
+/* -- Stats Bar --------------------------------------- */
+.jowbr-stats {
+    background-color: var(--cream);
+    border-bottom: 1px solid #d1caba;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+body.dark-mode .jowbr-stats {
+    background-color: #1a1a1a;
+    border-bottom-color: #333;
+}
+.jowbr-stat {
+    text-align: center;
+    padding: 10px 40px;
+    border-right: 1px solid #c5bca8;
+}
+.jowbr-stat:last-child { border-right: none; }
+.jowbr-stat__num {
+    display: block;
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #09497a;
+    line-height: 1.1;
+}
+body.dark-mode .jowbr-stat__num { color: #a8b361; }
+.jowbr-stat__label {
+    display: block;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--charcoal);
+    margin-top: 3px;
+}
+
+/* -- Section Nav ------------------------------------- */
+/* Uses div[role=navigation] to avoid global nav {} cascade hazard */
+.jowbr-nav {
+    background-color: var(--white);
+    border-bottom: 2px solid var(--cream);
+    padding: 0 50px;
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+body.dark-mode .jowbr-nav {
+    background-color: #121212;
+    border-bottom-color: #333;
+}
+.jowbr-nav a {
+    display: inline-block;
+    padding: 13px 18px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: color 0.15s, border-color 0.15s;
+}
+.jowbr-nav a:hover {
+    color: var(--navy);
+    border-bottom-color: var(--sage);
+}
+.jowbr-nav a.active {
+    color: var(--navy);
+    border-bottom-color: var(--navy);
+}
+body.dark-mode .jowbr-nav a { color: #a0a0a0; }
+body.dark-mode .jowbr-nav a:hover,
+body.dark-mode .jowbr-nav a.active {
+    color: #e0e0e0;
+    border-bottom-color: #a8b361;
+}
+
+/* -- Responsive -------------------------------------- */
+@media (max-width: 900px) {
+    .jowbr-stats { padding: 16px 20px; }
+    .jowbr-stat { padding: 10px 20px; }
+    .jowbr-nav { padding: 0 20px; }
+}
+@media (max-width: 640px) {
+    .jowbr-stat {
+        border-right: none;
+        border-bottom: 1px solid #c5bca8;
+        width: 50%;
+    }
+    .jowbr-stat:nth-child(odd) { border-right: 1px solid #c5bca8; }
+}
+</style>
+
+<!-- JOWBR Database Statistics -->
+<div class="jowbr-stats" aria-label="JOWBR database statistics">
+    <div class="jowbr-stat">
+        <span class="jowbr-stat__num">7M+</span>
+        <span class="jowbr-stat__label">Burial Records</span>
+    </div>
+    <div class="jowbr-stat">
+        <span class="jowbr-stat__num">908K+</span>
+        <span class="jowbr-stat__label">Headstone Photos</span>
+    </div>
+    <div class="jowbr-stat">
+        <span class="jowbr-stat__num">12,114</span>
+        <span class="jowbr-stat__label">Cemeteries</span>
+    </div>
+    <div class="jowbr-stat">
+        <span class="jowbr-stat__num">144</span>
+        <span class="jowbr-stat__label">Countries</span>
+    </div>
+</div>
+
+<!-- JOWBR Section Navigation -->
+<!-- Active class is set by each page's JS after fetch resolves, -->
+<!-- matching window.location.pathname against each href.        -->
+<div role="navigation" class="jowbr-nav" aria-label="JOWBR section navigation">
+    <a href="/JG40-Build/JOWBR/index.html">Search</a>
+    <a href="https://www.jewishgen.org/databases/Cemetery/tree/CemList.php"
+       target="_blank" rel="noopener">Browse Cemeteries</a>
+    <a href="/JG40-Build/JOWBR/faq.html">About &amp; FAQ</a>
+    <a href="/JG40-Build/JOWBR/contribute.html">Contribute Data</a>
+    <a href="/JG40-Build/JOWBR/screencasts.html">Screencasts</a>
+</div>
