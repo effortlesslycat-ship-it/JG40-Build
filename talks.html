@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JewishGen Talks | JewishGen</title>
+
+    <!-- 1. Bootstrap (layout only — design tokens override below) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <!-- 2. JewishGen Global Design System -->
+    <link rel="stylesheet" href="/JG40-Build/jg-global.css">
+
+    <!-- 3. Page-specific styles (JewishGen Talks only) -->
+    <style>
+
+        a { text-decoration: none; color: inherit; }
+
+        /* ── Dark mode: page-specific overrides ───────────────── */
+        body.dark-mode .page-hero        { background-color: #0d2a45 !important; }
+        body.dark-mode .page-hero p.hero-subtitle { color: rgba(255,255,255,0.85) !important; }
+        /* Ecru wrap flips to #1a1a1a automatically; cards pin to #1e1e1e to stay distinguishable */
+        body.dark-mode .talk-card        { background-color: #1e1e1e !important; border-color: #333 !important; }
+        body.dark-mode .talk-card:hover  { border-color: var(--sage) !important; }
+        body.dark-mode .talk-date        { color: #c8c0b0 !important; }
+        body.dark-mode .talk-title       { color: #e0e0e0 !important; }
+        body.dark-mode .talk-desc        { color: #c8c0b0 !important; }
+        body.dark-mode .talk-register    { color: var(--white) !important; }
+        body.dark-mode .rss-error        { color: #a0a0a0 !important; }
+        body.dark-mode .featured-meta    { background-color: #1e1e1e !important; border-color: #333 !important; }
+        body.dark-mode .video-card       { background-color: #1e1e1e !important; border-color: #333 !important; }
+        body.dark-mode .video-card:hover,
+        body.dark-mode .video-card:focus { border-color: var(--sage) !important; }
+        body.dark-mode .video-card.is-playing { border-color: var(--sage) !important; box-shadow: 0 0 0 3px rgba(168,179,97,0.2) !important; }
+        body.dark-mode .card-title       { color: #e0e0e0 !important; }
+        body.dark-mode .card-label       { color: var(--sage) !important; }
+        body.dark-mode .section-heading-serif { color: #e0e0e0 !important; }
+        body.dark-mode .section-divider  { background-color: #3a4a4a !important; }
+        body.dark-mode .show-all-link    { color: var(--sage) !important; }
+        body.dark-mode .talks-loading    { color: #a0a0a0 !important; }
+
+        /* ── Page hero band ────────────────────────────────────── */
+        .page-hero {
+            background-color: var(--navy);
+            padding: 48px 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            text-align: center;
+        }
+        .page-hero img.talks-logo { height: 140px; width: auto; display: block; }
+        .page-hero p.hero-subtitle {
+            margin: 0;
+            font-size: 0.9375rem;
+            color: rgba(255,255,255,0.85);
+            max-width: 640px;
+            line-height: 1.55;
+        }
+
+        /* ── Buttons ───────────────────────────────────────────── */
+        .btn-navy-outline {
+            display: inline-flex; align-items: center; gap: 7px;
+            background-color: transparent; color: var(--navy);
+            font-weight: bold; font-size: 14px; padding: 9px 20px;
+            border-radius: 6px; border: 2px solid var(--navy);
+            transition: background 0.2s, color 0.2s; white-space: nowrap;
+            cursor: pointer;
+        }
+        .btn-navy-outline:hover { background-color: var(--navy); color: var(--white); }
+
+        /* Solid navy button (Watch on YouTube) */
+        .btn-navy {
+            display: inline-flex; align-items: center; gap: 7px;
+            background-color: var(--navy); color: var(--white);
+            font-weight: bold; font-size: 13px; padding: 9px 18px;
+            border-radius: 6px; border: 2px solid var(--navy);
+            transition: opacity 0.2s; white-space: nowrap; width: fit-content;
+            cursor: pointer;
+        }
+        .btn-navy:hover { opacity: 0.85; }
+
+        /* Solid sage CTA (Register Now) */
+        .btn-sage-cta {
+            display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+            background-color: var(--sage); color: var(--white);
+            font-weight: bold; font-size: 13px;
+            text-transform: uppercase; letter-spacing: 1px;
+            padding: 11px 22px; border-radius: 4px; border: none;
+            transition: filter 0.2s; width: fit-content; cursor: pointer;
+        }
+        .btn-sage-cta:hover { filter: brightness(1.08); }
+
+        .btn-navy-outline svg, .btn-navy svg { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
+
+        /* ── Serif section headings (left-aligned, sage underline) ── */
+        .section-heading-serif {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-weight: normal;
+            color: var(--navy);
+            margin: 0;
+            position: relative;
+            padding-bottom: 8px;
+        }
+        .section-heading-serif::after {
+            content: '';
+            position: absolute; bottom: 0; left: 0;
+            height: 3px; border-radius: 2px;
+            background-color: var(--sage);
+        }
+
+        /* ── Upcoming talks ────────────────────────────────────── */
+        .upcoming-section { margin-bottom: 40px; }
+
+        .upcoming-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .upcoming-header h2 { font-size: 20px; }
+        .upcoming-header h2::after { width: 40px; }
+
+        .upcoming-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .talk-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 22px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+            text-decoration: none;
+        }
+        .talk-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+        .talk-card:focus-within { outline: 3px solid var(--sage); outline-offset: 2px; }
+
+        .talk-date {
+            font-size: 13px;
+            color: var(--charcoal);
+            opacity: 0.85;
+        }
+
+        .talk-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--navy);
+            line-height: 1.35;
+            margin: 0;
+        }
+
+        .talk-desc {
+            font-size: 13px;
+            color: var(--charcoal);
+            line-height: 1.5;
+            margin: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            opacity: 0.85;
+        }
+
+        .talk-card .btn-sage-cta { margin-top: 6px; }
+
+        /* .talk-register is emitted by jg-events.js inside the card-wrapping <a>.
+           Style it to read as a solid sage CTA button (matches .btn-sage-cta). */
+        .talk-register {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background-color: var(--sage);
+            color: var(--white);
+            font-weight: bold;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 11px 22px;
+            border-radius: 4px;
+            margin-top: 6px;
+            width: fit-content;
+            transition: filter 0.2s;
+        }
+        .talk-card:hover .talk-register { filter: brightness(1.08); }
+
+        .rss-loading, .rss-error, .rss-empty {
+            font-size: 14px;
+            color: var(--charcoal);
+            opacity: 0.7;
+            padding: 10px 0;
+        }
+        .rss-loading::before { content: '\23F3 '; }
+        .rss-error::before   { content: '\26A0\FE0F '; }
+        .rss-empty::before   { content: '\1F4C5 '; }
+
+        /* ── Full-width ecru wrapper ───────────────────────────── */
+        .talks-ecru-wrap {
+            background-color: var(--ecru);
+            padding: 3rem 2rem;
+        }
+        .talks-ecru-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ── Section divider (navy rule, bracketing featured video) ── */
+        .section-divider {
+            height: 2px;
+            background-color: var(--navy);
+            border: none;
+            margin: 0 0 36px 0;
+        }
+        .section-divider.top    { margin-top: 8px;  margin-bottom: 36px; }
+        .section-divider.bottom { margin-top: 36px; margin-bottom: 36px; }
+
+        /* ── Featured video ────────────────────────────────────── */
+        .featured-section { display: grid; grid-template-columns: 1fr 320px; gap: 28px; align-items: start; }
+        .featured-embed-wrap { position: relative; width: 100%; padding-bottom: 56.25%; background: #000; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.18); }
+        .featured-embed-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .featured-meta { background-color: var(--white); border-radius: 8px; padding: 22px; display: flex; flex-direction: column; gap: 13px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        .featured-label { font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: var(--sage); }
+        .featured-title { font-size: 18px; font-weight: bold; color: var(--navy); line-height: 1.35; margin: 0; }
+        .featured-desc { font-size: 13px; color: var(--charcoal); line-height: 1.6; margin: 0; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+        .featured-duration { font-size: 12px; color: var(--charcoal); opacity: 0.65; }
+
+        /* ── Featured loading / error state ───────────────────── */
+        .talks-loading {
+            font-size: 14px;
+            color: var(--charcoal);
+            opacity: 0.6;
+            padding: 10px 0;
+        }
+        .talks-error {
+            font-size: 14px;
+            color: var(--charcoal);
+            opacity: 0.7;
+            padding: 10px 0;
+        }
+
+        /* ── Section heading (Past Talks) ──────────────────────── */
+        .section-heading { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .section-heading h2 { font-size: 22px; }
+        .section-heading h2::after { width: 48px; }
+        .section-count { font-size: 13px; color: var(--charcoal); opacity: 0.6; }
+        .see-all-link { font-size: 13px; font-weight: bold; color: var(--navy); text-decoration: underline dotted; white-space: nowrap; }
+        .see-all-link:hover { color: var(--sage); }
+
+        /* ── Video grid ────────────────────────────────────────── */
+        .video-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .video-card { background-color: var(--white); border: 1px solid #d1caba; border-radius: 8px; overflow: hidden; cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s; }
+        .video-card:hover { border-color: var(--sage); box-shadow: 0 4px 14px rgba(0,0,0,0.10); transform: translateY(-2px); }
+        .video-card:focus { outline: 3px solid var(--sage); outline-offset: 2px; }
+        .video-card.is-playing { border-color: var(--navy) !important; box-shadow: 0 0 0 3px rgba(9,73,122,0.2) !important; }
+        .thumb-wrap { position: relative; width: 100%; padding-bottom: 56.25%; background: #111; overflow: hidden; }
+        .thumb-wrap img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 0.2s; }
+        .video-card:hover .thumb-wrap img { opacity: 0.85; }
+        .thumb-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: rgba(9,73,122,0.82); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
+        .video-card:hover .thumb-play,
+        .video-card:focus .thumb-play { opacity: 1; }
+        .thumb-play svg { width: 17px; height: 17px; fill: #fff; margin-left: 3px; }
+        .duration-badge { position: absolute; bottom: 5px; right: 5px; background: rgba(0,0,0,0.78); color: #fff; font-size: 11px; font-weight: bold; padding: 2px 5px; border-radius: 3px; }
+        .card-body { padding: 10px 12px 13px; }
+        .card-label { font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: var(--sage); margin: 0 0 4px 0; }
+        .card-title { font-size: 13px; font-weight: bold; color: var(--navy); line-height: 1.35; margin: 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+        /* ── Show All link (centered text with chevron) ─────────── */
+        .show-all-wrap { text-align: center; margin-top: 28px; }
+        .show-all-link {
+            display: inline-flex; flex-direction: column; align-items: center; gap: 4px;
+            font-size: 14px; font-weight: bold;
+            color: var(--navy); text-decoration: none;
+            background: none; border: none; cursor: pointer; padding: 8px 16px;
+        }
+        .show-all-link > span:first-child,
+        .show-all-link .label { text-decoration: underline dotted; }
+        .show-all-link:hover { color: var(--sage); }
+        .show-all-link .chevron { font-size: 14px; line-height: 1; opacity: 0.8; text-decoration: none; }
+
+        /* ── Responsive ────────────────────────────────────────── */
+        @media (max-width: 1100px) { .video-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 860px) {
+            .featured-section { grid-template-columns: 1fr; }
+            .video-grid { grid-template-columns: repeat(2, 1fr); }
+            .talks-ecru-wrap { padding: 2rem 1rem; }
+            .page-hero { padding: 32px 24px; }
+            .page-hero p.hero-subtitle { font-size: 0.875rem; }
+            .section-divider.top, .section-divider.bottom { margin-top: 24px; margin-bottom: 24px; }
+        }
+        @media (max-width: 540px) {
+            .video-grid { grid-template-columns: 1fr; }
+            .page-hero img.talks-logo { height: 55px; }
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER + NAV — loaded from Header_NavBar.html
+============================================================ -->
+<div id="site-header"></div>
+
+
+<!-- ============================================================
+     PAGE HERO BAND
+============================================================ -->
+<div class="page-hero" role="banner">
+    <img src="https://www.jewishgen.org/JG/Images/JGTalksLogoWhite.png"
+         alt="JewishGen Talks"
+         class="talks-logo">
+    <p class="hero-subtitle">Free genealogy lectures from leading experts &mdash; watch past talks or register for upcoming live programs.</p>
+</div>
+
+<!-- ============================================================
+     MAIN CONTENT
+============================================================ -->
+<main class="talks-ecru-wrap" id="main-content">
+<div class="talks-ecru-inner">
+
+    <!-- UPCOMING TALKS -->
+    <section class="upcoming-section" id="upcoming" aria-labelledby="upcoming-heading">
+        <div class="upcoming-header">
+            <h2 id="upcoming-heading" class="section-heading-serif">Upcoming Talks</h2>
+            <a href="/JG40-Build/Calendar.html"
+               class="btn-navy-outline"
+               aria-label="See all upcoming events on the calendar">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
+                All Upcoming Events
+            </a>
+        </div>
+        <div class="upcoming-cards" id="jg-talks-grid" role="region" aria-label="Upcoming Talks">
+            <p class="jg-events-loading" aria-live="polite">Loading upcoming events&hellip;</p>
+        </div>
+    </section>
+
+
+    <!-- ─── Navy rule: above featured video ─── -->
+    <hr class="section-divider top" aria-hidden="true">
+
+
+    <!-- FEATURED VIDEO -->
+    <section class="featured-section" aria-labelledby="featured-heading">
+        <div class="featured-embed-wrap">
+            <iframe id="featured-iframe"
+                    src=""
+                    title="Loading featured talk"
+                    allowfullscreen
+                    loading="lazy">
+            </iframe>
+        </div>
+        <div class="featured-meta" role="complementary" aria-label="Featured talk details">
+            <span class="featured-label">JewishGen Talks</span>
+            <p class="featured-title" id="featured-title-el">
+                <span class="talks-loading" aria-live="polite">Loading&hellip;</span>
+            </p>
+            <span class="featured-duration" id="featured-duration-el"></span>
+            <p class="featured-desc" id="featured-desc-el"></p>
+            <a id="featured-yt-link"
+               href="https://www.youtube.com/playlist?list=PL2SY5Vnun7fmaXzzTT-O1ozboh1k3xYyV"
+               target="_blank" rel="noopener noreferrer"
+               class="btn-navy"
+               aria-label="Watch this video on YouTube (opens in new tab)">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
+                Watch on YouTube
+            </a>
+        </div>
+    </section>
+
+
+    <!-- ─── Navy rule: below featured video ─── -->
+    <hr class="section-divider bottom" aria-hidden="true">
+
+
+    <!-- PAST TALKS GRID -->
+    <div>
+        <div class="section-heading">
+            <h2 class="section-heading-serif" id="past-talks-heading">Past Talks</h2>
+            <span class="section-count" id="grid-count" aria-live="polite">Loading&hellip;</span>
+            <a class="see-all-link"
+               href="https://www.youtube.com/playlist?list=PL2SY5Vnun7fmaXzzTT-O1ozboh1k3xYyV"
+               target="_blank" rel="noopener noreferrer"
+               aria-label="View the full JewishGen Talks playlist on YouTube (opens in new tab)">
+                View Full Playlist on YouTube &rsaquo;
+            </a>
+        </div>
+        <div class="video-grid" id="video-grid-b" role="list" aria-labelledby="past-talks-heading"></div>
+        <div class="show-all-wrap">
+            <button id="show-all-btn"
+                    class="show-all-link"
+                    style="display:none"
+                    onclick="showAllVideos()"
+                    aria-label="Show all past talks">
+                <span class="label" id="show-all-label">Show All Talks</span>
+                <span class="chevron" aria-hidden="true">&#9662;</span>
+            </button>
+        </div>
+    </div>
+
+</div><!-- /.talks-ecru-inner -->
+</main>
+
+<!-- ============================================================
+     FOOTER — loaded from Footer.html
+============================================================ -->
+<div id="site-footer"></div>
+
+<!-- ============================================================
+     SCRIPTS
+============================================================ -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+/* ── Component Loader ──────────────────────────────────────── */
+function loadComponent(id, file) {
+    return fetch(file)
+        .then(function(r) {
+            if (!r.ok) throw new Error('Could not load ' + file);
+            return r.text();
+        })
+        .then(function(html) {
+            document.getElementById(id).innerHTML = html;
+        })
+        .catch(function(err) { console.warn(err); });
+}
+
+Promise.all([
+    loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
+    loadComponent('site-footer', '/JG40-Build/Footer.html')
+]).then(function() {
+    /* Nav keyboard accessibility */
+    document.querySelectorAll('.jg-nav .dropbtn').forEach(function(btn) {
+        btn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                var expanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', String(!expanded));
+                var menu = document.getElementById(this.getAttribute('aria-controls'));
+                if (menu) menu.style.display = expanded ? 'none' : 'block';
+            }
+            if (e.key === 'Escape') {
+                this.setAttribute('aria-expanded', 'false');
+                var menu = document.getElementById(this.getAttribute('aria-controls'));
+                if (menu) menu.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+
+<script>
+
+/* ── Title cleanup helper ──────────────────────────────────────
+   Safety-net client-side pass. The build-time fetch script already
+   applies this same regex, so titles in talks-data.json are pre-cleaned.
+   This catches anything that might slip through (manual overrides, etc.).
+────────────────────────────────────────────────────────────── */
+function cleanTitle(raw) {
+    if (!raw) return '';
+    return raw.replace(/^\s*JewishGen\s+Talks?:?\s*/i, '').trim();
+}
+
+/* ── URL helpers ───────────────────────────────────────────── */
+function thumbUrl(video) {
+    // Prefer API-provided thumbnail; fall back to YouTube img CDN
+    if (video.thumbnail) return video.thumbnail;
+    if (!video.id) return 'https://placehold.co/480x270/09497a/ffffff?text=Coming+Soon';
+    return 'https://img.youtube.com/vi/' + video.id + '/hqdefault.jpg';
+}
+function embedUrl(id) {
+    if (!id) return 'about:blank';
+    return 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
+}
+function watchUrl(id) {
+    if (!id) return 'https://www.youtube.com/playlist?list=PL2SY5Vnun7fmaXzzTT-O1ozboh1k3xYyV';
+    return 'https://www.youtube.com/watch?v=' + id;
+}
+
+/* ── State ─────────────────────────────────────────────────── */
+var ALL_VIDEOS = [];
+var INITIAL_COUNT = 8;
+
+/* ── Featured video panel ──────────────────────────────────── */
+function setFeatured(video) {
+    var title = cleanTitle(video.title);
+    var iframe = document.getElementById('featured-iframe');
+    iframe.src   = embedUrl(video.id);
+    iframe.title = title;
+    document.getElementById('featured-title-el').textContent    = title;
+    document.getElementById('featured-duration-el').textContent  = video.duration ? '\u23F1 ' + video.duration : '';
+    document.getElementById('featured-desc-el').textContent      = video.description || '';
+    document.getElementById('featured-yt-link').href             = watchUrl(video.id);
+
+    document.querySelectorAll('.video-card').forEach(function(c) { c.classList.remove('is-playing'); });
+    document.querySelectorAll('[data-id="' + video.id + '"]').forEach(function(c) { c.classList.add('is-playing'); });
+
+    document.querySelector('.featured-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+/* ── Card builder ──────────────────────────────────────────── */
+function buildCard(video) {
+    var title = cleanTitle(video.title);
+    var card = document.createElement('div');
+    card.className = 'video-card';
+    card.setAttribute('role', 'listitem');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('data-id', video.id || '');
+    card.setAttribute('aria-label', 'Play: ' + title + (video.duration ? ' \u2014 ' + video.duration : ''));
+    card.onclick = function() { setFeatured(video); };
+    card.onkeydown = function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { card.click(); e.preventDefault(); }
+    };
+
+    var thumb = thumbUrl(video);
+    var escapedTitle = title.replace(/"/g, '&quot;');
+
+    card.innerHTML =
+        '<div class="thumb-wrap">' +
+            '<img src="' + thumb + '" alt="' + escapedTitle + ' thumbnail" loading="lazy">' +
+            '<div class="thumb-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>' +
+            (video.duration ? '<span class="duration-badge" aria-hidden="true">' + video.duration + '</span>' : '') +
+        '</div>' +
+        '<div class="card-body">' +
+            '<p class="card-label">JewishGen Talks</p>' +
+            '<p class="card-title">' + title + '</p>' +
+        '</div>';
+
+    return card;
+}
+
+/* ── Show all remaining videos ─────────────────────────────── */
+function showAllVideos() {
+    var grid = document.getElementById('video-grid-b');
+    var btn  = document.getElementById('show-all-btn');
+    var countEl = document.getElementById('grid-count');
+
+    ALL_VIDEOS.slice(INITIAL_COUNT).forEach(function(v) {
+        grid.appendChild(buildCard(v));
+    });
+    countEl.textContent = ALL_VIDEOS.length + ' videos';
+    btn.style.display = 'none';
+
+    // Re-apply is-playing to the currently featured video
+    var playingId = document.getElementById('featured-iframe').getAttribute('data-playing-id');
+    if (playingId) {
+        document.querySelectorAll('[data-id="' + playingId + '"]').forEach(function(c) {
+            c.classList.add('is-playing');
+        });
+    }
+}
+
+/* ── Main data loader ──────────────────────────────────────── */
+async function loadTalksData() {
+    var gridEl   = document.getElementById('video-grid-b');
+    var countEl  = document.getElementById('grid-count');
+    var showBtn  = document.getElementById('show-all-btn');
+    var labelEl  = document.getElementById('show-all-label');
+
+    try {
+        var resp = await fetch('/JG40-Build/talks-data.json');
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        var data = await resp.json();
+
+        ALL_VIDEOS = data.videos || [];
+        var total = ALL_VIDEOS.length;
+
+        if (total === 0) {
+            gridEl.innerHTML = '<p class="talks-error">No talks available at this time.</p>';
+            countEl.textContent = '';
+            return;
+        }
+
+        // Populate featured panel with newest video (index 0)
+        var featured = ALL_VIDEOS[0];
+        var featuredTitle = cleanTitle(featured.title);
+        var iframe = document.getElementById('featured-iframe');
+        iframe.src = 'https://www.youtube.com/embed/' + featured.id + '?rel=0';
+        iframe.title = featuredTitle;
+        iframe.setAttribute('data-playing-id', featured.id);
+        document.getElementById('featured-title-el').textContent   = featuredTitle;
+        document.getElementById('featured-duration-el').textContent = featured.duration ? '\u23F1 ' + featured.duration : '';
+        document.getElementById('featured-desc-el').textContent     = featured.description || '';
+        document.getElementById('featured-yt-link').href            = watchUrl(featured.id);
+
+        // Render first INITIAL_COUNT cards
+        var shown = Math.min(INITIAL_COUNT, total);
+        ALL_VIDEOS.slice(0, shown).forEach(function(v) {
+            gridEl.appendChild(buildCard(v));
+        });
+
+        // Mark first card as playing
+        document.querySelectorAll('[data-id="' + featured.id + '"]').forEach(function(c) {
+            c.classList.add('is-playing');
+        });
+
+        // Update count label
+        if (total <= INITIAL_COUNT) {
+            countEl.textContent = total + ' video' + (total === 1 ? '' : 's');
+        } else {
+            countEl.textContent = 'Showing ' + shown + ' of ' + total;
+            labelEl.textContent = 'Show All ' + total + ' Talks';
+            showBtn.setAttribute('aria-label', 'Show all ' + total + ' past talks');
+            showBtn.style.display = '';
+        }
+
+    } catch (err) {
+        console.error('Failed to load talks-data.json:', err);
+        gridEl.innerHTML = '<p class="talks-error">Unable to load talks at this time. Please try refreshing the page.</p>';
+        countEl.textContent = '';
+
+        // Update featured panel to reflect error state
+        document.getElementById('featured-title-el').textContent = 'Talks unavailable';
+        document.getElementById('featured-desc-el').textContent  = '';
+        document.getElementById('featured-duration-el').textContent = '';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', loadTalksData);
+
+</script>
+<script src="/JG40-Build/jg-events.js"></script>
+<script>JGEvents.initTalksPage();</script>
+</body>
+</html>

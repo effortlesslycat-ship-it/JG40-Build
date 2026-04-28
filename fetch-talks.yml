@@ -1,0 +1,32 @@
+name: Fetch JewishGen Talks Data
+
+on:
+  workflow_dispatch:
+
+jobs:
+  fetch-talks:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch talks data from YouTube API
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: node scripts/fetch-talks.js
+
+      - name: Commit and push if data changed
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add talks-data.json
+          git diff --cached --quiet || git commit -m "chore: update talks-data.json [skip ci]"
+          git push
