@@ -28,6 +28,14 @@
             margin: 0 auto;
         }
 
+        /* Match Page 2 table cell tint */
+        .jg-search-card {
+            background-color: #f4f8fa;
+        }
+        body.dark-mode .jg-search-card {
+            background-color: #161c20;
+        }
+
         .sr-card-inner {
             padding: 24px 28px 36px;
         }
@@ -348,7 +356,9 @@
             gap: 12px;
         }
         .db-row:last-child { border-bottom: none; }
-        .db-row:hover { background-color: #f5f7fa; }
+        .db-row:hover { background-color: #eaf2f6; }
+        .group-panel .db-row:nth-child(even) { background-color: #eaf2f6; }
+        body.dark-mode .group-panel .db-row:nth-child(even) { background-color: #161c20; }
         body.dark-mode .db-row { border-color: #2a2a2a; }
         body.dark-mode .db-row:hover { background-color: #1a2533; }
 
@@ -763,7 +773,7 @@
                         </button>
                         <div id="panel-poland" class="group-panel" role="region" aria-labelledby="toggle-poland" hidden>
                             <div class="db-row"><a href="#" class="db-name-link">Krakow Ghetto</a><a href="#" class="db-count-pill sm">List 2 records</a></div>
-                            <div class="db-row"><a href="#" class="db-name-link">Krakow Vital Records: Births</a><a href="https://effortlesslycat-ship-it.github.io/JG40-Build/KrakowWyEx.html" class="db-count-pill sm">List 2 records</a></div>
+                            <div class="db-row"><a href="#" class="db-name-link">Krakow Vital Records: Births</a><a href="https://effortlesslycat-ship-it.github.io/JG40-Build/KrakowWyEx.html#" class="db-count-pill sm">List 2 records</a></div>
                             <div class="db-row"><a href="#" class="db-name-link">Krakow Vital Records: Marriages</a><a href="#" class="db-count-pill sm">List 12 records</a></div>
                             <div class="db-row"><a href="#" class="db-name-link">Poland: Krakow Marriage Intentions / Banns Records</a><a href="#" class="db-count-pill sm">List 3 records</a></div>
                             <!-- JRI-Poland sub-partner band — replace placeholder with logo img when available -->
