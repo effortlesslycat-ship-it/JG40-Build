@@ -175,7 +175,7 @@
             position: sticky;
             top: 0;
             z-index: 10;
-            background-color: #1a3a52;
+            background-color: #09497a;
             color: #ffffff;
             font-size: 11px;
             font-weight: bold;
@@ -191,7 +191,7 @@
             border-right: none;
         }
         body.dark-mode .sr-table thead th {
-            background-color: #0f2233;
+            background-color: #0d2a45;
         }
 
         /* Stacked header — two lines in one cell */
@@ -208,6 +208,14 @@
             border-top: 1px solid rgba(255,255,255,0.2);
             padding-top: 3px;
             margin-top: 1px;
+        }
+
+        /* Table body background tint */
+        .sr-table tbody {
+            background-color: #f4f8fa;
+        }
+        body.dark-mode .sr-table tbody {
+            background-color: #161c20;
         }
 
         /* Body rows */
@@ -230,7 +238,7 @@
 
         /* Alternating row tint — very subtle */
         .sr-table tbody tr:nth-child(even) {
-            background-color: #fafcfd;
+            background-color: #eaf2f6;
         }
         body.dark-mode .sr-table tbody tr:nth-child(even) {
             background-color: #161a1e;
@@ -503,7 +511,7 @@
 
                 <!-- Card footer -->
                 <div class="sr-card-footer">
-                    <span class="sr-footer-note">Surnames shown in bold are phonetic matches to your search term.</span>
+                    <span class="sr-footer-note"></span>
                     <div class="sr-footer-actions">
                         <a href="/JG40-Build/search-results.html" class="sr-footer-btn">&#8592; All Results</a>
                         <a href="/JG40-Build/Global_Search.html" class="sr-footer-btn">New Search</a>
