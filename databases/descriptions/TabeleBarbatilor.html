@@ -5,359 +5,343 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabele Barbatilor — Census of Jewish Men in Romania, 1942 — JewishGen</title>
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    
     <link rel="stylesheet" href="/JG40-Build/jg-global.css">
+
+    <style>
+        a { text-decoration: none; color: inherit; }
+
+        /* Left-aligned search hero */
+        .jg-search-hero { background-color: var(--ecru); padding: 2.5rem 50px 2rem; }
+        .jg-search-hero__inner { max-width: 1100px; margin: 0 auto; text-align: left; }
+        .jg-search-hero__heading { margin-bottom: 0; }
+        .jg-search-hero__heading h1 { margin: 0 0 10px 0; font-family: Georgia, 'Times New Roman', serif; font-size: 2.25rem; font-weight: normal; color: var(--navy); }
+        .jg-search-hero__heading .lede { font-size: 0.9375rem; color: var(--charcoal); opacity: 0.85; margin: 0; }
+        body.dark-mode .jg-search-hero__heading h1 { color: #e0e0e0; }
+        body.dark-mode .jg-search-hero__heading .lede { color: #c8c0b0; opacity: 1; }
+
+        /* Page Layout */
+        .browse-zone { background-color: var(--ecru); flex-grow: 1; padding-bottom: 80px; }
+        .page-body { display: flex; max-width: 1100px; margin: 0 auto; padding: 30px 50px; align-items: flex-start; gap: 40px; }
+
+        /* Sidebar (Exact copy from Holocaust.html) */
+        .sidebar { width: 260px; flex-shrink: 0; background: var(--white); border-left: 3px solid var(--navy); border-radius: 0 6px 6px 0; padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+        body.dark-mode .sidebar { background: #1e1e1e; border-left-color: #5a7a95; box-shadow: 0 2px 12px rgba(0,0,0,0.3); }
+
+        .sidebar-header { margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #e0d8c8; font-size: 13px; font-weight: bold; color: var(--navy); text-transform: uppercase; letter-spacing: 1px; }
+        body.dark-mode .sidebar-header { border-bottom-color: #333; color: #e0e0e0; }
+
+        .filter-group { margin-bottom: 25px; }
+        .filter-group-title { font-size: 11px; font-weight: bold; letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy); margin-bottom: 14px; border-bottom: 2px solid var(--sage); padding-bottom: 5px; }
+        body.dark-mode .filter-group-title { color: #e0e0e0; border-bottom-color: #a8b361; }
+
+        .sidebar-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; font-size: 13px; color: var(--charcoal); line-height: 1.4; }
+        .sidebar-row:last-child { margin-bottom: 0; }
+        .sidebar-icon { width: 20px; flex-shrink: 0; margin-top: 2px; }
+        .sidebar-icon img { width: 100%; height: auto; }
+        .sidebar-label { font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: var(--charcoal); opacity: 0.65; display: block; margin-bottom: 4px; }
+        .sidebar-value { font-weight: bold; color: var(--navy); font-size: 14px; line-height: 1.3; }
+        body.dark-mode .sidebar-row { color: #c8c0b0; }
+        body.dark-mode .sidebar-label { color: #a0a0a0; }
+        body.dark-mode .sidebar-value { color: #e0e0e0; }
+
+        /* Search input inside sidebar */
+        .sidebar-search-input { width: 100%; padding: 10px 12px; border: 1px solid #c4d0d6; border-radius: 4px; font-size: 13px; color: var(--charcoal); background: var(--light-blue); font-family: inherit; margin-bottom: 12px; transition: border-color 0.2s; box-sizing: border-box; }
+        .sidebar-search-input:focus { border-color: var(--navy); outline: none; background: var(--white); }
+        body.dark-mode .sidebar-search-input { background: #2a2a2a; border-color: #444; color: #e0e0e0; }
+        body.dark-mode .sidebar-search-input:focus { background: #1e1e1e; border-color: #a8b361; }
+        
+        .sidebar-search-btn { width: 100%; background-color: var(--sage); color: #ffffff; border: none; padding: 10px; font-size: 12px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: filter 0.2s; }
+        .sidebar-search-btn:hover { filter: brightness(1.1); }
+        body.dark-mode .sidebar-search-btn { background-color: #a8b361; color: #1a1a1a; }
+
+        /* Cards Area */
+        .cards-area { flex: 1; min-width: 0; }
+
+        /* Catalog Card (Exact copy from Holocaust.html) */
+        .catalog-card { background: var(--white); border: none; border-radius: 6px; padding: 20px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.07); }
+        body.dark-mode .catalog-card { background: #1e1e1e; box-shadow: 0 2px 10px rgba(0,0,0,0.35); }
+        .catalog-card__title { font-family: Georgia, 'Times New Roman', serif; font-size: 1.0625rem; font-weight: bold; color: var(--navy); line-height: 1.3; margin: 0; }
+        body.dark-mode .catalog-card__title { color: #e0e0e0; }
+        .catalog-card__desc { font-size: 13px; color: var(--charcoal); line-height: 1.55; margin: 0; }
+        body.dark-mode .catalog-card__desc { color: #c8c0b0; }
+        .catalog-card__meta { font-size: 11px; font-weight: bold; color: var(--charcoal); text-transform: uppercase; letter-spacing: 0.7px; opacity: 0.7; margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.05); }
+        body.dark-mode .catalog-card__meta { color: #a0a0a0; border-top-color: #333; }
+
+        .catalog-tag { display: inline-block; background: var(--light-blue); color: var(--navy); padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        body.dark-mode .catalog-tag { background: #2a2a2a; color: #e0e0e0; }
+
+        /* Narrative HTML */
+        .dataset-text p { font-size: 14px; line-height: 1.65; color: var(--charcoal); margin: 0 0 1.25rem 0; }
+        body.dark-mode .dataset-text p { color: #c8c0b0; }
+        .dataset-text strong { color: var(--navy); }
+        body.dark-mode .dataset-text strong { color: #e0e0e0; }
+        .dataset-text a { color: var(--navy); text-decoration: underline dotted; font-weight: bold; }
+        .dataset-text a:hover { color: var(--sage); text-decoration-style: solid; }
+        body.dark-mode .dataset-text a { color: #a8b361; }
+
+        /* Grids (Replacing Bootstrap Rows) */
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+        
+        /* Research Note Collapsibles (Native CSS styling) */
+        .note-toggle { width: 100%; display: flex; justify-content: space-between; align-items: center; background: var(--white); border: none; padding: 16px 20px; border-radius: 6px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); font-size: 14px; font-weight: bold; color: var(--navy); cursor: pointer; text-align: left; font-family: inherit; margin-bottom: 8px; transition: background-color 0.2s; }
+        .note-toggle:hover { background: #fdfdfd; }
+        .note-chevron { font-size: 10px; opacity: 0.5; transition: transform 0.2s; }
+        .note-toggle.open .note-chevron { transform: rotate(180deg); }
+        .note-panel { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.3s ease, opacity 0.2s ease, padding 0.3s ease, margin 0.3s ease; background: var(--light-blue); border-left: 4px solid var(--sage); border-radius: 4px; padding: 0 20px; margin-bottom: 0; font-size: 13px; line-height: 1.6; color: var(--charcoal); }
+        .note-panel.open { max-height: 800px; opacity: 1; padding: 16px 20px; margin-bottom: 20px; }
+        body.dark-mode .note-toggle { background: #1e1e1e; color: #e0e0e0; box-shadow: 0 2px 10px rgba(0,0,0,0.35); }
+        body.dark-mode .note-panel { background: #2a2a2a; color: #c8c0b0; }
+
+        @media (max-width: 900px) {
+            .page-body { flex-direction: column; padding: 20px; }
+            .sidebar { width: 100%; border-left: none; border-top: 3px solid var(--navy); border-radius: 0 0 6px 6px; }
+            body.dark-mode .sidebar { border-top-color: #5a7a95; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .jg-grid-3 { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
-<body class="d-flex flex-column min-vh-100 bg-light">
+<body class="d-flex flex-column min-vh-100">
 
 <div id="site-header"></div>
 
-<div class="container-fluid px-4 px-lg-5 py-4 flex-grow-1" style="max-width: 1400px;">
-    
-    <div class="mb-5">
-        <span class="badge mb-3" style="background-color: var(--sage); font-size: 11px; padding: 6px 12px; text-transform: uppercase; letter-spacing: 1.5px;">Census Records · Romania · Holocaust</span>
-        <h1 class="display-6 fw-normal mb-2">Tabele Barbatilor (1942)</h1>
-        <p class="text-muted fs-6 mb-0">Romania &nbsp;·&nbsp; 20,296 Records</p>
+<section class="jg-search-hero">
+    <div class="jg-search-hero__inner">
+        <span class="catalog-tag" style="margin-bottom: 12px; display: inline-block;">Census Records · Romania · Holocaust</span>
+        <div class="jg-search-hero__heading">
+            <h1>Tabele Barbatilor (1942)</h1>
+            <p class="lede">Romania &nbsp;·&nbsp; 20,296 Records</p>
+        </div>
     </div>
+</section>
 
-    <div class="row gx-5">
+<div class="browse-zone">
+    <div class="page-body">
         
-        <aside class="col-lg-4 col-xl-3 mb-5">
-            <a href="#" class="fw-bold mb-4 d-inline-block text-decoration-underline" style="font-size: 14px;">
+        <aside class="sidebar" aria-label="Dataset metadata">
+            <a href="#" class="dataset-text" style="display: block; margin-bottom: 24px; font-size: 13px; font-weight: bold; text-decoration: underline dotted;">
                 ← Back to Romania Databases
             </a>
 
-            <div class="card border-0 shadow-sm bg-white p-4 mb-4">
-                <h3 class="fs-6 text-uppercase fw-bold border-bottom pb-2 mb-4" style="border-bottom-color: var(--sage) !important;">At a Glance</h3>
+            <div class="filter-group">
+                <div class="sidebar-header">At a Glance</div>
                 
-                <div class="d-flex align-items-start mb-3">
-                    <div class="me-3" style="width: 20px;">
-                        <img src="/JG40-Build/databases/DateReg.png" class="img-fluid light-logo" alt="">
-                        <img src="/JG40-Build/databases/DateDark.png" class="img-fluid dark-logo" alt="">
-                    </div>
+                <div class="sidebar-row">
+                    <div class="sidebar-icon"><img src="/JG40-Build/databases/DateReg.png" class="light-logo" alt=""><img src="/JG40-Build/databases/DateDark.png" class="dark-logo" alt=""></div>
                     <div>
-                        <span class="d-block text-muted text-uppercase mb-1" style="font-size: 11px; letter-spacing: 1px;">Date</span>
-                        <strong class="fs-6">1942</strong>
+                        <span class="sidebar-label">Date</span>
+                        <span class="sidebar-value">1942</span>
                     </div>
                 </div>
 
-                <div class="d-flex align-items-start mb-3">
-                    <div class="me-3" style="width: 20px;">
-                        <img src="/JG40-Build/databases/RegionReg.png" class="img-fluid light-logo" alt="">
-                        <img src="/JG40-Build/databases/RegionDark.png" class="img-fluid dark-logo" alt="">
-                    </div>
+                <div class="sidebar-row">
+                    <div class="sidebar-icon"><img src="/JG40-Build/databases/RegionReg.png" class="light-logo" alt=""><img src="/JG40-Build/databases/RegionDark.png" class="dark-logo" alt=""></div>
                     <div>
-                        <span class="d-block text-muted text-uppercase mb-1" style="font-size: 11px; letter-spacing: 1px;">Region</span>
-                        <strong class="fs-6">Romania (all counties; Bucharest focus for T2 &amp; T3)</strong>
+                        <span class="sidebar-label">Region</span>
+                        <span class="sidebar-value">Romania (all counties; Bucharest focus for T2 &amp; T3)</span>
                     </div>
                 </div>
 
-                <div class="d-flex align-items-start mb-3">
-                    <div class="me-3" style="width: 20px;">
-                        <img src="/JG40-Build/databases/TotalReg.png" class="img-fluid light-logo" alt="">
-                        <img src="/JG40-Build/databases/TotalDark.png" class="img-fluid dark-logo" alt="">
-                    </div>
-                    <div class="w-100">
-                        <span class="d-block text-muted text-uppercase mb-1" style="font-size: 11px; letter-spacing: 1px;">Total Records</span>
-                        <strong class="fs-6">20,296</strong>
-                        <div class="row g-2 mt-2 text-center">
-                            <div class="col"><div class="p-2 rounded bg-light"><span class="d-block text-muted text-uppercase" style="font-size: 10px; letter-spacing: 1px;">T1</span><strong style="font-size: 14px;">10,574</strong></div></div>
-                            <div class="col"><div class="p-2 rounded bg-light"><span class="d-block text-muted text-uppercase" style="font-size: 10px; letter-spacing: 1px;">T2</span><strong style="font-size: 14px;">8,493</strong></div></div>
-                            <div class="col"><div class="p-2 rounded bg-light"><span class="d-block text-muted text-uppercase" style="font-size: 10px; letter-spacing: 1px;">T3</span><strong style="font-size: 14px;">1,229</strong></div></div>
+                <div class="sidebar-row">
+                    <div class="sidebar-icon"><img src="/JG40-Build/databases/TotalReg.png" class="light-logo" alt=""><img src="/JG40-Build/databases/TotalDark.png" class="dark-logo" alt=""></div>
+                    <div style="width: 100%;">
+                        <span class="sidebar-label">Total Records</span>
+                        <span class="sidebar-value">20,296</span>
+                        <div class="grid-2" style="margin-top: 10px; gap: 6px;">
+                            <div style="background: var(--light-blue); padding: 6px; text-align: center; border-radius: 4px;">
+                                <span style="display:block; font-size: 9px; text-transform: uppercase; opacity: 0.6; color: var(--charcoal);">T1</span>
+                                <span class="sidebar-value" style="font-size: 13px;">10,574</span>
+                            </div>
+                            <div style="background: var(--light-blue); padding: 6px; text-align: center; border-radius: 4px;">
+                                <span style="display:block; font-size: 9px; text-transform: uppercase; opacity: 0.6; color: var(--charcoal);">T2</span>
+                                <span class="sidebar-value" style="font-size: 13px;">8,493</span>
+                            </div>
+                            <div style="background: var(--light-blue); padding: 6px; text-align: center; border-radius: 4px;">
+                                <span style="display:block; font-size: 9px; text-transform: uppercase; opacity: 0.6; color: var(--charcoal);">T3</span>
+                                <span class="sidebar-value" style="font-size: 13px;">1,229</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="d-flex align-items-start mb-3">
-                    <div class="me-3" style="width: 20px;">
-                        <img src="/JG40-Build/databases/LangReg.png" class="img-fluid light-logo" alt="">
-                        <img src="/JG40-Build/databases/LangDark.png" class="img-fluid dark-logo" alt="">
-                    </div>
+                <div class="sidebar-row">
+                    <div class="sidebar-icon"><img src="/JG40-Build/databases/LangReg.png" class="light-logo" alt=""><img src="/JG40-Build/databases/LangDark.png" class="dark-logo" alt=""></div>
                     <div>
-                        <span class="d-block text-muted text-uppercase mb-1" style="font-size: 11px; letter-spacing: 1px;">Source Language</span>
-                        <strong class="fs-6">Romanian</strong>
+                        <span class="sidebar-label">Source Language</span>
+                        <span class="sidebar-value">Romanian</span>
                     </div>
                 </div>
 
-                <div class="d-flex align-items-start mb-3">
-                    <div class="me-3" style="width: 20px;">
-                        <img src="/JG40-Build/databases/TypeReg.png" class="img-fluid light-logo" alt="">
-                        <img src="/JG40-Build/databases/TypeDark.png" class="img-fluid dark-logo" alt="">
-                    </div>
+                <div class="sidebar-row">
+                    <div class="sidebar-icon"><img src="/JG40-Build/databases/TypeReg.png" class="light-logo" alt=""><img src="/JG40-Build/databases/TypeDark.png" class="dark-logo" alt=""></div>
                     <div>
-                        <span class="d-block text-muted text-uppercase mb-1" style="font-size: 11px; letter-spacing: 1px;">Record Type</span>
-                        <strong class="fs-6">Forced Labor Census</strong>
+                        <span class="sidebar-label">Record Type</span>
+                        <span class="sidebar-value">Forced Labor Census</span>
                     </div>
                 </div>
 
-                <div class="d-flex align-items-start mb-3">
-                    <div class="me-3" style="width: 20px;">
-                        <img src="/JG40-Build/databases/SourceReg.png" class="img-fluid light-logo" alt="">
-                        <img src="/JG40-Build/databases/SourceDark.png" class="img-fluid dark-logo" alt="">
-                    </div>
+                <div class="sidebar-row">
+                    <div class="sidebar-icon"><img src="/JG40-Build/databases/SourceReg.png" class="light-logo" alt=""><img src="/JG40-Build/databases/SourceDark.png" class="dark-logo" alt=""></div>
                     <div>
-                        <span class="d-block text-muted text-uppercase mb-1" style="font-size: 11px; letter-spacing: 1px;">Source Archive</span>
-                        <strong class="fs-6">Federation of Jewish Communities of Romania, Bucharest</strong>
-                        <div class="mt-1 text-muted" style="font-size: 12px;">Fond #: III 400 E/1942</div>
+                        <span class="sidebar-label">Source Archive</span>
+                        <span class="sidebar-value">Federation of Jewish Communities of Romania, Bucharest</span>
+                        <div style="font-size: 11px; opacity: 0.8; margin-top: 4px; color: var(--charcoal);">Fond #: III 400 E/1942</div>
                     </div>
                 </div>
 
-                <div class="d-flex align-items-start">
-                    <div class="me-3" style="width: 20px;">
-                        <img src="/JG40-Build/databases/UpdatedReg.png" class="img-fluid light-logo" alt="">
-                        <img src="/JG40-Build/databases/UpdatedDark.png" class="img-fluid dark-logo" alt="">
-                    </div>
+                <div class="sidebar-row">
+                    <div class="sidebar-icon"><img src="/JG40-Build/databases/UpdatedReg.png" class="light-logo" alt=""><img src="/JG40-Build/databases/UpdatedDark.png" class="dark-logo" alt=""></div>
                     <div>
-                        <span class="d-block text-muted text-uppercase mb-1" style="font-size: 11px; letter-spacing: 1px;">Last Updated</span>
-                        <strong class="fs-6">November 2004</strong>
+                        <span class="sidebar-label">Last Updated</span>
+                        <span class="sidebar-value">November 2004</span>
                     </div>
                 </div>
             </div>
 
-            <div class="card border-0 shadow-sm p-4 mb-4" style="background-color: var(--navy);">
-                <div class="mb-3">
-                    <h2 class="text-white fs-6 fw-bold text-uppercase" style="letter-spacing: 1px;">Search This Dataset</h2>
-                </div>
-                <label class="d-block mb-2 text-uppercase fw-bold" style="color: var(--light-blue); font-size: 11px;">Search Term (Surname or Given Name)</label>
-                <input type="text" id="dataset-search-input" class="form-control mb-3 border-0" style="background-color: var(--light-blue);" placeholder="e.g., Goldstein, Avram…">
-                <button class="btn w-100 fw-bold text-uppercase text-white" id="btn-trigger-search" style="background-color: var(--sage); letter-spacing: 1px;">Search This Database</button>
-                <p class="mt-3 mb-0" style="font-size: 12px; color: #a9c0d0; line-height: 1.4;">
-                    Or search across all records in the <a href="https://www.jewishgen.org/databases/Romania/" class="text-decoration-underline" style="color: var(--sage);" target="_blank">Romania Database</a> or the <a href="https://www.jewishgen.org/databases/all/" class="text-decoration-underline" style="color: var(--sage);" target="_blank">Unified Search</a>.
+            <div class="filter-group">
+                <div class="filter-group-title">Search This Dataset</div>
+                <label style="display: block; font-size: 10px; font-weight: bold; color: var(--charcoal); opacity: 0.7; text-transform: uppercase; margin-bottom: 6px;">Search Term (Surname or Given Name)</label>
+                <input type="text" id="dataset-search-input" class="sidebar-search-input" placeholder="e.g., Goldstein, Avram…">
+                <button class="sidebar-search-btn" id="btn-trigger-search">Search This Database</button>
+                <p style="font-size: 11px; line-height: 1.4; color: var(--charcoal); opacity: 0.8; margin-top: 10px;">
+                    Or search across all records in the <a href="https://www.jewishgen.org/databases/Romania/" class="dataset-text" style="color: var(--sage); text-decoration: underline;" target="_blank">Romania Database</a>.
                 </p>
             </div>
 
-            <div class="card border-0 shadow-sm bg-white p-4 mb-4" style="border-top: 4px solid var(--sage) !important;">
-                <h3 class="fs-6 fw-bold mb-3">Support This Research</h3>
-                <p class="text-muted mb-4" style="font-size: 14px; line-height: 1.5;">The Romania Research Division relies on donations to make records like these freely available.</p>
-                <a href="https://www.jewishgen.org/jewishgen-erosity/" target="_blank" class="btn btn-outline-secondary w-100 fw-bold">Donate Today</a>
+            <div class="filter-group">
+                <div class="filter-group-title">Support This Research</div>
+                <p style="font-size: 13px; line-height: 1.5; color: var(--charcoal); margin: 0 0 12px 0;">The Romania Research Division relies on donations to make records freely available.</p>
+                <a href="https://www.jewishgen.org/jewishgen-erosity/" target="_blank" class="jg-btn jg-btn--secondary" style="display: block; text-align: center;">Donate Today</a>
             </div>
 
-            <div class="card border-0 shadow-sm bg-white p-4 mb-4">
-                <h3 class="fs-6 text-uppercase fw-bold border-bottom pb-2 mb-4" style="border-bottom-color: var(--sage) !important;">Contributors</h3>
+            <div class="filter-group" style="margin-bottom: 0;">
+                <div class="sidebar-header" style="margin-top: 30px;">Contributors</div>
                 
-                <div class="mb-3">
-                    <span class="d-block text-uppercase text-muted mb-1" style="font-size: 11px; letter-spacing: 1px; font-weight: bold;">Project Coordinator</span>
-                    <span class="fs-6 fw-semibold">Terry Lasky</span>
+                <div style="margin-bottom: 12px;">
+                    <span class="sidebar-label">Project Coordinator</span>
+                    <span class="sidebar-value" style="font-size: 13px;">Terry Lasky</span>
                 </div>
-                <div class="mb-3">
-                    <span class="d-block text-uppercase text-muted mb-1" style="font-size: 11px; letter-spacing: 1px; font-weight: bold;">Data Input</span>
-                    <span class="fs-6 fw-semibold">Ellen Renck, Paula Zieselman, Israel Rabin, Ina Margulis, Harry Green, Terry Lasky</span>
+                <div style="margin-bottom: 12px;">
+                    <span class="sidebar-label">Data Input</span>
+                    <span class="sidebar-value" style="font-size: 13px;">Ellen Renck, Paula Zieselman, Israel Rabin, Ina Margulis, Harry Green, Terry Lasky</span>
                 </div>
-                <div class="mb-3">
-                    <span class="d-block text-uppercase text-muted mb-1" style="font-size: 11px; letter-spacing: 1px; font-weight: bold;">Validation</span>
-                    <span class="fs-6 fw-semibold">Paula Zieselman, Rony Shahan, Dr. Artur Hecht, Israel Rabin</span>
+                <div style="margin-bottom: 12px;">
+                    <span class="sidebar-label">Validation</span>
+                    <span class="sidebar-value" style="font-size: 13px;">Paula Zieselman, Rony Shahan, Dr. Artur Hecht, Israel Rabin</span>
                 </div>
                 <div>
-                    <span class="d-block text-uppercase text-muted mb-1" style="font-size: 11px; letter-spacing: 1px; font-weight: bold;">Translation Assistance</span>
-                    <span class="fs-6 fw-semibold">Prof. Ladislau Gyemant, Susanna Vendel, Dr. Marcel Bratu</span>
+                    <span class="sidebar-label">Translation Assistance</span>
+                    <span class="sidebar-value" style="font-size: 13px;">Prof. Ladislau Gyemant, Susanna Vendel, Dr. Marcel Bratu</span>
                 </div>
             </div>
         </aside>
 
-        <article class="col-lg-8 col-xl-9">
+        <article class="cards-area dataset-text">
             
-            <h2 class="fs-5 fw-bold text-uppercase border-bottom pb-2 mb-4" style="letter-spacing: 1px; border-bottom-color: var(--sage) !important;">Background</h2>
+            <h2 class="jg-section-title" style="margin-top: 0; padding-top: 0;">Background</h2>
             
-            <div class="row mb-5">
-                <div class="col-md-7">
-                    <p class="fs-6 mb-4" style="line-height: 1.7;">The <em>Tabele Barbatilor</em> ("Census of Men") lists were compiled in 1942 under the <strong>Antonescu regime</strong> in Romania. They form a systematic record of the Jewish male population during one of the most dangerous periods of Romanian Jewish history, created for the dual purpose of demographic registration and forced labor assignment.</p>
+            <div class="grid-2" style="margin-bottom: 3rem;">
+                <div>
+                    <p>The <em>Tabele Barbatilor</em> ("Census of Men") lists were compiled in 1942 under the <strong>Antonescu regime</strong> in Romania. They form a systematic record of the Jewish male population during one of the most dangerous periods of Romanian Jewish history, created for the dual purpose of demographic registration and forced labor assignment.</p>
                 </div>
-                <div class="col-md-5">
-                    <div class="card border-0 bg-light p-3 border-start border-4" style="border-left-color: var(--sage) !important;">
-                        <span class="fw-bold mb-2 d-block">Source &amp; Acquisition</span>
-                        <p class="mb-0 text-muted" style="font-size: 13px; line-height: 1.5;">The original documents are held in the Archive and Library of the Federation of Jewish Communities of Romania, in Bucharest (Fond #: III 400 E/1942). Copies were obtained in 2000 by <strong>Prof. Ladislau Gyemant</strong>, Director of the Mosche Carmilly Institute of Jewish History at the University of Cluj-Napoca, and were purchased from him by <a href="https://www.jewishgen.org/ROMSIG" target="_blank" class="fw-bold text-decoration-underline">The JewishGen Romania Research Division</a>.</p>
+                <div>
+                    <div class="jg-tips-card-panel open" style="margin-bottom: 0;">
+                        <span style="display: block; font-weight: bold; color: var(--navy); font-size: 14px; margin-bottom: 8px;">Source &amp; Acquisition</span>
+                        <p style="margin: 0; font-size: 13px; line-height: 1.5;">The original documents are held in the Archive and Library of the Federation of Jewish Communities of Romania, in Bucharest (Fond #: III 400 E/1942). Copies were obtained in 2000 by <strong>Prof. Ladislau Gyemant</strong>, Director of the Mosche Carmilly Institute of Jewish History at the University of Cluj-Napoca, and were purchased from him by <a href="https://www.jewishgen.org/ROMSIG" target="_blank">The JewishGen Romania Research Division</a>.</p>
                     </div>
                 </div>
             </div>
 
-            <h2 class="fs-5 fw-bold text-uppercase border-bottom pb-2 mb-4" style="letter-spacing: 1px; border-bottom-color: var(--sage) !important;">The Three Lists</h2>
-            <p class="fs-6 mb-4">There are three separate census lists, each covering a distinct age group and purpose:</p>
+            <h2 class="jg-section-title">The Three Lists</h2>
+            <p>There are three separate census lists, each covering a distinct age group and purpose:</p>
             
-            <div class="row g-4 mb-4">
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm bg-white p-4 h-100 text-center" style="border-top: 4px solid var(--sage) !important;">
-                        <span class="badge bg-light text-dark mx-auto mb-3" style="font-size: 12px; letter-spacing: 1px;">T1</span>
-                        <h4 class="fs-6 fw-bold mb-3">Born 1881–1892 (Age 50+)</h4>
-                        <p class="text-muted mb-4" style="font-size: 14px; line-height: 1.5;">Nationwide. Men above labor age, exempt from forced labor camps due to age. Covers all counties and towns of Romania.</p>
-                        <div class="mt-auto pt-3 border-top fw-bold" style="font-size: 13px;">350 PAGES &middot; 10,574 RECORDS</div>
-                    </div>
+            <div class="jg-grid-3" style="margin-bottom: 20px;">
+                <div class="catalog-card">
+                    <div><span class="catalog-tag">T1</span></div>
+                    <h3 class="catalog-card__title">Born 1881–1892 (Age 50+)</h3>
+                    <p class="catalog-card__desc">Nationwide. Men above labor age, exempt from forced labor camps due to age. Covers all counties and towns of Romania.</p>
+                    <div class="catalog-card__meta">350 PAGES &middot; 10,574 RECORDS</div>
                 </div>
-                
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm bg-white p-4 h-100 text-center" style="border-top: 4px solid var(--sage) !important;">
-                        <span class="badge bg-light text-dark mx-auto mb-3" style="font-size: 12px; letter-spacing: 1px;">T2</span>
-                        <h4 class="fs-6 fw-bold mb-3">Born 1893–1921 (Ages 21–50)</h4>
-                        <p class="text-muted mb-4" style="font-size: 14px; line-height: 1.5;">Bucharest only. Men assigned to labor details, typically working in the businesses of non-Jews.</p>
-                        <div class="mt-auto pt-3 border-top fw-bold" style="font-size: 13px;">352 PAGES &middot; 8,493 RECORDS</div>
-                    </div>
+                <div class="catalog-card">
+                    <div><span class="catalog-tag">T2</span></div>
+                    <h3 class="catalog-card__title">Born 1893–1921 (Ages 21–50)</h3>
+                    <p class="catalog-card__desc">Bucharest only. Men assigned to labor details, typically working in the businesses of non-Jews.</p>
+                    <div class="catalog-card__meta">352 PAGES &middot; 8,493 RECORDS</div>
                 </div>
-                
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm bg-white p-4 h-100 text-center" style="border-top: 4px solid var(--sage) !important;">
-                        <span class="badge bg-light text-dark mx-auto mb-3" style="font-size: 12px; letter-spacing: 1px;">T3</span>
-                        <h4 class="fs-6 fw-bold mb-3">Born June 1926 – May 1928 (Ages 15–16)</h4>
-                        <p class="text-muted mb-4" style="font-size: 14px; line-height: 1.5;">Bucharest only. Boys, many still in school. Not placed in labor details.</p>
-                        <div class="mt-auto pt-3 border-top fw-bold" style="font-size: 13px;">71 PAGES &middot; 1,229 RECORDS</div>
-                    </div>
+                <div class="catalog-card">
+                    <div><span class="catalog-tag">T3</span></div>
+                    <h3 class="catalog-card__title">Born June 1926 – May 1928 (Ages 15–16)</h3>
+                    <p class="catalog-card__desc">Bucharest only. Boys, many still in school. Not placed in labor details.</p>
+                    <div class="catalog-card__meta">71 PAGES &middot; 1,229 RECORDS</div>
                 </div>
             </div>
             
-            <p class="fs-6 mb-5">This database contains all <strong>20,296 records</strong> from T1, T2, and T3 combined.</p>
+            <p style="font-size: 13px; margin-bottom: 3rem; opacity: 0.8;">This database contains all <strong>20,296 records</strong> from T1, T2, and T3 combined.</p>
 
-            <h2 class="fs-5 fw-bold text-uppercase border-bottom pb-2 mb-4" style="letter-spacing: 1px; border-bottom-color: var(--sage) !important;">Fields Recorded</h2>
+            <h2 class="jg-section-title">Fields Recorded</h2>
             
-            <div class="row mb-5">
-                <div class="col-md-6 mb-2"><div class="p-2 px-3 bg-white rounded border-start border-4 shadow-sm fw-bold" style="border-left-color: var(--sage) !important; font-size: 14px;">Surname &amp; Given Name</div></div>
-                <div class="col-md-6 mb-2"><div class="p-2 px-3 bg-white rounded border-start border-4 shadow-sm fw-bold" style="border-left-color: var(--sage) !important; font-size: 14px;">Level of Education</div></div>
-                <div class="col-md-6 mb-2"><div class="p-2 px-3 bg-white rounded border-start border-4 shadow-sm fw-bold" style="border-left-color: var(--sage) !important; font-size: 14px;">Birthplace &amp; County</div></div>
-                <div class="col-md-6 mb-2"><div class="p-2 px-3 bg-white rounded border-start border-4 shadow-sm fw-bold" style="border-left-color: var(--sage) !important; font-size: 14px;">Profession / Occupation</div></div>
-                <div class="col-md-6 mb-2"><div class="p-2 px-3 bg-white rounded border-start border-4 shadow-sm fw-bold" style="border-left-color: var(--sage) !important; font-size: 14px;">Birth Date</div></div>
-                <div class="col-md-6 mb-2"><div class="p-2 px-3 bg-white rounded border-start border-4 shadow-sm fw-bold" style="border-left-color: var(--sage) !important; font-size: 14px;">Residence / Address</div></div>
-                <div class="col-md-6 mb-2"><div class="p-2 px-3 bg-white rounded border-start border-4 shadow-sm fw-bold" style="border-left-color: var(--sage) !important; font-size: 14px;">Father's Given Name</div></div>
-                <div class="col-md-6 mb-2"><div class="p-2 px-3 bg-white rounded border-start border-4 shadow-sm fw-bold" style="border-left-color: var(--sage) !important; font-size: 14px;">Assigned Labor Detail</div></div>
-                <div class="col-md-6 mb-2"><div class="p-2 px-3 bg-white rounded border-start border-4 shadow-sm fw-bold" style="border-left-color: var(--sage) !important; font-size: 14px;">Mother's Given Name</div></div>
-                <div class="col-md-6 mb-2"><div class="p-2 px-3 bg-white rounded border-start border-4 shadow-sm fw-bold" style="border-left-color: var(--sage) !important; font-size: 14px;">Census Number</div></div>
+            <div class="grid-2" style="margin-bottom: 3rem;">
+                <div class="catalog-card" style="padding: 14px 20px; flex-direction: row; border-left: 4px solid var(--sage); border-radius: 4px; font-weight: bold; color: var(--navy); font-size: 13px;">Surname &amp; Given Name</div>
+                <div class="catalog-card" style="padding: 14px 20px; flex-direction: row; border-left: 4px solid var(--sage); border-radius: 4px; font-weight: bold; color: var(--navy); font-size: 13px;">Level of Education</div>
+                <div class="catalog-card" style="padding: 14px 20px; flex-direction: row; border-left: 4px solid var(--sage); border-radius: 4px; font-weight: bold; color: var(--navy); font-size: 13px;">Birthplace &amp; County</div>
+                <div class="catalog-card" style="padding: 14px 20px; flex-direction: row; border-left: 4px solid var(--sage); border-radius: 4px; font-weight: bold; color: var(--navy); font-size: 13px;">Profession / Occupation</div>
+                <div class="catalog-card" style="padding: 14px 20px; flex-direction: row; border-left: 4px solid var(--sage); border-radius: 4px; font-weight: bold; color: var(--navy); font-size: 13px;">Birth Date</div>
+                <div class="catalog-card" style="padding: 14px 20px; flex-direction: row; border-left: 4px solid var(--sage); border-radius: 4px; font-weight: bold; color: var(--navy); font-size: 13px;">Residence / Address</div>
+                <div class="catalog-card" style="padding: 14px 20px; flex-direction: row; border-left: 4px solid var(--sage); border-radius: 4px; font-weight: bold; color: var(--navy); font-size: 13px;">Father's Given Name</div>
+                <div class="catalog-card" style="padding: 14px 20px; flex-direction: row; border-left: 4px solid var(--sage); border-radius: 4px; font-weight: bold; color: var(--navy); font-size: 13px;">Assigned Labor Detail</div>
+                <div class="catalog-card" style="padding: 14px 20px; flex-direction: row; border-left: 4px solid var(--sage); border-radius: 4px; font-weight: bold; color: var(--navy); font-size: 13px;">Mother's Given Name</div>
+                <div class="catalog-card" style="padding: 14px 20px; flex-direction: row; border-left: 4px solid var(--sage); border-radius: 4px; font-weight: bold; color: var(--navy); font-size: 13px;">Census Number</div>
             </div>
 
-            <h2 class="fs-5 fw-bold text-uppercase border-bottom pb-2 mb-4" style="letter-spacing: 1px; border-bottom-color: var(--sage) !important;">Research Notes</h2>
-            <p class="fs-6 mb-4">This database has several features that require context to use effectively. The notes below explain naming conventions, the Romanian education system, profession terminology, and address abbreviations.</p>
+            <h2 class="jg-section-title">Research Notes</h2>
+            <p style="margin-bottom: 20px;">This database has several features that require context to use effectively. The notes below explain naming conventions, the Romanian education system, profession terminology, and address abbreviations.</p>
             
-            <div class="accordion mb-5 shadow-sm" id="researchNotesAccordion">
-                
-                <div class="accordion-item border-0 mb-2 rounded bg-white">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button collapsed fw-bold bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                            Other Names &amp; Patronyms
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#researchNotesAccordion">
-                        <div class="accordion-body text-muted" style="font-size: 15px; line-height: 1.6;">
-                            <p>In a number of cases individuals are listed by both nicknames or patronyms, as well as the hereditary name adopted in the 1870s, when surnames were legally required in Romania. These are listed in the "Name" column, separated by a slash "/" character. Where a patronym is also given, it is listed separately.</p>
-                            <p>This means a person can be found by either name. For example, an Israel Isaac who was also known as Israel Kleinman will appear under both names, each with a referral to the other.</p>
-                            <p class="mb-0">Note that the Romanian prefix <strong>"SIN"</strong> means "son of."</p>
-                        </div>
-                    </div>
+            <div style="margin-bottom: 3rem;">
+                <button class="note-toggle" onclick="toggleDatasetNote(this)">
+                    Other Names &amp; Patronyms
+                    <span class="note-chevron">▼</span>
+                </button>
+                <div class="note-panel">
+                    <p style="padding-top: 16px;">In a number of cases individuals are listed by both nicknames or patronyms, as well as the hereditary name adopted in the 1870s, when surnames were legally required in Romania. These are listed in the "Name" column, separated by a slash "/" character. Where a patronym is also given, it is listed separately.</p>
+                    <p>This means a person can be found by either name. For example, an Israel Isaac who was also known as Israel Kleinman will appear under both names, each with a referral to the other.</p>
+                    <p style="margin-bottom: 0;">Note that the Romanian prefix <strong>"SIN"</strong> means "son of."</p>
                 </div>
 
-                <div class="accordion-item border-0 mb-2 rounded bg-white">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed fw-bold bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Levels of Education
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#researchNotesAccordion">
-                        <div class="accordion-body text-muted" style="font-size: 15px; line-height: 1.6;">
-                            <p>Romania's educational system was derived primarily from the French model and does not map directly to the American system. Terms were translated directly to their English meanings. Inconsistencies exist because the census covers men who attended school across many decades and under different occupying powers; rural schools also differed significantly from urban ones.</p>
-                            <p>In the census, level of schooling is preceded by a number and the abbreviation <strong>"cl."</strong> (short for <em>clases</em>, equivalent to "grade" or "years"). For example: <em>4 cl. primary</em> = 4 years of primary school; <em>3 cl. lyceum</em> = 3 years of lyceum (7 total years of schooling).</p>
-                            <p class="mb-2"><strong>Key terms used in the database:</strong></p>
-                            <ol class="mb-0">
-                                <li><strong>Primary / Elementary</strong> — Grades 1–4 (rural areas through grade 8)</li>
-                                <li><strong>Gymnasium</strong> — Grades 5–8</li>
-                                <li><strong>Lyceum / Secondary</strong> — Grades 5–12</li>
-                                <li><strong>Commercial / Lower Commercial / Upper Commercial</strong> — Business-type schools</li>
-                                <li><strong>Trade</strong> — Vocational/trade school</li>
-                                <li><strong>Graduate</strong> — Completed 12 years and passed the <em>bacculareat</em> exam</li>
-                                <li><strong>Doctor of xxx</strong> — Attained a PhD</li>
-                                <li><strong>Bachelor of xxx</strong> — Attained a bachelor's degree</li>
-                                <li><strong>Polytechnic</strong> — Engineering/science university equivalent</li>
-                                <li><strong>xxx Faculty</strong> — A discipline-specific school within a university</li>
-                                <li><strong>Ciocanul</strong> — A specific Romanian-Jewish lyceum</li>
-                                <li><strong>Cultura</strong> — A specific set of Romanian-Jewish primary/lyceum schools</li>
-                                <li><strong>Complementary</strong> — A school for children with disabilities</li>
-                            </ol>
-                        </div>
-                    </div>
+                <button class="note-toggle" onclick="toggleDatasetNote(this)">
+                    Levels of Education
+                    <span class="note-chevron">▼</span>
+                </button>
+                <div class="note-panel">
+                    <p style="padding-top: 16px; margin-bottom: 0;">Romania's educational system was derived primarily from the French model and does not map directly to the American system. Terms were translated directly to their English meanings. In the census, level of schooling is preceded by a number and the abbreviation <strong>"cl."</strong> (short for <em>clases</em>, equivalent to "grade" or "years"). For example: <em>4 cl. primary</em> = 4 years of primary school; <em>3 cl. lyceum</em> = 3 years of lyceum (7 total years of schooling).</p>
                 </div>
 
-                <div class="accordion-item border-0 mb-2 rounded bg-white">
-                    <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed fw-bold bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Professions
-                        </button>
-                    </h2>
-                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#researchNotesAccordion">
-                        <div class="accordion-body text-muted" style="font-size: 15px; line-height: 1.6;">
-                            <p>Professions are entered exactly as the clerks wrote them in 1942, including any misspellings. It is JewishGen's policy not to correct such entries.</p>
-                            <p class="mb-0">A full <a href="https://www.jewishgen.org/InfoFiles/RomanianOccs.htm" target="_blank" class="fw-bold text-decoration-underline">Romanian-English occupations translation table</a> is available on the JewishGen InfoFiles pages.</p>
-                        </div>
-                    </div>
+                <button class="note-toggle" onclick="toggleDatasetNote(this)">
+                    Professions
+                    <span class="note-chevron">▼</span>
+                </button>
+                <div class="note-panel">
+                    <p style="padding-top: 16px; margin-bottom: 0;">Professions are entered exactly as the clerks wrote them in 1942, including any misspellings. It is JewishGen's policy not to correct such entries. A full <a href="https://www.jewishgen.org/InfoFiles/RomanianOccs.htm" target="_blank">Romanian-English occupations translation table</a> is available on the JewishGen InfoFiles pages.</p>
                 </div>
-
-                <div class="accordion-item border-0 mb-2 rounded bg-white">
-                    <h2 class="accordion-header" id="headingFour">
-                        <button class="accordion-button collapsed fw-bold bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            Address Terminology
-                        </button>
-                    </h2>
-                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#researchNotesAccordion">
-                        <div class="accordion-body text-muted" style="font-size: 15px; line-height: 1.6;">
-                            <p>The following Romanian terms are used in addresses to describe road types:</p>
-                            <div class="table-responsive mb-3">
-                                <table class="table table-sm table-bordered">
-                                    <thead class="bg-light">
-                                        <tr><th>Romanian Term</th><th>English Equivalent</th></tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr><td><em>Alee (Alea, Aleea, Al.)</em></td><td>Drive</td></tr>
-                                        <tr><td><em>Bulevard (Bd., Bul., Bdul.)</em></td><td>Boulevard</td></tr>
-                                        <tr><td><em>Cale (Cal., Calea)</em></td><td>Road / Way</td></tr>
-                                        <tr><td><em>Fundatura (Fund.)</em></td><td>Cul de Sac / Dead End</td></tr>
-                                        <tr><td><em>Palat (Pal.)</em></td><td>Palace</td></tr>
-                                        <tr><td><em>Parc (Parcul, Pc.)</em></td><td>Park</td></tr>
-                                        <tr><td><em>Piata (Pta.)</em></td><td>Market / Square</td></tr>
-                                        <tr><td><em>Prelung (Prel.)</em></td><td>Oblong</td></tr>
-                                        <tr><td><em>Sosea (Sos.)</em></td><td>Highway</td></tr>
-                                        <tr><td><em>Splai (Sp., Spl., Splaiul)</em></td><td>Embankment</td></tr>
-                                        <tr><td><em>Strada (Str.)</em></td><td>Street</td></tr>
-                                        <tr><td><em>Stradela</em></td><td>Lane</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <p class="mb-1"><strong>Additional address modifiers:</strong></p>
-                            <ul class="mb-0">
-                                <li><strong>bis</strong> — Indicates a second address at the same number (e.g., <em>Vitan 15bis</em> = "the other Vitan 15")</li>
-                                <li><strong>et.#</strong> — Indicates floor number (e.g., <em>Vitan 25et2</em> = Vitan 25, 2nd floor)</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item border-0 mb-2 rounded bg-white">
-                    <h2 class="accordion-header" id="headingFive">
-                        <button class="accordion-button collapsed fw-bold bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            Labor Assignment Terms
-                        </button>
-                    </h2>
-                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#researchNotesAccordion">
-                        <div class="accordion-body text-muted" style="font-size: 15px; line-height: 1.6;">
-                            <p>The following terms appear most frequently in the Assigned Labor column:</p>
-                            <ul class="mb-0">
-                                <li class="mb-2"><strong>Proprie / Firma Proprie</strong> — Business owner; likely assigned to a self-employed person or small shop owner.</li>
-                                <li><strong>C.E.R. / CER / Centrala Evreilor (din Romania)</strong> — The Center of the Jews of Romania.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
-            <h2 class="fs-5 fw-bold text-uppercase border-bottom pb-2 mb-4" style="letter-spacing: 1px; border-bottom-color: var(--sage) !important;">Acknowledgements</h2>
-            <div class="text-muted mb-5" style="font-size: 14px; line-height: 1.7;">
-                <p class="mb-2"><strong>T1:</strong> Data input by Ellen Renck and Paula Zieselman; validation by Paula Zieselman.</p>
-                <p class="mb-2"><strong>T2:</strong> Data input primarily by Israel Rabin, with assistance from Ellen Renck, Paula Zieselman, Ina Margulis, and Harry Green; validation by Rony Shahan and Dr. Artur Hecht.</p>
-                <p class="mb-3"><strong>T3:</strong> Data input by Terry Lasky; validation by Israel Rabin.</p>
-                <p class="mb-0">Translation assistance was provided by Prof. Ladislau Gyemant, Susanna Vendel, and Dr. Marcel Bratu. Archival copies were acquired through Prof. Gyemant, Director of the Mosche Carmilly Institute of Jewish History, University of Cluj-Napoca.</p>
+            <h2 class="jg-section-title">Acknowledgements</h2>
+            <div style="font-size: 13px; line-height: 1.6; color: var(--charcoal); margin-bottom: 40px;">
+                <p style="margin-bottom: 8px;"><strong>T1:</strong> Data input by Ellen Renck and Paula Zieselman; validation by Paula Zieselman.</p>
+                <p style="margin-bottom: 8px;"><strong>T2:</strong> Data input primarily by Israel Rabin, with assistance from Ellen Renck, Paula Zieselman, Ina Margulis, and Harry Green; validation by Rony Shahan and Dr. Artur Hecht.</p>
+                <p style="margin-bottom: 12px;"><strong>T3:</strong> Data input by Terry Lasky; validation by Israel Rabin.</p>
+                <p style="margin-bottom: 0;">Translation assistance was provided by Prof. Ladislau Gyemant, Susanna Vendel, and Dr. Marcel Bratu. Archival copies were acquired through Prof. Gyemant, Director of the Mosche Carmilly Institute of Jewish History, University of Cluj-Napoca.</p>
             </div>
 
-            <div class="p-5 text-center rounded bg-white shadow-sm mb-5">
-                <p class="fs-6 text-muted mx-auto mb-4" style="max-width: 700px; line-height: 1.6;">Databases like this one are made possible entirely through volunteer effort and our generous donors. Your contribution helps fund transcription, translation, and preservation of Romanian Jewish records.</p>
-                <a href="https://www.jewishgen.org/jewishgen-erosity/" target="_blank" class="btn text-white fw-bold text-uppercase px-4 py-2" style="background-color: var(--sage); letter-spacing: 1px;">Support the Romania Research Division</a>
+            <div class="catalog-card" style="text-align: center; padding: 40px; margin-top: 50px;">
+                <p style="font-size: 15px; color: var(--charcoal); max-width: 600px; margin: 0 auto 20px auto; line-height: 1.6;">Databases like this one are made possible entirely through volunteer effort and our generous donors. Your contribution helps fund transcription, translation, and preservation of Romanian Jewish records.</p>
+                <div>
+                    <a href="https://www.jewishgen.org/jewishgen-erosity/" target="_blank" class="jg-btn jg-btn--primary" style="padding: 12px 30px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Support the Romania Research Division</a>
+                </div>
             </div>
 
-            <div class="mt-4 pt-3 text-muted border-top" style="font-size: 12px; font-style: italic;">
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.1); font-size: 12px; color: var(--charcoal); opacity: 0.7; font-style: italic;">
                 Database compiled 2000–2004. Last updated November 2004.<br>
-                For questions, contact the <a href="https://www.jewishgen.org/ROMSIG" target="_blank" class="fw-bold text-decoration-underline text-muted">JewishGen Romania Research Division</a>.
+                For questions, contact the <a href="https://www.jewishgen.org/ROMSIG" target="_blank" style="color: var(--navy); font-weight: bold; text-decoration: underline;">JewishGen Romania Research Division</a>.
             </div>
 
         </article>
@@ -366,7 +350,6 @@
 
 <div id="site-footer"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     /* -- Component Loader -- */
     function loadComponent(id, file) {
@@ -391,6 +374,14 @@
     document.getElementById('dataset-search-input').addEventListener('keydown', e => {
         if (e.key === 'Enter') document.getElementById('btn-trigger-search').click();
     });
+
+    /* -- Note Collapsible Logic -- */
+    function toggleDatasetNote(trigger) {
+        const panel = trigger.nextElementSibling;
+        const isOpen = trigger.classList.contains('open');
+        trigger.classList.toggle('open', !isOpen);
+        panel.classList.toggle('open', !isOpen);
+    }
 </script>
 
 </body>
