@@ -185,10 +185,11 @@ body.dark-mode .drawer-content { color: #c8c0b0; }
 .total-summary-line {
     font-size: 14px;
     font-weight: 600;
-    color: var(--navy);
     margin: 30px 0;
-    text-align: center;
+    text-align: left;
 }
+.total-summary-line strong { color: var(--navy); }
+body.dark-mode .total-summary-line strong { color: #e0e0e0; }
 
         @media (max-width: 900px) {
             .page-body { flex-direction: column; padding: 20px; }
@@ -259,7 +260,7 @@ body.dark-mode .drawer-content { color: #c8c0b0; }
                         <div class="sidebar-icon"><img src="/JG40-Build/databases/SourceReg.png" class="light-logo" alt="">
                     <img src="/JG40-Build/databases/SourceDark.png" class="dark-logo" alt=""></div>
                         <div><span class="sidebar-label">Source Archive </span><span class="sidebar-value">Federation of Jewish Communities of Romania, Bucharest<br>
-                        Fond #: III 400 E/1942</span></div>
+                        <span style="font-weight: 400;">Fond #: III 400 E/1942</span></span></div>
                     </div>
                     
                     <div class="sidebar-row">
@@ -320,7 +321,7 @@ body.dark-mode .drawer-content { color: #c8c0b0; }
 
             <span class="section-heading">The Three Lists</span>
             <div class="green-accent-line"></div>
-            
+            <p style="font-size: 15px; line-height: 1.7; margin-bottom: 20px;">There are three separate census lists, each covering a distinct age group and purpose:</p>
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px;">
                 <div class="white-card text-center">
                     <span style="background: var(--light-blue); padding: 3px 10px; border-radius: 4px; font-weight: bold; font-size: 12px;">T1</span>
@@ -349,7 +350,9 @@ body.dark-mode .drawer-content { color: #c8c0b0; }
 
             <span class="section-heading">Fields Recorded</span>
             <div class="green-accent-line"></div>
-            <div class="fields-grid" style="margin-bottom: 40px;">
+            <div class="white-card" style="margin-bottom: 40px; display: flex; gap: 30px; align-items: flex-start;">
+                <p style="font-size: 14px; line-height: 1.7; min-width: 180px; max-width: 200px; flex-shrink: 0; margin: 0;">The following fields are captured for each individual across all three lists:</p>
+                <div class="fields-grid" style="flex: 1;">
                 <div class="field-item">Surname &amp; Given Name</div>
                 <div class="field-item">Birthplace &amp; County</div>
                 <div class="field-item">Birth Date</div>
@@ -359,6 +362,7 @@ body.dark-mode .drawer-content { color: #c8c0b0; }
                 <div class="field-item">Residence / Address</div>
                 <div class="field-item">Assigned Labor Detail</div>
                 <div class="field-item">Census Number</div>
+            </div>
             </div>
 
             <hr class="jg-hr-navy">
@@ -473,7 +477,7 @@ body.dark-mode .drawer-content { color: #c8c0b0; }
             <p style="font-size: 14px; line-height: 1.7; margin-bottom: 15px;">
                     <strong>T3:</strong> Data input by Terry Lasky; validation by Israel Rabin.
                 </p>
-           <p style="font-size: 14px; line-height: 1.7; margin-top: 25px; opacity: 0.9;">
+           <p style="font-size: 14px; line-height: 1.7; margin-bottom: 15px;">
         Translation assistance was provided by Prof. Ladislau Gyemant, Susanna Vendel, and Dr. Marcel Bratu. Archival copies were acquired through Prof. Gyemant, Director of the Mosche Carmilly Institute of Jewish History, University of Cluj-Napoca.
                 </p>
             </div>
