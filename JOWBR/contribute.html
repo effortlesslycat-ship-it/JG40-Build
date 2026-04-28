@@ -14,99 +14,43 @@
     <style>
         /* =====================================================
            JOWBR CONTRIBUTE DATA PAGE - PAGE-SPECIFIC STYLES
+           Stats bar + section nav CSS live in JOWBR_SubNav.html.
            ===================================================== */
 
-        /* ── Page Title Band ─────────────────────────────── */
+        /* -- Page Title Band --------------------------------- */
         .jg-page-band {
             background-color: #09497a;
             padding: 34px 50px;
             text-align: center;
         }
         body.dark-mode .jg-page-band { background-color: #0d2a45; }
+
         .jg-page-band h1 {
-            margin: 0 0 8px;
+            margin: 0 0 6px;
             font-family: Georgia, 'Times New Roman', serif;
             font-size: 2.25rem;
             font-weight: normal;
             color: #ffffff;
             line-height: 1.2;
         }
+        .jg-page-band h2 {
+            margin: 0 0 10px;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.0625rem;
+            font-weight: normal;
+            color: #ffffff;
+            line-height: 1.3;
+        }
         .jg-page-band__sub {
-            font-size: 1rem;
+            font-size: 0.9375rem;
+            font-style: italic;
             color: #a9c0d0;
             margin: 0 auto;
             max-width: 560px;
             line-height: 1.6;
         }
 
-        /* ── Stats Bar ───────────────────────────────────── */
-        .jowbr-stats {
-            background-color: var(--cream);
-            border-bottom: 1px solid #d1caba;
-            padding: 20px 50px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        body.dark-mode .jowbr-stats {
-            background-color: #1a1a1a;
-            border-bottom-color: #333;
-        }
-        .jowbr-stat {
-            text-align: center;
-            padding: 10px 40px;
-            border-right: 1px solid #c5bca8;
-        }
-        .jowbr-stat:last-child { border-right: none; }
-        .jowbr-stat__num {
-            display: block;
-            font-size: 1.75rem;
-            font-weight: bold;
-            color: #09497a;
-            line-height: 1.1;
-        }
-        body.dark-mode .jowbr-stat__num { color: #a8b361; }
-        .jowbr-stat__label {
-            display: block;
-            font-size: 0.6875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            color: var(--charcoal);
-            margin-top: 3px;
-        }
-
-        /* ── Section Nav ─────────────────────────────────── */
-        .jowbr-nav {
-            background-color: var(--white);
-            border-bottom: 2px solid var(--cream);
-            padding: 0 50px;
-            display: flex;
-            justify-content: center;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        body.dark-mode .jowbr-nav {
-            background-color: #121212;
-            border-bottom-color: #333;
-        }
-        .jowbr-nav a {
-            display: inline-block;
-            padding: 13px 18px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--charcoal);
-            border-bottom: 3px solid transparent;
-            white-space: nowrap;
-            text-decoration: none;
-            transition: color 0.15s, border-color 0.15s;
-        }
-        .jowbr-nav a:hover { color: var(--navy); border-bottom-color: var(--sage); }
-        .jowbr-nav a.active { color: var(--navy); border-bottom-color: var(--navy); }
-        body.dark-mode .jowbr-nav a { color: #a0a0a0; }
-        body.dark-mode .jowbr-nav a:hover,
-        body.dark-mode .jowbr-nav a.active { color: #e0e0e0; border-bottom-color: #a8b361; }
-
-        /* ── Content Band + Inner Container ──────────────── */
+        /* -- Content Band + Inner Container ------------------ */
         .jowbr-content-band {
             background-color: var(--ecru);
             padding: 2.75rem 2rem 4rem;
@@ -116,10 +60,8 @@
             margin: 0 auto;
         }
 
-        /* ── Content Sections ────────────────────────────── */
-        .jowbr-section {
-            margin-bottom: 2.75rem;
-        }
+        /* -- Content Sections -------------------------------- */
+        .jowbr-section { margin-bottom: 2.75rem; }
         .jowbr-section:last-child { margin-bottom: 0; }
 
         .jowbr-section__heading {
@@ -149,8 +91,8 @@
         .jowbr-section a:hover { color: var(--sage); }
         body.dark-mode .jowbr-section a { color: #a8b361; }
 
-        /* ── Restriction Callout ─────────────────────────── */
-        /* Uses --light-blue which does NOT flip in dark mode */
+        /* -- Restriction Callout ----------------------------- */
+        /* Uses --light-blue which does NOT flip in dark mode   */
         .jowbr-restriction {
             background: var(--light-blue);
             border-left: 4px solid var(--navy);
@@ -165,7 +107,7 @@
         body.dark-mode .jowbr-restriction { background: #1a2533; color: #c8c0b0; }
         body.dark-mode .jowbr-restriction strong { color: #a8b361; }
 
-        /* ── Two-Path Cards (Volunteer / Adopt) ──────────── */
+        /* -- Two-Path Cards (Volunteer / Adopt) -------------- */
         .jowbr-paths {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -181,10 +123,7 @@
             flex-direction: column;
             gap: 10px;
         }
-        body.dark-mode .jowbr-path {
-            background: #1e1e1e;
-            border-color: #333;
-        }
+        body.dark-mode .jowbr-path { background: #1e1e1e; border-color: #333; }
         .jowbr-path__heading {
             font-family: Georgia, 'Times New Roman', serif;
             font-size: 1.0625rem;
@@ -201,11 +140,10 @@
             flex: 1;
         }
         body.dark-mode .jowbr-path p { color: #a0a0a0; }
-
         .jowbr-path a.btn-search { color: #ffffff; }
         body.dark-mode .jowbr-path a.btn-search { color: #1a1a1a; }
 
-        /* ── Forms / Resources List ──────────────────────── */
+        /* -- Forms / Resources List -------------------------- */
         .jowbr-forms-list {
             list-style: none;
             padding: 0;
@@ -266,86 +204,72 @@
         .jowbr-form-body a:hover { color: var(--sage); }
         body.dark-mode .jowbr-form-body a { color: #a8b361; }
 
-        /* ── Screencasts CTA ─────────────────────────────── */
+        /* -- Screencasts CTA --------------------------------- */
         .jowbr-screencasts {
-            background: var(--white);
-            border: 1px solid #d1caba;
-            border-radius: 6px;
-            padding: 16px 20px;
-            margin-top: 14px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            flex-wrap: wrap;
+            gap: 20px;
+            background: var(--white);
+            border: 1px solid #d1caba;
+            border-left: 4px solid var(--sage);
+            border-radius: 6px;
+            padding: 16px 20px;
+            margin-top: 1.25rem;
         }
-        body.dark-mode .jowbr-screencasts { background: #1e1e1e; border-color: #333; }
+        body.dark-mode .jowbr-screencasts { background: #1e1e1e; border-color: #333; border-left-color: #a8b361; }
         .jowbr-screencasts p {
-            margin: 0;
-            font-size: 0.875rem;
+            font-size: 0.9rem;
             color: var(--charcoal);
+            line-height: 1.5;
+            margin: 0;
+            flex: 1;
         }
         body.dark-mode .jowbr-screencasts p { color: #a0a0a0; }
         .jowbr-screencasts a {
-            display: inline-block;
-            background: var(--navy);
-            color: #ffffff;
+            white-space: nowrap;
             font-size: 0.8125rem;
             font-weight: bold;
-            padding: 8px 18px;
-            border-radius: 4px;
-            text-decoration: none;
-            white-space: nowrap;
-            transition: filter 0.2s;
+            color: var(--navy);
+            text-decoration: underline;
         }
-        .jowbr-screencasts a:hover { filter: brightness(1.15); color: #ffffff; }
-        body.dark-mode .jowbr-screencasts a { background: #0d2a45; }
+        .jowbr-screencasts a:hover { color: var(--sage); }
+        body.dark-mode .jowbr-screencasts a { color: #a8b361; }
 
-        /* ── Data Fields Grid ────────────────────────────── */
+        /* -- Data Fields Grid -------------------------------- */
         .jowbr-fields-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 0;
-            margin-top: 1rem;
-            background: var(--light-blue);
             border: 1px solid #c4d0d6;
             border-radius: 6px;
             overflow: hidden;
+            margin-top: 1rem;
         }
-        body.dark-mode .jowbr-fields-grid { background: #1a2533; border-color: #2a3a4a; }
-
+        body.dark-mode .jowbr-fields-grid { border-color: #2a3a4a; }
         .jowbr-field-item {
+            padding: 10px 14px;
             font-size: 0.8125rem;
             color: var(--charcoal);
-            padding: 8px 12px;
-            border-bottom: 1px solid #c4d0d6;
             border-right: 1px solid #c4d0d6;
-            line-height: 1.4;
+            border-bottom: 1px solid #c4d0d6;
         }
+        body.dark-mode .jowbr-field-item { color: #c0c0c0; border-color: #2a3a4a; }
         .jowbr-field-item:nth-child(4n) { border-right: none; }
         .jowbr-field-item:nth-last-child(-n+4) { border-bottom: none; }
-        body.dark-mode .jowbr-field-item {
-            color: #c8c0b0;
-            border-color: #2a3a4a;
-        }
 
         .jowbr-fields-note {
             font-size: 0.8125rem;
             color: var(--charcoal);
-            font-style: italic;
-            margin-top: 10px;
+            margin-top: 0.75rem;
+            line-height: 1.5;
         }
-        body.dark-mode .jowbr-fields-note { color: #888; }
-        .jowbr-fields-note a { color: var(--navy); font-weight: 600; text-decoration: underline; }
+        body.dark-mode .jowbr-fields-note { color: #a0a0a0; }
+        .jowbr-fields-note a { color: var(--navy); text-decoration: underline dotted; text-decoration-color: var(--sage); }
         .jowbr-fields-note a:hover { color: var(--sage); }
         body.dark-mode .jowbr-fields-note a { color: #a8b361; }
 
-        /* ── Responsive ──────────────────────────────────── */
+        /* -- Responsive -------------------------------------- */
         @media (max-width: 900px) {
             .jg-page-band { padding: 28px 20px; }
-            .jowbr-nav { padding: 0 20px; }
-            .jowbr-stats { padding: 16px 20px; }
-            .jowbr-stat { padding: 10px 20px; }
             .jowbr-content-band { padding: 2rem 1.25rem 3rem; }
             .jowbr-fields-grid { grid-template-columns: repeat(2, 1fr); }
             .jowbr-field-item:nth-child(4n) { border-right: 1px solid #c4d0d6; }
@@ -356,14 +280,11 @@
             body.dark-mode .jowbr-field-item:nth-last-child(-n+4) { border-bottom-color: #2a3a4a; }
         }
         @media (max-width: 640px) {
-            .jowbr-paths { grid-template-columns: 1fr; }
-            .jowbr-stat { border-right: none; border-bottom: 1px solid #c5bca8; width: 50%; }
-            .jowbr-stat:nth-child(odd) { border-right: 1px solid #c5bca8; }
             .jg-page-band h1 { font-size: 1.75rem; }
+            .jowbr-paths { grid-template-columns: 1fr; }
             .jowbr-fields-grid { grid-template-columns: 1fr 1fr; }
             .jowbr-screencasts { flex-direction: column; align-items: flex-start; }
         }
-
     </style>
 </head>
 <body>
@@ -376,41 +297,17 @@
          PAGE TITLE BAND
          ======================================================= -->
     <div class="jg-page-band">
-        <h1>Burial Registry (JOWBR)</h1>
-        <p class="jg-page-band__sub">Contribute Data to the Registry</p>
+        <h1>JOWBR</h1>
+        <h2>The JewishGen Online Worldwide Burial Registry</h2>
+        <p class="jg-page-band__sub">Search millions of Jewish burial records from cemeteries around the world</p>
     </div>
 
     <!-- =======================================================
-         STATS BAR
+         SHARED SUB-NAV COMPONENT
+         Stats bar + section nav injected here.
+         Active link set by JS after fetch resolves.
          ======================================================= -->
-    <div class="jowbr-stats" aria-label="JOWBR database statistics">
-        <div class="jowbr-stat">
-            <span class="jowbr-stat__num">7M+</span>
-            <span class="jowbr-stat__label">Burial Records</span>
-        </div>
-        <div class="jowbr-stat">
-            <span class="jowbr-stat__num">908K+</span>
-            <span class="jowbr-stat__label">Headstone Photos</span>
-        </div>
-        <div class="jowbr-stat">
-            <span class="jowbr-stat__num">12,114</span>
-            <span class="jowbr-stat__label">Cemeteries</span>
-        </div>
-        <div class="jowbr-stat">
-            <span class="jowbr-stat__num">144</span>
-            <span class="jowbr-stat__label">Countries</span>
-        </div>
-    </div>
-
-    <!-- =======================================================
-         SECTION NAV
-         ======================================================= -->
-    <div role="navigation" class="jowbr-nav" aria-label="JOWBR section navigation">
-        <a href="/JG40-Build/JOWBR.html">Search</a>
-        <a href="https://www.jewishgen.org/databases/Cemetery/tree/CemList.php" target="_blank" rel="noopener">Browse Cemeteries</a>
-        <a href="/JG40-Build/jowbr-faq.html">About &amp; FAQ</a>
-        <a href="/JG40-Build/jowbr-contribute.html" class="active">Contribute Data</a>
-    </div>
+    <div id="jowbr-subnav"></div>
 
     <!-- =======================================================
          CONTENT
@@ -497,8 +394,7 @@
 
                 <div class="jowbr-screencasts">
                     <p><strong>Prefer to watch?</strong> JewishGen's screencast series walks through the entire submission process step by step.</p>
-                    <a href="https://www.jewishgen.org/databases/Cemetery/Screencasts"
-                       target="_blank" rel="noopener noreferrer">Watch the Screencasts</a>
+                    <a href="/JG40-Build/JOWBR/screencasts.html">Watch the Screencasts &rarr;</a>
                 </div>
             </section>
 
@@ -541,6 +437,8 @@
 <div id="site-footer"></div>
 
 <script>
+
+    /* -- Component loader ----------------------------------------- */
     function loadComponent(id, file) {
         return fetch(file)
             .then(function(r) {
@@ -553,6 +451,20 @@
             .catch(function(err) { console.warn(err); });
     }
 
+    /* -- Load sub-nav, then set active link ----------------------- */
+    loadComponent('jowbr-subnav', '/JG40-Build/JOWBR/JOWBR_SubNav.html').then(function() {
+        var path = window.location.pathname.replace(/\/index\.html$/, '/');
+        document.querySelectorAll('.jowbr-nav a').forEach(function(a) {
+            var href = a.getAttribute('href');
+            if (!href || !href.startsWith('/')) return;
+            var hrefNorm = href.replace(/\/index\.html$/, '/');
+            if (path === hrefNorm || path === href) {
+                a.classList.add('active');
+            }
+        });
+    });
+
+    /* -- Load header and footer ----------------------------------- */
     Promise.all([
         loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
         loadComponent('site-footer', '/JG40-Build/Footer.html')
@@ -571,6 +483,7 @@
             });
         });
     });
+
 </script>
 
 </body>
