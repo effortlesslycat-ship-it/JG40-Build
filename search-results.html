@@ -28,12 +28,12 @@
             margin: 0 auto;
         }
 
-        /* Match Page 2 table cell tint */
+        /* Card stays white — tint lives only inside accordion rows */
         .jg-search-card {
-            background-color: #f4f8fa;
+            background-color: #ffffff;
         }
         body.dark-mode .jg-search-card {
-            background-color: #161c20;
+            background-color: #1e1e1e;
         }
 
         .sr-card-inner {
@@ -357,8 +357,10 @@
         }
         .db-row:last-child { border-bottom: none; }
         .db-row:hover { background-color: #eaf2f6; }
+        .group-panel .db-row { background-color: #f4f8fa; }
         .group-panel .db-row:nth-child(even) { background-color: #eaf2f6; }
-        body.dark-mode .group-panel .db-row:nth-child(even) { background-color: #161c20; }
+        body.dark-mode .group-panel .db-row { background-color: #161c20; }
+        body.dark-mode .group-panel .db-row:nth-child(even) { background-color: #131a1f; }
         body.dark-mode .db-row { border-color: #2a2a2a; }
         body.dark-mode .db-row:hover { background-color: #1a2533; }
 
@@ -773,7 +775,7 @@
                         </button>
                         <div id="panel-poland" class="group-panel" role="region" aria-labelledby="toggle-poland" hidden>
                             <div class="db-row"><a href="#" class="db-name-link">Krakow Ghetto</a><a href="#" class="db-count-pill sm">List 2 records</a></div>
-                            <div class="db-row"><a href="#" class="db-name-link">Krakow Vital Records: Births</a><a href="https://effortlesslycat-ship-it.github.io/JG40-Build/KrakowWyEx.html#" class="db-count-pill sm">List 2 records</a></div>
+                            <div class="db-row"><a href="#" class="db-name-link">Krakow Vital Records: Births</a><a href="#" class="db-count-pill sm">List 2 records</a></div>
                             <div class="db-row"><a href="#" class="db-name-link">Krakow Vital Records: Marriages</a><a href="#" class="db-count-pill sm">List 12 records</a></div>
                             <div class="db-row"><a href="#" class="db-name-link">Poland: Krakow Marriage Intentions / Banns Records</a><a href="#" class="db-count-pill sm">List 3 records</a></div>
                             <!-- JRI-Poland sub-partner band — replace placeholder with logo img when available -->
