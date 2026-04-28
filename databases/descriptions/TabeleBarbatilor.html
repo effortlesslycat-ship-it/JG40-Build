@@ -13,15 +13,7 @@
 
 <div id="site-header"></div>
 
-<nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="#">JewishGen Home</a>
-    <span aria-hidden="true">›</span>
-    <a href="#">Databases</a>
-    <span aria-hidden="true">›</span>
-    <a href="#">Romania</a>
-    <span aria-hidden="true">›</span>
-    <span aria-current="page">Tabele Barbatilor (1942)</span>
-</nav>
+
 
 <div class="jg-dataset-title-band">
     <div class="jg-dataset-title-inner">
@@ -174,10 +166,16 @@
 
     <article class="jg-dataset-main" aria-label="Dataset description">
         <h2 id="background">Background</h2>
-        <p>The <em>Tabele Barbatilor</em> ("Census of Men") lists were compiled in 1942 under the <strong>Antonescu regime</strong> in Romania. They form a systematic record of the Jewish male population during one of the most dangerous periods of Romanian Jewish history, created for the dual purpose of demographic registration and forced labor assignment.</p>
+        <p>The <em>Tabele Barbatilor</em> ("Census of Men") lists were compiled in 1942 under the
+                <strong>Antonescu regime</strong> in Romania. They form a systematic record of the Jewish male
+                population during one of the most dangerous periods of Romanian Jewish history, created for the
+                dual purpose of demographic registration and forced labor assignment.</p>
+
 
         <div class="jg-callout" role="note">
-            <strong>Source &amp; Acquisition:</strong> The original documents are held in the Archive and Library of the Federation of Jewish Communities of Romania, in Bucharest (Fond #: III 400 E/1942). Copies were obtained in 2000 by <strong>Prof. Ladislau Gyemant</strong>, Director of the Mosche Carmilly Institute of Jewish History at the University of Cluj-Napoca, and were purchased from him by <a href="https://www.jewishgen.org/ROMSIG" target="_blank" rel="noopener">The JewishGen Romania Research Division</a>.
+            <strong>Source &amp; Acquisition:</strong> The original documents are held in the Archive and Library of the Federation of Jewish Communities of Romania, in Bucharest 
+            (Fond #: III 400 E/1942). Copies were obtained in 2000 by <strong>Prof. Ladislau Gyemant</strong>, Director of the Mosche Carmilly Institute of Jewish History at the University of Cluj-Napoca, 
+            and were purchased from him by <a href="https://www.jewishgen.org/ROMSIG" target="_blank" rel="noopener">The JewishGen Romania Research Division</a>.
         </div>
 
         <h2 id="the-lists">The Three Lists</h2>
@@ -221,7 +219,13 @@
         </div>
 
         <h2 id="notes">Research Notes</h2>
-        
+        <p>
+                This database has several features that require context to use effectively.
+                The notes below explain naming conventions, the Romanian education system,
+                profession terminology, and address abbreviations.
+            </p>
+            <!-- Collapsible: Other Names -->
+
         <div class="jg-collapsible">
             <button class="jg-collapsible-trigger" onclick="jgToggleCollapsible(this)" aria-expanded="false">
                 <span>Other Names &amp; Patronyms</span>
@@ -229,10 +233,19 @@
             </button>
             <div class="jg-collapsible-body">
                 <div class="jg-collapsible-inner">
-                    <p>In a number of cases individuals are listed by both nicknames or patronyms, as well as the hereditary name adopted in the 1870s...</p>
+                    <p>In a number of cases individuals are listed by both nicknames or patronyms, as well
+                            as the hereditary name adopted in the 1870s, when surnames were legally required in
+                            Romania. These are listed in the "Name" column, separated by a slash "/" character.
+                            Where a patronym is also given, it is listed separately.</p>
+                    <p>This means a person can be found by either name. For example, an Israel Isaac who
+                            was also known as Israel Kleinman will appear under both names, each with a referral
+                            to the other.</p>
+                        <p>Note that the Romanian prefix <strong>"SIN"</strong> means "son of."
+                        </p>
                 </div>
             </div>
         </div>
+            <!-- Collapsible: Levels of Education -->
 
         <div class="jg-collapsible">
             <button class="jg-collapsible-trigger" onclick="jgToggleCollapsible(this)" aria-expanded="false">
@@ -241,10 +254,35 @@
             </button>
             <div class="jg-collapsible-body">
                 <div class="jg-collapsible-inner">
-                    <p>Romania's educational system was derived primarily from the French model...</p>
+                    <p> Romania's educational system was derived primarily from the French model and does
+                            not map directly to the American system. Terms were translated directly to their
+                            English meanings. Inconsistencies exist because the census covers men who attended
+                            school across many decades and under different occupying powers; rural schools also
+                            differed significantly from urban ones.</p>
+                    <p>In the census, level of schooling is preceded by a number and the abbreviation
+                            <strong>"cl."</strong> (short for <em>clases</em>, equivalent to "grade" or "years").
+                            For example: <em>4 cl. primary</em> = 4 years of primary school;
+                            <em>3 cl. lyceum</em> = 3 years of lyceum (7 total years of schooling).</p>
+                    <p><strong>Key terms used in the database:</strong></p>
+                    <ol>
+                            <li><strong>Primary / Elementary</strong> — Grades 1–4 (rural areas through grade 8)</li>
+                            <li><strong>Gymnasium</strong> — Grades 5–8</li>
+                            <li><strong>Lyceum / Secondary</strong> — Grades 5–12</li>
+                            <li><strong>Commercial / Lower Commercial / Upper Commercial</strong> — Business-type schools (equivalent to US vocational/business schools)</li>
+                            <li><strong>Trade</strong> — Vocational/trade school</li>
+                            <li><strong>Graduate</strong> — Completed 12 years and passed the <em>bacculareat</em> exam (equivalent to high school diploma)</li>
+                            <li><strong>Doctor of xxx</strong> — Attained a PhD</li>
+                            <li><strong>Bachelor of xxx</strong> — Attained a bachelor's degree</li>
+                            <li><strong>Polytechnic</strong> — Engineering/science university equivalent</li>
+                            <li><strong>xxx Faculty</strong> — A discipline-specific school within a university (e.g., <em>facultate de drept</em> = law faculty)</li>
+                            <li><strong>Ciocanul</strong> — A specific Romanian-Jewish lyceum</li>
+                            <li><strong>Cultura</strong> — A specific set of Romanian-Jewish primary/lyceum schools</li>
+                            <li><strong>Complementary</strong> — A school for children with disabilities</li>
+                        </ol>
                 </div>
             </div>
         </div>
+            <!-- Collapsible: Professions -->
 
         <div class="jg-collapsible">
             <button class="jg-collapsible-trigger" onclick="jgToggleCollapsible(this)" aria-expanded="false">
@@ -253,11 +291,15 @@
             </button>
             <div class="jg-collapsible-body">
                 <div class="jg-collapsible-inner">
-                    <p>Professions are entered exactly as the clerks wrote them in 1942...</p>
+                    <p>Professions are entered exactly as the clerks wrote them in 1942, including any
+                            misspellings. It is JewishGen's policy not to correct such entries.</p>
+                    <p>A full <a href="https://www.jewishgen.org/InfoFiles/RomanianOccs.htm" target="_blank" rel="noopener" style="color: var(--navy); font-weight: bold; text-decoration: underline;">Romanian-English occupations translation table</a>
+                            is available on the JewishGen InfoFiles pages.</p>
+
                 </div>
             </div>
         </div>
-
+           <!-- Collapsible: Addresses -->
         <div class="jg-collapsible">
             <button class="jg-collapsible-trigger" onclick="jgToggleCollapsible(this)" aria-expanded="false">
                 <span>Address Terminology</span>
@@ -265,10 +307,38 @@
             </button>
             <div class="jg-collapsible-body">
                 <div class="jg-collapsible-inner">
-                    <p>The following Romanian terms are used in addresses to describe road types...</p>
+                    <p>The following Romanian terms are used in addresses to describe road types:</p>
+                        <table class="address-table" aria-label="Romanian address terminology">
+                            <thead>
+                                <tr>
+                                    <th>Romanian Term</th>
+                                    <th>English Equivalent</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Alee (Alea, Aleea, Al.)</td><td>Drive</td></tr>
+                                <tr><td>Bulevard (Bd., Bul., Bdul.)</td><td>Boulevard</td></tr>
+                                <tr><td>Cale (Cal., Calea)</td><td>Road / Way</td></tr>
+                                <tr><td>Fundatura (Fund.)</td><td>Cul de Sac / Dead End</td></tr>
+                                <tr><td>Palat (Pal.)</td><td>Palace</td></tr>
+                                <tr><td>Parc (Parcul, Pc.)</td><td>Park</td></tr>
+                                <tr><td>Piata (Pta.)</td><td>Market / Square</td></tr>
+                                <tr><td>Prelung (Prel.)</td><td>Oblong</td></tr>
+                                <tr><td>Sosea (Sos.)</td><td>Highway</td></tr>
+                                <tr><td>Splai (Sp., Spl., Splaiul)</td><td>Embankment</td></tr>
+                                <tr><td>Strada (Str.)</td><td>Street</td></tr>
+                                <tr><td>Stradela</td><td>Lane</td></tr>
+                            </tbody>
+                        </table>
+                        <p style="margin-top: 14px;"><strong>Additional address modifiers:</strong></p>
+                        <ul>
+                            <li><strong>bis</strong> — Indicates a second address at the same number (e.g., <em>Vitan 15bis</em> = "the other Vitan 15")</li>
+                            <li><strong>et.#</strong> — Indicates floor number (e.g., <em>Vitan 25et2</em> = Vitan 25, 2nd floor)</li>
+                        </ul>
                 </div>
             </div>
         </div>
+            <!-- Collapsible: Labor -->
 
         <div class="jg-collapsible">
             <button class="jg-collapsible-trigger" onclick="jgToggleCollapsible(this)" aria-expanded="false">
@@ -277,7 +347,17 @@
             </button>
             <div class="jg-collapsible-body">
                 <div class="jg-collapsible-inner">
-                    <p>The following terms appear most frequently in the Assigned Labor column...</p>
+                    <p>The following terms appear most frequently in the Assigned Labor column:</p>
+                        <ul>
+                            <li>
+                                <strong>Proprie / Firma Proprie</strong> — Business owner; likely assigned to
+                                a self-employed person or small shop owner.
+                            </li>
+                            <li>
+                                <strong>C.E.R. / CER / Centrala Evreilor (din Romania)</strong> — The Center
+                                of the Jews of Romania.
+                            </li>
+                        </ul>
                 </div>
             </div>
         </div>
