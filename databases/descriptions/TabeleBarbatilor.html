@@ -138,6 +138,58 @@
     margin-bottom: 10px;
         }
 
+        /* --- Research Drawers (Accordions) --- */
+.research-drawer {
+    background: var(--white);
+    border-radius: 6px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border: 1px solid #dce5ea;
+    overflow: hidden;
+}
+
+body.dark-mode .research-drawer { background: #1e1e1e; border-color: #333; }
+
+.research-drawer summary {
+    padding: 18px 25px;
+    cursor: pointer;
+    font-family: Georgia, serif;
+    font-size: 17px;
+    color: var(--navy);
+    font-weight: bold;
+    list-style: none; /* Hides default arrow */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s;
+}
+
+body.dark-mode .research-drawer summary { color: #e0e0e0; }
+.research-drawer summary:hover { background: #f8f9fa; }
+body.dark-mode .research-drawer summary:hover { background: #252525; }
+
+/* Custom +/- Icon */
+.research-drawer summary::after { content: '+'; font-family: sans-serif; font-weight: 300; font-size: 22px; color: var(--sage); }
+.research-drawer[open] summary::after { content: '−'; }
+
+.drawer-content {
+    padding: 0 25px 25px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--charcoal);
+}
+
+body.dark-mode .drawer-content { color: #c8c0b0; }
+
+/* Fix for the Summary Text line */
+.total-summary-line {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    margin: 30px 0;
+    text-align: center;
+}
+
         @media (max-width: 900px) {
             .page-body { flex-direction: column; padding: 20px; }
             .dataset-sidebar { width: 100%; }
@@ -282,8 +334,8 @@
                     <div style="font-weight: bold; font-size: 12px;">71 pages · 1,229 records</div>
                 </div>
             </div>
-        <p>This database contains all <strong>20,296 records</strong> from T1, T2, and T3 combined.</p>
-            <hr class="jg-hr-navy">
+<div class="total-summary-line">
+    This database contains all <strong>20,296 records</strong> from T1, T2, and T3 combined.</div>            <hr class="jg-hr-navy">
 
             <span class="section-heading">Fields Recorded</span>
             <div class="green-accent-line"></div>
@@ -301,122 +353,100 @@
 
             <hr class="jg-hr-navy">
 
-           <div class="section-heading">Research Notes</div>
-            <div class="green-accent-line"></div>
-                       
-             <p>This database has several features that require context to use effectively.
-                The notes below explain naming conventions, the Romanian education system,
-                profession terminology, and address abbreviations.</p>
-            <!-- Collapsible: Other Names -->
+           <span class="section-heading">Research Notes</span>
+<div class="green-accent-line"></div>
 
-            <div class="white-card">
-                <h4 style="font-family: Georgia; color: var(--navy); margin-bottom: 5px;">Other Names & Patronyms</h4>
-                <div class="green-accent-line" style="width: 30px;"></div>
-                <p style="font-size: 14px;">In a number of cases individuals are listed by both nicknames or patronyms, as well
-                            as the hereditary name adopted in the 1870s, when surnames were legally required in
-                            Romania. These are listed in the "Name" column, separated by a slash "/" character.
-                            Where a patronym is also given, it is listed separately.</p>
-                    <p>This means a person can be found by either name. For example, an Israel Isaac who
-                            was also known as Israel Kleinman will appear under both names, each with a referral
-                            to the other.</p>
-                        <p>Note that the Romanian prefix <strong>"SIN"</strong> means "son of."
-                        </p>
-            </div>
-            <!-- Collapsible: Levels of Education -->
+<p style="margin-bottom: 25px; font-size: 15px; line-height: 1.7;">
+    This database has several features that require context to use effectively. 
+    The notes below explain naming conventions, the Romanian education system, 
+    profession terminology, and address abbreviations.
+</p>
 
-            <div class="white-card">
-                <h4 style="font-family: Georgia; color: var(--navy); margin-bottom: 5px;">Levels of Education</h4>
-                <div class="green-accent-line" style="width: 30px;"></div>
-                <p style="font-size: 14px;">Romania's educational system was derived primarily from the French model and does
-                            not map directly to the American system. Terms were translated directly to their
-                            English meanings. Inconsistencies exist because the census covers men who attended
-                            school across many decades and under different occupying powers; rural schools also
-                            differed significantly from urban ones.</p>
-                    <p>In the census, level of schooling is preceded by a number and the abbreviation
-                            <strong>"cl."</strong> (short for <em>clases</em>, equivalent to "grade" or "years").
-                            For example: <em>4 cl. primary</em> = 4 years of primary school;
-                            <em>3 cl. lyceum</em> = 3 years of lyceum (7 total years of schooling).</p>
-                    <p><strong>Key terms used in the database:</strong></p>
-                    <ol>
-                            <li><strong>Primary / Elementary</strong> — Grades 1–4 (rural areas through grade 8)</li>
-                            <li><strong>Gymnasium</strong> — Grades 5–8</li>
-                            <li><strong>Lyceum / Secondary</strong> — Grades 5–12</li>
-                            <li><strong>Commercial / Lower Commercial / Upper Commercial</strong> — Business-type schools (equivalent to US vocational/business schools)</li>
-                            <li><strong>Trade</strong> — Vocational/trade school</li>
-                            <li><strong>Graduate</strong> — Completed 12 years and passed the <em>bacculareat</em> exam (equivalent to high school diploma)</li>
-                            <li><strong>Doctor of xxx</strong> — Attained a PhD</li>
-                            <li><strong>Bachelor of xxx</strong> — Attained a bachelor's degree</li>
-                            <li><strong>Polytechnic</strong> — Engineering/science university equivalent</li>
-                            <li><strong>xxx Faculty</strong> — A discipline-specific school within a university (e.g., <em>facultate de drept</em> = law faculty)</li>
-                            <li><strong>Ciocanul</strong> — A specific Romanian-Jewish lyceum</li>
-                            <li><strong>Cultura</strong> — A specific set of Romanian-Jewish primary/lyceum schools</li>
-                            <li><strong>Complementary</strong> — A school for children with disabilities</li>
-                        </ol>
-                </div>
-            <!-- Collapsible: Professions -->
+<details class="research-drawer">
+    <summary>Other Names & Patronyms</summary>
+    <div class="drawer-content">
+        <p>In a number of cases, individuals are listed by both nicknames or patronyms, as well as the hereditary name adopted in the 1870s, when surnames were legally required in Romania. These are listed in the "Name" column, separated by a slash "/" character. Where a patronym is also given, it is listed separately.</p>
+        <p>This means a person can be found by either name. For example, an Israel Isaac who was also known as Israel Kleinman will appear under both names, each with a referral to the other.</p>
+        <p>Note that the Romanian prefix <strong>"SIN"</strong> means "son of."</p>
+    </div>
+</details>
 
+<details class="research-drawer">
+    <summary>Levels of Education</summary>
+    <div class="drawer-content">
+        <p>Romania's educational system was derived primarily from the French model and does not map directly to the American system. Terms were translated directly to their English meanings. Inconsistencies exist because the census covers men who attended school across many decades and under different occupying powers; rural schools also differed significantly from urban ones.</p>
+        <p>In the census, level of schooling is preceded by a number and the abbreviation <strong>"cl."</strong> (short for <em>clases</em>, equivalent to "grade" or "years"). For example: <em>4 cl. primary</em> = 4 years of primary school; <em>3 cl. lyceum</em> = 3 years of lyceum (7 total years of schooling).</p>
+        <p><strong>Key terms used in the database:</strong></p>
+        <ol style="margin-top: 10px;">
+            <li><strong>Primary / Elementary</strong> — Grades 1–4 (rural areas through grade 8)</li>
+            <li><strong>Gymnasium</strong> — Grades 5–8</li>
+            <li><strong>Lyceum / Secondary</strong> — Grades 5–12</li>
+            <li><strong>Commercial / Lower Commercial / Upper Commercial</strong> — Business-type schools</li>
+            <li><strong>Trade</strong> — Vocational/trade school</li>
+            <li><strong>Graduate</strong> — Completed 12 years and passed the <em>bacculareat</em> exam</li>
+            <li><strong>Doctor of xxx</strong> — Attained a PhD</li>
+            <li><strong>Bachelor of xxx</strong> — Attained a bachelor's degree</li>
+            <li><strong>Polytechnic</strong> — Engineering/science university equivalent</li>
+            <li><strong>xxx Faculty</strong> — A discipline-specific school within a university</li>
+            <li><strong>Ciocanul</strong> — A specific Romanian-Jewish lyceum</li>
+            <li><strong>Cultura</strong> — A specific set of Romanian-Jewish primary/lyceum schools</li>
+            <li><strong>Complementary</strong> — A school for children with disabilities</li>
+        </ol>
+    </div>
+</details>
 
-            <div class="white-card">
-                <h4 style="font-family: Georgia; color: var(--navy); margin-bottom: 5px;">Professions</h4>
-                <div class="green-accent-line" style="width: 30px;"></div>
-                <p style="font-size: 14px;">Professions are entered exactly as the clerks wrote them in 1942, including any
-                            misspellings. It is JewishGen's policy not to correct such entries.</p>
-                    <p>A full <a href="https://www.jewishgen.org/InfoFiles/RomanianOccs.htm" target="_blank" rel="noopener" style="color: var(--navy); font-weight: bold; text-decoration: underline;">
-                        Romanian-English occupations translation table</a> is available on the JewishGen InfoFiles pages.</p>
-            </div>
+<details class="research-drawer">
+    <summary>Professions</summary>
+    <div class="drawer-content">
+        <p>Professions are entered exactly as the clerks wrote them in 1942, including any misspellings. It is JewishGen's policy not to correct such entries.</p>
+        <p>A full <a href="https://www.jewishgen.org/InfoFiles/RomanianOccs.htm" target="_blank" rel="noopener" style="color: var(--navy); font-weight: bold; text-decoration: underline;">Romanian-English occupations translation table</a> is available on the JewishGen InfoFiles pages.</p>
+    </div>
+</details>
 
-           <!-- Collapsible: Addresses -->
+<details class="research-drawer">
+    <summary>Addresses</summary>
+    <div class="drawer-content">
+        <p>The following Romanian terms are used in addresses to describe road types:</p>
+        <table class="address-table" style="margin: 15px 0;">
+            <thead>
+                <tr>
+                    <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--navy);">Romanian Term</th>
+                    <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--navy);">English Equivalent</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Alee (Alea, Aleea, Al.)</td><td>Drive</td></tr>
+                <tr><td>Bulevard (Bd., Bul., Bdul.)</td><td>Boulevard</td></tr>
+                <tr><td>Cale (Cal., Calea)</td><td>Road / Way</td></tr>
+                <tr><td>Fundatura (Fund.)</td><td>Cul de Sac / Dead End</td></tr>
+                <tr><td>Palat (Pal.)</td><td>Palace</td></tr>
+                <tr><td>Parc (Parcul, Pc.)</td><td>Park</td></tr>
+                <tr><td>Piata (Pta.)</td><td>Market / Square</td></tr>
+                <tr><td>Prelung (Prel.)</td><td>Oblong</td></tr>
+                <tr><td>Sosea (Sos.)</td><td>Highway</td></tr>
+                <tr><td>Splai (Sp., Spl., Splaiul)</td><td>Embankment</td></tr>
+                <tr><td>Strada (Str.)</td><td>Street</td></tr>
+                <tr><td>Stradela</td><td>Lane</td></tr>
+            </tbody>
+        </table>
+        <p><strong>Additional address modifiers:</strong></p>
+        <ul style="margin-top: 10px;">
+            <li><strong>bis</strong> — Indicates a second address at the same number</li>
+            <li><strong>et.#</strong> — Indicates floor number (e.g., <em>et2</em> = 2nd floor)</li>
+        </ul>
+    </div>
+</details>
 
-            <div class="white-card">
-                <h4 style="font-family: Georgia; color: var(--navy); margin-bottom: 5px;">Addresses</h4>
-                <div class="green-accent-line" style="width: 30px;"></div>
-                <p style="font-size: 14px;">The following Romanian terms are used in addresses to describe road types:</p>
-                        <table class="address-table" aria-label="Romanian address terminology">
-                            <thead>
-                                <tr>
-                                    <th>Romanian Term</th>
-                                    <th>English Equivalent</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>Alee (Alea, Aleea, Al.)</td><td>Drive</td></tr>
-                                <tr><td>Bulevard (Bd., Bul., Bdul.)</td><td>Boulevard</td></tr>
-                                <tr><td>Cale (Cal., Calea)</td><td>Road / Way</td></tr>
-                                <tr><td>Fundatura (Fund.)</td><td>Cul de Sac / Dead End</td></tr>
-                                <tr><td>Palat (Pal.)</td><td>Palace</td></tr>
-                                <tr><td>Parc (Parcul, Pc.)</td><td>Park</td></tr>
-                                <tr><td>Piata (Pta.)</td><td>Market / Square</td></tr>
-                                <tr><td>Prelung (Prel.)</td><td>Oblong</td></tr>
-                                <tr><td>Sosea (Sos.)</td><td>Highway</td></tr>
-                                <tr><td>Splai (Sp., Spl., Splaiul)</td><td>Embankment</td></tr>
-                                <tr><td>Strada (Str.)</td><td>Street</td></tr>
-                                <tr><td>Stradela</td><td>Lane</td></tr>
-                            </tbody>
-                        </table>
-                        <p style="margin-top: 14px;"><strong>Additional address modifiers:</strong></p>
-                        <ul>
-                            <li><strong>bis</strong> — Indicates a second address at the same number (e.g., <em>Vitan 15bis</em> = "the other Vitan 15")</li>
-                            <li><strong>et.#</strong> — Indicates floor number (e.g., <em>Vitan 25et2</em> = Vitan 25, 2nd floor)</li>
-                        </ul>
-            </div>
-         <!-- Collapsible: Labor -->
-
-
-            <div class="white-card">
-                <h4 style="font-family: Georgia; color: var(--navy); margin-bottom: 5px;">Labor</h4>
-                <div class="green-accent-line" style="width: 30px;"></div>
-                <p style="font-size: 14px;">The following terms appear most frequently in the Assigned Labor column:</p>
-                        <ul>
-                            <li>
-                                <strong>Proprie / Firma Proprie</strong> — Business owner; likely assigned to
-                                a self-employed person or small shop owner.
-                            </li>
-                            <li>
-                                <strong>C.E.R. / CER / Centrala Evreilor (din Romania)</strong> — The Center
-                                of the Jews of Romania.
-                            </li>
-                        </ul>
-            </div>
+<details class="research-drawer">
+    <summary>Labor</summary>
+    <div class="drawer-content">
+        <p>The following terms appear most frequently in the Assigned Labor column:</p>
+        <ul style="margin-top: 10px;">
+            <li><strong>Proprie / Firma Proprie</strong> — Business owner; likely self-employed.</li>
+            <li><strong>C.E.R. / CER / Centrala Evreilor</strong> — The Center of the Jews of Romania.</li>
+        </ul>
+    </div>
+</details>
 
             <div class="white-card">
                 <h4 style="font-family: Georgia; color: var(--navy); margin: 0 0 5px;">Acknowledgements</h4>
