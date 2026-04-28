@@ -9,385 +9,349 @@
     
     <link rel="stylesheet" href="/JG40-Build/jg-global.css">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
 <div id="site-header"></div>
 
-
-
-<div class="jg-dataset-title-band">
-    <div class="jg-dataset-title-inner">
-        <div class="jg-record-type-tag">Census Records · Romania · Holocaust</div>
-        <h1>Tabele Barbatilor (1942)</h1>
-        <p class="jg-dataset-subtitle">Romania &nbsp;·&nbsp; 20,296 Records</p>
+<div style="background-color: var(--ecru); border-bottom: 1px solid #d1caba;">
+    <div class="container-fluid px-4 px-lg-5 py-2" style="max-width: 1400px;">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0" style="font-size: 13px;">
+                <li class="breadcrumb-item"><a href="#" style="color: var(--navy); font-weight: bold;">JewishGen Home</a></li>
+                <li class="breadcrumb-item"><a href="#" style="color: var(--navy); font-weight: bold;">Databases</a></li>
+                <li class="breadcrumb-item"><a href="#" style="color: var(--navy); font-weight: bold;">Romania</a></li>
+                <li class="breadcrumb-item active" aria-current="page" style="color: var(--charcoal); opacity: 0.7;">Tabele Barbatilor (1942)</li>
+            </ol>
+        </nav>
     </div>
 </div>
 
-<main class="jg-dataset-layout">
+<div class="jg-search-hero">
+    <div class="jg-search-hero__inner text-center">
+        <span class="badge mb-3" style="background-color: var(--sage); font-size: 11px; padding: 6px 12px; text-transform: uppercase; letter-spacing: 1.5px;">Census Records · Romania · Holocaust</span>
+        <div class="jg-search-hero__heading">
+            <h1>Tabele Barbatilor (1942)</h1>
+            <p class="lede">Romania &nbsp;·&nbsp; 20,296 Records</p>
+        </div>
+    </div>
+</div>
 
-    <aside class="jg-dataset-sidebar" aria-label="Dataset metadata">
-        <a href="#" class="jg-back-link" aria-label="Back to Romania databases">
-            ← Back to Romania Databases
-        </a>
+<div class="container-fluid px-4 px-lg-5 py-5 flex-grow-1" style="max-width: 1400px;">
+    <div class="row gx-5">
+        
+        <aside class="col-lg-4 col-xl-3 mb-5">
+            <a href="#" style="color: var(--navy); font-weight: bold; font-size: 14px; text-decoration: underline dotted; display: inline-block; margin-bottom: 25px;">
+                ← Back to Romania Databases
+            </a>
 
-        <div class="jg-meta-card" role="region" aria-label="At a glance">
-            <h3>At a Glance</h3>
-            
-            <div class="jg-meta-row">
-                <span class="jg-meta-icon" aria-hidden="true">
-                    <img src="/JG40-Build/databases/DateReg.png" class="light-logo" alt="">
-                    <img src="/JG40-Build/databases/DateDark.png" class="dark-logo" alt="">
-                </span>
-                <div>
-                    <span class="jg-meta-label">Date</span>
-                    <span class="jg-meta-value">1942</span>
+            <div class="jg-card mb-4">
+                <h3 style="color: var(--navy); border-bottom: 2px solid var(--sage); padding-bottom: 8px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">At a Glance</h3>
+                
+                <div class="d-flex align-items-start mb-3 mt-3">
+                    <div class="me-3" style="width: 20px;"><img src="/JG40-Build/databases/DateReg.png" class="img-fluid light-logo" alt=""><img src="/JG40-Build/databases/DateDark.png" class="img-fluid dark-logo" alt=""></div>
+                    <div>
+                        <small class="d-block text-muted text-uppercase mb-1" style="font-size: 11px; letter-spacing: 1px;">Date</small>
+                        <strong style="color: var(--navy); font-size: 15px;">1942</strong>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="jg-meta-row">
-                <span class="jg-meta-icon" aria-hidden="true">
-                    <img src="/JG40-Build/databases/RegionReg.png" class="light-logo" alt="">
-                    <img src="/JG40-Build/databases/RegionDark.png" class="dark-logo" alt="">
-                </span>
-                <div>
-                    <span class="jg-meta-label">Region</span>
-                    <span class="jg-meta-value">Romania (all counties; Bucharest focus for T2 &amp; T3)</span>
+
+                <div class="d-flex align-items-start mb-3">
+                    <div class="me-3" style="width: 20px;"><img src="/JG40-Build/databases/RegionReg.png" class="img-fluid light-logo" alt=""><img src="/JG40-Build/databases/RegionDark.png" class="img-fluid dark-logo" alt=""></div>
+                    <div>
+                        <small class="d-block text-muted text-uppercase mb-1" style="font-size: 11px; letter-spacing: 1px;">Region</small>
+                        <strong style="color: var(--navy); font-size: 15px;">Romania (all counties; Bucharest focus for T2 &amp; T3)</strong>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="jg-meta-row">
-                <span class="jg-meta-icon" aria-hidden="true">
-                    <img src="/JG40-Build/databases/TotalReg.png" class="light-logo" alt="">
-                    <img src="/JG40-Build/databases/TotalDark.png" class="dark-logo" alt="">
-                </span>
-                <div class="jg-meta-full-width">
-                    <span class="jg-meta-label">Total Records</span>
-                    <span class="jg-meta-value">20,296</span>
-                    <div class="jg-meta-split-grid">
-                        <div class="jg-meta-split-item">
-                            <div class="jg-meta-split-label">T1</div>
-                            <div class="jg-meta-split-val">10,574</div>
-                        </div>
-                        <div class="jg-meta-split-item">
-                            <div class="jg-meta-split-label">T2</div>
-                            <div class="jg-meta-split-val">8,493</div>
-                        </div>
-                        <div class="jg-meta-split-item">
-                            <div class="jg-meta-split-label">T3</div>
-                            <div class="jg-meta-split-val">1,229</div>
+
+                <div class="d-flex align-items-start mb-3">
+                    <div class="me-3" style="width: 20px;"><img src="/JG40-Build/databases/TotalReg.png" class="img-fluid light-logo" alt=""><img src="/JG40-Build/databases/TotalDark.png" class="img-fluid dark-logo" alt=""></div>
+                    <div class="w-100">
+                        <small class="d-block text-muted text-uppercase mb-1" style="font-size: 11px; letter-spacing: 1px;">Total Records</small>
+                        <strong style="color: var(--navy); font-size: 15px;">20,296</strong>
+                        <div class="row g-2 mt-2 text-center">
+                            <div class="col"><div class="p-2 rounded" style="background-color: var(--light-blue);"><small class="d-block text-muted text-uppercase" style="font-size: 10px; letter-spacing: 1px;">T1</small><strong style="color: var(--navy); font-size: 14px;">10,574</strong></div></div>
+                            <div class="col"><div class="p-2 rounded" style="background-color: var(--light-blue);"><small class="d-block text-muted text-uppercase" style="font-size: 10px; letter-spacing: 1px;">T2</small><strong style="color: var(--navy); font-size: 14px;">8,493</strong></div></div>
+                            <div class="col"><div class="p-2 rounded" style="background-color: var(--light-blue);"><small class="d-block text-muted text-uppercase" style="font-size: 10px; letter-spacing: 1px;">T3</small><strong style="color: var(--navy); font-size: 14px;">1,229</strong></div></div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="jg-meta-row">
-                <span class="jg-meta-icon" aria-hidden="true">
-                    <img src="/JG40-Build/databases/LangReg.png" class="light-logo" alt="">
-                    <img src="/JG40-Build/databases/LangDark.png" class="dark-logo" alt="">
-                </span>
-                <div>
-                    <span class="jg-meta-label">Source Language</span>
-                    <span class="jg-meta-value">Romanian</span>
+
+                <div class="d-flex align-items-start mb-3">
+                    <div class="me-3" style="width: 20px;"><img src="/JG40-Build/databases/LangReg.png" class="img-fluid light-logo" alt=""><img src="/JG40-Build/databases/LangDark.png" class="img-fluid dark-logo" alt=""></div>
+                    <div>
+                        <small class="d-block text-muted text-uppercase mb-1" style="font-size: 11px; letter-spacing: 1px;">Source Language</small>
+                        <strong style="color: var(--navy); font-size: 15px;">Romanian</strong>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-start mb-3">
+                    <div class="me-3" style="width: 20px;"><img src="/JG40-Build/databases/TypeReg.png" class="img-fluid light-logo" alt=""><img src="/JG40-Build/databases/TypeDark.png" class="img-fluid dark-logo" alt=""></div>
+                    <div>
+                        <small class="d-block text-muted text-uppercase mb-1" style="font-size: 11px; letter-spacing: 1px;">Record Type</small>
+                        <strong style="color: var(--navy); font-size: 15px;">Forced Labor Census</strong>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-start mb-3">
+                    <div class="me-3" style="width: 20px;"><img src="/JG40-Build/databases/SourceReg.png" class="img-fluid light-logo" alt=""><img src="/JG40-Build/databases/SourceDark.png" class="img-fluid dark-logo" alt=""></div>
+                    <div>
+                        <small class="d-block text-muted text-uppercase mb-1" style="font-size: 11px; letter-spacing: 1px;">Source Archive</small>
+                        <strong style="color: var(--navy); font-size: 15px;">Federation of Jewish Communities of Romania, Bucharest</strong>
+                        <div class="mt-1 text-muted" style="font-size: 12px;">Fond #: III 400 E/1942</div>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-start">
+                    <div class="me-3" style="width: 20px;"><img src="/JG40-Build/databases/UpdatedReg.png" class="img-fluid light-logo" alt=""><img src="/JG40-Build/databases/UpdatedDark.png" class="img-fluid dark-logo" alt=""></div>
+                    <div>
+                        <small class="d-block text-muted text-uppercase mb-1" style="font-size: 11px; letter-spacing: 1px;">Last Updated</small>
+                        <strong style="color: var(--navy); font-size: 15px;">November 2004</strong>
+                    </div>
                 </div>
             </div>
-            
-            <div class="jg-meta-row">
-                <span class="jg-meta-icon" aria-hidden="true">
-                    <img src="/JG40-Build/databases/TypeReg.png" class="light-logo" alt="">
-                    <img src="/JG40-Build/databases/TypeDark.png" class="dark-logo" alt="">
-                </span>
-                <div>
-                    <span class="jg-meta-label">Record Type</span>
-                    <span class="jg-meta-value">Forced Labor Census</span>
+
+            <div class="jg-search-card mb-4 border-0 p-4" style="background-color: var(--navy); border-radius: 8px;">
+                <div class="jg-search-card__header mb-3">
+                    <h2 style="color: var(--white); font-size: 16px; font-family: inherit; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Search This Dataset</h2>
                 </div>
-            </div>
-            
-            <div class="jg-meta-row">
-                <span class="jg-meta-icon" aria-hidden="true">
-                    <img src="/JG40-Build/databases/SourceReg.png" class="light-logo" alt="">
-                    <img src="/JG40-Build/databases/SourceDark.png" class="dark-logo" alt="">
-                </span>
-                <div>
-                    <span class="jg-meta-label">Source Archive</span>
-                    <span class="jg-meta-value">Federation of Jewish Communities of Romania, Bucharest<br>
-                        <span class="jg-meta-subvalue">Fond #: III 400 E/1942</span>
-                    </span>
-                </div>
-            </div>
-            
-            <div class="jg-meta-row">
-                <span class="jg-meta-icon" aria-hidden="true">
-                    <img src="/JG40-Build/databases/UpdatedReg.png" class="light-logo" alt="">
-                    <img src="/JG40-Build/databases/UpdatedDark.png" class="dark-logo" alt="">
-                </span>
-                <div>
-                    <span class="jg-meta-label">Last Updated</span>
-                    <span class="jg-meta-value">November 2004</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="jg-dataset-search" role="search" aria-label="Search this dataset">
-            <h3>Search This Dataset</h3>
-            <label for="dataset-search-input" class="jg-dataset-search-label">SEARCH TERM (SURNAME OR GIVEN NAME)</label>
-            <input type="text" id="dataset-search-input" placeholder="e.g., Goldstein, Avram…" aria-label="Enter a name to search the Tabele Barbatilor database">
-            <button class="jg-btn-dataset-search" aria-label="Search the Tabele Barbatilor database">Search This Database</button>
-            <p class="jg-dataset-search-note">
-                Or search across all records in the <a href="https://www.jewishgen.org/databases/Romania/" target="_blank" rel="noopener">Romania Database</a> or the <a href="https://www.jewishgen.org/databases/all/" target="_blank" rel="noopener">Unified Search</a>.
-            </p>
-        </div>
-
-        <div class="jg-meta-card jg-meta-card--donate">
-            <h3>Support This Research</h3>
-            <p>The Romania Research Division relies on donations to make records like these freely available.</p>
-            <a href="https://www.jewishgen.org/jewishgen-erosity/" target="_blank" rel="noopener" class="jg-btn jg-btn--secondary jg-btn--full">Donate Today</a>
-        </div>
-
-        <div class="jg-contributor-card" role="region" aria-label="Contributors">
-            <h3>Contributors</h3>
-            <div class="jg-contributor-group">
-                <span class="jg-contributor-label">Project Coordinator</span>
-                <div class="jg-contributor-names">Terry Lasky</div>
-            </div>
-            <div class="jg-contributor-group">
-                <span class="jg-contributor-label">Data Input</span>
-                <div class="jg-contributor-names">Ellen Renck, Paula Zieselman, Israel Rabin, Ina Margulis, Harry Green, Terry Lasky</div>
-            </div>
-            <div class="jg-contributor-group">
-                <span class="jg-contributor-label">Validation</span>
-                <div class="jg-contributor-names">Paula Zieselman, Rony Shahan, Dr. Artur Hecht, Israel Rabin</div>
-            </div>
-            <div class="jg-contributor-group">
-                <span class="jg-contributor-label">Translation Assistance</span>
-                <div class="jg-contributor-names">Prof. Ladislau Gyemant, Susanna Vendel, Dr. Marcel Bratu</div>
-            </div>
-        </div>
-    </aside>
-
-    <article class="jg-dataset-main" aria-label="Dataset description">
-        <h2 id="background">Background</h2>
-        <p>The <em>Tabele Barbatilor</em> ("Census of Men") lists were compiled in 1942 under the
-                <strong>Antonescu regime</strong> in Romania. They form a systematic record of the Jewish male
-                population during one of the most dangerous periods of Romanian Jewish history, created for the
-                dual purpose of demographic registration and forced labor assignment.</p>
-
-
-        <div class="jg-callout" role="note">
-            <strong>Source &amp; Acquisition:</strong> The original documents are held in the Archive and Library of the Federation of Jewish Communities of Romania, in Bucharest 
-            (Fond #: III 400 E/1942). Copies were obtained in 2000 by <strong>Prof. Ladislau Gyemant</strong>, Director of the Mosche Carmilly Institute of Jewish History at the University of Cluj-Napoca, 
-            and were purchased from him by <a href="https://www.jewishgen.org/ROMSIG" target="_blank" rel="noopener">The JewishGen Romania Research Division</a>.
-        </div>
-
-        <h2 id="the-lists">The Three Lists</h2>
-        <p>There are three separate census lists, each covering a distinct age group and purpose:</p>
-        
-        <div class="jg-list-grid" role="list">
-            <div class="jg-list-card" role="listitem">
-                <span class="jg-list-tag">T1</span>
-                <h4>Born 1881–1892 (Age 50+)</h4>
-                <p>Nationwide. Men above labor age, exempt from forced labor camps due to age. Covers all counties and towns of Romania.</p>
-                <div class="jg-list-count">350 pages · 10,574 records</div>
-            </div>
-            <div class="jg-list-card" role="listitem">
-                <span class="jg-list-tag">T2</span>
-                <h4>Born 1893–1921 (Ages 21–50)</h4>
-                <p>Bucharest only. Men assigned to labor details, typically working in the businesses of non-Jews.</p>
-                <div class="jg-list-count">352 pages · 8,493 records</div>
-            </div>
-            <div class="jg-list-card" role="listitem">
-                <span class="jg-list-tag">T3</span>
-                <h4>Born June 1926 – May 1928 (Ages 15–16)</h4>
-                <p>Bucharest only. Boys, many still in school. Not placed in labor details.</p>
-                <div class="jg-list-count">71 pages · 1,229 records</div>
-            </div>
-        </div>
-
-        <p>This database contains all <strong>20,296 records</strong> from T1, T2, and T3 combined.</p>
-
-        <h2 id="fields">Fields Recorded</h2>
-        <div class="jg-field-list" role="list" aria-label="Database fields">
-            <div class="jg-field-item" role="listitem">Surname &amp; Given Name</div>
-            <div class="jg-field-item" role="listitem">Birthplace &amp; County</div>
-            <div class="jg-field-item" role="listitem">Birth Date</div>
-            <div class="jg-field-item" role="listitem">Father's Given Name</div>
-            <div class="jg-field-item" role="listitem">Mother's Given Name</div>
-            <div class="jg-field-item" role="listitem">Level of Education</div>
-            <div class="jg-field-item" role="listitem">Profession / Occupation</div>
-            <div class="jg-field-item" role="listitem">Residence / Address</div>
-            <div class="jg-field-item" role="listitem">Assigned Labor Detail</div>
-            <div class="jg-field-item" role="listitem">Census Number</div>
-        </div>
-
-        <h2 id="notes">Research Notes</h2>
-        <p>
-                This database has several features that require context to use effectively.
-                The notes below explain naming conventions, the Romanian education system,
-                profession terminology, and address abbreviations.
-            </p>
-            <!-- Collapsible: Other Names -->
-
-        <div class="jg-collapsible">
-            <button class="jg-collapsible-trigger" onclick="jgToggleCollapsible(this)" aria-expanded="false">
-                <span>Other Names &amp; Patronyms</span>
-                <span class="jg-chevron" aria-hidden="true">▼</span>
-            </button>
-            <div class="jg-collapsible-body">
-                <div class="jg-collapsible-inner">
-                    <p>In a number of cases individuals are listed by both nicknames or patronyms, as well
-                            as the hereditary name adopted in the 1870s, when surnames were legally required in
-                            Romania. These are listed in the "Name" column, separated by a slash "/" character.
-                            Where a patronym is also given, it is listed separately.</p>
-                    <p>This means a person can be found by either name. For example, an Israel Isaac who
-                            was also known as Israel Kleinman will appear under both names, each with a referral
-                            to the other.</p>
-                        <p>Note that the Romanian prefix <strong>"SIN"</strong> means "son of."
-                        </p>
-                </div>
-            </div>
-        </div>
-            <!-- Collapsible: Levels of Education -->
-
-        <div class="jg-collapsible">
-            <button class="jg-collapsible-trigger" onclick="jgToggleCollapsible(this)" aria-expanded="false">
-                <span>Levels of Education</span>
-                <span class="jg-chevron" aria-hidden="true">▼</span>
-            </button>
-            <div class="jg-collapsible-body">
-                <div class="jg-collapsible-inner">
-                    <p> Romania's educational system was derived primarily from the French model and does
-                            not map directly to the American system. Terms were translated directly to their
-                            English meanings. Inconsistencies exist because the census covers men who attended
-                            school across many decades and under different occupying powers; rural schools also
-                            differed significantly from urban ones.</p>
-                    <p>In the census, level of schooling is preceded by a number and the abbreviation
-                            <strong>"cl."</strong> (short for <em>clases</em>, equivalent to "grade" or "years").
-                            For example: <em>4 cl. primary</em> = 4 years of primary school;
-                            <em>3 cl. lyceum</em> = 3 years of lyceum (7 total years of schooling).</p>
-                    <p><strong>Key terms used in the database:</strong></p>
-                    <ol>
-                            <li><strong>Primary / Elementary</strong> — Grades 1–4 (rural areas through grade 8)</li>
-                            <li><strong>Gymnasium</strong> — Grades 5–8</li>
-                            <li><strong>Lyceum / Secondary</strong> — Grades 5–12</li>
-                            <li><strong>Commercial / Lower Commercial / Upper Commercial</strong> — Business-type schools (equivalent to US vocational/business schools)</li>
-                            <li><strong>Trade</strong> — Vocational/trade school</li>
-                            <li><strong>Graduate</strong> — Completed 12 years and passed the <em>bacculareat</em> exam (equivalent to high school diploma)</li>
-                            <li><strong>Doctor of xxx</strong> — Attained a PhD</li>
-                            <li><strong>Bachelor of xxx</strong> — Attained a bachelor's degree</li>
-                            <li><strong>Polytechnic</strong> — Engineering/science university equivalent</li>
-                            <li><strong>xxx Faculty</strong> — A discipline-specific school within a university (e.g., <em>facultate de drept</em> = law faculty)</li>
-                            <li><strong>Ciocanul</strong> — A specific Romanian-Jewish lyceum</li>
-                            <li><strong>Cultura</strong> — A specific set of Romanian-Jewish primary/lyceum schools</li>
-                            <li><strong>Complementary</strong> — A school for children with disabilities</li>
-                        </ol>
-                </div>
-            </div>
-        </div>
-            <!-- Collapsible: Professions -->
-
-        <div class="jg-collapsible">
-            <button class="jg-collapsible-trigger" onclick="jgToggleCollapsible(this)" aria-expanded="false">
-                <span>Professions</span>
-                <span class="jg-chevron" aria-hidden="true">▼</span>
-            </button>
-            <div class="jg-collapsible-body">
-                <div class="jg-collapsible-inner">
-                    <p>Professions are entered exactly as the clerks wrote them in 1942, including any
-                            misspellings. It is JewishGen's policy not to correct such entries.</p>
-                    <p>A full <a href="https://www.jewishgen.org/InfoFiles/RomanianOccs.htm" target="_blank" rel="noopener" style="color: var(--navy); font-weight: bold; text-decoration: underline;">Romanian-English occupations translation table</a>
-                            is available on the JewishGen InfoFiles pages.</p>
-
-                </div>
-            </div>
-        </div>
-           <!-- Collapsible: Addresses -->
-        <div class="jg-collapsible">
-            <button class="jg-collapsible-trigger" onclick="jgToggleCollapsible(this)" aria-expanded="false">
-                <span>Address Terminology</span>
-                <span class="jg-chevron" aria-hidden="true">▼</span>
-            </button>
-            <div class="jg-collapsible-body">
-                <div class="jg-collapsible-inner">
-                    <p>The following Romanian terms are used in addresses to describe road types:</p>
-                        <table class="address-table" aria-label="Romanian address terminology">
-                            <thead>
-                                <tr>
-                                    <th>Romanian Term</th>
-                                    <th>English Equivalent</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>Alee (Alea, Aleea, Al.)</td><td>Drive</td></tr>
-                                <tr><td>Bulevard (Bd., Bul., Bdul.)</td><td>Boulevard</td></tr>
-                                <tr><td>Cale (Cal., Calea)</td><td>Road / Way</td></tr>
-                                <tr><td>Fundatura (Fund.)</td><td>Cul de Sac / Dead End</td></tr>
-                                <tr><td>Palat (Pal.)</td><td>Palace</td></tr>
-                                <tr><td>Parc (Parcul, Pc.)</td><td>Park</td></tr>
-                                <tr><td>Piata (Pta.)</td><td>Market / Square</td></tr>
-                                <tr><td>Prelung (Prel.)</td><td>Oblong</td></tr>
-                                <tr><td>Sosea (Sos.)</td><td>Highway</td></tr>
-                                <tr><td>Splai (Sp., Spl., Splaiul)</td><td>Embankment</td></tr>
-                                <tr><td>Strada (Str.)</td><td>Street</td></tr>
-                                <tr><td>Stradela</td><td>Lane</td></tr>
-                            </tbody>
-                        </table>
-                        <p style="margin-top: 14px;"><strong>Additional address modifiers:</strong></p>
-                        <ul>
-                            <li><strong>bis</strong> — Indicates a second address at the same number (e.g., <em>Vitan 15bis</em> = "the other Vitan 15")</li>
-                            <li><strong>et.#</strong> — Indicates floor number (e.g., <em>Vitan 25et2</em> = Vitan 25, 2nd floor)</li>
-                        </ul>
-                </div>
-            </div>
-        </div>
-            <!-- Collapsible: Labor -->
-
-        <div class="jg-collapsible">
-            <button class="jg-collapsible-trigger" onclick="jgToggleCollapsible(this)" aria-expanded="false">
-                <span>Labor Assignment Terms</span>
-                <span class="jg-chevron" aria-hidden="true">▼</span>
-            </button>
-            <div class="jg-collapsible-body">
-                <div class="jg-collapsible-inner">
-                    <p>The following terms appear most frequently in the Assigned Labor column:</p>
-                        <ul>
-                            <li>
-                                <strong>Proprie / Firma Proprie</strong> — Business owner; likely assigned to
-                                a self-employed person or small shop owner.
-                            </li>
-                            <li>
-                                <strong>C.E.R. / CER / Centrala Evreilor (din Romania)</strong> — The Center
-                                of the Jews of Romania.
-                            </li>
-                        </ul>
-                </div>
-            </div>
-        </div>
-
-        <h2 id="acknowledgements">Acknowledgements</h2>
-        <p><strong>T1:</strong> Data input by Ellen Renck and Paula Zieselman; validation by Paula Zieselman.</p>
-        <p><strong>T2:</strong> Data input primarily by Israel Rabin, with assistance from Ellen Renck, Paula Zieselman, Ina Margulis, and Harry Green; validation by Rony Shahan and Dr. Artur Hecht.</p>
-        <p><strong>T3:</strong> Data input by Terry Lasky; validation by Israel Rabin.</p>
-        <p>Translation assistance was provided by Prof. Ladislau Gyemant, Susanna Vendel, and Dr. Marcel Bratu. Archival copies were acquired through Prof. Gyemant, Director of the Mosche Carmilly Institute of Jewish History, University of Cluj-Napoca.</p>
-
-        <div class="jg-dataset-donate-footer">
-            <div class="jg-dataset-donate-inner">
-                <p>
-                    Databases like this one are made possible entirely through volunteer effort and our generous donors.
-                    Your contribution helps fund transcription, translation, and preservation of Romanian Jewish records.
+                <label class="d-block mb-2 text-uppercase" style="color: var(--light-blue); font-size: 11px; font-weight: bold;">Search Term (Surname or Given Name)</label>
+                <input type="text" id="dataset-search-input" class="form-control mb-3" style="background-color: var(--light-blue); border: none;" placeholder="e.g., Goldstein, Avram…">
+                <button class="btn-search w-100" id="btn-trigger-search" style="max-width: 100%;">Search This Database</button>
+                <p class="mt-3 mb-0" style="font-size: 12px; color: #a9c0d0; line-height: 1.4;">
+                    Or search across all records in the <a href="https://www.jewishgen.org/databases/Romania/" style="color: var(--sage); text-decoration: underline;" target="_blank">Romania Database</a> or the <a href="https://www.jewishgen.org/databases/all/" style="color: var(--sage); text-decoration: underline;" target="_blank">Unified Search</a>.
                 </p>
-                <a href="https://www.jewishgen.org/jewishgen-erosity/" target="_blank" rel="noopener" class="jg-btn-donate-stars">
-                    <img src="/JG40-Build/JGStarTra-light.png" alt="" aria-hidden="true" class="star-logo-icon light-logo">
-                    <img src="/JG40-Build/JGStarTra-dark.png" alt="" aria-hidden="true" class="star-logo-icon dark-logo">
-                    <span>Support the Romania Research Division</span>
-                </a>
             </div>
-        </div>
 
-        <p class="jg-dataset-last-updated">
-            Database compiled 2000–2004. Last updated November 2004.
-            For questions, contact the <a href="https://www.jewishgen.org/ROMSIG" target="_blank" rel="noopener">JewishGen Romania Research Division</a>.
-        </p>
-    </article>
-</main>
+            <div class="jg-card mb-4" style="border-top: 4px solid var(--sage);">
+                <h3 style="color: var(--navy); font-size: 14px; font-weight: bold; margin-bottom: 10px;">Support This Research</h3>
+                <p style="font-size: 14px; line-height: 1.5; margin-bottom: 15px; color: var(--charcoal);">The Romania Research Division relies on donations to make records like these freely available.</p>
+                <a href="https://www.jewishgen.org/jewishgen-erosity/" target="_blank" class="jg-btn jg-btn--secondary w-100 text-center" style="box-sizing: border-box;">Donate Today</a>
+            </div>
+
+            <div class="jg-card mb-4">
+                <h3 style="color: var(--navy); border-bottom: 2px solid var(--sage); padding-bottom: 8px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">Contributors</h3>
+                
+                <div class="mb-3">
+                    <span class="d-block text-uppercase text-muted mb-1" style="font-size: 11px; letter-spacing: 1px; font-weight: bold;">Project Coordinator</span>
+                    <span style="color: var(--navy); font-size: 14px; font-weight: 600;">Terry Lasky</span>
+                </div>
+                <div class="mb-3">
+                    <span class="d-block text-uppercase text-muted mb-1" style="font-size: 11px; letter-spacing: 1px; font-weight: bold;">Data Input</span>
+                    <span style="color: var(--navy); font-size: 14px; font-weight: 600;">Ellen Renck, Paula Zieselman, Israel Rabin, Ina Margulis, Harry Green, Terry Lasky</span>
+                </div>
+                <div class="mb-3">
+                    <span class="d-block text-uppercase text-muted mb-1" style="font-size: 11px; letter-spacing: 1px; font-weight: bold;">Validation</span>
+                    <span style="color: var(--navy); font-size: 14px; font-weight: 600;">Paula Zieselman, Rony Shahan, Dr. Artur Hecht, Israel Rabin</span>
+                </div>
+                <div>
+                    <span class="d-block text-uppercase text-muted mb-1" style="font-size: 11px; letter-spacing: 1px; font-weight: bold;">Translation Assistance</span>
+                    <span style="color: var(--navy); font-size: 14px; font-weight: 600;">Prof. Ladislau Gyemant, Susanna Vendel, Dr. Marcel Bratu</span>
+                </div>
+            </div>
+        </aside>
+
+        <article class="col-lg-8 col-xl-9">
+            
+            <h2 style="color: var(--navy); font-size: 20px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--sage);">Background</h2>
+            
+            <div class="row mb-5">
+                <div class="col-md-7">
+                    <p style="color: var(--charcoal); font-size: 16px; line-height: 1.7; margin-bottom: 20px;">The <em>Tabele Barbatilor</em> ("Census of Men") lists were compiled in 1942 under the <strong>Antonescu regime</strong> in Romania. They form a systematic record of the Jewish male population during one of the most dangerous periods of Romanian Jewish history, created for the dual purpose of demographic registration and forced labor assignment.</p>
+                </div>
+                <div class="col-md-5">
+                    <div class="jg-tips-panel open" style="margin-bottom: 0;">
+                        <span class="jg-tips-panel__title" style="font-weight: bold; margin-bottom: 8px;">Source &amp; Acquisition</span>
+                        <p style="margin: 0; font-size: 13px; line-height: 1.5;">The original documents are held in the Archive and Library of the Federation of Jewish Communities of Romania, in Bucharest (Fond #: III 400 E/1942). Copies were obtained in 2000 by <strong>Prof. Ladislau Gyemant</strong>, Director of the Mosche Carmilly Institute of Jewish History at the University of Cluj-Napoca, and were purchased from him by <a href="https://www.jewishgen.org/ROMSIG" target="_blank" style="color: var(--navy); font-weight: bold; text-decoration: underline;">The JewishGen Romania Research Division</a>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 style="color: var(--navy); font-size: 20px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--sage);">The Three Lists</h2>
+            <p style="color: var(--charcoal); font-size: 16px; margin-bottom: 25px;">There are three separate census lists, each covering a distinct age group and purpose:</p>
+            
+            <div class="jg-grid-3 mb-4">
+                <div class="jg-card text-center" style="border-top: 4px solid var(--sage);">
+                    <span class="badge bg-light text-dark mb-3" style="font-size: 12px; letter-spacing: 1px;">T1</span>
+                    <h4 style="color: var(--navy); font-size: 16px; font-weight: bold; margin-bottom: 15px;">Born 1881–1892 (Age 50+)</h4>
+                    <p style="color: var(--charcoal); font-size: 14px; line-height: 1.5;">Nationwide. Men above labor age, exempt from forced labor camps due to age. Covers all counties and towns of Romania.</p>
+                    <div class="mt-3 pt-3" style="border-top: 1px solid #d1caba; color: var(--navy); font-size: 13px; font-weight: bold;">350 PAGES &middot; 10,574 RECORDS</div>
+                </div>
+                
+                <div class="jg-card text-center" style="border-top: 4px solid var(--sage);">
+                    <span class="badge bg-light text-dark mb-3" style="font-size: 12px; letter-spacing: 1px;">T2</span>
+                    <h4 style="color: var(--navy); font-size: 16px; font-weight: bold; margin-bottom: 15px;">Born 1893–1921 (Ages 21–50)</h4>
+                    <p style="color: var(--charcoal); font-size: 14px; line-height: 1.5;">Bucharest only. Men assigned to labor details, typically working in the businesses of non-Jews.</p>
+                    <div class="mt-3 pt-3" style="border-top: 1px solid #d1caba; color: var(--navy); font-size: 13px; font-weight: bold;">352 PAGES &middot; 8,493 RECORDS</div>
+                </div>
+                
+                <div class="jg-card text-center" style="border-top: 4px solid var(--sage);">
+                    <span class="badge bg-light text-dark mb-3" style="font-size: 12px; letter-spacing: 1px;">T3</span>
+                    <h4 style="color: var(--navy); font-size: 16px; font-weight: bold; margin-bottom: 15px;">Born June 1926 – May 1928 (Ages 15–16)</h4>
+                    <p style="color: var(--charcoal); font-size: 14px; line-height: 1.5;">Bucharest only. Boys, many still in school. Not placed in labor details.</p>
+                    <div class="mt-3 pt-3" style="border-top: 1px solid #d1caba; color: var(--navy); font-size: 13px; font-weight: bold;">71 PAGES &middot; 1,229 RECORDS</div>
+                </div>
+            </div>
+            
+            <p style="color: var(--charcoal); font-size: 16px; margin-bottom: 50px;">This database contains all <strong style="color: var(--navy);">20,296 records</strong> from T1, T2, and T3 combined.</p>
+
+            <h2 style="color: var(--navy); font-size: 20px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--sage);">Fields Recorded</h2>
+            
+            <div class="row mb-5">
+                <div class="col-md-6 mb-2"><div style="padding: 10px 15px; background-color: var(--light-blue); color: var(--navy); font-weight: bold; font-size: 14px; border-radius: 4px; border-left: 3px solid var(--sage);">Surname &amp; Given Name</div></div>
+                <div class="col-md-6 mb-2"><div style="padding: 10px 15px; background-color: var(--light-blue); color: var(--navy); font-weight: bold; font-size: 14px; border-radius: 4px; border-left: 3px solid var(--sage);">Level of Education</div></div>
+                <div class="col-md-6 mb-2"><div style="padding: 10px 15px; background-color: var(--light-blue); color: var(--navy); font-weight: bold; font-size: 14px; border-radius: 4px; border-left: 3px solid var(--sage);">Birthplace &amp; County</div></div>
+                <div class="col-md-6 mb-2"><div style="padding: 10px 15px; background-color: var(--light-blue); color: var(--navy); font-weight: bold; font-size: 14px; border-radius: 4px; border-left: 3px solid var(--sage);">Profession / Occupation</div></div>
+                <div class="col-md-6 mb-2"><div style="padding: 10px 15px; background-color: var(--light-blue); color: var(--navy); font-weight: bold; font-size: 14px; border-radius: 4px; border-left: 3px solid var(--sage);">Birth Date</div></div>
+                <div class="col-md-6 mb-2"><div style="padding: 10px 15px; background-color: var(--light-blue); color: var(--navy); font-weight: bold; font-size: 14px; border-radius: 4px; border-left: 3px solid var(--sage);">Residence / Address</div></div>
+                <div class="col-md-6 mb-2"><div style="padding: 10px 15px; background-color: var(--light-blue); color: var(--navy); font-weight: bold; font-size: 14px; border-radius: 4px; border-left: 3px solid var(--sage);">Father's Given Name</div></div>
+                <div class="col-md-6 mb-2"><div style="padding: 10px 15px; background-color: var(--light-blue); color: var(--navy); font-weight: bold; font-size: 14px; border-radius: 4px; border-left: 3px solid var(--sage);">Assigned Labor Detail</div></div>
+                <div class="col-md-6 mb-2"><div style="padding: 10px 15px; background-color: var(--light-blue); color: var(--navy); font-weight: bold; font-size: 14px; border-radius: 4px; border-left: 3px solid var(--sage);">Mother's Given Name</div></div>
+                <div class="col-md-6 mb-2"><div style="padding: 10px 15px; background-color: var(--light-blue); color: var(--navy); font-weight: bold; font-size: 14px; border-radius: 4px; border-left: 3px solid var(--sage);">Census Number</div></div>
+            </div>
+
+            <h2 style="color: var(--navy); font-size: 20px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--sage);">Research Notes</h2>
+            <p style="color: var(--charcoal); font-size: 16px; margin-bottom: 25px;">This database has several features that require context to use effectively. The notes below explain naming conventions, the Romanian education system, profession terminology, and address abbreviations.</p>
+            
+            <div class="accordion mb-5" id="researchNotesAccordion">
+                
+                <div class="accordion-item mb-3" style="border: 1px solid #c4d0d6; border-radius: 6px; overflow: hidden;">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style="background-color: var(--light-blue); color: var(--navy); font-weight: bold; font-size: 15px; box-shadow: none;">
+                            Other Names &amp; Patronyms
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#researchNotesAccordion">
+                        <div class="accordion-body" style="font-size: 15px; line-height: 1.6; color: var(--charcoal); background-color: var(--white);">
+                            <p>In a number of cases individuals are listed by both nicknames or patronyms, as well as the hereditary name adopted in the 1870s, when surnames were legally required in Romania. These are listed in the "Name" column, separated by a slash "/" character. Where a patronym is also given, it is listed separately.</p>
+                            <p>This means a person can be found by either name. For example, an Israel Isaac who was also known as Israel Kleinman will appear under both names, each with a referral to the other.</p>
+                            <p class="mb-0">Note that the Romanian prefix <strong style="color: var(--navy);">"SIN"</strong> means "son of."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-3" style="border: 1px solid #c4d0d6; border-radius: 6px; overflow: hidden;">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="background-color: var(--light-blue); color: var(--navy); font-weight: bold; font-size: 15px; box-shadow: none;">
+                            Levels of Education
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#researchNotesAccordion">
+                        <div class="accordion-body" style="font-size: 15px; line-height: 1.6; color: var(--charcoal); background-color: var(--white);">
+                            <p>Romania's educational system was derived primarily from the French model and does not map directly to the American system. Terms were translated directly to their English meanings. Inconsistencies exist because the census covers men who attended school across many decades and under different occupying powers; rural schools also differed significantly from urban ones.</p>
+                            <p>In the census, level of schooling is preceded by a number and the abbreviation <strong style="color: var(--navy);">"cl."</strong> (short for <em>clases</em>, equivalent to "grade" or "years"). For example: <em>4 cl. primary</em> = 4 years of primary school; <em>3 cl. lyceum</em> = 3 years of lyceum (7 total years of schooling).</p>
+                            <p class="mb-2"><strong style="color: var(--navy);">Key terms used in the database:</strong></p>
+                            <ol class="mb-0">
+                                <li><strong>Primary / Elementary</strong> — Grades 1–4 (rural areas through grade 8)</li>
+                                <li><strong>Gymnasium</strong> — Grades 5–8</li>
+                                <li><strong>Lyceum / Secondary</strong> — Grades 5–12</li>
+                                <li><strong>Commercial / Lower Commercial / Upper Commercial</strong> — Business-type schools</li>
+                                <li><strong>Trade</strong> — Vocational/trade school</li>
+                                <li><strong>Graduate</strong> — Completed 12 years and passed the <em>bacculareat</em> exam</li>
+                                <li><strong>Doctor of xxx</strong> — Attained a PhD</li>
+                                <li><strong>Bachelor of xxx</strong> — Attained a bachelor's degree</li>
+                                <li><strong>Polytechnic</strong> — Engineering/science university equivalent</li>
+                                <li><strong>xxx Faculty</strong> — A discipline-specific school within a university</li>
+                                <li><strong>Ciocanul</strong> — A specific Romanian-Jewish lyceum</li>
+                                <li><strong>Cultura</strong> — A specific set of Romanian-Jewish primary/lyceum schools</li>
+                                <li><strong>Complementary</strong> — A school for children with disabilities</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-3" style="border: 1px solid #c4d0d6; border-radius: 6px; overflow: hidden;">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="background-color: var(--light-blue); color: var(--navy); font-weight: bold; font-size: 15px; box-shadow: none;">
+                            Professions
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#researchNotesAccordion">
+                        <div class="accordion-body" style="font-size: 15px; line-height: 1.6; color: var(--charcoal); background-color: var(--white);">
+                            <p>Professions are entered exactly as the clerks wrote them in 1942, including any misspellings. It is JewishGen's policy not to correct such entries.</p>
+                            <p class="mb-0">A full <a href="https://www.jewishgen.org/InfoFiles/RomanianOccs.htm" target="_blank" style="color: var(--navy); font-weight: bold; text-decoration: underline;">Romanian-English occupations translation table</a> is available on the JewishGen InfoFiles pages.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-3" style="border: 1px solid #c4d0d6; border-radius: 6px; overflow: hidden;">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" style="background-color: var(--light-blue); color: var(--navy); font-weight: bold; font-size: 15px; box-shadow: none;">
+                            Address Terminology
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#researchNotesAccordion">
+                        <div class="accordion-body" style="font-size: 15px; line-height: 1.6; color: var(--charcoal); background-color: var(--white);">
+                            <p>The following Romanian terms are used in addresses to describe road types:</p>
+                            <div class="table-responsive mb-3">
+                                <table class="table table-sm table-bordered">
+                                    <thead style="background-color: var(--light-blue);">
+                                        <tr><th style="color: var(--navy);">Romanian Term</th><th style="color: var(--navy);">English Equivalent</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td><em>Alee (Alea, Aleea, Al.)</em></td><td>Drive</td></tr>
+                                        <tr><td><em>Bulevard (Bd., Bul., Bdul.)</em></td><td>Boulevard</td></tr>
+                                        <tr><td><em>Cale (Cal., Calea)</em></td><td>Road / Way</td></tr>
+                                        <tr><td><em>Fundatura (Fund.)</em></td><td>Cul de Sac / Dead End</td></tr>
+                                        <tr><td><em>Palat (Pal.)</em></td><td>Palace</td></tr>
+                                        <tr><td><em>Parc (Parcul, Pc.)</em></td><td>Park</td></tr>
+                                        <tr><td><em>Piata (Pta.)</em></td><td>Market / Square</td></tr>
+                                        <tr><td><em>Prelung (Prel.)</em></td><td>Oblong</td></tr>
+                                        <tr><td><em>Sosea (Sos.)</em></td><td>Highway</td></tr>
+                                        <tr><td><em>Splai (Sp., Spl., Splaiul)</em></td><td>Embankment</td></tr>
+                                        <tr><td><em>Strada (Str.)</em></td><td>Street</td></tr>
+                                        <tr><td><em>Stradela</em></td><td>Lane</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="mb-1"><strong style="color: var(--navy);">Additional address modifiers:</strong></p>
+                            <ul class="mb-0">
+                                <li><strong>bis</strong> — Indicates a second address at the same number (e.g., <em>Vitan 15bis</em> = "the other Vitan 15")</li>
+                                <li><strong>et.#</strong> — Indicates floor number (e.g., <em>Vitan 25et2</em> = Vitan 25, 2nd floor)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-3" style="border: 1px solid #c4d0d6; border-radius: 6px; overflow: hidden;">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive" style="background-color: var(--light-blue); color: var(--navy); font-weight: bold; font-size: 15px; box-shadow: none;">
+                            Labor Assignment Terms
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#researchNotesAccordion">
+                        <div class="accordion-body" style="font-size: 15px; line-height: 1.6; color: var(--charcoal); background-color: var(--white);">
+                            <p>The following terms appear most frequently in the Assigned Labor column:</p>
+                            <ul class="mb-0">
+                                <li class="mb-2"><strong style="color: var(--navy);">Proprie / Firma Proprie</strong> — Business owner; likely assigned to a self-employed person or small shop owner.</li>
+                                <li><strong style="color: var(--navy);">C.E.R. / CER / Centrala Evreilor (din Romania)</strong> — The Center of the Jews of Romania.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <h2 style="color: var(--navy); font-size: 20px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--sage);">Acknowledgements</h2>
+            <div style="font-size: 14px; color: var(--charcoal); line-height: 1.7; margin-bottom: 40px;">
+                <p class="mb-2"><strong style="color: var(--navy);">T1:</strong> Data input by Ellen Renck and Paula Zieselman; validation by Paula Zieselman.</p>
+                <p class="mb-2"><strong style="color: var(--navy);">T2:</strong> Data input primarily by Israel Rabin, with assistance from Ellen Renck, Paula Zieselman, Ina Margulis, and Harry Green; validation by Rony Shahan and Dr. Artur Hecht.</p>
+                <p class="mb-3"><strong style="color: var(--navy);">T3:</strong> Data input by Terry Lasky; validation by Israel Rabin.</p>
+                <p class="mb-0">Translation assistance was provided by Prof. Ladislau Gyemant, Susanna Vendel, and Dr. Marcel Bratu. Archival copies were acquired through Prof. Gyemant, Director of the Mosche Carmilly Institute of Jewish History, University of Cluj-Napoca.</p>
+            </div>
+
+            <div class="p-5 text-center rounded" style="background-color: rgba(147, 155, 81, 0.15); margin-top: 50px;">
+                <p style="font-size: 16px; color: var(--charcoal); max-width: 700px; margin: 0 auto 25px auto; line-height: 1.6;">Databases like this one are made possible entirely through volunteer effort and our generous donors. Your contribution helps fund transcription, translation, and preservation of Romanian Jewish records.</p>
+                <a href="https://www.jewishgen.org/jewishgen-erosity/" target="_blank" class="jg-btn jg-btn--primary" style="padding: 12px 30px; font-size: 15px; text-transform: uppercase; letter-spacing: 1px;">Support the Romania Research Division</a>
+            </div>
+
+            <div class="mt-4 pt-3" style="border-top: 1px solid var(--ecru); font-size: 12px; color: var(--charcoal); opacity: 0.7; font-style: italic;">
+                Database compiled 2000–2004. Last updated November 2004.<br>
+                For questions, contact the <a href="https://www.jewishgen.org/ROMSIG" target="_blank" style="color: var(--navy); font-weight: bold; text-decoration: underline;">JewishGen Romania Research Division</a>.
+            </div>
+
+        </article>
+    </div>
+</div>
 
 <div id="site-footer"></div>
 
@@ -406,33 +370,15 @@
         loadComponent('site-footer', '/JG40-Build/Footer.html')
     ]).then(function() {});
 
-    /* -- Collapsible sections -- */
-    function jgToggleCollapsible(trigger) {
-        const body = trigger.nextElementSibling;
-        const isOpen = body.classList.contains('open');
-        body.classList.toggle('open', !isOpen);
-        trigger.classList.toggle('open', !isOpen);
-        trigger.setAttribute('aria-expanded', String(!isOpen));
-    }
-
-    document.querySelectorAll('.jg-collapsible-trigger').forEach(trigger => {
-        trigger.addEventListener('keydown', e => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                jgToggleCollapsible(e.target.closest('.jg-collapsible-trigger'));
-            }
-        });
-    });
-
     /* -- Search button logic -- */
-    document.querySelector('.jg-btn-dataset-search').addEventListener('click', () => {
+    document.getElementById('btn-trigger-search').addEventListener('click', () => {
         const term = document.getElementById('dataset-search-input').value.trim();
         const base = 'https://www.jewishgen.org/databases/Romania/';
         window.location.href = term ? base + '?given=' + encodeURIComponent(term) : base;
     });
 
     document.getElementById('dataset-search-input').addEventListener('keydown', e => {
-        if (e.key === 'Enter') document.querySelector('.jg-btn-dataset-search').click();
+        if (e.key === 'Enter') document.getElementById('btn-trigger-search').click();
     });
 </script>
 
