@@ -4,223 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results — JewishGen</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    
+
+    <!-- 1. Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <!-- 2. JewishGen Global Design System -->
     <link rel="stylesheet" href="/JG40-Build/jg-global.css">
+
+    <!-- 3. Page-specific styles -->
     <style>
-        /* ============================================
-           CSS VARIABLES (from jg-global.css)
-        ============================================ */
-        :root {
-            --cream:      #e8e1d1;
-            --sage:       #939b51;
-            --navy:       #09497a;
-            --charcoal:   #232b2b;
-            --white:      #ffffff;
-            --light-blue: #dce5ea;
-            --light-sage: #949c51;
-        }
-
-        *, *::before, *::after { box-sizing: border-box; }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 14px;
-            margin: 0;
-            padding: 0;
-            color: var(--charcoal);
-            background-color: var(--white);
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
 
         a { text-decoration: none; color: inherit; }
 
-        .dark-logo { display: none !important; }
-        .light-logo { display: inline !important; }
-
         /* ============================================
-           DARK MODE
+           PAGE TITLE BAND
         ============================================ */
-        body.dark-mode {
-            --cream:    #1e1e1e;
-            --sage:     #a8b361;
-            --navy:     #e0e0e0;
-            --charcoal: #a0a0a0;
-            --white:    #121212;
-        }
-        body.dark-mode .dark-logo  { display: inline !important; }
-        body.dark-mode .light-logo { display: none !important; }
-
-        body.dark-mode nav { background-color: #1a1a1a !important; border-bottom: 1px solid #333; }
-        body.dark-mode .dropbtn { color: #ffffff; }
-        body.dark-mode .dropdown-content { background: #1e1e1e; border-color: #a8b361; }
-        body.dark-mode .dropdown-content a { color: #b0c8de; border-bottom-color: #333; }
-        body.dark-mode .dropdown-content a:hover { background: #262626; }
-
-        body.dark-mode .query-summary {
-            background-color: #1a1a1a;
-            border-color: #2a4060;
-        }
-        body.dark-mode .query-label { color: #8ab4d4; }
-        body.dark-mode .query-term  { color: #e0e0e0; }
-        body.dark-mode .query-divider { background-color: #2a4060; }
-        body.dark-mode .results-count { color: #e0e0e0; }
-        body.dark-mode .results-meta  { color: #555; }
-
-        body.dark-mode .new-search-btn {
-            border-color: #a8b361;
-            color: #a8b361;
-        }
-        body.dark-mode .new-search-btn:hover {
-            background-color: #a8b361;
-            color: #121212;
-        }
-
-        /* Pinned cards (JGFF + JOWBR) */
-        body.dark-mode .pinned-card {
-            border-color: #a8b361;
-            background-color: #1a1a1a;
-        }
-        body.dark-mode .pinned-card-header {
-            background-color: #1e1e1e;
-            border-color: #333;
-        }
-        body.dark-mode .pinned-card-title { color: #e0e0e0; }
-        body.dark-mode .pinned-card-desc  { color: #a0a0a0; }
-
-        /* Accordion groups */
-        body.dark-mode .result-group { border-color: #2a2a2a; }
-        body.dark-mode .group-toggle { background-color: #1e1e1e; border-left-color: #a8b361; }
-        body.dark-mode .group-toggle:hover { background-color: #222; }
-        body.dark-mode .group-name  { color: #e0e0e0; }
-        body.dark-mode .group-db-count { color: #555; }
-        body.dark-mode .group-record-badge {
-            border-color: #8ab4d4;
-            color: #8ab4d4;
-        }
-        body.dark-mode .group-chevron { color: #a8b361; }
-        body.dark-mode .group-panel { border-color: #2a2a2a; }
-
-        body.dark-mode .db-row { border-color: #2a2a2a; }
-        body.dark-mode .db-row:hover { background-color: #1a2533; }
-        body.dark-mode .db-name-link { color: #8ab4d4; }
-        body.dark-mode .db-name-link:hover { color: #a8b361; }
-
-        body.dark-mode .db-count-pill {
-            background-color: #1a1a1a;
-            border-color: #8ab4d4;
-            color: #8ab4d4;
-        }
-        body.dark-mode .db-count-pill:hover {
+        .sr-title-band {
             background-color: #09497a;
-            color: #e0e0e0;
-            border-color: #09497a;
+            padding: 32px 24px;
+            text-align: center;
         }
-
-        body.dark-mode .subpartner-band {
-            background-color: #191919;
-            border-color: #2a2a2a;
+        body.dark-mode .sr-title-band {
+            background-color: #0d2a45;
         }
-        body.dark-mode .subpartner-name { color: #a0a0a0; }
-        body.dark-mode .partner-logo-placeholder {
-            background-color: #1e1e1e;
-            border-color: #333;
-            color: #a0a0a0;
-        }
-
-        body.dark-mode .jowbr-section { border-color: #2a2a2a; }
-        body.dark-mode .jowbr-header  { background-color: #1e1e1e; border-color: #2a2a2a; }
-        body.dark-mode .jowbr-title   { color: #e0e0e0; }
-        body.dark-mode .jowbr-desc    { color: #a0a0a0; }
-        body.dark-mode .jowbr-toggle-btn {
-            color: #a8b361;
-            border-color: #a8b361;
-        }
-        body.dark-mode .jowbr-toggle-btn:hover {
-            background-color: #a8b361;
-            color: #121212;
-        }
-
-        body.dark-mode .partner-section { border-color: #2a2a2a; }
-        body.dark-mode .partner-header  { background-color: #1e1e1e; border-color: #2a2a2a; }
-        body.dark-mode .partner-record-badge { background-color: #2a3a20; color: #a8b361; }
-        body.dark-mode .partner-panel { border-color: #2a2a2a; }
-        body.dark-mode .partner-subtype-row:hover { background-color: #1a2533; }
-        body.dark-mode .partner-subtype-label { color: #a0a0a0; }
-
-        body.dark-mode .section-divider-label { color: var(--charcoal); }
-        body.dark-mode .section-divider-line  { background-color: #333; }
-
-        body.dark-mode .bottom-actions { border-top-color: #333; }
-        body.dark-mode .bottom-action-link {
-            color: #e0e0e0;
-            background-color: #121212;
-            border-color: #e0e0e0;
-        }
-        body.dark-mode .bottom-action-link:hover {
-            background-color: #e0e0e0;
-            color: #121212;
-        }
-
-        body.dark-mode .filter-btn-disabled {
-            color: #444;
-            background-color: #1a1a1a;
-            border-color: #333;
-        }
-        body.dark-mode .filter-coming-soon {
-            color: #444;
-            border-color: #333;
-        }
-
-        /* ============================================
-           HEADER
-        ============================================ */
-
-        /* ============================================
-           NAVIGATION
-        ============================================ */
-        nav {
-            background-color: #09497a;
+        .sr-title-band h1 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 2rem;
+            font-weight: normal;
             color: #ffffff;
-            padding: 0 50px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            margin: 0 0 6px 0;
+            line-height: 1.2;
         }
-
-        .dropdown { position: relative; display: inline-block; }
-        .dropbtn  { display: block; padding: 15px 0; cursor: pointer; color: #ffffff; }
-        .dropdown:hover .dropbtn { color: var(--sage); }
-
-        .dropdown-content {
-            display: none; position: absolute;
-            background-color: var(--white); min-width: 250px;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
-            z-index: 100; top: 100%; left: 0;
-            border-top: 3px solid var(--sage);
-            border-radius: 0 0 6px 6px; overflow: hidden;
+        .sr-title-band .sr-subtitle {
+            font-size: 13px;
+            color: rgba(255,255,255,0.75);
+            margin: 0;
         }
-        .dropdown-content a {
-            color: var(--navy); padding: 12px 20px;
-            text-decoration: none; display: block;
-            text-transform: none; font-weight: normal;
-            font-size: 15px; border-bottom: 1px solid var(--cream);
-        }
-        .dropdown-content a:last-child { border-bottom: none; }
-        .dropdown-content a:hover { background-color: var(--cream); font-weight: bold; }
-        .dropdown:hover .dropdown-content { display: block; }
 
         /* ============================================
-           PAGE LAYOUT
+           OUTER WRAPPER — cream band behind white card
         ============================================ */
-        .page-wrap {
+        .sr-outer {
+            background-color: var(--cream);
+            padding: 32px 24px 64px;
+            min-height: 60vh;
+        }
+        body.dark-mode .sr-outer {
+            background-color: #111;
+        }
+
+        /* White card container */
+        .sr-card {
             max-width: 1040px;
             margin: 0 auto;
-            padding: 28px 24px 64px;
+            background-color: #ffffff;
+            border-radius: 6px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+            overflow: hidden;
+        }
+        body.dark-mode .sr-card {
+            background-color: #1a1a1a;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.4);
+        }
+
+        .sr-card-inner {
+            padding: 24px 28px 36px;
         }
 
         /* ============================================
@@ -231,14 +79,14 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 8px 16px;
-            padding: 12px 18px;
+            padding: 11px 16px;
             background-color: var(--cream);
             border: 1.5px solid var(--navy);
             border-radius: 6px;
             margin-bottom: 12px;
         }
         body.dark-mode .query-summary {
-            background-color: #1a1a1a;
+            background-color: #1e1e1e;
             border-color: #2a4060;
         }
         .query-pair {
@@ -254,40 +102,45 @@
             color: var(--navy);
             white-space: nowrap;
         }
+        body.dark-mode .query-label { color: #8ab4d4; }
         .query-term {
             font-size: 14px;
             font-weight: bold;
             color: var(--charcoal);
             font-family: Georgia, serif;
         }
+        body.dark-mode .query-term { color: #e0e0e0; }
         .query-divider {
             width: 1px;
             height: 16px;
             background-color: var(--navy);
-            opacity: 0.3;
+            opacity: 0.25;
             align-self: center;
         }
 
+        /* ============================================
+           RESULTS META ROW
+        ============================================ */
         .results-meta-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 10px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
         .results-count-block { display: flex; flex-direction: column; gap: 2px; }
         .results-count {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: bold;
             color: var(--navy);
             font-family: Georgia, serif;
             line-height: 1.2;
         }
-        .results-meta {
-            font-size: 12px;
-            color: #888;
-        }
+        body.dark-mode .results-count { color: #e0e0e0; }
+        .results-meta { font-size: 12px; color: #888; }
+        body.dark-mode .results-meta { color: #555; }
+
         .new-search-btn {
             display: inline-block;
             font-size: 13px;
@@ -300,12 +153,73 @@
             transition: background-color 0.15s, color 0.15s;
         }
         .new-search-btn:hover {
-            background-color: var(--navy);
-            color: var(--white);
+            background-color: #09497a;
+            border-color: #09497a;
+            color: #ffffff;
+        }
+        body.dark-mode .new-search-btn { color: #a8b361; border-color: #a8b361; }
+        body.dark-mode .new-search-btn:hover { background-color: #a8b361; color: #121212; }
+
+        /* ============================================
+           FILTER BAR
+        ============================================ */
+        .filter-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+        .filter-btn-disabled {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: bold;
+            color: #aaa;
+            background-color: #f4f4f4;
+            border: 1.5px dashed #ccc;
+            border-radius: 6px;
+            padding: 6px 14px;
+            cursor: not-allowed;
+            user-select: none;
+        }
+        body.dark-mode .filter-btn-disabled { color: #444; background-color: #1a1a1a; border-color: #333; }
+        .filter-coming-soon {
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: #aaa;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 2px 6px;
+            white-space: nowrap;
+        }
+        body.dark-mode .filter-coming-soon { color: #444; border-color: #333; }
+
+        /* ============================================
+           COLUMN HEADER ROW
+        ============================================ */
+        .col-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 7px 14px;
+            background-color: #09497a;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        body.dark-mode .col-header-row { background-color: #0d2a45; }
+        .col-header-label {
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #ffffff;
         }
 
         /* ============================================
-           PINNED CARD — shared by JGFF and JOWBR top section
+           PINNED CARD — JGFF
         ============================================ */
         .pinned-card {
             border: 1.5px solid var(--navy);
@@ -313,19 +227,16 @@
             margin-bottom: 8px;
             overflow: hidden;
         }
+        body.dark-mode .pinned-card { border-color: #2a4060; }
         .pinned-card-header {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 10px 16px;
+            padding: 9px 14px;
             background-color: var(--cream);
-            border-bottom: 1px solid rgba(9, 73, 122, 0.15);
-        }
-        .pinned-card-header-left {
-            display: flex;
-            align-items: center;
+            border-bottom: 1px solid rgba(9,73,122,0.15);
             gap: 10px;
         }
+        body.dark-mode .pinned-card-header { background-color: #1e1e1e; border-color: #333; }
         .pinned-card-badge {
             font-size: 10px;
             font-weight: bold;
@@ -338,26 +249,29 @@
             white-space: nowrap;
         }
         .pinned-card-title {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: bold;
             color: var(--navy);
             font-family: Georgia, serif;
         }
+        body.dark-mode .pinned-card-title { color: #e0e0e0; }
         .pinned-card-body {
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 12px;
-            padding: 12px 16px;
-            background-color: var(--white);
+            padding: 11px 14px;
+            background-color: #ffffff;
         }
         body.dark-mode .pinned-card-body { background-color: #161616; }
         .pinned-card-desc {
             font-size: 13px;
             color: var(--charcoal);
             line-height: 1.5;
+            margin: 0;
         }
+        body.dark-mode .pinned-card-desc { color: #a0a0a0; }
 
         /* ============================================
            SHARED COUNT PILL
@@ -381,70 +295,30 @@
             border-color: #09497a;
             color: #ffffff;
         }
-        .db-count-pill.sm {
-            font-size: 12px;
-            padding: 3px 13px;
-            border-width: 1px;
-        }
+        .db-count-pill.sm { font-size: 12px; padding: 3px 13px; border-width: 1px; }
+        body.dark-mode .db-count-pill { background-color: #1a1a1a; border-color: #8ab4d4; color: #8ab4d4; }
+        body.dark-mode .db-count-pill:hover { background-color: #09497a; border-color: #09497a; color: #e0e0e0; }
         .db-count-pill.ext::after,
-        a.db-name-link.ext::after {
-            content: ' \2197';
-            font-size: 10px;
-            opacity: 0.7;
-        }
-
-        /* ============================================
-           FILTER BAR
-        ============================================ */
-        .filter-bar {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .filter-btn-disabled {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            font-weight: bold;
-            color: #aaa;
-            background-color: #f4f4f4;
-            border: 1.5px dashed #ccc;
-            border-radius: 6px;
-            padding: 7px 16px;
-            cursor: not-allowed;
-            user-select: none;
-        }
-        .filter-coming-soon {
-            font-size: 10px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-            color: #aaa;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            padding: 2px 6px;
-            white-space: nowrap;
-        }
+        a.db-name-link.ext::after { content: ' \2197'; font-size: 10px; opacity: 0.7; }
 
         /* ============================================
            ACCORDION GROUPS
         ============================================ */
-        .groups-list { display: flex; flex-direction: column; gap: 8px; }
+        .groups-list { display: flex; flex-direction: column; gap: 6px; }
 
         .result-group {
             border: 1px solid #d0d8e0;
             border-radius: 6px;
             overflow: hidden;
         }
+        body.dark-mode .result-group { border-color: #2a2a2a; }
 
         .group-toggle {
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 11px 16px;
+            padding: 10px 14px;
             background-color: var(--cream);
             border: none;
             border-left: 3px solid var(--sage);
@@ -454,11 +328,9 @@
             font-family: inherit;
             transition: filter 0.15s;
         }
+        body.dark-mode .group-toggle { background-color: #1e1e1e; border-left-color: #a8b361; }
         .group-toggle:hover { filter: brightness(0.96); }
-        .group-toggle:focus-visible {
-            outline: 3px solid var(--navy);
-            outline-offset: -3px;
-        }
+        .group-toggle:focus-visible { outline: 3px solid var(--navy); outline-offset: -3px; }
 
         .group-toggle-left {
             display: flex;
@@ -467,62 +339,50 @@
             flex: 1;
             min-width: 0;
         }
-        .group-jg-logo {
-            height: 24px;
-            width: auto;
-            flex-shrink: 0;
-        }
+        .group-jg-logo { height: 22px; width: auto; flex-shrink: 0; }
         .group-name {
             font-size: 14px;
             font-weight: bold;
             color: var(--navy);
             font-family: Georgia, serif;
         }
-        .group-db-count {
-            font-size: 12px;
-            color: #999;
-            white-space: nowrap;
-        }
-        .group-toggle-right {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-shrink: 0;
-        }
-        /* Outlined badge — no fill */
+        body.dark-mode .group-name { color: #e0e0e0; }
+        .group-db-count { font-size: 12px; color: #999; white-space: nowrap; }
+        body.dark-mode .group-db-count { color: #555; }
+        .group-toggle-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+
         .group-record-badge {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
             color: var(--navy);
             border: 1.5px solid var(--navy);
             border-radius: 20px;
-            padding: 2px 12px;
+            padding: 2px 11px;
             white-space: nowrap;
             background-color: transparent;
         }
-        body.dark-mode .group-record-badge {
-            color: #8ab4d4;
-            border-color: #8ab4d4;
-        }
+        body.dark-mode .group-record-badge { color: #8ab4d4; border-color: #8ab4d4; }
+
         .group-chevron {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--sage);
             transition: transform 0.2s ease;
             display: inline-block;
             line-height: 1;
         }
+        body.dark-mode .group-chevron { color: #a8b361; }
         .group-toggle[aria-expanded="true"]  .group-chevron { transform: rotate(180deg); }
         .group-toggle[aria-expanded="false"] .group-chevron { transform: rotate(0deg); }
 
         .group-panel { border-top: 1px solid #d0d8e0; }
         .group-panel[hidden] { display: none; }
+        body.dark-mode .group-panel { border-color: #2a2a2a; }
 
-        /* Individual database row */
         .db-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 9px 16px 9px 50px;
+            padding: 8px 14px 8px 48px;
             border-bottom: 1px solid #ebebeb;
             gap: 12px;
         }
@@ -531,90 +391,67 @@
         body.dark-mode .db-row { border-color: #2a2a2a; }
         body.dark-mode .db-row:hover { background-color: #1a2533; }
 
-        .db-name-link {
-            font-size: 13px;
-            color: var(--navy);
-            text-decoration: none;
-            flex: 1;
-            min-width: 0;
-        }
-        .db-name-link:hover {
-            color: var(--sage);
-            text-decoration: underline dotted;
-            text-underline-offset: 2px;
-        }
+        .db-name-link { font-size: 13px; color: var(--navy); text-decoration: none; flex: 1; min-width: 0; }
+        body.dark-mode .db-name-link { color: #8ab4d4; }
+        .db-name-link:hover { color: var(--sage); text-decoration: underline dotted; text-underline-offset: 2px; }
 
-        /* Sub-partner band */
         .subpartner-band {
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 8px 16px 8px 50px;
+            padding: 7px 14px 7px 48px;
             background-color: #f5f5f3;
             border-bottom: 1px solid #e0e0dc;
         }
-        .subpartner-name {
-            font-size: 12px;
-            font-weight: bold;
-            color: var(--charcoal);
-        }
+        body.dark-mode .subpartner-band { background-color: #191919; border-color: #2a2a2a; }
+        .subpartner-name { font-size: 12px; font-weight: bold; color: var(--charcoal); }
+        body.dark-mode .subpartner-name { color: #a0a0a0; }
+
         .partner-logo-placeholder {
             display: inline-flex;
             align-items: center;
-            height: 24px;
+            height: 22px;
             padding: 0 8px;
             border: 1px solid #ccc;
             border-radius: 3px;
             font-size: 10px;
             font-weight: bold;
             color: #555;
-            background-color: var(--white);
+            background-color: #ffffff;
             white-space: nowrap;
             flex-shrink: 0;
         }
-        .db-row.sub { padding-left: 66px; }
+        body.dark-mode .partner-logo-placeholder { background-color: #1e1e1e; border-color: #333; color: #a0a0a0; }
+        .db-row.sub { padding-left: 64px; }
 
         /* ============================================
-           JOWBR PINNED SECTION
+           JOWBR SECTION
         ============================================ */
         .jowbr-section {
             border: 1.5px solid var(--navy);
             border-radius: 6px;
             overflow: hidden;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
+        body.dark-mode .jowbr-section { border-color: #2a4060; }
         .jowbr-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 10px 16px;
+            padding: 9px 14px;
             background-color: var(--cream);
-            border-bottom: 1px solid rgba(9, 73, 122, 0.15);
+            border-bottom: 1px solid rgba(9,73,122,0.15);
             gap: 12px;
             flex-wrap: wrap;
         }
-        .jowbr-header-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .jowbr-title {
-            font-size: 15px;
-            font-weight: bold;
-            color: var(--navy);
-            font-family: Georgia, serif;
-        }
-        .jowbr-desc {
-            font-size: 12px;
-            color: var(--charcoal);
-        }
-        .jowbr-header-right {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-shrink: 0;
-        }
-        /* Toggle to show/hide the geographic breakdown */
+        body.dark-mode .jowbr-header { background-color: #1e1e1e; border-color: #2a2a2a; }
+        .jowbr-header-left { display: flex; align-items: center; gap: 10px; }
+        .jowbr-title { font-size: 14px; font-weight: bold; color: var(--navy); font-family: Georgia, serif; }
+        body.dark-mode .jowbr-title { color: #e0e0e0; }
+        .jowbr-desc { font-size: 12px; color: var(--charcoal); }
+        body.dark-mode .jowbr-desc { color: #a0a0a0; }
+        .jowbr-header-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+
         .jowbr-toggle-btn {
             font-size: 12px;
             font-weight: bold;
@@ -622,35 +459,27 @@
             border: 1px solid var(--navy);
             background: transparent;
             border-radius: 20px;
-            padding: 3px 12px;
+            padding: 3px 11px;
             cursor: pointer;
             font-family: inherit;
             white-space: nowrap;
             transition: background-color 0.15s, color 0.15s;
         }
-        .jowbr-toggle-btn:hover {
-            background-color: var(--navy);
-            color: var(--white);
-        }
-        .jowbr-toggle-btn:focus-visible {
-            outline: 3px solid var(--navy);
-            outline-offset: 2px;
-        }
-        .jowbr-panel { border-top: 1px solid rgba(9, 73, 122, 0.15); }
+        .jowbr-toggle-btn:hover { background-color: #09497a; color: #ffffff; }
+        body.dark-mode .jowbr-toggle-btn { color: #a8b361; border-color: #a8b361; }
+        body.dark-mode .jowbr-toggle-btn:hover { background-color: #a8b361; color: #121212; }
+        .jowbr-toggle-btn:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
+
+        .jowbr-panel { border-top: 1px solid rgba(9,73,122,0.1); }
         .jowbr-panel[hidden] { display: none; }
         body.dark-mode .jowbr-panel { border-top-color: #2a2a2a; }
 
         /* ============================================
            SECTION DIVIDER
         ============================================ */
-        .section-divider {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 24px 0 8px;
-        }
+        .section-divider { display: flex; align-items: center; gap: 10px; margin: 20px 0 8px; }
         .section-divider-label {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -658,45 +487,44 @@
             font-family: Georgia, serif;
             white-space: nowrap;
         }
-        .section-divider-line {
-            flex: 1;
-            height: 1px;
-            background-color: #d0d0d0;
-        }
+        body.dark-mode .section-divider-label { color: #a0a0a0; }
+        .section-divider-line { flex: 1; height: 1px; background-color: #d0d0d0; }
+        body.dark-mode .section-divider-line { background-color: #333; }
 
         /* ============================================
            PARTNER SECTIONS
         ============================================ */
-        .partner-section {
-            border: 1px solid #d0d8e0;
-            border-radius: 6px;
-            overflow: hidden;
-            margin-top: 8px;
-        }
+        .partner-section { border: 1px solid #d0d8e0; border-radius: 6px; overflow: hidden; margin-top: 6px; }
+        body.dark-mode .partner-section { border-color: #2a2a2a; }
+
         .partner-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 11px 16px;
+            padding: 10px 14px;
             background-color: var(--cream);
             border-bottom: 1px solid #d0d8e0;
         }
-        .partner-logo-area {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .partner-logo {
-            height: 36px;
-            width: auto;
-            max-width: 130px;
-            object-fit: contain;
-        }
+        body.dark-mode .partner-header { background-color: #1e1e1e; border-color: #2a2a2a; }
+        .partner-logo-area { display: flex; align-items: center; gap: 10px; }
+
+        .partner-logo { height: 34px; width: auto; max-width: 130px; object-fit: contain; }
         .partner-logo-placeholder.lg {
-            height: 36px;
-            font-size: 11px;
+            display: inline-flex;
+            align-items: center;
+            height: 34px;
             padding: 0 12px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: bold;
+            color: #555;
+            background-color: #ffffff;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
+        body.dark-mode .partner-logo-placeholder.lg { background-color: #1e1e1e; border-color: #333; color: #a0a0a0; }
+
         .partner-record-badge {
             font-size: 12px;
             font-weight: bold;
@@ -706,606 +534,463 @@
             padding: 3px 12px;
             white-space: nowrap;
         }
-        .partner-panel .db-row { padding-left: 20px; }
+        body.dark-mode .partner-record-badge { background-color: #2a3a20; color: #a8b361; }
+
         .partner-subtype-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 9px 16px 9px 20px;
+            padding: 8px 14px 8px 20px;
             border-bottom: 1px solid #ebebeb;
             gap: 12px;
         }
         .partner-subtype-row:last-child { border-bottom: none; }
         .partner-subtype-row:hover { background-color: #f5f7fa; }
-        .partner-subtype-label {
-            font-size: 13px;
-            color: var(--charcoal);
-            flex: 1;
-        }
+        body.dark-mode .partner-subtype-row:hover { background-color: #1a2533; }
+        .partner-subtype-label { font-size: 13px; color: var(--charcoal); flex: 1; }
+        body.dark-mode .partner-subtype-label { color: #a0a0a0; }
 
         /* ============================================
            BOTTOM ACTIONS
         ============================================ */
         .bottom-actions {
-            margin-top: 40px;
-            padding-top: 24px;
-            border-top: 1px solid #c8c0b0;
+            margin-top: 36px;
+            padding-top: 20px;
+            border-top: 1px solid #d0cabb;
             display: flex;
             justify-content: center;
             gap: 16px;
             flex-wrap: wrap;
         }
+        body.dark-mode .bottom-actions { border-top-color: #333; }
         .bottom-action-link {
             display: inline-block;
             font-size: 14px;
             font-weight: bold;
             color: var(--navy);
-            background-color: var(--white);
+            background-color: #ffffff;
             border: 2px solid var(--navy);
             border-radius: 6px;
-            padding: 9px 22px;
+            padding: 8px 20px;
             transition: background-color 0.15s, color 0.15s;
         }
-        .bottom-action-link:hover {
-            background-color: #09497a;
-            border-color: #09497a;
-            color: #ffffff;
+        .bottom-action-link:hover { background-color: #09497a; border-color: #09497a; color: #ffffff; }
+        body.dark-mode .bottom-action-link { background-color: #1a1a1a; color: #e0e0e0; border-color: #e0e0e0; }
+        body.dark-mode .bottom-action-link:hover { background-color: #e0e0e0; color: #121212; }
+
+        /* ============================================
+           RESPONSIVE
+        ============================================ */
+        @media (max-width: 600px) {
+            .sr-title-band h1 { font-size: 1.5rem; }
+            .sr-outer { padding: 16px 10px 48px; }
+            .sr-card-inner { padding: 14px 12px 24px; }
+            .col-header-row { display: none; }
+            .db-row { padding-left: 20px; }
+            .db-row.sub { padding-left: 32px; }
+            .subpartner-band { padding-left: 20px; }
         }
 
     </style>
 </head>
 <body>
 
+<!-- Header + Nav loaded from shared component -->
 <div id="site-header"></div>
+
+<!-- ============================================
+     PAGE TITLE BAND
+============================================ -->
+<div class="sr-title-band">
+    <h1>Search Results</h1>
+    <p class="sr-subtitle">All JewishGen Databases</p>
+</div>
 
 <!-- ============================================
      MAIN CONTENT
 ============================================ -->
-<main class="page-wrap">
+<main>
+    <div class="sr-outer">
+        <div class="sr-card">
+            <div class="sr-card-inner">
 
-    <!-- Query summary -->
-    <div class="query-summary" role="region" aria-label="Search query summary">
-        <div class="query-pair">
-            <span class="query-label">Surname (phonetically like)</span>
-            <span class="query-term">WYMISZNER</span>
-        </div>
-        <div class="query-divider" aria-hidden="true"></div>
-        <div class="query-pair">
-            <span class="query-label">Region</span>
-            <span class="query-term">All Countries</span>
-        </div>
-    </div>
+                <!-- Query summary -->
+                <div class="query-summary" role="region" aria-label="Search query summary">
+                    <div class="query-pair">
+                        <span class="query-label">Surname (phonetically like)</span>
+                        <span class="query-term">WYMISZNER</span>
+                    </div>
+                    <div class="query-divider" aria-hidden="true"></div>
+                    <div class="query-pair">
+                        <span class="query-label">Region</span>
+                        <span class="query-term">All Countries</span>
+                    </div>
+                </div>
 
-    <!-- Results count + new search -->
-    <div class="results-meta-row">
-        <div class="results-count-block">
-            <span class="results-count">419 matches found</span>
-            <span class="results-meta">Across 38 databases</span>
-        </div>
-        <a href="#" class="new-search-btn" aria-label="Start a new search">&#8592; New Search</a>
-    </div>
+                <!-- Results count + new search -->
+                <div class="results-meta-row">
+                    <div class="results-count-block">
+                        <span class="results-count">419 matches found</span>
+                        <span class="results-meta">Across 38 databases</span>
+                    </div>
+                    <a href="/JG40-Build/Global_Search.html" class="new-search-btn">&#8592; New Search</a>
+                </div>
 
-    <!-- Filter bar — coming soon placeholder -->
-    <div class="filter-bar" aria-label="Filter options (not yet available)">
-        <div class="filter-btn-disabled" aria-disabled="true" role="button" tabindex="-1"
-             title="Filtering is coming in a future update">
-            &#9881; Filter Results
-            <span class="filter-coming-soon" aria-label="Coming soon">Coming Soon</span>
-        </div>
-    </div>
+                <!-- Filter bar -->
+                <div class="filter-bar" aria-label="Filter options (not yet available)">
+                    <div class="filter-btn-disabled" aria-disabled="true" role="button" tabindex="-1"
+                         title="Filtering is coming in a future update">
+                        &#9881; Filter Results
+                        <span class="filter-coming-soon">Coming Soon</span>
+                    </div>
+                </div>
 
-    <!-- ============================================
-         PINNED: Family Finder
-         Remove this block when FF count = 0.
-    ============================================ -->
-    <section class="pinned-card" aria-label="Family Finder results">
-        <div class="pinned-card-header">
-            <div class="pinned-card-header-left">
-                <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg"
-                     alt="JewishGen" class="light-logo group-jg-logo">
-                <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png"
-                     alt="JewishGen" class="dark-logo group-jg-logo">
-                <span class="pinned-card-title">Family Finder</span>
-                <span class="pinned-card-badge">Featured</span>
-            </div>
-        </div>
-        <div class="pinned-card-body">
-            <p class="pinned-card-desc" style="margin: 0;">
-                Connect with researchers who share your surnames and towns of origin.
-            </p>
-            <a href="#" class="db-count-pill" aria-label="View 10 records in Family Finder">
-                List 10 records
-            </a>
-        </div>
-    </section>
+                <!-- Column header row -->
+                <div class="col-header-row" aria-hidden="true">
+                    <span class="col-header-label">Dataset</span>
+                    <span class="col-header-label">Click to view results</span>
+                </div>
 
-    <!-- ============================================
-         ACCORDION GROUPS — JewishGen internal databases
-         data-db-count drives auto expand/collapse:
-           <= 3 → expanded; > 3 → collapsed
-    ============================================ -->
-    <div class="groups-list" role="list">
+                <!-- ============================================
+                     PINNED: Family Finder
+                     Remove this block when FF count = 0.
+                ============================================ -->
+                <section class="pinned-card" aria-label="Family Finder results">
+                    <div class="pinned-card-header">
+                        <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg"
+                             alt="JewishGen" class="light-logo group-jg-logo">
+                        <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png"
+                             alt="JewishGen" class="dark-logo group-jg-logo">
+                        <span class="pinned-card-title">Family Finder</span>
+                        <span class="pinned-card-badge">Featured</span>
+                    </div>
+                    <div class="pinned-card-body">
+                        <p class="pinned-card-desc">Connect with researchers who share your surnames and towns of origin.</p>
+                        <a href="#" class="db-count-pill" aria-label="View 10 records in Family Finder">List 10 records</a>
+                    </div>
+                </section>
 
-        <!-- Austria-Czech (6 DBs, collapsed) -->
-        <div class="result-group" role="listitem" data-db-count="6">
-            <button class="group-toggle"
-                    aria-expanded="false"
-                    aria-controls="panel-austria-czech"
-                    id="toggle-austria-czech">
-                <div class="group-toggle-left">
-                    <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg"
-                         alt="JewishGen" class="light-logo group-jg-logo">
-                    <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png"
-                         alt="JewishGen" class="dark-logo group-jg-logo">
-                    <span class="group-name">Austria-Czech</span>
-                    <span class="group-db-count">6 databases</span>
-                </div>
-                <div class="group-toggle-right">
-                    <span class="group-record-badge">12 records</span>
-                    <span class="group-chevron" aria-hidden="true">&#9660;</span>
-                </div>
-            </button>
-            <div id="panel-austria-czech"
-                 class="group-panel"
-                 role="region"
-                 aria-labelledby="toggle-austria-czech"
-                 hidden>
-                <div class="db-row">
-                    <a href="#" class="db-name-link">Austria: Vienna Births</a>
-                    <a href="#" class="db-count-pill sm" aria-label="List 2 records from Austria: Vienna Births">List 2 records</a>
-                </div>
-                <div class="db-row">
-                    <a href="#" class="db-name-link">Austria: Vienna Births (Enhanced)</a>
-                    <a href="#" class="db-count-pill sm" aria-label="List 4 records from Austria: Vienna Births (Enhanced)">List 4 records</a>
-                </div>
-                <div class="db-row">
-                    <a href="#" class="db-name-link">Austria: Vienna Deaths</a>
-                    <a href="#" class="db-count-pill sm" aria-label="List 1 record from Austria: Vienna Deaths">List 1 record</a>
-                </div>
-                <div class="db-row">
-                    <a href="#" class="db-name-link">Austria: Vienna Deaths (New)</a>
-                    <a href="#" class="db-count-pill sm" aria-label="List 1 record from Austria: Vienna Deaths (New)">List 1 record</a>
-                </div>
-                <div class="db-row">
-                    <a href="#" class="db-name-link">Austria: Vienna Divorces / Scheidungs-Index, 1870&#8211;1942</a>
-                    <a href="#" class="db-count-pill sm" aria-label="List 1 record from Austria: Vienna Divorces">List 1 record</a>
-                </div>
-                <div class="db-row">
-                    <a href="#" class="db-name-link">Austria: Vienna Marriages (Enhanced)</a>
-                    <a href="#" class="db-count-pill sm" aria-label="List 2 records from Austria: Vienna Marriages (Enhanced)">List 2 records</a>
-                </div>
-            </div>
-        </div>
+                <!-- ============================================
+                     ACCORDION GROUPS — JewishGen internal
+                ============================================ -->
+                <div class="groups-list" role="list">
 
-        <!-- Family Tree of the Jewish People (1 DB, expanded) -->
-        <div class="result-group" role="listitem" data-db-count="1">
-            <button class="group-toggle"
-                    aria-expanded="true"
-                    aria-controls="panel-ftjp"
-                    id="toggle-ftjp">
-                <div class="group-toggle-left">
-                    <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg"
-                         alt="JewishGen" class="light-logo group-jg-logo">
-                    <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png"
-                         alt="JewishGen" class="dark-logo group-jg-logo">
-                    <span class="group-name">Family Tree of the Jewish People</span>
-                    <span class="group-db-count">1 database</span>
-                </div>
-                <div class="group-toggle-right">
-                    <span class="group-record-badge">21 records</span>
-                    <span class="group-chevron" aria-hidden="true">&#9660;</span>
-                </div>
-            </button>
-            <div id="panel-ftjp"
-                 class="group-panel"
-                 role="region"
-                 aria-labelledby="toggle-ftjp">
-                <div class="db-row">
-                    <a href="#" class="db-name-link">Family Tree of the Jewish People</a>
-                    <a href="#" class="db-count-pill sm" aria-label="List 21 records from Family Tree of the Jewish People">List 21 records</a>
-                </div>
-            </div>
-        </div>
+                    <!-- Austria-Czech (6 DBs, collapsed) -->
+                    <div class="result-group" role="listitem" data-db-count="6">
+                        <button class="group-toggle" aria-expanded="false" aria-controls="panel-austria-czech" id="toggle-austria-czech">
+                            <div class="group-toggle-left">
+                                <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg" alt="JewishGen" class="light-logo group-jg-logo">
+                                <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png" alt="JewishGen" class="dark-logo group-jg-logo">
+                                <span class="group-name">Austria-Czech</span>
+                                <span class="group-db-count">6 databases</span>
+                            </div>
+                            <div class="group-toggle-right">
+                                <span class="group-record-badge">12 records</span>
+                                <span class="group-chevron" aria-hidden="true">&#9660;</span>
+                            </div>
+                        </button>
+                        <div id="panel-austria-czech" class="group-panel" role="region" aria-labelledby="toggle-austria-czech" hidden>
+                            <div class="db-row"><a href="#" class="db-name-link">Austria: Vienna Births</a><a href="#" class="db-count-pill sm">List 2 records</a></div>
+                            <div class="db-row"><a href="#" class="db-name-link">Austria: Vienna Births (Enhanced)</a><a href="#" class="db-count-pill sm">List 4 records</a></div>
+                            <div class="db-row"><a href="#" class="db-name-link">Austria: Vienna Deaths</a><a href="#" class="db-count-pill sm">List 1 record</a></div>
+                            <div class="db-row"><a href="#" class="db-name-link">Austria: Vienna Deaths (New)</a><a href="#" class="db-count-pill sm">List 1 record</a></div>
+                            <div class="db-row"><a href="#" class="db-name-link">Austria: Vienna Divorces / Scheidungs-Index, 1870&#8211;1942</a><a href="#" class="db-count-pill sm">List 1 record</a></div>
+                            <div class="db-row"><a href="#" class="db-name-link">Austria: Vienna Marriages (Enhanced)</a><a href="#" class="db-count-pill sm">List 2 records</a></div>
+                        </div>
+                    </div>
 
-        <!-- Holocaust Database (9 DBs, collapsed) -->
-        <div class="result-group" role="listitem" data-db-count="9">
-            <button class="group-toggle"
-                    aria-expanded="false"
-                    aria-controls="panel-holocaust"
-                    id="toggle-holocaust">
-                <div class="group-toggle-left">
-                    <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg"
-                         alt="JewishGen" class="light-logo group-jg-logo">
-                    <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png"
-                         alt="JewishGen" class="dark-logo group-jg-logo">
-                    <span class="group-name">JewishGen Holocaust Database</span>
-                    <span class="group-db-count">9 databases</span>
-                </div>
-                <div class="group-toggle-right">
-                    <span class="group-record-badge">31 records</span>
-                    <span class="group-chevron" aria-hidden="true">&#9660;</span>
-                </div>
-            </button>
-            <div id="panel-holocaust"
-                 class="group-panel"
-                 role="region"
-                 aria-labelledby="toggle-holocaust"
-                 hidden>
-                <div class="db-row">
-                    <a href="#" class="db-name-link">Dachau Concentration Camp Records</a>
-                    <a href="#" class="db-count-pill sm">List 1 record</a>
-                </div>
-                <div class="db-row">
-                    <a href="#" class="db-name-link">Flossenburg Prisoner Lists</a>
-                    <a href="#" class="db-count-pill sm">List 2 records</a>
-                </div>
-                <div class="db-row">
-                    <a href="#" class="db-name-link">Lublin, Poland: Seized Property Cards Index, 1940s</a>
-                    <a href="#" class="db-count-pill sm">List 1 record</a>
-                </div>
-                <div class="db-row">
-                    <a href="#" class="db-name-link">Mauthausen/Gusen Death Book</a>
-                    <a href="#" class="db-count-pill sm">List 1 record</a>
-                </div>
-                <div class="db-row">
-                    <a href="#" class="db-name-link">Pinkas HaNitzolim II</a>
-                    <a href="#" class="db-count-pill sm">List 1 record</a>
-                </div>
-                <div class="db-row">
-                    <a href="#" class="db-name-link">Prisoners in the Bergen-Belsen Concentration Camp</a>
-                    <a href="#" class="db-count-pill sm">List 4 records</a>
-                </div>
-                <div class="db-row">
-                    <a href="#" class="db-name-link">Sharit haPlatah</a>
-                    <a href="#" class="db-count-pill sm">List 3 records</a>
-                </div>
-                <div class="db-row">
-                    <a href="#" class="db-name-link">USC Shoah Foundation &#8212; Survivor Interviews</a>
-                    <a href="#" class="db-count-pill sm">List 13 records</a>
-                </div>
-                <div class="db-row">
-                    <a href="#" class="db-name-link">World Jewish Congress Collection</a>
-                    <a href="#" class="db-count-pill sm">List 5 records</a>
-                </div>
-            </div>
-        </div>
+                    <!-- Family Tree of the Jewish People (1 DB, expanded) -->
+                    <div class="result-group" role="listitem" data-db-count="1">
+                        <button class="group-toggle" aria-expanded="true" aria-controls="panel-ftjp" id="toggle-ftjp">
+                            <div class="group-toggle-left">
+                                <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg" alt="JewishGen" class="light-logo group-jg-logo">
+                                <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png" alt="JewishGen" class="dark-logo group-jg-logo">
+                                <span class="group-name">Family Tree of the Jewish People</span>
+                                <span class="group-db-count">1 database</span>
+                            </div>
+                            <div class="group-toggle-right">
+                                <span class="group-record-badge">21 records</span>
+                                <span class="group-chevron" aria-hidden="true">&#9660;</span>
+                            </div>
+                        </button>
+                        <div id="panel-ftjp" class="group-panel" role="region" aria-labelledby="toggle-ftjp">
+                            <div class="db-row"><a href="#" class="db-name-link">Family Tree of the Jewish People</a><a href="#" class="db-count-pill sm">List 21 records</a></div>
+                        </div>
+                    </div>
 
-        <!-- Israel (1 DB, expanded) -->
-        <div class="result-group" role="listitem" data-db-count="1">
-            <button class="group-toggle"
-                    aria-expanded="true"
-                    aria-controls="panel-israel"
-                    id="toggle-israel">
-                <div class="group-toggle-left">
-                    <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg"
-                         alt="JewishGen" class="light-logo group-jg-logo">
-                    <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png"
-                         alt="JewishGen" class="dark-logo group-jg-logo">
-                    <span class="group-name">Israel</span>
-                    <span class="group-db-count">1 database</span>
-                </div>
-                <div class="group-toggle-right">
-                    <span class="group-record-badge">15 records</span>
-                    <span class="group-chevron" aria-hidden="true">&#9660;</span>
-                </div>
-            </button>
-            <div id="panel-israel"
-                 class="group-panel"
-                 role="region"
-                 aria-labelledby="toggle-israel">
-                <div class="db-row">
-                    <!-- Replace placeholder with <img src="[IGRA logo]" ...> when available -->
-                    <a href="#" class="db-name-link ext">Israel Genealogy Research Association</a>
-                    <a href="#" class="db-count-pill sm ext" aria-label="List 15 records from Israel Genealogy Research Association (opens on partner site)">List 15 records</a>
-                </div>
-            </div>
-        </div>
+                    <!-- Holocaust Database (9 DBs, collapsed) -->
+                    <div class="result-group" role="listitem" data-db-count="9">
+                        <button class="group-toggle" aria-expanded="false" aria-controls="panel-holocaust" id="toggle-holocaust">
+                            <div class="group-toggle-left">
+                                <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg" alt="JewishGen" class="light-logo group-jg-logo">
+                                <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png" alt="JewishGen" class="dark-logo group-jg-logo">
+                                <span class="group-name">JewishGen Holocaust Database</span>
+                                <span class="group-db-count">9 databases</span>
+                            </div>
+                            <div class="group-toggle-right">
+                                <span class="group-record-badge">31 records</span>
+                                <span class="group-chevron" aria-hidden="true">&#9660;</span>
+                            </div>
+                        </button>
+                        <div id="panel-holocaust" class="group-panel" role="region" aria-labelledby="toggle-holocaust" hidden>
+                            <div class="db-row"><a href="#" class="db-name-link">Dachau Concentration Camp Records</a><a href="#" class="db-count-pill sm">List 1 record</a></div>
+                            <div class="db-row"><a href="#" class="db-name-link">Flossenburg Prisoner Lists</a><a href="#" class="db-count-pill sm">List 2 records</a></div>
+                            <div class="db-row"><a href="#" class="db-name-link">Lublin, Poland: Seized Property Cards Index, 1940s</a><a href="#" class="db-count-pill sm">List 1 record</a></div>
+                            <div class="db-row"><a href="#" class="db-name-link">Mauthausen/Gusen Death Book</a><a href="#" class="db-count-pill sm">List 1 record</a></div>
+                            <div class="db-row"><a href="#" class="db-name-link">Pinkas HaNitzolim II</a><a href="#" class="db-count-pill sm">List 1 record</a></div>
+                            <div class="db-row"><a href="#" class="db-name-link">Prisoners in the Bergen-Belsen Concentration Camp</a><a href="#" class="db-count-pill sm">List 4 records</a></div>
+                            <div class="db-row"><a href="#" class="db-name-link">Sharit haPlatah</a><a href="#" class="db-count-pill sm">List 3 records</a></div>
+                            <div class="db-row"><a href="#" class="db-name-link">USC Shoah Foundation &#8212; Survivor Interviews</a><a href="#" class="db-count-pill sm">List 13 records</a></div>
+                            <div class="db-row"><a href="#" class="db-name-link">World Jewish Congress Collection</a><a href="#" class="db-count-pill sm">List 5 records</a></div>
+                        </div>
+                    </div>
 
-        <!-- Memorials & Plaques (1 DB, expanded) -->
-        <div class="result-group" role="listitem" data-db-count="1">
-            <button class="group-toggle"
-                    aria-expanded="true"
-                    aria-controls="panel-memorials"
-                    id="toggle-memorials">
-                <div class="group-toggle-left">
-                    <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg"
-                         alt="JewishGen" class="light-logo group-jg-logo">
-                    <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png"
-                         alt="JewishGen" class="dark-logo group-jg-logo">
-                    <span class="group-name">Memorials &amp; Plaques Database</span>
-                    <span class="group-db-count">1 database</span>
-                </div>
-                <div class="group-toggle-right">
-                    <span class="group-record-badge">3 records</span>
-                    <span class="group-chevron" aria-hidden="true">&#9660;</span>
-                </div>
-            </button>
-            <div id="panel-memorials"
-                 class="group-panel"
-                 role="region"
-                 aria-labelledby="toggle-memorials">
-                <div class="db-row">
-                    <a href="#" class="db-name-link">JewishGen Memorial Plaque Database &#8212; USA: New Jersey</a>
-                    <a href="#" class="db-count-pill sm">List 3 records</a>
-                </div>
-            </div>
-        </div>
+                    <!-- Israel (1 DB, expanded) -->
+                    <div class="result-group" role="listitem" data-db-count="1">
+                        <button class="group-toggle" aria-expanded="true" aria-controls="panel-israel" id="toggle-israel">
+                            <div class="group-toggle-left">
+                                <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg" alt="JewishGen" class="light-logo group-jg-logo">
+                                <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png" alt="JewishGen" class="dark-logo group-jg-logo">
+                                <span class="group-name">Israel</span>
+                                <span class="group-db-count">1 database</span>
+                            </div>
+                            <div class="group-toggle-right">
+                                <span class="group-record-badge">15 records</span>
+                                <span class="group-chevron" aria-hidden="true">&#9660;</span>
+                            </div>
+                        </button>
+                        <div id="panel-israel" class="group-panel" role="region" aria-labelledby="toggle-israel">
+                            <div class="db-row">
+                                <!-- Replace with IGRA logo img when available -->
+                                <a href="#" class="db-name-link ext">Israel Genealogy Research Association</a>
+                                <a href="#" class="db-count-pill sm ext" aria-label="List 15 records from IGRA (opens on partner site)">List 15 records</a>
+                            </div>
+                        </div>
+                    </div>
 
-        <!-- Poland (4 JG DBs + JRI-Poland, collapsed) -->
-        <div class="result-group" role="listitem" data-db-count="5">
-            <button class="group-toggle"
-                    aria-expanded="false"
-                    aria-controls="panel-poland"
-                    id="toggle-poland">
-                <div class="group-toggle-left">
-                    <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg"
-                         alt="JewishGen" class="light-logo group-jg-logo">
-                    <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png"
-                         alt="JewishGen" class="dark-logo group-jg-logo">
-                    <span class="group-name">Poland</span>
-                    <span class="group-db-count">5 databases</span>
-                </div>
-                <div class="group-toggle-right">
-                    <span class="group-record-badge">284 records</span>
-                    <span class="group-chevron" aria-hidden="true">&#9660;</span>
-                </div>
-            </button>
-            <div id="panel-poland"
-                 class="group-panel"
-                 role="region"
-                 aria-labelledby="toggle-poland"
-                 hidden>
-                <div class="db-row">
-                    <a href="#" class="db-name-link">Krakow Ghetto</a>
-                    <a href="#" class="db-count-pill sm">List 2 records</a>
-                </div>
-                <div class="db-row">
-                    <a href="#" class="db-name-link">Krakow Vital Records: Births</a>
-                    <a href="#" class="db-count-pill sm">List 2 records</a>
-                </div>
-                <div class="db-row">
-                    <a href="#" class="db-name-link">Krakow Vital Records: Marriages</a>
-                    <a href="#" class="db-count-pill sm">List 12 records</a>
-                </div>
-                <div class="db-row">
-                    <a href="#" class="db-name-link">Poland: Krakow Marriage Intentions / Banns Records</a>
-                    <a href="#" class="db-count-pill sm">List 3 records</a>
-                </div>
-                <!-- JRI-Poland sub-partner band -->
-                <!-- Replace placeholder with <img src="[JRI-Poland logo]" ...> when available -->
-                <div class="subpartner-band" role="presentation">
-                    <span class="partner-logo-placeholder" aria-label="Jewish Records Indexing - Poland logo">JRI-Poland</span>
-                    <span class="subpartner-name">Jewish Records Indexing &#8212; Poland</span>
-                </div>
-                <div class="db-row sub">
-                    <a href="#" class="db-name-link ext">JRI-Poland &#8212; Krakow Wojewodztwo</a>
-                    <a href="#" class="db-count-pill sm ext" aria-label="List 254 records from JRI-Poland Krakow Wojewodztwo (opens on partner site)">List 254 records</a>
-                </div>
-                <div class="db-row sub">
-                    <a href="#" class="db-name-link ext">JRI-Poland &#8212; Lwow Wojewodztwo</a>
-                    <a href="#" class="db-count-pill sm ext" aria-label="List 9 records from JRI-Poland Lwow Wojewodztwo (opens on partner site)">List 9 records</a>
-                </div>
-                <div class="db-row sub">
-                    <a href="#" class="db-name-link ext">JRI-Poland &#8212; Tarnopol Wojewodztwo</a>
-                    <a href="#" class="db-count-pill sm ext" aria-label="List 2 records from JRI-Poland Tarnopol Wojewodztwo (opens on partner site)">List 2 records</a>
-                </div>
-            </div>
-        </div>
+                    <!-- Memorials & Plaques (1 DB, expanded) -->
+                    <div class="result-group" role="listitem" data-db-count="1">
+                        <button class="group-toggle" aria-expanded="true" aria-controls="panel-memorials" id="toggle-memorials">
+                            <div class="group-toggle-left">
+                                <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg" alt="JewishGen" class="light-logo group-jg-logo">
+                                <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png" alt="JewishGen" class="dark-logo group-jg-logo">
+                                <span class="group-name">Memorials &amp; Plaques Database</span>
+                                <span class="group-db-count">1 database</span>
+                            </div>
+                            <div class="group-toggle-right">
+                                <span class="group-record-badge">3 records</span>
+                                <span class="group-chevron" aria-hidden="true">&#9660;</span>
+                            </div>
+                        </button>
+                        <div id="panel-memorials" class="group-panel" role="region" aria-labelledby="toggle-memorials">
+                            <div class="db-row"><a href="#" class="db-name-link">JewishGen Memorial Plaque Database &#8212; USA: New Jersey</a><a href="#" class="db-count-pill sm">List 3 records</a></div>
+                        </div>
+                    </div>
 
-        <!-- Yizkor Book Necrology (3 DBs, expanded) -->
-        <div class="result-group" role="listitem" data-db-count="3">
-            <button class="group-toggle"
-                    aria-expanded="true"
-                    aria-controls="panel-yizkor"
-                    id="toggle-yizkor">
-                <div class="group-toggle-left">
-                    <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg"
-                         alt="JewishGen" class="light-logo group-jg-logo">
-                    <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png"
-                         alt="JewishGen" class="dark-logo group-jg-logo">
-                    <span class="group-name">Yizkor Book Necrology Database</span>
-                    <span class="group-db-count">3 databases</span>
+                    <!-- Poland (5 DBs incl. JRI-Poland, collapsed) -->
+                    <div class="result-group" role="listitem" data-db-count="5">
+                        <button class="group-toggle" aria-expanded="false" aria-controls="panel-poland" id="toggle-poland">
+                            <div class="group-toggle-left">
+                                <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg" alt="JewishGen" class="light-logo group-jg-logo">
+                                <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png" alt="JewishGen" class="dark-logo group-jg-logo">
+                                <span class="group-name">Poland</span>
+                                <span class="group-db-count">5 databases</span>
+                            </div>
+                            <div class="group-toggle-right">
+                                <span class="group-record-badge">284 records</span>
+                                <span class="group-chevron" aria-hidden="true">&#9660;</span>
+                            </div>
+                        </button>
+                        <div id="panel-poland" class="group-panel" role="region" aria-labelledby="toggle-poland" hidden>
+                            <div class="db-row"><a href="#" class="db-name-link">Krakow Ghetto</a><a href="#" class="db-count-pill sm">List 2 records</a></div>
+                            <div class="db-row"><a href="#" class="db-name-link">Krakow Vital Records: Births</a><a href="#" class="db-count-pill sm">List 2 records</a></div>
+                            <div class="db-row"><a href="#" class="db-name-link">Krakow Vital Records: Marriages</a><a href="#" class="db-count-pill sm">List 12 records</a></div>
+                            <div class="db-row"><a href="#" class="db-name-link">Poland: Krakow Marriage Intentions / Banns Records</a><a href="#" class="db-count-pill sm">List 3 records</a></div>
+                            <!-- JRI-Poland sub-partner band — replace placeholder with logo img when available -->
+                            <div class="subpartner-band" role="presentation">
+                                <span class="partner-logo-placeholder" aria-label="Jewish Records Indexing - Poland logo">JRI-Poland</span>
+                                <span class="subpartner-name">Jewish Records Indexing &#8212; Poland</span>
+                            </div>
+                            <div class="db-row sub"><a href="#" class="db-name-link ext">JRI-Poland &#8212; Krakow Wojewodztwo</a><a href="#" class="db-count-pill sm ext" aria-label="List 254 records (opens on JRI-Poland site)">List 254 records</a></div>
+                            <div class="db-row sub"><a href="#" class="db-name-link ext">JRI-Poland &#8212; Lwow Wojewodztwo</a><a href="#" class="db-count-pill sm ext" aria-label="List 9 records (opens on JRI-Poland site)">List 9 records</a></div>
+                            <div class="db-row sub"><a href="#" class="db-name-link ext">JRI-Poland &#8212; Tarnopol Wojewodztwo</a><a href="#" class="db-count-pill sm ext" aria-label="List 2 records (opens on JRI-Poland site)">List 2 records</a></div>
+                        </div>
+                    </div>
+
+                    <!-- Yizkor Book Necrology (3 DBs, expanded) -->
+                    <div class="result-group" role="listitem" data-db-count="3">
+                        <button class="group-toggle" aria-expanded="true" aria-controls="panel-yizkor" id="toggle-yizkor">
+                            <div class="group-toggle-left">
+                                <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg" alt="JewishGen" class="light-logo group-jg-logo">
+                                <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png" alt="JewishGen" class="dark-logo group-jg-logo">
+                                <span class="group-name">Yizkor Book Necrology Database</span>
+                                <span class="group-db-count">3 databases</span>
+                            </div>
+                            <div class="group-toggle-right">
+                                <span class="group-record-badge">14 records</span>
+                                <span class="group-chevron" aria-hidden="true">&#9660;</span>
+                            </div>
+                        </button>
+                        <div id="panel-yizkor" class="group-panel" role="region" aria-labelledby="toggle-yizkor">
+                            <div class="db-row"><a href="#" class="db-name-link">Yizkor Book Necrology Database</a><a href="#" class="db-count-pill sm">List 7 records</a></div>
+                            <div class="db-row"><a href="#" class="db-name-link">Yizkor Book Necrology Database &#8212; Krakow</a><a href="#" class="db-count-pill sm">List 5 records</a></div>
+                            <div class="db-row"><a href="#" class="db-name-link">Yizkor Book Necrology Database &#8212; Warszawa</a><a href="#" class="db-count-pill sm">List 2 records</a></div>
+                        </div>
+                    </div>
+
+                </div><!-- /groups-list -->
+
+                <!-- ============================================
+                     JOWBR — Own section above Partners
+                ============================================ -->
+                <div class="section-divider" role="presentation">
+                    <span class="section-divider-label">Burial Registry</span>
+                    <span class="section-divider-line" aria-hidden="true"></span>
                 </div>
-                <div class="group-toggle-right">
-                    <span class="group-record-badge">14 records</span>
-                    <span class="group-chevron" aria-hidden="true">&#9660;</span>
+
+                <section class="jowbr-section" aria-label="JewishGen Online Worldwide Burial Registry results">
+                    <div class="jowbr-header">
+                        <div class="jowbr-header-left">
+                            <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg" alt="JewishGen" class="light-logo group-jg-logo">
+                            <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png" alt="JewishGen" class="dark-logo group-jg-logo">
+                            <div>
+                                <div class="jowbr-title">Online Worldwide Burial Registry</div>
+                                <div class="jowbr-desc">19 records across 7 regional registries</div>
+                            </div>
+                        </div>
+                        <div class="jowbr-header-right">
+                            <button class="jowbr-toggle-btn" aria-expanded="false" aria-controls="panel-jowbr" id="toggle-jowbr">
+                                Show breakdown &#9660;
+                            </button>
+                            <a href="#" class="db-count-pill sm" aria-label="List all 19 JOWBR records">List 19 records</a>
+                        </div>
+                    </div>
+                    <div id="panel-jowbr" class="jowbr-panel" role="region" aria-labelledby="toggle-jowbr" hidden>
+                        <div class="db-row" style="padding-left:20px;"><a href="#" class="db-name-link">JOWBR &#8212; Austria</a><a href="#" class="db-count-pill sm">List 1 record</a></div>
+                        <div class="db-row" style="padding-left:20px;"><a href="#" class="db-name-link">JOWBR &#8212; Canada: Quebec</a><a href="#" class="db-count-pill sm">List 3 records</a></div>
+                        <div class="db-row" style="padding-left:20px;"><a href="#" class="db-name-link">JOWBR &#8212; England</a><a href="#" class="db-count-pill sm">List 3 records</a></div>
+                        <div class="db-row" style="padding-left:20px;"><a href="#" class="db-name-link">JOWBR &#8212; Israel</a><a href="#" class="db-count-pill sm">List 4 records</a></div>
+                        <div class="db-row" style="padding-left:20px;"><a href="#" class="db-name-link">JOWBR &#8212; Krakow</a><a href="#" class="db-count-pill sm">List 1 record</a></div>
+                        <div class="db-row" style="padding-left:20px;"><a href="#" class="db-name-link">JOWBR &#8212; USA: Florida</a><a href="#" class="db-count-pill sm">List 1 record</a></div>
+                        <div class="db-row" style="padding-left:20px;"><a href="#" class="db-name-link">JOWBR &#8212; USA: New Jersey</a><a href="#" class="db-count-pill sm">List 6 records</a></div>
+                    </div>
+                </section>
+
+                <!-- ============================================
+                     PARTNER ORGANIZATIONS
+                ============================================ -->
+                <div class="section-divider" role="presentation">
+                    <span class="section-divider-label">Partner Organizations</span>
+                    <span class="section-divider-line" aria-hidden="true"></span>
                 </div>
-            </button>
-            <div id="panel-yizkor"
-                 class="group-panel"
-                 role="region"
-                 aria-labelledby="toggle-yizkor">
-                <div class="db-row">
-                    <a href="#" class="db-name-link">Yizkor Book Necrology Database</a>
-                    <a href="#" class="db-count-pill sm">List 7 records</a>
+
+                <!-- Arolsen Archives -->
+                <section class="partner-section" aria-label="Arolsen Archives results">
+                    <div class="partner-header">
+                        <div class="partner-logo-area">
+                            <!-- Replace with: <img src="[Arolsen logo]" alt="Arolsen Archives" class="partner-logo"> -->
+                            <div class="partner-logo-placeholder lg" aria-label="Arolsen Archives logo">Arolsen Archives</div>
+                            <span style="font-size:13px;color:var(--charcoal);">The International Center on Nazi Persecution</span>
+                        </div>
+                        <span class="partner-record-badge">26 records</span>
+                    </div>
+                    <div class="partner-subtype-row">
+                        <span class="partner-subtype-label">Arolsen Archives Inquiries: Red Line Cards</span>
+                        <a href="#" class="db-count-pill sm ext" aria-label="List 26 records from Arolsen Archives (opens on partner site)">List 26 records</a>
+                    </div>
+                </section>
+
+                <!-- Gesher Galicia -->
+                <section class="partner-section" aria-label="Gesher Galicia results">
+                    <div class="partner-header">
+                        <div class="partner-logo-area">
+                            <!-- Replace with: <img src="[Gesher Galicia logo]" alt="Gesher Galicia" class="partner-logo"> -->
+                            <div class="partner-logo-placeholder lg" aria-label="Gesher Galicia logo">Gesher Galicia</div>
+                            <span style="font-size:13px;color:var(--charcoal);">Additional matches from the All Galicia Database</span>
+                        </div>
+                        <span class="partner-record-badge">14 records</span>
+                    </div>
+                    <div class="partner-subtype-row"><span class="partner-subtype-label">Censuses / Residents records</span><a href="#" class="db-count-pill sm ext" aria-label="List 3 census records (opens on partner site)">List 3 records</a></div>
+                    <div class="partner-subtype-row"><span class="partner-subtype-label">Holocaust records</span><a href="#" class="db-count-pill sm ext" aria-label="List 2 Holocaust records (opens on partner site)">List 2 records</a></div>
+                    <div class="partner-subtype-row"><span class="partner-subtype-label">Schools &amp; universities records</span><a href="#" class="db-count-pill sm ext" aria-label="List 8 schools records (opens on partner site)">List 8 records</a></div>
+                    <div class="partner-subtype-row"><span class="partner-subtype-label">Military records</span><a href="#" class="db-count-pill sm ext" aria-label="List 1 military record (opens on partner site)">List 1 record</a></div>
+                </section>
+
+                <!-- Yad Vashem -->
+                <section class="partner-section" aria-label="Yad Vashem results">
+                    <div class="partner-header">
+                        <div class="partner-logo-area">
+                            <!-- Replace with: <img src="[Yad Vashem logo]" alt="Yad Vashem" class="partner-logo"> -->
+                            <div class="partner-logo-placeholder lg" aria-label="Yad Vashem logo">Yad Vashem</div>
+                            <span style="font-size:13px;color:var(--charcoal);">The World Holocaust Remembrance Center</span>
+                        </div>
+                        <span class="partner-record-badge">3 records</span>
+                    </div>
+                    <div class="partner-subtype-row">
+                        <span class="partner-subtype-label">Central Database of Shoah Victims' Names</span>
+                        <a href="#" class="db-count-pill sm ext" aria-label="List 3 records from Yad Vashem (opens on partner site)">List 3 records</a>
+                    </div>
+                </section>
+
+                <!-- Bottom navigation -->
+                <div class="bottom-actions" role="navigation" aria-label="Search navigation">
+                    <a href="/JG40-Build/Global_Search.html" class="bottom-action-link">&#8592; New Search</a>
+                    <a href="/JG40-Build/index.html" class="bottom-action-link">JewishGen Home</a>
                 </div>
-                <div class="db-row">
-                    <a href="#" class="db-name-link">Yizkor Book Necrology Database &#8212; Krakow</a>
-                    <a href="#" class="db-count-pill sm">List 5 records</a>
-                </div>
-                <div class="db-row">
-                    <a href="#" class="db-name-link">Yizkor Book Necrology Database &#8212; Warszawa</a>
-                    <a href="#" class="db-count-pill sm">List 2 records</a>
-                </div>
-            </div>
-        </div>
 
-    </div><!-- /groups-list -->
-
-    <!-- ============================================
-         JOWBR — Pulled out of accordion as its own
-         section. Always visible header with total
-         count; geographic breakdown toggles open.
-    ============================================ -->
-    <div class="section-divider" role="presentation">
-        <span class="section-divider-label">Burial Registry</span>
-        <span class="section-divider-line" aria-hidden="true"></span>
-    </div>
-
-    <section class="jowbr-section" aria-label="JewishGen Online Worldwide Burial Registry results">
-        <div class="jowbr-header">
-            <div class="jowbr-header-left">
-                <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg"
-                     alt="JewishGen" class="light-logo group-jg-logo">
-                <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png"
-                     alt="JewishGen" class="dark-logo group-jg-logo">
-                <div>
-                    <div class="jowbr-title">Online Worldwide Burial Registry</div>
-                    <div class="jowbr-desc">19 records across 7 regional registries</div>
-                </div>
-            </div>
-            <div class="jowbr-header-right">
-                <button class="jowbr-toggle-btn"
-                        aria-expanded="false"
-                        aria-controls="panel-jowbr"
-                        id="toggle-jowbr">
-                    Show breakdown &#9660;
-                </button>
-                <a href="#" class="db-count-pill" aria-label="List all 19 JOWBR records">List 19 records</a>
-            </div>
-        </div>
-        <div id="panel-jowbr"
-             class="jowbr-panel"
-             role="region"
-             aria-labelledby="toggle-jowbr"
-             hidden>
-            <div class="db-row" style="padding-left: 20px;">
-                <a href="#" class="db-name-link">JOWBR &#8212; Austria</a>
-                <a href="#" class="db-count-pill sm">List 1 record</a>
-            </div>
-            <div class="db-row" style="padding-left: 20px;">
-                <a href="#" class="db-name-link">JOWBR &#8212; Canada: Quebec</a>
-                <a href="#" class="db-count-pill sm">List 3 records</a>
-            </div>
-            <div class="db-row" style="padding-left: 20px;">
-                <a href="#" class="db-name-link">JOWBR &#8212; England</a>
-                <a href="#" class="db-count-pill sm">List 3 records</a>
-            </div>
-            <div class="db-row" style="padding-left: 20px;">
-                <a href="#" class="db-name-link">JOWBR &#8212; Israel</a>
-                <a href="#" class="db-count-pill sm">List 4 records</a>
-            </div>
-            <div class="db-row" style="padding-left: 20px;">
-                <a href="#" class="db-name-link">JOWBR &#8212; Krakow</a>
-                <a href="#" class="db-count-pill sm">List 1 record</a>
-            </div>
-            <div class="db-row" style="padding-left: 20px;">
-                <a href="#" class="db-name-link">JOWBR &#8212; USA: Florida</a>
-                <a href="#" class="db-count-pill sm">List 1 record</a>
-            </div>
-            <div class="db-row" style="padding-left: 20px;">
-                <a href="#" class="db-name-link">JOWBR &#8212; USA: New Jersey</a>
-                <a href="#" class="db-count-pill sm">List 6 records</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         PARTNER ORGANIZATIONS
-    ============================================ -->
-    <div class="section-divider" role="presentation">
-        <span class="section-divider-label">Partner Organizations</span>
-        <span class="section-divider-line" aria-hidden="true"></span>
-    </div>
-
-    <!-- Arolsen Archives -->
-    <section class="partner-section" aria-label="Arolsen Archives results">
-        <div class="partner-header">
-            <div class="partner-logo-area">
-                <!-- Replace with: <img src="[Arolsen logo URL]" alt="Arolsen Archives" class="partner-logo"> -->
-                <div class="partner-logo-placeholder lg" aria-label="Arolsen Archives logo">Arolsen Archives</div>
-                <span style="font-size: 13px; color: var(--charcoal);">The International Center on Nazi Persecution</span>
-            </div>
-            <span class="partner-record-badge">26 records</span>
-        </div>
-        <div class="partner-panel">
-            <div class="partner-subtype-row">
-                <span class="partner-subtype-label">Arolsen Archives Inquiries: Red Line Cards</span>
-                <a href="#" class="db-count-pill sm ext" aria-label="List 26 records from Arolsen Archives (opens on partner site)">List 26 records</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gesher Galicia -->
-    <section class="partner-section" aria-label="Gesher Galicia results">
-        <div class="partner-header">
-            <div class="partner-logo-area">
-                <!-- Replace with: <img src="[Gesher Galicia logo URL]" alt="Gesher Galicia" class="partner-logo"> -->
-                <div class="partner-logo-placeholder lg" aria-label="Gesher Galicia logo">Gesher Galicia</div>
-                <span style="font-size: 13px; color: var(--charcoal);">Additional matches from the All Galicia Database</span>
-            </div>
-            <span class="partner-record-badge">14 records</span>
-        </div>
-        <div class="partner-panel">
-            <div class="partner-subtype-row">
-                <span class="partner-subtype-label">Censuses / Residents records</span>
-                <a href="#" class="db-count-pill sm ext" aria-label="List 3 census/residents records from Gesher Galicia (opens on partner site)">List 3 records</a>
-            </div>
-            <div class="partner-subtype-row">
-                <span class="partner-subtype-label">Holocaust records</span>
-                <a href="#" class="db-count-pill sm ext" aria-label="List 2 Holocaust records from Gesher Galicia (opens on partner site)">List 2 records</a>
-            </div>
-            <div class="partner-subtype-row">
-                <span class="partner-subtype-label">Schools &amp; universities records</span>
-                <a href="#" class="db-count-pill sm ext" aria-label="List 8 schools/universities records from Gesher Galicia (opens on partner site)">List 8 records</a>
-            </div>
-            <div class="partner-subtype-row">
-                <span class="partner-subtype-label">Military records</span>
-                <a href="#" class="db-count-pill sm ext" aria-label="List 1 military record from Gesher Galicia (opens on partner site)">List 1 record</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Yad Vashem -->
-    <section class="partner-section" aria-label="Yad Vashem results">
-        <div class="partner-header">
-            <div class="partner-logo-area">
-                <!-- Replace with: <img src="[Yad Vashem logo URL]" alt="Yad Vashem" class="partner-logo"> -->
-                <div class="partner-logo-placeholder lg" aria-label="Yad Vashem logo">Yad Vashem</div>
-                <span style="font-size: 13px; color: var(--charcoal);">The World Holocaust Remembrance Center</span>
-            </div>
-            <span class="partner-record-badge">3 records</span>
-        </div>
-        <div class="partner-panel">
-            <div class="partner-subtype-row">
-                <span class="partner-subtype-label">Central Database of Shoah Victims' Names</span>
-                <a href="#" class="db-count-pill sm ext" aria-label="List 3 records from Yad Vashem (opens on partner site)">List 3 records</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Bottom navigation -->
-    <div class="bottom-actions" role="navigation" aria-label="Search navigation">
-        <a href="#" class="bottom-action-link">&#8592; New Search</a>
-        <a href="#" class="bottom-action-link">JewishGen Home</a>
-    </div>
-
+            </div><!-- /sr-card-inner -->
+        </div><!-- /sr-card -->
+    </div><!-- /sr-outer -->
 </main>
 
+<!-- Footer loaded from shared component -->
 <div id="site-footer"></div>
 
-
 <!-- ============================================
-      JAVASCRIPT
+     SCRIPTS
 ============================================ -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    /* -- Component Loader -- */
-    function loadComponent(id, file) {
-        return fetch(file)
-            .then(r => { if (!r.ok) throw new Error('Could not load ' + file); return r.text(); })
-            .then(html => document.getElementById(id).innerHTML = html)
-            .catch(console.warn);
-    }
 
-    Promise.all([
-        loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
-        loadComponent('site-footer', '/JG40-Build/Footer.html')
-    ]).then(function() {});
+<script>
+/* -- Component loader ----------------------------------------- */
+function loadComponent(id, file) {
+    return fetch(file)
+        .then(function(r) {
+            if (!r.ok) throw new Error('Could not load ' + file);
+            return r.text();
+        })
+        .then(function(html) {
+            document.getElementById(id).innerHTML = html;
+        })
+        .catch(function(err) { console.warn(err); });
+}
+
+Promise.all([
+    loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
+    loadComponent('site-footer', '/JG40-Build/Footer.html')
+]).then(function() {
+    document.querySelectorAll('.jg-nav .dropbtn').forEach(function(btn) {
+        btn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                var expanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', String(!expanded));
+                var menu = document.getElementById(this.getAttribute('aria-controls'));
+                if (menu) menu.style.display = expanded ? 'none' : 'block';
+            }
+            if (e.key === 'Escape') {
+                this.setAttribute('aria-expanded', 'false');
+                var menu = document.getElementById(this.getAttribute('aria-controls'));
+                if (menu) menu.style.display = 'none';
+            }
+        });
+    });
+});
+
+/* -- Accordion groups ----------------------------------------- */
 (function () {
     'use strict';
 
-    // Standard accordion groups
     document.querySelectorAll('.result-group').forEach(function (group) {
         var dbCount = parseInt(group.dataset.dbCount, 10) || 0;
         var toggle  = group.querySelector('.group-toggle');
@@ -1314,20 +999,12 @@
 
         var startExpanded = dbCount <= 3;
         toggle.setAttribute('aria-expanded', startExpanded ? 'true' : 'false');
-        if (!startExpanded) {
-            panel.setAttribute('hidden', '');
-        } else {
-            panel.removeAttribute('hidden');
-        }
+        if (!startExpanded) { panel.setAttribute('hidden', ''); } else { panel.removeAttribute('hidden'); }
 
         toggle.addEventListener('click', function () {
             var isExpanded = toggle.getAttribute('aria-expanded') === 'true';
             toggle.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
-            if (isExpanded) {
-                panel.setAttribute('hidden', '');
-            } else {
-                panel.removeAttribute('hidden');
-            }
+            if (isExpanded) { panel.setAttribute('hidden', ''); } else { panel.removeAttribute('hidden'); }
         });
 
         toggle.addEventListener('keydown', function (e) {
@@ -1335,21 +1012,15 @@
         });
     });
 
-    // JOWBR breakdown toggle
+    /* -- JOWBR breakdown toggle --------------------------------- */
     var jowbrBtn   = document.getElementById('toggle-jowbr');
     var jowbrPanel = document.getElementById('panel-jowbr');
     if (jowbrBtn && jowbrPanel) {
         jowbrBtn.addEventListener('click', function () {
             var isExpanded = jowbrBtn.getAttribute('aria-expanded') === 'true';
             jowbrBtn.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
-            jowbrBtn.textContent = isExpanded
-                ? 'Show breakdown \u25BC'
-                : 'Hide breakdown \u25B2';
-            if (isExpanded) {
-                jowbrPanel.setAttribute('hidden', '');
-            } else {
-                jowbrPanel.removeAttribute('hidden');
-            }
+            jowbrBtn.innerHTML = isExpanded ? 'Show breakdown &#9660;' : 'Hide breakdown &#9650;';
+            if (isExpanded) { jowbrPanel.setAttribute('hidden', ''); } else { jowbrPanel.removeAttribute('hidden'); }
         });
         jowbrBtn.addEventListener('keydown', function (e) {
             if (e.key === ' ') { e.preventDefault(); jowbrBtn.click(); }
