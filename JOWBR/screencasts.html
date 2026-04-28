@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submission Screencasts — JOWBR — JewishGen</title>
+    <meta name="description" content="Watch JewishGen's ten-part screencast series on how to submit burial records to the JOWBR database.">
+
+    <!-- 1. Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- 2. JewishGen Global Design System -->
+    <link rel="stylesheet" href="/JG40-Build/jg-global.css">
+    <!-- 3. Page-specific styles -->
+    <style>
+        /* =====================================================
+           JOWBR SCREENCASTS - PAGE-SPECIFIC STYLES
+           Stats bar + section nav CSS live in JOWBR_SubNav.html.
+           ===================================================== */
+
+        /* -- Page Title Band --------------------------------- */
+        .jg-page-band {
+            background-color: #09497a;
+            padding: 34px 50px;
+            text-align: center;
+        }
+        body.dark-mode .jg-page-band { background-color: #0d2a45; }
+
+        .jg-page-band h1 {
+            margin: 0 0 6px;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 2.25rem;
+            font-weight: normal;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+        .jg-page-band h2 {
+            margin: 0 0 10px;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.0625rem;
+            font-weight: normal;
+            color: #ffffff;
+            line-height: 1.3;
+        }
+        .jg-page-band__sub {
+            font-size: 0.9375rem;
+            font-style: italic;
+            color: #a9c0d0;
+            margin: 0 auto;
+            max-width: 560px;
+            line-height: 1.6;
+        }
+
+        /* -- Intro Band -------------------------------------- */
+        .sc-intro-band {
+            background-color: var(--ecru);
+            border-bottom: 1px solid #d1caba;
+            padding: 28px 50px;
+            text-align: center;
+        }
+        body.dark-mode .sc-intro-band {
+            background-color: #141414;
+            border-bottom-color: #2a2a2a;
+        }
+        .sc-intro-band p {
+            max-width: 760px;
+            margin: 0 auto;
+            font-size: 0.9375rem;
+            line-height: 1.7;
+            color: var(--charcoal);
+        }
+        body.dark-mode .sc-intro-band p { color: #c0c0c0; }
+        .sc-intro-band a {
+            color: var(--navy);
+            font-weight: 600;
+            text-decoration: underline dotted;
+            text-decoration-color: var(--sage);
+        }
+        .sc-intro-band a:hover { color: var(--sage); }
+        body.dark-mode .sc-intro-band a { color: #a8b361; }
+
+        /* -- Main Content Layout ----------------------------- */
+        .sc-main {
+            background-color: var(--ecru);
+            padding: 2.5rem 50px 4rem;
+        }
+        body.dark-mode .sc-main { background-color: #141414; }
+
+        .sc-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        /* -- Featured Player Section ------------------------- */
+        .sc-featured {
+            background-color: var(--white);
+            border: 1px solid #d1caba;
+            border-top: 4px solid #09497a;
+            border-radius: 6px;
+            padding: 24px 28px 28px;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+        body.dark-mode .sc-featured {
+            background-color: #1e1e1e;
+            border-color: #333;
+            border-top-color: #a8b361;
+            box-shadow: none;
+        }
+
+        .sc-featured__header {
+            display: flex;
+            align-items: baseline;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+        .sc-episode-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            min-width: 32px;
+            height: 24px;
+            padding: 0 8px;
+            background-color: var(--sage);
+            color: #ffffff;
+            font-size: 0.6875rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border-radius: 3px;
+        }
+        body.dark-mode .sc-episode-badge { background-color: #a8b361; color: #1a1a1a; }
+
+        .sc-featured__title {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.375rem;
+            font-weight: normal;
+            color: var(--navy);
+            margin: 0;
+            line-height: 1.25;
+        }
+        body.dark-mode .sc-featured__title { color: #e0e0e0; }
+
+        /* 16:9 responsive video wrapper */
+        .sc-player-wrap {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 4px;
+            background: #000;
+        }
+        .sc-player-wrap iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+
+        /* -- Section Heading --------------------------------- */
+        .sc-section-heading {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.125rem;
+            font-weight: normal;
+            color: var(--navy);
+            margin: 0 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--sage);
+        }
+        body.dark-mode .sc-section-heading { color: #e0e0e0; border-bottom-color: #a8b361; }
+
+        /* -- Playlist Grid ----------------------------------- */
+        /* 2-column grid, each card is a button-like element   */
+        .sc-playlist {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .sc-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background-color: var(--white);
+            border: 2px solid #d1caba;
+            border-radius: 6px;
+            padding: 12px 14px;
+            cursor: pointer;
+            text-align: left;
+            transition: border-color 0.15s, box-shadow 0.15s;
+            width: 100%;
+            font-family: inherit;
+        }
+        .sc-card:hover {
+            border-color: var(--sage);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+        body.dark-mode .sc-card {
+            background-color: #1e1e1e;
+            border-color: #333;
+        }
+        body.dark-mode .sc-card:hover { border-color: #a8b361; }
+
+        /* is-playing state: navy border + subtle glow */
+        .sc-card.is-playing {
+            border-color: #09497a;
+            box-shadow: 0 0 0 3px rgba(9,73,122,0.18);
+        }
+        body.dark-mode .sc-card.is-playing {
+            border-color: #a8b361;
+            box-shadow: 0 0 0 3px rgba(168,179,97,0.22);
+        }
+
+        /* Number badge on each card */
+        .sc-card__num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            background-color: #09497a;
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border-radius: 50%;
+            line-height: 1;
+        }
+        body.dark-mode .sc-card__num { background-color: #1e4a6e; color: #a8b361; }
+        .sc-card.is-playing .sc-card__num {
+            background-color: var(--sage);
+        }
+        body.dark-mode .sc-card.is-playing .sc-card__num {
+            background-color: #a8b361;
+            color: #1a1a1a;
+        }
+
+        /* Thumbnail */
+        .sc-card__thumb {
+            flex-shrink: 0;
+            width: 96px;
+            height: 54px;
+            border-radius: 3px;
+            object-fit: cover;
+            background: #1a1a1a;
+        }
+
+        /* Title */
+        .sc-card__title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            line-height: 1.35;
+            flex: 1;
+        }
+        body.dark-mode .sc-card__title { color: #c0c0c0; }
+        .sc-card.is-playing .sc-card__title { color: #09497a; }
+        body.dark-mode .sc-card.is-playing .sc-card__title { color: #a8b361; }
+
+        /* -- Contact note ------------------------------------ */
+        .sc-contact {
+            margin-top: 2rem;
+            padding: 16px 20px;
+            background-color: var(--white);
+            border: 1px solid #d1caba;
+            border-left: 4px solid var(--sage);
+            border-radius: 6px;
+            font-size: 0.875rem;
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+        body.dark-mode .sc-contact {
+            background-color: #1e1e1e;
+            border-color: #333;
+            border-left-color: #a8b361;
+            color: #a0a0a0;
+        }
+        .sc-contact a {
+            color: var(--navy);
+            font-weight: 600;
+            text-decoration: underline dotted;
+            text-decoration-color: var(--sage);
+        }
+        .sc-contact a:hover { color: var(--sage); }
+        body.dark-mode .sc-contact a { color: #a8b361; }
+
+        /* -- Responsive -------------------------------------- */
+        @media (max-width: 900px) {
+            .jg-page-band { padding: 28px 20px; }
+            .sc-intro-band { padding: 22px 20px; }
+            .sc-main { padding: 2rem 20px 3rem; }
+            .sc-featured { padding: 18px 18px 22px; }
+        }
+        @media (max-width: 700px) {
+            .sc-playlist { grid-template-columns: 1fr; }
+            .jg-page-band h1 { font-size: 1.75rem; }
+        }
+        @media (max-width: 480px) {
+            .sc-card__thumb { width: 72px; height: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main id="main-content">
+
+    <!-- =======================================================
+         PAGE TITLE BAND
+         ======================================================= -->
+    <div class="jg-page-band">
+        <h1>JOWBR</h1>
+        <h2>The JewishGen Online Worldwide Burial Registry</h2>
+        <p class="jg-page-band__sub">Search millions of Jewish burial records from cemeteries around the world</p>
+    </div>
+
+    <!-- =======================================================
+         SHARED SUB-NAV COMPONENT
+         ======================================================= -->
+    <div id="jowbr-subnav"></div>
+
+    <!-- =======================================================
+         INTRO
+         ======================================================= -->
+    <div class="sc-intro-band">
+        <p>To assist donors interested in submitting data and photos to the JOWBR database, JewishGen has developed this series of "How To" screencasts. Watch all ten in order, or jump directly to the topic you need. Like any online video, you can pause or replay as desired. An alternative to the screencasts is the written guide <a href="https://www.jewishgen.org/databases/Cemetery/Submit.htm" target="_blank" rel="noopener">Submitting Data to JOWBR</a>.</p>
+    </div>
+
+    <!-- =======================================================
+         SCREENCASTS MAIN
+         ======================================================= -->
+    <div class="sc-main">
+        <div class="sc-inner">
+
+            <!-- Featured player -->
+            <div class="sc-featured" aria-live="polite" aria-label="Currently playing screencast">
+                <div class="sc-featured__header">
+                    <span class="sc-episode-badge" id="sc-episode-label" aria-label="Episode 1 of 10">1 of 10</span>
+                    <h2 class="sc-featured__title" id="sc-featured-title">Introduction</h2>
+                </div>
+                <div class="sc-player-wrap">
+                    <iframe id="sc-player"
+                            src="https://www.youtube.com/embed/XikgZZ6acaY?rel=0"
+                            title="JOWBR Screencast 1: Introduction"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- All screencasts playlist -->
+            <h2 class="sc-section-heading">All Screencasts</h2>
+
+            <div class="sc-playlist" role="list" aria-label="JOWBR screencast playlist">
+
+                <button class="sc-card is-playing" role="listitem"
+                        onclick="playVideo(0)"
+                        aria-label="Episode 1: Introduction — currently playing"
+                        aria-pressed="true">
+                    <span class="sc-card__num" aria-hidden="true">1</span>
+                    <img class="sc-card__thumb"
+                         src="https://img.youtube.com/vi/XikgZZ6acaY/mqdefault.jpg"
+                         alt="">
+                    <span class="sc-card__title">Introduction</span>
+                </button>
+
+                <button class="sc-card" role="listitem"
+                        onclick="playVideo(1)"
+                        aria-label="Episode 2: Getting Started"
+                        aria-pressed="false">
+                    <span class="sc-card__num" aria-hidden="true">2</span>
+                    <img class="sc-card__thumb"
+                         src="https://img.youtube.com/vi/7v9SS_X4tC8/mqdefault.jpg"
+                         alt="">
+                    <span class="sc-card__title">Getting Started</span>
+                </button>
+
+                <button class="sc-card" role="listitem"
+                        onclick="playVideo(2)"
+                        aria-label="Episode 3: Cemetery Info"
+                        aria-pressed="false">
+                    <span class="sc-card__num" aria-hidden="true">3</span>
+                    <img class="sc-card__thumb"
+                         src="https://img.youtube.com/vi/ae4UwOk-Xd0/mqdefault.jpg"
+                         alt="">
+                    <span class="sc-card__title">Cemetery Info</span>
+                </button>
+
+                <button class="sc-card" role="listitem"
+                        onclick="playVideo(3)"
+                        aria-label="Episode 4: Burial Template"
+                        aria-pressed="false">
+                    <span class="sc-card__num" aria-hidden="true">4</span>
+                    <img class="sc-card__thumb"
+                         src="https://img.youtube.com/vi/F9BO53npRP4/mqdefault.jpg"
+                         alt="">
+                    <span class="sc-card__title">Burial Template</span>
+                </button>
+
+                <button class="sc-card" role="listitem"
+                        onclick="playVideo(4)"
+                        aria-label="Episode 5: Entering Names"
+                        aria-pressed="false">
+                    <span class="sc-card__num" aria-hidden="true">5</span>
+                    <img class="sc-card__thumb"
+                         src="https://img.youtube.com/vi/mkYVmbw4opM/mqdefault.jpg"
+                         alt="">
+                    <span class="sc-card__title">Entering Names</span>
+                </button>
+
+                <button class="sc-card" role="listitem"
+                        onclick="playVideo(5)"
+                        aria-label="Episode 6: Entering Place Names"
+                        aria-pressed="false">
+                    <span class="sc-card__num" aria-hidden="true">6</span>
+                    <img class="sc-card__thumb"
+                         src="https://img.youtube.com/vi/An1sg2v6A4A/mqdefault.jpg"
+                         alt="">
+                    <span class="sc-card__title">Entering Place Names</span>
+                </button>
+
+                <button class="sc-card" role="listitem"
+                        onclick="playVideo(6)"
+                        aria-label="Episode 7: Entering Dates"
+                        aria-pressed="false">
+                    <span class="sc-card__num" aria-hidden="true">7</span>
+                    <img class="sc-card__thumb"
+                         src="https://img.youtube.com/vi/FBEVPmoZNZs/mqdefault.jpg"
+                         alt="">
+                    <span class="sc-card__title">Entering Dates</span>
+                </button>
+
+                <button class="sc-card" role="listitem"
+                        onclick="playVideo(7)"
+                        aria-label="Episode 8: Plot Location and Comments"
+                        aria-pressed="false">
+                    <span class="sc-card__num" aria-hidden="true">8</span>
+                    <img class="sc-card__thumb"
+                         src="https://img.youtube.com/vi/c_vhYJ0YWoo/mqdefault.jpg"
+                         alt="">
+                    <span class="sc-card__title">Plot Location and Comments</span>
+                </button>
+
+                <button class="sc-card" role="listitem"
+                        onclick="playVideo(8)"
+                        aria-label="Episode 9: Linking Photos"
+                        aria-pressed="false">
+                    <span class="sc-card__num" aria-hidden="true">9</span>
+                    <img class="sc-card__thumb"
+                         src="https://img.youtube.com/vi/6C8-Y7Q2Mns/mqdefault.jpg"
+                         alt="">
+                    <span class="sc-card__title">Linking Photos</span>
+                </button>
+
+                <button class="sc-card" role="listitem"
+                        onclick="playVideo(9)"
+                        aria-label="Episode 10: Putting It All Together"
+                        aria-pressed="false">
+                    <span class="sc-card__num" aria-hidden="true">10</span>
+                    <img class="sc-card__thumb"
+                         src="https://img.youtube.com/vi/pCEgCI4QbnI/mqdefault.jpg"
+                         alt="">
+                    <span class="sc-card__title">Putting It All Together</span>
+                </button>
+
+            </div><!-- /.sc-playlist -->
+
+            <!-- Contact note -->
+            <div class="sc-contact" role="note">
+                Questions about submitting data to JOWBR? Contact <a href="https://www.jewishgen.org/JewishGen/Contact.asp?to=5089NA">Nolan Altman</a>, JOWBR project coordinator.
+            </div>
+
+        </div><!-- /.sc-inner -->
+    </div><!-- /.sc-main -->
+
+</main>
+
+<div id="site-footer"></div>
+
+<script>
+
+    /* -- Screencast data ------------------------------------------ */
+    var SCREENCASTS = [
+        { id: 'XikgZZ6acaY', title: 'Introduction' },
+        { id: '7v9SS_X4tC8', title: 'Getting Started' },
+        { id: 'ae4UwOk-Xd0', title: 'Cemetery Info' },
+        { id: 'F9BO53npRP4', title: 'Burial Template' },
+        { id: 'mkYVmbw4opM', title: 'Entering Names' },
+        { id: 'An1sg2v6A4A', title: 'Entering Place Names' },
+        { id: 'FBEVPmoZNZs', title: 'Entering Dates' },
+        { id: 'c_vhYJ0YWoo', title: 'Plot Location and Comments' },
+        { id: '6C8-Y7Q2Mns', title: 'Linking Photos' },
+        { id: 'pCEgCI4QbnI', title: 'Putting It All Together' }
+    ];
+
+    /* -- Play a video by index ------------------------------------ */
+    /* Updates iframe src, featured title, episode badge, and       */
+    /* is-playing state. Scrolls featured player into view.         */
+    function playVideo(index) {
+        var sc = SCREENCASTS[index];
+        var cards = document.querySelectorAll('.sc-card');
+        var total = SCREENCASTS.length;
+
+        /* Update iframe */
+        var player = document.getElementById('sc-player');
+        player.src = 'https://www.youtube.com/embed/' + sc.id + '?rel=0&autoplay=1';
+        player.title = 'JOWBR Screencast ' + (index + 1) + ': ' + sc.title;
+
+        /* Update featured header */
+        document.getElementById('sc-featured-title').textContent = sc.title;
+        var badge = document.getElementById('sc-episode-label');
+        badge.textContent = (index + 1) + ' of ' + total;
+        badge.setAttribute('aria-label', 'Episode ' + (index + 1) + ' of ' + total);
+
+        /* Update playlist card states */
+        cards.forEach(function(card, i) {
+            var isActive = i === index;
+            card.classList.toggle('is-playing', isActive);
+            card.setAttribute('aria-pressed', String(isActive));
+            if (isActive) {
+                card.setAttribute('aria-label', 'Episode ' + (i + 1) + ': ' + SCREENCASTS[i].title + ' — currently playing');
+            } else {
+                card.setAttribute('aria-label', 'Episode ' + (i + 1) + ': ' + SCREENCASTS[i].title);
+            }
+        });
+
+        /* Scroll featured player into view on mobile */
+        var featured = document.querySelector('.sc-featured');
+        if (featured) {
+            featured.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    }
+
+    /* -- Component loader ----------------------------------------- */
+    function loadComponent(id, file) {
+        return fetch(file)
+            .then(function(r) {
+                if (!r.ok) throw new Error('Could not load ' + file);
+                return r.text();
+            })
+            .then(function(html) {
+                document.getElementById(id).innerHTML = html;
+            })
+            .catch(function(err) { console.warn(err); });
+    }
+
+    /* -- Load sub-nav, then set active link ----------------------- */
+    loadComponent('jowbr-subnav', '/JG40-Build/JOWBR/JOWBR_SubNav.html').then(function() {
+        var path = window.location.pathname.replace(/\/index\.html$/, '/');
+        document.querySelectorAll('.jowbr-nav a').forEach(function(a) {
+            var href = a.getAttribute('href');
+            if (!href || !href.startsWith('/')) return;
+            var hrefNorm = href.replace(/\/index\.html$/, '/');
+            if (path === hrefNorm || path === href) {
+                a.classList.add('active');
+            }
+        });
+    });
+
+    /* -- Load header and footer ----------------------------------- */
+    Promise.all([
+        loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
+        loadComponent('site-footer', '/JG40-Build/Footer.html')
+    ]).then(function() {
+        document.querySelectorAll('.jg-nav .dropbtn, .main-nav .dropbtn').forEach(function(btn) {
+            btn.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    var menu = this.nextElementSibling;
+                    if (menu) menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+                }
+                if (e.key === 'Escape') {
+                    var menu = this.nextElementSibling;
+                    if (menu) menu.style.display = 'none';
+                }
+            });
+        });
+    });
+
+</script>
+
+</body>
+</html>
