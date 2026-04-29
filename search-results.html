@@ -778,7 +778,10 @@
                         <div id="panel-israel" class="group-panel" role="region" aria-labelledby="toggle-israel">
                             <div class="db-row">
                                 <!-- Replace with IGRA logo img when available -->
-                                <a href="#" class="db-name-link ext">Israel Genealogy Research Association</a>
+                                <div style="display:flex; align-items:center; gap:10px; flex:1; min-width:0;">
+                                    <a href="#" class="db-name-link ext">Israel Genealogy Research Association</a>
+                                    <span class="subpartner-ext-badge">External Partner</span>
+                                </div>
                                 <a href="#" class="db-count-pill sm ext" aria-label="List 15 records from IGRA (opens on partner site)">List 15 records</a>
                             </div>
                         </div>
@@ -871,7 +874,7 @@
                             <img src="https://www.jewishgen.org/JG/Images/JGlogo.svg" alt="JewishGen" class="light-logo group-jg-logo">
                             <img src="https://www.jewishgen.org/JG/Images/JGlogoWhite.png" alt="JewishGen" class="dark-logo group-jg-logo">
                             <div>
-                                <div class="jowbr-title">Online Worldwide Burial Registry</div>
+                                <div class="jowbr-title">JewishGen Online Worldwide Burial Registry</div>
                                 <div class="jowbr-desc">19 records across 7 regional registries</div>
                             </div>
                         </div>
@@ -894,20 +897,19 @@
                 </section>
 
                 <!-- ============================================
-                     PARTNER ORGANIZATIONS
+                     AROLSEN ARCHIVES — JewishGen-hosted collection
                 ============================================ -->
                 <div class="section-divider" role="presentation">
-                    <span class="section-divider-label">Partner Organizations</span>
+                    <span class="section-divider-label">Additional Collections</span>
                     <span class="section-divider-line" aria-hidden="true"></span>
                 </div>
 
-                <!-- Arolsen Archives -->
                 <section class="partner-section" aria-label="Arolsen Archives results">
                     <div class="partner-header">
                         <div class="partner-logo-area">
-                            <!-- Replace with: <img src="[Arolsen logo]" alt="Arolsen Archives" class="partner-logo"> -->
-                            <div class="partner-logo-placeholder lg" aria-label="Arolsen Archives logo">Arolsen Archives</div>
-                            <span style="font-size:13px;font-weight:bold;color:var(--charcoal);">The International Center on Nazi Persecution</span>
+                            <!-- Replace with Arolsen logo when available -->
+                            <div class="partner-logo-placeholder lg" aria-label="Arolsen Archives logo">Arolsen</div>
+                            <span style="font-size:13px;font-weight:bold;color:var(--charcoal);">The International Center on Nazi Persecution — indexed by JewishGen</span>
                         </div>
                         <span class="partner-record-badge">26 records</span>
                     </div>
@@ -916,6 +918,14 @@
                         <a href="#" class="db-count-pill sm" aria-label="List 26 records from Arolsen Archives">List 26 records</a>
                     </div>
                 </section>
+
+                <!-- ============================================
+                     PARTNER ORGANIZATIONS
+                ============================================ -->
+                <div class="section-divider" role="presentation">
+                    <span class="section-divider-label">Partner Organizations</span>
+                    <span class="section-divider-line" aria-hidden="true"></span>
+                </div>
 
                 <!-- Gesher Galicia -->
                 <section class="partner-section" aria-label="Gesher Galicia results">
@@ -1031,7 +1041,22 @@ Promise.all([
         });
     });
 
-    /* -- JOWBR breakdown toggle --------------------------------- */
+    /* -- Generic breakdown toggle (JOWBR, Arolsen, etc.) --------- */
+    ['jowbr', 'arolsen'].forEach(function(id) {
+        var btn   = document.getElementById('toggle-' + id);
+        var panel = document.getElementById('panel-' + id);
+        if (!btn || !panel) return;
+        btn.addEventListener('click', function () {
+            var isExpanded = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+            btn.innerHTML = isExpanded ? 'Show breakdown &#9660;' : 'Hide breakdown &#9650;';
+            if (isExpanded) { panel.setAttribute('hidden', ''); } else { panel.removeAttribute('hidden'); }
+        });
+        btn.addEventListener('keydown', function (e) {
+            if (e.key === ' ') { e.preventDefault(); btn.click(); }
+        });
+    });
+
     var jowbrBtn   = document.getElementById('toggle-jowbr');
     var jowbrPanel = document.getElementById('panel-jowbr');
     if (jowbrBtn && jowbrPanel) {
