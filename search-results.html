@@ -385,6 +385,22 @@
         }
         body.dark-mode .subpartner-band { background-color: #191919; border-color: #2a2a2a; }
         .subpartner-name { font-size: 12px; font-weight: bold; color: var(--charcoal); }
+        .subpartner-ext-badge {
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            color: var(--navy);
+            border: 1px solid var(--navy);
+            border-radius: 3px;
+            padding: 2px 7px;
+            white-space: nowrap;
+            opacity: 0.65;
+        }
+        body.dark-mode .subpartner-ext-badge {
+            color: #8ab4d4;
+            border-color: #8ab4d4;
+        }
         body.dark-mode .subpartner-name { color: #a0a0a0; }
 
         .partner-logo-placeholder {
@@ -634,7 +650,7 @@
                     <div class="sr-tips-grid">
                         <div><strong>Collapsed groups still have matches.</strong> A closed accordion means there are results inside — click it to expand.<br><em>The record count shown is always accurate.</em></div>
                         <div><strong>Click the database name</strong> to learn what that database contains and how records were collected before diving in.</div>
-                        <div><strong>Partner organization results</strong> (Arolsen, Gesher Galicia, Yad Vashem) open on external sites. Your JewishGen login does not carry over.</div>
+                        <div><strong>Partner organization results</strong> (IGRA, JRI-Poland, Gesher Galicia, Yad Vashem, etc.) open on external sites. Your JewishGen login does not carry over.</div>
                         <div><strong>Too many results?</strong> Return to search and narrow by country, region, or record type to focus on the most relevant databases.</div>
                         <div><strong>Burial Registry results</strong> are grouped by region. Expand the breakdown to see exactly which registries have matches.</div>
                         <div><strong>Not finding what you expect?</strong> Try a phonetic search — spelling varied widely in historical records.</div>
@@ -808,7 +824,8 @@
                             <!-- JRI-Poland sub-partner band — replace placeholder with logo img when available -->
                             <div class="subpartner-band" role="presentation">
                                 <span class="partner-logo-placeholder" aria-label="Jewish Records Indexing - Poland logo">JRI-Poland</span>
-                                <span class="subpartner-name">Jewish Records Indexing &#8212; Poland</span>
+                                <span class="subpartner-name">Jewish Records Indexing &#8212; Poland &#8599;</span>
+                                <span class="subpartner-ext-badge">External Partner</span>
                             </div>
                             <div class="db-row sub"><a href="#" class="db-name-link ext">JRI-Poland &#8212; Krakow Wojewodztwo</a><a href="#" class="db-count-pill sm ext" aria-label="List 254 records (opens on JRI-Poland site)">List 254 records</a></div>
                             <div class="db-row sub"><a href="#" class="db-name-link ext">JRI-Poland &#8212; Lwow Wojewodztwo</a><a href="#" class="db-count-pill sm ext" aria-label="List 9 records (opens on JRI-Poland site)">List 9 records</a></div>
