@@ -371,9 +371,9 @@
         body.dark-mode .db-row { border-color: #2a2a2a; }
         body.dark-mode .db-row:hover { background-color: #1a2533; }
 
-        .db-name-link { font-size: 13px; color: var(--navy); text-decoration: none; flex: 1; min-width: 0; }
+        .db-name-link { font-size: 13px; color: var(--navy); text-decoration: underline dotted; text-underline-offset: 2px; flex: 1; min-width: 0; }
         body.dark-mode .db-name-link { color: #8ab4d4; }
-        .db-name-link:hover { color: var(--sage); text-decoration: underline dotted; text-underline-offset: 2px; }
+        .db-name-link:hover { color: var(--sage); text-decoration: underline solid; text-underline-offset: 2px; }
 
         .subpartner-band {
             display: flex;
@@ -649,7 +649,7 @@
                 <!-- Tips panel -->
                 <div class="jg-tips-card-panel" id="sr-tips-panel" role="region" aria-label="Results tips">
                     <div class="sr-tips-grid">
-                        <div><strong>Collapsed groups still have matches.</strong> A closed accordion appears if there are more than four databases returning results — click it to expand.</div>
+                        <div><strong>Collapsed groups still have matches.</strong> A closed accordion means there are results inside — click it to expand.<br><em>The record count shown is always accurate.</em></div>
                         <div><strong>Click the database name</strong> to learn what that database contains and how records were collected before diving in.</div>
                         <div><strong>Partner organization results</strong> (IGRA, JRI-Poland, Gesher Galicia, Yad Vashem, etc.) open on external sites. Your JewishGen login does not carry over.</div>
                         <div><strong>Too many results?</strong> Return to search and narrow by country, region, or record type to focus on the most relevant databases.</div>
@@ -663,7 +663,7 @@
 
                 <!-- Column header bar -->
                 <div class="col-header-row" aria-hidden="true">
-                    <span class="col-header-label">Dataset</span>
+                    <span class="col-header-label">Description</span>
                     <span class="col-header-label">Click to view results</span>
                 </div>
 
