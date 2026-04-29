@@ -55,103 +55,96 @@
         }
 
         /* ============================================
-           QUERY SUMMARY
+           QUERY BAND — full-width, anchors the page
         ============================================ */
-        .query-summary {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 8px 16px;
-            padding: 11px 16px;
-            background-color: #ffffff;
-            border: 1.5px solid var(--navy);
-            border-radius: 6px;
-            margin-bottom: 12px;
-        }
-        body.dark-mode .query-summary {
-            background-color: #1e1e1e;
-            border-color: #2a4060;
-        }
-        .query-pair {
-            display: flex;
-            align-items: baseline;
-            gap: 6px;
-        }
-        .query-label {
-            font-size: 11px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-            color: var(--navy);
-            white-space: nowrap;
-        }
-        body.dark-mode .query-label { color: #8ab4d4; }
-        .query-term {
-            font-size: 14px;
-            font-weight: bold;
-            color: var(--charcoal);
-            font-family: Georgia, serif;
-        }
-        body.dark-mode .query-term { color: #e0e0e0; }
-        .query-divider {
-            width: 1px;
-            height: 16px;
-            background-color: var(--navy);
-            opacity: 0.25;
-            align-self: center;
-        }
-
-        /* ============================================
-           RESULTS META ROW
-        ============================================ */
-        .results-meta-row {
+        .sr-query-band {
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 10px;
-            margin-bottom: 20px;
+            padding: 14px 20px;
+            background-color: var(--cream);
+            border-bottom: 2px solid var(--navy);
         }
-        .results-count-block { display: flex; flex-direction: column; gap: 2px; }
-        .results-count {
-            font-size: 20px;
+        body.dark-mode .sr-query-band {
+            background-color: #1e1e1e;
+            border-color: #2a4060;
+        }
+        .sr-query-band-left {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px 16px;
+        }
+        .sr-query-band-pair {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+        .sr-query-band-label {
+            font-size: 11px;
             font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
             color: var(--navy);
+            white-space: nowrap;
+        }
+        body.dark-mode .sr-query-band-label { color: #8ab4d4; }
+        .sr-query-band-term {
+            font-size: 15px;
+            font-weight: bold;
+            color: var(--charcoal);
             font-family: Georgia, serif;
-            line-height: 1.2;
         }
-        body.dark-mode .results-count { color: #e0e0e0; }
-        .results-meta { font-size: 12px; color: #888; }
-        body.dark-mode .results-meta { color: #555; }
-
-        .new-search-btn {
+        body.dark-mode .sr-query-band-term { color: #e0e0e0; }
+        .sr-query-band-divider {
             display: inline-block;
-            font-size: 13px;
+            width: 1px;
+            height: 16px;
+            background-color: var(--navy);
+            opacity: 0.2;
+            vertical-align: middle;
+        }
+        .sr-new-search-link {
+            font-size: 12px;
             font-weight: bold;
             color: var(--navy);
-            border: 2px solid var(--navy);
+            border: 1.5px solid var(--navy);
             border-radius: 20px;
-            padding: 6px 18px;
+            padding: 4px 14px;
             white-space: nowrap;
             transition: background-color 0.15s, color 0.15s;
+            flex-shrink: 0;
         }
-        .new-search-btn:hover {
+        .sr-new-search-link:hover {
             background-color: #09497a;
             border-color: #09497a;
             color: #ffffff;
         }
-        body.dark-mode .new-search-btn { color: #a8b361; border-color: #a8b361; }
-        body.dark-mode .new-search-btn:hover { background-color: #a8b361; color: #121212; }
+        body.dark-mode .sr-new-search-link { color: #a8b361; border-color: #a8b361; }
+        body.dark-mode .sr-new-search-link:hover { background-color: #a8b361; color: #121212; }
 
         /* ============================================
-           FILTER BAR
+           TOOLBAR — filter + tips, one slim strip
         ============================================ */
-        .filter-bar {
+        .sr-toolbar {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 14px;
+            justify-content: space-between;
+            padding: 8px 20px;
+            border-bottom: 1px solid #e0e8ed;
+            background-color: #f9fbfc;
         }
+        body.dark-mode .sr-toolbar {
+            background-color: #181e22;
+            border-color: #2a2a2a;
+        }
+        .sr-toolbar-left { display: flex; align-items: center; gap: 10px; }
+
+        /* ============================================
+           FILTER (kept for toolbar context)
+        ============================================ */
         .filter-btn-disabled {
             display: inline-flex;
             align-items: center;
@@ -593,46 +586,38 @@
     <div class="sr-hero-inner">
 
         <header class="jg-search-hero__heading">
-            <h1>Search Results</h1>
-            <p class="lede">All JewishGen Databases</p>
+            <h1>All JewishGen Databases</h1>
+            <p class="lede">419 total matches found</p>
         </header>
 
         <div class="jg-search-card">
             <div class="sr-card-inner">
 
-                <!-- Query summary -->
-                <div class="query-summary" role="region" aria-label="Search query summary">
-                    <div class="query-pair">
-                        <span class="query-label">Surname (phonetically like)</span>
-                        <span class="query-term">WYMISZNER</span>
+                <!-- Query band — full width, anchors the page -->
+                <div class="sr-query-band" role="region" aria-label="Search query summary">
+                    <div class="sr-query-band-left">
+                        <div class="sr-query-band-pair">
+                            <span class="sr-query-band-label">Surname (phonetically like)</span>
+                            <span class="sr-query-band-term">WYMISZNER</span>
+                        </div>
+                        <span class="sr-query-band-divider" aria-hidden="true"></span>
+                        <div class="sr-query-band-pair">
+                            <span class="sr-query-band-label">Region</span>
+                            <span class="sr-query-band-term">All Countries</span>
+                        </div>
                     </div>
-                    <div class="query-divider" aria-hidden="true"></div>
-                    <div class="query-pair">
-                        <span class="query-label">Region</span>
-                        <span class="query-term">All Countries</span>
-                    </div>
+                    <a href="/JG40-Build/Global_Search.html" class="sr-new-search-link">&#8592; New Search</a>
                 </div>
 
-                <!-- Results count + new search -->
-                <div class="results-meta-row">
-                    <div class="results-count-block">
-                        <span class="results-count">419 matches found</span>
-                        <span class="results-meta">Across 38 databases</span>
+                <!-- Toolbar: filter + tips, flush strip -->
+                <div class="sr-toolbar" role="toolbar" aria-label="Results tools">
+                    <div class="sr-toolbar-left">
+                        <div class="filter-btn-disabled" aria-disabled="true" role="button" tabindex="-1"
+                             title="Filtering is coming in a future update">
+                            &#9881; Filter
+                            <span class="filter-coming-soon">Coming Soon</span>
+                        </div>
                     </div>
-                    <a href="/JG40-Build/Global_Search.html" class="new-search-btn">&#8592; New Search</a>
-                </div>
-
-                <!-- Filter bar -->
-                <div class="filter-bar" aria-label="Filter options (not yet available)">
-                    <div class="filter-btn-disabled" aria-disabled="true" role="button" tabindex="-1"
-                         title="Filtering is coming in a future update">
-                        &#9881; Filter Results
-                        <span class="filter-coming-soon">Coming Soon</span>
-                    </div>
-                </div>
-
-                <!-- Tips toggle -->
-                <div style="display:flex; justify-content:flex-end; margin-bottom:10px;">
                     <button type="button"
                             class="jg-tips-link"
                             aria-expanded="false"
@@ -644,7 +629,7 @@
                     </button>
                 </div>
 
-                <!-- Tips panel (collapsed by default) -->
+                <!-- Tips panel -->
                 <div class="jg-tips-card-panel" id="sr-tips-panel" role="region" aria-label="Results tips">
                     <div class="sr-tips-grid">
                         <div><strong>Collapsed groups still have matches.</strong> A closed accordion means there are results inside — click it to expand.<br><em>The record count shown is always accurate.</em></div>
@@ -659,7 +644,7 @@
                     </div>
                 </div>
 
-                <!-- Column header row -->
+                <!-- Column header bar -->
                 <div class="col-header-row" aria-hidden="true">
                     <span class="col-header-label">Dataset</span>
                     <span class="col-header-label">Click to view results</span>
