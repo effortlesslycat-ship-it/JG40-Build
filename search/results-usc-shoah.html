@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USC Shoah Foundation — Survivor Interviews — JewishGen</title>
+
+    <!-- 1. Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- 2. JewishGen Global Design System -->
+    <link rel="stylesheet" href="/JG40-Build/jg-global.css">
+    <!-- 3. Page-specific styles -->
+    <style>
+
+        a { text-decoration: none; color: inherit; }
+
+        /* ============================================
+           SEARCH HERO OVERRIDES
+        ============================================ */
+        .sr-hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .jg-search-hero__heading { margin-bottom: 1.5rem; }
+
+        .sr-dataset-meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 6px;
+        }
+        .sr-dataset-meta-item {
+            font-size: 0.8125rem;
+            color: var(--charcoal);
+            opacity: 0.75;
+        }
+        .sr-dataset-meta-divider {
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background-color: var(--charcoal);
+            opacity: 0.35;
+        }
+
+        /* ============================================
+           CARD INNER
+        ============================================ */
+        .sr-card-inner { padding: 0; }
+
+        /* ============================================
+           CARD HEADER
+        ============================================ */
+        .sr-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 14px 20px;
+            background-color: #ffffff;
+            border-bottom: 2px solid var(--navy);
+        }
+        body.dark-mode .sr-card-header {
+            background-color: #1a1a1a;
+            border-color: #2a4060;
+        }
+
+        .sr-query-block { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 14px; }
+        .sr-query-pair { display: flex; align-items: baseline; gap: 5px; }
+        .sr-query-label {
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--navy);
+            white-space: nowrap;
+        }
+        body.dark-mode .sr-query-label { color: #8ab4d4; }
+        .sr-query-term {
+            font-size: 15px;
+            font-weight: bold;
+            color: var(--charcoal);
+            font-family: Georgia, serif;
+        }
+        body.dark-mode .sr-query-term { color: #e0e0e0; }
+        .sr-query-divider {
+            width: 1px; height: 14px;
+            background-color: var(--navy);
+            opacity: 0.2; align-self: center;
+        }
+
+        .sr-controls { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+        .sr-count-badge {
+            font-size: 12px; font-weight: bold;
+            color: var(--navy); background-color: #ffffff;
+            border: 1.5px solid var(--navy);
+            border-radius: 20px; padding: 3px 12px; white-space: nowrap;
+        }
+        body.dark-mode .sr-count-badge { background-color: #1a1a1a; color: #8ab4d4; border-color: #8ab4d4; }
+
+        .sr-back-btn {
+            display: inline-block; font-size: 12px; font-weight: bold;
+            color: var(--navy); border: 1.5px solid var(--navy);
+            border-radius: 20px; padding: 3px 12px; white-space: nowrap;
+            transition: background-color 0.15s, color 0.15s;
+        }
+        .sr-back-btn:hover { background-color: #09497a; border-color: #09497a; color: #ffffff; }
+        body.dark-mode .sr-back-btn { color: #a8b361; border-color: #a8b361; }
+        body.dark-mode .sr-back-btn:hover { background-color: #a8b361; color: #121212; }
+
+        /* ============================================
+           RESULTS TABLE
+        ============================================ */
+        .sr-table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .sr-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            table-layout: fixed;
+        }
+
+        /* Column widths */
+        .sr-table col.col-name            { width: 14%; }
+        .sr-table col.col-gender          { width: 6%; }
+        .sr-table col.col-birthdate       { width: 9%; }
+        .sr-table col.col-relationship    { width: 16%; }
+        .sr-table col.col-interviewee     { width: 14%; }
+        .sr-table col.col-country         { width: 12%; }
+        .sr-table col.col-testimony       { width: 10%; }
+        .sr-table col.col-fullrecord      { width: 10%; }
+
+        /* Sticky header */
+        .sr-table thead th {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: #09497a;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            padding: 10px 12px;
+            text-align: left;
+            border-right: 1px solid rgba(255,255,255,0.25);
+            user-select: none;
+            vertical-align: bottom;
+            line-height: 1.3;
+        }
+        .sr-table thead th:last-child { border-right: none; }
+        body.dark-mode .sr-table thead th { background-color: #0d2a45; }
+
+        /* Table body tint */
+        .sr-table tbody { background-color: #f4f8fa; }
+        body.dark-mode .sr-table tbody { background-color: #161c20; }
+
+        /* Body rows */
+        .sr-table tbody tr { border-bottom: 1px solid #e8edf0; }
+        body.dark-mode .sr-table tbody tr { border-color: #2a2a2a; }
+        .sr-table tbody tr:last-child { border-bottom: none; }
+        .sr-table tbody tr:hover { background-color: #e6f0f5; }
+        body.dark-mode .sr-table tbody tr:hover { background-color: #1a2533; }
+
+        .sr-table tbody tr:nth-child(even) { background-color: #eaf2f6; }
+        body.dark-mode .sr-table tbody tr:nth-child(even) { background-color: #131a1f; }
+        .sr-table tbody tr:nth-child(even):hover { background-color: #e6f0f5; }
+
+        /* Sage group divider row */
+        .sr-table tbody tr.sr-group-divider-row td {
+            padding: 0; height: 4px;
+            background-color: var(--sage);
+            border: none;
+        }
+        body.dark-mode .sr-table tbody tr.sr-group-divider-row td {
+            background-color: #a8b361;
+        }
+
+        /* Cells */
+        .sr-table td {
+            padding: 10px 12px;
+            vertical-align: top;
+            color: var(--charcoal);
+            border-right: 1px solid #c8d8e2;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        body.dark-mode .sr-table td { color: #c8c0b0; border-color: #2a2a2a; }
+        .sr-table td:last-child { border-right: none; }
+
+        /* Surname emphasis */
+        .sr-surname { font-weight: bold; color: var(--navy); }
+        body.dark-mode .sr-surname { color: #8ab4d4; }
+
+        /* Action links */
+        .sr-action-link {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--navy);
+            text-decoration: underline dotted;
+            text-underline-offset: 2px;
+        }
+        .sr-action-link:hover { color: var(--sage); text-decoration: underline solid; }
+        body.dark-mode .sr-action-link { color: #8ab4d4; }
+
+        .sr-action-link.ext::after { content: ' \2197'; font-size: 10px; opacity: 0.7; }
+
+        /* ============================================
+           CARD FOOTER
+        ============================================ */
+        .sr-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 14px 20px;
+            border-top: 1px solid #e8edf0;
+            background-color: #ffffff;
+        }
+        body.dark-mode .sr-card-footer { border-color: #2a2a2a; background-color: #1a1a1a; }
+
+        .sr-footer-btn {
+            display: inline-block; font-size: 12px; font-weight: bold;
+            color: var(--navy); background-color: #ffffff;
+            border: 1.5px solid var(--navy); border-radius: 6px;
+            padding: 6px 16px; transition: background-color 0.15s, color 0.15s;
+        }
+        .sr-footer-btn:hover { background-color: #09497a; border-color: #09497a; color: #ffffff; }
+        body.dark-mode .sr-footer-btn { background-color: #1a1a1a; border-color: #e0e0e0; color: #e0e0e0; }
+        body.dark-mode .sr-footer-btn:hover { background-color: #e0e0e0; color: #121212; }
+
+    </style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main id="main-content">
+<section class="jg-search-hero" aria-label="Dataset search results">
+    <div class="sr-hero-inner">
+
+        <header class="jg-search-hero__heading">
+            <h1><a href="#" style="color:inherit; text-decoration:underline solid; text-underline-offset:4px;">USC Shoah Foundation &#8212; Survivor Interviews</a></h1>
+            <div class="sr-dataset-meta">
+                <span class="sr-dataset-meta-item">Holocaust Database</span>
+                <span class="sr-dataset-meta-divider" aria-hidden="true"></span>
+                <span class="sr-dataset-meta-item">Testimony Records</span>
+            </div>
+        </header>
+
+        <div class="jg-search-card">
+            <div class="sr-card-inner">
+
+                <!-- Card header -->
+                <div class="sr-card-header">
+                    <div class="sr-query-block" role="region" aria-label="Search query">
+                        <div class="sr-query-pair">
+                            <span class="sr-query-label">Surname (phonetically like)</span>
+                            <span class="sr-query-term">WYMISZNER</span>
+                        </div>
+                        <div class="sr-query-divider" aria-hidden="true"></div>
+                        <div class="sr-query-pair">
+                            <span class="sr-query-label">Region</span>
+                            <span class="sr-query-term">All Countries</span>
+                        </div>
+                    </div>
+                    <div class="sr-controls">
+                        <span class="sr-count-badge">13 records found</span>
+                        <a href="/JG40-Build/search-results.html" class="sr-back-btn">&#8592; All Results</a>
+                    </div>
+                </div>
+
+                <!-- Results table -->
+                <div class="sr-table-wrap" role="region" aria-label="Search results table" tabindex="0">
+                    <table class="sr-table" aria-label="USC Shoah Foundation results for WYMISZNER">
+                        <colgroup>
+                            <col class="col-name">
+                            <col class="col-gender">
+                            <col class="col-birthdate">
+                            <col class="col-relationship">
+                            <col class="col-interviewee">
+                            <col class="col-country">
+                            <col class="col-testimony">
+                            <col class="col-fullrecord">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Gender</th>
+                                <th scope="col">Birth Date</th>
+                                <th scope="col">Relationship to Interviewee</th>
+                                <th scope="col">Interviewee Name</th>
+                                <th scope="col">Interviewee Country of Birth</th>
+                                <th scope="col">Testimony</th>
+                                <th scope="col">Full Record</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Record group 1: Orlowski Esther testimony -->
+                            <tr>
+                                <td><span class="sr-surname">Orlowski</span> Esther</td>
+                                <td>F</td>
+                                <td>Apr 04, 1921</td>
+                                <td>Self</td>
+                                <td>Orlowski Esther</td>
+                                <td>Poland</td>
+                                <td><a href="#" class="sr-action-link ext" aria-label="Testimony link for Orlowski Esther (opens on external site)">Testimony Link</a></td>
+                                <td><a href="/JG40-Build/record-usc-shoah-orlowski.html" class="sr-action-link">View Full Record</a></td>
+                            </tr>
+                            <tr class="sr-group-divider-row" aria-hidden="true"><td colspan="8"></td></tr>
+
+                            <!-- Record group 2: Wiener Morton testimony -->
+                            <tr>
+                                <td>Wiener Morton</td>
+                                <td>M</td>
+                                <td>Jul 13, 1926</td>
+                                <td>Self</td>
+                                <td>Wiener Morton</td>
+                                <td>Poland</td>
+                                <td><a href="#" class="sr-action-link ext" aria-label="Testimony link for Wiener Morton (opens on external site)">Testimony Link</a></td>
+                                <td><a href="/JG40-Build/record-usc-shoah-wiener.html" class="sr-action-link">View Full Record</a></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sr-surname">Wimisner</span> Hanna</td>
+                                <td>F</td>
+                                <td>&mdash;</td>
+                                <td>Sisters, biological</td>
+                                <td>Wiener Morton</td>
+                                <td>Poland</td>
+                                <td><a href="#" class="sr-action-link ext">Testimony Link</a></td>
+                                <td><a href="/JG40-Build/record-usc-shoah-wiener.html" class="sr-action-link">View Full Record</a></td>
+                            </tr>
+                            <tr class="sr-group-divider-row" aria-hidden="true"><td colspan="8"></td></tr>
+
+                            <!-- Record group 3: Tamir aryeh testimony -->
+                            <tr>
+                                <td>Tamir &#699;aryeh</td>
+                                <td>M</td>
+                                <td>Jun 25, 1933</td>
+                                <td>Self</td>
+                                <td>Tamir &#699;aryeh</td>
+                                <td>Poland</td>
+                                <td><a href="#" class="sr-action-link ext" aria-label="Testimony link for Tamir aryeh (opens on external site)">Testimony Link</a></td>
+                                <td><a href="/JG40-Build/record-usc-shoah-tamir.html" class="sr-action-link">View Full Record</a></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sr-surname">Wimisner</span> Channah</td>
+                                <td>F</td>
+                                <td>1921</td>
+                                <td>Sisters</td>
+                                <td>Tamir &#699;aryeh</td>
+                                <td>Poland</td>
+                                <td><a href="#" class="sr-action-link ext">Testimony Link</a></td>
+                                <td><a href="/JG40-Build/record-usc-shoah-tamir.html" class="sr-action-link">View Full Record</a></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sr-surname">Vimisner</span> Vilhelm</td>
+                                <td>M</td>
+                                <td>1905</td>
+                                <td>Fathers, biological</td>
+                                <td>Tamir &#699;aryeh</td>
+                                <td>Poland</td>
+                                <td><a href="#" class="sr-action-link ext">Testimony Link</a></td>
+                                <td><a href="/JG40-Build/record-usc-shoah-tamir.html" class="sr-action-link">View Full Record</a></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sr-surname">Vimisner</span> &#699;evah</td>
+                                <td>F</td>
+                                <td>1910</td>
+                                <td>Mothers, biological</td>
+                                <td>Tamir &#699;aryeh</td>
+                                <td>Poland</td>
+                                <td><a href="#" class="sr-action-link ext">Testimony Link</a></td>
+                                <td><a href="/JG40-Build/record-usc-shoah-tamir.html" class="sr-action-link">View Full Record</a></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sr-surname">Vimisner</span> Gizhah</td>
+                                <td>F</td>
+                                <td>Mar 1929</td>
+                                <td>Sisters, biological</td>
+                                <td>Tamir &#699;aryeh</td>
+                                <td>Poland</td>
+                                <td><a href="#" class="sr-action-link ext">Testimony Link</a></td>
+                                <td><a href="/JG40-Build/record-usc-shoah-tamir.html" class="sr-action-link">View Full Record</a></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sr-surname">Vimisner</span> Saraniḳah</td>
+                                <td>F</td>
+                                <td>1938</td>
+                                <td>Sisters, biological</td>
+                                <td>Tamir &#699;aryeh</td>
+                                <td>Poland</td>
+                                <td><a href="#" class="sr-action-link ext">Testimony Link</a></td>
+                                <td><a href="/JG40-Build/record-usc-shoah-tamir.html" class="sr-action-link">View Full Record</a></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sr-surname">Vimisner</span> Daṿid</td>
+                                <td>M</td>
+                                <td>&mdash;</td>
+                                <td>Uncles, paternal</td>
+                                <td>Tamir &#699;aryeh</td>
+                                <td>Poland</td>
+                                <td><a href="#" class="sr-action-link ext">Testimony Link</a></td>
+                                <td><a href="/JG40-Build/record-usc-shoah-tamir.html" class="sr-action-link">View Full Record</a></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sr-surname">Vimisner</span> Le&#699;on</td>
+                                <td>M</td>
+                                <td>&mdash;</td>
+                                <td>Grandfathers, paternal</td>
+                                <td>Tamir &#699;aryeh</td>
+                                <td>Poland</td>
+                                <td><a href="#" class="sr-action-link ext">Testimony Link</a></td>
+                                <td><a href="/JG40-Build/record-usc-shoah-tamir.html" class="sr-action-link">View Full Record</a></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sr-surname">Vimisner</span> Lushah*</td>
+                                <td>F</td>
+                                <td>&mdash;</td>
+                                <td>Cousins, paternal</td>
+                                <td>Tamir &#699;aryeh</td>
+                                <td>Poland</td>
+                                <td><a href="#" class="sr-action-link ext">Testimony Link</a></td>
+                                <td><a href="/JG40-Build/record-usc-shoah-tamir.html" class="sr-action-link">View Full Record</a></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sr-surname">Vimisner</span> Genyah*</td>
+                                <td>F</td>
+                                <td>&mdash;</td>
+                                <td>Cousins, paternal</td>
+                                <td>Tamir &#699;aryeh</td>
+                                <td>Poland</td>
+                                <td><a href="#" class="sr-action-link ext">Testimony Link</a></td>
+                                <td><a href="/JG40-Build/record-usc-shoah-tamir.html" class="sr-action-link">View Full Record</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Card footer -->
+                <div class="sr-card-footer">
+                    <a href="/JG40-Build/search-results.html" class="sr-footer-btn">&#8592; All Results</a>
+                    <a href="/JG40-Build/Global_Search.html" class="sr-footer-btn">New Search</a>
+                </div>
+
+            </div><!-- /sr-card-inner -->
+        </div><!-- /jg-search-card -->
+
+    </div><!-- /sr-hero-inner -->
+</section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function loadComponent(id, file) {
+    return fetch(file)
+        .then(function(r) { if (!r.ok) throw new Error('Could not load ' + file); return r.text(); })
+        .then(function(html) { document.getElementById(id).innerHTML = html; })
+        .catch(function(err) { console.warn(err); });
+}
+Promise.all([
+    loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
+    loadComponent('site-footer', '/JG40-Build/Footer.html')
+]);
+</script>
+
+</body>
+</html>
