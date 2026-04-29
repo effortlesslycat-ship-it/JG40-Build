@@ -17,6 +17,20 @@
         a { text-decoration: none; color: inherit; }
 
         /* ============================================
+           TIPS PANEL GRID
+        ============================================ */
+        .sr-tips-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 24px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        @media (max-width: 640px) {
+            .sr-tips-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ============================================
            SEARCH HERO OVERRIDES
            Uses jg-search-hero / jg-search-card from
            jg-global.css. Only page-specific tweaks here.
@@ -617,6 +631,34 @@
                     </div>
                 </div>
 
+                <!-- Tips toggle -->
+                <div style="display:flex; justify-content:flex-end; margin-bottom:10px;">
+                    <button type="button"
+                            class="jg-tips-link"
+                            aria-expanded="false"
+                            aria-controls="sr-tips-panel"
+                            onclick="toggleResultsTips(this)">
+                        Tips for getting the most out of your results
+                        <img src="/JG40-Build/TipsBulbReg.png"  alt="" class="jg-tips-link__icon light-logo" aria-hidden="true">
+                        <img src="/JG40-Build/TipsBulbDark.png" alt="" class="jg-tips-link__icon dark-logo"  aria-hidden="true">
+                    </button>
+                </div>
+
+                <!-- Tips panel (collapsed by default) -->
+                <div class="jg-tips-card-panel" id="sr-tips-panel" role="region" aria-label="Results tips">
+                    <div class="sr-tips-grid">
+                        <div><strong>Collapsed groups still have matches.</strong> A closed accordion means there are results inside — click it to expand.<br><em>The record count shown is always accurate.</em></div>
+                        <div><strong>Click the database name</strong> to learn what that database contains and how records were collected before diving in.</div>
+                        <div><strong>Partner organization results</strong> (Arolsen, Gesher Galicia, Yad Vashem) open on external sites. Your JewishGen login does not carry over.</div>
+                        <div><strong>Too many results?</strong> Return to search and narrow by country, region, or record type to focus on the most relevant databases.</div>
+                        <div><strong>Burial Registry results</strong> are grouped by region. Expand the breakdown to see exactly which registries have matches.</div>
+                        <div><strong>Not finding what you expect?</strong> Try a phonetic search — spelling varied widely in historical records.</div>
+                    </div>
+                    <div class="jg-tips-panel__footer">
+                        <a href="#">Need more help? Read our complete "How to JewishGen" guide &rarr;</a>
+                    </div>
+                </div>
+
                 <!-- Column header row -->
                 <div class="col-header-row" aria-hidden="true">
                     <span class="col-header-label">Dataset</span>
@@ -1002,6 +1044,13 @@ Promise.all([
     }
 
 })();
+
+    /* -- Results tips panel toggle ---------------------------------------- */
+    function toggleResultsTips(btn) {
+        var panel = document.getElementById('sr-tips-panel');
+        var isOpen = panel.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(isOpen));
+    }
 </script>
 
 </body>
