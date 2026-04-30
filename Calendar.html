@@ -430,8 +430,11 @@
                         Hours subject to change when the museum is closed.<br>
                         Highlighted days on the calendar reflect standard open days.
                     </p>
-                    <a href="#" class="btn-sage-cta"
-                       aria-label="Schedule an appointment at the Kalikow Center">
+                    <a id="jg-kalikow-book-btn"
+                   href="https://898a.blackbaudhosting.com/898a/Peter-and-Mary-Kalikow-Jewish-Genealogy-Research-Center-Appointment"
+                   class="btn-sage-cta"
+                   target="_blank" rel="noopener noreferrer"
+                      aria-label="Schedule an appointment at the Kalikow Center">
                         Book an Appointment
                     </a>
                 </div>
@@ -578,6 +581,26 @@ Promise.all([
         });
     });
 });
+/* -- Kalikow Link Update Script  ----------------------------------------- */
+    function jgUpdateKalikowLink() {
+    var link = document.getElementById('jg-kalikow-book-btn');
+    if (!link) return;
+    try {
+        var parts = new Intl.DateTimeFormat('en-US', {
+            timeZone: 'America/New_York',
+            day: '2-digit', month: 'short', year: 'numeric'
+        }).formatToParts(new Date());
+        var day   = parts.find(function(p) { return p.type === 'day';   }).value;
+        var month = parts.find(function(p) { return p.type === 'month'; }).value;
+        var year  = parts.find(function(p) { return p.type === 'year';  }).value;
+        link.href = 'https://898a.blackbaudhosting.com/898a/'
+                  + 'Peter-and-Mary-Kalikow-Jewish-Genealogy-Research-Center-Appointment-'
+                  + day + month + year;
+    } catch (err) {
+        console.warn('Kalikow link: falling back to base booking page.', err);
+    }
+}
+jgUpdateKalikowLink();
 </script>
 
 <!-- CHANGE 1: jg-events.js loaded here, before the calendar script that calls it -->
