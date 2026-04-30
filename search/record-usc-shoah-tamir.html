@@ -448,8 +448,26 @@
 <col class="col-dob"/>
 <col class="col-dod"/>
 </colgroup>
-
-<tbody>
+<thead style="visibility: hidden;">
+<tr>
+<th scope="col">Name</th>
+<th scope="col">Gender</th>
+<th scope="col">Relationship to Interviewee</th>
+<th scope="col">Survivor</th>
+<th scope="col">
+<div class="th-stack">
+<span class="th-top">Date of Birth</span>
+<span class="th-bottom">Country / City / Place of Birth</span>
+</div>
+</th>
+<th scope="col">
+<div class="th-stack">
+<span class="th-top">Date of Death / Cause</span>
+<span class="th-bottom">Country / City / Place of Death</span>
+</div>
+</th>
+</tr>
+</thead><tbody>
 <tr>
 <td>Tamir ʻaryeh</td>
 <td>M</td>
@@ -653,41 +671,6 @@ Promise.all([
     loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
     loadComponent('site-footer', '/JG40-Build/Footer.html')
 ]);
-
-/* -- Sticky thead width sync --------------------------------------- */
-(function() {
-    var stickyWrap = document.querySelector('.sr-thead-sticky');
-    var bodyWrap   = document.querySelector('.sr-table-wrap');
-    if (!stickyWrap || !bodyWrap) return;
-
-    var stickyTable = stickyWrap.querySelector('table');
-    var bodyTable   = bodyWrap.querySelector('.sr-table');
-
-    function syncWidths() {
-        stickyTable.style.width = bodyTable.offsetWidth + 'px';
-
-        // Read widths from first tbody row (thead was removed from body table)
-        var firstRow = bodyTable.querySelector('tbody tr');
-        if (!firstRow) return;
-        var bodyTds   = firstRow.querySelectorAll('td');
-        var stickyThs = stickyTable.querySelectorAll('th');
-
-        stickyThs.forEach(function(th, i) {
-            if (bodyTds[i]) {
-                th.style.width = bodyTds[i].getBoundingClientRect().width + 'px';
-            }
-        });
-    }
-
-    // Sync horizontal scroll
-    bodyWrap.addEventListener('scroll', function() {
-        stickyWrap.scrollLeft = bodyWrap.scrollLeft;
-    }, { passive: true });
-
-    window.addEventListener('resize', syncWidths);
-    setTimeout(syncWidths, 150);
-    window.addEventListener('load', syncWidths);
-})();
 
 </script>
 </body>
