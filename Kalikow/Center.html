@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peter and Mary Kalikow Jewish Genealogy Research Center — JewishGen</title>
+<meta name="description" content="The Peter and Mary Kalikow Jewish Genealogy Research Center is the physical presence of JewishGen at the Museum of Jewish Heritage.">
+
+<!-- 1. Bootstrap -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<!-- 2. JewishGen Global Design System -->
+<link rel="stylesheet" href="/JG40-Build/jg-global.css">
+<!-- 3. Page-specific styles -->
+<style>
+a { text-decoration: none; color: inherit; }
+
+/* ── Dark mode overrides ── */
+body.dark-mode .page-title-band         { background-color: #0d2a45 !important; }
+body.dark-mode .kal-sidebar-card        { background-color: #1e1e1e !important; border-left-color: #5a7a95 !important; }
+body.dark-mode .kal-sidebar-label       { color: #888 !important; border-bottom-color: #333 !important; }
+body.dark-mode .kal-sidebar-card a      { color: #c8c8c8 !important; }
+body.dark-mode .kal-sidebar-card a:hover    { color: #a8b361 !important; background-color: #2a2a2a !important; }
+body.dark-mode .kal-sidebar-card a.active   { color: #a8b361 !important; border-left-color: #a8b361 !important; background-color: #2a2a2a !important; }
+body.dark-mode .kal-intro p             { color: #c8c8c8 !important; }
+body.dark-mode .kal-cta-band            { background-color: #0d2a45 !important; }
+body.dark-mode .kal-photo-strip         { background-color: #121212 !important; }
+
+/* ── Page title band (matches contact page pattern) ── */
+.page-title-band {
+    background-color: var(--navy);
+    padding: 44px 50px;
+    text-align: center;
+}
+.page-title-band h1 {
+    margin: 0 0 10px 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2.25rem;
+    font-weight: normal;
+    line-height: 1.2;
+    color: #ffffff;
+}
+.page-title-band p.hero-subtitle {
+    margin: 0 auto;
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 620px;
+    line-height: 1.6;
+}
+
+/* ── Page body ── */
+.kal-body-wrap {
+    background-color: var(--ecru);
+    flex: 1;
+}
+.kal-body-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+/* ── Sidebar (Tabele jg-sidebar-card pattern) ── */
+.kal-sidebar-card {
+    background-color: var(--white);
+    border-left: 3px solid var(--navy);
+    border-radius: 0 6px 6px 0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    padding: 14px 0 16px;
+    position: sticky;
+    top: 1.5rem;
+}
+.kal-sidebar-label {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.9px;
+    color: #999;
+    padding: 0 18px 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    margin-bottom: 6px;
+}
+.kal-sidebar-card a {
+    display: block;
+    padding: 9px 18px 9px 15px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    border-left: 3px solid transparent;
+    transition: color 0.15s, background-color 0.15s;
+    line-height: 1.4;
+}
+.kal-sidebar-card a:hover {
+    color: var(--navy);
+    background-color: var(--ecru);
+}
+.kal-sidebar-card a.active {
+    color: var(--navy);
+    border-left-color: var(--navy);
+    background-color: var(--ecru);
+}
+
+/* ── Section heading (Tabele pattern) ── */
+.section-heading {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--navy);
+    margin-bottom: 8px;
+}
+.green-accent-line {
+    width: 40px;
+    height: 3px;
+    background-color: var(--sage);
+    margin-bottom: 20px;
+    border-radius: 1px;
+}
+
+/* ── Main intro content ── */
+.kal-intro p {
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: var(--charcoal);
+    margin: 0 0 1.1rem 0;
+}
+.kal-intro p:last-child { margin-bottom: 0; }
+.kal-intro a {
+    color: var(--navy);
+    text-decoration: underline dotted;
+    text-underline-offset: 2px;
+}
+.kal-intro a:hover { color: var(--sage); }
+
+/* ── Navy CTA band ── */
+.kal-cta-band {
+    background-color: #09497a;
+    padding: 3rem 2rem;
+}
+.kal-cta-inner {
+    max-width: 1050px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+/* Hours column */
+.kal-hours-heading,
+.kal-appt-heading {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.25rem;
+    font-weight: normal;
+    color: #ffffff;
+    margin: 0 0 1rem 0;
+    position: relative;
+    padding-bottom: 8px;
+}
+.kal-hours-heading::after,
+.kal-appt-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 32px;
+    height: 2px;
+    background-color: var(--sage);
+}
+.kal-hours-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.4rem 1.25rem;
+    margin-bottom: 1rem;
+}
+.kal-hours-grid dt {
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+.kal-hours-grid dd {
+    color: rgba(255,255,255,0.85);
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.45;
+}
+.kal-walkin-note {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.65);
+    margin: 0;
+    line-height: 1.5;
+    font-style: italic;
+}
+
+/* Appointment column */
+.kal-appt-text {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.6;
+    margin: 0 0 1.25rem 0;
+}
+.kal-appt-btn {
+    display: inline-block;
+    background-color: var(--sage);
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 11px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.15s;
+    margin-bottom: 1rem;
+}
+.kal-appt-btn:hover {
+    background-color: #7d854a;
+    color: #ffffff;
+    text-decoration: none;
+}
+body.dark-mode .kal-appt-btn        { background-color: #a8b361; color: #1a1a1a; }
+body.dark-mode .kal-appt-btn:hover  { background-color: #b8c272; color: #1a1a1a; }
+
+.kal-appt-detail {
+    display: block;
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+}
+.kal-appt-detail a {
+    color: #ffffff;
+    text-decoration: underline dotted;
+    text-underline-offset: 2px;
+}
+.kal-appt-detail a:hover { color: var(--sage); }
+
+.kal-ticket-note {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.6);
+    margin: 0.85rem 0 0;
+    line-height: 1.5;
+    padding-top: 0.85rem;
+    border-top: 1px solid rgba(255,255,255,0.15);
+}
+.kal-ticket-note a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: underline dotted;
+    text-underline-offset: 2px;
+}
+.kal-ticket-note a:hover { color: #ffffff; }
+
+/* ── 3-photo strip at bottom ── */
+.kal-photo-strip {
+    background-color: var(--white);
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+}
+.kal-photo-strip img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    display: block;
+}
+
+/* ── Responsive ── */
+@media (max-width: 800px) {
+    .kal-body-inner   { grid-template-columns: 1fr; padding: 1.5rem 1rem; gap: 1.5rem; }
+    .kal-sidebar-card { position: static; display: flex; flex-wrap: wrap; border-left: none; border-top: 3px solid var(--navy); border-radius: 6px; padding: 8px 0; }
+    .kal-sidebar-label { display: none; }
+    .kal-sidebar-card a { padding: 8px 14px; flex: 1 0 auto; text-align: center; border-left: none; border-bottom: 3px solid transparent; }
+    .kal-sidebar-card a.active { border-left: none; border-bottom-color: var(--navy); }
+    .kal-cta-inner    { grid-template-columns: 1fr; gap: 2rem; }
+    .kal-photo-strip  { grid-template-columns: 1fr; }
+    .kal-photo-strip img { height: 200px; }
+    .page-title-band  { padding: 36px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="site-header"></div>
+
+<!-- TITLE BAND -->
+<div class="page-title-band" role="banner">
+    <h1>Peter and Mary Kalikow Jewish Genealogy Research Center</h1>
+    <p class="hero-subtitle">The physical presence of JewishGen at the Museum of Jewish Heritage.</p>
+</div>
+
+<!-- PAGE BODY -->
+<div class="kal-body-wrap">
+    <div class="kal-body-inner">
+
+        <!-- Sidebar -->
+        <aside class="kal-sidebar-card" aria-label="Kalikow Center section navigation">
+            <span class="kal-sidebar-label">Kalikow Center</span>
+            <a href="/JG40-Build/kalikow/index.html" class="active" aria-current="page">About the Center</a>
+            <a href="/JG40-Build/kalikow/genealogists.html">Our Genealogists</a>
+        </aside>
+
+        <!-- Main content -->
+        <main>
+            <span class="section-heading">About the Center</span>
+            <div class="green-accent-line"></div>
+
+            <div class="kal-intro">
+                <p>The Peter and Mary Kalikow Jewish Genealogy Research Center is the physical presence of <a href="/JG40-Build/index.html">JewishGen</a> &mdash; the genealogical research division of the Museum of Jewish Heritage &ndash; A Living Memorial to the Holocaust.</p>
+                <p>Our professional genealogists, who are experts in family history research, are here to guide and assist you, whether you&rsquo;re just starting your search or digging deeper into your family tree. With unlimited access to JewishGen&rsquo;s powerful online tools and many other essential resources, the Kalikow Center is your personalized launchpad for discovery.</p>
+                <p>Genealogical research &mdash; especially Jewish family history &mdash; can be a fascinating but complex journey, filled with hidden details, unfamiliar languages, and elusive records. That&rsquo;s where we come in.</p>
+            </div>
+        </main>
+
+    </div>
+</div>
+
+<!-- CTA BAND -->
+<section class="kal-cta-band" aria-label="Visit the Kalikow Center">
+    <div class="kal-cta-inner">
+
+        <!-- Hours -->
+        <div>
+            <h2 class="kal-hours-heading">Hours</h2>
+            <dl class="kal-hours-grid">
+                <dt>Wednesday</dt>
+                <dd>12:00 PM &ndash; 5:00 PM</dd>
+                <dt>Thursday</dt>
+                <dd>12:00 PM &ndash; 4:00 PM<br>4:30 PM &ndash; 8:00 PM</dd>
+                <dt>Sunday</dt>
+                <dd>10:00 AM &ndash; 12:30 PM<br>1:00 PM &ndash; 5:00 PM</dd>
+            </dl>
+            <p class="kal-walkin-note">Walk-ins welcome on a first come, first served basis.</p>
+        </div>
+
+        <!-- Appointment -->
+        <div>
+            <h2 class="kal-appt-heading">Plan Your Visit</h2>
+            <p class="kal-appt-text">Appointments are recommended to ensure dedicated time with one of our genealogists.</p>
+            <a id="kal-book-btn"
+               href="https://mjhnyc.org/genealogy/"
+               class="kal-appt-btn"
+               target="_blank"
+               rel="noopener noreferrer">
+                Book an Appointment
+            </a>
+            <span class="kal-appt-detail">Email <a href="mailto:kalikow@jewishgen.org">kalikow@jewishgen.org</a></span>
+            <span class="kal-appt-detail">Call 646-494-2972</span>
+            <p class="kal-ticket-note"><a href="https://mjhnyc.org/visitor-information/" target="_blank" rel="noopener noreferrer">Museum tickets</a> are required to visit the Center.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- 3-photo strip at bottom -->
+<div class="kal-photo-strip" aria-label="Inside the Kalikow Center">
+    <img src="/JG40-Build/Kalikow1.jpg" alt="Books and research materials at the Kalikow Center">
+    <img src="/JG40-Build/Kalikow2.jpg" alt="Memorial books and Yizkor volumes on the shelves">
+    <img src="/JG40-Build/Kalikow3.jpg" alt="Touch screens and research stations at the Kalikow Center">
+</div>
+
+<!-- FOOTER -->
+<div id="site-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function loadComponent(id, file) {
+    return fetch(file)
+        .then(function(r) { if (!r.ok) throw new Error('Could not load ' + file); return r.text(); })
+        .then(function(html) { document.getElementById(id).innerHTML = html; })
+        .catch(function(err) { console.warn(err); });
+}
+
+Promise.all([
+    loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
+    loadComponent('site-footer', '/JG40-Build/Footer.html')
+]).then(function() {
+    document.querySelectorAll('.jg-nav .dropbtn, .main-nav .dropbtn').forEach(function(btn) {
+        btn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                var menu = this.nextElementSibling;
+                if (menu) menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            }
+            if (e.key === 'Escape') {
+                var menu = this.nextElementSibling;
+                if (menu) menu.style.display = 'none';
+            }
+        });
+    });
+});
+
+/* -- Kalikow appointment link: date-coded to today (NYC time) -- */
+(function() {
+    var link = document.getElementById('kal-book-btn');
+    if (!link) return;
+    try {
+        var parts = new Intl.DateTimeFormat('en-US', {
+            timeZone: 'America/New_York',
+            day:   '2-digit',
+            month: 'short',
+            year:  'numeric'
+        }).formatToParts(new Date());
+        var day   = parts.find(function(p) { return p.type === 'day';   }).value;
+        var month = parts.find(function(p) { return p.type === 'month'; }).value;
+        var year  = parts.find(function(p) { return p.type === 'year';  }).value;
+        link.href = 'https://898a.blackbaudhosting.com/898a/'
+                  + 'Peter-and-Mary-Kalikow-Jewish-Genealogy-Research-Center-Appointment-'
+                  + day + month + year;
+    } catch(err) {
+        console.warn('Kalikow link: falling back to MJH genealogy page.', err);
+    }
+})();
+</script>
+
+</body>
+</html>
