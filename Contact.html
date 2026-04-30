@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — JewishGen</title>
+
+<!-- 1. Bootstrap -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<!-- 2. JewishGen Global Design System -->
+<link rel="stylesheet" href="/JG40-Build/jg-global.css">
+<!-- 3. Page-specific styles -->
+<style>
+a { text-decoration: none; color: inherit; }
+
+/* ── Dark mode overrides ── */
+body.dark-mode .page-title-band    { background-color: #0d2a45 !important; }
+body.dark-mode .contact-card       { background-color: #1e1e1e !important; border-color: #333 !important; }
+body.dark-mode .contact-card h2    { color: #e0e0e0 !important; }
+body.dark-mode .contact-card p,
+body.dark-mode .contact-card address { color: #c8c8c8 !important; }
+body.dark-mode .contact-card .card-email a { color: #8ab0c9 !important; }
+body.dark-mode .contact-card .card-email a:hover { color: var(--sage) !important; }
+body.dark-mode .contact-card .placeholder-note { color: #888 !important; }
+body.dark-mode .mail-card          { background-color: #1e1e1e !important; border-color: #333 !important; }
+body.dark-mode .mail-card h2       { color: #e0e0e0 !important; }
+body.dark-mode .mail-card address,
+body.dark-mode .mail-card p        { color: #c8c8c8 !important; }
+body.dark-mode .mail-card .mail-note { color: #888 !important; border-left-color: #444 !important; }
+body.dark-mode .social-strip       { background-color: #1e1e1e !important; }
+body.dark-mode .social-strip h2    { color: #e0e0e0 !important; }
+body.dark-mode .social-link        { border-color: #333 !important; color: #c8c8c8 !important; }
+body.dark-mode .social-link:hover  { background-color: #2a2a2a !important; color: var(--sage) !important; }
+body.dark-mode .social-link .social-platform { color: #888 !important; }
+
+/* ── Page title band ── */
+.page-title-band {
+    background-color: var(--navy);
+    padding: 44px 50px;
+    text-align: center;
+}
+.page-title-band h1 {
+    margin: 0 0 10px 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2.25rem;
+    font-weight: normal;
+    line-height: 1.15;
+    color: #ffffff;
+}
+.page-title-band p.hero-subtitle {
+    margin: 0 auto;
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 640px;
+    line-height: 1.6;
+}
+
+/* ── Breadcrumb ── */
+.jg-breadcrumb-bar {
+    background-color: var(--ecru);
+    padding: 8px 50px;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+}
+.jg-breadcrumb-bar .breadcrumb {
+    margin: 0;
+    font-size: 0.8125rem;
+    color: var(--charcoal);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+.jg-breadcrumb-bar .breadcrumb a {
+    color: var(--charcoal);
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    opacity: 0.8;
+}
+.jg-breadcrumb-bar .breadcrumb a:hover { opacity: 1; color: var(--sage); }
+.jg-breadcrumb-bar .breadcrumb .sep    { opacity: 0.5; }
+
+/* ── Content wrap ── */
+.contact-ecru-wrap {
+    background-color: var(--ecru);
+    padding: 3rem 2rem 3.5rem;
+    flex: 1;
+}
+.contact-inner {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+/* ── Section heading (matches site pattern) ── */
+.section-heading {
+    margin: 0 0 1.25rem 0;
+    font-size: 1.125rem;
+    color: var(--navy);
+    font-weight: bold;
+    position: relative;
+    padding-bottom: 8px;
+}
+.section-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 36px;
+    height: 3px;
+    background-color: var(--sage);
+    border-radius: 2px;
+}
+
+/* ── Contact cards grid ── */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+@media (max-width: 640px) {
+    .contact-grid { grid-template-columns: 1fr; }
+    .jg-breadcrumb-bar { padding: 8px 20px; }
+    .page-title-band { padding: 36px 24px; }
+}
+
+/* ── Individual contact card ── */
+.contact-card {
+    background-color: var(--white);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 8px;
+    border-top: 3px solid var(--sage);
+    padding: 1.375rem 1.5rem 1.25rem;
+}
+.contact-card h2 {
+    margin: 0 0 6px 0;
+    font-size: 0.9375rem;
+    font-weight: bold;
+    color: var(--navy);
+}
+.contact-card p {
+    margin: 0 0 10px 0;
+    font-size: 0.875rem;
+    color: var(--charcoal);
+    line-height: 1.5;
+    opacity: 0.9;
+}
+.card-email {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.card-email a {
+    color: var(--navy);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.card-email a:hover { color: var(--sage); }
+.placeholder-note {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.775rem;
+    font-style: italic;
+    color: #888;
+}
+
+/* ── Mailing address card (full width) ── */
+.mail-card {
+    background-color: var(--white);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 8px;
+    border-top: 3px solid var(--navy);
+    padding: 1.375rem 1.5rem 1.25rem;
+    margin-bottom: 2.5rem;
+}
+.mail-card h2 {
+    margin: 0 0 6px 0;
+    font-size: 0.9375rem;
+    font-weight: bold;
+    color: var(--navy);
+}
+.mail-card p {
+    margin: 0 0 10px 0;
+    font-size: 0.875rem;
+    color: var(--charcoal);
+    line-height: 1.5;
+    opacity: 0.9;
+}
+.mail-card address {
+    font-style: normal;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
+.mail-note {
+    font-size: 0.8125rem;
+    color: #666;
+    border-left: 3px solid var(--light-blue);
+    padding-left: 10px;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ── Social media strip ── */
+.social-strip {
+    background-color: var(--white);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 8px;
+    padding: 1.375rem 1.5rem 1.25rem;
+}
+.social-strip h2 {
+    margin: 0 0 1rem 0;
+    font-size: 0.9375rem;
+    font-weight: bold;
+    color: var(--navy);
+}
+.social-links-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    color: var(--charcoal);
+    text-decoration: none;
+    transition: background-color 0.15s, color 0.15s;
+}
+.social-link:hover {
+    background-color: var(--ecru);
+    color: var(--navy);
+    text-decoration: none;
+}
+.social-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    fill: currentColor;
+}
+.social-handle {
+    font-weight: 600;
+    display: block;
+    line-height: 1.2;
+}
+.social-platform {
+    display: block;
+    font-size: 0.75rem;
+    color: #888;
+    line-height: 1.2;
+}
+</style>
+</head>
+<body>
+
+<!-- Site Header (injected) -->
+<div id="site-header"></div>
+
+<!-- Page Title Band -->
+<div class="page-title-band" role="banner">
+    <h1>Contact Us</h1>
+    <p class="hero-subtitle">We're here to help with research questions, membership support, press inquiries, and more.</p>
+</div>
+
+<!-- Breadcrumb -->
+<div class="jg-breadcrumb-bar" aria-label="Breadcrumb">
+    <nav class="breadcrumb" aria-label="breadcrumb">
+        <a href="/JG40-Build/index.html">Home</a>
+        <span class="sep" aria-hidden="true">›</span>
+        <span aria-current="page">Contact Us</span>
+    </nav>
+</div>
+
+<!-- Main Content -->
+<main class="contact-ecru-wrap">
+    <div class="contact-inner">
+
+        <!-- Email contacts heading -->
+        <h2 class="section-heading">Get in Touch</h2>
+
+        <!-- 2-col contact card grid -->
+        <div class="contact-grid">
+
+            <!-- General Information -->
+            <div class="contact-card">
+                <h2>General Information</h2>
+                <p>Questions about JewishGen or our databases. New to the site? Visit our <a href="/JG40-Build/how-to-jewishgen.html" style="color: var(--navy); text-decoration: underline; text-underline-offset: 2px;">How to JewishGen</a> guide.</p>
+                <div class="card-email">
+                    <a href="mailto:info@jewishgen.org" aria-label="Email info@jewishgen.org">info@jewishgen.org</a>
+                </div>
+            </div>
+
+            <!-- Member Support -->
+            <div class="contact-card">
+                <h2>Member Support</h2>
+                <p>Help with your account, membership, or technical issues accessing our tools and databases.</p>
+                <div class="card-email">
+                    <a href="mailto:support@jewishgen.org" aria-label="Email support@jewishgen.org">support@jewishgen.org</a>
+                </div>
+            </div>
+
+            <!-- Major Gifts -->
+            <div class="contact-card">
+                <h2>Major Gifts &amp; Development</h2>
+                <p>Interested in making a significant gift or discussing naming opportunities and legacy giving?</p>
+                <div class="card-email">
+                    <a href="mailto:info@jewishgen.org" aria-label="Email info@jewishgen.org for major gifts">info@jewishgen.org</a>
+                    <span class="placeholder-note">A dedicated development contact will be listed here soon.</span>
+                </div>
+            </div>
+
+            <!-- Press -->
+            <div class="contact-card">
+                <h2>Press &amp; Media Inquiries</h2>
+                <p>For interview requests, press materials, or information about JewishGen for publication.</p>
+                <div class="card-email">
+                    <a href="mailto:marketing@jewishgen.org" aria-label="Email marketing@jewishgen.org">marketing@jewishgen.org</a>
+                    <span class="placeholder-note">Press contact — confirm with Josh before launch.</span>
+                </div>
+            </div>
+
+        </div><!-- /.contact-grid -->
+
+        <!-- Mailing Address (full width) -->
+        <div class="mail-card">
+            <h2>Donate by Mail</h2>
+            <p>Prefer to send a check? Please make it payable to <strong>Museum of Jewish Heritage</strong> and mail to:</p>
+            <address>
+                Museum of Jewish Heritage / JewishGen<br>
+                36 Battery Place<br>
+                New York, NY 10280
+            </address>
+            <p class="mail-note">Please include <strong>"JewishGen"</strong> in the reference line of your check so your gift is properly credited.</p>
+        </div>
+
+        <!-- Social Media -->
+        <h2 class="section-heading">Follow Us</h2>
+        <div class="social-strip" aria-label="JewishGen social media channels">
+            <div class="social-links-row">
+
+                <!-- YouTube -->
+                <a href="https://www.youtube.com/@JewishGen613" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="JewishGen on YouTube, opens in new tab">
+                    <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/>
+                    </svg>
+                    <span>
+                        <span class="social-handle">@JewishGen613</span>
+                        <span class="social-platform">YouTube</span>
+                    </span>
+                </a>
+
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/jewishgen613" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="JewishGen on Instagram, opens in new tab">
+                    <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.2 4.8 1.7 5 5 .1 1.3.1 1.6.1 4.8s0 3.6-.1 4.9c-.2 3.2-1.7 4.8-5 5-1.3.1-1.6.1-4.9.1s-3.6 0-4.9-.1c-3.2-.2-4.8-1.7-5-5C2 16.6 2 16.3 2 12s0-3.6.1-4.9c.2-3.2 1.7-4.8 5-5C8.4 2.2 8.8 2.2 12 2.2zm0-2.2C8.7 0 8.3 0 7 .1 2.7.3.3 2.7.1 7 0 8.3 0 8.7 0 12s0 3.7.1 5c.2 4.3 2.6 6.7 7 6.9 1.3.1 1.7.1 5 .1s3.7 0 5-.1c4.3-.2 6.7-2.6 6.9-7C24 15.7 24 15.3 24 12s0-3.7-.1-5c-.2-4.3-2.6-6.7-7-6.9C15.7 0 15.3 0 12 0zm0 5.8A6.2 6.2 0 1 0 12 18.2 6.2 6.2 0 0 0 12 5.8zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/>
+                    </svg>
+                    <span>
+                        <span class="social-handle">jewishgen613</span>
+                        <span class="social-platform">Instagram</span>
+                    </span>
+                </a>
+
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/JewishGen.org" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="JewishGen on Facebook, opens in new tab">
+                    <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.88v2.27h3.32l-.53 3.49h-2.79V24C19.61 23.1 24 18.1 24 12.07z"/>
+                    </svg>
+                    <span>
+                        <span class="social-handle">JewishGen.org</span>
+                        <span class="social-platform">Facebook</span>
+                    </span>
+                </a>
+
+            </div>
+        </div><!-- /.social-strip -->
+
+    </div><!-- /.contact-inner -->
+</main>
+
+<!-- Site Footer (injected) -->
+<div id="site-footer"></div>
+
+<script>
+// ── Component loader ──────────────────────────────────────
+function loadComponent(id, url) {
+    fetch(url)
+        .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+        .then(html => { document.getElementById(id).innerHTML = html; })
+        .catch(err => console.warn('Component load failed (' + url + '):', err));
+}
+loadComponent('site-header', '/JG40-Build/Header_NavBar__3_.html');
+loadComponent('site-footer', '/JG40-Build/Footer__1_.html');
+
+// ── Dark mode toggle (matches global pattern) ─────────────
+(function () {
+    const saved = localStorage.getItem('jg-dark-mode');
+    if (saved === 'true') document.body.classList.add('dark-mode');
+})();
+</script>
+
+</body>
+</html>
