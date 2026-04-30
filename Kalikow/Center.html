@@ -22,7 +22,7 @@ body.dark-mode .kal-sidebar-card a      { color: #c8c8c8 !important; }
 body.dark-mode .kal-sidebar-card a:hover    { color: #a8b361 !important; background-color: #2a2a2a !important; }
 body.dark-mode .kal-sidebar-card a.active   { color: #a8b361 !important; border-left-color: #a8b361 !important; background-color: #2a2a2a !important; }
 body.dark-mode .kal-intro p             { color: #c8c8c8 !important; }
-body.dark-mode .kal-cta-band            { background-color: #1a1a1a !important; border-top-color: #333 !important; border-bottom-color: #333 !important; }
+body.dark-mode .kal-visit-card          { background-color: #1e1e1e !important; }
 body.dark-mode .kal-hours-heading,
 body.dark-mode .kal-appt-heading        { color: #e0e0e0 !important; }
 body.dark-mode .kal-hours-grid dt       { color: #e0e0e0 !important; }
@@ -147,20 +147,23 @@ body.dark-mode .kal-photo-strip         { background-color: #121212 !important; 
 }
 .kal-intro a:hover { color: var(--sage); }
 
-/* ── Cream CTA band (quieter than navy) ── */
-.kal-cta-band {
-    background-color: var(--cream);
-    padding: 2.25rem 2rem;
-    border-top: 1px solid rgba(0,0,0,0.06);
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+/* ── Visit Us: two white cards on ecru ── */
+.kal-visit-wrap {
+    background-color: var(--ecru);
+    padding: 0 2rem 3rem;
 }
-.kal-cta-inner {
-    max-width: 1050px;
+.kal-visit-inner {
+    max-width: 1100px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: start;
+    gap: 1.5rem;
+}
+.kal-visit-card {
+    background-color: var(--white);
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    padding: 1.625rem 1.75rem;
 }
 
 /* Headings */
@@ -171,6 +174,19 @@ body.dark-mode .kal-photo-strip         { background-color: #121212 !important; 
     font-weight: bold;
     color: var(--navy);
     margin: 0 0 0.875rem 0;
+    position: relative;
+    padding-bottom: 8px;
+}
+.kal-hours-heading::after,
+.kal-appt-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 32px;
+    height: 2px;
+    background-color: var(--sage);
+    border-radius: 1px;
 }
 
 /* Hours */
@@ -200,7 +216,7 @@ body.dark-mode .kal-photo-strip         { background-color: #121212 !important; 
     font-style: italic;
 }
 
-/* Appointment column */
+/* Appointment */
 .kal-appt-text {
     font-size: 0.875rem;
     color: var(--charcoal);
@@ -280,7 +296,8 @@ body.dark-mode .kal-appt-btn:hover  { background-color: #b8c272; color: #1a1a1a;
     .kal-sidebar-label { display: none; }
     .kal-sidebar-card a { padding: 8px 14px; flex: 1 0 auto; text-align: center; border-left: none; border-bottom: 3px solid transparent; }
     .kal-sidebar-card a.active { border-left: none; border-bottom-color: var(--navy); }
-    .kal-cta-inner    { grid-template-columns: 1fr; gap: 2rem; }
+    .kal-visit-wrap   { padding: 0 1rem 2rem; }
+    .kal-visit-inner  { grid-template-columns: 1fr; gap: 1rem; }
     .kal-photo-strip  { grid-template-columns: 1fr; }
     .kal-photo-strip img { height: 200px; }
     .page-title-band  { padding: 36px 24px; }
@@ -324,12 +341,12 @@ body.dark-mode .kal-appt-btn:hover  { background-color: #b8c272; color: #1a1a1a;
     </div>
 </div>
 
-<!-- CTA BAND -->
-<section class="kal-cta-band" aria-label="Visit the Kalikow Center">
-    <div class="kal-cta-inner">
+<!-- VISIT US: two white cards on ecru -->
+<section class="kal-visit-wrap" aria-label="Visit the Kalikow Center">
+    <div class="kal-visit-inner">
 
-        <!-- Hours -->
-        <div>
+        <!-- Hours card -->
+        <div class="kal-visit-card">
             <h2 class="kal-hours-heading">Hours</h2>
             <dl class="kal-hours-grid">
                 <dt>Wednesday</dt>
@@ -342,8 +359,8 @@ body.dark-mode .kal-appt-btn:hover  { background-color: #b8c272; color: #1a1a1a;
             <p class="kal-walkin-note">Walk-ins welcome on a first come, first served basis.</p>
         </div>
 
-        <!-- Appointment -->
-        <div>
+        <!-- Appointment card -->
+        <div class="kal-visit-card">
             <h2 class="kal-appt-heading">Plan Your Visit</h2>
             <p class="kal-appt-text">Appointments are recommended to ensure dedicated time with one of our genealogists.</p>
             <a id="kal-book-btn"
