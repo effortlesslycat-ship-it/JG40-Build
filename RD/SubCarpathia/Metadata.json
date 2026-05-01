@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Subcarpathia and Vicinity Marriages",
+    "region": "Subcarpathia, Hungary, Czechoslovakia, Transcarpathia, Maramures, Ukraine",
+    "language": "German, Hungarian, and others",
+    "recordCount": 30470,
+    "years": "varies by locale",
+    "lastUpdated": "2026-01-08",
+    "sources": "State Archive of Zakarpattia Oblast",
+    "recordType": "Marriages, vital records",
+    "description": "More than 30,000 marriage records, from towns in the former Hungarian counties of Bereg, Máramaros, and Ugocsa (now in Zakarpatska Oblast, in SW Ukraine).",
+    "infoUrl": "https://www.jewishgen.org/databases/Hungary/SubCarpathia.htm"
+  },
+  {
+    "name": "Subcarpathia and Vicinity Births",
+    "region": "Subcarpathia, Hungary, Czechoslovakia, Transcarpathia, Maramures, Ukraine",
+    "language": "German, Hungarian, and others",
+    "recordCount": 218138,
+    "years": "varies by locale",
+    "lastUpdated": "2026-01-08",
+    "sources": "State Archive of Zakarpattia Oblast",
+    "recordType": "Births, vital records",
+    "description": "Pull from Marriages line",
+    "infoUrl": "https://www.jewishgen.org/databases/Hungary/SubCarpathia.htm"
+  },
+  {
+    "name": "SubCarpathia Jewish Deaths",
+    "region": "Subcarpathia, Hungary, Czechoslovakia, Transcarpathia, Maramures, Ukraine",
+    "language": "German, Hungarian, and others",
+    "recordCount": 344,
+    "years": "varies by locale",
+    "lastUpdated": "2025-08-04",
+    "sources": "State Archive of Zakarpattia Oblast",
+    "recordType": "Deaths, vital records",
+    "description": "Pull from Marriages line",
+    "infoUrl": "https://www.jewishgen.org/databases/Hungary/SubCarpathia.htm"
+  },
+  {
+    "name": "Subcarpathian Passport Cases",
+    "region": "Subcarpathia, Hungary, Czechoslovakia, Transcarpathia, Maramures, Ukraine",
+    "language": "Hungarian",
+    "recordCount": 174,
+    "years": "1920s-1940s",
+    "lastUpdated": "2023-08-06",
+    "sources": "State Archive of Zakarpattia Oblast",
+    "recordType": "Immigration and migration",
+    "description": "",
+    "infoUrl": "https://www.jewishgen.org/databases/hungary/subcarpathiapassports.html"
+  },
+  {
+    "name": "Subcarpathia and Vicinity Deaths",
+    "region": "Subcarpathia, Hungary, Czechoslovakia, Transcarpathia, Maramures, Ukraine",
+    "language": "German, Hungarian, and others",
+    "recordCount": 344,
+    "years": "varies by locale",
+    "lastUpdated": "2026-01-08",
+    "sources": "State Archive of Zakarpattia Oblast",
+    "recordType": "Deaths, vital records",
+    "description": "Pull from Marriages line",
+    "infoUrl": "https://www.jewishgen.org/databases/Hungary/SubCarpathia.htm"
+  },
+  {
+    "name": "Subcarpathia and Vicinity Family Lists",
+    "region": "Subcarpathia, Hungary, Czechoslovakia, Transcarpathia, Maramures, Ukraine",
+    "language": "German, various",
+    "recordCount": 7743,
+    "years": "varies by locale",
+    "lastUpdated": "2025-08-04",
+    "sources": "State Archive of Zakarpattia Oblast",
+    "recordType": "Census, family list",
+    "description": "None which is wild",
+    "infoUrl": "https://www.jewishgen.org/databases/Hungary/SubCarpathia.htm"
+  },
+  {
+    "name": "The JewishGen Yizkor Book Master Name Index - Transcarpathia",
+    "region": "Subcarpathia, Hungary, Czechoslovakia, Transcarpathia, Maramures, Ukraine",
+    "language": "English, various original",
+    "recordCount": 62,
+    "years": "Holocaust",
+    "lastUpdated": "2013-06-24",
+    "sources": "Various Yizkor Books",
+    "recordType": "Yizkor Books, Holocaust, Death",
+    "description": "Entries from lists of Holocaust martyrs in Yizkor Books",
+    "infoUrl": ""
+  },
+  {
+    "name": "The JewishGen Yizkor Book Necrology Database - Transcarpathia",
+    "region": "Subcarpathia, Hungary, Czechoslovakia, Transcarpathia, Maramures, Ukraine",
+    "language": "English, various original",
+    "recordCount": 5832,
+    "years": "Holocaust",
+    "lastUpdated": "2016-07-03",
+    "sources": "Various Yizkor Books",
+    "recordType": "Yizkor Books, Holocaust, Death",
+    "description": "Entries from lists of Holocaust martyrs in Yizkor Books",
+    "infoUrl": ""
+  },
+  {
+    "name": "1921 Karpatalja Subcarpathia Census",
+    "region": "Subcarpathia, Hungary, Czechoslovakia, Transcarpathia, Maramures, Ukraine, Karpatalja",
+    "language": "Hungarian",
+    "recordCount": 5013,
+    "years": "1921",
+    "lastUpdated": "2025-08-06",
+    "sources": "Hungaricana",
+    "recordType": "Census, family list",
+    "description": "All Jewish entries from the 1921 Karpatalja Subcarpathia Census, from original images available on Hungaricana.",
+    "infoUrl": "https://www.jewishgen.org/databases/hungary/subcarpathia1921census.html"
+  },
+  {
+    "name": "JewishGen Online Worldwide Burial Registry - Transcarpathia",
+    "region": "JOWBR, Subcarpathia",
+    "language": "Various",
+    "recordCount": 20582,
+    "years": "varies by locale",
+    "lastUpdated": "2021-01-20",
+    "sources": "Various - see records for details",
+    "recordType": "JOWBR, Burials, Death",
+    "description": "",
+    "infoUrl": ""
+  }
+]
