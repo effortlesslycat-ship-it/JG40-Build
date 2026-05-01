@@ -29,10 +29,11 @@ body.dark-mode .social-link .social-platform { color: #888 !important; }
 body.dark-mode .social-icon           { fill: #8ab0c9 !important; }
 body.dark-mode .social-handle         { color: #8ab0c9 !important; }
 
-/* Light/dark image swap (matches global pattern) */
-.dark-icon { display: none; }
-body.dark-mode .light-icon { display: none; }
-body.dark-mode .dark-icon  { display: block; }
+/* Light/dark image swap — scoped override to beat .social-icon-img display rule */
+.social-link .dark-icon { display: none; }
+.social-link .light-icon { display: block; }
+body.dark-mode .social-link .light-icon { display: none; }
+body.dark-mode .social-link .dark-icon  { display: block; }
 
 /* ── Page title band ── */
 .page-title-band {
