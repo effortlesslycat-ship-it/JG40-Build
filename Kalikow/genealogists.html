@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Genealogists — Peter and Mary Kalikow Jewish Genealogy Research Center — JewishGen</title>
+<meta name="description" content="Meet the professional genealogists at the Peter and Mary Kalikow Jewish Genealogy Research Center.">
+
+<!-- 1. Bootstrap -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<!-- 2. JewishGen Global Design System -->
+<link rel="stylesheet" href="/JG40-Build/jg-global.css">
+<!-- 3. Page-specific styles -->
+<style>
+a { text-decoration: none; color: inherit; }
+
+/* ── Dark mode overrides ── */
+body.dark-mode .page-title-band         { background-color: #0d2a45 !important; }
+body.dark-mode .kal-sidebar-card        { background-color: #1e1e1e !important; border-left-color: #5a7a95 !important; }
+body.dark-mode .kal-sidebar-label       { color: #888 !important; border-bottom-color: #333 !important; }
+body.dark-mode .kal-sidebar-card a      { color: #c8c8c8 !important; }
+body.dark-mode .kal-sidebar-card a:hover    { color: #a8b361 !important; background-color: #2a2a2a !important; }
+body.dark-mode .kal-sidebar-card a.active   { color: #a8b361 !important; border-left-color: #a8b361 !important; background-color: #2a2a2a !important; }
+body.dark-mode .kal-intro p             { color: #c8c8c8 !important; }
+body.dark-mode .bio-card                { background-color: #1e1e1e !important; }
+body.dark-mode .bio-name                { color: #e0e0e0 !important; }
+body.dark-mode .bio-role                { color: #a8b361 !important; }
+body.dark-mode .bio-text                { color: #c8c8c8 !important; }
+body.dark-mode .bio-photo               { background-color: #2a2a2a !important; }
+
+/* ── Page title band ── */
+.page-title-band {
+    background-color: var(--navy);
+    padding: 44px 50px;
+    text-align: center;
+}
+.page-title-band h1 {
+    margin: 0 0 10px 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2.25rem;
+    font-weight: normal;
+    line-height: 1.2;
+    color: #ffffff;
+}
+.page-title-band p.hero-subtitle {
+    margin: 0 auto;
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 620px;
+    line-height: 1.6;
+}
+
+/* ── Page body ── */
+.kal-body-wrap {
+    background-color: var(--ecru);
+    flex: 1;
+}
+.kal-body-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+/* ── Sidebar ── */
+.kal-sidebar-card {
+    background-color: var(--white);
+    border-left: 3px solid var(--navy);
+    border-radius: 0 6px 6px 0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    padding: 14px 0 16px;
+    position: sticky;
+    top: 1.5rem;
+}
+.kal-sidebar-label {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.9px;
+    color: #999;
+    padding: 0 18px 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    margin-bottom: 6px;
+}
+.kal-sidebar-card a {
+    display: block;
+    padding: 9px 18px 9px 15px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    border-left: 3px solid transparent;
+    transition: color 0.15s, background-color 0.15s;
+    line-height: 1.4;
+}
+.kal-sidebar-card a:hover {
+    color: var(--navy);
+    background-color: var(--ecru);
+}
+.kal-sidebar-card a.active {
+    color: var(--navy);
+    border-left-color: var(--navy);
+    background-color: var(--ecru);
+}
+
+/* ── Section heading ── */
+.section-heading {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--navy);
+    margin-bottom: 8px;
+}
+.green-accent-line {
+    width: 40px;
+    height: 3px;
+    background-color: var(--sage);
+    margin-bottom: 20px;
+    border-radius: 1px;
+}
+
+/* ── Intro lede ── */
+.kal-intro p {
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: var(--charcoal);
+    margin: 0 0 1.75rem 0;
+}
+
+/* ── Bio grid ── */
+.bio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+.bio-card {
+    background-color: var(--white);
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 1.25rem;
+    align-items: start;
+}
+.bio-photo {
+    width: 110px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    display: block;
+}
+.bio-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.0625rem;
+    font-weight: bold;
+    color: var(--navy);
+    margin: 0 0 2px 0;
+    line-height: 1.25;
+}
+.bio-role {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--sage);
+    margin-bottom: 10px;
+}
+.bio-text {
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: var(--charcoal);
+    margin: 0;
+}
+.bio-text em { font-style: italic; }
+
+/* ── Responsive ── */
+@media (max-width: 800px) {
+    .kal-body-inner   { grid-template-columns: 1fr; padding: 1.5rem 1rem; gap: 1.5rem; }
+    .kal-sidebar-card { position: static; display: flex; flex-wrap: wrap; border-left: none; border-top: 3px solid var(--navy); border-radius: 6px; padding: 8px 0; }
+    .kal-sidebar-label { display: none; }
+    .kal-sidebar-card a { padding: 8px 14px; flex: 1 0 auto; text-align: center; border-left: none; border-bottom: 3px solid transparent; }
+    .kal-sidebar-card a.active { border-left: none; border-bottom-color: var(--navy); }
+    .bio-grid         { grid-template-columns: 1fr; }
+    .page-title-band  { padding: 36px 24px; }
+}
+@media (max-width: 480px) {
+    .bio-card         { grid-template-columns: 90px 1fr; gap: 1rem; padding: 1.25rem; }
+    .bio-photo        { width: 90px; height: 110px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="site-header"></div>
+
+<!-- TITLE BAND -->
+<div class="page-title-band" role="banner">
+    <h1>Our Genealogists</h1>
+    <p class="hero-subtitle">Meet the professional genealogists at the Peter and Mary Kalikow Jewish Genealogy Research Center.</p>
+</div>
+
+<!-- PAGE BODY -->
+<div class="kal-body-wrap">
+    <div class="kal-body-inner">
+
+        <!-- Sidebar -->
+        <aside class="kal-sidebar-card" aria-label="Kalikow Center section navigation">
+            <span class="kal-sidebar-label">Kalikow Center</span>
+            <a href="/JG40-Build/kalikow/index.html">About the Center</a>
+            <a href="/JG40-Build/kalikow/genealogists.html" class="active" aria-current="page">Our Genealogists</a>
+        </aside>
+
+        <!-- Main content -->
+        <main>
+            <span class="section-heading">Our Team</span>
+            <div class="green-accent-line"></div>
+
+            <div class="kal-intro">
+                <p>Our team of professional genealogists brings decades of combined experience in Jewish family history research. Each specializes in different regions, traditions, and methodologies &mdash; together, they cover the full breadth of the Jewish diaspora.</p>
+            </div>
+
+            <div class="bio-grid">
+
+                <!-- 1. Paul Radensky -->
+                <article class="bio-card">
+                    <img class="bio-photo" src="/JG40-Build/Kalikow/PRad.jpg" alt="Paul Radensky">
+                    <div>
+                        <h2 class="bio-name">Paul Radensky</h2>
+                        <span class="bio-role">Senior Director</span>
+                        <p class="bio-text">Paul Radensky previously was in the Education Department of the Museum, where he worked with Jewish schools, professional development, interfaith activities, the Speakers Bureau, and Visitor Services. Paul completed his Ph.D. in Jewish history at the Jewish Theological Seminary and his master&rsquo;s in history at Columbia University. Prior to coming to the Museum, Paul worked at the Conference of Material Claims Against Germany, the North Shore Hebrew Academy High School, the 92nd Street Y, and the Sholem Aleichem Cultural Center in the Bronx. Paul is the president of the Old Broadway Synagogue in West Harlem.</p>
+                    </div>
+                </article>
+
+                <!-- 2. Caitlin Hollander Waas -->
+                <article class="bio-card">
+                    <img class="bio-photo" src="/JG40-Build/Kalikow/CHWa.jpg" alt="Caitlin Hollander Waas">
+                    <div>
+                        <h2 class="bio-name">Caitlin Hollander Waas</h2>
+                        <span class="bio-role">Chief Genealogist</span>
+                        <p class="bio-text">Caitlin Hollander Waas is JewishGen&rsquo;s chief genealogist, as well as being on staff at the Peter and Mary Kalikow Jewish Genealogy Center at the Museum of Jewish Heritage. She has been a professional genealogist for over a decade, beginning in the world of forensic genealogy as a specialist in high value estate cases, as well as researching for private clients and consulting for books. In addition, her citizenship reclamation work has been featured in <em>Family Tree Magazine</em>, <em>The Times of Israel</em>, and the <em>South Florida Sun Sentinel</em>, among other publications. She holds a degree in Anthropology, as well as additional certificates in Jewish Studies and Holocaust and Genocide Studies.</p>
+                    </div>
+                </article>
+
+                <!-- 3. Alex Calzareth -->
+                <article class="bio-card">
+                    <img class="bio-photo" src="/JG40-Build/Kalikow/ACal.jpg" alt="Alex Calzareth">
+                    <div>
+                        <h2 class="bio-name">Alex Calzareth</h2>
+                        <span class="bio-role">Genealogist</span>
+                        <p class="bio-text">Alex Calzareth is a genealogist focusing on Southwest Germany, the Czech Republic, and Southern Italy who began researching his family roots twenty-five years ago. He is a board member for Reclaim The Records and the Jewish Genealogy Society of Long Island. Alex is also Director of the JewishGen German Research Division.</p>
+                    </div>
+                </article>
+
+                <!-- 4. Chaya Sara Herman -->
+                <article class="bio-card">
+                    <img class="bio-photo" src="/JG40-Build/Kalikow/KCCSH.jpg" alt="Chaya Sara Herman">
+                    <div>
+                        <h2 class="bio-name">Chaya Sara Herman</h2>
+                        <span class="bio-role">Genealogist</span>
+                        <p class="bio-text">Chaya Sara Herman is a professional genealogist located in Brooklyn, New York. She is on the Executive Council of the Jewish Genealogical Society of New York and a member of the Association of Professional Genealogists. She specializes in Eastern European Jewish research with a focus on Lithuania. Chaya Sara&rsquo;s research has been featured in articles published in <em>Mishpacha</em> magazine since 2021.</p>
+                    </div>
+                </article>
+
+                <!-- 5. Scott Kalmikoff -->
+                <article class="bio-card">
+                    <img class="bio-photo" src="/JG40-Build/Kalikow/KCSK.jpg" alt="Scott Kalmikoff">
+                    <div>
+                        <h2 class="bio-name">Scott Kalmikoff</h2>
+                        <span class="bio-role">Genealogist</span>
+                        <p class="bio-text">Rabbi Scott Kalmikoff received a BA in Jewish Studies from Yeshiva University and studied at Yeshivat Chovevei Torah. Scott currently serves as the Director of Community Engagement at the Riverdale Y. He also started his own business, Genealogy with Rabbi Scott, conducting genealogical research for private clients and facilitating Jewish genealogy workshops.</p>
+                    </div>
+                </article>
+
+                <!-- 6. Michael Waas -->
+                <article class="bio-card">
+                    <img class="bio-photo" src="/JG40-Build/Kalikow/MWaa.jpg" alt="Michael Waas">
+                    <div>
+                        <h2 class="bio-name">Michael Waas</h2>
+                        <span class="bio-role">Genealogist</span>
+                        <p class="bio-text">Michael Waas is a professional genealogist and historian, specializing in Sephardic Jewry, with his firm, Hollander-Waas Jewish Heritage Services. He has lectured globally on Jewish genealogy and Sephardic history, in Portugal, Israel, the UK, in the US, and virtually for several organizations. Waas is the co-administrator of AvotaynuDNA&rsquo;s ongoing Genetic Census of the Jewish People as well as Associate Director of the Sephardic Researcher Division of JewishGen. Currently, Waas is the Scholar-in-Residence at the New York Genealogical &amp; Biographical Society, where he is surveying their archive and collection for Jewish-related materials.</p>
+                    </div>
+                </article>
+
+            </div><!-- /.bio-grid -->
+
+        </main>
+
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div id="site-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function loadComponent(id, file) {
+    return fetch(file)
+        .then(function(r) { if (!r.ok) throw new Error('Could not load ' + file); return r.text(); })
+        .then(function(html) { document.getElementById(id).innerHTML = html; })
+        .catch(function(err) { console.warn(err); });
+}
+
+Promise.all([
+    loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
+    loadComponent('site-footer', '/JG40-Build/Footer.html')
+]).then(function() {
+    document.querySelectorAll('.jg-nav .dropbtn, .main-nav .dropbtn').forEach(function(btn) {
+        btn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                var menu = this.nextElementSibling;
+                if (menu) menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            }
+            if (e.key === 'Escape') {
+                var menu = this.nextElementSibling;
+                if (menu) menu.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+
+</body>
+</html>
