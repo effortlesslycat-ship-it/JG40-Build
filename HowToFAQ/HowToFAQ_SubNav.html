@@ -1,0 +1,94 @@
+<style>
+/* =====================================================
+   HOWTOFAQ SHARED SUB-NAV COMPONENT
+   Injected via fetch() into #htfaq-subnav on all
+   HowToFAQ pages. Active link set by each page after
+   fetch resolves.
+   ===================================================== */
+
+/* Uses div[role=navigation] to avoid global nav cascade hazard */
+.htfaq-nav {
+    background-color: var(--white);
+    border-bottom: 2px solid var(--cream);
+    padding: 0 50px;
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+body.dark-mode .htfaq-nav {
+    background-color: #121212;
+    border-bottom-color: #333;
+}
+
+.htfaq-nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: color 0.15s, border-color 0.15s;
+}
+.htfaq-nav a:hover {
+    color: var(--navy);
+    border-bottom-color: var(--sage);
+}
+.htfaq-nav a.active {
+    color: var(--navy);
+    border-bottom-color: var(--navy);
+}
+body.dark-mode .htfaq-nav a { color: #a0a0a0; }
+body.dark-mode .htfaq-nav a:hover,
+body.dark-mode .htfaq-nav a.active {
+    color: #e0e0e0;
+    border-bottom-color: #a8b361;
+}
+
+/* Icon: navy line art, CSS filter handles dark mode and active states */
+.htfaq-nav img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+body.dark-mode .htfaq-nav img {
+    filter: brightness(0) invert(1);
+    opacity: 0.65;
+}
+body.dark-mode .htfaq-nav a:hover img,
+body.dark-mode .htfaq-nav a.active img {
+    opacity: 1;
+}
+
+/* -- Responsive ---------------------------------------- */
+@media (max-width: 900px) {
+    .htfaq-nav { padding: 0 20px; }
+}
+@media (max-width: 480px) {
+    .htfaq-nav a { padding: 12px 14px; font-size: 0.8125rem; gap: 6px; }
+    .htfaq-nav img { width: 16px; height: 16px; }
+}
+</style>
+
+<!-- HowToFAQ Section Navigation -->
+<!-- Active class is set by each page's JS after fetch resolves, -->
+<!-- matching window.location.pathname against each href.        -->
+<div role="navigation" class="htfaq-nav" aria-label="How to JewishGen and FAQ navigation">
+    <a href="/JG40-Build/HowToFAQ/howto.html">
+        <img src="/JG40-Build/HowToFAQ/HowTo.png" alt="" aria-hidden="true">
+        How to JewishGen
+    </a>
+    <a href="/JG40-Build/HowToFAQ/faq.html">
+        <img src="/JG40-Build/HowToFAQ/FAQ.png" alt="" aria-hidden="true">
+        FAQ
+    </a>
+    <a href="/JG40-Build/HowToFAQ/words.html">
+        <img src="/JG40-Build/HowToFAQ/Words.png" alt="" aria-hidden="true">
+        Words to Know
+    </a>
+</div>
