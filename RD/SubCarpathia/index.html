@@ -17,26 +17,27 @@ a { text-decoration: none; color: inherit; }
 /* ── Dark mode overrides ── */
 body.dark-mode .page-title-band         { background-color: #0d2a45 !important; }
 body.dark-mode .rd-sidebar-card         { background-color: #1e1e1e !important; border-left-color: #5a7a95 !important; }
-body.dark-mode .rd-sidebar-label        { color: #888 !important; border-bottom-color: #333 !important; }
+body.dark-mode .rd-sidebar-label        { background-color: #2a2a2a !important; color: #e0e0e0 !important; border-bottom-color: #333 !important; }
 body.dark-mode .rd-sidebar-card a       { color: #c8c8c8 !important; }
 body.dark-mode .rd-sidebar-card a:hover    { color: #a8b361 !important; background-color: #2a2a2a !important; }
 body.dark-mode .rd-sidebar-card a.active   { color: #a8b361 !important; border-left-color: #a8b361 !important; background-color: #2a2a2a !important; }
+body.dark-mode .rd-sidebar-donate       { background-color: #0d2a45 !important; }
+body.dark-mode .rd-sidebar-donate p     { color: rgba(255,255,255,0.85) !important; }
 body.dark-mode .rd-intro p              { color: #c8c8c8 !important; }
 body.dark-mode .rd-current-card         { background-color: #1e1e1e !important; border-left-color: #a8b361 !important; }
 body.dark-mode .rd-current-label        { color: #a8b361 !important; }
 body.dark-mode .rd-current-text         { color: #c8c8c8 !important; }
 body.dark-mode .rd-team-card,
-body.dark-mode .rd-external-card,
-body.dark-mode .rd-donate-card          { background-color: #1e1e1e !important; }
+body.dark-mode .rd-external-card        { background-color: #1e1e1e !important; }
 body.dark-mode .rd-team-name,
-body.dark-mode .rd-external-card h3,
-body.dark-mode .rd-donate-card h3       { color: #e0e0e0 !important; }
+body.dark-mode .rd-external-card h3     { color: #e0e0e0 !important; }
 body.dark-mode .rd-team-role            { color: #a8b361 !important; }
-body.dark-mode .rd-team-bio             { color: #c8c8c8 !important; }
+body.dark-mode .rd-team-bio,
+body.dark-mode .rd-external-card p      { color: #c8c8c8 !important; }
 body.dark-mode .rd-team-bio a           { color: #8ab0c9 !important; }
-body.dark-mode .rd-external-card p,
-body.dark-mode .rd-donate-card p        { color: #c8c8c8 !important; }
 body.dark-mode .rd-photo                { background-color: #2a2a2a !important; }
+body.dark-mode .rd-donation-block       { background-color: #2a2d1e !important; }
+body.dark-mode .rd-donation-block p     { color: #d8d8c8 !important; }
 
 /* ── Page title band ── */
 .page-title-band {
@@ -75,26 +76,36 @@ body.dark-mode .rd-photo                { background-color: #2a2a2a !important; 
     align-items: start;
 }
 
-/* ── Sidebar ── */
+/* ── Sidebar wrapper (sticky stack) ── */
+.rd-sidebar {
+    position: sticky;
+    top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* ── Sidebar nav card ── */
 .rd-sidebar-card {
     background-color: var(--white);
     border-left: 3px solid var(--navy);
     border-radius: 0 6px 6px 0;
     box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-    padding: 14px 0 16px;
-    position: sticky;
-    top: 1.5rem;
+    padding: 0 0 16px;
+    overflow: hidden;
 }
+/* Filled header label on sidebar */
 .rd-sidebar-label {
     display: block;
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     font-weight: bold;
     text-transform: uppercase;
-    letter-spacing: 0.9px;
-    color: #999;
-    padding: 0 18px 10px;
-    border-bottom: 1px solid rgba(0,0,0,0.07);
-    margin-bottom: 6px;
+    letter-spacing: 1px;
+    color: var(--navy);
+    background-color: var(--cream);
+    padding: 12px 18px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    margin-bottom: 8px;
 }
 .rd-sidebar-card a {
     display: block;
@@ -116,7 +127,43 @@ body.dark-mode .rd-photo                { background-color: #2a2a2a !important; 
     background-color: var(--ecru);
 }
 
-/* ── Section heading (Tabele pattern) ── */
+/* ── Sidebar Donate card (Lida pattern, sage button) ── */
+.rd-sidebar-donate {
+    background-color: var(--navy);
+    border-radius: 8px;
+    padding: 18px 18px 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.rd-sidebar-donate p {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.55;
+    margin: 0 0 12px 0;
+}
+.rd-btn-donate-full {
+    display: block;
+    background-color: var(--sage);
+    color: #ffffff;
+    padding: 11px 18px;
+    border-radius: 6px;
+    font-size: 0.8125rem;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    transition: filter 0.15s, transform 0.15s;
+    text-decoration: none;
+}
+.rd-btn-donate-full:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    color: #ffffff;
+    text-decoration: none;
+}
+body.dark-mode .rd-btn-donate-full        { background-color: #a8b361; color: #121212; }
+body.dark-mode .rd-btn-donate-full:hover  { color: #121212; }
+
+/* ── Section heading ── */
 .section-heading {
     display: block;
     font-size: 0.9375rem;
@@ -134,7 +181,7 @@ body.dark-mode .rd-photo                { background-color: #2a2a2a !important; 
     border-radius: 1px;
 }
 
-/* ── About paragraph block ── */
+/* ── About paragraph ── */
 .rd-intro p {
     font-size: 0.9375rem;
     line-height: 1.75;
@@ -149,7 +196,7 @@ body.dark-mode .rd-photo                { background-color: #2a2a2a !important; 
 }
 .rd-intro a:hover { color: var(--sage); }
 
-/* ── Currently working on (sage-bordered card) ── */
+/* ── Currently Working On callout ── */
 .rd-current-card {
     background-color: var(--white);
     border-left: 3px solid var(--sage);
@@ -227,6 +274,179 @@ body.dark-mode .rd-photo                { background-color: #2a2a2a !important; 
 .rd-team-bio a:hover { color: var(--sage); }
 .rd-team-bio em { font-style: italic; }
 
+/* ── Bio tile grid (clickable tiles, expand inline) ── */
+.bio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    justify-content: center;
+}
+/* When only 1 member, center the tile in the column */
+.bio-grid.bio-grid--single {
+    grid-template-columns: minmax(220px, 280px);
+    justify-content: center;
+}
+
+.bio-tile {
+    background-color: var(--white);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    padding: 1.25rem 1rem 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.15s, box-shadow 0.15s, transform 0.1s;
+    width: 100%;
+    font-family: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+}
+.bio-tile:hover {
+    background-color: #fafaf7;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.09);
+}
+.bio-tile:focus-visible {
+    outline: 2px solid var(--sage);
+    outline-offset: 2px;
+}
+.bio-tile[aria-expanded="true"] {
+    background-color: #fafaf7;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+}
+body.dark-mode .bio-tile { background-color: #1e1e1e !important; border-color: #333 !important; }
+body.dark-mode .bio-tile:hover,
+body.dark-mode .bio-tile[aria-expanded="true"] { background-color: #252525 !important; }
+
+.bio-photo-tile {
+    width: 110px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    display: block;
+}
+body.dark-mode .bio-photo-tile { background-color: #2a2a2a; }
+.bio-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--navy);
+    margin: 0;
+    line-height: 1.25;
+}
+body.dark-mode .bio-name { color: #e0e0e0 !important; }
+.bio-role {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--sage);
+    margin: 0;
+}
+body.dark-mode .bio-role { color: #a8b361 !important; }
+.chevron {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 0.75rem;
+    color: #999;
+    transition: transform 0.2s, color 0.15s;
+}
+.bio-tile[aria-expanded="true"] .chevron {
+    transform: rotate(180deg);
+    color: var(--sage);
+}
+body.dark-mode .chevron { color: #888; }
+body.dark-mode .bio-tile[aria-expanded="true"] .chevron { color: #a8b361; }
+
+/* Bio panel (full-row span when open) */
+.bio-panel {
+    grid-column: 1 / -1;
+    background-color: var(--white);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-left: 3px solid var(--sage);
+    border-radius: 6px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    padding: 1.5rem 1.75rem;
+    display: none;
+}
+.bio-panel.is-open { display: block; }
+.bio-panel-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.0625rem;
+    font-weight: bold;
+    color: var(--navy);
+    margin: 0 0 4px 0;
+    line-height: 1.25;
+}
+.bio-panel-role {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--sage);
+    margin-bottom: 12px;
+}
+.bio-panel p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--charcoal);
+    margin: 0;
+}
+.bio-panel a {
+    color: var(--navy);
+    text-decoration: underline dotted;
+    text-underline-offset: 2px;
+}
+.bio-panel a:hover { color: var(--sage); }
+.bio-panel em { font-style: italic; }
+body.dark-mode .bio-panel { background-color: #1e1e1e !important; border-color: #333 !important; }
+body.dark-mode .bio-panel-name { color: #e0e0e0 !important; }
+body.dark-mode .bio-panel-role { color: #a8b361 !important; }
+body.dark-mode .bio-panel p { color: #c8c8c8 !important; }
+body.dark-mode .bio-panel a { color: #8ab0c9 !important; }
+
+/* ── Centered donation block (Tabele Romania pattern) ── */
+.rd-donation-block {
+    background-color: #dfe3cd;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    border-radius: 6px;
+    margin-top: 0;
+}
+.rd-donation-block p {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    margin: 0 auto 1.25rem;
+    max-width: 540px;
+    color: var(--charcoal);
+}
+.rd-btn-donate-solid {
+    background-color: var(--sage);
+    color: #ffffff;
+    padding: 12px 30px;
+    font-weight: bold;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    display: inline-block;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: filter 0.15s, transform 0.1s;
+}
+.rd-btn-donate-solid:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+    color: #ffffff;
+    text-decoration: none;
+}
+body.dark-mode .rd-btn-donate-solid       { background-color: #a8b361; color: #121212; }
+body.dark-mode .rd-btn-donate-solid:hover { color: #121212; }
+
 /* ── External Site card ── */
 .rd-external-card {
     background-color: var(--white);
@@ -282,65 +502,20 @@ body.dark-mode .rd-external-btn:hover {
 }
 .rd-external-btn .ext-icon { font-size: 0.875rem; }
 
-/* ── Donate card (Tabele-style sage support strip) ── */
-.rd-donate-card {
-    background-color: var(--white);
-    border-radius: 6px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
-    border-left: 4px solid var(--sage);
-    padding: 1.25rem 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-}
-.rd-donate-card h3 {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1rem;
-    font-weight: bold;
-    color: var(--navy);
-    margin: 0 0 4px 0;
-}
-.rd-donate-card p {
-    font-size: 0.8125rem;
-    color: var(--charcoal);
-    line-height: 1.5;
-    margin: 0;
-}
-.rd-donate-btn {
-    display: inline-block;
-    background-color: var(--sage);
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 0.8125rem;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    padding: 11px 22px;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: background-color 0.15s;
-    flex-shrink: 0;
-}
-.rd-donate-btn:hover {
-    background-color: #7d854a;
-    color: #ffffff;
-    text-decoration: none;
-}
-body.dark-mode .rd-donate-btn        { background-color: #a8b361; color: #1a1a1a; }
-body.dark-mode .rd-donate-btn:hover  { background-color: #b8c272; color: #1a1a1a; }
-
 /* ── Responsive ── */
 @media (max-width: 800px) {
     .rd-body-inner   { grid-template-columns: 1fr; padding: 1.5rem 1rem; gap: 1.5rem; }
-    .rd-sidebar-card { position: static; display: flex; flex-wrap: wrap; border-left: none; border-top: 3px solid var(--navy); border-radius: 6px; padding: 8px 0; }
-    .rd-sidebar-label { display: none; }
+    .rd-sidebar      { position: static; }
+    .rd-sidebar-card { display: flex; flex-wrap: wrap; border-left: none; border-top: 3px solid var(--navy); border-radius: 6px; padding: 0; }
+    .rd-sidebar-label { width: 100%; flex: 1 0 100%; margin-bottom: 0; }
     .rd-sidebar-card a { padding: 8px 14px; flex: 1 0 auto; text-align: center; border-left: none; border-bottom: 3px solid transparent; }
     .rd-sidebar-card a.active { border-left: none; border-bottom-color: var(--navy); }
     .rd-team-card    { grid-template-columns: 1fr; gap: 1.25rem; padding: 1.25rem; }
     .rd-photo        { width: 110px; height: 130px; }
-    .rd-external-card,
-    .rd-donate-card  { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .bio-grid        { grid-template-columns: repeat(2, 1fr); }
+    .bio-grid.bio-grid--single { grid-template-columns: 1fr; }
+    .rd-external-card { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .rd-donation-block { padding: 2rem 1.25rem; }
     .page-title-band { padding: 36px 24px; }
 }
 </style>
@@ -360,13 +535,24 @@ body.dark-mode .rd-donate-btn:hover  { background-color: #b8c272; color: #1a1a1a
 <div class="rd-body-wrap">
     <div class="rd-body-inner">
 
-        <!-- Sidebar -->
-        <aside class="rd-sidebar-card" aria-label="Sub-Carpathia Research Division navigation">
-            <span class="rd-sidebar-label">Sub-Carpathia</span>
-            <a href="/JG40-Build/RD/SubCarpathia/index.html" class="active" aria-current="page">About</a>
-            <a href="/JG40-Build/RD/SubCarpathia/databases.html">Databases</a>
-            <a href="/JG40-Build/RD/SubCarpathia/towns.html">Towns Indexed</a>
-            <a href="/JG40-Build/RD/SubCarpathia/fundraising.html">Funding</a>
+        <!-- Sidebar (nav + donate stacked) -->
+        <aside class="rd-sidebar">
+
+            <!-- Nav -->
+            <nav class="rd-sidebar-card" aria-label="Sub-Carpathia Research Division navigation">
+                <span class="rd-sidebar-label">Sub-Carpathia</span>
+                <a href="/JG40-Build/RD/SubCarpathia/index.html" class="active" aria-current="page">About</a>
+                <a href="/JG40-Build/RD/SubCarpathia/databases.html">Databases</a>
+                <a href="/JG40-Build/RD/SubCarpathia/towns.html">Towns Indexed</a>
+                <a href="/JG40-Build/RD/SubCarpathia/fundraising.html">Funding</a>
+            </nav>
+
+            <!-- Donate -->
+            <div class="rd-sidebar-donate">
+                <p>Help us preserve Sub-Carpathian Jewish history by indexing rare records and making them widely accessible.</p>
+                <a href="/JG40-Build/RD/SubCarpathia/fundraising.html" class="rd-btn-donate-full">Donate Now</a>
+            </div>
+
         </aside>
 
         <!-- Main content -->
@@ -391,14 +577,32 @@ body.dark-mode .rd-donate-btn:hover  { background-color: #b8c272; color: #1a1a1a
             <section class="rd-section">
                 <span class="section-heading">Our Team</span>
                 <div class="green-accent-line"></div>
-                <article class="rd-team-card">
-                    <img class="rd-photo" src="/JG40-Build/RD/SubCarpathia/LDia.png" alt="Lara Diamond">
-                    <div>
-                        <h2 class="rd-team-name">Lara Diamond</h2>
-                        <span class="rd-team-role">Director</span>
-                        <p class="rd-team-bio">Lara Diamond has been researching her family for 25 years, starting as a middle school student. She has traced all branches of her family multiple generations back in Europe using Russian Empire-era and Austria-Hungarian Empire records. Most of her research is in modern-day Ukraine, with a smattering of Belarus and Poland. As she is an Ashkenazic Jew, she gets to have particular fun with her completely endogamous genome. In addition to serving as Director of the Sub-Carpathia Research Division, she is president of the Jewish Genealogy Society of Maryland. She also runs multiple district- and town-focused projects to collect documentation to assist all those researching ancestors from common towns. She blogs about DNA and her Eastern European research at <a href="https://larasgenealogy.blogspot.com" target="_blank" rel="noopener noreferrer"><em>Lara&rsquo;s Jewnealogy</em></a>.</p>
+                <div class="bio-grid bio-grid--single" id="bioGrid">
+
+                    <button type="button" class="bio-tile" aria-expanded="false" aria-controls="bio-lara" data-bio="lara">
+                        <img class="bio-photo-tile" src="/JG40-Build/RD/SubCarpathia/LDia.png" alt="">
+                        <h3 class="bio-name">Lara Diamond</h3>
+                        <span class="bio-role">Director</span>
+                        <span class="chevron" aria-hidden="true">&#9662;</span>
+                    </button>
+
+                    <div class="bio-panel" id="bio-lara" role="region" aria-label="Lara Diamond biography">
+                        <h4 class="bio-panel-name">Lara Diamond</h4>
+                        <span class="bio-panel-role">Director</span>
+                        <p>Lara Diamond has been researching her family for 25 years, starting as a middle school student. She has traced all branches of her family multiple generations back in Europe using Russian Empire-era and Austria-Hungarian Empire records. Most of her research is in modern-day Ukraine, with a smattering of Belarus and Poland. As she is an Ashkenazic Jew, she gets to have particular fun with her completely endogamous genome. In addition to serving as Director of the Sub-Carpathia Research Division, she is president of the Jewish Genealogy Society of Maryland. She also runs multiple district- and town-focused projects to collect documentation to assist all those researching ancestors from common towns. She blogs about DNA and her Eastern European research at <a href="https://larasgenealogy.blogspot.com" target="_blank" rel="noopener noreferrer"><em>Lara&rsquo;s Jewnealogy</em></a>.</p>
                     </div>
-                </article>
+
+                </div>
+            </section>
+
+            <!-- Centered donation block (Romania-style green panel) -->
+            <section class="rd-section">
+                <span class="section-heading">Support the Sub-Carpathia Division</span>
+                <div class="green-accent-line"></div>
+                <div class="rd-donation-block">
+                    <p>Donor support enables the Division to acquire new materials, index rare records, and make them widely accessible for future generations.</p>
+                    <a href="/JG40-Build/RD/SubCarpathia/fundraising.html" class="rd-btn-donate-solid">Support the Sub-Carpathia Division</a>
+                </div>
             </section>
 
             <!-- External Site -->
@@ -414,19 +618,6 @@ body.dark-mode .rd-donate-btn:hover  { background-color: #b8c272; color: #1a1a1a
                         Visit Site
                         <span class="ext-icon" aria-hidden="true">&#8599;</span>
                     </a>
-                </div>
-            </section>
-
-            <!-- Donate -->
-            <section class="rd-section">
-                <span class="section-heading">Support Our Work</span>
-                <div class="green-accent-line"></div>
-                <div class="rd-donate-card">
-                    <div>
-                        <h3>Help us keep going.</h3>
-                        <p>Donor support enables the Division to acquire new materials, index rare records, and make them widely accessible for future generations.</p>
-                    </div>
-                    <a href="/JG40-Build/RD/SubCarpathia/fundraising.html" class="rd-donate-btn">Donate</a>
                 </div>
             </section>
 
@@ -465,6 +656,49 @@ Promise.all([
         });
     });
 });
+
+/* ── Bio expand/collapse logic (Kalikow Genealogists pattern) ── */
+(function() {
+    var grid   = document.getElementById('bioGrid');
+    if (!grid) return;
+    var tiles  = grid.querySelectorAll('.bio-tile');
+    var panels = grid.querySelectorAll('.bio-panel');
+
+    function closeAll(exceptId) {
+        tiles.forEach(function(t) {
+            if (t.getAttribute('aria-controls') !== exceptId) {
+                t.setAttribute('aria-expanded', 'false');
+            }
+        });
+        panels.forEach(function(p) {
+            if (p.id !== exceptId) p.classList.remove('is-open');
+        });
+    }
+
+    function placePanelAfterRow(tile, panel) {
+        if (tile.nextSibling !== panel) {
+            tile.parentNode.insertBefore(panel, tile.nextSibling);
+        }
+    }
+
+    tiles.forEach(function(tile) {
+        tile.addEventListener('click', function() {
+            var panelId = tile.getAttribute('aria-controls');
+            var panel   = document.getElementById(panelId);
+            var isOpen  = tile.getAttribute('aria-expanded') === 'true';
+
+            if (isOpen) {
+                tile.setAttribute('aria-expanded', 'false');
+                panel.classList.remove('is-open');
+            } else {
+                closeAll(panelId);
+                placePanelAfterRow(tile, panel);
+                tile.setAttribute('aria-expanded', 'true');
+                panel.classList.add('is-open');
+            }
+        });
+    });
+})();
 </script>
 
 </body>
