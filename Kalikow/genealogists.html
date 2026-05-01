@@ -22,11 +22,16 @@ body.dark-mode .kal-sidebar-card a      { color: #c8c8c8 !important; }
 body.dark-mode .kal-sidebar-card a:hover    { color: #a8b361 !important; background-color: #2a2a2a !important; }
 body.dark-mode .kal-sidebar-card a.active   { color: #a8b361 !important; border-left-color: #a8b361 !important; background-color: #2a2a2a !important; }
 body.dark-mode .kal-intro p             { color: #c8c8c8 !important; }
-body.dark-mode .bio-card                { background-color: #1e1e1e !important; }
+body.dark-mode .bio-tile                { background-color: #1e1e1e !important; }
+body.dark-mode .bio-tile:hover,
+body.dark-mode .bio-tile[aria-expanded="true"] { background-color: #252525 !important; }
 body.dark-mode .bio-name                { color: #e0e0e0 !important; }
 body.dark-mode .bio-role                { color: #a8b361 !important; }
-body.dark-mode .bio-text                { color: #c8c8c8 !important; }
 body.dark-mode .bio-photo               { background-color: #2a2a2a !important; }
+body.dark-mode .bio-panel               { background-color: #1e1e1e !important; border-color: #333 !important; }
+body.dark-mode .bio-panel p             { color: #c8c8c8 !important; }
+body.dark-mode .bio-tile .chevron       { color: #888 !important; }
+body.dark-mode .bio-tile[aria-expanded="true"] .chevron { color: #a8b361 !important; }
 
 /* ── Page title band ── */
 .page-title-band {
@@ -135,19 +140,41 @@ body.dark-mode .bio-photo               { background-color: #2a2a2a !important; 
 /* ── Bio grid ── */
 .bio-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-}
-.bio-card {
-    background-color: var(--white);
-    border-radius: 6px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
-    padding: 1.5rem;
-    display: grid;
-    grid-template-columns: 110px 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.25rem;
-    align-items: start;
 }
+
+/* Tile = photo + name + role, clickable */
+.bio-tile {
+    background-color: var(--white);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    padding: 1.25rem 1rem 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.15s, box-shadow 0.15s, transform 0.1s;
+    width: 100%;
+    font-family: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+}
+.bio-tile:hover {
+    background-color: #fafaf7;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.09);
+}
+.bio-tile:focus-visible {
+    outline: 2px solid var(--sage);
+    outline-offset: 2px;
+}
+.bio-tile[aria-expanded="true"] {
+    background-color: #fafaf7;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+}
+
 .bio-photo {
     width: 110px;
     height: 130px;
@@ -158,28 +185,71 @@ body.dark-mode .bio-photo               { background-color: #2a2a2a !important; 
 }
 .bio-name {
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1.0625rem;
+    font-size: 1rem;
     font-weight: bold;
     color: var(--navy);
-    margin: 0 0 2px 0;
+    margin: 0;
     line-height: 1.25;
 }
 .bio-role {
     display: block;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     color: var(--sage);
-    margin-bottom: 10px;
+    margin: 0;
 }
-.bio-text {
-    font-size: 0.8125rem;
-    line-height: 1.6;
+
+/* Chevron indicator */
+.chevron {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 0.75rem;
+    color: #999;
+    transition: transform 0.2s, color 0.15s;
+}
+.bio-tile[aria-expanded="true"] .chevron {
+    transform: rotate(180deg);
+    color: var(--sage);
+}
+
+/* ── Bio panel: spans full grid row, opens below ── */
+.bio-panel {
+    grid-column: 1 / -1;
+    background-color: var(--white);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-left: 3px solid var(--sage);
+    border-radius: 6px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    padding: 1.5rem 1.75rem;
+    display: none;
+}
+.bio-panel.is-open { display: block; }
+.bio-panel p {
+    font-size: 0.9rem;
+    line-height: 1.7;
     color: var(--charcoal);
     margin: 0;
 }
-.bio-text em { font-style: italic; }
+.bio-panel em { font-style: italic; }
+.bio-panel-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.0625rem;
+    font-weight: bold;
+    color: var(--navy);
+    margin: 0 0 4px 0;
+    line-height: 1.25;
+}
+.bio-panel-role {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--sage);
+    margin-bottom: 12px;
+}
 
 /* ── Responsive ── */
 @media (max-width: 800px) {
@@ -188,12 +258,12 @@ body.dark-mode .bio-photo               { background-color: #2a2a2a !important; 
     .kal-sidebar-label { display: none; }
     .kal-sidebar-card a { padding: 8px 14px; flex: 1 0 auto; text-align: center; border-left: none; border-bottom: 3px solid transparent; }
     .kal-sidebar-card a.active { border-left: none; border-bottom-color: var(--navy); }
-    .bio-grid         { grid-template-columns: 1fr; }
+    .bio-grid         { grid-template-columns: repeat(2, 1fr); }
     .page-title-band  { padding: 36px 24px; }
 }
 @media (max-width: 480px) {
-    .bio-card         { grid-template-columns: 90px 1fr; gap: 1rem; padding: 1.25rem; }
-    .bio-photo        { width: 90px; height: 110px; }
+    .bio-grid         { grid-template-columns: 1fr; }
+    .bio-photo        { width: 100px; height: 120px; }
 }
 </style>
 </head>
@@ -215,8 +285,8 @@ body.dark-mode .bio-photo               { background-color: #2a2a2a !important; 
         <!-- Sidebar -->
         <aside class="kal-sidebar-card" aria-label="Kalikow Center section navigation">
             <span class="kal-sidebar-label">Kalikow Center</span>
-            <a href="/JG40-Build/kalikow/index.html">About the Center</a>
-            <a href="/JG40-Build/kalikow/genealogists.html" class="active" aria-current="page">Our Genealogists</a>
+            <a href="/JG40-Build/Kalikow/Center.html">About the Center</a>
+            <a href="/JG40-Build/Kalikow/genealogists.html" class="active" aria-current="page">Our Genealogists</a>
         </aside>
 
         <!-- Main content -->
@@ -225,70 +295,95 @@ body.dark-mode .bio-photo               { background-color: #2a2a2a !important; 
             <div class="green-accent-line"></div>
 
             <div class="kal-intro">
-                <p>Our team of professional genealogists brings decades of combined experience in Jewish family history research. Each specializes in different regions, traditions, and methodologies &mdash; together, they cover the full breadth of the Jewish diaspora.</p>
+                <p>Our team of professional genealogists brings decades of combined experience in Jewish family history research. Each specializes in different regions, traditions, and methodologies &mdash; together, they cover the full breadth of the Jewish diaspora. Click any name to read their bio.</p>
             </div>
 
-            <div class="bio-grid">
+            <div class="bio-grid" id="bioGrid">
 
                 <!-- 1. Paul Radensky -->
-                <article class="bio-card">
-                    <img class="bio-photo" src="/JG40-Build/Kalikow/PRad.jpg" alt="Paul Radensky">
-                    <div>
-                        <h2 class="bio-name">Paul Radensky</h2>
-                        <span class="bio-role">Senior Director</span>
-                        <p class="bio-text">Paul Radensky previously was in the Education Department of the Museum, where he worked with Jewish schools, professional development, interfaith activities, the Speakers Bureau, and Visitor Services. Paul completed his Ph.D. in Jewish history at the Jewish Theological Seminary and his master&rsquo;s in history at Columbia University. Prior to coming to the Museum, Paul worked at the Conference of Material Claims Against Germany, the North Shore Hebrew Academy High School, the 92nd Street Y, and the Sholem Aleichem Cultural Center in the Bronx. Paul is the president of the Old Broadway Synagogue in West Harlem.</p>
-                    </div>
-                </article>
+                <button type="button" class="bio-tile" aria-expanded="false" aria-controls="bio-paul" data-bio="paul">
+                    <img class="bio-photo" src="/JG40-Build/Kalikow/PRad.jpg" alt="">
+                    <h2 class="bio-name">Paul Radensky</h2>
+                    <span class="bio-role">Senior Director</span>
+                    <span class="chevron" aria-hidden="true">&#9662;</span>
+                </button>
 
                 <!-- 2. Caitlin Hollander Waas -->
-                <article class="bio-card">
-                    <img class="bio-photo" src="/JG40-Build/Kalikow/CHWa.jpg" alt="Caitlin Hollander Waas">
-                    <div>
-                        <h2 class="bio-name">Caitlin Hollander Waas</h2>
-                        <span class="bio-role">Chief Genealogist</span>
-                        <p class="bio-text">Caitlin Hollander Waas is JewishGen&rsquo;s chief genealogist, as well as being on staff at the Peter and Mary Kalikow Jewish Genealogy Center at the Museum of Jewish Heritage. She has been a professional genealogist for over a decade, beginning in the world of forensic genealogy as a specialist in high value estate cases, as well as researching for private clients and consulting for books. In addition, her citizenship reclamation work has been featured in <em>Family Tree Magazine</em>, <em>The Times of Israel</em>, and the <em>South Florida Sun Sentinel</em>, among other publications. She holds a degree in Anthropology, as well as additional certificates in Jewish Studies and Holocaust and Genocide Studies.</p>
-                    </div>
-                </article>
+                <button type="button" class="bio-tile" aria-expanded="false" aria-controls="bio-caitlin" data-bio="caitlin">
+                    <img class="bio-photo" src="/JG40-Build/Kalikow/CHWa.jpg" alt="">
+                    <h2 class="bio-name">Caitlin Hollander Waas</h2>
+                    <span class="bio-role">Chief Genealogist</span>
+                    <span class="chevron" aria-hidden="true">&#9662;</span>
+                </button>
 
                 <!-- 3. Alex Calzareth -->
-                <article class="bio-card">
-                    <img class="bio-photo" src="/JG40-Build/Kalikow/ACalz.jpg" alt="Alex Calzareth">
-                    <div>
-                        <h2 class="bio-name">Alex Calzareth</h2>
-                        <span class="bio-role">Genealogist</span>
-                        <p class="bio-text">Alex Calzareth is a genealogist focusing on Southwest Germany, the Czech Republic, and Southern Italy who began researching his family roots twenty-five years ago. He is a board member for Reclaim The Records and the Jewish Genealogy Society of Long Island. Alex is also Director of the JewishGen German Research Division.</p>
-                    </div>
-                </article>
+                <button type="button" class="bio-tile" aria-expanded="false" aria-controls="bio-alex" data-bio="alex">
+                    <img class="bio-photo" src="/JG40-Build/Kalikow/ACalz.jpg" alt="">
+                    <h2 class="bio-name">Alex Calzareth</h2>
+                    <span class="bio-role">Genealogist</span>
+                    <span class="chevron" aria-hidden="true">&#9662;</span>
+                </button>
 
                 <!-- 4. Chaya Sara Herman -->
-                <article class="bio-card">
-                    <img class="bio-photo" src="/JG40-Build/Kalikow/KCCSH.jpg" alt="Chaya Sara Herman">
-                    <div>
-                        <h2 class="bio-name">Chaya Sara Herman</h2>
-                        <span class="bio-role">Genealogist</span>
-                        <p class="bio-text">Chaya Sara Herman is a professional genealogist located in Brooklyn, New York. She is on the Executive Council of the Jewish Genealogical Society of New York and a member of the Association of Professional Genealogists. She specializes in Eastern European Jewish research with a focus on Lithuania. Chaya Sara&rsquo;s research has been featured in articles published in <em>Mishpacha</em> magazine since 2021.</p>
-                    </div>
-                </article>
+                <button type="button" class="bio-tile" aria-expanded="false" aria-controls="bio-chaya" data-bio="chaya">
+                    <img class="bio-photo" src="/JG40-Build/Kalikow/KCCSH.jpg" alt="">
+                    <h2 class="bio-name">Chaya Sara Herman</h2>
+                    <span class="bio-role">Genealogist</span>
+                    <span class="chevron" aria-hidden="true">&#9662;</span>
+                </button>
 
                 <!-- 5. Scott Kalmikoff -->
-                <article class="bio-card">
-                    <img class="bio-photo" src="/JG40-Build/Kalikow/KCSK.jpg" alt="Scott Kalmikoff">
-                    <div>
-                        <h2 class="bio-name">Scott Kalmikoff</h2>
-                        <span class="bio-role">Genealogist</span>
-                        <p class="bio-text">Rabbi Scott Kalmikoff received a BA in Jewish Studies from Yeshiva University and studied at Yeshivat Chovevei Torah. Scott currently serves as the Director of Community Engagement at the Riverdale Y. He also started his own business, Genealogy with Rabbi Scott, conducting genealogical research for private clients and facilitating Jewish genealogy workshops.</p>
-                    </div>
-                </article>
+                <button type="button" class="bio-tile" aria-expanded="false" aria-controls="bio-scott" data-bio="scott">
+                    <img class="bio-photo" src="/JG40-Build/Kalikow/KCSK.jpg" alt="">
+                    <h2 class="bio-name">Scott Kalmikoff</h2>
+                    <span class="bio-role">Genealogist</span>
+                    <span class="chevron" aria-hidden="true">&#9662;</span>
+                </button>
 
                 <!-- 6. Michael Waas -->
-                <article class="bio-card">
-                    <img class="bio-photo" src="/JG40-Build/Kalikow/MWaa.jpg" alt="Michael Waas">
-                    <div>
-                        <h2 class="bio-name">Michael Waas</h2>
-                        <span class="bio-role">Genealogist</span>
-                        <p class="bio-text">Michael Waas is a professional genealogist and historian, specializing in Sephardic Jewry, with his firm, Hollander-Waas Jewish Heritage Services. He has lectured globally on Jewish genealogy and Sephardic history, in Portugal, Israel, the UK, in the US, and virtually for several organizations. Waas is the co-administrator of AvotaynuDNA&rsquo;s ongoing Genetic Census of the Jewish People as well as Associate Director of the Sephardic Researcher Division of JewishGen. Currently, Waas is the Scholar-in-Residence at the New York Genealogical &amp; Biographical Society, where he is surveying their archive and collection for Jewish-related materials.</p>
-                    </div>
-                </article>
+                <button type="button" class="bio-tile" aria-expanded="false" aria-controls="bio-michael" data-bio="michael">
+                    <img class="bio-photo" src="/JG40-Build/Kalikow/MWaa.jpg" alt="">
+                    <h2 class="bio-name">Michael Waas</h2>
+                    <span class="bio-role">Genealogist</span>
+                    <span class="chevron" aria-hidden="true">&#9662;</span>
+                </button>
+
+                <!-- ── Bio panels (one per genealogist) ── -->
+                <div class="bio-panel" id="bio-paul" role="region" aria-label="Paul Radensky biography">
+                    <h3 class="bio-panel-name">Paul Radensky</h3>
+                    <span class="bio-panel-role">Senior Director</span>
+                    <p>Paul Radensky previously was in the Education Department of the Museum, where he worked with Jewish schools, professional development, interfaith activities, the Speakers Bureau, and Visitor Services. Paul completed his Ph.D. in Jewish history at the Jewish Theological Seminary and his master&rsquo;s in history at Columbia University. Prior to coming to the Museum, Paul worked at the Conference of Material Claims Against Germany, the North Shore Hebrew Academy High School, the 92nd Street Y, and the Sholem Aleichem Cultural Center in the Bronx. Paul is the president of the Old Broadway Synagogue in West Harlem.</p>
+                </div>
+
+                <div class="bio-panel" id="bio-caitlin" role="region" aria-label="Caitlin Hollander Waas biography">
+                    <h3 class="bio-panel-name">Caitlin Hollander Waas</h3>
+                    <span class="bio-panel-role">Chief Genealogist</span>
+                    <p>Caitlin Hollander Waas is JewishGen&rsquo;s chief genealogist, as well as being on staff at the Peter and Mary Kalikow Jewish Genealogy Center at the Museum of Jewish Heritage. She has been a professional genealogist for over a decade, beginning in the world of forensic genealogy as a specialist in high value estate cases, as well as researching for private clients and consulting for books. In addition, her citizenship reclamation work has been featured in <em>Family Tree Magazine</em>, <em>The Times of Israel</em>, and the <em>South Florida Sun Sentinel</em>, among other publications. She holds a degree in Anthropology, as well as additional certificates in Jewish Studies and Holocaust and Genocide Studies.</p>
+                </div>
+
+                <div class="bio-panel" id="bio-alex" role="region" aria-label="Alex Calzareth biography">
+                    <h3 class="bio-panel-name">Alex Calzareth</h3>
+                    <span class="bio-panel-role">Genealogist</span>
+                    <p>Alex Calzareth is a genealogist focusing on Southwest Germany, the Czech Republic, and Southern Italy who began researching his family roots twenty-five years ago. He is a board member for Reclaim The Records and the Jewish Genealogy Society of Long Island. Alex is also Director of the JewishGen German Research Division.</p>
+                </div>
+
+                <div class="bio-panel" id="bio-chaya" role="region" aria-label="Chaya Sara Herman biography">
+                    <h3 class="bio-panel-name">Chaya Sara Herman</h3>
+                    <span class="bio-panel-role">Genealogist</span>
+                    <p>Chaya Sara Herman is a professional genealogist located in Brooklyn, New York. She is on the Executive Council of the Jewish Genealogical Society of New York and a member of the Association of Professional Genealogists. She specializes in Eastern European Jewish research with a focus on Lithuania. Chaya Sara&rsquo;s research has been featured in articles published in <em>Mishpacha</em> magazine since 2021.</p>
+                </div>
+
+                <div class="bio-panel" id="bio-scott" role="region" aria-label="Scott Kalmikoff biography">
+                    <h3 class="bio-panel-name">Scott Kalmikoff</h3>
+                    <span class="bio-panel-role">Genealogist</span>
+                    <p>Rabbi Scott Kalmikoff received a BA in Jewish Studies from Yeshiva University and studied at Yeshivat Chovevei Torah. Scott currently serves as the Director of Community Engagement at the Riverdale Y. He also started his own business, Genealogy with Rabbi Scott, conducting genealogical research for private clients and facilitating Jewish genealogy workshops.</p>
+                </div>
+
+                <div class="bio-panel" id="bio-michael" role="region" aria-label="Michael Waas biography">
+                    <h3 class="bio-panel-name">Michael Waas</h3>
+                    <span class="bio-panel-role">Genealogist</span>
+                    <p>Michael Waas is a professional genealogist and historian, specializing in Sephardic Jewry, with his firm, Hollander-Waas Jewish Heritage Services. He has lectured globally on Jewish genealogy and Sephardic history, in Portugal, Israel, the UK, in the US, and virtually for several organizations. Waas is the co-administrator of AvotaynuDNA&rsquo;s ongoing Genetic Census of the Jewish People as well as Associate Director of the Sephardic Researcher Division of JewishGen. Currently, Waas is the Scholar-in-Residence at the New York Genealogical &amp; Biographical Society, where he is surveying their archive and collection for Jewish-related materials.</p>
+                </div>
 
             </div><!-- /.bio-grid -->
 
@@ -327,6 +422,57 @@ Promise.all([
         });
     });
 });
+
+/* ── Bio expand/collapse logic ──────────────────────────────────────
+   - Single-open: clicking a tile closes any open panel before opening
+   - Panel inserts directly after the row containing the clicked tile
+     (using CSS Grid auto-placement: panel spans full row, appears
+      after the next row break)
+   - Keyboard accessible via the native button element
+------------------------------------------------------------------- */
+(function() {
+    var grid   = document.getElementById('bioGrid');
+    if (!grid) return;
+    var tiles  = grid.querySelectorAll('.bio-tile');
+    var panels = grid.querySelectorAll('.bio-panel');
+
+    function closeAll(exceptId) {
+        tiles.forEach(function(t) {
+            if (t.getAttribute('aria-controls') !== exceptId) {
+                t.setAttribute('aria-expanded', 'false');
+            }
+        });
+        panels.forEach(function(p) {
+            if (p.id !== exceptId) p.classList.remove('is-open');
+        });
+    }
+
+    function placePanelAfterRow(tile, panel) {
+        // Insert the panel right after the tile so it appears on the
+        // next grid line. Browsers will reflow it to span full width.
+        if (tile.nextSibling !== panel) {
+            tile.parentNode.insertBefore(panel, tile.nextSibling);
+        }
+    }
+
+    tiles.forEach(function(tile) {
+        tile.addEventListener('click', function() {
+            var panelId  = tile.getAttribute('aria-controls');
+            var panel    = document.getElementById(panelId);
+            var isOpen   = tile.getAttribute('aria-expanded') === 'true';
+
+            if (isOpen) {
+                tile.setAttribute('aria-expanded', 'false');
+                panel.classList.remove('is-open');
+            } else {
+                closeAll(panelId);
+                placePanelAfterRow(tile, panel);
+                tile.setAttribute('aria-expanded', 'true');
+                panel.classList.add('is-open');
+            }
+        });
+    });
+})();
 </script>
 
 </body>
