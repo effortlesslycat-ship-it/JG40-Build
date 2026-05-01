@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to JewishGen &amp; FAQ — JewishGen</title>
+    <meta name="description" content="Everything you need to know to get started with JewishGen. A step-by-step guide to Jewish genealogy research across four phases.">
+
+    <!-- 1. Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- 2. JewishGen Global Design System -->
+    <link rel="stylesheet" href="/JG40-Build/jg-global.css">
+    <!-- 3. Page-specific styles -->
+    <style>
+        /* =====================================================
+           HOW TO JEWISHGEN — PAGE-SPECIFIC STYLES
+           howto.html — all 4 phases live at launch
+           ===================================================== */
+
+        main { flex: 1; }
+
+        /* -- Page Title Band --------------------------------- */
+        .htfaq-page-band {
+            background-color: #09497a;
+            padding: 34px 50px;
+            text-align: center;
+        }
+        body.dark-mode .htfaq-page-band { background-color: #0d2a45; }
+
+        .htfaq-section-tag {
+            display: inline-block;
+            background-color: var(--sage);
+            color: #ffffff;
+            font-size: 0.6875rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 4px 12px;
+            border-radius: 3px;
+            margin-bottom: 12px;
+        }
+
+        .htfaq-page-band h1 {
+            margin: 0 0 10px;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 2.125rem;
+            font-weight: normal;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+
+        .htfaq-page-band__sub {
+            font-size: 0.9375rem;
+            font-style: italic;
+            color: #a9c0d0;
+            margin: 0 auto;
+            max-width: 580px;
+            line-height: 1.6;
+        }
+
+        /* -- Content Area ------------------------------------ */
+        .htfaq-content {
+            background-color: var(--ecru);
+            padding: 44px 50px;
+        }
+        body.dark-mode .htfaq-content { background-color: #1a1a1a; }
+
+        .htfaq-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* -- Phase Stepper ----------------------------------- */
+        .phase-stepper-wrapper {
+            position: relative;
+            margin-bottom: 44px;
+        }
+        /* Connector line between circles */
+        .phase-stepper-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 23px;
+            left: 12.5%;
+            right: 12.5%;
+            height: 2px;
+            background-color: #d1caba;
+            z-index: 0;
+        }
+        body.dark-mode .phase-stepper-wrapper::before { background-color: #3a3f3f; }
+
+        .phase-stepper {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+
+        .phase-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            background: none;
+            border: none;
+            font-family: inherit;
+            text-align: center;
+            padding: 0 8px;
+            cursor: pointer;
+        }
+        .phase-step:focus-visible {
+            outline: 2px solid var(--sage);
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
+        .phase-circle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid #d1caba;
+            background-color: #f7f4f2;
+            color: var(--charcoal);
+            font-size: 1.125rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            flex-shrink: 0;
+            transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+        }
+        body.dark-mode .phase-circle {
+            background-color: #252a2a;
+            border-color: #3a3f3f;
+            color: #a0a0a0;
+        }
+        /* Hardcode navy active state - avoids dark mode wash-out */
+        .phase-step.active .phase-circle {
+            background-color: #09497a;
+            border-color: #09497a;
+            color: #ffffff;
+        }
+
+        .phase-step-label {
+            font-size: 0.6875rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--charcoal);
+            line-height: 1.5;
+            max-width: 120px;
+            transition: color 0.2s;
+        }
+        body.dark-mode .phase-step-label { color: #a0a0a0; }
+        .phase-step.active .phase-step-label { color: #09497a; }
+        body.dark-mode .phase-step.active .phase-step-label { color: #a9c0d0; }
+
+        /* -- Phase Panels ------------------------------------ */
+        .phase-panel { display: none; }
+        .phase-panel.active { display: block; }
+
+        /* -- Card Grid --------------------------------------- */
+        .phase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        /* Cream card on ecru background.
+           Dark mode: hardcode card bg since --cream and --ecru
+           collapse to near-identical values (#1e1e1e on #1a1a1a). */
+        .tip-card {
+            background-color: var(--cream);
+            border-radius: 8px;
+            padding: 26px 28px;
+            border-top: 4px solid #09497a;
+        }
+        body.dark-mode .tip-card { background-color: #252a2a; }
+
+        .tip-card.sage-top { border-top-color: var(--sage); }
+
+        .tip-card h3 {
+            margin: 0 0 10px;
+            font-size: 1.0625rem;
+            font-weight: bold;
+            color: #09497a;
+            line-height: 1.3;
+        }
+        body.dark-mode .tip-card h3 { color: #a9c0d0; }
+
+        .tip-card p {
+            margin: 0 0 12px;
+            font-size: 0.875rem;
+            line-height: 1.75;
+        }
+        .tip-card p:last-child { margin-bottom: 0; }
+
+        .tip-card ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .tip-card ul li {
+            font-size: 0.875rem;
+            line-height: 1.75;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .tip-card ul li:last-child { margin-bottom: 0; }
+        .tip-card ul li::before {
+            content: '\2192';
+            position: absolute;
+            left: 0;
+            color: var(--sage);
+            font-weight: bold;
+        }
+        .tip-card ul li strong { color: #09497a; }
+        body.dark-mode .tip-card ul li strong { color: #a9c0d0; }
+
+        .tip-card a { color: #09497a; text-decoration: underline dotted; font-weight: bold; }
+        .tip-card a:hover { color: var(--sage); }
+        body.dark-mode .tip-card a { color: #a9c0d0; }
+
+        /* -- Responsive -------------------------------------- */
+        @media (max-width: 900px) {
+            .htfaq-content { padding: 32px 24px; }
+            .htfaq-page-band { padding: 28px 24px; }
+            .htfaq-page-band h1 { font-size: 1.75rem; }
+        }
+        @media (max-width: 640px) {
+            .phase-stepper-wrapper::before { display: none; }
+            .phase-stepper { flex-direction: column; gap: 4px; }
+            .phase-step {
+                flex-direction: row;
+                text-align: left;
+                align-items: center;
+                padding: 8px 0;
+                width: 100%;
+            }
+            .phase-circle {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+                margin-bottom: 0;
+                margin-right: 14px;
+                flex-shrink: 0;
+            }
+            .phase-step-label { max-width: none; }
+            .phase-stepper-wrapper { margin-bottom: 32px; }
+            .phase-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="site-header"></div>
+<div id="htfaq-subnav"></div>
+
+<!-- TITLE BAND -->
+<div class="htfaq-page-band">
+    <div class="htfaq-section-tag">Step-by-Step Guide</div>
+    <h1>How to JewishGen &amp; FAQ</h1>
+    <p class="htfaq-page-band__sub">Everything you need to know to get started with JewishGen</p>
+</div>
+
+<main>
+<div class="htfaq-content">
+<div class="htfaq-inner">
+
+    <!-- PHASE STEPPER -->
+    <div class="phase-stepper-wrapper">
+        <div class="phase-stepper" role="tablist" aria-label="Research phases">
+
+            <button class="phase-step active" role="tab"
+                id="phase-tab-1" aria-controls="phase-panel-1" aria-selected="true">
+                <div class="phase-circle" aria-hidden="true">1</div>
+                <div class="phase-step-label">The<br>Groundwork</div>
+            </button>
+
+            <button class="phase-step" role="tab"
+                id="phase-tab-2" aria-controls="phase-panel-2" aria-selected="false">
+                <div class="phase-circle" aria-hidden="true">2</div>
+                <div class="phase-step-label">Your First<br>Search</div>
+            </button>
+
+            <button class="phase-step" role="tab"
+                id="phase-tab-3" aria-controls="phase-panel-3" aria-selected="false">
+                <div class="phase-circle" aria-hidden="true">3</div>
+                <div class="phase-step-label">Digging<br>Deeper</div>
+            </button>
+
+            <button class="phase-step" role="tab"
+                id="phase-tab-4" aria-controls="phase-panel-4" aria-selected="false">
+                <div class="phase-circle" aria-hidden="true">4</div>
+                <div class="phase-step-label">Connecting<br>with Others</div>
+            </button>
+
+        </div>
+    </div>
+
+    <!-- ================================================
+         PHASE 1: THE GROUNDWORK
+         2x2 grid
+         ================================================ -->
+    <div id="phase-panel-1" class="phase-panel active"
+         role="tabpanel" aria-labelledby="phase-tab-1">
+        <div class="phase-grid">
+
+            <div class="tip-card">
+                <h3>Start at Home</h3>
+                <p>Before you type a single name into the search bar, pause. The most important step in genealogy actually happens offline. Genealogy is all about working from the known to the unknown.</p>
+                <ul>
+                    <li><strong>Write it down:</strong> Jot down everything you already know about yourself, your parents, and your grandparents.</li>
+                    <li><strong>Gather the basics:</strong> Get the names, dates (birth, marriage, death), and locations organized first. This is your foundation.</li>
+                </ul>
+            </div>
+
+            <div class="tip-card sage-top">
+                <h3>Find the Paper Trail</h3>
+                <p>To jump the pond and research your family in Europe, you first need to find them in the records created after they emigrated.</p>
+                <ul>
+                    <li><strong>Be a detective:</strong> Dig into old family papers, naturalization records, ship manifests, vital records, and even the backs of old photos.</li>
+                    <li><strong>The ultimate goal:</strong> You are looking for two golden nuggets of information — your ancestor's pre-immigration name and the specific town they left behind.</li>
+                </ul>
+            </div>
+
+            <div class="tip-card sage-top">
+                <h3>Throw Perfect Spelling Out the Window</h3>
+                <p>When searching for your ancestors, flexibility is your best friend.</p>
+                <ul>
+                    <li><strong>Names evolve:</strong> It is a stubborn myth that names were changed by clerks at Ellis Island. In reality, names simply shifted over time, across borders, and depending on who was holding the pen.</li>
+                    <li><strong>Sound it out:</strong> A single surname could be spelled half a dozen ways. First names often morphed from Yiddish or Hebrew into local forms even before emigration. Prepare to get creative and embrace phonetic variations!</li>
+                </ul>
+            </div>
+
+            <div class="tip-card">
+                <h3>Forget Countries, Focus on Towns</h3>
+                <p>Historical borders shifted constantly. Depending on the year a document was signed, your ancestor might have listed their home as Russia, Poland, or Austria — without ever moving!</p>
+                <ul>
+                    <li><strong>Towns are the key:</strong> Pinning down the specific town name is vital. Even if it is horribly misspelled on a ship manifest, finding that town is the master key to unlocking JewishGen's most powerful databases.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================================================
+         PHASE 2: YOUR FIRST SEARCH
+         2x3 grid (5 cards live; 6th pending copy)
+         ================================================ -->
+    <div id="phase-panel-2" class="phase-panel"
+         role="tabpanel" aria-labelledby="phase-tab-2">
+        <div class="phase-grid">
+
+            <div class="tip-card">
+                <h3>Start with the Unified Search</h3>
+                <p>Think of the JewishGen Unified Search as your wide-angle lens. Instead of guessing which specific historical collection your ancestor might be hiding in, this tool searches almost all of JewishGen's databases at once. It is the absolute best starting line for any beginner.</p>
+            </div>
+
+            <div class="tip-card sage-top">
+                <h3>The "Less is More" Rule</h3>
+                <p>It is incredibly tempting to fill out every single box on the search form — first name, last name, town, and dates. Resist the urge! Historical records are notoriously incomplete, and if you restrict your search too heavily, you may accidentally filter out the very record you need.</p>
+                <ul>
+                    <li><strong>Start broad:</strong> Search with just a surname first.</li>
+                    <li><strong>Narrow gradually:</strong> If you get an overwhelming number of results, add a first name. If you still have too many, then try adding a geographic region or town.</li>
+                </ul>
+            </div>
+
+            <div class="tip-card">
+                <h3>Trust the Phonetic Search</h3>
+                <p>By default, our search engine uses a setting called "Phonetically (Beider-Morse)." Leave it exactly as it is! This system is specifically designed for Eastern European and Jewish names. It mathematically groups names that sound similar or share linguistic roots, ensuring you don't miss a vital record just because a clerk swapped a "v" for a "w" or a "tz" for a "z".</p>
+                <p>Searching for an "Exact" spelling is the most common mistake beginners make.</p>
+            </div>
+
+            <div class="tip-card sage-top">
+                <h3>How to Read Your Results</h3>
+                <p>When you hit search, JewishGen intelligently organizes your results by category and historical region — for example, "Poland Database," "Holocaust Database," or "Burial Registry."</p>
+                <ul>
+                    <li><strong>Look for the numbers:</strong> The count next to each category tells you exactly how many matches were found in that specific collection.</li>
+                    <li><strong>Click to expand:</strong> Select a category to view the actual transcribed records.</li>
+                </ul>
+            </div>
+
+            <div class="tip-card">
+                <h3>Dive Into the Details</h3>
+                <p>Once you expand a category, the title of the collection itself is your key to learning more. Clicking on that title will open up all the crucial context you need — where the information came from, the history of the dataset, and instructions on how to obtain copies of the original documents for your own research files.</p>
+                <p>Remember: most of our entries are simply indexes. There may be additional information in the original record itself!</p>
+            </div>
+
+            <!-- PLACEHOLDER: 6th card - search terminology
+                 Copy to be drafted. Pull from Tips dropdowns.
+                 Cover: Phonetic (Beider-Morse), Soundex, Daitch-Mokotoff
+                 Soundex, Fuzzy, Exact — what each means and when to use it. -->
+            <div class="tip-card sage-top">
+                <h3>Know Your Search Settings</h3>
+                <p><em>This section will explain the meaning of each search mode — Phonetic (Beider-Morse), Soundex, Daitch-Mokotoff Soundex, Fuzzy, and Exact — and when to use each one. Content coming soon.</em></p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================================================
+         PHASE 3: DIGGING DEEPER
+         2x4 grid
+         ================================================ -->
+    <div id="phase-panel-3" class="phase-panel"
+         role="tabpanel" aria-labelledby="phase-tab-3">
+        <div class="phase-grid">
+
+            <div class="tip-card">
+                <h3>The Communities Database</h3>
+                <p>Finding the name of your ancestral town on a passenger manifest is a huge victory, but it is only the beginning. The JewishGen Communities Database is your ultimate historical atlas. Search for the town, and you will get a complete geographic and historical profile — all the different phonetic spellings of the town's name, which empires controlled it over the centuries, and exactly where it sits on a modern map. It transforms a scribbled word on an old document into a real, physical place.</p>
+            </div>
+
+            <div class="tip-card sage-top">
+                <h3>The Index is Just a Signpost</h3>
+                <p>When you find a match in our databases, you are usually looking at an index — a translated summary of the most important facts — rather than a full transcription. While our indexes are incredibly detailed, the original document almost always holds more secrets.</p>
+                <p>An original birth or marriage register might list the names of witnesses (who are often relatives!), the street address of the family home, the father's exact occupation, or even a scribbled note in the margin about a later emigration. Always use the JewishGen index as your map to hunt down a copy of the original document!</p>
+            </div>
+
+            <div class="tip-card">
+                <h3>KehilaLinks: Virtual Hometowns</h3>
+                <p>Once you locate your town in the Communities Database, look for a link to its KehilaLink. These are custom, volunteer-created web pages dedicated to specific Jewish communities — think of them as virtual heritage museums. They are frequently packed with historical photos, street maps, local histories, and personal family stories from other descendants that you simply will not find in official government archives.</p>
+            </div>
+
+            <div class="tip-card sage-top">
+                <h3>Yizkor Books: Reading Their Stories</h3>
+                <p>Government vital records tell you when your ancestors lived and died, but they don't tell you how they lived. To understand the vibrant fabric of their daily lives — the bustling markets, the rival synagogues, the local characters, and the heartbreaking tragedies — you need to read a Yizkor Book.</p>
+                <p>Written by survivors and former residents after the Holocaust, these memorial books capture the essence of destroyed Jewish communities. JewishGen offers hundreds of full English translations to read for free, providing unparalleled emotional context for your family tree.</p>
+            </div>
+
+            <div class="tip-card">
+                <h3>Research Divisions: Localized Expertise</h3>
+                <p>The world is vast, and record-keeping habits varied wildly from country to country and era to era. JewishGen is organized into smaller, highly focused regional teams called Research Divisions (formerly referred to as Special Interest Groups, or SIGs). Whether your family was from Poland, Ukraine, Germany, or Hungary, there is a dedicated group of experts and volunteers focusing specifically on the records from that area. Exploring your region's Research Division is the best way to break through a geographic brick wall.</p>
+            </div>
+
+            <div class="tip-card sage-top">
+                <h3>Foreign Language Records &amp; AI Tools</h3>
+                <p>Tracing Jewish roots means encountering a beautifully complex mix of languages and scripts — Russian Cyrillic, Hebrew, Yiddish, Polish, Romanian, and more. Don't be intimidated.</p>
+                <p>A word of caution about AI translation tools: they can be useful, but only if you are knowledgeable about their limitations. If you choose to use AI, be exacting with your prompts and always verify results against other sources. For accurate, nuanced translation by people who understand the genealogical context, use <a href="https://www.jewishgen.org/ViewMate/">ViewMate</a> — JewishGen's free community translation service.</p>
+            </div>
+
+            <div class="tip-card">
+                <h3>Reading a Jewish Grave</h3>
+                <p>Cemetery records are among the most overlooked genealogical sources — and among the most revealing. A Jewish headstone is far more than a name and two dates. Hebrew inscriptions often include the deceased's Hebrew name, their father's name, their community of origin, and sometimes moving tributes that survive nowhere else.</p>
+                <p>Learning to read Hebrew tombstone inscriptions — or finding someone who can — opens a door to information that never made it into any government archive.</p>
+            </div>
+
+            <div class="tip-card sage-top">
+                <h3>The Burial Registry (JOWBR)</h3>
+                <p>The JewishGen Online Worldwide Burial Registry contains over 7 million burial records from more than 12,000 cemeteries across 144 countries. Compiled entirely by volunteers, JOWBR links burial records to headstone photographs and, where available, Hebrew inscription transcriptions.</p>
+                <p>Search JOWBR not just to confirm that an ancestor is buried somewhere — search it to find details, Hebrew names, and family connections that exist nowhere else.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================================================
+         PHASE 4: CONNECTING WITH THE COMMUNITY
+         2x4 grid
+         ================================================ -->
+    <div id="phase-panel-4" class="phase-panel"
+         role="tabpanel" aria-labelledby="phase-tab-4">
+        <div class="phase-grid">
+
+            <div class="tip-card">
+                <h3>The JewishGen Family Finder (JGFF)</h3>
+                <p>Before you spend hundreds of hours researching a specific family line, check if someone else has already done the work! The JGFF is not a database of historical records — it is a database of researchers.</p>
+                <ul>
+                    <li><strong>Search first:</strong> Enter your family surnames and ancestral towns. If another user is researching that exact combination, you can contact them directly. You might just find a second cousin who already has the old family photos you've been looking for!</li>
+                    <li><strong>Plant your flag:</strong> It is crucial that you register your own surnames and towns in the JGFF. If you don't list what you are looking for, your long-lost relatives won't be able to find you when they start their own search.</li>
+                </ul>
+            </div>
+
+            <div class="tip-card sage-top">
+                <h3>Discussion Groups: Tap Into the Global Brain</h3>
+                <p>When you are staring at a confusing document and feeling completely stuck, it is time to turn to the JewishGen Discussion Group — our global forum where thousands of experts, volunteers, and enthusiastic beginners have been gathering for decades to help each other out.</p>
+                <ul>
+                    <li><strong>Crowdsource your brick walls:</strong> Can't figure out a shifting historical border? Need help interpreting a strange note on a ship manifest? Post your question. Genealogists absolutely love solving mysteries — especially other people's mysteries!</li>
+                </ul>
+            </div>
+
+            <div class="tip-card">
+                <h3>ViewMate: Your Translation Lifeline</h3>
+                <p>Tracing Jewish roots means encountering a beautifully complex mix of languages — from Russian and Polish to Yiddish and Hebrew. When you find a document you cannot read, do not panic — and do not rely blindly on AI!</p>
+                <p>Post an image of the record to our <a href="https://www.jewishgen.org/ViewMate/">ViewMate</a> tool. Our incredible community of multilingual volunteers will help you translate the nuances accurately, completely free of charge.</p>
+            </div>
+
+            <div class="tip-card sage-top">
+                <h3>JewishGen Education: Level Up Your Skills</h3>
+                <p>Genealogy is a craft that requires constant learning. If you want to move beyond the basics, JewishGen offers interactive, online classes taught by expert genealogists. Whether you want to learn how to decipher Russian Cyrillic, understand Holocaust research, or organize your growing family tree, our educational courses provide structured, step-by-step guidance.</p>
+            </div>
+
+            <div class="tip-card">
+                <h3>JewishGen Talks: Learn from the Experts</h3>
+                <p>If you are looking for ongoing inspiration and specialized knowledge, tune into JewishGen Talks. This continuous series of virtual lectures and webinars brings top genealogists, historians, and archivists directly to your screen. It is the perfect way to stay updated on new database additions, learn advanced search strategies, and explore the broader historical context of your ancestors' lives.</p>
+            </div>
+
+            <div class="tip-card sage-top">
+                <h3>Conferences: Take the Search Offline</h3>
+                <p>Some of the biggest genealogical breakthroughs happen in the hallways between lectures. JewishGen is deeply involved in major international events like the IAJGS International Conference on Jewish Genealogy and RootsTech. Attending these conferences is an unparalleled opportunity to meet fellow researchers face-to-face, attend expert-led sessions, and talk directly with JewishGen leadership.</p>
+            </div>
+
+            <div class="tip-card">
+                <h3>The Kalikow Center: Your NYC Research Headquarters</h3>
+                <p>Sometimes, there is no substitute for in-person research. If you are in New York City, or planning a visit, the Peter and Mary Kalikow Jewish Genealogy Research Center is your physical gateway to the archives. Visitors can access exclusive offline databases, utilize specialized library collections, and receive hands-on guidance from our expert staff genealogists.</p>
+            </div>
+
+            <div class="tip-card sage-top">
+                <h3>Pay It Forward: Become a Volunteer</h3>
+                <p>Every translated index, KehilaLink, and transcribed cemetery record on JewishGen exists because a volunteer decided to give back. Once you have used the site to find your own ancestors, consider paying it forward! You don't need to be a professional genealogist or fluent in five languages to help. We always need volunteers to transcribe indexes, photograph local cemeteries, and share their expertise.</p>
+            </div>
+
+        </div>
+    </div>
+
+</div><!-- /.htfaq-inner -->
+</div><!-- /.htfaq-content -->
+</main>
+
+<div id="site-footer"></div>
+
+<script>
+    /* -- Component loader ----------------------------------------- */
+    function loadComponent(id, file) {
+        return fetch(file)
+            .then(function(r) {
+                if (!r.ok) throw new Error('Could not load ' + file);
+                return r.text();
+            })
+            .then(function(html) {
+                document.getElementById(id).innerHTML = html;
+            })
+            .catch(function(err) { console.warn(err); });
+    }
+
+    /* -- Load sub-nav, then set active link ----------------------- */
+    loadComponent('htfaq-subnav', '/JG40-Build/HowToFAQ/HowToFAQ_SubNav.html').then(function() {
+        var path = window.location.pathname;
+        document.querySelectorAll('.htfaq-nav a').forEach(function(a) {
+            var href = a.getAttribute('href');
+            if (!href || !href.startsWith('/')) return;
+            if (path === href) a.classList.add('active');
+        });
+    });
+
+    /* -- Load header and footer ----------------------------------- */
+    Promise.all([
+        loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
+        loadComponent('site-footer', '/JG40-Build/Footer.html')
+    ]).then(function() {
+        document.querySelectorAll('.jg-nav .dropbtn, .main-nav .dropbtn').forEach(function(btn) {
+            btn.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    var menu = this.nextElementSibling;
+                    if (menu) menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+                }
+                if (e.key === 'Escape') {
+                    var menu = this.nextElementSibling;
+                    if (menu) menu.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    /* -- Phase stepper -------------------------------------------- */
+    var phaseSteps  = document.querySelectorAll('.phase-step');
+    var phasePanels = document.querySelectorAll('.phase-panel');
+
+    phaseSteps.forEach(function(btn, i) {
+        btn.addEventListener('click', function() {
+            phaseSteps.forEach(function(b, j) {
+                var on = i === j;
+                b.classList.toggle('active', on);
+                b.setAttribute('aria-selected', String(on));
+                phasePanels[j].classList.toggle('active', on);
+            });
+        });
+        /* Arrow key navigation within tablist (ARIA pattern) */
+        btn.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                var n = (i + 1) % phaseSteps.length;
+                phaseSteps[n].focus();
+                phaseSteps[n].click();
+            }
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                var n = (i - 1 + phaseSteps.length) % phaseSteps.length;
+                phaseSteps[n].focus();
+                phaseSteps[n].click();
+            }
+            if (e.key === 'Home') {
+                e.preventDefault();
+                phaseSteps[0].focus();
+                phaseSteps[0].click();
+            }
+            if (e.key === 'End') {
+                e.preventDefault();
+                phaseSteps[phaseSteps.length - 1].focus();
+                phaseSteps[phaseSteps.length - 1].click();
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
