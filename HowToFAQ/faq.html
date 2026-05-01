@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to JewishGen &amp; FAQ — JewishGen</title>
+    <meta name="description" content="Frequently asked questions about Jewish genealogy research, JewishGen tools, and getting started with your family history.">
+
+    <!-- 1. Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- 2. JewishGen Global Design System -->
+    <link rel="stylesheet" href="/JG40-Build/jg-global.css">
+    <!-- 3. Page-specific styles -->
+    <style>
+        /* =====================================================
+           FAQ PAGE -- PAGE-SPECIFIC STYLES
+           faq.html
+           ===================================================== */
+
+        main { flex: 1; }
+
+        /* -- Page Title Band --------------------------------- */
+        .htfaq-page-band {
+            background-color: #09497a;
+            padding: 34px 50px;
+            text-align: center;
+        }
+        body.dark-mode .htfaq-page-band { background-color: #0d2a45; }
+
+        .htfaq-section-tag {
+            display: inline-block;
+            background-color: var(--sage);
+            color: #ffffff;
+            font-size: 0.6875rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 4px 12px;
+            border-radius: 3px;
+            margin-bottom: 12px;
+        }
+
+        .htfaq-page-band h1 {
+            margin: 0 0 10px;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 2.125rem;
+            font-weight: normal;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+
+        .htfaq-page-band__sub {
+            font-size: 0.9375rem;
+            font-style: italic;
+            color: #a9c0d0;
+            margin: 0 auto;
+            max-width: 580px;
+            line-height: 1.6;
+        }
+
+        /* -- Content Area ------------------------------------ */
+        .htfaq-content {
+            background-color: var(--ecru);
+            padding: 44px 50px;
+        }
+        body.dark-mode .htfaq-content { background-color: #1a1a1a; }
+
+        /* -- Two-column layout: main + sticky nav ----------- */
+        .faq-layout {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 180px;
+            gap: 48px;
+            align-items: start;
+        }
+
+        /* -- Sticky section nav ------------------------------ */
+        .faq-sidenav {
+            position: sticky;
+            top: 24px;
+        }
+        .faq-sidenav-label {
+            font-size: 0.6875rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--charcoal);
+            margin-bottom: 10px;
+            display: block;
+        }
+        body.dark-mode .faq-sidenav-label { color: #a0a0a0; }
+
+        .faq-sidenav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            border-left: 2px solid #d1caba;
+        }
+        body.dark-mode .faq-sidenav ul { border-left-color: #3a3f3f; }
+
+        .faq-sidenav li a {
+            display: block;
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            line-height: 1.45;
+            color: var(--charcoal);
+            text-decoration: none;
+            border-left: 2px solid transparent;
+            margin-left: -2px;
+            transition: color 0.15s, border-color 0.15s;
+        }
+        .faq-sidenav li a:hover { color: #09497a; }
+        .faq-sidenav li a.is-active {
+            color: #09497a;
+            border-left-color: #09497a;
+            font-weight: 600;
+        }
+        body.dark-mode .faq-sidenav li a { color: #a0a0a0; }
+        body.dark-mode .faq-sidenav li a:hover,
+        body.dark-mode .faq-sidenav li a.is-active {
+            color: #a9c0d0;
+            border-left-color: #a8b361;
+        }
+
+        /* -- FAQ Sections ------------------------------------ */
+        .faq-section {
+            margin-bottom: 52px;
+            scroll-margin-top: 24px;
+        }
+        .faq-section:last-child { margin-bottom: 0; }
+
+        .faq-section-heading {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.25rem;
+            font-weight: normal;
+            color: #09497a;
+            margin: 0 0 4px;
+            line-height: 1.3;
+        }
+        body.dark-mode .faq-section-heading { color: #a9c0d0; }
+
+        .faq-section-subtitle {
+            font-size: 0.8125rem;
+            font-style: italic;
+            color: var(--charcoal);
+            margin: 0 0 20px;
+            line-height: 1.5;
+        }
+        body.dark-mode .faq-section-subtitle { color: #a0a0a0; }
+
+        .faq-section-accent {
+            width: 36px;
+            height: 3px;
+            background-color: var(--sage);
+            border-radius: 1px;
+            margin-bottom: 16px;
+        }
+
+        /* -- Individual Q&A accordion rows ------------------- */
+        .faq-item {
+            border-bottom: 1px solid #d1caba;
+        }
+        body.dark-mode .faq-item { border-bottom-color: #3a3f3f; }
+        .faq-item:first-of-type { border-top: 1px solid #d1caba; }
+        body.dark-mode .faq-item:first-of-type { border-top-color: #3a3f3f; }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 16px 0;
+            font-family: inherit;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            line-height: 1.5;
+        }
+        .faq-question:hover { color: #09497a; }
+        .faq-question[aria-expanded="true"] { color: #09497a; }
+        body.dark-mode .faq-question { color: #e0e0e0; }
+        body.dark-mode .faq-question:hover,
+        body.dark-mode .faq-question[aria-expanded="true"] { color: #a9c0d0; }
+        .faq-question:focus-visible {
+            outline: 2px solid var(--sage);
+            outline-offset: 2px;
+            border-radius: 2px;
+        }
+
+        .faq-chevron {
+            flex-shrink: 0;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+            transition: transform 0.2s;
+            color: var(--sage);
+            font-size: 0.75rem;
+        }
+        .faq-question[aria-expanded="true"] .faq-chevron {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 0 32px 20px 0;
+            font-size: 0.875rem;
+            line-height: 1.8;
+            color: var(--charcoal);
+        }
+        .faq-answer.is-open { display: block; }
+        body.dark-mode .faq-answer { color: #c8c8c8; }
+
+        .faq-answer p { margin: 0 0 12px; }
+        .faq-answer p:last-child { margin-bottom: 0; }
+
+        .faq-answer ul {
+            margin: 0 0 12px;
+            padding-left: 20px;
+        }
+        .faq-answer ul li { margin-bottom: 6px; }
+
+        .faq-answer a {
+            color: #09497a;
+            text-decoration: underline dotted;
+            font-weight: 600;
+        }
+        .faq-answer a:hover { color: var(--sage); }
+        body.dark-mode .faq-answer a { color: #a9c0d0; }
+
+        /* Read more link at end of answer */
+        .faq-readmore {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: #09497a;
+            text-decoration: underline dotted;
+        }
+        .faq-readmore:hover { color: var(--sage); }
+        body.dark-mode .faq-readmore { color: #a9c0d0; }
+
+        /* AI sub-tip callout (used in Bucket 3) */
+        .faq-tip {
+            background-color: var(--cream);
+            border-left: 3px solid var(--sage);
+            border-radius: 0 4px 4px 0;
+            padding: 12px 16px;
+            margin: 12px 0;
+            font-size: 0.8125rem;
+            line-height: 1.7;
+        }
+        body.dark-mode .faq-tip { background-color: #252a2a; }
+        .faq-tip strong { color: #09497a; }
+        body.dark-mode .faq-tip strong { color: #a9c0d0; }
+
+        /* -- Bucket 4 directory block ------------------------ */
+        .faq-directory {
+            background-color: var(--white);
+            border-radius: 8px;
+            border: 1px solid #d1caba;
+            padding: 24px 28px;
+        }
+        body.dark-mode .faq-directory { background-color: #252a2a; border-color: #3a3f3f; }
+
+        .faq-directory ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .faq-directory li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e8e1d1;
+            font-size: 0.875rem;
+            line-height: 1.7;
+        }
+        body.dark-mode .faq-directory li { border-bottom-color: #3a3f3f; }
+        .faq-directory li:last-child { border-bottom: none; padding-bottom: 0; }
+        .faq-directory li:first-child { padding-top: 0; }
+
+        .faq-directory li strong {
+            color: var(--charcoal);
+            font-weight: 600;
+        }
+        body.dark-mode .faq-directory li strong { color: #e0e0e0; }
+
+        .faq-directory a {
+            color: #09497a;
+            font-weight: 600;
+            text-decoration: underline dotted;
+        }
+        .faq-directory a:hover { color: var(--sage); }
+        body.dark-mode .faq-directory a { color: #a9c0d0; }
+
+        /* -- Placeholder notice (Bucket 11) ------------------ */
+        .faq-placeholder-notice {
+            background-color: var(--cream);
+            border: 1px dashed #d1caba;
+            border-radius: 6px;
+            padding: 14px 18px;
+            font-size: 0.8125rem;
+            font-style: italic;
+            color: var(--charcoal);
+            margin-bottom: 16px;
+        }
+        body.dark-mode .faq-placeholder-notice { background-color: #252a2a; border-color: #3a3f3f; color: #a0a0a0; }
+
+        /* -- Responsive -------------------------------------- */
+        @media (max-width: 900px) {
+            .htfaq-content { padding: 32px 24px; }
+            .htfaq-page-band { padding: 28px 24px; }
+            .htfaq-page-band h1 { font-size: 1.75rem; }
+            .faq-layout { grid-template-columns: 1fr; gap: 0; }
+            .faq-sidenav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<!-- TITLE BAND -->
+<div class="htfaq-page-band">
+    <div class="htfaq-section-tag">Frequently Asked Questions</div>
+    <h1>How to JewishGen &amp; FAQ</h1>
+    <p class="htfaq-page-band__sub">Everything you need to know to get started with JewishGen</p>
+</div>
+
+<div id="htfaq-subnav"></div>
+
+<main>
+<div class="htfaq-content">
+<div class="faq-layout">
+
+    <!-- MAIN FAQ CONTENT -->
+    <div class="faq-main">
+
+        <!-- ================================================
+             SECTION 1: THE BEGINNER BASICS
+             ================================================ -->
+        <section class="faq-section" id="faq-beginner">
+            <h2 class="faq-section-heading">The Beginner Basics</h2>
+            <p class="faq-section-subtitle">The most common roadblocks, solved.</p>
+            <div class="faq-section-accent"></div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-ellis">
+                    I can't find my family's name. Was it changed by a clerk at Ellis Island?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-ellis">
+                    <p>No — this is the most enduring myth in American genealogy! Clerks at Ellis Island did not create new names; they simply checked passengers off manifests that were filled out before the ship ever left Europe. If your family's name changed, it was almost certainly changed voluntarily by your ancestors after they settled in their new country, either to assimilate or to sound more like their new neighbors.</p>
+                    <p>Try changing your search parameters to "Phonetically (Beider-Morse)" to catch spelling variations.</p>
+                    <a class="faq-readmore" href="https://www.jewishgen.org/InfoFiles/ellismythnames.html">Read more: The Ellis Island Name Change Myth &rarr;</a>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-notown">
+                    What if I have absolutely no idea what town my family came from?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-notown">
+                    <p>Don't panic — but don't start searching European databases just yet. If your ancestors emigrated, the clues to their hometown are almost always found in their destination country. Focus your search on passenger ship manifests, naturalization papers (citizenship records), draft cards, and vital records.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-russiapoland">
+                    My grandfather said he was from Russia, but my grandmother said he was from Poland. Which is it?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-russiapoland">
+                    <p>Both! European borders shifted dramatically over the 19th and 20th centuries. A single town could have been in the Russian Empire, then independent Poland, and later the Soviet Union. This is why finding the specific town name is more important than the country. Once you have the town, JewishGen will help you figure out what historical region it belonged to.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-cantread">
+                    I found a record, but it's in Russian / Polish / Hebrew and I can't read a word of it. Help!
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-cantread">
+                    <p>You are in exactly the right place. You don't need to be a linguist to do genealogy. Post the image to our <a href="https://www.jewishgen.org/ViewMate/">ViewMate</a> tool, where our incredible community of volunteers helps translate documents completely free of charge.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================
+             SECTION 2: THE GLOBAL SCOPE
+             ================================================ -->
+        <section class="faq-section" id="faq-global">
+            <h2 class="faq-section-heading">The Global Scope</h2>
+            <p class="faq-section-subtitle">Jewish history is global history.</p>
+            <div class="faq-section-accent"></div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-global">
+                    Is JewishGen only for families who immigrated to the United States, or only for Ashkenazi Jews?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-global">
+                    <p>Not at all! While many of our users are based in the US or researching Eastern European Ashkenazi roots, our databases span the entire globe. We have dedicated research divisions for Sephardic and Mizrahi heritage, and millions of records covering South America, the UK, South Africa, Israel, North Africa, and the Middle East. If you have Jewish ancestry — no matter where they lived or where they settled — JewishGen is for you.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================
+             SECTION 3: THE AI REALITY CHECK
+             ================================================ -->
+        <section class="faq-section" id="faq-ai">
+            <h2 class="faq-section-heading">The AI Reality Check</h2>
+            <p class="faq-section-subtitle">Artificial Intelligence is a powerful tool, but it is not a genealogist. Here is what AI can (and absolutely cannot) do for your research.</p>
+            <div class="faq-section-accent"></div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-ai-tree">
+                    Can AI just do my genealogy and build my family tree for me?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-ai-tree">
+                    <p>No. Genealogy requires historical proof, logic, and connecting the right documents to the right people. AI models are essentially highly advanced predictive text engines; if they don't know an answer, they will confidently invent one. Relying on AI to build your tree will almost certainly result in fake ancestors and fictional historical records.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-ai-search">
+                    Okay, but can AI search JewishGen for me?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-ai-search">
+                    <p>No. Public AI chatbots do not have direct backend access to our databases. If you ask an AI to "search JewishGen for Moshe Cohen from Warsaw," it cannot actually query our search engine. You have to roll up your sleeves and use the <a href="/JG40-Build/search/Unified-Search.html">JewishGen Unified Search</a> yourself!</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-ai-translate">
+                    Can I use AI to translate a historical document I found?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-ai-translate">
+                    <p>Tentatively yes, but proceed with extreme caution. AI can be helpful for getting the general gist of a cleanly typed document, but it struggles massively with historical cursive, faded ink, and specific Jewish religious terminology.</p>
+                    <div class="faq-tip">
+                        <strong>The OCR Alternative:</strong> For printed text (like a page from a Yizkor book), using an OCR (Optical Character Recognition) tool to extract the text first, then feeding that text to a translation tool, is often much more accurate than feeding a photo directly to an AI.
+                    </div>
+                    <div class="faq-tip">
+                        <strong>The Human Element:</strong> If you are dealing with handwritten documents, skip the AI entirely. Post it to our <a href="https://www.jewishgen.org/ViewMate/">ViewMate</a> tool and let our expert human volunteers translate it for you.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================
+             SECTION 4: WHERE DO I FIND...?
+             Directory treatment -- not Q&A accordion
+             ================================================ -->
+        <section class="faq-section" id="faq-directory">
+            <h2 class="faq-section-heading">Where Do I Find...?</h2>
+            <p class="faq-section-subtitle">A quick-reference directory to get you where you need to go.</p>
+            <div class="faq-section-accent"></div>
+
+            <div class="faq-directory">
+                <ul>
+                    <li><strong>...records of relatives who perished in or survived the Holocaust?</strong><br>Head to the <a href="#">Holocaust Database</a>, which aggregates millions of records from concentration camps, ghettos, and survivor lists.</li>
+                    <li><strong>...information about what my ancestor's hometown was actually like?</strong><br>Start with the <a href="https://www.jewishgen.org/Communities/Search.asp">Communities Database</a> to pinpoint the town on a map, then explore <a href="https://kehilalinks.jewishgen.org/">KehilaLinks</a> or read a translated <a href="https://www.jewishgen.org/Yizkor/translations/">Yizkor Book</a>.</li>
+                    <li><strong>...someone to help me translate an old postcard or birth record?</strong><br>Upload it to <a href="https://www.jewishgen.org/ViewMate/">ViewMate</a> and let our volunteers take a look.</li>
+                    <li><strong>...other people who are researching the same last name as me?</strong><br>Search the <a href="https://www.jewishgen.org/jgff/">JewishGen Family Finder (JGFF)</a>.</li>
+                    <li><strong>...a picture of my great-grandparent's headstone?</strong><br>Search the <a href="/JG40-Build/JOWBR/index.html">JOWBR</a> database for worldwide cemetery records.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ================================================
+             SECTION 5: FAMILY LORE VS. HARD FACTS
+             ================================================ -->
+        <section class="faq-section" id="faq-lore">
+            <h2 class="faq-section-heading">Family Lore vs. Hard Facts</h2>
+            <p class="faq-section-subtitle">Beginners love stories, but we need to teach them to hunt for proof.</p>
+            <div class="faq-section-accent"></div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-famous">
+                    My family says we are related to a famous Rabbi / the Rothschilds / someone famous. Is it true?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-famous">
+                    <p>It might be! But in genealogy, family lore is treated as a clue, not a fact. Stories get exaggerated over generations. The only way to know for sure is to build your tree step-by-step, generation-by-generation, backing up every single link with historical documents.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-copytree">
+                    I found an online family tree that goes back to the 1600s and has my grandfather in it. Can I just copy it?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-copytree">
+                    <p>Please don't! While online trees can provide excellent hints, they are notoriously full of errors. If one person makes a mistake, hundreds of others copy it. Use other people's trees as roadmaps, but always find the original records to prove the connections yourself.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-silent">
+                    My grandparents never talked about the past. How do I start if I don't have any family stories?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-silent">
+                    <p>Start with the paper trail they left behind in their new country. Before you look for records in Europe, exhaust the records created in their destination country. Look for their marriage licenses, death certificates, social security applications, and especially naturalization papers and passenger manifests.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================
+             SECTION 6: THE OLD COUNTRY
+             ================================================ -->
+        <section class="faq-section" id="faq-oldcountry">
+            <h2 class="faq-section-heading">The "Old Country"</h2>
+            <p class="faq-section-subtitle">The historical realities that often confuse modern researchers.</p>
+            <div class="faq-section-accent"></div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-julian">
+                    I found a record from the Russian Empire, but the date seems to be exactly 12 or 13 days off. Why?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-julian">
+                    <p>You haven't made a mistake — you've just discovered the Julian calendar! While most of the Western world used the Gregorian calendar, the Russian Empire used the older Julian calendar until 1918. In the 19th century, it ran 12 days behind the West; in the 20th century, 13 days behind.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-pale">
+                    I keep seeing the phrase "Pale of Settlement." What exactly does that mean?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-pale">
+                    <p>The Pale of Settlement was a massive designated territory within the western borders of the Russian Empire. From the late 1700s until 1917, the vast majority of Jews in the Russian Empire were legally restricted to living only within this specific territory.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-partitions">
+                    The town my family came from was in Poland, but the historical documents are in Russian. Why?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-partitions">
+                    <p>Welcome to the Polish Partitions! At the end of the 18th century, Poland was completely carved up by the Russian, Austro-Hungarian, and Prussian empires. It didn't exist as an independent country again until after World War I. If your ancestors lived in the Russian-controlled section, their official vital records were legally required to be written in Russian Cyrillic starting in 1868.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================
+             SECTION 7: NAVIGATING JEWISH NAMES
+             ================================================ -->
+        <section class="faq-section" id="faq-names">
+            <h2 class="faq-section-heading">Navigating Jewish Names</h2>
+            <p class="faq-section-subtitle">Addressing the complexity of Jewish naming conventions.</p>
+            <div class="faq-section-accent"></div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-multinames">
+                    My great-grandfather is listed as "Velvel" on one document, "Wolf" on another, and "William" on his gravestone. Which is his real name?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-multinames">
+                    <p>All of them! It was incredibly common for Jewish ancestors to use different names in different contexts. They had a Hebrew name for religious purposes, a Yiddish daily name used with family (Velvel), a secular European name for doing business (Wolf), and an Anglicized name adopted after emigrating (William).</p>
+                    <a class="faq-readmore" href="https://www.jewishgen.org/InfoFiles/given-names.html">Read more: A Guide to Jewish Given Names &rarr;</a>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-surnames">
+                    Did all of my ancestors have the same last name?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-surnames">
+                    <p>Not if you go back far enough. In Eastern Europe, permanent, inherited family surnames weren't legally required until the late 18th and early 19th centuries. Before that, most Jews used a patronymic system (e.g., "Yitzhak son of Moshe"). When governments forced families to adopt permanent last names, siblings didn't always choose the same one!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================
+             SECTION 8: THE RUSSIAN DRAFT
+             ================================================ -->
+        <section class="faq-section" id="faq-draft">
+            <h2 class="faq-section-heading">The Russian Draft &amp; Military Conscription</h2>
+            <p class="faq-section-subtitle">One of the biggest reasons our ancestors fled Eastern Europe.</p>
+            <div class="faq-section-accent"></div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-finger">
+                    My family story says my great-grandfather chopped off his index finger before coming to America. Is that true?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-finger">
+                    <p>It is highly likely! In 19th-century Imperial Russia, military conscription for Jewish men was brutally long and designed to force assimilation. To avoid this, many young men resorted to extreme self-mutilation — such as chopping off a "trigger finger" or starving themselves — so they would fail the mandatory medical exam.</p>
+                    <a class="faq-readmore" href="https://www.jewishgen.org/InfoFiles/russianmilitary.html">Read more: Military Conscription in Imperial Russia &rarr;</a>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-young">
+                    Why did my ancestor flee Europe alone when he was only 17 or 18?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-young">
+                    <p>Draft evasion. In the Russian Empire, young men were required to register for the draft in their late teens. Fleeing across the border just before they were called up was one of the most common catalysts for emigration.</p>
+                    <a class="faq-readmore" href="https://www.jewishgen.org/InfoFiles/russianmilitary.html">Read more: Military Conscription and the Cantonist Battalions &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================
+             SECTION 9: DATES, CALENDARS & CEMETERIES
+             ================================================ -->
+        <section class="faq-section" id="faq-dates">
+            <h2 class="faq-section-heading">Dates, Calendars &amp; Cemeteries</h2>
+            <p class="faq-section-subtitle">Navigating the physical artifacts of Jewish history.</p>
+            <div class="faq-section-accent"></div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-hebyear">
+                    I translated a Hebrew record, but the birth year says "5664". What year is that actually?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-hebyear">
+                    <p>Jewish vital records, marriage contracts, and gravestones use the Hebrew calendar. A quick cheat code to roughly convert a Hebrew year in the 5000s to a Western year: drop the 5 and add 240. So 664 + 240 = 1904.</p>
+                    <a class="faq-readmore" href="https://www.jewishgen.org/InfoFiles/hebrewcalendar.html">Read more: Understanding the Hebrew Calendar &rarr;</a>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-headstone">
+                    I found a photo of my ancestor's headstone, but I can't read Hebrew. What does it say?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-headstone">
+                    <p>Jewish headstones follow a specific traditional formula. They typically start with &#x05E4;&#x05F4;&#x05E0; (Here lies). Next is the deceased's Hebrew given name, followed by "ben" (son of) or "bat" (daughter of), and then their father's Hebrew name. At the bottom you will usually see &#x05EA;&#x05E0;&#x05E6;&#x05D1;&#x05D4; (May their soul be bound up in the bond of life).</p>
+                    <a class="faq-readmore" href="https://www.jewishgen.org/InfoFiles/tombstones.html">Read more: How to Read a Hebrew Tombstone &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================
+             SECTION 10: UNCOVERING HOLOCAUST RECORDS
+             ================================================ -->
+        <section class="faq-section" id="faq-holocaust">
+            <h2 class="faq-section-heading">Uncovering Holocaust Records</h2>
+            <p class="faq-section-subtitle">Researching the Shoah is deeply emotional and historically complex.</p>
+            <div class="faq-section-accent"></div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-holstart">
+                    Where is the best place to start looking for a relative caught in the Holocaust?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-holstart">
+                    <p>Start directly with the <a href="#">JewishGen Holocaust Database</a>. It is a massive collection drawn from concentration camp lists, ghetto registries, transport manifests, and post-war survivor lists. Because the Nazis kept meticulous — though ultimately incomplete — records, this is your best starting point for concrete documentation.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-holnothing">
+                    What if I search the database and find absolutely nothing?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-holnothing">
+                    <p>Do not give up. Hundreds of thousands of victims were murdered in mass shootings or extermination camps where records were destroyed or never kept. Your next essential stop is the <a href="https://yvng.yadvashem.org/">Yad Vashem Central Database of Shoah Victims' Names</a>, specifically searching for "Pages of Testimony" — brief memorial forms filled out by surviving friends and family members.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-arolsen">
+                    I keep hearing about the "Arolsen Archives" (or ITS). What is that, and is it on JewishGen?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-arolsen">
+                    <p>The Arolsen Archives is the world's most comprehensive physical archive on the victims and survivors of National Socialism, located in Germany. While JewishGen has partnered with them to index many records, their full digital archive is vast. If you find a reference to an ITS record on JewishGen, visit the <a href="https://arolsen-archives.org/">Arolsen Archives website</a> to see the original scanned documents.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-survivor">
+                    Can JewishGen help me find a Holocaust survivor who might still be alive?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-survivor">
+                    <p>JewishGen is primarily an archive of historical records. While our database includes post-war survivor registry lists, we do not actively track the current whereabouts of living individuals. To connect with descendants of survivors, your best tool is the <a href="https://www.jewishgen.org/jgff/">JewishGen Family Finder (JGFF)</a>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================
+             SECTION 11: SEPHARDIC & MIZRAHI ROOTS
+             HIDE -- placeholder content until copy arrives
+             ================================================ -->
+        <section class="faq-section" id="faq-sephardic">
+            <h2 class="faq-section-heading">Sephardic &amp; Mizrahi Roots</h2>
+            <p class="faq-section-subtitle">Tracing heritage across the Mediterranean, North Africa, and the Middle East.</p>
+            <div class="faq-section-accent"></div>
+
+            <div class="faq-placeholder-notice">
+                Content for this section is pending. Placeholder text shown below.
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-seph-1">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-seph-1">
+                    <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-seph-2">
+                    Phasellus faucibus scelerisque eleifend donec pretium vulputate?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-seph-2">
+                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-seph-3">
+                    Aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-seph-3">
+                    <p>Faucibus in ornare quam viverra orci sagittis. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Sed risus pretium quam vulputate dignissim suspendisse in est ante. Nisl condimentum id venenatis a condimentum vitae.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-seph-4">
+                    Cursus turpis massa tincidunt dui ut ornare lectus sit amet?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-seph-4">
+                    <p>Erat pellentesque adipiscing commodo elit at imperdiet dui accumsan sit. Neque viverra justo nec ultrices dui sapien eget. Libero id faucibus nisl tincidunt eget nullam non. Tortor aliquam nulla facilisi cras fermentum odio.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="a-seph-5">
+                    Dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim?
+                    <span class="faq-chevron" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="faq-answer" id="a-seph-5">
+                    <p>Vitae elementum curabitur vitae nunc sed velit dignissim sodales ut. Feugiat in fermentum posuere urna. Et tortor consequat id porta nibh venenatis cras. Ac turpis egestas integer eget. Pharetra diam sit amet nisl suscipit adipiscing bibendum.</p>
+                </div>
+            </div>
+        </section>
+        <!-- END HIDE -->
+
+    </div><!-- /.faq-main -->
+
+    <!-- STICKY SIDE NAV -->
+    <aside class="faq-sidenav" aria-label="FAQ sections">
+        <span class="faq-sidenav-label">Jump to Section</span>
+        <ul>
+            <li><a href="#faq-beginner">The Beginner Basics</a></li>
+            <li><a href="#faq-global">The Global Scope</a></li>
+            <li><a href="#faq-ai">The AI Reality Check</a></li>
+            <li><a href="#faq-directory">Where Do I Find...?</a></li>
+            <li><a href="#faq-lore">Family Lore vs. Facts</a></li>
+            <li><a href="#faq-oldcountry">The "Old Country"</a></li>
+            <li><a href="#faq-names">Jewish Names</a></li>
+            <li><a href="#faq-draft">The Russian Draft</a></li>
+            <li><a href="#faq-dates">Dates &amp; Cemeteries</a></li>
+            <li><a href="#faq-holocaust">Holocaust Records</a></li>
+            <li><a href="#faq-sephardic">Sephardic &amp; Mizrahi</a></li>
+        </ul>
+    </aside>
+
+</div><!-- /.faq-layout -->
+</div><!-- /.htfaq-content -->
+</main>
+
+<div id="site-footer"></div>
+
+<script>
+    /* -- Component loader ----------------------------------------- */
+    function loadComponent(id, file) {
+        return fetch(file)
+            .then(function(r) {
+                if (!r.ok) throw new Error('Could not load ' + file);
+                return r.text();
+            })
+            .then(function(html) {
+                document.getElementById(id).innerHTML = html;
+            })
+            .catch(function(err) { console.warn(err); });
+    }
+
+    /* -- Load sub-nav, then set active link ----------------------- */
+    loadComponent('htfaq-subnav', '/JG40-Build/HowToFAQ/HowToFAQ_SubNav.html').then(function() {
+        var path = window.location.pathname;
+        document.querySelectorAll('.htfaq-nav a').forEach(function(a) {
+            if (a.getAttribute('href') === path) a.classList.add('active');
+        });
+    });
+
+    /* -- Load header and footer ----------------------------------- */
+    Promise.all([
+        loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
+        loadComponent('site-footer', '/JG40-Build/Footer.html')
+    ]).then(function() {
+        document.querySelectorAll('.jg-nav .dropbtn, .main-nav .dropbtn').forEach(function(btn) {
+            btn.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    var menu = this.nextElementSibling;
+                    if (menu) menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+                }
+                if (e.key === 'Escape') {
+                    var menu = this.nextElementSibling;
+                    if (menu) menu.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    /* -- FAQ accordion -------------------------------------------- */
+    document.querySelectorAll('.faq-question').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var answerId = btn.getAttribute('aria-controls');
+            var answer   = document.getElementById(answerId);
+            var isOpen   = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+            answer.classList.toggle('is-open', !isOpen);
+        });
+    });
+
+    /* -- Scroll-spy: highlight active section in side nav --------- */
+    var sections  = document.querySelectorAll('.faq-section');
+    var navLinks  = document.querySelectorAll('.faq-sidenav a');
+
+    function onScroll() {
+        var scrollY = window.scrollY || window.pageYOffset;
+        var active  = null;
+        sections.forEach(function(sec) {
+            if (sec.offsetTop - 80 <= scrollY) active = sec.id;
+        });
+        navLinks.forEach(function(a) {
+            a.classList.toggle('is-active', a.getAttribute('href') === '#' + active);
+        });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+</script>
+
+</body>
+</html>
