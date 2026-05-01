@@ -247,8 +247,7 @@
 
         /* -- Phase Navigator --------------------------------- */
         .phase-navigator {
-            max-width: 1100px;
-            margin: 36px auto 0;
+            margin-top: 36px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -272,7 +271,7 @@
             color: #09497a;
             cursor: pointer;
             transition: background-color 0.15s, border-color 0.15s, color 0.15s;
-            min-width: 180px;
+            flex: 1;
         }
         .phase-nav-btn--right { justify-content: flex-end; }
         .phase-nav-btn:hover:not(:disabled) {
@@ -280,7 +279,7 @@
             border-color: #09497a;
         }
         .phase-nav-btn:disabled {
-            opacity: 0;
+            visibility: hidden;
             pointer-events: none;
         }
         .phase-nav-btn:focus-visible {
@@ -621,8 +620,6 @@
 
 </div><!-- /.htfaq-inner -->
 
-</div><!-- /.htfaq-inner -->
-
     <!-- PHASE NAVIGATOR -->
     <div class="phase-navigator" id="phaseNavigator" aria-label="Phase navigation">
         <button class="phase-nav-btn" id="phasePrev" aria-label="Previous phase">
@@ -641,6 +638,7 @@
         <p>For more detailed information on a wide range of Jewish genealogy topics, explore the <a href="https://www.jewishgen.org/infofiles.html">JewishGen InfoFiles</a> — a deep archive of how-to guides, methodological articles, and research resources assembled over decades by the collective expertise of the JewishGen volunteer community. From deciphering vital records to navigating specific regional archives, their work represents thousands of hours of knowledge freely shared. We are grateful for every single one of them.</p>
     </div>
 
+</div><!-- /.htfaq-inner -->
 </div><!-- /.htfaq-content -->
 </main>
 
