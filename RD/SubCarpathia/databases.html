@@ -619,6 +619,13 @@ Promise.all([
         return n.toLocaleString('en-US');
     }
 
+    /* Title-case a freeform record-type fragment (e.g. "vital records" -> "Vital Records",
+       "Yizkor Books" stays "Yizkor Books"). */
+    function titleCase(str) {
+        if (!str) return '';
+        return str.toLowerCase().replace(/\b([a-z])/g, function(_, c) { return c.toUpperCase(); });
+    }
+
     function escapeHtml(str) {
         if (str === null || str === undefined) return '';
         return String(str)
@@ -660,12 +667,10 @@ Promise.all([
         var description = resolveDescription(d);
         var hasInfoUrl  = !!(d.infoUrl && d.infoUrl.trim());
 
-        /* Chips */
+        /* Chips: only record-type chips on the collapsed card */
         var recordChips = recordTypes.map(function(rt) {
-            return '<span class="ds-chip chip-record">' + escapeHtml(rt) + '</span>';
+            return '<span class="ds-chip chip-record">' + escapeHtml(titleCase(rt)) + '</span>';
         }).join('');
-        var regionChip = '<span class="ds-chip chip-region">Subcarpathia</span>';
-        var langChip   = primary ? '<span class="ds-chip chip-language">' + escapeHtml(primary) + '</span>' : '';
 
         /* Fact boxes */
         var facts = [
@@ -702,8 +707,6 @@ Promise.all([
                         '</div>' +
                         '<div class="ds-chips">' +
                             recordChips +
-                            regionChip +
-                            langChip +
                         '</div>' +
                     '</div>' +
                     '<span class="chevron-toggle" aria-hidden="true">&#9662;</span>' +
