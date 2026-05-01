@@ -247,19 +247,21 @@
         body.dark-mode .htfaq-infofiles a { color: #a9c0d0; }
 
         /* -- Phase Navigator --------------------------------- */
-        .phase-navigator {
+        .phase-navigator-wrap {
             margin-top: 36px;
             border-top: 1px solid #d1caba;
             padding-top: 24px;
+        }
+        body.dark-mode .phase-navigator-wrap { border-top-color: #3a3f3f; }
+
+        .phase-navigator {
             position: relative;
             display: flex;
             align-items: center;
             justify-content: space-between;
             max-width: 640px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto;
         }
-        body.dark-mode .phase-navigator { border-top-color: #3a3f3f; }
 
         .phase-nav-btn {
             display: inline-flex;
@@ -277,12 +279,18 @@
             transition: background-color 0.15s, border-color 0.15s, color 0.15s;
             white-space: nowrap;
         }
+        .phase-nav-btn--right { margin-left: auto; }
         .phase-nav-btn:hover:not(:disabled) {
             background-color: var(--cream);
             border-color: #09497a;
         }
         .phase-nav-btn:disabled {
-            display: none;
+            visibility: hidden;
+            width: 0;
+            padding: 0;
+            border: none;
+            margin: 0;
+            overflow: hidden;
         }
         .phase-nav-btn:focus-visible {
             outline: 2px solid var(--sage);
@@ -618,6 +626,7 @@
 </div><!-- /.htfaq-inner -->
 
     <!-- PHASE NAVIGATOR -->
+    <div class="phase-navigator-wrap">
     <div class="phase-navigator" id="phaseNavigator" aria-label="Phase navigation">
         <button class="phase-nav-btn" id="phasePrev" aria-label="Previous phase">
             <span class="phase-nav-arrow" aria-hidden="true">&#8592;</span>
@@ -628,6 +637,7 @@
             <span class="phase-nav-label" id="phaseNextLabel"></span>
             <span class="phase-nav-arrow" aria-hidden="true">&#8594;</span>
         </button>
+    </div>
     </div>
 
     <!-- INFOFILES CALLOUT -->
