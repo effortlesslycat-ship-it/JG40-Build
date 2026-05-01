@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subcarpathian Indexed Vital Records — Sub-Carpathia Research Division — JewishGen</title>
+<meta name="description" content="Search the Sub-Carpathia Research Division's indexed vital records by town. Phonetic search supports Daitch-Mokotoff Soundex.">
+
+<!-- 1. Bootstrap -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<!-- 2. JewishGen Global Design System -->
+<link rel="stylesheet" href="/JG40-Build/jg-global.css">
+<!-- 3. Page-specific styles -->
+<style>
+a { text-decoration: none; color: inherit; }
+
+/* ── Dark mode overrides ── */
+body.dark-mode .page-title-band         { background-color: #0d2a45 !important; }
+body.dark-mode .rd-sidebar-card         { background-color: #1e1e1e !important; border-left-color: #5a7a95 !important; }
+body.dark-mode .rd-sidebar-label        { background-color: #2a2a2a !important; color: #e0e0e0 !important; border-bottom-color: #333 !important; }
+body.dark-mode .rd-sidebar-card a       { color: #c8c8c8 !important; }
+body.dark-mode .rd-sidebar-card a:hover    { color: #a8b361 !important; background-color: #2a2a2a !important; }
+body.dark-mode .rd-sidebar-card a.active   { color: #a8b361 !important; border-left-color: #a8b361 !important; background-color: #2a2a2a !important; }
+body.dark-mode .rd-sidebar-donate       { background-color: #0d2a45 !important; }
+body.dark-mode .rd-sidebar-donate p     { color: rgba(255,255,255,0.85) !important; }
+
+body.dark-mode .filter-bar              { background-color: #1e1e1e !important; border-color: #333 !important; }
+body.dark-mode .filter-label            { color: #999 !important; }
+body.dark-mode .filter-chip             { background-color: #2a2a2a !important; color: #c8c8c8 !important; border-color: #444 !important; }
+body.dark-mode .filter-chip:hover       { background-color: #333 !important; color: #fff !important; }
+body.dark-mode .filter-chip.active      { background-color: var(--navy) !important; color: #fff !important; border-color: var(--navy) !important; }
+body.dark-mode .search-input            { background-color: #2a2a2a !important; color: #e0e0e0 !important; border-color: #444 !important; }
+body.dark-mode .search-input::placeholder { color: #888 !important; }
+body.dark-mode .search-help             { color: #999 !important; }
+body.dark-mode .results-count           { color: #999 !important; }
+
+body.dark-mode .town-card               { background-color: #1e1e1e !important; border-color: #333 !important; }
+body.dark-mode .town-name               { color: #e0e0e0 !important; }
+body.dark-mode .town-meta-label         { color: #999 !important; }
+body.dark-mode .year-pill               { background-color: #2a2a2a !important; color: #c8c8c8 !important; border-color: #444 !important; }
+body.dark-mode .indexer-toggle          { color: #8ab0c9 !important; border-color: #333 !important; }
+body.dark-mode .indexer-toggle:hover    { background-color: #2a2a2a !important; }
+body.dark-mode .indexer-list            { color: #c8c8c8 !important; border-top-color: #333 !important; }
+
+body.dark-mode .ds-empty                { background-color: #1e1e1e !important; border-color: #444 !important; color: #999 !important; }
+
+/* ── Page title band ── */
+.page-title-band {
+    background-color: var(--navy);
+    padding: 44px 50px;
+    text-align: center;
+}
+.page-title-band h1 {
+    margin: 0 0 10px 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2.25rem;
+    font-weight: normal;
+    line-height: 1.2;
+    color: #ffffff;
+}
+.page-title-band p.hero-subtitle {
+    margin: 0 auto;
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 620px;
+    line-height: 1.6;
+}
+
+/* ── Page body ── */
+.rd-body-wrap {
+    background-color: var(--ecru);
+    flex: 1;
+}
+.rd-body-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+/* ── Sidebar wrapper ── */
+.rd-sidebar {
+    position: sticky;
+    top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.rd-sidebar-card {
+    background-color: var(--white);
+    border-left: 3px solid var(--navy);
+    border-radius: 0 6px 6px 0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    padding: 0 0 16px;
+    overflow: hidden;
+}
+.rd-sidebar-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--navy);
+    background-color: var(--cream);
+    padding: 12px 18px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    margin-bottom: 8px;
+}
+.rd-sidebar-card a {
+    display: block;
+    padding: 9px 18px 9px 15px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    border-left: 3px solid transparent;
+    transition: color 0.15s, background-color 0.15s;
+    line-height: 1.4;
+}
+.rd-sidebar-card a:hover { color: var(--navy); background-color: var(--ecru); }
+.rd-sidebar-card a.active { color: var(--navy); border-left-color: var(--navy); background-color: var(--ecru); }
+
+/* Donate sidebar */
+.rd-sidebar-donate {
+    background-color: var(--navy);
+    border-radius: 8px;
+    padding: 18px 18px 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.rd-sidebar-donate p {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.55;
+    margin: 0 0 12px 0;
+}
+.rd-btn-donate-full {
+    display: block;
+    background-color: var(--sage);
+    color: #ffffff;
+    padding: 11px 18px;
+    border-radius: 6px;
+    font-size: 0.8125rem;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    transition: filter 0.15s, transform 0.15s;
+}
+.rd-btn-donate-full:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    color: #ffffff;
+    text-decoration: none;
+}
+body.dark-mode .rd-btn-donate-full        { background-color: #a8b361; color: #121212; }
+body.dark-mode .rd-btn-donate-full:hover  { color: #121212; }
+
+/* ── Section heading ── */
+.section-heading {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--navy);
+    margin-bottom: 8px;
+}
+.green-accent-line {
+    width: 40px;
+    height: 3px;
+    background-color: var(--sage);
+    margin-bottom: 20px;
+    border-radius: 1px;
+}
+
+/* ── Search & filter bar ── */
+.filter-bar {
+    background-color: var(--white);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+.search-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 0.875rem;
+}
+.search-input {
+    flex: 1;
+    background-color: var(--white);
+    border: 1.5px solid rgba(0,0,0,0.15);
+    border-radius: 6px;
+    padding: 11px 14px;
+    font-size: 0.9375rem;
+    font-family: inherit;
+    color: var(--charcoal);
+    transition: border-color 0.15s;
+}
+.search-input:focus {
+    outline: none;
+    border-color: var(--navy);
+}
+.search-clear {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 0.8125rem;
+    cursor: pointer;
+    padding: 6px 12px;
+    font-family: inherit;
+    text-decoration: underline dotted;
+    text-underline-offset: 2px;
+}
+.search-clear:hover { color: var(--navy); }
+.search-clear:focus-visible { outline: 2px solid var(--sage); outline-offset: 2px; }
+
+.search-help {
+    display: block;
+    font-size: 0.75rem;
+    color: #777;
+    line-height: 1.5;
+    margin-bottom: 0.875rem;
+}
+
+.filter-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-top: 0.875rem;
+    border-top: 1px solid rgba(0,0,0,0.06);
+}
+.filter-label {
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #666;
+    flex-shrink: 0;
+    margin-right: 4px;
+}
+.filter-chip {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--white);
+    color: var(--charcoal);
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 999px;
+    padding: 5px 13px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.12s, border-color 0.12s, color 0.12s;
+    font-family: inherit;
+    margin-right: 4px;
+}
+.filter-chip:hover {
+    background-color: var(--ecru);
+    border-color: var(--navy);
+}
+.filter-chip.active {
+    background-color: var(--navy);
+    color: #ffffff;
+    border-color: var(--navy);
+}
+.filter-chip:focus-visible { outline: 2px solid var(--sage); outline-offset: 2px; }
+
+.results-count {
+    font-size: 0.8125rem;
+    color: #666;
+    margin-left: auto;
+}
+
+/* ── Town card (one per spreadsheet row) ── */
+.town-card {
+    background-color: var(--white);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    margin-bottom: 0.75rem;
+    padding: 1.125rem 1.375rem;
+    transition: box-shadow 0.15s;
+}
+.town-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.07); }
+
+.town-card-head {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    margin-bottom: 10px;
+}
+.town-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.0625rem;
+    font-weight: bold;
+    color: var(--navy);
+    margin: 0;
+    line-height: 1.25;
+}
+.record-badge {
+    display: inline-block;
+    background-color: var(--sage);
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    line-height: 1.4;
+}
+
+.town-meta-label {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #888;
+    margin-bottom: 6px;
+    margin-right: 8px;
+}
+
+/* Year pills (verbatim ranges) */
+.years-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 8px;
+}
+.year-pill {
+    display: inline-block;
+    background-color: var(--cream);
+    color: var(--charcoal);
+    font-size: 0.75rem;
+    padding: 2px 9px;
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,0.08);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.5;
+}
+
+/* Indexer accordion */
+.indexer-block {
+    margin-top: 6px;
+}
+.indexer-toggle {
+    background: none;
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 4px;
+    color: var(--navy);
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 4px 11px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background-color 0.12s, border-color 0.12s;
+}
+.indexer-toggle:hover {
+    background-color: var(--ecru);
+    border-color: var(--navy);
+}
+.indexer-toggle:focus-visible { outline: 2px solid var(--sage); outline-offset: 2px; }
+.indexer-toggle .chev {
+    font-size: 0.625rem;
+    transition: transform 0.2s;
+}
+.indexer-toggle[aria-expanded="true"] .chev { transform: rotate(180deg); }
+.indexer-list {
+    display: none;
+    font-size: 0.8125rem;
+    line-height: 1.65;
+    color: var(--charcoal);
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+}
+.indexer-list.is-open { display: block; }
+
+/* Empty state */
+.ds-empty {
+    background-color: var(--white);
+    border: 1px dashed rgba(0,0,0,0.12);
+    border-radius: 8px;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 800px) {
+    .rd-body-inner   { grid-template-columns: 1fr; padding: 1.5rem 1rem; gap: 1.5rem; }
+    .rd-sidebar      { position: static; }
+    .rd-sidebar-card { display: flex; flex-wrap: wrap; border-left: none; border-top: 3px solid var(--navy); border-radius: 6px; padding: 0; }
+    .rd-sidebar-label { width: 100%; flex: 1 0 100%; margin-bottom: 0; }
+    .rd-sidebar-card a { padding: 8px 14px; flex: 1 0 auto; text-align: center; border-left: none; border-bottom: 3px solid transparent; }
+    .rd-sidebar-card a.active { border-left: none; border-bottom-color: var(--navy); }
+    .page-title-band { padding: 36px 24px; }
+    .filter-row      { padding-top: 0.625rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="site-header"></div>
+
+<!-- TITLE BAND -->
+<div class="page-title-band" role="banner">
+    <h1>Subcarpathian Indexed Vital Records</h1>
+    <p class="hero-subtitle">Browse and search records the Sub-Carpathia Research Division has indexed by town. Phonetic matching supports the many spelling variations of these town names.</p>
+</div>
+
+<!-- PAGE BODY -->
+<div class="rd-body-wrap">
+    <div class="rd-body-inner">
+
+        <!-- Sidebar -->
+        <aside class="rd-sidebar">
+            <nav class="rd-sidebar-card" aria-label="Sub-Carpathia Research Division navigation">
+                <span class="rd-sidebar-label">Sub-Carpathia</span>
+                <a href="/JG40-Build/RD/SubCarpathia/index.html">About</a>
+                <a href="/JG40-Build/RD/SubCarpathia/databases.html">Databases</a>
+                <a href="/JG40-Build/RD/SubCarpathia/towns.html" class="active" aria-current="page">Towns Indexed</a>
+                <a href="/JG40-Build/RD/SubCarpathia/fundraising.html">Funding</a>
+            </nav>
+
+            <div class="rd-sidebar-donate">
+                <p>Help us preserve Sub-Carpathian Jewish history by indexing rare records and making them widely accessible.</p>
+                <a href="/JG40-Build/RD/SubCarpathia/fundraising.html" class="rd-btn-donate-full">Donate Now</a>
+            </div>
+        </aside>
+
+        <!-- Main content -->
+        <main>
+            <span class="section-heading">Search Indexed Towns</span>
+            <div class="green-accent-line"></div>
+
+            <!-- Search + filter bar -->
+            <div class="filter-bar">
+                <div class="search-row">
+                    <input type="search"
+                           id="townSearch"
+                           class="search-input"
+                           placeholder="Search by town name (e.g. Munkacs, Munkács, Munkatch)"
+                           aria-label="Search by town name">
+                    <button type="button" id="searchClear" class="search-clear">Clear</button>
+                </div>
+                <span class="search-help">Phonetic search uses Daitch-Mokotoff Soundex &mdash; spelling variations are matched automatically.</span>
+
+                <div class="filter-row">
+                    <span class="filter-label">Record Type</span>
+                    <div id="recordTypeFilters" role="group" aria-label="Filter by record type"></div>
+                    <span class="results-count" id="resultsCount" aria-live="polite"></span>
+                </div>
+            </div>
+
+            <!-- Card list -->
+            <div id="townList" aria-label="Indexed towns list"></div>
+
+        </main>
+
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div id="site-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function loadComponent(id, file) {
+    return fetch(file)
+        .then(function(r) { if (!r.ok) throw new Error('Could not load ' + file); return r.text(); })
+        .then(function(html) { document.getElementById(id).innerHTML = html; })
+        .catch(function(err) { console.warn(err); });
+}
+
+Promise.all([
+    loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
+    loadComponent('site-footer', '/JG40-Build/Footer.html')
+]).then(function() {
+    document.querySelectorAll('.jg-nav .dropbtn, .main-nav .dropbtn').forEach(function(btn) {
+        btn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                var menu = this.nextElementSibling;
+                if (menu) menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            }
+            if (e.key === 'Escape') {
+                var menu = this.nextElementSibling;
+                if (menu) menu.style.display = 'none';
+            }
+        });
+    });
+});
+
+/* =====================================================================
+   DAITCH-MOKOTOFF SOUNDEX (DM Soundex)
+   Compact implementation. Returns an array of 6-digit codes per word.
+   Reference: https://www.jewishgen.org/InfoFiles/soundex.html
+   ===================================================================== */
+var DMSoundex = (function() {
+
+    /* Each rule: pattern (regex string at start of remaining word), then
+       three codes for [start-of-word, before-vowel, any-other], where ''
+       means skip (no code emitted), and a number is the code digit.       */
+    var RULES = [
+        ['SCHTSCH', '2', '4', '4'], ['SCHTSH',  '2', '4', '4'], ['SCHTCH',  '2', '4', '4'],
+        ['SHTCH',   '2', '4', '4'], ['SHCH',    '2', '4', '4'], ['SHTSH',   '2', '4', '4'],
+        ['STCH',    '2', '4', '4'], ['STSCH',   '2', '4', '4'], ['STSH',    '2', '4', '4'],
+        ['SCH',     '4', '4', '4'], ['SHT',     '2', '43', '43'], ['SCHT', '2', '43', '43'],
+        ['SCHD',    '2', '43', '43'], ['SH',    '4', '4', '4'],
+        ['STRZ',    '2', '4', '4'], ['STRS',    '2', '4', '4'], ['STSH', '2', '4', '4'],
+        ['ST',      '2', '43', '43'], ['SZCZ', '2', '4', '4'], ['SZCS', '2', '4', '4'],
+        ['SZT',     '2', '43', '43'], ['SHD',  '2', '43', '43'], ['SZD', '2', '43', '43'],
+        ['SD',      '2', '43', '43'],
+        ['CSZ',     '4', '4', '4'], ['CZS',  '4', '4', '4'], ['CS',   '4', '4', '4'],
+        ['CZ',      '4', '4', '4'], ['CSH',  '4', '4', '4'], ['CH',   ['5', '4'], ['5', '4'], ['5', '4']],
+        ['CK',      ['5', '45'], ['5', '45'], ['5', '45']],
+        ['DRZ',     '4', '4', '4'], ['DRS',  '4', '4', '4'], ['DSH',  '4', '4', '4'],
+        ['DS',      '4', '4', '4'], ['DZH',  '4', '4', '4'], ['DZS',  '4', '4', '4'],
+        ['DZ',      '4', '4', '4'], ['DT',  '3', '3', '3'],  ['DD', '3', '3', '3'],
+        ['ZHDZH',   '2', '4', '4'], ['ZDZH', '2', '4', '4'],
+        ['ZDZ',     '2', '4', '4'], ['ZHD',  '2', '43', '43'], ['ZD',  '2', '43', '43'],
+        ['ZH',      '4', '4', '4'], ['ZS',  '4', '4', '4'], ['ZSCH', '4', '4', '4'],
+        ['ZSH',     '4', '4', '4'],
+        ['TCH',     '4', '4', '4'], ['TTCH', '4', '4', '4'], ['TTSCH','4', '4', '4'],
+        ['TH',      '3', '3', '3'], ['TRZ',  '4', '4', '4'], ['TRS',  '4', '4', '4'],
+        ['TSCH',    '4', '4', '4'], ['TSH',  '4', '4', '4'], ['TS',   '4', '4', '4'],
+        ['TTS',     '4', '4', '4'], ['TTSZ', '4', '4', '4'], ['TC',   '4', '4', '4'],
+        ['TTZ',     '4', '4', '4'], ['TZS',  '4', '4', '4'], ['TSZ',  '4', '4', '4'],
+        ['TT',      '3', '3', '3'], ['TZ',   '4', '4', '4'],
+        ['CHS',     '5', '54', '54'], ['CK',  ['5', '45'], ['5', '45'], ['5', '45']],
+        ['KH',      '5', '5', '5'], ['KS',  '5', '54', '54'],
+        ['PF',      '7', '7', '7'], ['PH',  '7', '7', '7'],
+        ['PS',      ['7', '4'], ['7', '4'], ['7', '4']],
+        ['RZ',      ['94', '4'], ['94', '4'], ['94', '4']],
+        ['RS',      ['94', '4'], ['94', '4'], ['94', '4']],
+        ['A',       '0', '', ''], ['E', '0', '', ''], ['I', '0', '', ''],
+        ['O',       '0', '', ''], ['U', '0', '', ''], ['Y', '1', '', ''],
+        ['J',       ['1', '4'], ['', '4'], ['', '4']],
+        ['B',       '7', '7', '7'], ['D', '3', '3', '3'], ['F', '7', '7', '7'],
+        ['G',       '5', '5', '5'], ['H', '5', '5', ''], ['K', '5', '5', '5'],
+        ['L',       '8', '8', '8'], ['M', '6', '6', '6'], ['N', '6', '6', '6'],
+        ['P',       '7', '7', '7'], ['Q', '5', '5', '5'], ['R', '9', '9', '9'],
+        ['S',       '4', '4', '4'], ['T', '3', '3', '3'], ['V', '7', '7', '7'],
+        ['W',       '7', '7', '7'], ['X', '5', '54', '54'], ['Z', '4', '4', '4'],
+        ['C',       ['5', '4'], ['5', '4'], ['5', '4']]
+    ];
+
+    var VOWELS = 'AEIOUY';
+
+    function normalize(s) {
+        if (!s) return '';
+        // Decompose accents and strip combining marks
+        s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        // Uppercase and remove anything that's not A-Z
+        return s.toUpperCase().replace(/[^A-Z]/g, '');
+    }
+
+    /* Return all 6-digit DM codes for a single normalized word.
+       Encodes ambiguity by branching on multi-value rule outcomes.        */
+    function codeWord(word) {
+        word = normalize(word);
+        if (!word) return [];
+
+        // Run with branching for alternate codings.
+        var paths = [{ remaining: word, code: '', prevCode: null, atStart: true }];
+        var results = [];
+        var safety = 0;
+        while (paths.length && safety++ < 5000) {
+            var p = paths.shift();
+            if (!p.remaining) {
+                results.push((p.code + '000000').substring(0, 6));
+                continue;
+            }
+
+            var matched = false;
+            for (var i = 0; i < RULES.length; i++) {
+                var pat = RULES[i][0];
+                if (p.remaining.indexOf(pat) === 0) {
+                    var rest    = p.remaining.substring(pat.length);
+                    var nextCh  = rest.charAt(0);
+                    var beforeVowel = VOWELS.indexOf(nextCh) !== -1;
+                    var slot;
+                    if (p.atStart)         slot = RULES[i][1];
+                    else if (beforeVowel)  slot = RULES[i][2];
+                    else                   slot = RULES[i][3];
+
+                    var slots = Array.isArray(slot) ? slot : [slot];
+                    for (var j = 0; j < slots.length; j++) {
+                        var emit = slots[j];
+                        // Don't repeat the same code consecutively
+                        var newCode = p.code;
+                        if (emit !== '' && emit !== p.prevCode) newCode += emit;
+                        var newPrev = (emit === '') ? p.prevCode : emit;
+                        paths.push({
+                            remaining: rest,
+                            code:      newCode,
+                            prevCode:  newPrev,
+                            atStart:   false
+                        });
+                    }
+                    matched = true;
+                    break;
+                }
+            }
+            if (!matched) {
+                // Skip unknown character
+                paths.push({
+                    remaining: p.remaining.substring(1),
+                    code:      p.code,
+                    prevCode:  p.prevCode,
+                    atStart:   false
+                });
+            }
+        }
+        // Dedupe
+        var seen = {};
+        var unique = [];
+        for (var k = 0; k < results.length; k++) {
+            if (!seen[results[k]]) {
+                seen[results[k]] = true;
+                unique.push(results[k]);
+            }
+        }
+        return unique;
+    }
+
+    /* Encode a phrase: any-word match. Returns flattened set of codes. */
+    function code(text) {
+        var words = (text || '').split(/\s+/).filter(Boolean);
+        var all = [];
+        words.forEach(function(w) {
+            codeWord(w).forEach(function(c) { all.push(c); });
+        });
+        return all;
+    }
+
+    /* Match: any code overlap between query and target. */
+    function matches(query, target) {
+        var q = code(query);
+        var t = code(target);
+        if (!q.length || !t.length) return false;
+        for (var i = 0; i < q.length; i++) {
+            if (t.indexOf(q[i]) !== -1) return true;
+        }
+        return false;
+    }
+
+    return { code: code, matches: matches, normalize: normalize };
+})();
+
+/* =====================================================================
+   TOWNS PAGE: load JSON, render filterable cards with phonetic search
+   ===================================================================== */
+(function() {
+    var DATA_URL = '/JG40-Build/RD/SubCarpathia/Towns.json';
+
+    var RECORD_BUCKETS = [
+        { id: 'births',    label: 'Births',    match: 'births' },
+        { id: 'deaths',    label: 'Deaths',    match: 'deaths' },
+        { id: 'marriages', label: 'Marriages', match: 'marriages' },
+        { id: 'census',    label: 'Census',    match: 'Census' }
+    ];
+
+    var state = {
+        rows:           [],
+        searchQuery:    '',
+        searchCodes:    [],
+        normalizedSubstr: '',
+        activeBuckets:  new Set(),
+        townCodeCache:  new Map() // town -> array of DM codes
+    };
+
+    function escapeHtml(str) {
+        if (str === null || str === undefined) return '';
+        return String(str)
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+    function titleCaseRecordType(rt) {
+        if (!rt) return '';
+        return rt.charAt(0).toUpperCase() + rt.slice(1).toLowerCase();
+    }
+
+    /* Cache DM codes per town to keep filtering fast over many keystrokes. */
+    function townCodes(town) {
+        if (!state.townCodeCache.has(town)) {
+            state.townCodeCache.set(town, DMSoundex.code(town));
+        }
+        return state.townCodeCache.get(town);
+    }
+
+    function rowMatchesSearch(row) {
+        if (!state.searchQuery) return true;
+        var townLower = (row.town || '').toLowerCase();
+        // Substring match on normalized form first (fast, intuitive)
+        if (state.normalizedSubstr && DMSoundex.normalize(row.town).indexOf(state.normalizedSubstr) !== -1) {
+            return true;
+        }
+        if (townLower.indexOf(state.searchQuery.toLowerCase()) !== -1) return true;
+        // Phonetic match
+        if (state.searchCodes.length) {
+            var tCodes = townCodes(row.town);
+            for (var i = 0; i < state.searchCodes.length; i++) {
+                if (tCodes.indexOf(state.searchCodes[i]) !== -1) return true;
+            }
+        }
+        return false;
+    }
+
+    function rowMatchesBucket(row) {
+        if (state.activeBuckets.size === 0) return true;
+        return state.activeBuckets.has((row.recordType || '').toLowerCase()) ||
+               state.activeBuckets.has(row.recordType);
+    }
+
+    function buildCard(row, idx) {
+        var indexers = row.indexers || [];
+        var years    = row.years    || [];
+        var rtLabel  = titleCaseRecordType(row.recordType);
+
+        var yearsHtml = years.length
+            ? years.map(function(y) {
+                  return '<span class="year-pill">' + escapeHtml(y) + '</span>';
+              }).join('')
+            : '<span class="year-pill" style="opacity:0.6;">No years recorded</span>';
+
+        var indexerHtml = '';
+        if (indexers.length) {
+            var listId = 'idxlist-' + idx;
+            indexerHtml =
+                '<div class="indexer-block">' +
+                    '<button type="button" class="indexer-toggle" aria-expanded="false" aria-controls="' + listId + '">' +
+                        'Indexers (' + indexers.length + ')' +
+                        '<span class="chev" aria-hidden="true">&#9662;</span>' +
+                    '</button>' +
+                    '<div class="indexer-list" id="' + listId + '" role="region">' +
+                        indexers.map(escapeHtml).join(', ') +
+                    '</div>' +
+                '</div>';
+        }
+
+        return '' +
+            '<article class="town-card">' +
+                '<div class="town-card-head">' +
+                    '<h3 class="town-name">' + escapeHtml(row.town) + '</h3>' +
+                    '<span class="record-badge">' + escapeHtml(rtLabel) + '</span>' +
+                '</div>' +
+                '<span class="town-meta-label">Years Indexed</span>' +
+                '<div class="years-row">' + yearsHtml + '</div>' +
+                indexerHtml +
+            '</article>';
+    }
+
+    function wireIndexerToggles(container) {
+        container.querySelectorAll('.indexer-toggle').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var open = btn.getAttribute('aria-expanded') === 'true';
+                btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+                var list = document.getElementById(btn.getAttribute('aria-controls'));
+                if (list) list.classList.toggle('is-open', !open);
+            });
+        });
+    }
+
+    function applyFilters() {
+        return state.rows.filter(function(r) {
+            return rowMatchesBucket(r) && rowMatchesSearch(r);
+        });
+    }
+
+    /* Sort: by town name alphabetically, then by record type. */
+    function applySort(list) {
+        var copy = list.slice();
+        var typeOrder = { 'births': 1, 'deaths': 2, 'marriages': 3, 'Census': 4 };
+        copy.sort(function(a, b) {
+            var byTown = (a.town || '').localeCompare(b.town || '');
+            if (byTown !== 0) return byTown;
+            return (typeOrder[a.recordType] || 99) - (typeOrder[b.recordType] || 99);
+        });
+        return copy;
+    }
+
+    function render() {
+        var filtered = applyFilters();
+        var sorted   = applySort(filtered);
+        var container = document.getElementById('townList');
+
+        if (sorted.length === 0) {
+            container.innerHTML = '<div class="ds-empty">No towns match your search. Try a phonetic spelling, or clear filters.</div>';
+        } else {
+            container.innerHTML = sorted.map(buildCard).join('');
+            wireIndexerToggles(container);
+        }
+
+        var rc = document.getElementById('resultsCount');
+        if (rc) rc.textContent = sorted.length + ' of ' + state.rows.length + ' records';
+    }
+
+    function renderFilterChips() {
+        var wrap = document.getElementById('recordTypeFilters');
+        var html = '<button type="button" class="filter-chip ' +
+                   (state.activeBuckets.size === 0 ? 'active' : '') +
+                   '" data-bucket="__all">All</button> ';
+        RECORD_BUCKETS.forEach(function(b) {
+            html += '<button type="button" class="filter-chip ' +
+                    (state.activeBuckets.has(b.match) ? 'active' : '') +
+                    '" data-bucket="' + b.match + '">' + b.label + '</button> ';
+        });
+        wrap.innerHTML = html;
+        wrap.querySelectorAll('.filter-chip').forEach(function(chip) {
+            chip.addEventListener('click', function() {
+                var bucket = chip.getAttribute('data-bucket');
+                if (bucket === '__all') {
+                    state.activeBuckets.clear();
+                } else {
+                    if (state.activeBuckets.has(bucket)) state.activeBuckets.delete(bucket);
+                    else state.activeBuckets.add(bucket);
+                }
+                renderFilterChips();
+                render();
+            });
+        });
+    }
+
+    /* ---- Wire search box ---- */
+    function wireSearch() {
+        var input = document.getElementById('townSearch');
+        var clear = document.getElementById('searchClear');
+
+        var debounceTimer;
+        input.addEventListener('input', function() {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(function() {
+                state.searchQuery      = input.value.trim();
+                state.normalizedSubstr = DMSoundex.normalize(state.searchQuery);
+                state.searchCodes      = state.searchQuery ? DMSoundex.code(state.searchQuery) : [];
+                render();
+            }, 120);
+        });
+
+        clear.addEventListener('click', function() {
+            input.value = '';
+            state.searchQuery = '';
+            state.normalizedSubstr = '';
+            state.searchCodes = [];
+            render();
+            input.focus();
+        });
+    }
+
+    /* ---- Boot ---- */
+    fetch(DATA_URL)
+        .then(function(r) {
+            if (!r.ok) throw new Error('Failed to load town data: ' + r.status);
+            return r.json();
+        })
+        .then(function(data) {
+            state.rows = Array.isArray(data) ? data : [];
+            renderFilterChips();
+            wireSearch();
+            render();
+        })
+        .catch(function(err) {
+            console.error(err);
+            var container = document.getElementById('townList');
+            if (container) {
+                container.innerHTML = '<div class="ds-empty">Town index could not be loaded. Please try again later.</div>';
+            }
+        });
+})();
+</script>
+
+</body>
+</html>

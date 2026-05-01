@@ -1,0 +1,7038 @@
+[
+  {
+    "town": "Also Apsa",
+    "recordType": "births",
+    "indexers": [
+      "Joel Meisels",
+      "Lara Diamond",
+      "Sally Bruckheimer",
+      "Julie Weisman",
+      "Robin Thomas",
+      "Kamil Buchler",
+      "David Ari Klein",
+      "Nicolas Tondre",
+      "Rhoda Miller"
+    ],
+    "years": [
+      "1895-1898",
+      "1898-1900",
+      "1900-1902",
+      "1902-1904",
+      "1904-1906",
+      "1906",
+      "1907-1912",
+      "1912-1917",
+      "1918-1923",
+      "1924-1927",
+      "1927-1931",
+      "1932-1934",
+      "1934-1936",
+      "1936-1938",
+      "1938-1939",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Also Apsa",
+    "recordType": "deaths",
+    "indexers": [
+      "Debbi Korman",
+      "Joel Meisels",
+      "Shari Nilsen",
+      "Judy Peterson",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1899",
+      "1899-1902",
+      "1902-1905",
+      "1905-1906",
+      "1907-1915",
+      "1915-1923",
+      "1923-1928",
+      "1929-1935",
+      "1935-1939",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Also Apsa",
+    "recordType": "marriages",
+    "indexers": [
+      "David Ari Klein",
+      "Israel Pickholtz",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1901",
+      "1901-1906",
+      "1906-1906",
+      "1907-1921",
+      "1921-1928",
+      "1929-1935",
+      "1935-1939",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Also Vereczke",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1898",
+      "1898-1899",
+      "1899-1904"
+    ]
+  },
+  {
+    "town": "Also Vereczke",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1902",
+      "1899-1902",
+      "1905-1906"
+    ]
+  },
+  {
+    "town": "Also Vereczke",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1906",
+      "1906",
+      "1907-1913",
+      "1929-1938"
+    ]
+  },
+  {
+    "town": "Astely",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1918"
+    ]
+  },
+  {
+    "town": "Baia Mare",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1919-1921"
+    ]
+  },
+  {
+    "town": "Barabas",
+    "recordType": "births",
+    "indexers": [
+      "Susan Shaman",
+      "Lara Diamond",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1898",
+      "1899-1901",
+      "1902-1905",
+      "1907-1911",
+      "1912-1943"
+    ]
+  },
+  {
+    "town": "Barabas",
+    "recordType": "deaths",
+    "indexers": [
+      "Susan Shaman"
+    ],
+    "years": [
+      "1900-1906",
+      "1905-1909"
+    ]
+  },
+  {
+    "town": "Barsana",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1898",
+      "1899-1901",
+      "1902-1904",
+      "1905-1906",
+      "1906-1920"
+    ]
+  },
+  {
+    "town": "Barsana",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1900",
+      "1901-1903",
+      "1904-1906",
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Barsana",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1903",
+      "1904-1921"
+    ]
+  },
+  {
+    "town": "Bat'ovo",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1933-1939",
+      "1940-1943"
+    ]
+  },
+  {
+    "town": "Bat'ovo",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1925-1943"
+    ]
+  },
+  {
+    "town": "Bat'ovo",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1934-1943"
+    ]
+  },
+  {
+    "town": "Batrad",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1880-1889",
+      "1891-1893"
+    ]
+  },
+  {
+    "town": "Batrad",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1880-1889",
+      "1891-1893"
+    ]
+  },
+  {
+    "town": "Batrad",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1880-1889",
+      "1891-1893"
+    ]
+  },
+  {
+    "town": "Bedevlya",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Kamil Buchler"
+    ],
+    "years": [
+      "1907-1918",
+      "1918-1928",
+      "1928-1935",
+      "1935-1940",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Bedevlya",
+    "recordType": "deaths",
+    "indexers": [
+      "Kamil Buchler",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1923",
+      "1923-1937",
+      "1937-1940",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Bedevlya",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1929",
+      "1930-1940",
+      "1939-1945"
+    ]
+  },
+  {
+    "town": "Bene",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1937-1943"
+    ]
+  },
+  {
+    "town": "Bene",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1934-1943"
+    ]
+  },
+  {
+    "town": "Bene",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1918"
+    ]
+  },
+  {
+    "town": "Benedykivtsi",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg",
+      "Henry Schwartz"
+    ],
+    "years": [
+      "1863-1869",
+      "1870-1885",
+      "1886-1895"
+    ]
+  },
+  {
+    "town": "Benedykivtsi",
+    "recordType": "deaths",
+    "indexers": [
+      "Alex Revai"
+    ],
+    "years": [
+      "1886-1895"
+    ]
+  },
+  {
+    "town": "Benedykivtsi",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1886-1896"
+    ]
+  },
+  {
+    "town": "Berbesti",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1914-1921"
+    ]
+  },
+  {
+    "town": "Bereg District",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1863-1868"
+    ]
+  },
+  {
+    "town": "Beregszasz",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg",
+      "Debbi Korman",
+      "Risa Becker",
+      "Sally Bruckheimer",
+      "Rhoda Miller"
+    ],
+    "years": [
+      "1868-1892",
+      "1886-1893",
+      "1895-1897",
+      "1897-1898",
+      "1898-1899",
+      "1899-1901",
+      "1901-1902",
+      "1902-1903",
+      "1904-1905"
+    ]
+  },
+  {
+    "town": "Beregszasz",
+    "recordType": "deaths",
+    "indexers": [
+      "Ari Maidenberg",
+      "Susan Shaman",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1868-1892",
+      "1886-1893",
+      "1895-1897",
+      "1897-1899",
+      "1943-1945"
+    ]
+  },
+  {
+    "town": "Beregszasz",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1868-1892"
+    ]
+  },
+  {
+    "town": "Bereguyfalu",
+    "recordType": "births",
+    "indexers": [
+      "Max Preston",
+      "Sally Bruckheimer",
+      "Debbi Korman",
+      "Risa Becker",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1899",
+      "1899-1903",
+      "1903-1906",
+      "1907-1925",
+      "1926-1938",
+      "1929-1935"
+    ]
+  },
+  {
+    "town": "Bereguyfalu",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond",
+      "Risa Becker"
+    ],
+    "years": [
+      "1895-1901",
+      "1901-1906",
+      "1907-1925",
+      "1926-1939",
+      "1933-1941"
+    ]
+  },
+  {
+    "town": "Bereguyfalu",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1906",
+      "1907-1925",
+      "1926-1939"
+    ]
+  },
+  {
+    "town": "Berehi",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1937-1938"
+    ]
+  },
+  {
+    "town": "Berehi",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1935-1937"
+    ]
+  },
+  {
+    "town": "Berehove",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Alex Revai",
+      "Debbi Korman"
+    ],
+    "years": [
+      "1851-1877",
+      "1877-1885",
+      "1885",
+      "1895-1904"
+    ]
+  },
+  {
+    "town": "Berehove",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond",
+      "Alex Revai"
+    ],
+    "years": [
+      "1851-1877",
+      "1877-1885",
+      "1897",
+      "1935",
+      "1937-1945",
+      "1942-1945"
+    ]
+  },
+  {
+    "town": "Berehove",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond",
+      "Alex Revai"
+    ],
+    "years": [
+      "1851-1877",
+      "1877-1885",
+      "1890-1894",
+      "1937-1945"
+    ]
+  },
+  {
+    "town": "Berezna",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1886"
+    ]
+  },
+  {
+    "town": "Berezna",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1886"
+    ]
+  },
+  {
+    "town": "Bereznik",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1886"
+    ]
+  },
+  {
+    "town": "Bilky",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg",
+      "Debbi Korman",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1898",
+      "1899-1902",
+      "1902-1904",
+      "1905-1906",
+      "1907-1915",
+      "1924-1928",
+      "1929-1932",
+      "1931-1934",
+      "1934-1936",
+      "1936-1938",
+      "1937-1940",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Bilky",
+    "recordType": "deaths",
+    "indexers": [
+      "Ari Maidenberg",
+      "Lara Diamond",
+      "Risa Becker",
+      "Marsha Shapiro"
+    ],
+    "years": [
+      "1895-1900",
+      "1900-1905",
+      "1905-1906",
+      "1907-1921",
+      "1921-1928",
+      "1929-1935",
+      "1935-1939"
+    ]
+  },
+  {
+    "town": "Bilky",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg",
+      "Lara Diamond",
+      "Marsha Shapiro",
+      "Debbi Korman",
+      "Risa Becker"
+    ],
+    "years": [
+      "1895-1902",
+      "1903-1906",
+      "1907-1925",
+      "1926-1932",
+      "1932-1938",
+      "1938-1945"
+    ]
+  },
+  {
+    "town": "Bistra de Jos",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1886"
+    ]
+  },
+  {
+    "town": "Bocicoiul Mare",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Maramaros"
+    ],
+    "years": [
+      "1895-1897",
+      "1898-1899",
+      "1900-1901",
+      "1902-1903",
+      "1904-1906",
+      "1907-1911",
+      "1912-1921"
+    ]
+  },
+  {
+    "town": "Bocicoiul Mare",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond",
+      "Maramaros"
+    ],
+    "years": [
+      "1895-1899",
+      "1900-1902",
+      "1903-1906",
+      "1907-1913"
+    ]
+  },
+  {
+    "town": "Bocicoiul Mare",
+    "recordType": "marriages",
+    "indexers": [
+      "Maramaros"
+    ],
+    "years": [
+      "1895-1900"
+    ]
+  },
+  {
+    "town": "Bogdan Voda",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Bogdan Voda",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Bogdan Voda",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Bogdan Vodă",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1900",
+      "1901-1903",
+      "1904-1906"
+    ]
+  },
+  {
+    "town": "Bogdan Vodă",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1902",
+      "1903-1906"
+    ]
+  },
+  {
+    "town": "Bogdan Vodă",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1897-1906"
+    ]
+  },
+  {
+    "town": "Bohdan",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1900",
+      "1900-1904",
+      "1904-1906",
+      "1907-1921",
+      "1921-1926",
+      "1927-1932",
+      "1933-1937",
+      "1938-1942",
+      "1942-1945"
+    ]
+  },
+  {
+    "town": "Bohdan",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1903",
+      "1903-1906",
+      "1907-1926",
+      "1926-1940",
+      "1940-1943"
+    ]
+  },
+  {
+    "town": "Bohdan",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1906",
+      "1907-1926",
+      "1927-1941",
+      "1941-1945"
+    ]
+  },
+  {
+    "town": "Borsa",
+    "recordType": "births",
+    "indexers": [
+      "Maramaros",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1896",
+      "1898",
+      "1901",
+      "1903",
+      "1904",
+      "1905",
+      "1906",
+      "1907-1910",
+      "1910-1914",
+      "1915-1921"
+    ]
+  },
+  {
+    "town": "Borsa",
+    "recordType": "deaths",
+    "indexers": [
+      "Maramaros",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1897",
+      "1902-1903",
+      "1904-1906",
+      "1907-1915",
+      "1916-1921"
+    ]
+  },
+  {
+    "town": "Borsa",
+    "recordType": "marriages",
+    "indexers": [
+      "Maramaros",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1900-1904",
+      "1905-1920"
+    ]
+  },
+  {
+    "town": "Botiza",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1901",
+      "1902-1906",
+      "1906-1921"
+    ]
+  },
+  {
+    "town": "Botiza",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1902"
+    ]
+  },
+  {
+    "town": "Botiza",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Botragy",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1902"
+    ]
+  },
+  {
+    "town": "Brod",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1890-1892"
+    ]
+  },
+  {
+    "town": "Brod",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1890-1892"
+    ]
+  },
+  {
+    "town": "Brod",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1890-1892"
+    ]
+  },
+  {
+    "town": "Budesti",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Maramaros"
+    ],
+    "years": [
+      "1895-1898",
+      "1899-1901",
+      "1902-1903",
+      "1904-1906",
+      "1907-1913",
+      "1913-1921"
+    ]
+  },
+  {
+    "town": "Budesti",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond",
+      "Maramaros"
+    ],
+    "years": [
+      "1895-1900",
+      "1901-1906",
+      "1907-1916"
+    ]
+  },
+  {
+    "town": "Budesti",
+    "recordType": "marriages",
+    "indexers": [
+      "Maramaros",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1902",
+      "1903-1913"
+    ]
+  },
+  {
+    "town": "Bushtyna",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Debbi Korman",
+      "Risa Becker",
+      "Max Preston"
+    ],
+    "years": [
+      "1895-1897",
+      "1897-1900",
+      "1900-1902",
+      "1902-1905",
+      "1905-1906",
+      "1907-1917",
+      "1917-1927",
+      "1927-1933",
+      "1933-1938",
+      "1938-1942",
+      "1942-1945"
+    ]
+  },
+  {
+    "town": "Bushtyna",
+    "recordType": "deaths",
+    "indexers": [
+      "Robin Thomas",
+      "Shari Nilsen",
+      "Lara Diamond",
+      "Max Preston"
+    ],
+    "years": [
+      "1895-1898",
+      "1898-1901",
+      "1901-1905",
+      "1905-1906",
+      "1907-1922",
+      "1919-1933",
+      "1934-1943",
+      "1943-1945"
+    ]
+  },
+  {
+    "town": "Bushtyna",
+    "recordType": "marriages",
+    "indexers": [
+      "Beth Long",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1902",
+      "1902-1906",
+      "1907-1927",
+      "1928-1940"
+    ]
+  },
+  {
+    "town": "Calinesti",
+    "recordType": "births",
+    "indexers": [
+      "Maramaros",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1899",
+      "1900-1903",
+      "1904-1906",
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Calinesti",
+    "recordType": "deaths",
+    "indexers": [
+      "Maramaros"
+    ],
+    "years": [
+      "1895-1902",
+      "1903-1906"
+    ]
+  },
+  {
+    "town": "Calinesti",
+    "recordType": "marriages",
+    "indexers": [
+      "Maramaros",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1897-1906",
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Campulung la Tisa",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Câmpulung la Tisa",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1899",
+      "1900-1903",
+      "1904-1906"
+    ]
+  },
+  {
+    "town": "Câmpulung la Tisa",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1900",
+      "1901-1906"
+    ]
+  },
+  {
+    "town": "Câmpulung la Tisa",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1906"
+    ]
+  },
+  {
+    "town": "Chepa",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1901"
+    ]
+  },
+  {
+    "town": "Chinadievo",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Shari Nilsen",
+      "Joel Meisels",
+      "Kamil Buchler",
+      "Nicolas Tondre"
+    ],
+    "years": [
+      "1895-1898",
+      "1898-1902",
+      "1902-1905",
+      "1905-1906",
+      "1906",
+      "1906",
+      "1907-1917",
+      "1917-1922",
+      "1922-1926",
+      "1926-1931",
+      "1931-1936",
+      "1936-1939"
+    ]
+  },
+  {
+    "town": "Chinadievo",
+    "recordType": "deaths",
+    "indexers": [
+      "Sally Bruckheimer",
+      "Debbi Korman",
+      "Kamil Buchler",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1902",
+      "1902-1906",
+      "1907-1923",
+      "1923-1934",
+      "1935-1939"
+    ]
+  },
+  {
+    "town": "Chinadievo",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond",
+      "Risa Becker"
+    ],
+    "years": [
+      "1895-1906",
+      "1906",
+      "1907-1928",
+      "1927-1939"
+    ]
+  },
+  {
+    "town": "Chop",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1897",
+      "1895-1898",
+      "1898-1900",
+      "1898-1901",
+      "1901-1905",
+      "1905-1906",
+      "1908-1915",
+      "1917-1922",
+      "1922-1935",
+      "1935-1939",
+      "1939-1945"
+    ]
+  },
+  {
+    "town": "Chop",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1900",
+      "1900-1905",
+      "1905-1906",
+      "1907-1922",
+      "1939-1945"
+    ]
+  },
+  {
+    "town": "Chop",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1900",
+      "1895-1903",
+      "1901-1905",
+      "1903-1906",
+      "1907-1922",
+      "1923-1939",
+      "1939-1945"
+    ]
+  },
+  {
+    "town": "Ciolt",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1904-1921"
+    ]
+  },
+  {
+    "town": "Comlăușa",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1901"
+    ]
+  },
+  {
+    "town": "Craciunesti",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1876-1895"
+    ]
+  },
+  {
+    "town": "Crăciuneşti",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Maramaros"
+    ],
+    "years": [
+      "1895-1898",
+      "1899-1901",
+      "1902-1904",
+      "1905-1911",
+      "1912-1921"
+    ]
+  },
+  {
+    "town": "Crăciuneşti",
+    "recordType": "deaths",
+    "indexers": [
+      "Maramaros"
+    ],
+    "years": [
+      "1895-1901",
+      "1902-1906"
+    ]
+  },
+  {
+    "town": "Crăciuneşti",
+    "recordType": "marriages",
+    "indexers": [
+      "Maramaros",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1896-1906",
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Csaroda",
+    "recordType": "births",
+    "indexers": [
+      "Susan Shaman",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1903-1906",
+      "1938-1943"
+    ]
+  },
+  {
+    "town": "Csaroda",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1918",
+      "1900-1903",
+      "1904-1904",
+      "1905-1915"
+    ]
+  },
+  {
+    "town": "Csaroda",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1938-1943"
+    ]
+  },
+  {
+    "town": "Danylovo",
+    "recordType": "births",
+    "indexers": [
+      "Max Preston",
+      "Robin Thomas",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1899",
+      "1899-1903",
+      "1903-1906",
+      "1907-1920",
+      "1920-1927",
+      "1928-1935",
+      "1935-1940",
+      "1941-1947"
+    ]
+  },
+  {
+    "town": "Danylovo",
+    "recordType": "deaths",
+    "indexers": [
+      "Sally Bruckheimer",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1901",
+      "1901-1906",
+      "1907-1924",
+      "1925-1940",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Danylovo",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1906",
+      "1907-1924",
+      "1925-1940",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Davidkovo",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1864-1884"
+    ]
+  },
+  {
+    "town": "Davidkovo",
+    "recordType": "deaths",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1864-1884"
+    ]
+  },
+  {
+    "town": "Davidkovo",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1864-1884"
+    ]
+  },
+  {
+    "town": "Desesti",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Desesti",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1903-1921"
+    ]
+  },
+  {
+    "town": "Deseşti",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1917"
+    ]
+  },
+  {
+    "town": "Dilove",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1901",
+      "1901-1906",
+      "1907-1924",
+      "1924-1937",
+      "1937-1945"
+    ]
+  },
+  {
+    "town": "Dilove",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1904",
+      "1904-1906",
+      "1907-1926",
+      "1927-1945",
+      "1945-1948"
+    ]
+  },
+  {
+    "town": "Dilove",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1906",
+      "1907-1926",
+      "1927-1945"
+    ]
+  },
+  {
+    "town": "Dolha",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1886"
+    ]
+  },
+  {
+    "town": "Dolha",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1886"
+    ]
+  },
+  {
+    "town": "Dragabartfalva",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1876-1879"
+    ]
+  },
+  {
+    "town": "Dragomiresti",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Leah Herz"
+    ],
+    "years": [
+      "1895-1898",
+      "1899-1902",
+      "1903-1906",
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Dragomiresti",
+    "recordType": "deaths",
+    "indexers": [
+      "Leah Herz"
+    ],
+    "years": [
+      "1895-1902",
+      "1902-1906"
+    ]
+  },
+  {
+    "town": "Dragomiresti",
+    "recordType": "marriages",
+    "indexers": [
+      "Leah Herz",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1906",
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Drahovo",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Joel Meisels",
+      "Debbi Korman",
+      "Nicolas Tondre",
+      "Shari Nilsen"
+    ],
+    "years": [
+      "1895-1898",
+      "1898-1901",
+      "1901-1903",
+      "1903-1906",
+      "1906",
+      "1907-1914",
+      "1914-1923",
+      "1923-1924",
+      "1925-1929",
+      "1929-1932",
+      "1932-1935",
+      "1935-1937",
+      "1937-1940",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Drahovo",
+    "recordType": "deaths",
+    "indexers": [
+      "Sally Bruckheimer",
+      "Debbi Korman",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1900",
+      "1900-1904",
+      "1904-1906",
+      "1907-1918",
+      "1918-1925",
+      "1925-1932",
+      "1932-1940",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Drahovo",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1902",
+      "1902-1906",
+      "1907-1922",
+      "1922-1930",
+      "1930-1940",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Drysina",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1932"
+    ]
+  },
+  {
+    "town": "Dubove",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1898",
+      "1895-1910",
+      "1898-1900",
+      "1900-1902",
+      "1902-1905",
+      "1905-1906",
+      "1907-1912",
+      "1910-1923",
+      "1912-1919",
+      "1919-1924",
+      "1923-1930",
+      "1924-1927",
+      "1927-1930",
+      "1930-1932",
+      "1932-1935",
+      "1935-1937",
+      "1937-1939",
+      "1939-1944"
+    ]
+  },
+  {
+    "town": "Dubove",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond",
+      "Ron Hoenig"
+    ],
+    "years": [
+      "1895-1900",
+      "1895-1924",
+      "1900-1903",
+      "1903-1906",
+      "1907-1916",
+      "1917-1924",
+      "1924-1931",
+      "1931-1937",
+      "1938-1940",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Dubove",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond",
+      "Ron Hoenig"
+    ],
+    "years": [
+      "1895-1901",
+      "1895-1924",
+      "1902-1906",
+      "1907-1922",
+      "1922-1929",
+      "1930-1938",
+      "1938-1940",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Esen",
+    "recordType": "births",
+    "indexers": [
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1899",
+      "1899-1906",
+      "1906-1910"
+    ]
+  },
+  {
+    "town": "Esen",
+    "recordType": "deaths",
+    "indexers": [
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1906",
+      "1907-1918"
+    ]
+  },
+  {
+    "town": "Esen",
+    "recordType": "marriages",
+    "indexers": [
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1906"
+    ]
+  },
+  {
+    "town": "Ganya",
+    "recordType": "births",
+    "indexers": [
+      "Simone Berk",
+      "Lara Diamond",
+      "Nicolas Tondre"
+    ],
+    "years": [
+      "1895-1899",
+      "1899-1902",
+      "1902-1906",
+      "1906",
+      "1907-1915",
+      "1915-1926",
+      "1926-1930",
+      "1930-1935",
+      "1935-1939",
+      "1939-1941",
+      "1941-1945"
+    ]
+  },
+  {
+    "town": "Ganya",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1902",
+      "1902-1906",
+      "1907-1920",
+      "1921-1926",
+      "1927-1937",
+      "1937-1941",
+      "1941-1945"
+    ]
+  },
+  {
+    "town": "Ganya",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1900-1906",
+      "1907-1926",
+      "1927-1939",
+      "1939-1941",
+      "1941-1945"
+    ]
+  },
+  {
+    "town": "Gat",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Shari Nilsen",
+      "Debbi Korman"
+    ],
+    "years": [
+      "1878",
+      "1895-1899",
+      "1899-1902",
+      "1902-1905",
+      "1905-1906",
+      "1906",
+      "1907-1924",
+      "1924-1939",
+      "1935-1938"
+    ]
+  },
+  {
+    "town": "Gat",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond",
+      "Ari Maidenberg",
+      "Debbi Korman"
+    ],
+    "years": [
+      "1895-1901",
+      "1901-1906",
+      "1907-1925",
+      "1907-1931",
+      "1926-1939"
+    ]
+  },
+  {
+    "town": "Gat",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1906",
+      "1907-1925",
+      "1926-1939",
+      "1936-1937"
+    ]
+  },
+  {
+    "town": "Gergelyiugornya",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1918"
+    ]
+  },
+  {
+    "town": "Gergelyiugornya",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1918",
+      "1913-1918"
+    ]
+  },
+  {
+    "town": "Gergelyiugornya",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1918"
+    ]
+  },
+  {
+    "town": "Gernyes",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1886"
+    ]
+  },
+  {
+    "town": "Gernyes",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1886"
+    ]
+  },
+  {
+    "town": "Giulesti",
+    "recordType": "births",
+    "indexers": [
+      "Maramaros",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1897",
+      "1898-1899",
+      "1900-1901",
+      "1902-1903",
+      "1904-1905",
+      "1905-1906",
+      "1907-1913",
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Giulesti",
+    "recordType": "deaths",
+    "indexers": [
+      "Maramaros"
+    ],
+    "years": [
+      "1895-1898",
+      "1899-1901",
+      "1902-1904",
+      "1905-1906"
+    ]
+  },
+  {
+    "town": "Giulesti",
+    "recordType": "marriages",
+    "indexers": [
+      "Maramaros"
+    ],
+    "years": [
+      "1895-1901",
+      "1902-1906"
+    ]
+  },
+  {
+    "town": "Glod",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1902",
+      "1903-1906",
+      "1906-1921"
+    ]
+  },
+  {
+    "town": "Glod",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1903",
+      "1904-1911"
+    ]
+  },
+  {
+    "town": "Gulacs",
+    "recordType": "births",
+    "indexers": [
+      "Susan Shaman",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1900-1905",
+      "1906-1918"
+    ]
+  },
+  {
+    "town": "Gulacs",
+    "recordType": "deaths",
+    "indexers": [
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1901"
+    ]
+  },
+  {
+    "town": "Halmi",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1886-1895"
+    ]
+  },
+  {
+    "town": "Halmi",
+    "recordType": "Census",
+    "indexers": [
+      "Lara Diamond",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1800-1890",
+      "1840-1886"
+    ]
+  },
+  {
+    "town": "Halmi",
+    "recordType": "deaths",
+    "indexers": [
+      "Ari Maidenberg",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1886-1894",
+      "1902-1906"
+    ]
+  },
+  {
+    "town": "Herincse",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1886"
+    ]
+  },
+  {
+    "town": "Heten",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1876-1889"
+    ]
+  },
+  {
+    "town": "Heten",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1876-1889"
+    ]
+  },
+  {
+    "town": "Heten",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1876-1889"
+    ]
+  },
+  {
+    "town": "Holyatin",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1913"
+    ]
+  },
+  {
+    "town": "Horinchovo",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1898",
+      "1898-1902",
+      "1902-1905",
+      "1905-1906",
+      "1907-1916",
+      "1916-1924",
+      "1925-1931",
+      "1931-1936",
+      "1937-1940",
+      "1941-1945",
+      "1945-1946"
+    ]
+  },
+  {
+    "town": "Horinchovo",
+    "recordType": "deaths",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1900",
+      "1900-1905",
+      "1905-1906",
+      "1907-1922",
+      "1922-1934",
+      "1935-1940",
+      "1941-1945"
+    ]
+  },
+  {
+    "town": "Horinchovo",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1903",
+      "1903-1906",
+      "1907-1924",
+      "1925-1937",
+      "1937-1940",
+      "1941-1945"
+    ]
+  },
+  {
+    "town": "Husztkoz",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1886"
+    ]
+  },
+  {
+    "town": "Husztkoz",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1886"
+    ]
+  },
+  {
+    "town": "Ieud",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1899",
+      "1900-1903",
+      "1904-1911",
+      "1912-1921"
+    ]
+  },
+  {
+    "town": "Ieud",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1901",
+      "1902-1906",
+      "1907-1916"
+    ]
+  },
+  {
+    "town": "Ieud",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1906"
+    ]
+  },
+  {
+    "town": "Irlyava",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Risa Becker"
+    ],
+    "years": [
+      "1907-1926",
+      "1926-1938",
+      "1938-1940",
+      "1941-1945",
+      "1945"
+    ]
+  },
+  {
+    "town": "Irlyava",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond",
+      "Risa Becker",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1907-1926",
+      "1927-1940",
+      "1941-1945",
+      "1945"
+    ]
+  },
+  {
+    "town": "Irlyava",
+    "recordType": "marriages",
+    "indexers": [
+      "Risa Becker",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1926",
+      "1915-1942",
+      "1941-1945"
+    ]
+  },
+  {
+    "town": "Iza",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1862-1895",
+      "1868-1895",
+      "1871-1894",
+      "1886"
+    ]
+  },
+  {
+    "town": "Iza",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1862-1895",
+      "1868-1895",
+      "1871-1894",
+      "1886"
+    ]
+  },
+  {
+    "town": "Iza",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1862-1895",
+      "1868-1895",
+      "1871-1894"
+    ]
+  },
+  {
+    "town": "Iza-Koshelovo",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1899",
+      "1899-1901",
+      "1902-1904",
+      "1904-1906",
+      "1907-1914",
+      "1914-1923",
+      "1923-1928",
+      "1928-1932",
+      "1932-1936",
+      "1937-1940",
+      "1940-1946",
+      "1945-1946"
+    ]
+  },
+  {
+    "town": "Iza-Koshelovo",
+    "recordType": "deaths",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1901",
+      "1901-1905",
+      "1905-1906",
+      "1907-1918",
+      "1919-1924",
+      "1924-1937",
+      "1937-1942",
+      "1942-1945"
+    ]
+  },
+  {
+    "town": "Iza-Koshelovo",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1903",
+      "1903-1904",
+      "1907-1923",
+      "1924-1939",
+      "1939-1942",
+      "1942-1945",
+      "1945-1946"
+    ]
+  },
+  {
+    "town": "Izki",
+    "recordType": "births",
+    "indexers": [
+      "Sally Bruckheimer",
+      "Shari Nilsen",
+      "Debbi Korman"
+    ],
+    "years": [
+      "1895-1900",
+      "1903-1906",
+      "1907-1921",
+      "1922-1931"
+    ]
+  },
+  {
+    "town": "Izki",
+    "recordType": "deaths",
+    "indexers": [
+      "Sally Bruckheimer"
+    ],
+    "years": [
+      "1902-1906"
+    ]
+  },
+  {
+    "town": "Izki",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond",
+      "Debbi Korman"
+    ],
+    "years": [
+      "1895-1906",
+      "1907-1928"
+    ]
+  },
+  {
+    "town": "Kamynske",
+    "recordType": "births",
+    "indexers": [
+      "Risa Becker",
+      "Max Preston",
+      "Shari Nilsen",
+      "Lara Diamond",
+      "Kamil Buchler",
+      "Debbi Korman"
+    ],
+    "years": [
+      "1895-1899",
+      "1899-1902",
+      "1902-1905",
+      "1905-1906",
+      "1907-1920",
+      "1920-1925",
+      "1926-1932",
+      "1933-1938"
+    ]
+  },
+  {
+    "town": "Kamynske",
+    "recordType": "deaths",
+    "indexers": [
+      "Shari Nilsen",
+      "Risa Becker",
+      "Rhoda Miller"
+    ],
+    "years": [
+      "1895-1900",
+      "1900-1905",
+      "1907-1925",
+      "1926-1939"
+    ]
+  },
+  {
+    "town": "Kamynske",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond",
+      "Risa Becker"
+    ],
+    "years": [
+      "1895-1904",
+      "1904-1906",
+      "1907-1926"
+    ]
+  },
+  {
+    "town": "Kelechin",
+    "recordType": "births",
+    "indexers": [
+      "Ann Armoza",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1907-1924",
+      "1924-1936",
+      "1937-1943"
+    ]
+  },
+  {
+    "town": "Kelechin",
+    "recordType": "deaths",
+    "indexers": [
+      "Ann Armoza",
+      "Debbi Korman"
+    ],
+    "years": [
+      "1907-1929",
+      "1930-1943"
+    ]
+  },
+  {
+    "town": "Kelechin",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg",
+      "Debbi Korman"
+    ],
+    "years": [
+      "1907-1929",
+      "1929-1943"
+    ]
+  },
+  {
+    "town": "Keselymezo",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1886"
+    ]
+  },
+  {
+    "town": "Keselymezo",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1886"
+    ]
+  },
+  {
+    "town": "Keselymezo",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1886"
+    ]
+  },
+  {
+    "town": "Khust",
+    "recordType": "births",
+    "indexers": [
+      "Marsha Shapiro",
+      "Lara Diamond",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1897",
+      "1897-1898",
+      "1898-1900",
+      "1900-1901",
+      "1901-1902",
+      "1903-1904",
+      "1904-1905",
+      "1905-1906",
+      "1907-1910",
+      "1910-1914",
+      "1914-1919",
+      "1919-1924",
+      "1922-1923",
+      "1924-1925",
+      "1926-1929",
+      "1929-1930",
+      "1930-1932",
+      "1932-1934",
+      "1934-1935",
+      "1935-1937",
+      "1937-1938",
+      "1938-1939",
+      "1940-1943",
+      "1943-1945"
+    ]
+  },
+  {
+    "town": "Khust",
+    "recordType": "deaths",
+    "indexers": [
+      "Susan Shaman",
+      "Henry Schwartz",
+      "Marsha Shapiro",
+      "Ari Maidenberg",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1897",
+      "1898-1900",
+      "1900-1902",
+      "1902-1904",
+      "1904-1906",
+      "1907-1913",
+      "1913-1918",
+      "1918-1923",
+      "1924-1927",
+      "1927-1931",
+      "1932-1936",
+      "1936-1939",
+      "1939-1945"
+    ]
+  },
+  {
+    "town": "Khust",
+    "recordType": "marriages",
+    "indexers": [
+      "Max Preston",
+      "Marsha Shapiro",
+      "Susan Shaman",
+      "Ari Maidenberg",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1899",
+      "1899-1903",
+      "1903-1906",
+      "1907-1917",
+      "1917-1924",
+      "1924-1930",
+      "1931-1934",
+      "1934-1938",
+      "1938-1939",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Kis Dobrony",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1880"
+    ]
+  },
+  {
+    "town": "Kis Gercze",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1901"
+    ]
+  },
+  {
+    "town": "Kis-Gercze",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1902-1906",
+      "1907-1916",
+      "1913-1941"
+    ]
+  },
+  {
+    "town": "Kis-Gercze",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1913-1941"
+    ]
+  },
+  {
+    "town": "Kisgut",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1886"
+    ]
+  },
+  {
+    "town": "Kisgut",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1906"
+    ]
+  },
+  {
+    "town": "Kislonya",
+    "recordType": "births",
+    "indexers": [
+      "Susan Shaman"
+    ],
+    "years": [
+      "1899-1902"
+    ]
+  },
+  {
+    "town": "Klyachanovo",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1864"
+    ]
+  },
+  {
+    "town": "Kobiletska Polana",
+    "recordType": "births",
+    "indexers": [
+      "Marsha Shapiro"
+    ],
+    "years": [
+      "1895-1903",
+      "1903-1906",
+      "1907-1924"
+    ]
+  },
+  {
+    "town": "Kobiletska Polana",
+    "recordType": "deaths",
+    "indexers": [
+      "Marsha Shapiro",
+      "Joel Meisels"
+    ],
+    "years": [
+      "1895-1906",
+      "1907-1924"
+    ]
+  },
+  {
+    "town": "Kobiletska Polana",
+    "recordType": "marriages",
+    "indexers": [
+      "Joel Meisels"
+    ],
+    "years": [
+      "1902-1906",
+      "1907-1924"
+    ]
+  },
+  {
+    "town": "Kokenyesd",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1906"
+    ]
+  },
+  {
+    "town": "Kolochava",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1898",
+      "1898-1901",
+      "1901-1903",
+      "1903-1906",
+      "1906",
+      "1907-1913",
+      "1909-1916",
+      "1913-1923",
+      "1923-1930",
+      "1930-1934",
+      "1934-1937",
+      "1937-1940",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Kolochava",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1901",
+      "1901-1905",
+      "1905-1906",
+      "1907-1919",
+      "1919-1929",
+      "1929-1942",
+      "1942-1945"
+    ]
+  },
+  {
+    "town": "Kolochava",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1896-1904",
+      "1904-1906",
+      "1907-1927",
+      "1928-1939",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Komlos",
+    "recordType": "deaths",
+    "indexers": [
+      "Risa Becker"
+    ],
+    "years": [
+      "1905-1906"
+    ]
+  },
+  {
+    "town": "Kosyny",
+    "recordType": "deaths",
+    "indexers": [
+      "Susan Shaman"
+    ],
+    "years": [
+      "1863-1886"
+    ]
+  },
+  {
+    "town": "Kosyny",
+    "recordType": "marriages",
+    "indexers": [
+      "Susan Shaman"
+    ],
+    "years": [
+      "1863-1885"
+    ]
+  },
+  {
+    "town": "Kricsfalva",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1898",
+      "1898-1900",
+      "1900-1902",
+      "1902-1904",
+      "1904-1905",
+      "1905-1906"
+    ]
+  },
+  {
+    "town": "Kricsfalva",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1899",
+      "1899-1903",
+      "1903-1905",
+      "1905-1906",
+      "1919-1934"
+    ]
+  },
+  {
+    "town": "Kricsfalva",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1901",
+      "1901-1906",
+      "1906-1906",
+      "1907-1929",
+      "1930-1940"
+    ]
+  },
+  {
+    "town": "Kusnicza",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1886"
+    ]
+  },
+  {
+    "town": "Kusnicza",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1886"
+    ]
+  },
+  {
+    "town": "Kvasy",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1900"
+    ]
+  },
+  {
+    "town": "Kvasy",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1897-1900"
+    ]
+  },
+  {
+    "town": "Lalovo",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1898",
+      "1898-1901",
+      "1901-1904",
+      "1904-1906",
+      "1907-1916",
+      "1916-1926",
+      "1926-1933",
+      "1933-1937",
+      "1937-1940"
+    ]
+  },
+  {
+    "town": "Lalovo",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1900",
+      "1900-1905",
+      "1905-1906",
+      "1907-1922",
+      "1922-1934",
+      "1934-1940",
+      "1941-1945"
+    ]
+  },
+  {
+    "town": "Lalovo",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1904",
+      "1904-1906",
+      "1907-1928",
+      "1928-1940",
+      "1941-1945"
+    ]
+  },
+  {
+    "town": "Leordina",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Leordina",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Lipcse",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1886"
+    ]
+  },
+  {
+    "town": "Lipcse",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1886"
+    ]
+  },
+  {
+    "town": "Lohovo",
+    "recordType": "births",
+    "indexers": [
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1899",
+      "1899-1902",
+      "1902-1905",
+      "1906",
+      "1907-1919",
+      "1919-1926",
+      "1927-1932",
+      "1932-1936",
+      "1936-1940"
+    ]
+  },
+  {
+    "town": "Lohovo",
+    "recordType": "deaths",
+    "indexers": [
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1901",
+      "1901-1906",
+      "1907-1923",
+      "1923-1934"
+    ]
+  },
+  {
+    "town": "Lonya",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1922"
+    ]
+  },
+  {
+    "town": "Lozenske",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1938-1944"
+    ]
+  },
+  {
+    "town": "Luh",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1900",
+      "1900-1903",
+      "1904-1906",
+      "1907-1915",
+      "1915-1925",
+      "1925-1931",
+      "1931-1936",
+      "1937-1941"
+    ]
+  },
+  {
+    "town": "Luh",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1900",
+      "1895-1902",
+      "1902-1906",
+      "1906",
+      "1907-1919",
+      "1919-1927",
+      "1927-1938",
+      "1939-1941"
+    ]
+  },
+  {
+    "town": "Luh",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1905",
+      "1896-1900",
+      "1905-1906",
+      "1907-1926",
+      "1926-1941",
+      "1941-1945"
+    ]
+  },
+  {
+    "town": "Lunca la Tisa",
+    "recordType": "deaths",
+    "indexers": [
+      "Maramaros",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1901",
+      "1902-1906",
+      "1907-1918"
+    ]
+  },
+  {
+    "town": "Lunca la Tisa",
+    "recordType": "marriages",
+    "indexers": [
+      "Maramaros",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1906",
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Lypcha",
+    "recordType": "births",
+    "indexers": [
+      "Marsha Shapiro",
+      "Claudia Greve",
+      "Terry Tranen",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1899",
+      "1899-1904",
+      "1904-1906",
+      "1907-1921",
+      "1921-1925",
+      "1926-1930",
+      "1930-1935",
+      "1935-1938",
+      "1938-1940"
+    ]
+  },
+  {
+    "town": "Lypcha",
+    "recordType": "deaths",
+    "indexers": [
+      "Terry Tranen",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1902",
+      "1902-1906",
+      "1907-1925",
+      "1926-1936",
+      "1936-1940"
+    ]
+  },
+  {
+    "town": "Lypcha",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond",
+      "Terry Tranen"
+    ],
+    "years": [
+      "1895-1903",
+      "1903-1906",
+      "1907-1925",
+      "1926-1937",
+      "1937-1940"
+    ]
+  },
+  {
+    "town": "Malyi Berezni",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1898",
+      "1899-1902",
+      "1900-1905",
+      "1905-1906",
+      "1907-1925",
+      "1925-1936",
+      "1936-1940",
+      "1940-1946"
+    ]
+  },
+  {
+    "town": "Malyi Berezni",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1899",
+      "1900-1906",
+      "1907-1928",
+      "1915-1934",
+      "1935-1943"
+    ]
+  },
+  {
+    "town": "Malyi Berezni",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1906",
+      "1907-1928",
+      "1929-1940",
+      "1940-1944"
+    ]
+  },
+  {
+    "town": "Maramaros Sziget",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895",
+      "1896",
+      "1897",
+      "1898",
+      "1899",
+      "1900",
+      "1901",
+      "1902",
+      "1903",
+      "1904",
+      "1905",
+      "1906",
+      "1907-1908",
+      "1908-1910",
+      "1911-1912",
+      "1912-1914",
+      "1914-1916",
+      "1916-1918",
+      "1918-1920",
+      "1920-1921"
+    ]
+  },
+  {
+    "town": "Maramaros Sziget",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond",
+      "Maramaros"
+    ],
+    "years": [
+      "1895-1896",
+      "1897",
+      "1898",
+      "1899",
+      "1900",
+      "1901",
+      "1902",
+      "1903",
+      "1904",
+      "1905",
+      "1906",
+      "1907-1910",
+      "1910-1913",
+      "1913-1915",
+      "1915-1917",
+      "1917-1919",
+      "1920-1921"
+    ]
+  },
+  {
+    "town": "Maramaros Sziget",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1898",
+      "1899-1900",
+      "1901-1902",
+      "1903-1904",
+      "1905-1906",
+      "1907-1911",
+      "1912-1917",
+      "1918-1921"
+    ]
+  },
+  {
+    "town": "Marokpapi",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1908-1914"
+    ]
+  },
+  {
+    "town": "Marokpapi",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1908-1914"
+    ]
+  },
+  {
+    "town": "Maydan",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg",
+      "Lara Diamond",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1901",
+      "1901-1906",
+      "1906-1906",
+      "1907-1916",
+      "1911-1916",
+      "1917-1927",
+      "1927-1932",
+      "1932-1937",
+      "1937-1941",
+      "1942-1945"
+    ]
+  },
+  {
+    "town": "Maydan",
+    "recordType": "deaths",
+    "indexers": [
+      "Ari Maidenberg",
+      "Lara Diamond",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1905",
+      "1905-1906",
+      "1906-1906",
+      "1907-1922",
+      "1922-1929",
+      "1929-1941",
+      "1942-1944"
+    ]
+  },
+  {
+    "town": "Maydan",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1906",
+      "1907-1914",
+      "1915-1929",
+      "1929-1941"
+    ]
+  },
+  {
+    "town": "Mizhheria",
+    "recordType": "births",
+    "indexers": [
+      "Susan Shaman",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1898",
+      "1898-1901",
+      "1901-1903",
+      "1903-1906",
+      "1906-1906",
+      "1907-1912",
+      "1912-1920",
+      "1919-1924",
+      "1920-1924",
+      "1925-1928",
+      "1928-1931",
+      "1931-1934",
+      "1934-1937",
+      "1937-1940",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Mizhheria",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1896",
+      "1900-1905",
+      "1905-1906"
+    ]
+  },
+  {
+    "town": "Mizhheria",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1902",
+      "1902-1906",
+      "1907-1923",
+      "1923-1932",
+      "1932-1940",
+      "1941-1945"
+    ]
+  },
+  {
+    "town": "Mochola",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1933-1939",
+      "1939-1943"
+    ]
+  },
+  {
+    "town": "Mochola",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1930-1943"
+    ]
+  },
+  {
+    "town": "Moisei",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1898",
+      "1899-1901",
+      "1902-1906",
+      "1907-1913"
+    ]
+  },
+  {
+    "town": "Moisei",
+    "recordType": "deaths",
+    "indexers": [
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1901",
+      "1902-1906"
+    ]
+  },
+  {
+    "town": "Moisei",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1904"
+    ]
+  },
+  {
+    "town": "Mosei",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1914-1921"
+    ]
+  },
+  {
+    "town": "Mosei",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Mosei",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1905-1921"
+    ]
+  },
+  {
+    "town": "Mukacheve",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg",
+      "Lara Diamond",
+      "Jamie Romer",
+      "Alex Revai",
+      "Rhoda Miller",
+      "Sarah Feuerstein"
+    ],
+    "years": [
+      "1852-1885",
+      "1859-1870",
+      "1859-1885",
+      "1866",
+      "1867-1883",
+      "1870",
+      "1871-1880",
+      "1881-1885",
+      "1884-1885",
+      "1885-1896",
+      "1886-1890",
+      "1886-1896",
+      "1889",
+      "1891",
+      "1891",
+      "1891-1895",
+      "1892",
+      "1892",
+      "1893",
+      "1893",
+      "1894"
+    ]
+  },
+  {
+    "town": "Mukacheve",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond",
+      "Ari Maidenberg",
+      "Sarah Feuerstein",
+      "Ari Tesler",
+      "Debbi Korman",
+      "Risa Becker",
+      "-",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1852-1885",
+      "1865",
+      "1867-1884",
+      "1881-1895",
+      "1886-1891",
+      "1886-1896",
+      "1889",
+      "1891",
+      "1892",
+      "1893",
+      "1893",
+      "1895-1897",
+      "1897-1898",
+      "1898-1900",
+      "1900-1901",
+      "1901-1902",
+      "1902-1904",
+      "1904-1905",
+      "1905-1906",
+      "1906",
+      "1907-1910",
+      "1910-1914",
+      "1914-1916",
+      "1916-1918",
+      "1946"
+    ]
+  },
+  {
+    "town": "Mukacheve",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg",
+      "Lara Diamond",
+      "Debbi Korman",
+      "Gary Turkish"
+    ],
+    "years": [
+      "1852-1885",
+      "1859-1870",
+      "1867",
+      "1871-1880",
+      "1886-1895",
+      "1886-1896",
+      "1891",
+      "1891",
+      "1892",
+      "1893",
+      "1893",
+      "1894",
+      "1895",
+      "1895-1899",
+      "1899-1901",
+      "1901-1904",
+      "1904-1906",
+      "1907-1913",
+      "1913-1920"
+    ]
+  },
+  {
+    "town": "Mukacheve Rayon",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg",
+      "Risa Becker"
+    ],
+    "years": [
+      "1863-1895",
+      "1866",
+      "1877-1884",
+      "1877-1888",
+      "1891"
+    ]
+  },
+  {
+    "town": "Mukacheve Rayon",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1863-1895",
+      "1863-1895",
+      "1863-1895",
+      "1877-1888",
+      "1891",
+      "1892",
+      "1894"
+    ]
+  },
+  {
+    "town": "Mukacheve Rayon",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1863-1895",
+      "1877-1888",
+      "1892",
+      "1894"
+    ]
+  },
+  {
+    "town": "Muzsaly",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1900-1901"
+    ]
+  },
+  {
+    "town": "Muzsaly",
+    "recordType": "deaths",
+    "indexers": [
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1900"
+    ]
+  },
+  {
+    "town": "Nagy Dobrany",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1898",
+      "1902-1905"
+    ]
+  },
+  {
+    "town": "Nagy Dobrany",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1899",
+      "1900-1906"
+    ]
+  },
+  {
+    "town": "Nagy Dobrany",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1905",
+      "1906-1924"
+    ]
+  },
+  {
+    "town": "Nagy Geocz",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1898"
+    ]
+  },
+  {
+    "town": "Nagybegany",
+    "recordType": "deaths",
+    "indexers": [
+      "Susan Shaman"
+    ],
+    "years": [
+      "1906"
+    ]
+  },
+  {
+    "town": "Nagylonya",
+    "recordType": "marriages",
+    "indexers": [
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1906"
+    ]
+  },
+  {
+    "town": "Nagyszollos",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1844-1892",
+      "1850-1866",
+      "1886-1895",
+      "1886-1895"
+    ]
+  },
+  {
+    "town": "Nagyszollos",
+    "recordType": "Census",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1857-1880"
+    ]
+  },
+  {
+    "town": "Nagyszollos",
+    "recordType": "deaths",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1867-1886",
+      "1886-1895"
+    ]
+  },
+  {
+    "town": "Nagyszollos",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1844-1892",
+      "1850-1866",
+      "1867-1886",
+      "1886-1894"
+    ]
+  },
+  {
+    "town": "Neresnytsa",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1900",
+      "1900-1904",
+      "1904-1906",
+      "1907-1914",
+      "1914-1923",
+      "1923-1928",
+      "1928-1932",
+      "1932-1935",
+      "1935-1938",
+      "1938-1941",
+      "1941-1945"
+    ]
+  },
+  {
+    "town": "Neresnytsa",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1902",
+      "1902-1906",
+      "1907-1918",
+      "1919-1930",
+      "1931-1939",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Neresnytsa",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1904",
+      "1904-1906",
+      "1907-1925",
+      "1925-1934",
+      "1935-1941",
+      "1941-1945"
+    ]
+  },
+  {
+    "town": "Nizhny Selestye-Nankovo",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1898",
+      "1898-1901",
+      "1901-1904",
+      "1904-1906",
+      "1907-1914",
+      "1914-1923",
+      "1923-1927",
+      "1927-1933",
+      "1933-1936",
+      "1936-1940",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Nizhny Selestye-Nankovo",
+    "recordType": "deaths",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1900",
+      "1900-1904",
+      "1904-1906",
+      "1907-1919",
+      "1919-1924",
+      "1925-1938",
+      "1938-1941",
+      "1941-1946"
+    ]
+  },
+  {
+    "town": "Nizhny Selestye-Nankovo",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1896-1903",
+      "1903-1906",
+      "1907-1924",
+      "1925-1935",
+      "1935-1941",
+      "1941-1945"
+    ]
+  },
+  {
+    "town": "Nizhny Studeny",
+    "recordType": "births",
+    "indexers": [
+      "Sally Bruckheimer",
+      "David Deutsch",
+      "Shari Nilsen",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1900-1904",
+      "1904-1906",
+      "1907-1924",
+      "1924-1933",
+      "1934-1940"
+    ]
+  },
+  {
+    "town": "Nizhny Studeny",
+    "recordType": "deaths",
+    "indexers": [
+      "Sally Bruckheimer",
+      "Max Preston"
+    ],
+    "years": [
+      "1895-1902",
+      "1907-1928"
+    ]
+  },
+  {
+    "town": "Nizhny Studeny",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1928"
+    ]
+  },
+  {
+    "town": "Nizny Vorota",
+    "recordType": "births",
+    "indexers": [
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1898",
+      "1898-1901",
+      "1901-1904",
+      "1904-1906",
+      "1907-1917",
+      "1917-1926",
+      "1924-1930",
+      "1926-1932",
+      "1931-1935",
+      "1936-1939",
+      "1939-1945"
+    ]
+  },
+  {
+    "town": "Nizny Vorota",
+    "recordType": "deaths",
+    "indexers": [
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1900",
+      "1900-1905",
+      "1902-1906",
+      "1907-1913",
+      "1915-1927",
+      "1922-1934",
+      "1927-1937",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Nizny Vorota",
+    "recordType": "marriages",
+    "indexers": [
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1906",
+      "1907-1914",
+      "1915-1927",
+      "1927-1939",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Nove Davidkovo",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1931-1936",
+      "1936-1937"
+    ]
+  },
+  {
+    "town": "Nove Davidkovo",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1932",
+      "1934"
+    ]
+  },
+  {
+    "town": "Nove Selo",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1924-1928"
+    ]
+  },
+  {
+    "town": "NyzhniBystry-Berezovo",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1900",
+      "1900-1903",
+      "1903-1906",
+      "1906",
+      "1907-1916",
+      "1916-1924",
+      "1925-1930",
+      "1930-1935",
+      "1935-1938",
+      "1938-1940",
+      "1941-1945",
+      "1945-1946"
+    ]
+  },
+  {
+    "town": "NyzhniBystry-Berezovo",
+    "recordType": "deaths",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1902",
+      "1902-1906",
+      "1907-1922",
+      "1922-1933",
+      "1933-1940",
+      "1941-1945",
+      "1945-1946"
+    ]
+  },
+  {
+    "town": "NyzhniBystry-Berezovo",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1898-1906",
+      "1907-1924",
+      "1924-1938",
+      "1938-1940",
+      "1941-1945",
+      "1945-1946"
+    ]
+  },
+  {
+    "town": "Ocna Sugatag",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1898",
+      "1899-1901",
+      "1902-1904",
+      "1905-1906",
+      "1907-1913"
+    ]
+  },
+  {
+    "town": "Ocna Sugatag",
+    "recordType": "deaths",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1899",
+      "1900-1904",
+      "1905-1910"
+    ]
+  },
+  {
+    "town": "Ocna Sugatag",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1902"
+    ]
+  },
+  {
+    "town": "Olahlapos",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1906"
+    ]
+  },
+  {
+    "town": "Oncesti",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1900",
+      "1901-1906",
+      "1907-1913"
+    ]
+  },
+  {
+    "town": "Oncesti",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1901",
+      "1902-1906"
+    ]
+  },
+  {
+    "town": "Oncesti",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1906"
+    ]
+  },
+  {
+    "town": "Oroszveg",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1877-1884"
+    ]
+  },
+  {
+    "town": "Oroszveg",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1877-1884"
+    ]
+  },
+  {
+    "town": "Palanok",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Alex Revai"
+    ],
+    "years": [
+      "1877-1887",
+      "1877-1893"
+    ]
+  },
+  {
+    "town": "Palanok",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond",
+      "Alex Revai"
+    ],
+    "years": [
+      "1877-1887",
+      "1877-1893"
+    ]
+  },
+  {
+    "town": "Palanok",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond",
+      "Alex Revai"
+    ],
+    "years": [
+      "1877-1887",
+      "1877-1893",
+      "1933-1934",
+      "1934",
+      "1935",
+      "1937"
+    ]
+  },
+  {
+    "town": "Petrova",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1898",
+      "1899-1901",
+      "1902-1904",
+      "1905-1911",
+      "1911-1921"
+    ]
+  },
+  {
+    "town": "Petrova",
+    "recordType": "deaths",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1900",
+      "1901-1904",
+      "1905-1913"
+    ]
+  },
+  {
+    "town": "Petrova",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1904",
+      "1905-1917"
+    ]
+  },
+  {
+    "town": "Petrovo",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1903-1906"
+    ]
+  },
+  {
+    "town": "Podhering",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1877-1885"
+    ]
+  },
+  {
+    "town": "Podhering",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1878-1883"
+    ]
+  },
+  {
+    "town": "Poenile",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1863-1895"
+    ]
+  },
+  {
+    "town": "Poenile",
+    "recordType": "deaths",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1863-1895"
+    ]
+  },
+  {
+    "town": "Poenile",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1863-1895"
+    ]
+  },
+  {
+    "town": "Poienile de Sub Munte",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1896",
+      "1897-1898",
+      "1899",
+      "1900",
+      "1901",
+      "1902",
+      "1903",
+      "1904",
+      "1905-1906",
+      "1907-1910",
+      "1911-1916",
+      "1914-1921"
+    ]
+  },
+  {
+    "town": "Poienile de Sub Munte",
+    "recordType": "deaths",
+    "indexers": [
+      "Susan Shaman",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1898",
+      "1899-1901",
+      "1902",
+      "1903-1904",
+      "1905-1906",
+      "1907-1911",
+      "1912-1917",
+      "1918-1921"
+    ]
+  },
+  {
+    "town": "Poienile de Sub Munte",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1899",
+      "1900-1904",
+      "1905-1911",
+      "1912-1921"
+    ]
+  },
+  {
+    "town": "Rakhiv",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1897",
+      "1897-1899",
+      "1900-1902",
+      "1902-1903",
+      "1903-1905",
+      "1905-1906",
+      "1907-1911",
+      "1911-1916",
+      "1916-1921",
+      "1921-1924",
+      "1924-1927",
+      "1927-1930",
+      "1931-1933",
+      "1933-1935",
+      "1935-1937"
+    ]
+  },
+  {
+    "town": "Rakhiv",
+    "recordType": "deaths",
+    "indexers": [
+      "Ari Maidenberg",
+      "Lara Diamond",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1899",
+      "1899-1902",
+      "1902-1904",
+      "1904-1906",
+      "1907-1913",
+      "1913-1920",
+      "1920-1926",
+      "1927-1934",
+      "1939-1945"
+    ]
+  },
+  {
+    "town": "Rakhiv",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg",
+      "Lara Diamond",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1902",
+      "1902-1906",
+      "1906-1906",
+      "1907-1919",
+      "1919-1926",
+      "1926-1932",
+      "1932-1938",
+      "1932-1938",
+      "1938-1942",
+      "1943-1945"
+    ]
+  },
+  {
+    "town": "Rakoshyno",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Remetea Chioarului",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1919"
+    ]
+  },
+  {
+    "town": "Remeti",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1898",
+      "1899-1900",
+      "1900-1902",
+      "1902-1903",
+      "1903-1904",
+      "1904-1906",
+      "1907-1911",
+      "1918-1920"
+    ]
+  },
+  {
+    "town": "Remeti",
+    "recordType": "Census",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1945"
+    ]
+  },
+  {
+    "town": "Remeti",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1898"
+    ]
+  },
+  {
+    "town": "Richky",
+    "recordType": "births",
+    "indexers": [
+      "Ann Armoza"
+    ],
+    "years": [
+      "1895-1901",
+      "1902-1906"
+    ]
+  },
+  {
+    "town": "Richky",
+    "recordType": "deaths",
+    "indexers": [
+      "Ann Armoza"
+    ],
+    "years": [
+      "1895-1906"
+    ]
+  },
+  {
+    "town": "Richky",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1896-1906"
+    ]
+  },
+  {
+    "town": "Rokosovo",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1899-1905",
+      "1905-1906",
+      "1907-1922",
+      "1922-1933",
+      "1933-1939",
+      "1939-1945",
+      "1945-1946",
+      "1946-1947"
+    ]
+  },
+  {
+    "town": "Rokosovo",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1899-1906",
+      "1907-1927",
+      "1928-1939",
+      "1940-1945",
+      "1945",
+      "1946-1947"
+    ]
+  },
+  {
+    "town": "Rokosovo",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1899-1906",
+      "1907-1928",
+      "1929-1939",
+      "1940-1945",
+      "1945-1946",
+      "1946"
+    ]
+  },
+  {
+    "town": "Rona de Sus",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1915-1921"
+    ]
+  },
+  {
+    "town": "Rona de Sus",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1900-1902",
+      "1903-1906",
+      "1912-1921"
+    ]
+  },
+  {
+    "town": "Rostok",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1857"
+    ]
+  },
+  {
+    "town": "Rostok",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1857"
+    ]
+  },
+  {
+    "town": "Rozavlea",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1900",
+      "1901-1904",
+      "1905-1913",
+      "1914-1919"
+    ]
+  },
+  {
+    "town": "Rozavlea",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1902",
+      "1903-1913"
+    ]
+  },
+  {
+    "town": "Rozavlea",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1903",
+      "1904-1921"
+    ]
+  },
+  {
+    "town": "Ruscova",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1898",
+      "1899-1900",
+      "1901-1902",
+      "1903-1904",
+      "1905-1906",
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Ruscova",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1899",
+      "1900-1904",
+      "1905-1906"
+    ]
+  },
+  {
+    "town": "Ruscova",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1897-1906"
+    ]
+  },
+  {
+    "town": "Ruscova and Leordina",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Ruska",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1862-1868"
+    ]
+  },
+  {
+    "town": "Ruska Mokra",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1901",
+      "1895-1904",
+      "1901-1906",
+      "1904-1906",
+      "1907-1923",
+      "1907-1930",
+      "1919-1931",
+      "1923-1931",
+      "1930-1935",
+      "1935-1938",
+      "1938-1940",
+      "1941-1945"
+    ]
+  },
+  {
+    "town": "Ruska Mokra",
+    "recordType": "deaths",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1904",
+      "1895-1906",
+      "1904-1906",
+      "1907-1931",
+      "1907-1932",
+      "1933-1940",
+      "1941-1945"
+    ]
+  },
+  {
+    "town": "Ruska Mokra",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1906",
+      "1900-1906",
+      "1907-1931",
+      "1907-1932",
+      "1933-1940",
+      "1941-1945"
+    ]
+  },
+  {
+    "town": "Ruske Pole",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1919",
+      "1919-1929",
+      "1930"
+    ]
+  },
+  {
+    "town": "Ruske Pole",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1928",
+      "1928-1930"
+    ]
+  },
+  {
+    "town": "Ruske Pole",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1929",
+      "1930"
+    ]
+  },
+  {
+    "town": "Săcel",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1899",
+      "1900-1902",
+      "1903-1906",
+      "1906-1912",
+      "1913-1921"
+    ]
+  },
+  {
+    "town": "Săcel",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1901",
+      "1902-1906",
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Săcel",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1896-1906",
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Salistea de Sus",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1868-1895",
+      "1886",
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Salistea de Sus",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1868-1895",
+      "1886",
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Salistea de Sus",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1868-1895",
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Săliștea de Sus",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1899",
+      "1900-1902",
+      "1903-1906"
+    ]
+  },
+  {
+    "town": "Săliștea de Sus",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1901",
+      "1902-1906"
+    ]
+  },
+  {
+    "town": "Săliștea de Sus",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1906"
+    ]
+  },
+  {
+    "town": "Sapanta",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1913-1921"
+    ]
+  },
+  {
+    "town": "Sapanta",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1904-1921"
+    ]
+  },
+  {
+    "town": "Săpânţa",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1898",
+      "1899-1901",
+      "1902-1903",
+      "1904-1906",
+      "1907-1913"
+    ]
+  },
+  {
+    "town": "Săpânţa",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1901",
+      "1902-1906",
+      "1906-1917"
+    ]
+  },
+  {
+    "town": "Săpânţa",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1903"
+    ]
+  },
+  {
+    "town": "Sarasau",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1901",
+      "1908-1921"
+    ]
+  },
+  {
+    "town": "Sarasău",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1899",
+      "1895-1899",
+      "1900-1902",
+      "1900-1902",
+      "1903-1906",
+      "1903-1906"
+    ]
+  },
+  {
+    "town": "Sarasău",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1904",
+      "1895-1904",
+      "1905-1919"
+    ]
+  },
+  {
+    "town": "Sarbi",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1857"
+    ]
+  },
+  {
+    "town": "Sarbi",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1857"
+    ]
+  },
+  {
+    "town": "Seini",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1850-1885",
+      "1886-1942",
+      "1915-1921"
+    ]
+  },
+  {
+    "town": "Seini",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Seredne",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Robin Thomas",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1898",
+      "1898-1900",
+      "1900-1903",
+      "1903-1906",
+      "1906",
+      "1906",
+      "1906",
+      "1907-1923",
+      "1923-1929",
+      "1929-1934",
+      "1935-1939"
+    ]
+  },
+  {
+    "town": "Seredne",
+    "recordType": "deaths",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1899",
+      "1899-1903",
+      "1903-1906",
+      "1907-1926",
+      "1915-1932"
+    ]
+  },
+  {
+    "town": "Seredne",
+    "recordType": "marriages",
+    "indexers": [
+      "Robin Thomas",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1902",
+      "1902-1906",
+      "1915-1932"
+    ]
+  },
+  {
+    "town": "Serne",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1926-1930"
+    ]
+  },
+  {
+    "town": "Shom",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1879-1891",
+      "1936",
+      "1936-1937"
+    ]
+  },
+  {
+    "town": "Shom",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1879-1891",
+      "1933-1937"
+    ]
+  },
+  {
+    "town": "Şieu",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1899",
+      "1900-1903",
+      "1904-1906",
+      "1907-1912",
+      "1907-1922"
+    ]
+  },
+  {
+    "town": "Şieu",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1902"
+    ]
+  },
+  {
+    "town": "Şieu",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1906",
+      "1907-1922"
+    ]
+  },
+  {
+    "town": "Sinever",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1922-1928"
+    ]
+  },
+  {
+    "town": "Sobrance",
+    "recordType": "deaths",
+    "indexers": [
+      "Alex Revai",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1857-1895",
+      "1859-1886"
+    ]
+  },
+  {
+    "town": "Sobrance",
+    "recordType": "marriages",
+    "indexers": [
+      "Debbi Korman",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1850-1895",
+      "1866-1886"
+    ]
+  },
+  {
+    "town": "Solotvina/FaluSlatina",
+    "recordType": "deaths",
+    "indexers": [
+      "Debbi Korman",
+      "Ari Maidenberg",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1900",
+      "1900-1904",
+      "1904-1906",
+      "1907-1918",
+      "1907-1924",
+      "1918-1924",
+      "1925-1932",
+      "1932-1938",
+      "1938-1942"
+    ]
+  },
+  {
+    "town": "Solotvina/FaluSlatina",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1906",
+      "1906-1906",
+      "1907-1924",
+      "1925-1931",
+      "1931-1938"
+    ]
+  },
+  {
+    "town": "Solotvyna",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1901",
+      "1901-1906",
+      "1906",
+      "1907-1921",
+      "1921-1924",
+      "1925-1927",
+      "1927-1931"
+    ]
+  },
+  {
+    "town": "Solotvyna",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1903",
+      "1903-1906",
+      "1942-1945"
+    ]
+  },
+  {
+    "town": "Solotvyna",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1906",
+      "1907-1924",
+      "1938-1942",
+      "1942-1945"
+    ]
+  },
+  {
+    "town": "Steblivka",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1899",
+      "1899-1902",
+      "1903-1906",
+      "1906-1906",
+      "1907-1915",
+      "1915-1924",
+      "1924-1929",
+      "1929-1934",
+      "1934-1938",
+      "1939-1941"
+    ]
+  },
+  {
+    "town": "Steblivka",
+    "recordType": "deaths",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1900",
+      "1900-1906",
+      "1907-1921",
+      "1921-1931",
+      "1931-1941"
+    ]
+  },
+  {
+    "town": "Steblivka",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1897-1906",
+      "1907-1924",
+      "1924-1937",
+      "1937-1941"
+    ]
+  },
+  {
+    "town": "Strâmtura",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1899",
+      "1900-1903",
+      "1903-1906",
+      "1907-1920"
+    ]
+  },
+  {
+    "town": "Strâmtura",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1902",
+      "1903-1906",
+      "1907-1920"
+    ]
+  },
+  {
+    "town": "Strâmtura",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1902",
+      "1903-1906",
+      "1907-1920"
+    ]
+  },
+  {
+    "town": "Sugatag",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1857-1880",
+      "1881-1890",
+      "1891-1895",
+      "1907-1921"
+    ]
+  },
+  {
+    "town": "Sugatag",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1857-1880",
+      "1881-1890",
+      "1891-1895"
+    ]
+  },
+  {
+    "town": "Sugatag",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1857-1880",
+      "1881-1890",
+      "1891-1895",
+      "1903-1921"
+    ]
+  },
+  {
+    "town": "Surany",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1898-1899"
+    ]
+  },
+  {
+    "town": "Svalyava",
+    "recordType": "births",
+    "indexers": [
+      "Debbi Korman",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1887-1896",
+      "1900-1902",
+      "1902-1904",
+      "1904-1906",
+      "1919-1924",
+      "1924-1927",
+      "1927-1929",
+      "1929-1932",
+      "1932-1934",
+      "1935-1937",
+      "1937-1939",
+      "1939-1945"
+    ]
+  },
+  {
+    "town": "Svalyava",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1899",
+      "1900-1905",
+      "1903-1906",
+      "1907-1915",
+      "1915-1925",
+      "1925-1930",
+      "1932-1936",
+      "1937-1939",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Svalyava",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1903-1906",
+      "1907-1921",
+      "1921-1929",
+      "1929-1934",
+      "1935-1939",
+      "1939-1945"
+    ]
+  },
+  {
+    "town": "Svalyava District",
+    "recordType": "births",
+    "indexers": [
+      "Debbi Korman"
+    ],
+    "years": [
+      "1876-1886"
+    ]
+  },
+  {
+    "town": "Syurte",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1900"
+    ]
+  },
+  {
+    "town": "Szeklencze",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1886"
+    ]
+  },
+  {
+    "town": "Szeklencze",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1886"
+    ]
+  },
+  {
+    "town": "Targu Lapus",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1908-1921"
+    ]
+  },
+  {
+    "town": "Tarpa",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1896-1906",
+      "1899-1902",
+      "1903-1906",
+      "1907-1914",
+      "1910-1918"
+    ]
+  },
+  {
+    "town": "Tarpa",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1896-1906",
+      "1907-1914"
+    ]
+  },
+  {
+    "town": "Tecso",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Ann Armoza"
+    ],
+    "years": [
+      "1895-1898",
+      "1899-1901",
+      "1901-1903",
+      "1903-1905",
+      "1905-1906",
+      "1907-1913",
+      "1913-1922",
+      "1920-1920",
+      "1922-1927",
+      "1928-1931",
+      "1932-1934",
+      "1934-1937",
+      "1937-1939",
+      "1939-1945"
+    ]
+  },
+  {
+    "town": "Tecso",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1899",
+      "1899-1902",
+      "1902-1906",
+      "1906-1906",
+      "1907-1918",
+      "1919-1929",
+      "1930-1937",
+      "1937-1939",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Tecso",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1902",
+      "1902-1906",
+      "1907-1922",
+      "1921-1922",
+      "1923-1932",
+      "1932-1939",
+      "1939-1945"
+    ]
+  },
+  {
+    "town": "Tecsoi District",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1892",
+      "1892-1892"
+    ]
+  },
+  {
+    "town": "Tecsoi District",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1892"
+    ]
+  },
+  {
+    "town": "Tecsoi District",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1892"
+    ]
+  },
+  {
+    "town": "Tekovo",
+    "recordType": "births",
+    "indexers": [
+      "Susan Shaman",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1899",
+      "1899-1902",
+      "1902-1906",
+      "1906",
+      "1907-1920",
+      "1921-1922",
+      "1923-1930",
+      "1930-1937",
+      "1937-1939",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Tekovo",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1900",
+      "1900-1905",
+      "1905-1906",
+      "1907-1923",
+      "1923-1936",
+      "1936-1939",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Tekovo",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1905",
+      "1905-1906",
+      "1907-1924",
+      "1925-1939",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Tereblya",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1898",
+      "1898-1901",
+      "1901-1903",
+      "1903-1906",
+      "1906-1906",
+      "1907-1914",
+      "1914-1923",
+      "1923-1927",
+      "1927-1932",
+      "1932-1935",
+      "1935-1940",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Tereblya",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1899",
+      "1899-1903",
+      "1903-1906",
+      "1907-1918",
+      "1918-1927",
+      "1927-1937",
+      "1937-1942",
+      "1943-1945"
+    ]
+  },
+  {
+    "town": "Tereblya",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1902",
+      "1903-1906",
+      "1907-1926",
+      "1926-1936",
+      "1936-1942",
+      "1943-1945"
+    ]
+  },
+  {
+    "town": "Teresva",
+    "recordType": "births",
+    "indexers": [
+      "Sally Bruckheimer",
+      "Kamil Buchler",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1898",
+      "1898-1900",
+      "1901-1904",
+      "1904-1906",
+      "1906-1906",
+      "1907-1921",
+      "1922-1928",
+      "1928-1934",
+      "1934-1939",
+      "1939-1945"
+    ]
+  },
+  {
+    "town": "Teresva",
+    "recordType": "deaths",
+    "indexers": [
+      "Debbi Korman",
+      "Shari Nilsen",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1900",
+      "1900-1902",
+      "1903-1906",
+      "1907-1925",
+      "1925-1939",
+      "1939-1945"
+    ]
+  },
+  {
+    "town": "Teresva",
+    "recordType": "marriages",
+    "indexers": [
+      "Joel Meisels",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1904",
+      "1904-1906",
+      "1907-1925",
+      "1925-1940",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Ternovo",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1900",
+      "1900-1905",
+      "1905-1906",
+      "1907-1920",
+      "1921-1927",
+      "1928-1933",
+      "1933-1938",
+      "1938-1943",
+      "1943-1945",
+      "1945-1946"
+    ]
+  },
+  {
+    "town": "Ternovo",
+    "recordType": "deaths",
+    "indexers": [
+      "Ari Maidenberg",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1903",
+      "1903-1906",
+      "1907-1924",
+      "1925-1938",
+      "1939-1945",
+      "1945-1946"
+    ]
+  },
+  {
+    "town": "Ternovo",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1905",
+      "1905-1906",
+      "1907-1924",
+      "1920-1936",
+      "1925-1939",
+      "1939-1945"
+    ]
+  },
+  {
+    "town": "Tiszaadony",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1899"
+    ]
+  },
+  {
+    "town": "Tiszakerecseny",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1920",
+      "1921-1943"
+    ]
+  },
+  {
+    "town": "Tiszakerecseny",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1926",
+      "1927-1943"
+    ]
+  },
+  {
+    "town": "Tiszaszalka",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1905-1906"
+    ]
+  },
+  {
+    "town": "Tiszaszalka",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1901-1902",
+      "1903-1906"
+    ]
+  },
+  {
+    "town": "Tiszaszalka",
+    "recordType": "marriages",
+    "indexers": [
+      "Susan Shaman",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1905",
+      "1938-1944"
+    ]
+  },
+  {
+    "town": "Torun",
+    "recordType": "births",
+    "indexers": [
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1901",
+      "1901-1906",
+      "1908-1916",
+      "1915-1929",
+      "1929-1937",
+      "1937-1945"
+    ]
+  },
+  {
+    "town": "Torun",
+    "recordType": "deaths",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1902",
+      "1895-1905",
+      "1905-1906",
+      "1915-1929",
+      "1929-1945"
+    ]
+  },
+  {
+    "town": "Torun",
+    "recordType": "marriages",
+    "indexers": [
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1904",
+      "1895-1906",
+      "1915-1929",
+      "1929-1945"
+    ]
+  },
+  {
+    "town": "Turcz",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1886-1895"
+    ]
+  },
+  {
+    "town": "Turi Remete",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Debbi Korman"
+    ],
+    "years": [
+      "1895-1897",
+      "1898-1899",
+      "1900-1901",
+      "1901-1903",
+      "1903-1906",
+      "1906",
+      "1907-1916",
+      "1916-1925",
+      "1925-1929",
+      "1929-1933",
+      "1933-1936",
+      "1934-1939"
+    ]
+  },
+  {
+    "town": "Turi Remete",
+    "recordType": "deaths",
+    "indexers": [
+      "Debbi Korman",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1900",
+      "1900-1905",
+      "1905-1906",
+      "1907-1920",
+      "1920-1926",
+      "1926-1934",
+      "1934-1940"
+    ]
+  },
+  {
+    "town": "Turi Remete",
+    "recordType": "marriages",
+    "indexers": [
+      "Debbi Korman"
+    ],
+    "years": [
+      "1895-1904",
+      "1904-1906",
+      "1907-1925",
+      "1926-1932",
+      "1932-1940"
+    ]
+  },
+  {
+    "town": "Uglya",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1906-1915",
+      "1915-1926",
+      "1927-1931",
+      "1932-1935",
+      "1935-1939",
+      "1939-1945"
+    ]
+  },
+  {
+    "town": "Uglya",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1920",
+      "1920-1929",
+      "1930-1933",
+      "1930-1941",
+      "1942-1945"
+    ]
+  },
+  {
+    "town": "Uglya",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1929",
+      "1929-1941",
+      "1941-1945"
+    ]
+  },
+  {
+    "town": "Ugornya",
+    "recordType": "births",
+    "indexers": [
+      "Susan Shaman"
+    ],
+    "years": [
+      "1900-1906"
+    ]
+  },
+  {
+    "town": "Ugornya",
+    "recordType": "deaths",
+    "indexers": [
+      "Susan Shaman"
+    ],
+    "years": [
+      "1900-1906"
+    ]
+  },
+  {
+    "town": "Uzhhorod",
+    "recordType": "births",
+    "indexers": [
+      "Debbi Korman"
+    ],
+    "years": [
+      "1869-1885",
+      "1877-1878",
+      "1889-1895"
+    ]
+  },
+  {
+    "town": "Uzhhorod",
+    "recordType": "deaths",
+    "indexers": [
+      "Debbi Korman"
+    ],
+    "years": [
+      "1869-1885"
+    ]
+  },
+  {
+    "town": "Uzhhorod",
+    "recordType": "marriages",
+    "indexers": [
+      "Debbi Korman"
+    ],
+    "years": [
+      "1869-1885"
+    ]
+  },
+  {
+    "town": "Uzhhorod District",
+    "recordType": "deaths",
+    "indexers": [
+      "Debbi Korman"
+    ],
+    "years": [
+      "1887-1895"
+    ]
+  },
+  {
+    "town": "Varosnameny",
+    "recordType": "births",
+    "indexers": [
+      "Susan Shaman"
+    ],
+    "years": [
+      "1902-1905"
+    ]
+  },
+  {
+    "town": "Vary",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1868-1883",
+      "1909"
+    ]
+  },
+  {
+    "town": "Vary",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1868-1883",
+      "1934-1942"
+    ]
+  },
+  {
+    "town": "Vary",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1868-1883",
+      "1934-1937"
+    ]
+  },
+  {
+    "town": "Vasarosnameny",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1913-1943"
+    ]
+  },
+  {
+    "town": "Vasarosnameny",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1906-1918"
+    ]
+  },
+  {
+    "town": "Velete",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1871-1888"
+    ]
+  },
+  {
+    "town": "Velete",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1865-1892"
+    ]
+  },
+  {
+    "town": "Veliky Palad",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1902-1909"
+    ]
+  },
+  {
+    "town": "Veliky Palad",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1902-1909"
+    ]
+  },
+  {
+    "town": "Velke Kapusany",
+    "recordType": "births",
+    "indexers": [
+      "Alex Revai"
+    ],
+    "years": [
+      "1866-1885",
+      "1876-1885"
+    ]
+  },
+  {
+    "town": "Velke Kapusany and Inshi",
+    "recordType": "births",
+    "indexers": [
+      "Alex Revai"
+    ],
+    "years": [
+      "1849-1885"
+    ]
+  },
+  {
+    "town": "Velke Kapusany and Inshi",
+    "recordType": "deaths",
+    "indexers": [
+      "Alex Revai"
+    ],
+    "years": [
+      "1846-1885"
+    ]
+  },
+  {
+    "town": "Velyatin",
+    "recordType": "births",
+    "indexers": [
+      "Roberta Solit",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1900",
+      "1900-1904",
+      "1904-1906",
+      "1907-1919",
+      "1919-1925",
+      "1925-1933",
+      "1933-1940",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Velyatin",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1901",
+      "1901-1906",
+      "1907-1922",
+      "1922-1940",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Velyatin",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1904",
+      "1907-1924",
+      "1942-1945"
+    ]
+  },
+  {
+    "town": "Velyka Bihan",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1925"
+    ]
+  },
+  {
+    "town": "Velyka Bihan",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1922-1933",
+      "1934-1943"
+    ]
+  },
+  {
+    "town": "Velyka Byihan",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Matt Zager"
+    ],
+    "years": [
+      "1895-1899",
+      "1899-1902",
+      "1902-1906",
+      "1906",
+      "1907-1922",
+      "1921-1922",
+      "1923-1929",
+      "1929-1937",
+      "1937-1938",
+      "1939-1945"
+    ]
+  },
+  {
+    "town": "Velyka Byihan",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1901",
+      "1901-1906",
+      "1907-1922",
+      "1923-1936",
+      "1937-1938",
+      "1939-1945"
+    ]
+  },
+  {
+    "town": "Velyka Byihan",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1905",
+      "1907-1922",
+      "1923-1928",
+      "1939-1945"
+    ]
+  },
+  {
+    "town": "Velyka Palad",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1909"
+    ]
+  },
+  {
+    "town": "Velyki Bychkiv",
+    "recordType": "births",
+    "indexers": [
+      "Steve Spiegel",
+      "Claudia Greve",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1898",
+      "1898-1900",
+      "1900-1902",
+      "1902-1905",
+      "1905-1906",
+      "1907-1913",
+      "1913-1921",
+      "1921-1927",
+      "1933-1936"
+    ]
+  },
+  {
+    "town": "Velyki Bychkiv",
+    "recordType": "deaths",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1900",
+      "1900-1903",
+      "1904-1906",
+      "1907-1918",
+      "1918-1924",
+      "1925-1936"
+    ]
+  },
+  {
+    "town": "Velyki Bychkiv",
+    "recordType": "marriages",
+    "indexers": [
+      "Steve Spiegel",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1901",
+      "1901-1906",
+      "1907-1922",
+      "1923-1935",
+      "1935-1939"
+    ]
+  },
+  {
+    "town": "Velyki Komyati",
+    "recordType": "births",
+    "indexers": [
+      "Beth Long",
+      "Shari Nilsen",
+      "Debbi Korman",
+      "Risa Becker",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1900",
+      "1900-1904",
+      "1904-1906",
+      "1907-1922",
+      "1922-1927",
+      "1927-1931",
+      "1931-1935",
+      "1935-1937",
+      "1937-1939"
+    ]
+  },
+  {
+    "town": "Velyki Komyati",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond",
+      "Risa Becker"
+    ],
+    "years": [
+      "1895-1901",
+      "1901-1906",
+      "1907-1926",
+      "1926-1933",
+      "1933-1939",
+      "1939"
+    ]
+  },
+  {
+    "town": "Velyki Komyati",
+    "recordType": "marriages",
+    "indexers": [
+      "Risa Becker",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1906",
+      "1907-1928",
+      "1929-1937",
+      "1937-1939"
+    ]
+  },
+  {
+    "town": "Velyky Berezny",
+    "recordType": "births",
+    "indexers": [
+      "Debbi Korman"
+    ],
+    "years": [
+      "1895-1899",
+      "1899-1903",
+      "1903-1906",
+      "1907-1920",
+      "1920-1929",
+      "1929-1937",
+      "1937-1940"
+    ]
+  },
+  {
+    "town": "Velyky Berezny",
+    "recordType": "deaths",
+    "indexers": [
+      "Debbi Korman"
+    ],
+    "years": [
+      "1896-1903",
+      "1903-1906",
+      "1907-1924",
+      "1924-1940"
+    ]
+  },
+  {
+    "town": "Velyky Berezny",
+    "recordType": "marriages",
+    "indexers": [
+      "Debbi Korman"
+    ],
+    "years": [
+      "1895-1904",
+      "1905-1906",
+      "1907-1929",
+      "1929-1940"
+    ]
+  },
+  {
+    "town": "Velykyi Bereznyi District",
+    "recordType": "births",
+    "indexers": [
+      "Debbi Korman"
+    ],
+    "years": [
+      "1867-1885"
+    ]
+  },
+  {
+    "town": "Verebes",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1896"
+    ]
+  },
+  {
+    "town": "Verkhnje Vodyane",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1897",
+      "1897-1900",
+      "1900-1902",
+      "1902-1904",
+      "1904-1905",
+      "1905-1906",
+      "1907-1911",
+      "1912-1917",
+      "1917-1923",
+      "1923-1927",
+      "1927-1930",
+      "1930-1933",
+      "1933-1935",
+      "1935-1937",
+      "1937-1939"
+    ]
+  },
+  {
+    "town": "Verkhnje Vodyane",
+    "recordType": "deaths",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1899",
+      "1899-1902",
+      "1902-1904",
+      "1904-1906",
+      "1907-1915",
+      "1915-1922",
+      "1922-1927",
+      "1927-1933",
+      "1933-1939"
+    ]
+  },
+  {
+    "town": "Verkhnje Vodyane",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1901",
+      "1901-1906",
+      "1906-1906",
+      "1907-1920",
+      "1920-1927",
+      "1928-1935",
+      "1935-1940"
+    ]
+  },
+  {
+    "town": "Vilkhivtsi",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1898",
+      "1898-1901",
+      "1901-1904",
+      "1904-1906",
+      "1906-1906",
+      "1907-1914",
+      "1914-1924",
+      "1924-1928",
+      "1928-1932",
+      "1932-1936",
+      "1936-1939",
+      "1939-1945"
+    ]
+  },
+  {
+    "town": "Vilkhivtsi",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1899",
+      "1899-1903",
+      "1903-1906",
+      "1907-1920",
+      "1920-1922",
+      "1922-1931",
+      "1932-1938",
+      "1939-1945"
+    ]
+  },
+  {
+    "town": "Vilkhivtsi",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1902",
+      "1902-1906",
+      "1907-1925",
+      "1925-1935",
+      "1945"
+    ]
+  },
+  {
+    "town": "Vinogradiv",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg",
+      "Susan Shaman",
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1897",
+      "1897-1900",
+      "1900-1902",
+      "1902-1904",
+      "1904-1906",
+      "1906-1906",
+      "1907-1912",
+      "1912-1919",
+      "1919-1921",
+      "1921-1923",
+      "1923-1926",
+      "1926-1929",
+      "1929-1931",
+      "1931-1934",
+      "1934-1936",
+      "1936-1938",
+      "1938-1939",
+      "1940-1944",
+      "1944-1945"
+    ]
+  },
+  {
+    "town": "Vinogradiv",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1898",
+      "1898-1901",
+      "1901-1904",
+      "1904-1906",
+      "1906",
+      "1907-1913",
+      "1913-1920",
+      "1920-1923",
+      "1923-1928",
+      "1928-1933",
+      "1936-1938",
+      "1938-1939",
+      "1940-1944",
+      "1944-1945"
+    ]
+  },
+  {
+    "town": "Vinogradiv",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1901",
+      "1901-1906",
+      "1906",
+      "1907-1920",
+      "1920-1927",
+      "1928-1934",
+      "1934-1939",
+      "1939",
+      "1940-1945"
+    ]
+  },
+  {
+    "town": "Viseu",
+    "recordType": "births",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1880-1885",
+      "1886-1887",
+      "1888-1889",
+      "1890-1891",
+      "1892-1893",
+      "1894-1895"
+    ]
+  },
+  {
+    "town": "Viseu",
+    "recordType": "deaths",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1880-1885",
+      "1886-1887",
+      "1888-1889",
+      "1890-1891",
+      "1892-1893",
+      "1894-1895"
+    ]
+  },
+  {
+    "town": "Viseu",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1880-1885",
+      "1886-1887",
+      "1888-1889",
+      "1890-1891",
+      "1892-1893",
+      "1894-1895"
+    ]
+  },
+  {
+    "town": "Viseu de Jos",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1914-1921"
+    ]
+  },
+  {
+    "town": "Viseu de Jos",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1907-1915"
+    ]
+  },
+  {
+    "town": "Viseu de Jos",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1905-1914"
+    ]
+  },
+  {
+    "town": "Vişeu de Sus",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1896",
+      "1897",
+      "1898",
+      "1899",
+      "1900",
+      "1901",
+      "1902",
+      "1903",
+      "1904",
+      "1905",
+      "1906",
+      "1907-1909",
+      "1910-1912",
+      "1912-1916",
+      "1916-1919",
+      "1920-1921"
+    ]
+  },
+  {
+    "town": "Vişeu de Sus",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1897",
+      "1898-1899",
+      "1900-1901",
+      "1902-1903",
+      "1904-1906",
+      "1907-1911",
+      "1912-1915",
+      "1916-1921"
+    ]
+  },
+  {
+    "town": "Vişeu de Sus",
+    "recordType": "marriages",
+    "indexers": [
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1899",
+      "1900-1903",
+      "1904-1909",
+      "1910-1921"
+    ]
+  },
+  {
+    "town": "Visk",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1899",
+      "1899-1901",
+      "1902-1904",
+      "1905-1906",
+      "1907-1915",
+      "1916-1924",
+      "1924-1929",
+      "1930-1934",
+      "1934-1938",
+      "1938-1942",
+      "1942-1946"
+    ]
+  },
+  {
+    "town": "Visk",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1900",
+      "1904-1906",
+      "1907-1918",
+      "1919-1924",
+      "1924-1934",
+      "1934-1942",
+      "1943-1945"
+    ]
+  },
+  {
+    "town": "Visk",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1895-1902",
+      "1902-1906",
+      "1907-1924",
+      "1924-1934",
+      "1934-1943",
+      "1944-1945"
+    ]
+  },
+  {
+    "town": "Volosyanka",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond",
+      "Susan Shaman",
+      "Debbi Korman"
+    ],
+    "years": [
+      "1895-1898",
+      "1898-1900",
+      "1900-1902",
+      "1903-1904",
+      "1905-1906",
+      "1907-1910",
+      "1911-1914",
+      "1915-1924",
+      "1915-1924",
+      "1925-1932",
+      "1933-1943",
+      "1940-1944",
+      "1946"
+    ]
+  },
+  {
+    "town": "Volosyanka",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1895-1899",
+      "1899-1902",
+      "1900-1904",
+      "1906",
+      "1907-1910",
+      "1911-1914",
+      "1915-1926",
+      "1927-1943",
+      "1939-1944",
+      "1946"
+    ]
+  },
+  {
+    "town": "Volosyanka",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond",
+      "Susan Shaman"
+    ],
+    "years": [
+      "1904-1906",
+      "1904-1906",
+      "1907-1910",
+      "1911-1914",
+      "1925-1939",
+      "1933-1943",
+      "1946"
+    ]
+  },
+  {
+    "town": "Volovets",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1851-1885"
+    ]
+  },
+  {
+    "town": "Volovets",
+    "recordType": "deaths",
+    "indexers": [
+      "Roberta Solit"
+    ],
+    "years": [
+      "1871-1885"
+    ]
+  },
+  {
+    "town": "Volovets District",
+    "recordType": "births",
+    "indexers": [
+      "Debbi Korman"
+    ],
+    "years": [
+      "1886-1895"
+    ]
+  },
+  {
+    "town": "Vylok",
+    "recordType": "births",
+    "indexers": [
+      "Gili Baruch",
+      "Terry Tranen"
+    ],
+    "years": [
+      "1895-1900",
+      "1900-1904",
+      "1904-1906",
+      "1907-1922",
+      "1923-1935",
+      "1935-1938"
+    ]
+  },
+  {
+    "town": "Vylok",
+    "recordType": "deaths",
+    "indexers": [
+      "Michael Gordy",
+      "Ari Maidenberg",
+      "Terry Tranen"
+    ],
+    "years": [
+      "1895-1902",
+      "1902-1906",
+      "1907-1922",
+      "1923-1938"
+    ]
+  },
+  {
+    "town": "Vylok",
+    "recordType": "marriages",
+    "indexers": [
+      "Terry Tranen"
+    ],
+    "years": [
+      "1895-1906",
+      "1907-1922",
+      "1923-1938"
+    ]
+  },
+  {
+    "town": "Yand",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1938-1943"
+    ]
+  },
+  {
+    "town": "Yand",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1938-1943"
+    ]
+  },
+  {
+    "town": "Yasina",
+    "recordType": "births",
+    "indexers": [
+      "Susan Shaman",
+      "Ari Maidenberg"
+    ],
+    "years": [
+      "1895-1897",
+      "1897-1898",
+      "1898-1900",
+      "1901-1903",
+      "1903-1904",
+      "1904-1906",
+      "1906-1906",
+      "1907-1910",
+      "1911-1915",
+      "1915-1921",
+      "1922-1924",
+      "1924-1928",
+      "1928-1931",
+      "1931-1933",
+      "1933-1935",
+      "1938-1940"
+    ]
+  },
+  {
+    "town": "Yasina",
+    "recordType": "deaths",
+    "indexers": [
+      "Ari Maidenberg",
+      "Susan Shaman",
+      "Ann Armoza"
+    ],
+    "years": [
+      "1895-1898",
+      "1898-1900",
+      "1900-1902",
+      "1902-1905",
+      "1905-1906",
+      "1907-1913",
+      "1913-1918",
+      "1918-1921",
+      "1922-1926",
+      "1926-1930",
+      "1930-1935",
+      "1935-1940"
+    ]
+  },
+  {
+    "town": "Yasina",
+    "recordType": "marriages",
+    "indexers": [
+      "Ari Maidenberg",
+      "Debbi Korman"
+    ],
+    "years": [
+      "1895-1900",
+      "1900-1905",
+      "1905-1906",
+      "1907-1920",
+      "1919-1926",
+      "1920-1921",
+      "1927-1934",
+      "1934-1940"
+    ]
+  },
+  {
+    "town": "Zsdenyova",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1901-1904"
+    ]
+  },
+  {
+    "town": "Zsdenyova",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1914-1917"
+    ]
+  },
+  {
+    "town": "Zubivka",
+    "recordType": "births",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1876-1886"
+    ]
+  },
+  {
+    "town": "Zubivka",
+    "recordType": "deaths",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1876-1886"
+    ]
+  },
+  {
+    "town": "Zubivka",
+    "recordType": "marriages",
+    "indexers": [
+      "Lara Diamond"
+    ],
+    "years": [
+      "1876-1886"
+    ]
+  }
+]
