@@ -245,6 +245,82 @@
         .htfaq-infofiles a:hover { color: var(--sage); }
         body.dark-mode .htfaq-infofiles a { color: #a9c0d0; }
 
+        /* -- Phase Navigator --------------------------------- */
+        .phase-navigator {
+            max-width: 1100px;
+            margin: 36px auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            border-top: 1px solid #d1caba;
+            padding-top: 24px;
+        }
+        body.dark-mode .phase-navigator { border-top-color: #3a3f3f; }
+
+        .phase-nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: none;
+            border: 1.5px solid #d1caba;
+            border-radius: 6px;
+            padding: 10px 18px;
+            font-family: inherit;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: #09497a;
+            cursor: pointer;
+            transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+            min-width: 180px;
+        }
+        .phase-nav-btn--right { justify-content: flex-end; }
+        .phase-nav-btn:hover:not(:disabled) {
+            background-color: var(--cream);
+            border-color: #09497a;
+        }
+        .phase-nav-btn:disabled {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .phase-nav-btn:focus-visible {
+            outline: 2px solid var(--sage);
+            outline-offset: 3px;
+        }
+        body.dark-mode .phase-nav-btn {
+            color: #a9c0d0;
+            border-color: #3a3f3f;
+        }
+        body.dark-mode .phase-nav-btn:hover:not(:disabled) {
+            background-color: #252a2a;
+            border-color: #5a7a95;
+        }
+
+        .phase-nav-arrow {
+            font-size: 1.125rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+        .phase-nav-label {
+            line-height: 1.3;
+            text-align: left;
+        }
+        .phase-nav-btn--right .phase-nav-label { text-align: right; }
+
+        .phase-nav-count {
+            font-size: 0.8125rem;
+            font-weight: bold;
+            color: var(--charcoal);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        body.dark-mode .phase-nav-count { color: #a0a0a0; }
+
+        @media (max-width: 640px) {
+            .phase-nav-btn { min-width: 0; padding: 9px 12px; }
+            .phase-nav-label { display: none; }
+        }
+
         /* -- Responsive -------------------------------------- */
         @media (max-width: 900px) {
             .htfaq-content { padding: 32px 24px; }
@@ -342,7 +418,7 @@
 
             <div class="tip-card sage-top">
                 <h3>Find the Paper Trail</h3>
-                <p>To research your family pre-immigration, you first need to find them in the records created after they emigrated.</p>
+                <p>To jump the pond and research your family in Europe, you first need to find them in the records created after they emigrated.</p>
                 <ul>
                     <li><strong>Be a detective:</strong> Dig into old family papers, naturalization records, ship manifests, vital records, and even the backs of old photos.</li>
                     <li><strong>The ultimate goal:</strong> You are looking for two golden nuggets of information — your ancestor's pre-immigration name and the specific town they left behind.</li>
@@ -545,6 +621,21 @@
 
 </div><!-- /.htfaq-inner -->
 
+</div><!-- /.htfaq-inner -->
+
+    <!-- PHASE NAVIGATOR -->
+    <div class="phase-navigator" id="phaseNavigator" aria-label="Phase navigation">
+        <button class="phase-nav-btn" id="phasePrev" aria-label="Previous phase">
+            <span class="phase-nav-arrow" aria-hidden="true">&#8592;</span>
+            <span class="phase-nav-label" id="phasePrevLabel"></span>
+        </button>
+        <span class="phase-nav-count" id="phaseCount" aria-live="polite"></span>
+        <button class="phase-nav-btn phase-nav-btn--right" id="phaseNext" aria-label="Next phase">
+            <span class="phase-nav-label" id="phaseNextLabel"></span>
+            <span class="phase-nav-arrow" aria-hidden="true">&#8594;</span>
+        </button>
+    </div>
+
     <!-- INFOFILES CALLOUT -->
     <div class="htfaq-infofiles">
         <p>For more detailed information on a wide range of Jewish genealogy topics, explore the <a href="https://www.jewishgen.org/infofiles.html">JewishGen InfoFiles</a> — a deep archive of how-to guides, methodological articles, and research resources assembled over decades by the collective expertise of the JewishGen volunteer community. From deciphering vital records to navigating specific regional archives, their work represents thousands of hours of knowledge freely shared. We are grateful for every single one of them.</p>
@@ -599,45 +690,56 @@
         });
     });
 
-    /* -- Phase stepper -------------------------------------------- */
+    /* -- Phase stepper + navigator -------------------------------- */
     var phaseSteps  = document.querySelectorAll('.phase-step');
     var phasePanels = document.querySelectorAll('.phase-panel');
+    var phasePrev   = document.getElementById('phasePrev');
+    var phaseNext   = document.getElementById('phaseNext');
+    var phaseCount  = document.getElementById('phaseCount');
+    var prevLabel   = document.getElementById('phasePrevLabel');
+    var nextLabel   = document.getElementById('phaseNextLabel');
+
+    var phaseNames = ['The Groundwork', 'Your First Search', 'Digging Deeper', 'Connecting with Others'];
+    var current = 0;
+
+    function activatePhase(i) {
+        current = i;
+        phaseSteps.forEach(function(b, j) {
+            var on = i === j;
+            b.classList.toggle('active', on);
+            b.setAttribute('aria-selected', String(on));
+            phasePanels[j].classList.toggle('active', on);
+        });
+        updateNavigator();
+        /* Scroll navigator into view on phase change (not on initial load) */
+        if (document.readyState === 'complete') {
+            document.getElementById('phaseNavigator').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    }
+
+    function updateNavigator() {
+        var total = phaseSteps.length;
+        phaseCount.textContent = 'Phase ' + (current + 1) + ' of ' + total;
+        phasePrev.disabled = current === 0;
+        phaseNext.disabled = current === total - 1;
+        prevLabel.textContent = current > 0 ? phaseNames[current - 1] : '';
+        nextLabel.textContent = current < total - 1 ? phaseNames[current + 1] : '';
+    }
 
     phaseSteps.forEach(function(btn, i) {
-        btn.addEventListener('click', function() {
-            phaseSteps.forEach(function(b, j) {
-                var on = i === j;
-                b.classList.toggle('active', on);
-                b.setAttribute('aria-selected', String(on));
-                phasePanels[j].classList.toggle('active', on);
-            });
-        });
-        /* Arrow key navigation within tablist (ARIA pattern) */
+        btn.addEventListener('click', function() { activatePhase(i); });
         btn.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowRight') {
-                e.preventDefault();
-                var n = (i + 1) % phaseSteps.length;
-                phaseSteps[n].focus();
-                phaseSteps[n].click();
-            }
-            if (e.key === 'ArrowLeft') {
-                e.preventDefault();
-                var n = (i - 1 + phaseSteps.length) % phaseSteps.length;
-                phaseSteps[n].focus();
-                phaseSteps[n].click();
-            }
-            if (e.key === 'Home') {
-                e.preventDefault();
-                phaseSteps[0].focus();
-                phaseSteps[0].click();
-            }
-            if (e.key === 'End') {
-                e.preventDefault();
-                phaseSteps[phaseSteps.length - 1].focus();
-                phaseSteps[phaseSteps.length - 1].click();
-            }
+            if (e.key === 'ArrowRight') { e.preventDefault(); var n = (i + 1) % phaseSteps.length; phaseSteps[n].focus(); activatePhase(n); }
+            if (e.key === 'ArrowLeft')  { e.preventDefault(); var n = (i - 1 + phaseSteps.length) % phaseSteps.length; phaseSteps[n].focus(); activatePhase(n); }
+            if (e.key === 'Home') { e.preventDefault(); phaseSteps[0].focus(); activatePhase(0); }
+            if (e.key === 'End')  { e.preventDefault(); phaseSteps[phaseSteps.length - 1].focus(); activatePhase(phaseSteps.length - 1); }
         });
     });
+
+    phasePrev.addEventListener('click', function() { if (current > 0) { activatePhase(current - 1); phaseSteps[current].focus(); } });
+    phaseNext.addEventListener('click', function() { if (current < phaseSteps.length - 1) { activatePhase(current + 1); phaseSteps[current].focus(); } });
+
+    updateNavigator();
 </script>
 
 </body>
