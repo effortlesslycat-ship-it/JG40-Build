@@ -276,8 +276,63 @@ body.dark-mode .rd-btn-donate-full:hover  { color: #121212; }
     margin-left: auto;
 }
 
+/* ── Alphabet jump bar ── */
+.alphabet-bar {
+    background-color: var(--white);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 8px;
+    padding: 8px 10px;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    justify-content: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    transition: box-shadow 0.15s;
+}
+.alphabet-bar.is-stuck {
+    position: sticky;
+    top: 0.5rem;
+    z-index: 20;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+}
+.alphabet-bar.is-hidden {
+    display: none;
+}
+.alpha-letter {
+    background: none;
+    border: none;
+    color: var(--navy);
+    font-weight: 600;
+    font-size: 0.8125rem;
+    padding: 4px 9px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    line-height: 1.2;
+    min-width: 26px;
+    transition: background-color 0.12s, color 0.12s;
+}
+.alpha-letter:hover {
+    background-color: var(--ecru);
+}
+.alpha-letter:focus-visible {
+    outline: 2px solid var(--sage);
+    outline-offset: 1px;
+}
+.alpha-letter.is-disabled {
+    color: rgba(0,0,0,0.25);
+    cursor: default;
+    pointer-events: none;
+}
+body.dark-mode .alphabet-bar       { background-color: #1e1e1e !important; border-color: #333 !important; }
+body.dark-mode .alpha-letter       { color: #8ab0c9 !important; }
+body.dark-mode .alpha-letter:hover { background-color: #2a2a2a !important; }
+body.dark-mode .alpha-letter.is-disabled { color: rgba(255,255,255,0.2) !important; }
+
 /* ── Town card (one per spreadsheet row) ── */
 .town-card {
+    scroll-margin-top: 60px;
     background-color: var(--white);
     border: 1px solid rgba(0,0,0,0.08);
     border-radius: 8px;
@@ -464,6 +519,9 @@ body.dark-mode .rd-btn-donate-full:hover  { color: #121212; }
                     <span class="results-count" id="resultsCount" aria-live="polite"></span>
                 </div>
             </div>
+
+            <!-- Alphabet jump bar (sticks on scroll, hides during search) -->
+            <div id="alphabetBar" class="alphabet-bar" role="navigation" aria-label="Jump to letter"></div>
 
             <!-- Card list -->
             <div id="townList" aria-label="Indexed towns list"></div>
@@ -753,8 +811,10 @@ var DMSoundex = (function() {
                 '</div>';
         }
 
+        var firstLetter = (row.town || '').charAt(0).toUpperCase();
+
         return '' +
-            '<article class="town-card">' +
+            '<article class="town-card" data-letter="' + escapeHtml(firstLetter) + '">' +
                 '<div class="town-card-head">' +
                     '<h3 class="town-name">' + escapeHtml(row.town) + '</h3>' +
                     '<span class="record-badge">' + escapeHtml(rtLabel) + '</span>' +
@@ -808,6 +868,8 @@ var DMSoundex = (function() {
 
         var rc = document.getElementById('resultsCount');
         if (rc) rc.textContent = sorted.length + ' of ' + state.rows.length + ' records';
+
+        renderAlphabetBar();
     }
 
     function renderFilterChips() {
@@ -836,7 +898,78 @@ var DMSoundex = (function() {
         });
     }
 
-    /* ---- Wire search box ---- */
+    /* ---- Alphabet jump bar ---- */
+    var ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+
+    function lettersInFilteredSet() {
+        var filtered = applyFilters();
+        var set = new Set();
+        filtered.forEach(function(r) {
+            var ch = (r.town || '').charAt(0).toUpperCase();
+            if (ch) set.add(ch);
+        });
+        return set;
+    }
+
+    function renderAlphabetBar() {
+        var bar = document.getElementById('alphabetBar');
+        if (!bar) return;
+
+        // Hide entirely when a search query is active
+        if (state.searchQuery) {
+            bar.classList.add('is-hidden');
+            return;
+        }
+        bar.classList.remove('is-hidden');
+
+        var present = lettersInFilteredSet();
+        var html = ALPHABET.map(function(letter) {
+            var disabled = !present.has(letter);
+            return '<button type="button" class="alpha-letter ' +
+                   (disabled ? 'is-disabled' : '') + '" ' +
+                   'data-letter="' + letter + '" ' +
+                   (disabled ? 'aria-disabled="true" tabindex="-1"' : '') +
+                   '>' + letter + '</button>';
+        }).join('');
+        bar.innerHTML = html;
+
+        bar.querySelectorAll('.alpha-letter').forEach(function(btn) {
+            if (btn.classList.contains('is-disabled')) return;
+            btn.addEventListener('click', function() {
+                var letter = btn.getAttribute('data-letter');
+                var target = document.querySelector('.town-card[data-letter="' + letter + '"]');
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    }
+
+    /* Sticky toggle: add .is-stuck once the bar's top would scroll off the
+       filter card boundary. Use a sentinel div above the bar.              */
+    function wireAlphabetSticky() {
+        var bar = document.getElementById('alphabetBar');
+        if (!bar) return;
+        // Insert a 1px sentinel just above the bar
+        var sentinel = document.createElement('div');
+        sentinel.style.height = '1px';
+        sentinel.style.marginTop = '0';
+        bar.parentNode.insertBefore(sentinel, bar);
+
+        if ('IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) {
+                    bar.classList.toggle('is-stuck', !e.isIntersecting);
+                });
+            }, { threshold: [0], rootMargin: '0px 0px 0px 0px' });
+            io.observe(sentinel);
+        } else {
+            // Fallback: always sticky-able
+            bar.classList.add('is-stuck');
+        }
+    }
+
+
     function wireSearch() {
         var input = document.getElementById('townSearch');
         var clear = document.getElementById('searchClear');
@@ -872,6 +1005,7 @@ var DMSoundex = (function() {
             state.rows = Array.isArray(data) ? data : [];
             renderFilterChips();
             wireSearch();
+            wireAlphabetSticky();
             render();
         })
         .catch(function(err) {
