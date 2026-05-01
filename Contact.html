@@ -29,6 +29,11 @@ body.dark-mode .social-link .social-platform { color: #888 !important; }
 body.dark-mode .social-icon           { fill: #8ab0c9 !important; }
 body.dark-mode .social-handle         { color: #8ab0c9 !important; }
 
+/* Light/dark image swap (matches global pattern) */
+.dark-icon { display: none; }
+body.dark-mode .light-icon { display: none; }
+body.dark-mode .dark-icon  { display: block; }
+
 /* ── Page title band ── */
 .page-title-band {
     background-color: var(--navy);
@@ -187,6 +192,13 @@ body.dark-mode .social-handle         { color: #8ab0c9 !important; }
     fill: var(--navy);
     transition: fill 0.15s;
 }
+.social-icon-img {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    object-fit: contain;
+    display: block;
+}
 .social-text { display: flex; flex-direction: column; }
 .social-handle {
     font-size: 0.875rem;
@@ -308,6 +320,16 @@ body.dark-mode .social-handle         { color: #8ab0c9 !important; }
                     <span class="social-text">
                         <span class="social-handle">JewishGen.org</span>
                         <span class="social-platform">Facebook</span>
+                    </span>
+                </a>
+
+                <!-- Discussion Group -->
+                <a href="https://groups.jewishgen.org/g/main" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="JewishGen Discussion Group on Groups.io, opens in new tab">
+                    <img class="social-icon-img light-icon" src="/JG40-Build/discussion-group-icon-reg.png" alt="" aria-hidden="true">
+                    <img class="social-icon-img dark-icon"  src="/JG40-Build/discussion-group-icon-dark.png" alt="" aria-hidden="true">
+                    <span class="social-text">
+                        <span class="social-handle">JewishGen Discussion Group</span>
+                        <span class="social-platform">Groups.io</span>
                     </span>
                 </a>
 
