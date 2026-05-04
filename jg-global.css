@@ -1882,6 +1882,7 @@ body.dark-mode .jg-footer {
    Mirrors the Global Search & Calendar visual language.
    ========================================================================== */
 
+
 /* ==========================================================================
    DATASET PAGES (Exact Mockup Match)
    ========================================================================== */
@@ -2018,6 +2019,21 @@ body.dark-mode .jg-sidebar-block--search { background-color: #1a1a1a; border: 1p
     color: rgba(255,255,255,0.7);
 }
 .jg-sidebar-search-note a { color: var(--white); text-decoration: underline; }
+
+/*Sidebar: Donate */
+/* -- Sidebar donate card (navy band w/ sage CTA) ----------- */
+.jg-sidebar-donate {
+    background-color: var(--navy);
+    border-radius: 8px;
+    padding: 18px 18px 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.jg-sidebar-donate p {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.55;
+    margin: 0 0 12px 0;
+}
 
 /* Sidebar: Contributors */
 .jg-sidebar-block--contrib h3 {
