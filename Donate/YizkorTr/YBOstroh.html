@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ostroh, Ukraine — Yizkor Book Translation — JewishGen</title>
+
+<!-- 1. Bootstrap -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<!-- 2. JewishGen Global Design System -->
+<link rel="stylesheet" href="/JG40-Build/jg-global.css">
+<!-- 3. Page-specific styles -->
+<style>
+a { text-decoration: none; color: inherit; }
+
+/* ── Dark mode page-specific overrides ── */
+body.dark-mode .page-title-band { background-color: #0d2a45 !important; }
+body.dark-mode .page-title-band p.hero-subtitle { color: rgba(255,255,255,0.85) !important; }
+body.dark-mode .record-type-tag { background-color: #a8b361 !important; color: #121212 !important; }
+body.dark-mode .meta-card { background-color: #1e1e1e !important; border-color: #333 !important; border-top-color: #a8b361 !important; }
+body.dark-mode .meta-card__header { background-color: #141414 !important; border-bottom-color: #333 !important; color: #e0e0e0 !important; }
+body.dark-mode .meta-label { color: #999 !important; }
+body.dark-mode .meta-value { color: #e0e0e0 !important; }
+body.dark-mode .meta-value.citation { color: #c0c0c0 !important; }
+body.dark-mode .meta-value.citation strong { color: #e0e0e0 !important; }
+body.dark-mode .meta-link { color: #8ab0c9 !important; }
+body.dark-mode .meta-link:hover { color: var(--sage) !important; }
+body.dark-mode .funding-amount { color: #a8b361 !important; }
+body.dark-mode .donate-card { background-color: #0d2a45 !important; }
+body.dark-mode .donate-card p { color: rgba(255,255,255,0.8) !important; }
+body.dark-mode .dataset-main h2 { color: #e0e0e0 !important; }
+body.dark-mode .dataset-main p { color: #c8c8c8 !important; }
+body.dark-mode .dataset-main a { color: #8ab0c9 !important; }
+body.dark-mode .dataset-main a:hover { color: var(--sage) !important; }
+body.dark-mode .back-link { color: #8ab0c9 !important; }
+body.dark-mode .back-link:hover { color: var(--sage) !important; }
+
+/* ── Page title band ── */
+.page-title-band {
+    background-color: var(--navy);
+    padding: 40px 50px;
+    text-align: center;
+}
+.record-type-tag {
+    display: inline-block;
+    background-color: var(--sage);
+    color: #ffffff;
+    font-size: 0.6875rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 4px 12px;
+    border-radius: 3px;
+    margin-bottom: 14px;
+}
+.page-title-band h1 {
+    margin: 0 0 10px 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2.25rem;
+    font-weight: normal;
+    line-height: 1.15;
+    color: #ffffff;
+}
+.page-title-band p.hero-subtitle {
+    margin: 0 auto;
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 720px;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+/* ── Ecru content wrap ── */
+.project-ecru-wrap {
+    background-color: var(--ecru);
+    padding: 3rem 2rem;
+}
+.project-ecru-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* ── 2-column content/sidebar layout ── */
+.dataset-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 40px;
+    align-items: start;
+}
+.dataset-sidebar {
+    position: sticky;
+    top: 20px;
+}
+
+/* ── Main content ── */
+.dataset-main h2 {
+    color: var(--navy);
+    font-size: 20px;
+    margin: 30px 0 14px 0;
+    padding-bottom: 8px;
+    position: relative;
+    font-weight: bold;
+}
+.dataset-main h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--sage);
+    border-radius: 2px;
+}
+.dataset-main h2:first-child { margin-top: 0; }
+.dataset-main p {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--charcoal);
+    margin: 0 0 14px 0;
+}
+.dataset-main p:last-child { margin-bottom: 0; }
+.dataset-main a {
+    color: var(--navy);
+    font-weight: bold;
+    text-decoration: underline dotted;
+}
+.dataset-main a:hover { color: var(--sage); }
+.dataset-main em { font-style: italic; }
+
+/* ── Back link (lives at bottom of main content) ── */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--navy);
+    font-size: 0.8125rem;
+    font-weight: bold;
+    text-decoration: underline dotted;
+    margin-top: 36px;
+}
+.back-link:hover { color: var(--sage); }
+
+/* ── Meta-card (B1 with navy accents) ── */
+.meta-card {
+    background-color: var(--white);
+    border: 1px solid #d1caba;
+    border-top: 4px solid var(--navy);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+.meta-card__header {
+    background-color: var(--cream);
+    padding: 12px 20px;
+    font-size: 0.6875rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--navy);
+    border-bottom: 1px solid #d1caba;
+}
+.meta-card__body {
+    padding: 18px 20px 20px 20px;
+}
+.meta-row {
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px dotted rgba(9,73,122,0.15);
+}
+.meta-row:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+body.dark-mode .meta-row { border-bottom-color: rgba(168,179,97,0.2) !important; }
+
+.meta-label {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--charcoal);
+    opacity: 0.65;
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+.meta-value {
+    font-weight: bold;
+    color: var(--navy);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    display: block;
+}
+.meta-value.citation {
+    font-weight: normal;
+    font-style: italic;
+    font-size: 0.8125rem;
+    color: var(--charcoal);
+    line-height: 1.6;
+}
+.meta-value.citation strong {
+    font-style: normal;
+    color: var(--navy);
+}
+.meta-link {
+    color: var(--navy);
+    font-weight: bold;
+    text-decoration: underline dotted;
+    font-size: 0.875rem;
+}
+.meta-link:hover { color: var(--sage); }
+.funding-amount {
+    font-size: 1.875rem;
+    font-weight: bold;
+    color: var(--navy);
+    line-height: 1;
+    margin-top: 4px;
+    letter-spacing: -0.5px;
+    display: block;
+}
+
+/* ── Donate card (navy, sidebar) ── */
+.donate-card {
+    background-color: var(--navy);
+    border-radius: 8px;
+    padding: 22px;
+}
+.donate-card p {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.6;
+    margin: 0 0 16px 0;
+}
+.btn-donate-full {
+    display: block;
+    background-color: var(--sage);
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 0.8125rem;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: filter 0.15s, transform 0.15s;
+}
+.btn-donate-full:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    color: #ffffff;
+}
+body.dark-mode .btn-donate-full { background-color: #a8b361; color: #121212; }
+body.dark-mode .btn-donate-full:hover { color: #121212; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+    .page-title-band { padding: 30px 20px; }
+    .page-title-band h1 { font-size: 1.75rem; }
+    .project-ecru-wrap { padding: 2rem 1.25rem; }
+    .dataset-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+    .dataset-sidebar { position: static; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="site-header"></div>
+
+<!-- PAGE TITLE BAND -->
+<div class="page-title-band">
+    <div class="record-type-tag">Yizkor Book Translation</div>
+    <h1>Dzyarzhynsk (Koidonov), Belarus</h1>
+    <p class="hero-subtitle"><i>Ostrog Book; A Memorial to the Ostrog Holy Community (Ostroh (Wolyn); Sefer Ostrog (Vohlin); matsevet zikaron le-kehila kedosha)</i> &mdash; Translation Project</p>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="project-ecru-wrap">
+<div class="project-ecru-inner">
+
+    <div class="dataset-layout">
+
+        <!-- MAIN CONTENT -->
+        <div class="dataset-main">
+
+            <h2>About This Project</h2>
+            <p>This project aims to translate the 402-page Ostroh Yizkor Book from Hebrew, Yiddish and Polish to English. Currently, only 9 of 77 sections have been partially translated. The goal is to provide a complete English translation to JewishGen. We currently have a translator assigned to this project and expect it to be fully finished by late 2026.<br>
+
+Ostroh is a town in the Volynia Region of modern day Ukraine with a rich Jewish history, particularly significant in early Chassidism.<br>
+
+Published in Tel Aviv in 1987, the book covers:<br>
+<ul>
+<li>Jewish history in Ostroh</li>
+<li>Community life, education, and economy<li>
+<li>The Maharsha Synagogue</li>
+<li>Profiles of rabbis and notable figures</li>
+<li>The Holocaust and its aftermath</li>
+<li>Memorial list of Holocaust victims</li>
+</ul><br>
+This translation will preserve the history of Ostroh's Jewish community, offering valuable resources for researchers, descendants, and those interested in Jewish history and the Holocaust.
+Translated portions of the book are currently available online <a href= "https://jewishgen.org/Yizkor/ostroh/ostroh.html"> on JewishGen</a>.</p>
+            
+
+            <h2>Historical Significance</h2>
+            <p>Currently, there is little information available to the English-speaking world regarding the historical Jewish community of Ostroh. With the destruction of the Jewish community of Ostroh, the information in these yizkor books constitutes a significant portion of its documented history, and undoubtedly contains information that is not available anyplace else. This project will result in the creation of the primary English language source of information for anyone doing research on Ostroh and its Jewish community.</p>
+
+
+            <h2>Project Details</h2>
+            
+	<p>This project is intended to result in the translation, from Hebrew, Yiddish and Polish to English, of the Ostroh Yizkor book. The Project Coordinator will direct a fundraising effort for the translation and secure the services of the professional translators. The Project Coordinator will select the order in which to translate the book text and will work closely with the translators to ensure a grammatically correct and accurate translation. Specific tasks the Project Coordinator will perform include proofreading, editing, and preparing the work for submission to the Yizkor Book Project. The resulting translations will be posted, as they are completed, on the JewishGen Yizkor Book Translations site.</p>
+
+            <!-- Back link at bottom of main content -->
+            <a href="/JG40-Build/Donate/YizkorTr/YBFund.html" class="back-link">&larr; All Yizkor Book Projects</a>
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside class="dataset-sidebar" aria-label="Project information">
+
+            <div class="meta-card">
+                <div class="meta-card__header">Project Information</div>
+                <div class="meta-card__body">
+
+                    <div class="meta-row">
+                        <span class="meta-label">Book Title</span>
+                        <span class="meta-value citation"><strong>Ostroh (Wolyn); Sefer Ostrog (Vohlin); matsevet zikaron le-kehila kedosh</strong> (Ostrog Book; A Memorial to the Ostrog Holy Community)<br><strong>Editor: Avraham Reisen </strong><br>Tel Aviv, The Ostrog Society in Israel, 1987</span>
+                    </div>
+
+                         <div class="meta-row">
+                        <span class="meta-label">Project Leader</span>
+                        <span class="meta-value"><a href="https://www.jewishgen.org/CURE/Contact.asp?to=394276ST">Stefani Elkort Twyford</a></span>
+                    </div>
+
+                    <div class="meta-row">
+                        <span class="meta-label">JewishGen Liaison</span>
+                        <span class="meta-value"><a href="mailto:lackerfeld@jewishgen.org">Lance Ackerfeld</a></span>
+                    </div>
+
+                    <div class="meta-row">
+                        <span class="meta-label">Community Page</span>
+                        <a href="https://www.jewishgen.org/Communities/community.php?usbgn=-1049602" class="meta-link" target="_blank" rel="noopener">Ostroh, Ukraine &rarr;</a>
+                    </div>
+
+                    <div class="meta-row">
+                        <span class="meta-label">Funding Goal</span>
+                        <span class="funding-amount" aria-label="Funding goal: $5,000">$5,000</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="donate-card">
+                <p>Your gift supports translation of this and all Yizkor book projects through the Yizkor Book General Fund.</p>
+                <a href="https://www.jewishgen.org/jewishgen-erosity/" class="btn-donate-full" aria-label="Donate to the Yizkor Book Translation General Fund">Donate Now</a>
+            </div>
+
+        </aside>
+
+    </div>
+
+</div>
+</main>
+
+<!-- FOOTER -->
+<div id="site-footer"></div>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function loadComponent(id, file) {
+    return fetch(file)
+        .then(r => { if (!r.ok) throw new Error('Could not load ' + file); return r.text(); })
+        .then(html => { document.getElementById(id).innerHTML = html; })
+        .catch(err => console.warn(err));
+}
+
+Promise.all([
+    loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
+    loadComponent('site-footer', '/JG40-Build/Footer.html')
+]).then(() => {
+    document.querySelectorAll('.jg-nav .dropbtn').forEach(btn => {
+        btn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const expanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', String(!expanded));
+                const menu = document.getElementById(this.getAttribute('aria-controls'));
+                if (menu) menu.style.display = expanded ? 'none' : 'block';
+            }
+            if (e.key === 'Escape') {
+                this.setAttribute('aria-expanded', 'false');
+                const menu = document.getElementById(this.getAttribute('aria-controls'));
+                if (menu) menu.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+
+</body>
+</html>
