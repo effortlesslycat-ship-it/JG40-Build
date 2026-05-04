@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Romania Research Division — JewishGen</title>
+<meta name="description" content="The JewishGen Romania Research Division preserves and shares the histories of Jewish communities from historical Romania">
+
+<!-- 1. Bootstrap -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<!-- 2. JewishGen Global Design System -->
+<link rel="stylesheet" href="/JG40-Build/jg-global.css">
+<!-- 3. Page-specific styles -->
+<style>
+a { text-decoration: none; color: inherit; }
+
+/* -- Dark mode overrides (page-specific) -- */
+body.dark-mode .page-title-band         { background-color: #0d2a45 !important; }
+body.dark-mode .rd-intro p              { color: #c8c8c8 !important; }
+body.dark-mode .rd-current-card         { background-color: #1e1e1e !important; border-left-color: #a8b361 !important; }
+body.dark-mode .rd-current-label        { color: #a8b361 !important; }
+body.dark-mode .rd-current-text         { color: #c8c8c8 !important; }
+body.dark-mode .rd-team-card,
+body.dark-mode .rd-external-card        { background-color: #1e1e1e !important; }
+body.dark-mode .rd-team-name,
+body.dark-mode .rd-external-card h3     { color: #e0e0e0 !important; }
+body.dark-mode .rd-team-role            { color: #a8b361 !important; }
+body.dark-mode .rd-team-bio,
+body.dark-mode .rd-external-card p      { color: #c8c8c8 !important; }
+body.dark-mode .rd-team-bio a           { color: #8ab0c9 !important; }
+body.dark-mode .rd-photo                { background-color: #2a2a2a !important; }
+body.dark-mode .rd-donation-block       { background-color: #2a2d1e !important; }
+body.dark-mode .rd-donation-block p     { color: #d8d8c8 !important; }
+
+/* ── Page title band ── */
+.page-title-band {
+    background-color: var(--navy);
+    padding: 44px 50px;
+    text-align: center;
+}
+.page-title-band h1 {
+    margin: 0 0 10px 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2.25rem;
+    font-weight: normal;
+    line-height: 1.2;
+    color: #ffffff;
+}
+.page-title-band p.hero-subtitle {
+    margin: 0 auto;
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 620px;
+    line-height: 1.6;
+}
+
+/* (Sidebar layout, nav card, donate card, and dark-mode overrides for those */
+/*  now live in jg-global.css - see RESEARCH DIVISION SIDEBAR section) */
+
+/* ── Section heading ── */
+.section-heading {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--navy);
+    margin-bottom: 8px;
+}
+.green-accent-line {
+    width: 40px;
+    height: 3px;
+    background-color: var(--sage);
+    margin-bottom: 20px;
+    border-radius: 1px;
+}
+
+/* ── About paragraph ── */
+.rd-intro p {
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: var(--charcoal);
+    margin: 0 0 1.1rem 0;
+}
+.rd-intro p:last-child { margin-bottom: 0; }
+.rd-intro a {
+    color: var(--navy);
+    text-decoration: underline dotted;
+    text-underline-offset: 2px;
+}
+.rd-intro a:hover { color: var(--sage); }
+
+/* ── Currently Working On callout ── */
+.rd-current-card {
+    background-color: var(--white);
+    border-left: 3px solid var(--sage);
+    border-radius: 0 6px 6px 0;
+    padding: 1.125rem 1.375rem;
+    margin: 1.75rem 0 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.rd-current-label {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.9px;
+    color: var(--sage);
+    margin-bottom: 6px;
+}
+.rd-current-text {
+    font-size: 0.9rem;
+    color: var(--charcoal);
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* ── Section spacing ── */
+.rd-section { margin-top: 2.5rem; }
+
+/* ── Our Team card ── */
+.rd-team-card {
+    background-color: var(--white);
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+.rd-photo {
+    width: 130px;
+    height: 155px;
+    object-fit: cover;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    display: block;
+}
+.rd-team-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.0625rem;
+    font-weight: bold;
+    color: var(--navy);
+    margin: 0 0 2px 0;
+    line-height: 1.25;
+}
+.rd-team-role {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--sage);
+    margin-bottom: 12px;
+}
+.rd-team-bio {
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: var(--charcoal);
+    margin: 0;
+}
+.rd-team-bio a {
+    color: var(--navy);
+    text-decoration: underline dotted;
+    text-underline-offset: 2px;
+}
+.rd-team-bio a:hover { color: var(--sage); }
+.rd-team-bio em { font-style: italic; }
+
+/* ── Bio tile grid (clickable tiles, expand inline) ── */
+.bio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    justify-content: center;
+}
+/* When only 1 member, center the tile in the column */
+.bio-grid.bio-grid--single {
+    grid-template-columns: minmax(220px, 280px);
+    justify-content: center;
+}
+
+.bio-tile {
+    background-color: var(--white);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    padding: 1.25rem 1rem 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.15s, box-shadow 0.15s, transform 0.1s;
+    width: 100%;
+    font-family: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+}
+.bio-tile:hover {
+    background-color: #fafaf7;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.09);
+}
+.bio-tile:focus-visible {
+    outline: 2px solid var(--sage);
+    outline-offset: 2px;
+}
+.bio-tile[aria-expanded="true"] {
+    background-color: #fafaf7;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+}
+body.dark-mode .bio-tile { background-color: #1e1e1e !important; border-color: #333 !important; }
+body.dark-mode .bio-tile:hover,
+body.dark-mode .bio-tile[aria-expanded="true"] { background-color: #252525 !important; }
+
+.bio-photo-tile {
+    width: 110px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    display: block;
+}
+body.dark-mode .bio-photo-tile { background-color: #2a2a2a; }
+.bio-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--navy);
+    margin: 0;
+    line-height: 1.25;
+}
+body.dark-mode .bio-name { color: #e0e0e0 !important; }
+.bio-role {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--sage);
+    margin: 0;
+}
+body.dark-mode .bio-role { color: #a8b361 !important; }
+.chevron {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 0.75rem;
+    color: #999;
+    transition: transform 0.2s, color 0.15s;
+}
+.bio-tile[aria-expanded="true"] .chevron {
+    transform: rotate(180deg);
+    color: var(--sage);
+}
+body.dark-mode .chevron { color: #888; }
+body.dark-mode .bio-tile[aria-expanded="true"] .chevron { color: #a8b361; }
+
+/* Bio panel (full-row span when open) */
+.bio-panel {
+    grid-column: 1 / -1;
+    background-color: var(--white);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-left: 3px solid var(--sage);
+    border-radius: 6px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    padding: 1.5rem 1.75rem;
+    display: none;
+}
+.bio-panel.is-open { display: block; }
+.bio-panel-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.0625rem;
+    font-weight: bold;
+    color: var(--navy);
+    margin: 0 0 4px 0;
+    line-height: 1.25;
+}
+.bio-panel-role {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--sage);
+    margin-bottom: 12px;
+}
+.bio-panel p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--charcoal);
+    margin: 0;
+}
+.bio-panel a {
+    color: var(--navy);
+    text-decoration: underline dotted;
+    text-underline-offset: 2px;
+}
+.bio-panel a:hover { color: var(--sage); }
+.bio-panel em { font-style: italic; }
+body.dark-mode .bio-panel { background-color: #1e1e1e !important; border-color: #333 !important; }
+body.dark-mode .bio-panel-name { color: #e0e0e0 !important; }
+body.dark-mode .bio-panel-role { color: #a8b361 !important; }
+body.dark-mode .bio-panel p { color: #c8c8c8 !important; }
+body.dark-mode .bio-panel a { color: #8ab0c9 !important; }
+
+/* ── Centered donation block (Tabele Romania pattern) ── */
+.rd-donation-block {
+    background-color: #dfe3cd;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    border-radius: 6px;
+    margin-top: 0;
+}
+.rd-donation-block p {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    margin: 0 auto 1.25rem;
+    max-width: 540px;
+    color: var(--charcoal);
+}
+.rd-btn-donate-solid {
+    background-color: var(--sage);
+    color: #ffffff;
+    padding: 12px 30px;
+    font-weight: bold;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    display: inline-block;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: filter 0.15s, transform 0.1s;
+}
+.rd-btn-donate-solid:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+    color: #ffffff;
+    text-decoration: none;
+}
+body.dark-mode .rd-btn-donate-solid       { background-color: #a8b361; color: #121212; }
+body.dark-mode .rd-btn-donate-solid:hover { color: #121212; }
+
+/* ── External Site card ── */
+.rd-external-card {
+    background-color: var(--white);
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+.rd-external-card h3 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--navy);
+    margin: 0 0 4px 0;
+}
+.rd-external-card p {
+    font-size: 0.8125rem;
+    color: var(--charcoal);
+    line-height: 1.5;
+    margin: 0;
+}
+.rd-external-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    color: var(--navy);
+    border: 1.5px solid var(--navy);
+    font-weight: bold;
+    font-size: 0.8125rem;
+    padding: 9px 18px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.15s, color 0.15s;
+    flex-shrink: 0;
+}
+.rd-external-btn:hover {
+    background-color: var(--navy);
+    color: #ffffff;
+    text-decoration: none;
+}
+body.dark-mode .rd-external-btn {
+    color: #8ab0c9;
+    border-color: #5a7a95;
+}
+body.dark-mode .rd-external-btn:hover {
+    background-color: #5a7a95;
+    color: #ffffff;
+}
+.rd-external-btn .ext-icon { font-size: 0.875rem; }
+
+/* ── Responsive ── */
+@media (max-width: 800px) {
+    .rd-team-card    { grid-template-columns: 1fr; gap: 1.25rem; padding: 1.25rem; }
+    .rd-photo        { width: 110px; height: 130px; }
+    .bio-grid        { grid-template-columns: repeat(2, 1fr); }
+    .bio-grid.bio-grid--single { grid-template-columns: 1fr; }
+    .rd-external-card { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .rd-donation-block { padding: 2rem 1.25rem; }
+    .page-title-band { padding: 36px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="site-header"></div>
+
+<!-- TITLE BAND -->
+<div class="page-title-band" role="banner">
+    <h1>Romania Research Division</h1>
+    <p class="hero-subtitle">Preserving and sharing the histories of Jewish communities from historic Romania.</p>
+</div>
+
+<!-- PAGE BODY -->
+<div class="rd-body-wrap">
+    <div class="rd-body-inner rd-body-inner--narrow">
+
+        <!-- Sidebar (loaded from RD_Sidebar.html via fetch) -->
+        <aside id="rd-sidebar" class="rd-sidebar"></aside>
+
+        <!-- Main content -->
+        <main>
+
+            <!-- About -->
+            <section>
+                <span class="section-heading">About the Division</span>
+                <div class="green-accent-line"></div>
+                <div class="rd-intro">
+                    <p>Holding more than 1.2 million records, the JewishGen Romania Research Division preserves and shares the rich history of Jewish life in historic Romania, including Moldova, and historic 
+                      Bessarabia through archival records, vital records, and specialized research initiatives. The Division documents life in small shtetls and outlying communities, offering a comprehensive view of social, economic, 
+                      and cultural life across centuries, including census data, voter lists, business directories, 
+                      vital records, and records of Holocaust survival and Soviet-era persecution.</p>
+                </div>
+
+                <!-- Currently working on -->
+                <div class="rd-current-card">
+                    <span class="rd-current-label">Currently Working On</span>
+                    <p class="rd-current-text">The Division is in the middle of indexing birth, marriage, and death records from the Jewish communities of Bucharest and Iasi County, as well as surveying, photographing, and documenting the cemeteries of Romania</p>
+                </div>
+            </section>
+
+            <!-- Our Team -->
+            <section class="rd-section">
+                <span class="section-heading">Our Team</span>
+                <div class="green-accent-line"></div>
+                <article class="rd-team-card">
+                    <img class="rd-photo" src="/JG40-Build/RD/Romania/RomMMor.jpg" alt="Michael Moritz">
+                    <div>
+                        <h2 class="rd-team-name">Michael Moritz</h2>
+                        <span class="rd-team-role">Director of the Romania Research Division</span>
+                    </div>
+                </article>
+              <div class="green-accent-line"></div>
+                <article class="rd-team-card">
+                    <img class="rd-photo" src="/JG40-Build/RD/Romania/RomDLug.jpg" alt="Dana Lugassy">
+                    <div>
+                        <h2 class="rd-team-name">Dana Lugassy</h2>
+                        <span class="rd-team-role">Town Leader & Volunteer Coordinator</span>
+                    </div>
+                </article>
+            </section>
+
+            <!-- Centered donation block -->
+            <section class="rd-section">
+                <span class="section-heading">Support the Romanian Research Division</span>
+                <div class="green-accent-line"></div>
+                <div class="rd-donation-block">
+                    <p>Donor support enables the Division to acquire new materials, index rare records, and make them widely accessible for future generations.</p>
+                    <a href="https://jewishgen.net/donation/romania-research-general" class="rd-btn-donate-solid">Support the Romanian Research Division</a>
+                </div>
+            </section>
+
+            <!-- External Site -->
+            <section class="rd-section">
+                <span class="section-heading">More Resources</span>
+                <div class="green-accent-line"></div>
+                <div class="rd-external-card">
+                    <div>
+                        <h3>Romanian Research Division Website</h3>
+                        <p>For additional resources, town pages, and research guides, visit the dedicated Romanian Research Division website.</p>
+                    </div>
+                    <a href="https://romania.jewishgen.org/" class="rd-external-btn" target="_blank" rel="noopener noreferrer">
+                        Visit Site
+                        <span class="ext-icon" aria-hidden="true">&#8599;</span>
+                    </a>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div id="site-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/JG40-Build/jg-rd-sidebar.js"></script>
+<script>
+function loadComponent(id, file) {
+    return fetch(file)
+        .then(function(r) { if (!r.ok) throw new Error('Could not load ' + file); return r.text(); })
+        .then(function(html) { document.getElementById(id).innerHTML = html; })
+        .catch(function(err) { console.warn(err); });
+}
+
+Promise.all([
+    loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
+    loadComponent('site-footer', '/JG40-Build/Footer.html'),
+    loadComponent('rd-sidebar', '/JG40-Build/RD/Romania/RD_Sidebar.html')
+        .then(function() { if (window.JG && JG.setActiveSidebarLink) JG.setActiveSidebarLink(); })
+]).then(function() {
+    document.querySelectorAll('.jg-nav .dropbtn, .main-nav .dropbtn').forEach(function(btn) {
+        btn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                var menu = this.nextElementSibling;
+                if (menu) menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            }
+            if (e.key === 'Escape') {
+                var menu = this.nextElementSibling;
+                if (menu) menu.style.display = 'none';
+            }
+        });
+    });
+});
+
+/* ── Bio expand/collapse logic (Kalikow Genealogists pattern) ── */
+(function() {
+    var grid   = document.getElementById('bioGrid');
+    if (!grid) return;
+    var tiles  = grid.querySelectorAll('.bio-tile');
+    var panels = grid.querySelectorAll('.bio-panel');
+
+    function closeAll(exceptId) {
+        tiles.forEach(function(t) {
+            if (t.getAttribute('aria-controls') !== exceptId) {
+                t.setAttribute('aria-expanded', 'false');
+            }
+        });
+        panels.forEach(function(p) {
+            if (p.id !== exceptId) p.classList.remove('is-open');
+        });
+    }
+
+    function placePanelAfterRow(tile, panel) {
+        if (tile.nextSibling !== panel) {
+            tile.parentNode.insertBefore(panel, tile.nextSibling);
+        }
+    }
+
+    tiles.forEach(function(tile) {
+        tile.addEventListener('click', function() {
+            var panelId = tile.getAttribute('aria-controls');
+            var panel   = document.getElementById(panelId);
+            var isOpen  = tile.getAttribute('aria-expanded') === 'true';
+
+            if (isOpen) {
+                tile.setAttribute('aria-expanded', 'false');
+                panel.classList.remove('is-open');
+            } else {
+                closeAll(panelId);
+                placePanelAfterRow(tile, panel);
+                tile.setAttribute('aria-expanded', 'true');
+                panel.classList.add('is-open');
+            }
+        });
+    });
+})();
+</script>
+
+</body>
+</html>
