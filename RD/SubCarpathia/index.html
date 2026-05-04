@@ -14,15 +14,8 @@
 <style>
 a { text-decoration: none; color: inherit; }
 
-/* ── Dark mode overrides ── */
+/* -- Dark mode overrides (page-specific) -- */
 body.dark-mode .page-title-band         { background-color: #0d2a45 !important; }
-body.dark-mode .rd-sidebar-card         { background-color: #1e1e1e !important; border-left-color: #5a7a95 !important; }
-body.dark-mode .rd-sidebar-label        { background-color: #2a2a2a !important; color: #e0e0e0 !important; border-bottom-color: #333 !important; }
-body.dark-mode .rd-sidebar-card a       { color: #c8c8c8 !important; }
-body.dark-mode .rd-sidebar-card a:hover    { color: #a8b361 !important; background-color: #2a2a2a !important; }
-body.dark-mode .rd-sidebar-card a.active   { color: #a8b361 !important; border-left-color: #a8b361 !important; background-color: #2a2a2a !important; }
-body.dark-mode .rd-sidebar-donate       { background-color: #0d2a45 !important; }
-body.dark-mode .rd-sidebar-donate p     { color: rgba(255,255,255,0.85) !important; }
 body.dark-mode .rd-intro p              { color: #c8c8c8 !important; }
 body.dark-mode .rd-current-card         { background-color: #1e1e1e !important; border-left-color: #a8b361 !important; }
 body.dark-mode .rd-current-label        { color: #a8b361 !important; }
@@ -61,107 +54,8 @@ body.dark-mode .rd-donation-block p     { color: #d8d8c8 !important; }
     line-height: 1.6;
 }
 
-/* ── Page body ── */
-.rd-body-wrap {
-    background-color: var(--ecru);
-    flex: 1;
-}
-.rd-body-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 2.5rem 2rem;
-    display: grid;
-    grid-template-columns: 240px 1fr;
-    gap: 2.5rem;
-    align-items: start;
-}
-
-/* ── Sidebar wrapper (sticky stack) ── */
-.rd-sidebar {
-    position: sticky;
-    top: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-/* ── Sidebar nav card ── */
-.rd-sidebar-card {
-    background-color: var(--white);
-    border-left: 3px solid var(--navy);
-    border-radius: 0 6px 6px 0;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-    padding: 0 0 16px;
-    overflow: hidden;
-}
-/* Filled header label on sidebar */
-.rd-sidebar-label {
-    display: block;
-    font-size: 0.75rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--navy);
-    background-color: var(--cream);
-    padding: 12px 18px;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-    margin-bottom: 8px;
-}
-.rd-sidebar-card a {
-    display: block;
-    padding: 9px 18px 9px 15px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--charcoal);
-    border-left: 3px solid transparent;
-    transition: color 0.15s, background-color 0.15s;
-    line-height: 1.4;
-}
-.rd-sidebar-card a:hover {
-    color: var(--navy);
-    background-color: var(--ecru);
-}
-.rd-sidebar-card a.active {
-    color: var(--navy);
-    border-left-color: var(--navy);
-    background-color: var(--ecru);
-}
-
-/* ── Sidebar Donate card (Lida pattern, sage button) ── */
-.rd-sidebar-donate {
-    background-color: var(--navy);
-    border-radius: 8px;
-    padding: 18px 18px 16px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-}
-.rd-sidebar-donate p {
-    font-size: 0.8125rem;
-    color: rgba(255,255,255,0.85);
-    line-height: 1.55;
-    margin: 0 0 12px 0;
-}
-.rd-btn-donate-full {
-    display: block;
-    background-color: var(--sage);
-    color: #ffffff;
-    padding: 11px 18px;
-    border-radius: 6px;
-    font-size: 0.8125rem;
-    font-weight: bold;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    transition: filter 0.15s, transform 0.15s;
-    text-decoration: none;
-}
-.rd-btn-donate-full:hover {
-    filter: brightness(1.1);
-    transform: translateY(-1px);
-    color: #ffffff;
-    text-decoration: none;
-}
-body.dark-mode .rd-btn-donate-full        { background-color: #a8b361; color: #121212; }
-body.dark-mode .rd-btn-donate-full:hover  { color: #121212; }
+/* (Sidebar layout, nav card, donate card, and dark-mode overrides for those */
+/*  now live in jg-global.css - see RESEARCH DIVISION SIDEBAR section) */
 
 /* ── Section heading ── */
 .section-heading {
@@ -504,12 +398,6 @@ body.dark-mode .rd-external-btn:hover {
 
 /* ── Responsive ── */
 @media (max-width: 800px) {
-    .rd-body-inner   { grid-template-columns: 1fr; padding: 1.5rem 1rem; gap: 1.5rem; }
-    .rd-sidebar      { position: static; }
-    .rd-sidebar-card { display: flex; flex-wrap: wrap; border-left: none; border-top: 3px solid var(--navy); border-radius: 6px; padding: 0; }
-    .rd-sidebar-label { width: 100%; flex: 1 0 100%; margin-bottom: 0; }
-    .rd-sidebar-card a { padding: 8px 14px; flex: 1 0 auto; text-align: center; border-left: none; border-bottom: 3px solid transparent; }
-    .rd-sidebar-card a.active { border-left: none; border-bottom-color: var(--navy); }
     .rd-team-card    { grid-template-columns: 1fr; gap: 1.25rem; padding: 1.25rem; }
     .rd-photo        { width: 110px; height: 130px; }
     .bio-grid        { grid-template-columns: repeat(2, 1fr); }
@@ -533,27 +421,10 @@ body.dark-mode .rd-external-btn:hover {
 
 <!-- PAGE BODY -->
 <div class="rd-body-wrap">
-    <div class="rd-body-inner">
+    <div class="rd-body-inner rd-body-inner--narrow">
 
-        <!-- Sidebar (nav + donate stacked) -->
-        <aside class="rd-sidebar">
-
-            <!-- Nav -->
-            <nav class="rd-sidebar-card" aria-label="Subcarpathia Research Division navigation">
-                <span class="rd-sidebar-label">Subcarpathia</span>
-                <a href="/JG40-Build/RD/SubCarpathia/index.html" class="active" aria-current="page">About</a>
-                <a href="/JG40-Build/RD/SubCarpathia/databases.html">Databases</a>
-                <a href="/JG40-Build/RD/SubCarpathia/towns.html">Towns Indexed</a>
-                <a href="/JG40-Build/RD/SubCarpathia/fundraising.html">Funding</a>
-            </nav>
-
-            <!-- Donate -->
-            <div class="rd-sidebar-donate">
-                <p>Help us preserve Subcarpathian Jewish history by indexing rare records and making them widely accessible.</p>
-                <a href="/JG40-Build/RD/SubCarpathia/fundraising.html" class="rd-btn-donate-full">Donate Now</a>
-            </div>
-
-        </aside>
+        <!-- Sidebar (loaded from RD_Sidebar.html via fetch) -->
+        <div id="rd-sidebar"></div>
 
         <!-- Main content -->
         <main>
@@ -606,7 +477,7 @@ body.dark-mode .rd-external-btn:hover {
                         <h3>Subcarpathia Division Website</h3>
                         <p>For additional resources, town pages, and research guides, visit the dedicated Subcarpathia Division website.</p>
                     </div>
-                    <a href="https://www.jewishgen.org/Subcarpathia/" class="rd-external-btn" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.jewishgen.org/Sub-Carpathia/" class="rd-external-btn" target="_blank" rel="noopener noreferrer">
                         Visit Site
                         <span class="ext-icon" aria-hidden="true">&#8599;</span>
                     </a>
@@ -622,6 +493,7 @@ body.dark-mode .rd-external-btn:hover {
 <div id="site-footer"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/JG40-Build/jg-rd-sidebar.js"></script>
 <script>
 function loadComponent(id, file) {
     return fetch(file)
@@ -632,7 +504,9 @@ function loadComponent(id, file) {
 
 Promise.all([
     loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
-    loadComponent('site-footer', '/JG40-Build/Footer.html')
+    loadComponent('site-footer', '/JG40-Build/Footer.html'),
+    loadComponent('rd-sidebar', '/JG40-Build/RD/SubCarpathia/RD_Sidebar.html')
+        .then(function() { if (window.JG && JG.setActiveSidebarLink) JG.setActiveSidebarLink(); })
 ]).then(function() {
     document.querySelectorAll('.jg-nav .dropbtn, .main-nav .dropbtn').forEach(function(btn) {
         btn.addEventListener('keydown', function(e) {
