@@ -2020,7 +2020,6 @@ body.dark-mode .jg-sidebar-block--search { background-color: #1a1a1a; border: 1p
 }
 .jg-sidebar-search-note a { color: var(--white); text-decoration: underline; }
 
-/*Sidebar: Donate */
 /* -- Sidebar donate card (navy band w/ sage CTA) ----------- */
 .jg-sidebar-donate {
     background-color: var(--navy);
@@ -2033,6 +2032,64 @@ body.dark-mode .jg-sidebar-block--search { background-color: #1a1a1a; border: 1p
     color: rgba(255,255,255,0.85);
     line-height: 1.55;
     margin: 0 0 12px 0;
+}
+.jg-btn-donate-full {
+    display: block;
+    background-color: var(--sage);
+    color: #ffffff;
+    padding: 11px 18px;
+    border-radius: 6px;
+    font-size: 0.8125rem;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    transition: filter 0.15s, transform 0.15s;
+    text-decoration: none;
+}
+.jg-btn-donate-full:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* -- Dark mode --------------------------------------------- */
+/* var(--navy) flips to light gray in dark mode, so the donate */
+/* card background is hardcoded to keep the navy fill intact.  */
+body.dark-mode .jg-sidebar-card {
+    background-color: #1e1e1e;
+    border-left-color: #5a7a95;
+}
+body.dark-mode .jg-sidebar-label {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    border-bottom-color: #333;
+}
+body.dark-mode .jg-sidebar-card a {
+    color: #c8c8c8;
+}
+body.dark-mode .jg-sidebar-card a:hover {
+    color: #a8b361;
+    background-color: #2a2a2a;
+}
+body.dark-mode .jg-sidebar-card a.active {
+    color: #a8b361;
+    border-left-color: #a8b361;
+    background-color: #2a2a2a;
+}
+body.dark-mode .jg-sidebar-donate {
+    background-color: #0d2a45;
+}
+body.dark-mode .jg-sidebar-donate p {
+    color: rgba(255,255,255,0.85);
+}
+body.dark-mode .jg-btn-donate-full {
+    background-color: #a8b361;
+    color: #121212;
+}
+body.dark-mode .jg-btn-donate-full:hover {
+    color: #121212;
 }
 
 /* Sidebar: Contributors */
