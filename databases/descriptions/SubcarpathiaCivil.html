@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subcarpathia Civil Registration — JewishGen</title>
+    
+    <link rel="stylesheet" href="/JG40-Build/jg-global.css">
+
+    <style>
+
+        
+        a { text-decoration: none; color: inherit; }
+
+        /* Page Layout */
+        .browse-zone { background-color: var(--ecru); flex-grow: 1; padding-bottom: 80px; }
+        .page-body { 
+            display: flex; 
+            max-width: 1150px; 
+            margin: 0 auto; 
+            padding: 40px 50px; 
+            align-items: flex-start; 
+            gap: 50px; 
+        }
+
+        /* ── SIDEBAR ── */
+        .dataset-sidebar { width: 280px; flex-shrink: 0; }
+        
+        .jg-sidebar-card {
+            background: var(--white);
+            border-left: 3px solid var(--navy);
+            border-radius: 0 6px 6px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+        body.dark-mode .jg-sidebar-card { background: #1e1e1e; border-left-color: #5a7a95; }
+
+        /* At a Glance Header */
+        .jg-sidebar-card__header--green {
+            background-color: var(--sage);
+            color: var(--white);
+            padding: 12px 20px;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        body.dark-mode .jg-sidebar-card__header--green { background-color: #a8b361; color: #1a1a1a; }
+
+        .sidebar-row { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 24px; font-size: 13px; }
+        .sidebar-icon { width: 20px; flex-shrink: 0; margin-top: 4px; }
+        .sidebar-icon img { width: 100%; height: auto; }
+        .sidebar-label { font-size: 10px; letter-spacing: 0.5px; font-weight: bold; text-transform: uppercase; opacity: 0.6; margin-bottom: 4px; }
+        .sidebar-value { font-weight: 600; color: var(--navy); font-size: 13.5px; line-height: 1.5; }
+        body.dark-mode .sidebar-value { color: #e0e0e0; }
+
+        /* Search Card (Navy) */
+        .jg-sidebar-card--search {
+            background: var(--navy);
+            border-left-color: var(--sage);
+            padding: 20px;
+            color: var(--white);
+        }
+        body.dark-mode .jg-sidebar-card--search { background: #1a1a1a; border-left-color: var(--sage); }
+        
+        .sidebar-search-input { 
+            width: 100%; padding: 10px; border: none; border-radius: 4px; 
+            background: var(--light-blue); margin-bottom: 12px; font-size: 13px; 
+            box-sizing: border-box;
+        }
+        .sidebar-search-btn { 
+            width: 100%; background: var(--sage); color: white; border: none; 
+            padding: 10px; font-weight: bold; text-transform: uppercase; border-radius: 4px; 
+            cursor: pointer;
+        }
+
+        /* ── MAIN CONTENT ── */
+        .main-column { flex: 1; min-width: 0; }
+
+        /* Typography & Dividers */
+        .dataset-title { font-family: Georgia, serif; font-size: 2.25rem; color: var(--navy); margin: 0; }
+        body.dark-mode .dataset-title { color: #e0e0e0; }
+        
+        .jg-hr-navy { border: none; border-top: 3px solid var(--navy); margin: 25px 0; }
+        body.dark-mode .jg-hr-navy { border-top-color: var(--sage); }
+
+        .section-heading { font-size: 15px; font-weight: bold; text-transform: uppercase; color: var(--navy); margin-bottom: 8px; display: block; }
+        .green-accent-line { width: 40px; height: 3px; background-color: var(--sage); margin-bottom: 20px; }
+        body.dark-mode .section-heading { color: #e0e0e0; }
+
+        /* Cards */
+        .white-card { 
+            background: var(--white); border-radius: 6px; padding: 25px; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07); margin-bottom: 25px; 
+        }
+        body.dark-mode .white-card { background: #1e1e1e; }
+
+        .card-internal-divider { border: none; border-top: 1px solid #dce5ea; margin: 15px 0; }
+        body.dark-mode .card-internal-divider { border-top-color: #333; }
+
+        /* Source Card */
+        .source-callout { 
+            background: var(--light-blue); border-left: 4px solid var(--sage); 
+            padding: 20px; font-size: 13px; line-height: 1.5; margin-top: 20px;
+        }
+        body.dark-mode .source-callout { background: #2a2a2a; color: #c8c0b0; }
+
+        /* Fields Grid */
+        .fields-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 40px; }
+        .field-item { font-size: 14px; color: var(--navy); padding: 8px 0; border-bottom: 1px solid #dce5ea; }
+        body.dark-mode .field-item { color: #c8c0b0; border-bottom-color: #333; }
+
+        /* Donation Box */
+        .donation-block { background-color: #dfe3cd; padding: 40px; text-align: center; border-radius: 6px; margin-top: 50px; }
+        body.dark-mode .donation-block { background-color: #2a2d1e; }
+        .btn-donate-solid { 
+            background-color: var(--sage); color: white; padding: 12px 30px; 
+            font-weight: bold; text-transform: uppercase; display: inline-block; border-radius: 4px;
+        }
+
+        .text-center { text-align: center; }
+
+        .dark-logo { display: none; }
+        body.dark-mode .light-logo { display: none; }
+        body.dark-mode .dark-logo { display: block; }
+
+        /* Links Box */
+        .links-box { display: flex; gap: 15px; margin-top: 25px; }
+        .links-box a { 
+            flex: 1; text-align: center; background: var(--navy); color: white; 
+            padding: 12px; border-radius: 4px; font-size: 13px; font-weight: bold; 
+            text-transform: uppercase; border: 1px solid var(--navy);
+        }
+        .links-box a.outline-btn { background: transparent; color: var(--navy); }
+        body.dark-mode .links-box a.outline-btn { color: #e0e0e0; border-color: #e0e0e0; }
+
+        .ack-text {
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        /* --- Research Drawers (Accordions) --- */
+        .research-drawer {
+            background: var(--white);
+            border-radius: 6px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid #dce5ea;
+            overflow: hidden;
+        }
+
+        body.dark-mode .research-drawer { background: #1e1e1e; border-color: #333; }
+
+        .research-drawer summary {
+            padding: 18px 25px;
+            cursor: pointer;
+            font-family: Georgia, serif;
+            font-size: 17px;
+            color: var(--navy);
+            font-weight: bold;
+            list-style: none; /* Hides default arrow */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        body.dark-mode .research-drawer summary { color: #e0e0e0; }
+        .research-drawer summary:hover { background: #f8f9fa; }
+        body.dark-mode .research-drawer summary:hover { background: #252525; }
+
+        /* Custom +/- Icon */
+        .research-drawer summary::after { content: '+'; font-family: sans-serif; font-weight: 300; font-size: 22px; color: var(--sage); }
+        .research-drawer[open] summary::after { content: '−'; }
+
+        .drawer-content {
+            padding: 0 25px 25px;
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--charcoal);
+        }
+
+        body.dark-mode .drawer-content { color: #c8c0b0; }
+
+        /* Fix for the Summary Text line */
+        .total-summary-line {
+            font-size: 14px;
+            margin: 30px 0;
+            text-align: left;
+        }
+        .total-summary-line strong { color: var(--navy); }
+        body.dark-mode .total-summary-line strong { color: #e0e0e0; }
+
+        @media (max-width: 900px) {
+            .page-body { flex-direction: column; padding: 20px; }
+            .dataset-sidebar { width: 100%; }
+            .fields-grid { grid-template-columns: 1fr; }
+            .links-box { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<div class="browse-zone">
+    <div class="page-body">
+        
+        <aside class="dataset-sidebar">
+            <a href="/JG40-Build/search/Global_Search.html" style="font-size: 13px; font-weight: bold; text-decoration: underline dotted; margin-bottom: 25px; display: block;">
+                ← Back to the JewishGen Global Search
+            </a>
+
+            <div class="jg-sidebar-card">
+                <div class="jg-sidebar-card__header--green">At a Glance</div>
+                <div style="padding: 20px;">
+                    <div class="sidebar-row">
+                        <div class="sidebar-icon"><img src="/JG40-Build/databases/DateReg.png" class="light-logo" alt="">
+                    <img src="/JG40-Build/databases/DateDark.png" class="dark-logo" alt=""></div>
+                        <div><span class="sidebar-label">Date Range </span><span class="sidebar-value">1895–1939</span></div>
+                    </div>
+                    <div class="sidebar-row">
+                        <div class="sidebar-icon"><img src="/JG40-Build/databases/RegionReg.png" class="light-logo" alt="">
+                    <img src="/JG40-Build/databases/RegionDark.png" class="dark-logo" alt=""></div>
+                        <div><span class="sidebar-label">Region </span><span class="sidebar-value">Bereg, Máramaros, Ugocsa, and Ung (Modern Zakarpats’ka oblast)</span></div>
+                    </div>
+                    <div class="sidebar-row">
+                       <div class="sidebar-icon"><img src="/JG40-Build/databases/TotalReg.png" class="light-logo" alt=""><img src="/JG40-Build/databases/TotalDark.png" class="dark-logo" alt=""></div>
+                        <div style="width: 100%;">
+                            <span class="sidebar-label">Total Records </span>
+                            <span class="sidebar-value">417,248</span>
+                            <div style="display: flex; gap: 8px; margin-top: 12px;">
+                                <div style="flex:1; background:var(--light-blue); padding:8px 4px; text-align:center; border-radius:6px;">
+                                    <span style="display:block; font-size:9px; opacity:0.7; font-weight:bold;">BIRTHS</span>
+                                        <strong style="font-size:11px;">218K+</strong>
+                                </div>
+                                <div style="flex:1; background:var(--light-blue); padding:8px 4px; text-align:center; border-radius:6px;">
+                                    <span style="display:block; font-size:9px; opacity:0.7; font-weight:bold;">MARRIAGES</span>
+                                        <strong style="font-size:11px;">30K+</strong>
+                                </div>
+                                <div style="flex:1; background:var(--light-blue); padding:8px 4px; text-align:center; border-radius:6px;">
+                                    <span style="display:block; font-size:9px; opacity:0.7; font-weight:bold;">DEATHS</span>
+                                        <strong style="font-size:11px;">91K+</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar-row">
+                        <div class="sidebar-icon"><img src="/JG40-Build/databases/LangReg.png" class="light-logo" alt="">
+                    <img src="/JG40-Build/databases/LangDark.png" class="dark-logo" alt=""></div>
+                        <div><span class="sidebar-label">Languages </span><span class="sidebar-value">Hungarian, Slovak, Ruthenian</span></div>
+                    </div>
+                    
+                     <div class="sidebar-row">
+                        <div class="sidebar-icon"><img src="/JG40-Build/databases/TypeReg.png" class="light-logo" alt="">
+                    <img src="/JG40-Build/databases/TypeDark.png" class="dark-logo" alt=""></div>
+                        <div><span class="sidebar-label">Record Type </span><span class="sidebar-value">Civil Registration (Vital Records)</span></div>
+                    </div>
+                    
+                      <div class="sidebar-row">
+                        <div class="sidebar-icon"><img src="/JG40-Build/databases/SourceReg.png" class="light-logo" alt="">
+                    <img src="/JG40-Build/databases/SourceDark.png" class="dark-logo" alt=""></div>
+                        <div><span class="sidebar-label">Source Archive </span><span class="sidebar-value">Ukrainian State Archives</span></div>
+                    </div>
+                    
+                    <div class="sidebar-row">
+                        <div class="sidebar-icon"><img src="/JG40-Build/databases/UpdatedReg.png" class="light-logo" alt="">
+                    <img src="/JG40-Build/databases/UpdatedDark.png" class="dark-logo" alt=""></div>
+                        <div><span class="sidebar-label">Last Updated </span><span class="sidebar-value">January 2026</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="jg-sidebar-card jg-sidebar-card--search">
+                <div style="font-size: 13px; font-weight: bold; text-transform: uppercase; margin-bottom: 12px;">Search This Dataset</div>
+                <label style="font-size: 10px; font-weight: bold; opacity: 0.8; text-transform: uppercase; display: block; margin-bottom: 5px;">Surname or Given Name</label>
+                <input type="text" id="dataset-search-input" class="sidebar-search-input" placeholder="e.g. Diamond">
+                <button class="sidebar-search-btn">Search Records</button>
+            </div>
+
+            <div class="jg-sidebar-card" style="padding: 20px;">
+                <div class="section-heading" style="font-size: 13px; border-bottom: 1px solid #eee; padding-bottom: 8px; margin-bottom: 15px;">Contributors</div>
+                <div style="margin-bottom: 12px;">
+                    <span class="sidebar-label">Coordinator</span>
+                    <span class="sidebar-value" style="font-size: 13px;">Lara Diamond</span>
+                </div>
+                <div style="margin-bottom: 12px;">
+                    <span class="sidebar-label">Data Input</span>
+                    <span class="sidebar-value" style="font-size: 12px;">Sub-Carpathia Research Division Volunteers</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-column">
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                <h1 class="dataset-title">Subcarpathia Civil Registration</h1>
+                <span style="font-size: 12px; font-weight: bold; opacity: 0.5;">417,248 RECORDS</span>
+            </div>
+            <p style="color: var(--sage); font-weight: bold; font-size: 13px; text-transform: uppercase; margin-top: 5px;">Vital Records · Subcarpathia · Ukraine · Hungary</p>
+
+            <hr class="jg-hr-navy">
+
+            <span class="section-heading">Background</span>
+            <div class="green-accent-line"></div>
+            
+            <div style="margin-bottom: 40px;"><p style="font-size: 15px; line-height: 1.7; margin-bottom: 25px;">
+                The JewishGen Subcarpathia Research Division focuses on parts of the former Hungarian <em>megye</em> (counties) of Bereg, Máramaros, Ugocsa and Ung. Following the First World War (via the 1920 Treaty of Trianon), these areas became the eastern-most part of the newly-formed nation of Czechoslovakia. Today, they are located in the Zakarpats’ka <em>oblast</em> of southwestern Ukraine.
+                <br><br>
+                The concept of Civil Registration—where everyone in a given town was registered by the government in the same book regardless of their religion—began in the Kingdom of Hungary in October 1895.
+            </p>
+
+                <div class="source-callout">
+                    <strong>Source &amp; Acquisition:</strong> With the help of a photographer in Ukraine, JewishGen is digitizing every Jewish record in these civil registration books. We estimate that there are 3,000 such books. These register books have <strong>not</strong> been microfilmed by the Mormons (LDS Church) yet, nor by the Ukrainian government. Other than actually traveling to the archives in Ukraine, or hiring a researcher to go there, the only way for genealogists and historians to research these records is through this JewishGen project.
+                </div>
+                
+                <div class="links-box">
+                    <a href="/JG40-Build/RD/SubCarpathia/towns.html">View Inventory of Indexed Towns</a>
+                    <a href="https://tinyurl.com/SubcarpathiaDocRequest" class="outline-btn" target="_blank">Request a Copy of a Document</a>
+                </div>
+
+            </div>
+
+            <hr class="jg-hr-navy">
+
+            <span class="section-heading">Record Categories</span>
+            <div class="green-accent-line"></div>
+            <p style="font-size: 15px; line-height: 1.7; margin-bottom: 20px;">The database compiles vital events recorded from 1895 to 1939. Currently, the collection encompasses the following major categories:</p>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px;">
+                <div class="white-card">
+                    <span style="background: var(--navy); color: #ffffff; padding: 3px 10px; border-radius: 4px; font-weight: bold; font-size: 12px;">Births</span>
+                    <h4 style="font-family: Georgia; margin: 12px 0 8px; font-size: 13px;">Civil Birth Registers</h4>
+                    <p style="font-size: 12px; color: var(--charcoal); min-height: 45px; margin: 0;">Includes records of children born within the registered towns and surrounding villages. Early records typically contain more information regarding parents' birthplaces.</p>
+                    <div class="card-internal-divider"></div>
+                    <div style="font-size: 12px; color: var(--navy);">Over 218,000 records</div>
+                </div>
+                <div class="white-card">
+                    <span style="background: var(--navy); color: #ffffff; padding: 3px 10px; border-radius: 4px; font-weight: bold; font-size: 12px;">Marriages</span>
+                    <h4 style="font-family: Georgia; margin: 12px 0 8px; font-size: 13px;">Civil Marriage Registers</h4>
+                    <p style="font-size: 12px; color: var(--charcoal); min-height: 45px; margin: 0;">Includes civil unions recognized by the state authorities across varying language periods (Hungarian, Slovak, and Ruthenian).</p>
+                    <div class="card-internal-divider"></div>
+                    <div style="font-size: 12px; color: var(--navy);">Over 30,000 records</div>
+                </div>
+                <div class="white-card">
+                    <span style="background: var(--navy); color: #ffffff; padding: 3px 10px; border-radius: 4px; font-weight: bold; font-size: 12px;">Deaths</span>
+                    <h4 style="font-family: Georgia; margin: 12px 0 8px; font-size: 13px;">Civil Death Registers</h4>
+                    <p style="font-size: 12px; color: var(--charcoal); min-height: 45px; margin: 0;">Death certificates. Note that married women who died may be recorded under their married surname or their maiden surname interchangeably.</p>
+                    <div class="card-internal-divider"></div>
+                    <div style="font-size: 12px; color: var(--navy);">Over 91,000 records</div>
+                </div>
+            </div>
+            
+            <div class="total-summary-line">
+                As of <strong>August 2025</strong>, 2,092 books have been digitally photographed, and 2,079 books have been completely transcribed, making <strong>417,248 records</strong> searchable via JewishGen.
+            </div>            
+            
+            <hr class="jg-hr-navy">
+
+            <span class="section-heading">Fields Recorded</span>
+            <div class="green-accent-line"></div>
+            <p style="font-size: 14px; line-height: 1.7; margin-bottom: 16px;">While the specific details gathered by the government changed over time, the following fields are generally captured for individuals across the registers:</p>
+            <div class="white-card" style="margin-bottom: 40px;">
+                <div class="fields-grid">
+                <div class="field-item">Surname &amp; Given Name</div>
+                <div class="field-item">Town of Event / Registration</div>
+                <div class="field-item">Event Date (Birth, Marriage, or Death)</div>
+                <div class="field-item">Father's Given Name &amp; Surname</div>
+                <div class="field-item">Mother's Given Name &amp; Maiden Surname</div>
+                <div class="field-item">Parents' Towns of Birth <em>(Primarily pre-1906)</em></div>
+                <div class="field-item">Spouse's Name <em>(If applicable)</em></div>
+                <div class="field-item">Book &amp; Record/Page Number</div>
+            </div>
+            </div>
+
+            <hr class="jg-hr-navy">
+
+           <span class="section-heading">Research Notes</span>
+<div class="green-accent-line"></div>
+
+<p style="margin-bottom: 25px; font-size: 15px; line-height: 1.7;">
+    This database reflects the shifting geopolitical borders and bureaucratic standards of the Subcarpathia region. The notes below explain language shifts, recording inconsistencies, and regional mapping.
+</p>
+
+<details class="research-drawer">
+    <summary>Record Completeness (Pre-1906 vs. Post-1906)</summary>
+    <div class="drawer-content">
+        <p>Records from 1895 through the end of 1906 tend to contain much more detailed genealogical information than those recorded from 1907 onward, as the government began requesting less information.</p>
+        <p>The pre-1906 records are particularly valuable as they frequently include the <strong>towns of birth for the parents</strong> of a child being born or for individuals getting married.</p>
+    </div>
+</details>
+
+<details class="research-drawer">
+    <summary>Language Shifts in the Ledgers</summary>
+    <div class="drawer-content">
+        <p>Because the region changed hands multiple times, the language used by the registrars shifted according to the ruling authority:</p>
+        <ul style="margin-top: 10px;">
+            <li><strong>1895 – ~1919:</strong> Records are written in <strong>Hungarian</strong>.</li>
+            <li><strong>~1919 – 1939:</strong> Records switch to <strong>Slovak</strong> (during the Czechoslovakian period).</li>
+            <li><strong>1939 (Briefly):</strong> Records are written in <strong>Ruthenian</strong> (using the Cyrillic alphabet) for several months.</li>
+            <li><strong>Post-1939:</strong> Records switch back to <strong>Hungarian</strong> following the border change.</li>
+        </ul>
+        <p><em>Note: Some towns have random periods of Ruthenian-language entries interspersed during the Slovak era.</em></p>
+    </div>
+</details>
+
+<details class="research-drawer">
+    <summary>Missing Fathers & Unmarried Parents</summary>
+    <div class="drawer-content">
+        <p>When searching birth records, you may notice that many children do not have fathers listed. This was quite common, as it indicates the parents were not legally married under civil law at the time of the birth, even if they were married under religious law (chuppah).</p>
+    </div>
+</details>
+
+<details class="research-drawer">
+    <summary>Women's Surnames in Death Records</summary>
+    <div class="drawer-content">
+        <p><strong>Important note:</strong> In the death records for this database, married women who died were recorded inconsistently. Sometimes they were recorded with their married surname, and sometimes with their maiden surname. Not every original record makes it explicitly clear whether the clerk was listing her maiden name or her married name.</p>
+    </div>
+</details>
+
+<details class="research-drawer">
+    <summary>Geographical Coverage</summary>
+    <div class="drawer-content">
+        <p>Registration books were maintained in a single, central town, but they generally covered vital events from that central town as well as several surrounding smaller villages. Sometimes the primary town responsible for a district was shifted by the government at a specific point in time.</p>
+    </div>
+</details>
+
+           <hr class="jg-hr-navy">
+
+            <span class="section-heading">Acknowledgements</span>
+                <div class="green-accent-line"></div>
+
+                <div class="ack-section">
+                <p style="font-size: 14px; line-height: 1.7; margin-bottom: 15px;">
+                    This database is a unique contribution, and would not be possible without the hard work, dedication, and perseverance of our volunteers. If you have any questions or would like to learn more about volunteering, please reach out.</p>
+                <a href="mailto:ldiamond@JewishGen.org" class="btn-donate-solid">Contact Lara Diamond</a>
+                </p>
+            </div>
+
+            <div class="donation-block">
+                <p>Donor support enables the Division to acquire new materials, index rare records, and make them widely accessible for future generations.</p>
+                    <a href="https://jewishgen.net/donation/sub-carpathia-rd-general-fund" class="rd-btn-donate-solid">Support the Subcarpathia Division</a>
+                </div>
+
+        </main>
+    </div>
+</div>
+
+<div id="site-footer"></div>
+
+<script>
+    function loadComponent(id, file) {
+        fetch(file).then(r => r.text()).then(h => document.getElementById(id).innerHTML = h);
+    }
+    loadComponent('site-header', '/JG40-Build/Header_NavBar.html');
+    loadComponent('site-footer', '/JG40-Build/Footer.html');
+
+    document.querySelector('.sidebar-search-btn').addEventListener('click', () => {
+        const term = document.getElementById('dataset-search-input').value.trim();
+        const base = 'https://www.jewishgen.org/databases/SubCarpathia/';
+        window.location.href = term ? base + '?given=' + encodeURIComponent(term) : base;
+    });
+</script>
+
+</body>
+</html>
