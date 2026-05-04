@@ -1584,6 +1584,187 @@ body.dark-mode .btn-search { background-color: #a8b361; color: #1a1a1a; }
     .jg-locked-overlay { padding: 16px; }
 }
 
+/* ============================================================
+   RESEARCH DIVISION SIDEBAR
+   Used on RD pages (Subcarpathia, Romania, etc.).
+   Two-column layout: sticky sidebar (nav + donate) + main content.
+   Sidebar markup is fetched per-RD from /RD/{slug}/RD_Sidebar.html.
+   Active state applied at runtime by /JG40-Build/jg-rd-sidebar.js.
+   PLACEMENT: insert immediately before the FOOTER banner section.
+============================================================ */
+
+/* -- Page body wrap (ecru background) ---------------------- */
+.rd-body-wrap {
+    background-color: var(--ecru);
+    flex: 1;
+}
+.rd-body-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+/* -- Sidebar wrapper (sticky stack) ------------------------ */
+.rd-sidebar {
+    position: sticky;
+    top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* -- Sidebar nav card -------------------------------------- */
+.rd-sidebar-card {
+    background-color: var(--white);
+    border-left: 3px solid var(--navy);
+    border-radius: 0 6px 6px 0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    padding: 0 0 16px;
+    overflow: hidden;
+}
+.rd-sidebar-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--navy);
+    background-color: var(--cream);
+    padding: 12px 18px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    margin-bottom: 8px;
+}
+.rd-sidebar-card a {
+    display: block;
+    padding: 9px 18px 9px 15px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    border-left: 3px solid transparent;
+    transition: color 0.15s, background-color 0.15s;
+    line-height: 1.4;
+    text-decoration: none;
+}
+.rd-sidebar-card a:hover {
+    color: var(--navy);
+    background-color: var(--ecru);
+}
+.rd-sidebar-card a.active {
+    color: var(--navy);
+    border-left-color: var(--navy);
+    background-color: var(--ecru);
+}
+
+/* -- Sidebar donate card (navy band w/ sage CTA) ----------- */
+.rd-sidebar-donate {
+    background-color: var(--navy);
+    border-radius: 8px;
+    padding: 18px 18px 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.rd-sidebar-donate p {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.55;
+    margin: 0 0 12px 0;
+}
+.rd-btn-donate-full {
+    display: block;
+    background-color: var(--sage);
+    color: #ffffff;
+    padding: 11px 18px;
+    border-radius: 6px;
+    font-size: 0.8125rem;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    transition: filter 0.15s, transform 0.15s;
+    text-decoration: none;
+}
+.rd-btn-donate-full:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* -- Dark mode --------------------------------------------- */
+/* var(--navy) flips to light gray in dark mode, so the donate */
+/* card background is hardcoded to keep the navy fill intact.  */
+body.dark-mode .rd-sidebar-card {
+    background-color: #1e1e1e;
+    border-left-color: #5a7a95;
+}
+body.dark-mode .rd-sidebar-label {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    border-bottom-color: #333;
+}
+body.dark-mode .rd-sidebar-card a {
+    color: #c8c8c8;
+}
+body.dark-mode .rd-sidebar-card a:hover {
+    color: #a8b361;
+    background-color: #2a2a2a;
+}
+body.dark-mode .rd-sidebar-card a.active {
+    color: #a8b361;
+    border-left-color: #a8b361;
+    background-color: #2a2a2a;
+}
+body.dark-mode .rd-sidebar-donate {
+    background-color: #0d2a45;
+}
+body.dark-mode .rd-sidebar-donate p {
+    color: rgba(255,255,255,0.85);
+}
+body.dark-mode .rd-btn-donate-full {
+    background-color: #a8b361;
+    color: #121212;
+}
+body.dark-mode .rd-btn-donate-full:hover {
+    color: #121212;
+}
+
+/* -- Mobile (under 800px): collapse to horizontal pill row -- */
+@media (max-width: 800px) {
+    .rd-body-inner {
+        grid-template-columns: 1fr;
+        padding: 1.5rem 1rem;
+        gap: 1.5rem;
+    }
+    .rd-sidebar { position: static; }
+    .rd-sidebar-card {
+        display: flex;
+        flex-wrap: wrap;
+        border-left: none;
+        border-top: 3px solid var(--navy);
+        border-radius: 6px;
+        padding: 0;
+    }
+    .rd-sidebar-label {
+        width: 100%;
+        flex: 1 0 100%;
+        margin-bottom: 0;
+    }
+    .rd-sidebar-card a {
+        padding: 8px 14px;
+        flex: 1 0 auto;
+        text-align: center;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+    }
+    .rd-sidebar-card a.active {
+        border-left: none;
+        border-bottom-color: var(--navy);
+    }
+}
+
 /* ══════════════════════════════════════════════════════
    FOOTER
 ══════════════════════════════════════════════════════ */
