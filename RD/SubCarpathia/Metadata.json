@@ -20,7 +20,7 @@
     "lastUpdated": "2026-01-08",
     "sources": "State Archive of Zakarpattia Oblast",
     "recordType": "Births, vital records",
-    "description": "Pull from Marriages line",
+    "description": "Over 218,000 birth records from the region of former Subcarpathia",
     "infoUrl": "/JG40-Build/databases/descriptions/SubcarpathiaCivil.html"
   },
   {
@@ -32,7 +32,7 @@
     "lastUpdated": "2025-08-04",
     "sources": "State Archive of Zakarpattia Oblast",
     "recordType": "Deaths, vital records",
-    "description": "Pull from Marriages line",
+    "description": "",
     "infoUrl": "/JG40-Build/databases/descriptions/SubcarpathiaCivil.html"
   },
   {
@@ -56,7 +56,7 @@
     "lastUpdated": "2026-01-08",
     "sources": "State Archive of Zakarpattia Oblast",
     "recordType": "Deaths, vital records",
-    "description": "Pull from Marriages line",
+    "description": "Over 91,000 marriages from the historical region of Subcarpathia",
     "infoUrl": "/JG40-Build/databases/descriptions/SubcarpathiaCivil.html"
   },
   {
@@ -105,7 +105,7 @@
     "sources": "Hungaricana",
     "recordType": "Census, family list",
     "description": "All Jewish entries from the 1921 Karpatalja Subcarpathia Census, from original images available on Hungaricana.",
-    "infoUrl": "https://www.jewishgen.org/databases/hungary/subcarpathia1921census.html"
+    "infoUrl": "/JG40-Build/databases/descriptions/1921Karpatalja.html"
   },
   {
     "name": "JewishGen Online Worldwide Burial Registry - Transcarpathia",
