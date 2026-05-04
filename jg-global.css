@@ -1599,13 +1599,22 @@ body.dark-mode .btn-search { background-color: #a8b361; color: #1a1a1a; }
     flex: 1;
 }
 .rd-body-inner {
-    max-width: 1100px;
+    max-width: 1180px;
     margin: 0 auto;
     padding: 2.5rem 2rem;
     display: grid;
     grid-template-columns: 240px 1fr;
     gap: 2.5rem;
     align-items: start;
+}
+.rd-body-inner--narrow {
+   max-width: 1100px;
+   margin: 0 auto;
+   padding: 2.5rem 2rem;
+   display: grid;
+   grid-template-columns: 240px 1fr;
+   gap: 2.5rem;
+   align-items: start;
 }
 
 /* -- Sidebar wrapper (sticky stack) ------------------------ */
