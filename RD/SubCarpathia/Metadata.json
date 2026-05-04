@@ -9,7 +9,7 @@
     "sources": "State Archive of Zakarpattia Oblast",
     "recordType": "Marriages, vital records",
     "description": "More than 30,000 marriage records, from towns in the former Hungarian counties of Bereg, Máramaros, and Ugocsa (now in Zakarpatska Oblast, in SW Ukraine).",
-    "infoUrl": "https://www.jewishgen.org/databases/Hungary/SubCarpathia.htm"
+    "infoUrl": "/JG40-Build/databases/descriptions/SubcarpathiaCivil.html"
   },
   {
     "name": "Subcarpathia and Vicinity Births",
@@ -21,7 +21,7 @@
     "sources": "State Archive of Zakarpattia Oblast",
     "recordType": "Births, vital records",
     "description": "Pull from Marriages line",
-    "infoUrl": "https://www.jewishgen.org/databases/Hungary/SubCarpathia.htm"
+    "infoUrl": "/JG40-Build/databases/descriptions/SubcarpathiaCivil.html"
   },
   {
     "name": "SubCarpathia Jewish Deaths",
@@ -33,7 +33,7 @@
     "sources": "State Archive of Zakarpattia Oblast",
     "recordType": "Deaths, vital records",
     "description": "Pull from Marriages line",
-    "infoUrl": "https://www.jewishgen.org/databases/Hungary/SubCarpathia.htm"
+    "infoUrl": "/JG40-Build/databases/descriptions/SubcarpathiaCivil.html"
   },
   {
     "name": "Subcarpathian Passport Cases",
@@ -51,13 +51,13 @@
     "name": "Subcarpathia and Vicinity Deaths",
     "region": "Subcarpathia, Hungary, Czechoslovakia, Transcarpathia, Maramures, Ukraine",
     "language": "German, Hungarian, and others",
-    "recordCount": 91,397,
+    "recordCount": 91397,
     "years": "varies by locale",
     "lastUpdated": "2026-01-08",
     "sources": "State Archive of Zakarpattia Oblast",
     "recordType": "Deaths, vital records",
     "description": "Pull from Marriages line",
-    "infoUrl": "https://www.jewishgen.org/databases/Hungary/SubCarpathia.htm"
+    "infoUrl": "/JG40-Build/databases/descriptions/SubcarpathiaCivil.html"
   },
   {
     "name": "Subcarpathia and Vicinity Family Lists",
@@ -69,7 +69,7 @@
     "sources": "State Archive of Zakarpattia Oblast",
     "recordType": "Census, family list",
     "description": "None which is wild",
-    "infoUrl": "https://www.jewishgen.org/databases/Hungary/SubCarpathia.htm"
+    "infoUrl": "/JG40-Build/databases/descriptions/SubcarpathiaCivil.html"
   },
   {
     "name": "The JewishGen Yizkor Book Master Name Index - Transcarpathia",
