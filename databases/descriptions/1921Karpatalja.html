@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1921 Karpatalja Subcarpathia Census — JewishGen</title>
+    
+    <link rel="stylesheet" href="/JG40-Build/jg-global.css">
+
+    <style>
+
+        
+        a { text-decoration: none; color: inherit; }
+
+        /* Page Layout */
+        .browse-zone { background-color: var(--ecru); flex-grow: 1; padding-bottom: 80px; }
+        .page-body { 
+            display: flex; 
+            max-width: 1150px; 
+            margin: 0 auto; 
+            padding: 40px 50px; 
+            align-items: flex-start; 
+            gap: 50px; 
+        }
+
+        /* ── SIDEBAR ── */
+        .dataset-sidebar { width: 280px; flex-shrink: 0; }
+        
+        .jg-sidebar-card {
+            background: var(--white);
+            border-left: 3px solid var(--navy);
+            border-radius: 0 6px 6px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+        body.dark-mode .jg-sidebar-card { background: #1e1e1e; border-left-color: #5a7a95; }
+
+        /* At a Glance Header */
+        .jg-sidebar-card__header--green {
+            background-color: var(--sage);
+            color: var(--white);
+            padding: 12px 20px;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        body.dark-mode .jg-sidebar-card__header--green { background-color: #a8b361; color: #1a1a1a; }
+
+        .sidebar-row { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 24px; font-size: 13px; }
+        .sidebar-icon { width: 20px; flex-shrink: 0; margin-top: 4px; }
+        .sidebar-icon img { width: 100%; height: auto; }
+        .sidebar-label { font-size: 10px; letter-spacing: 0.5px; font-weight: bold; text-transform: uppercase; opacity: 0.6; margin-bottom: 4px; }
+        .sidebar-value { font-weight: 600; color: var(--navy); font-size: 13.5px; line-height: 1.5; }
+        body.dark-mode .sidebar-value { color: #e0e0e0; }
+        .sidebar-value-placeholder { font-weight: 600; color: #d9534f; font-size: 13.5px; line-height: 1.5; font-style: italic; }
+
+        /* Search Card (Navy) */
+        .jg-sidebar-card--search {
+            background: var(--navy);
+            border-left-color: var(--sage);
+            padding: 20px;
+            color: var(--white);
+        }
+        body.dark-mode .jg-sidebar-card--search { background: #1a1a1a; border-left-color: var(--sage); }
+        
+        .sidebar-search-input { 
+            width: 100%; padding: 10px; border: none; border-radius: 4px; 
+            background: var(--light-blue); margin-bottom: 12px; font-size: 13px; 
+            box-sizing: border-box;
+        }
+        .sidebar-search-btn { 
+            width: 100%; background: var(--sage); color: white; border: none; 
+            padding: 10px; font-weight: bold; text-transform: uppercase; border-radius: 4px; 
+            cursor: pointer;
+        }
+
+        /* ── MAIN CONTENT ── */
+        .main-column { flex: 1; min-width: 0; }
+
+        /* Typography & Dividers */
+        .dataset-title { font-family: Georgia, serif; font-size: 2.25rem; color: var(--navy); margin: 0; }
+        body.dark-mode .dataset-title { color: #e0e0e0; }
+        
+        .jg-hr-navy { border: none; border-top: 3px solid var(--navy); margin: 25px 0; }
+        body.dark-mode .jg-hr-navy { border-top-color: var(--sage); }
+
+        .section-heading { font-size: 15px; font-weight: bold; text-transform: uppercase; color: var(--navy); margin-bottom: 8px; display: block; }
+        .green-accent-line { width: 40px; height: 3px; background-color: var(--sage); margin-bottom: 20px; }
+        body.dark-mode .section-heading { color: #e0e0e0; }
+
+        /* Cards */
+        .white-card { 
+            background: var(--white); border-radius: 6px; padding: 25px; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07); margin-bottom: 25px; 
+        }
+        body.dark-mode .white-card { background: #1e1e1e; }
+
+        .card-internal-divider { border: none; border-top: 1px solid #dce5ea; margin: 15px 0; }
+        body.dark-mode .card-internal-divider { border-top-color: #333; }
+
+        /* Source Card */
+        .source-callout { 
+            background: var(--light-blue); border-left: 4px solid var(--sage); 
+            padding: 20px; font-size: 13px; line-height: 1.5; margin-top: 20px;
+        }
+        body.dark-mode .source-callout { background: #2a2a2a; color: #c8c0b0; }
+
+        /* Fields Grid */
+        .fields-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 40px; }
+        .field-item { font-size: 14px; color: var(--navy); padding: 8px 0; border-bottom: 1px solid #dce5ea; }
+        body.dark-mode .field-item { color: #c8c0b0; border-bottom-color: #333; }
+
+        /* Donation Box */
+        .donation-block { background-color: #dfe3cd; padding: 40px; text-align: center; border-radius: 6px; margin-top: 50px; }
+        body.dark-mode .donation-block { background-color: #2a2d1e; }
+        .btn-donate-solid { 
+            background-color: var(--sage); color: white; padding: 12px 30px; 
+            font-weight: bold; text-transform: uppercase; display: inline-block; border-radius: 4px;
+        }
+
+        .dark-logo { display: none; }
+        body.dark-mode .light-logo { display: none; }
+        body.dark-mode .dark-logo { display: block; }
+
+        @media (max-width: 900px) {
+            .page-body { flex-direction: column; padding: 20px; }
+            .dataset-sidebar { width: 100%; }
+            .fields-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<div class="browse-zone">
+    <div class="page-body">
+        
+        <aside class="dataset-sidebar">
+            <a href="#" style="font-size: 13px; font-weight: bold; text-decoration: underline dotted; margin-bottom: 25px; display: block;">
+                ← Back to Subcarpathia Databases
+            </a>
+
+            <div class="jg-sidebar-card">
+                <div class="jg-sidebar-card__header--green">At a Glance</div>
+                <div style="padding: 20px;">
+                    <div class="sidebar-row">
+                        <div class="sidebar-icon"><img src="/JG40-Build/databases/DateReg.png" class="light-logo" alt="">
+                    <img src="/JG40-Build/databases/DateDark.png" class="dark-logo" alt=""></div>
+                        <div><span class="sidebar-label">Date </span><span class="sidebar-value">1921</span></div>
+                    </div>
+                    <div class="sidebar-row">
+                        <div class="sidebar-icon"><img src="/JG40-Build/databases/RegionReg.png" class="light-logo" alt="">
+                    <img src="/JG40-Build/databases/RegionDark.png" class="dark-logo" alt=""></div>
+                        <div><span class="sidebar-label">Region </span><span class="sidebar-value">Subcarpathia (Czechoslovakia)</span></div>
+                    </div>
+                    <div class="sidebar-row">
+                       <div class="sidebar-icon"><img src="/JG40-Build/databases/TotalReg.png" class="light-logo" alt=""><img src="/JG40-Build/databases/TotalDark.png" class="dark-logo" alt=""></div>
+                        <div style="width: 100%;">
+                            <span class="sidebar-label">Total Records </span>
+                            <span class="sidebar-value">5,013</span>
+                        </div>
+                    </div>
+                    <div class="sidebar-row">
+                        <div class="sidebar-icon"><img src="/JG40-Build/databases/LangReg.png" class="light-logo" alt="">
+                    <img src="/JG40-Build/databases/LangDark.png" class="dark-logo" alt=""></div>
+                        <div><span class="sidebar-label">Source Language </span><span class="sidebar-value">Czech</span></div>
+                    </div>
+                    
+                     <div class="sidebar-row">
+                        <div class="sidebar-icon"><img src="/JG40-Build/databases/TypeReg.png" class="light-logo" alt="">
+                    <img src="/JG40-Build/databases/TypeDark.png" class="dark-logo" alt=""></div>
+                        <div><span class="sidebar-label">Record Type </span><span class="sidebar-value">Census Records</span></div>
+                    </div>
+                    
+                      <div class="sidebar-row">
+                        <div class="sidebar-icon"><img src="/JG40-Build/databases/SourceReg.png" class="light-logo" alt="">
+                    <img src="/JG40-Build/databases/SourceDark.png" class="dark-logo" alt=""></div>
+                        <div><span class="sidebar-label">Source Archive </span><span class="sidebar-value">Hungaricana</span></div>
+                    </div>
+                    
+                    <div class="sidebar-row">
+                        <div class="sidebar-icon"><img src="/JG40-Build/databases/UpdatedReg.png" class="light-logo" alt="">
+                    <img src="/JG40-Build/databases/UpdatedDark.png" class="dark-logo" alt=""></div>
+                        <div><span class="sidebar-label">Last Updated </span><span class="sidebar-value">August 2025</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="jg-sidebar-card" style="padding: 20px;">
+                <div class="section-heading" style="font-size: 13px; border-bottom: 1px solid #eee; padding-bottom: 8px; margin-bottom: 15px;">Contributors</div>
+                <div style="margin-bottom: 12px;">
+                    <span class="sidebar-label">Coordinator</span>
+                    <span class="sidebar-value" style="font-size: 13px;">Ron Donath</span>
+                </div>
+                <div style="margin-bottom: 12px;">
+                    <span class="sidebar-label">Data Input</span>
+                    <span class="sidebar-value" style="font-size: 12px;">Amirah Goldberg, Bonnie Malmat, Belina Reisman, Mark Resnicoff, Marsha Shapiro</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-column">
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                <h1 class="dataset-title">1921 Karpatalja Subcarpathia Census</h1>
+                <span style="font-size: 12px; font-weight: bold; opacity: 0.5;">5,013 RECORDS</span>
+            </div>
+            <p style="color: var(--sage); font-weight: bold; font-size: 13px; text-transform: uppercase; margin-top: 5px;">Census Records · Subcarpathia · Czechoslovakia</p>
+
+            <hr class="jg-hr-navy">
+
+            <span class="section-heading">Background</span>
+            <div class="green-accent-line"></div>
+            
+            <div style="margin-bottom: 40px;">
+                <p style="font-size: 15px; line-height: 1.7; margin-bottom: 15px;">
+                    JewishGen’s <a href= "/JG40-Build/RD/SubCarpathia/index.html">Subcarpathia Research Division</a> is indexing all Jewish entries from the 1921 Karpatalja Subcarpathia Census, from original images available on Hungaricana. These records are from the 1921 census of the newly-formed country of Czechoslovakia.
+                </p>
+                <p style="font-size: 15px; line-height: 1.7; margin-bottom: 25px;">
+                    Records can contain a lot of genealogical information, including dates of birth, dates of marriage/widowhood, information about places of birth, professions, and more. 
+                </p>
+
+                <div class="source-callout">
+                    <strong>Important Note:</strong> Many of these birthdates may be incorrect when comparing them to actual birth records (which are also being indexed by the Subcarpathia Research Division).
+                </div>
+                
+                <p style="font-size: 14px; font-style: italic; margin-top: 15px;">
+                    If your town of interest is not yet indexed, instructions on how to browse through images for a town are available <a href="https://larasgenealogy.blogspot.com/2020/06/1921-czech-census-for-podkarpatska-rus.html" style="color: var(--navy); font-weight: bold; text-decoration: underline;">here</a>.
+                </p>
+            </div>
+
+            <hr class="jg-hr-navy">
+
+            <span class="section-heading">Indexed Towns & Volunteers</span>
+            <div class="green-accent-line"></div>
+            <p style="font-size: 15px; line-height: 1.7; margin-bottom: 20px;">All of these records are online thanks to volunteers. Thank you to Ron Donath for coordinating the entire effort, and to the following volunteers who have indexed records that are currently on JewishGen:</p>
+            
+            <div class="white-card" style="margin-bottom: 40px;">
+                <ul style="font-size: 14px; line-height: 1.8; color: var(--charcoal); margin: 0; padding-left: 20px;">
+                    <li><strong>Amirah Goldberg:</strong> Akli, Alsóremete, Asztély, Badaló, Balazsér, Beregardó, Beregdéda, Beregújfalu, Bulcsú, Csetfalva, Felsőremete, Gát, Halábor, Kígyós, Kovászó, Macsola</li>
+                    <li><strong>Bonnie Malmat:</strong> Bene</li>
+                    <li><strong>Belina Reisman:</strong> Makkosjánosi, Nagybégány</li>
+                    <li><strong>Mark Resnicoff:</strong> Alsósárad, Alsóveresmart, Csarnatő, Felsőveresmart, Nagybereg, Rakasz</li>
+                    <li><strong>Marsha Shapiro:</strong> Kisgút, Lipcsemező, Misztice, Nagyrákóc</li>
+                </ul>
+            </div>
+
+            <hr class="jg-hr-navy">          
+            <span class="section-heading">Fields Recorded</span>
+            <div class="green-accent-line"></div>
+            <p style="font-size: 14px; line-height: 1.7; margin-bottom: 16px;">The following fields are captured for individuals in this census dataset:</p>
+            <div class="white-card" style="margin-bottom: 40px;">
+                <div class="fields-grid">
+                    <div class="field-item">House No. / Family No.</div>
+                    <div class="field-item">Surname / Birth Surname / Given Name</div>
+                    <div class="field-item">Relationship</div>
+                    <div class="field-item">Birth Date</div>
+                    <div class="field-item">Birth Town</div>
+                    <div class="field-item">Census Town (HU/CS) / District / Land</div>
+                    <div class="field-item">Reference</div>
+                    <div class="field-item">Comments / Original Image</div>
+                </div>
+            </div>
+            <div class="green-accent-line" style="background-color: #d9534f;"></div>
+            <p style="font-size: 14px; line-height: 1.7; margin-bottom: 16px; font-style: italic; color: #d9534f;">[If there are specific historical quirks, language notes, or address structures for the 1921 Census, please provide them here for the accordion drawers.]</p>
+            <div class="donation-block">
+                <p style="font-size: 16px; margin-bottom: 25px; color: var(--charcoal);"> Databases like this one are made possible entirely through volunteer effort. If you would like to assist in indexing these records, please reach out to the Subcarpathia Research Division.</p>
+            </div>
+
+        </main>
+    </div>
+</div>
+
+<div id="site-footer"></div>
+
+<script>
+    function loadComponent(id, file) {
+        fetch(file).then(r => r.text()).then(h => document.getElementById(id).innerHTML = h);
+    }
+    loadComponent('site-header', '/JG40-Build/Header_NavBar.html');
+    loadComponent('site-footer', '/JG40-Build/Footer.html');
+
+    document.querySelector('.sidebar-search-btn').addEventListener('click', () => {
+        const term = document.getElementById('dataset-search-input').value.trim();
+        const base = 'https://www.jewishgen.org/databases/SubCarpathia1921/';
+        window.location.href = term ? base + '?given=' + encodeURIComponent(term) : base;
+    });
+</script>
+
+</body>
+</html>
