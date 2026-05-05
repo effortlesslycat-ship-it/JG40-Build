@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Divisions — JewishGen</title>
+<meta name="description" content="JewishGen Research Divisions focus on expanding our collection of records, building knowledge content, and supporting town-level KehilaLinks.">
+
+<!-- 1. Bootstrap -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<!-- 2. JewishGen Global Design System -->
+<link rel="stylesheet" href="/JG40-Build/jg-global.css">
+<!-- 3. Page-specific styles -->
+<style>
+a { text-decoration: none; color: inherit; }
+
+/* -- Dark mode page-specific overrides -- */
+body.dark-mode .page-title-band     { background-color: #0d2a45 !important; }
+body.dark-mode .rd-dir-intro p      { color: #c8c8c8 !important; }
+body.dark-mode .rd-dir-section-label{ color: #a0a0a0 !important; }
+body.dark-mode .rd-dir-card         { background-color: #1e1e1e !important; border-color: #333 !important; }
+body.dark-mode .rd-dir-card:hover   { border-color: #a8b361 !important; }
+body.dark-mode .rd-dir-card h3      { color: #e0e0e0 !important; }
+body.dark-mode .rd-dir-card p       { color: #c8c8c8 !important; }
+body.dark-mode .rd-dir-card .ext-icon { color: #a0a0a0 !important; }
+
+/* -- Page title band -- */
+.page-title-band {
+    background-color: var(--navy);
+    padding: 44px 50px;
+    text-align: center;
+}
+.page-title-band h1 {
+    margin: 0 0 10px 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2.25rem;
+    font-weight: normal;
+    line-height: 1.2;
+    color: #ffffff;
+}
+.page-title-band p.hero-subtitle {
+    margin: 0 auto;
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 620px;
+    line-height: 1.6;
+}
+
+/* -- Page wrapper (no sidebar — directory layout) -- */
+.rd-dir-wrap {
+    background-color: var(--ecru);
+    flex: 1;
+}
+.rd-dir-main {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+}
+
+/* -- Intro paragraph -- */
+.rd-dir-intro {
+    max-width: 720px;
+    margin: 0 auto 2.75rem auto;
+    text-align: center;
+}
+.rd-dir-intro p {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--charcoal);
+}
+
+/* -- Section labels -- */
+.rd-dir-section-label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.75px;
+    color: var(--navy);
+    margin: 0 0 8px 0;
+}
+.rd-dir-section-label + .green-accent-line {
+    width: 40px;
+    height: 3px;
+    background-color: var(--sage);
+    margin-bottom: 1.25rem;
+    border-radius: 1px;
+}
+.rd-dir-section + .rd-dir-section { margin-top: 2.5rem; }
+
+/* -- Card grid -- */
+.rd-dir-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+/* -- Card -- */
+.rd-dir-card {
+    background-color: var(--white);
+    border: 1px solid #d1caba;
+    border-radius: 8px;
+    padding: 18px 20px;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    display: flex;
+    flex-direction: column;
+    color: inherit;
+    height: 100%;
+    position: relative;
+}
+.rd-dir-card:hover {
+    border-color: var(--sage);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+    color: inherit;
+}
+.rd-dir-card:focus-visible {
+    outline: 2px solid var(--sage);
+    outline-offset: 2px;
+}
+.rd-dir-card h3 {
+    font-family: Georgia, 'Times New Roman', serif;
+    color: var(--navy);
+    margin: 0 0 6px 0;
+    font-size: 1.125rem;
+    font-weight: normal;
+    line-height: 1.25;
+}
+.rd-dir-card p {
+    margin: 0;
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    color: var(--charcoal);
+    flex: 1;
+}
+
+/* -- External-site indicator (partner orgs) -- */
+.rd-dir-card .ext-icon {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    font-size: 0.875rem;
+    color: #a09a8a;
+    line-height: 1;
+}
+.rd-dir-card--external h3 { padding-right: 1.25rem; }
+
+/* -- Volunteer strip wraps full-width on this page -- */
+.volunteer-strip { margin-bottom: 0; }
+
+/* -- Responsive -- */
+@media (max-width: 800px) {
+    .page-title-band { padding: 36px 24px; }
+    .rd-dir-main { padding: 2rem 1.25rem; }
+    .rd-dir-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="site-header"></div>
+
+<!-- TITLE BAND -->
+<div class="page-title-band" role="banner">
+    <h1>Research Divisions</h1>
+    <p class="hero-subtitle">Volunteer-led teams expanding JewishGen's collection of records and town histories.</p>
+</div>
+
+<!-- PAGE BODY -->
+<div class="rd-dir-wrap">
+    <div class="rd-dir-main">
+
+        <!-- Intro -->
+        <div class="rd-dir-intro">
+            <p>JewishGen Research Divisions focus on expanding our collection of records, adding informational content to our JewishGen Knowledge Base, and encouraging the creation of more KehilaLinks entries for towns that once had a Jewish community.</p>
+        </div>
+
+        <!-- Divisions grid -->
+        <section class="rd-dir-section" aria-label="Research Divisions">
+
+            <div class="rd-dir-grid">
+
+                <a class="rd-dir-card" href="/JG40-Build/RD/Austria-Czech/index.html">
+                    <h3>Austria-Czech</h3>
+                    <p>Bohemia and Moravia (now the Czech Republic), plus parts of Austria, especially Vienna.</p>
+                </a>
+
+                <a class="rd-dir-card" href="/JG40-Build/RD/Belarus/index.html">
+                    <h3>Belarus</h3>
+                    <p>The former Russian Empire gubernii of Grodno, Minsk, Mogilev, Vitebsk, and southern Vilna, now in Belarus.</p>
+                </a>
+
+                <a class="rd-dir-card" href="/JG40-Build/RD/Bessarabia/index.html">
+                    <h3>Bessarabia</h3>
+                    <p>The former Russian gubernia of Bessarabia, now in Moldova with parts in Ukraine. Also covers Transnistria, a small region on the left bank of the Dniester.</p>
+                </a>
+
+                <a class="rd-dir-card" href="/JG40-Build/RD/France/index.html">
+                    <h3>France</h3>
+                    <p>France and French colonies, as well as other French-speaking areas such as Belgium, Luxembourg and Switzerland.</p>
+                </a>
+
+                <a class="rd-dir-card" href="/JG40-Build/RD/Germany/index.html">
+                    <h3>Germany</h3>
+                    <p>Germany and German-speaking areas of Alsace, Lorraine, Switzerland, and Poland.</p>
+                </a>
+
+                <a class="rd-dir-card" href="/JG40-Build/RD/Holocaust/index.html">
+                    <h3>Holocaust</h3>
+                    <p>Records and resources documenting Jewish individuals and communities affected by the Shoah across Nazi-occupied Europe.</p>
+                </a>
+
+                <a class="rd-dir-card" href="/JG40-Build/RD/Hungary/index.html">
+                    <h3>Hungary</h3>
+                    <p>"Greater Hungary" or pre-Trianon Hungary — present-day Hungary and Slovakia, plus territory now within Ukraine, Austria, Romania, Croatia and Serbia.</p>
+                </a>
+
+                <a class="rd-dir-card" href="/JG40-Build/RD/Latvia/index.html">
+                    <h3>Latvia</h3>
+                    <p>The former Russian Empire gubernias of Courland, southern Livonia (Livland), and western Vitebsk.</p>
+                </a>
+
+                <a class="rd-dir-card" href="/JG40-Build/RD/Romania/index.html">
+                    <h3>Romania</h3>
+                    <p>Romania, including Bukovina.</p>
+                </a>
+
+                <a class="rd-dir-card" href="/JG40-Build/RD/Sephardic/index.html">
+                    <h3>Sephardic</h3>
+                    <p>For all researchers of Sephardic genealogy and history.</p>
+                </a>
+
+                <a class="rd-dir-card" href="/JG40-Build/RD/Sub-Carpathia/index.html">
+                    <h3>Sub-Carpathia</h3>
+                    <p>Sub-Carpathian Ukraine — parts of the pre-WWI Hungarian megyék of Bereg, Máramaros, Ugocsa and Ung — today Zakarpattia Oblast, Ukraine.</p>
+                </a>
+
+                <a class="rd-dir-card" href="/JG40-Build/RD/Ukraine/index.html">
+                    <h3>Ukraine</h3>
+                    <p>The former Russian Empire gubernias now in Ukraine: Podolia, Volhynia, Kiev, Poltava, Chernigov, Kharkov, Kherson, Taurida and Ekaterinoslav.</p>
+                </a>
+
+                <a class="rd-dir-card" href="/JG40-Build/RD/USA/index.html">
+                    <h3>USA</h3>
+                    <p>Jewish families who came to the United States before, during, and after the larger immigration waves of the 1880s.</p>
+                </a>
+
+            </div>
+        </section>
+
+    </div>
+</div>
+
+<!-- VOLUNTEER STRIP (full-width, sits between page body and footer) -->
+<div class="volunteer-strip">
+    Each Research Division welcomes new volunteers. Visit a division above to find its volunteer contact.
+</div>
+
+<!-- FOOTER -->
+<div id="site-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function loadComponent(id, file) {
+    return fetch(file)
+        .then(function(r) { if (!r.ok) throw new Error('Could not load ' + file); return r.text(); })
+        .then(function(html) { document.getElementById(id).innerHTML = html; })
+        .catch(function(err) { console.warn(err); });
+}
+
+Promise.all([
+    loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
+    loadComponent('site-footer', '/JG40-Build/Footer.html')
+]).then(function() {
+    document.querySelectorAll('.jg-nav .dropbtn, .main-nav .dropbtn').forEach(function(btn) {
+        btn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                var menu = this.nextElementSibling;
+                if (menu) menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            }
+            if (e.key === 'Escape') {
+                var menu = this.nextElementSibling;
+                if (menu) menu.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+
+</body>
+</html>
