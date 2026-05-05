@@ -1774,6 +1774,41 @@ body.dark-mode .rd-btn-donate-full:hover {
     }
 }
 
+/* ==========================================================================
+   VOLUNTEER STRIP
+   Thin light-blue band with an RD-specific volunteer contact.
+   Used on RD home pages (above donation block), RD database pages
+   (below filters, above card list), and the RD directory.
+   --light-blue does NOT flip in dark mode - charcoal via explicit override.
+   ========================================================================== */
+.volunteer-strip {
+    background-color: var(--light-blue);
+    border-top: 1px solid rgba(9,73,122,0.08);
+    border-bottom: 1px solid rgba(9,73,122,0.08);
+    padding: 12px 50px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--charcoal);
+    margin-bottom: 1.5rem;
+}
+.volunteer-strip a {
+    color: var(--navy);
+    font-weight: 600;
+    text-decoration: underline;
+}
+.volunteer-strip a:hover { color: var(--sage); }
+
+body.dark-mode .volunteer-strip {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border-color: transparent;
+}
+body.dark-mode .volunteer-strip a { color: #a8b361; }
+
+@media (max-width: 640px) {
+    .volunteer-strip { padding: 12px 20px; }
+}
+
 /* ══════════════════════════════════════════════════════
    FOOTER
 ══════════════════════════════════════════════════════ */
