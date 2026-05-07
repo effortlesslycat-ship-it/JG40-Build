@@ -3,26 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Research Divisions — JewishGen</title>
+<title>Research Divisions - JewishGen</title>
 <meta name="description" content="JewishGen Research Divisions focus on expanding our collection of records, building knowledge content, and supporting town-level KehilaLinks.">
 
 <!-- 1. Bootstrap -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 <!-- 2. JewishGen Global Design System -->
 <link rel="stylesheet" href="/JG40-Build/jg-global.css">
-<!-- 3. Page-specific styles -->
+<!-- 3. Page-specific styles (will move to jg-rd.css after sign-off) -->
 <style>
 a { text-decoration: none; color: inherit; }
 
 /* -- Dark mode page-specific overrides -- */
-body.dark-mode .page-title-band     { background-color: #0d2a45 !important; }
-body.dark-mode .rd-dir-intro p      { color: #c8c8c8 !important; }
-body.dark-mode .rd-dir-section-label{ color: #a0a0a0 !important; }
-body.dark-mode .rd-dir-card         { background-color: #1e1e1e !important; border-color: #333 !important; }
-body.dark-mode .rd-dir-card:hover   { border-color: #a8b361 !important; }
-body.dark-mode .rd-dir-card h3      { color: #e0e0e0 !important; }
-body.dark-mode .rd-dir-card p       { color: #c8c8c8 !important; }
-body.dark-mode .rd-dir-card .ext-icon { color: #a0a0a0 !important; }
+body.dark-mode .page-title-band         { background-color: #0d2a45 !important; }
+body.dark-mode .rd-dir-intro p          { color: #c8c8c8 !important; }
+body.dark-mode .rd-dir-section-label    { color: #e0e0e0 !important; }
+body.dark-mode .rd-dir-card             { background-color: #1e1e1e !important; border-color: #333 !important; }
+body.dark-mode .rd-dir-card:hover       { border-left-color: #a8b361 !important; box-shadow: 0 4px 14px rgba(0,0,0,0.4) !important; }
+body.dark-mode .rd-dir-card__name       { color: #e0e0e0 !important; }
+body.dark-mode .rd-dir-card__desc       { color: #c8c8c8 !important; opacity: 1 !important; }
+body.dark-mode .rd-dir-card__ext-icon   { color: #a8b361 !important; }
 
 /* -- Page title band -- */
 .page-title-band {
@@ -46,7 +46,7 @@ body.dark-mode .rd-dir-card .ext-icon { color: #a0a0a0 !important; }
     line-height: 1.6;
 }
 
-/* -- Page wrapper (no sidebar — directory layout) -- */
+/* -- Page wrapper (no sidebar - directory layout) -- */
 .rd-dir-wrap {
     background-color: var(--ecru);
     flex: 1;
@@ -54,23 +54,26 @@ body.dark-mode .rd-dir-card .ext-icon { color: #a0a0a0 !important; }
 .rd-dir-main {
     max-width: 1180px;
     margin: 0 auto;
-    padding: 2.5rem 2rem;
+    padding: 3rem 2rem 3.5rem;
 }
 
 /* -- Intro paragraph -- */
 .rd-dir-intro {
-    max-width: 720px;
-    margin: 0 auto 2.75rem auto;
+    max-width: 700px;
+    margin: 0 auto 3rem auto;
     text-align: center;
 }
 .rd-dir-intro p {
     margin: 0;
-    font-size: 0.9375rem;
-    line-height: 1.65;
+    font-size: 1rem;
+    line-height: 1.7;
     color: var(--charcoal);
 }
 
-/* -- Section labels -- */
+/* -- Section grouping -- */
+.rd-dir-group { margin-bottom: 2.75rem; }
+.rd-dir-group:last-of-type { margin-bottom: 0; }
+
 .rd-dir-section-label {
     display: block;
     font-size: 0.8125rem;
@@ -84,76 +87,83 @@ body.dark-mode .rd-dir-card .ext-icon { color: #a0a0a0 !important; }
     width: 40px;
     height: 3px;
     background-color: var(--sage);
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
     border-radius: 1px;
 }
-.rd-dir-section + .rd-dir-section { margin-top: 2.5rem; }
 
-/* -- Card grid -- */
+/* -- Card grid (fixed 3 columns at desktop so single-card groups don't stretch) -- */
 .rd-dir-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
 }
 
-/* -- Card -- */
+/* -- Directory entry card (typography-forward) -- */
 .rd-dir-card {
     background-color: var(--white);
-    border: 1px solid #d1caba;
-    border-radius: 8px;
-    padding: 18px 20px;
-    transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    border: 1px solid var(--cream);
+    border-left: 3px solid transparent;
+    border-radius: 4px;
+    padding: 1.5rem 1.625rem 1.375rem;
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
     color: inherit;
-    height: 100%;
-    position: relative;
+    text-decoration: none;
+    transition: border-left-color 0.2s, box-shadow 0.2s;
 }
 .rd-dir-card:hover {
-    border-color: var(--sage);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transform: translateY(-2px);
+    border-left-color: var(--sage);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
     color: inherit;
+    text-decoration: none;
 }
 .rd-dir-card:focus-visible {
     outline: 2px solid var(--sage);
-    outline-offset: 2px;
+    outline-offset: 3px;
 }
-.rd-dir-card h3 {
+
+/* -- Card typography -- */
+.rd-dir-card__name {
     font-family: Georgia, 'Times New Roman', serif;
-    color: var(--navy);
-    margin: 0 0 6px 0;
-    font-size: 1.125rem;
+    font-size: 1.375rem;
     font-weight: normal;
-    line-height: 1.25;
-}
-.rd-dir-card p {
+    color: var(--navy);
     margin: 0;
-    font-size: 0.8125rem;
-    line-height: 1.55;
-    color: var(--charcoal);
-    flex: 1;
+    line-height: 1.2;
 }
-
-/* -- External-site indicator (partner orgs) -- */
-.rd-dir-card .ext-icon {
-    position: absolute;
-    top: 14px;
-    right: 16px;
+.rd-dir-card__desc {
     font-size: 0.875rem;
-    color: #a09a8a;
-    line-height: 1;
+    line-height: 1.6;
+    color: var(--charcoal);
+    margin: 0;
+    opacity: 0.85;
 }
-.rd-dir-card--external h3 { padding-right: 1.25rem; }
 
-/* -- Volunteer strip wraps full-width on this page -- */
+/* -- External-affiliate indicator (inline with title) -- */
+.rd-dir-card__ext-icon {
+    display: inline-block;
+    margin-left: 0.4rem;
+    font-size: 0.85rem;
+    color: var(--sage);
+    vertical-align: middle;
+    transition: transform 0.2s;
+}
+.rd-dir-card:hover .rd-dir-card__ext-icon { transform: translate(2px, -2px); }
+
+/* -- Volunteer strip overrides (sits below ecru wrap) -- */
 .volunteer-strip { margin-bottom: 0; }
 
 /* -- Responsive -- */
-@media (max-width: 800px) {
+@media (max-width: 900px) {
+    .rd-dir-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+    .rd-dir-grid    { grid-template-columns: 1fr; }
+    .rd-dir-main    { padding: 2rem 1.25rem 2.5rem; }
     .page-title-band { padding: 36px 24px; }
-    .rd-dir-main { padding: 2rem 1.25rem; }
-    .rd-dir-grid { grid-template-columns: 1fr; }
+    .rd-dir-card    { padding: 1.25rem 1.375rem 1.125rem; }
+    .rd-dir-card__name { font-size: 1.25rem; }
 }
 </style>
 </head>
@@ -177,74 +187,147 @@ body.dark-mode .rd-dir-card .ext-icon { color: #a0a0a0 !important; }
             <p>JewishGen Research Divisions focus on expanding our collection of records, adding informational content to our JewishGen Knowledge Base, and encouraging the creation of more KehilaLinks entries for towns that once had a Jewish community.</p>
         </div>
 
-        <!-- Divisions grid -->
-        <section class="rd-dir-section" aria-label="Research Divisions">
+        <!-- ============================================================
+             GROUP 1: Central & Eastern Europe
+             ============================================================ -->
+        <section class="rd-dir-group" aria-labelledby="rd-grp-cee">
+            <span id="rd-grp-cee" class="rd-dir-section-label">Central &amp; Eastern Europe</span>
+            <div class="green-accent-line"></div>
 
             <div class="rd-dir-grid">
 
                 <a class="rd-dir-card" href="/JG40-Build/RD/Austria-Czech/index.html">
-                    <h3>Austria-Czech</h3>
-                    <p>Bohemia and Moravia (now the Czech Republic), plus parts of Austria, especially Vienna.</p>
+                    <h3 class="rd-dir-card__name">Austria-Czech</h3>
+                    <p class="rd-dir-card__desc">Bohemia and Moravia (now the Czech Republic), plus parts of Austria, especially Vienna.</p>
                 </a>
 
                 <a class="rd-dir-card" href="/JG40-Build/RD/Belarus/index.html">
-                    <h3>Belarus</h3>
-                    <p>The former Russian Empire gubernii of Grodno, Minsk, Mogilev, Vitebsk, and southern Vilna, now in Belarus.</p>
+                    <h3 class="rd-dir-card__name">Belarus</h3>
+                    <p class="rd-dir-card__desc">The former Russian Empire gubernii of Grodno, Minsk, Mogilev, Vitebsk, and southern Vilna, now in Belarus.</p>
                 </a>
 
                 <a class="rd-dir-card" href="/JG40-Build/RD/Bessarabia/index.html">
-                    <h3>Bessarabia</h3>
-                    <p>The former Russian gubernia of Bessarabia, now in Moldova with parts in Ukraine. Also covers Transnistria, a small region on the left bank of the Dniester.</p>
-                </a>
-
-                <a class="rd-dir-card" href="/JG40-Build/RD/France/index.html">
-                    <h3>France</h3>
-                    <p>France and French colonies, as well as other French-speaking areas such as Belgium, Luxembourg and Switzerland.</p>
+                    <h3 class="rd-dir-card__name">Bessarabia</h3>
+                    <p class="rd-dir-card__desc">The former Russian gubernia of Bessarabia, now in Moldova with parts in Ukraine. Also covers Transnistria.</p>
                 </a>
 
                 <a class="rd-dir-card" href="/JG40-Build/RD/Germany/index.html">
-                    <h3>Germany</h3>
-                    <p>Germany and German-speaking areas of Alsace, Lorraine, Switzerland, and Poland.</p>
-                </a>
-
-                <a class="rd-dir-card" href="/JG40-Build/RD/Holocaust/index.html">
-                    <h3>Holocaust</h3>
-                    <p>Records and resources documenting Jewish individuals and communities affected by the Shoah across Nazi-occupied Europe.</p>
+                    <h3 class="rd-dir-card__name">Germany</h3>
+                    <p class="rd-dir-card__desc">Germany and German-speaking areas of Alsace, Lorraine, Switzerland, and Poland.</p>
                 </a>
 
                 <a class="rd-dir-card" href="/JG40-Build/RD/Hungary/index.html">
-                    <h3>Hungary</h3>
-                    <p>"Greater Hungary" or pre-Trianon Hungary — present-day Hungary and Slovakia, plus territory now within Ukraine, Austria, Romania, Croatia and Serbia.</p>
+                    <h3 class="rd-dir-card__name">Hungary</h3>
+                    <p class="rd-dir-card__desc">&ldquo;Greater Hungary&rdquo; or pre-Trianon Hungary &mdash; present-day Hungary and Slovakia, plus territory now within Ukraine, Austria, Romania, Croatia and Serbia.</p>
                 </a>
 
                 <a class="rd-dir-card" href="/JG40-Build/RD/Latvia/index.html">
-                    <h3>Latvia and Estonia</h3>
-                    <p>The former Russian Empire gubernias of Courland, southern Livonia (Livland), and western Vitebsk.</p>
+                    <h3 class="rd-dir-card__name">Latvia and Estonia</h3>
+                    <p class="rd-dir-card__desc">The former Russian Empire gubernias of Courland, southern Livonia (Livland), and western Vitebsk.</p>
                 </a>
 
                 <a class="rd-dir-card" href="/JG40-Build/RD/Romania/index.html">
-                    <h3>Romania</h3>
-                    <p>Romania, including Bukovina.</p>
-                </a>
-
-                <a class="rd-dir-card" href="/JG40-Build/RD/Sephardic/index.html">
-                    <h3>Sephardic</h3>
-                    <p>For all researchers of Sephardic genealogy and history.</p>
+                    <h3 class="rd-dir-card__name">Romania</h3>
+                    <p class="rd-dir-card__desc">Romania, including Bukovina.</p>
                 </a>
 
                 <a class="rd-dir-card" href="/JG40-Build/RD/SubCarpathia/index.html">
-                    <h3>Subcarpathia</h3>
-                    <p>Subcarpathian Ukraine — parts of the pre-WWI Hungarian megyék of Bereg, Máramaros, Ugocsa and Ung — today Zakarpattia Oblast, Ukraine.</p>
+                    <h3 class="rd-dir-card__name">Subcarpathia</h3>
+                    <p class="rd-dir-card__desc">Subcarpathian Ukraine &mdash; parts of the pre-WWI Hungarian megy&eacute;k of Bereg, M&aacute;ramaros, Ugocsa and Ung &mdash; today Zakarpattia Oblast, Ukraine.</p>
                 </a>
 
                 <a class="rd-dir-card" href="/JG40-Build/RD/Ukraine/index.html">
-                    <h3>Ukraine</h3>
-                    <p>The former Russian Empire gubernias now in Ukraine: Podolia, Volhynia, Kiev, Poltava, Chernigov, Kharkov, Kherson, Taurida and Ekaterinoslav.</p>
+                    <h3 class="rd-dir-card__name">Ukraine</h3>
+                    <p class="rd-dir-card__desc">The former Russian Empire gubernias now in Ukraine: Podolia, Volhynia, Kiev, Poltava, Chernigov, Kharkov, Kherson, Taurida and Ekaterinoslav.</p>
                 </a>
 
+            </div>
+        </section>
+
+        <!-- ============================================================
+             GROUP 2: Western Europe
+             ============================================================ -->
+        <section class="rd-dir-group" aria-labelledby="rd-grp-we">
+            <span id="rd-grp-we" class="rd-dir-section-label">Western Europe</span>
+            <div class="green-accent-line"></div>
+
+            <div class="rd-dir-grid">
+                <a class="rd-dir-card" href="/JG40-Build/RD/France/index.html">
+                    <h3 class="rd-dir-card__name">France</h3>
+                    <p class="rd-dir-card__desc">France and French colonies, as well as other French-speaking areas such as Belgium, Luxembourg and Switzerland.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             GROUP 3: North America
+             ============================================================ -->
+        <section class="rd-dir-group" aria-labelledby="rd-grp-na">
+            <span id="rd-grp-na" class="rd-dir-section-label">North America</span>
+            <div class="green-accent-line"></div>
+
+            <div class="rd-dir-grid">
                 <a class="rd-dir-card" href="/JG40-Build/RD/USA/index.html">
-                    <h3>USA</h3>
-                    <p>Jewish families who came to the United States before, during, and after the larger immigration waves of the 1880s.</p>
+                    <h3 class="rd-dir-card__name">USA</h3>
+                    <p class="rd-dir-card__desc">Jewish families who came to the United States before, during, and after the larger immigration waves of the 1880s.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             GROUP 4: Sephardic & Mizrahi
+             ============================================================ -->
+        <section class="rd-dir-group" aria-labelledby="rd-grp-sm">
+            <span id="rd-grp-sm" class="rd-dir-section-label">Sephardic &amp; Mizrahi</span>
+            <div class="green-accent-line"></div>
+
+            <div class="rd-dir-grid">
+                <a class="rd-dir-card" href="/JG40-Build/RD/Sephardic/index.html">
+                    <h3 class="rd-dir-card__name">Sephardic</h3>
+                    <p class="rd-dir-card__desc">For all researchers of Sephardic genealogy and history.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             GROUP 5: Cross-regional
+             ============================================================ -->
+        <section class="rd-dir-group" aria-labelledby="rd-grp-cr">
+            <span id="rd-grp-cr" class="rd-dir-section-label">Cross-regional</span>
+            <div class="green-accent-line"></div>
+
+            <div class="rd-dir-grid">
+                <a class="rd-dir-card" href="/JG40-Build/RD/Holocaust/index.html">
+                    <h3 class="rd-dir-card__name">Holocaust</h3>
+                    <p class="rd-dir-card__desc">Records and resources documenting Jewish individuals and communities affected by the Shoah across Nazi-occupied Europe.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             GROUP 6: External Affiliates
+             ============================================================ -->
+        <!-- PLACEHOLDER NOTE: Verify external URLs and short descriptions with Caitlin before launch. -->
+        <section class="rd-dir-group" aria-labelledby="rd-grp-ext">
+            <span id="rd-grp-ext" class="rd-dir-section-label">External Affiliates</span>
+            <div class="green-accent-line"></div>
+
+            <div class="rd-dir-grid">
+
+                <a class="rd-dir-card" href="https://www.litvaksig.org/" target="_blank" rel="noopener noreferrer">
+                    <h3 class="rd-dir-card__name">
+                        LitvakSIG
+                        <span class="rd-dir-card__ext-icon" aria-hidden="true">&#8599;</span>
+                    </h3>
+                    <p class="rd-dir-card__desc">Independent volunteer organization preserving Lithuanian Jewish heritage. Not a JewishGen Research Division.</p>
+                </a>
+
+                <a class="rd-dir-card" href="https://jri-poland.org/" target="_blank" rel="noopener noreferrer">
+                    <h3 class="rd-dir-card__name">
+                        JRI-Poland
+                        <span class="rd-dir-card__ext-icon" aria-hidden="true">&#8599;</span>
+                    </h3>
+                    <p class="rd-dir-card__desc">Independent project indexing Jewish vital records from historical Poland. Not a JewishGen Research Division.</p>
                 </a>
 
             </div>
