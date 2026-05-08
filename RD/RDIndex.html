@@ -56,6 +56,11 @@ body.dark-mode .rd-dir-card__ext-icon   { color: #a8b361 !important; }
     margin: 0 auto;
     padding: 3rem 2rem 3.5rem;
 }
+/* When .rd-dir-main is the second ecru block (partners section, after volunteer strip),
+   tighten top padding so the section label doesn't float too far below the strip. */
+.volunteer-strip + .rd-dir-wrap .rd-dir-main {
+    padding-top: 2.5rem;
+}
 
 /* -- Intro paragraph -- */
 .rd-dir-intro {
@@ -264,6 +269,18 @@ body.dark-mode .rd-dir-card__ext-icon   { color: #a8b361 !important; }
             </div>
         </section>
 
+    </div>
+</div>
+
+<!-- VOLUNTEER STRIP (full-width, sits between RDs and External Partners) -->
+<div class="volunteer-strip">
+    Each JewishGen Research Division welcomes new volunteers &mdash; visit any division above to find its contact. Our partner organizations listed below maintain their own volunteer programs.
+</div>
+
+<!-- PAGE BODY (continued, External Partners) -->
+<div class="rd-dir-wrap">
+    <div class="rd-dir-main">
+
         <!-- ============================================================
              GROUP 2: External Regional Partners
              ============================================================ -->
@@ -302,11 +319,6 @@ body.dark-mode .rd-dir-card__ext-icon   { color: #a8b361 !important; }
         </section>
 
     </div>
-</div>
-
-<!-- VOLUNTEER STRIP (full-width, sits between page body and footer) -->
-<div class="volunteer-strip">
-    Each Research Division welcomes new volunteers. Visit a division above to find its volunteer contact.
 </div>
 
 <!-- FOOTER -->
