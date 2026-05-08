@@ -1,0 +1,569 @@
+/* ============================================================================
+   JG-RD.CSS  -  JewishGen Research Division stylesheet
+   Project Shorashim / JG40-Build
+   ----------------------------------------------------------------------------
+   Companion to jg-global.css. Loaded ONLY on Research Division pages.
+   Stylesheet load order on RD pages:
+       1. Bootstrap CDN
+       2. /JG40-Build/jg-global.css
+       3. /JG40-Build/jg-rd.css      <-- this file
+       4. (optional) inline page-specific styles for truly unique elements
+   ----------------------------------------------------------------------------
+   COVERAGE
+       1. RD subpage layout (ecru wrap, sticky sidebar grid)
+       2. RD sidebar component (nav + donate card)
+       3. RD page-template patterns (section heading, intro,
+          "currently working on" callout, donation block)
+       4. RD directory (index) page
+       5. Volunteer strip override (RD index only)
+       6. Responsive
+   ----------------------------------------------------------------------------
+   NAMING NOTE
+       Existing classes use a mix of `rd-` prefixed and unprefixed
+       (e.g. .section-heading, .green-accent-line). Names preserved
+       as-is to avoid breaking existing per-RD pages. Future cleanup:
+       normalize to .rd-* prefix and update consuming pages.
+   ----------------------------------------------------------------------------
+   TODO (post-launch)
+       - .page-title-band light-mode rules currently live inline on
+         every RD page (and elsewhere). Move them into jg-global.css.
+       - Normalize unprefixed classnames (.section-heading,
+         .green-accent-line) to .rd-* prefix.
+============================================================================ */
+
+
+/* ============================================================================
+   1. RD SUBPAGE LAYOUT
+   ----------------------------------------------------------------------------
+   Two-column grid: 240px sticky sidebar + flexible main column.
+   Used on per-RD About/Databases/Towns/Fundraising pages, plus any
+   additional pages an RD chooses to add (Volunteer, Yizkor, Cemetery,
+   etc.). The sidebar is sticky and includes its own donate card.
+============================================================================ */
+
+.rd-body-wrap {
+    background-color: var(--ecru);
+    flex: 1;
+}
+
+.rd-body-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+/* Narrower variant for prose-heavy pages (e.g. About) */
+.rd-body-inner--narrow {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+
+/* ============================================================================
+   2. RD SIDEBAR COMPONENT
+   ----------------------------------------------------------------------------
+   Sidebar markup is fetched per-RD from /RD/{slug}/RD_Sidebar.html
+   into <aside id="rd-sidebar" class="rd-sidebar"></aside>.
+   Active link state is applied at runtime by /JG40-Build/jg-rd-sidebar.js.
+
+   The sidebar contains TWO cards stacked vertically:
+       - Nav card (white, listing the RD's pages)
+       - Donate card (navy band with sage CTA)
+
+   Sticky positioning requires the placeholder element itself to be
+   the grid child (not a wrapping <div>) - see Subcarpathia for
+   reference markup.
+============================================================================ */
+
+.rd-sidebar {
+    position: sticky;
+    top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* -- Nav card -- */
+.rd-sidebar-card {
+    background-color: var(--white);
+    border-left: 3px solid var(--navy);
+    border-radius: 0 6px 6px 0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    padding: 0 0 16px;
+    overflow: hidden;
+}
+
+.rd-sidebar-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--navy);
+    background-color: var(--cream);
+    padding: 12px 18px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    margin-bottom: 8px;
+}
+
+.rd-sidebar-card a {
+    display: block;
+    padding: 9px 18px 9px 15px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    border-left: 3px solid transparent;
+    transition: color 0.15s, background-color 0.15s;
+    line-height: 1.4;
+    text-decoration: none;
+}
+
+.rd-sidebar-card a:hover {
+    color: var(--navy);
+    background-color: var(--ecru);
+}
+
+.rd-sidebar-card a.active {
+    color: var(--navy);
+    border-left-color: var(--navy);
+    background-color: var(--ecru);
+}
+
+/* -- Donate card (navy band w/ sage CTA) -- */
+/* Navy fill is hardcoded because var(--navy) flips to light gray
+   in dark mode, washing out the band. */
+.rd-sidebar-donate {
+    background-color: var(--navy);
+    border-radius: 8px;
+    padding: 18px 18px 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.rd-sidebar-donate p {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.55;
+    margin: 0 0 12px 0;
+}
+
+.rd-btn-donate-full {
+    display: block;
+    background-color: var(--sage);
+    color: #ffffff;
+    padding: 11px 18px;
+    border-radius: 6px;
+    font-size: 0.8125rem;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    transition: filter 0.15s, transform 0.15s;
+    text-decoration: none;
+}
+
+.rd-btn-donate-full:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* -- Sidebar dark mode -- */
+body.dark-mode .rd-sidebar-card {
+    background-color: #1e1e1e;
+    border-left-color: #5a7a95;
+}
+body.dark-mode .rd-sidebar-label {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    border-bottom-color: #333;
+}
+body.dark-mode .rd-sidebar-card a {
+    color: #c8c8c8;
+}
+body.dark-mode .rd-sidebar-card a:hover {
+    color: #a8b361;
+    background-color: #2a2a2a;
+}
+body.dark-mode .rd-sidebar-card a.active {
+    color: #a8b361;
+    border-left-color: #a8b361;
+    background-color: #2a2a2a;
+}
+body.dark-mode .rd-sidebar-donate {
+    background-color: #0d2a45;
+}
+body.dark-mode .rd-sidebar-donate p {
+    color: rgba(255,255,255,0.85);
+}
+body.dark-mode .rd-btn-donate-full {
+    background-color: #a8b361;
+    color: #121212;
+}
+body.dark-mode .rd-btn-donate-full:hover {
+    color: #121212;
+}
+
+
+/* ============================================================================
+   3. PAGE-TEMPLATE PATTERNS
+   ----------------------------------------------------------------------------
+   General-purpose building blocks for any RD subpage.
+   Compose these with the layout in section 1 to build new RD pages
+   (About, Databases, Volunteer, Yizkor, Cemetery, etc.) without
+   duplicating CSS.
+============================================================================ */
+
+/* -- Section heading + sage accent line -- */
+.section-heading {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--navy);
+    margin-bottom: 8px;
+}
+
+.green-accent-line {
+    width: 40px;
+    height: 3px;
+    background-color: var(--sage);
+    margin-bottom: 20px;
+    border-radius: 1px;
+}
+
+/* -- Intro paragraph block -- */
+.rd-intro p {
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: var(--charcoal);
+    margin: 0 0 1.1rem 0;
+}
+.rd-intro p:last-child { margin-bottom: 0; }
+
+.rd-intro a {
+    color: var(--navy);
+    text-decoration: underline dotted;
+    text-underline-offset: 2px;
+}
+.rd-intro a:hover { color: var(--sage); }
+
+/* -- "Currently Working On" callout -- */
+.rd-current-card {
+    background-color: var(--white);
+    border-left: 3px solid var(--sage);
+    border-radius: 0 6px 6px 0;
+    padding: 1.125rem 1.375rem;
+    margin: 1.75rem 0 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+.rd-current-label {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.9px;
+    color: var(--sage);
+    margin-bottom: 6px;
+}
+
+.rd-current-text {
+    font-size: 0.9rem;
+    color: var(--charcoal);
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* -- Section spacing utility -- */
+.rd-section { margin-top: 2.5rem; }
+
+/* -- Centered donation block (Tabele Romania pattern) -- */
+.rd-donation-block {
+    background-color: #dfe3cd;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    border-radius: 6px;
+    margin-top: 0;
+}
+
+.rd-donation-block p {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    margin: 0 auto 1.25rem;
+    max-width: 540px;
+    color: var(--charcoal);
+}
+
+.rd-btn-donate-solid {
+    background-color: var(--sage);
+    color: #ffffff;
+    padding: 12px 30px;
+    font-weight: bold;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    display: inline-block;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: filter 0.15s, transform 0.1s;
+}
+
+.rd-btn-donate-solid:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* -- Page-template dark mode -- */
+body.dark-mode .rd-intro p          { color: #c8c8c8; }
+body.dark-mode .rd-current-card     { background-color: #1e1e1e; border-left-color: #a8b361; }
+body.dark-mode .rd-current-label    { color: #a8b361; }
+body.dark-mode .rd-current-text     { color: #c8c8c8; }
+body.dark-mode .rd-donation-block   { background-color: #2a2d1e; }
+body.dark-mode .rd-donation-block p { color: #d8d8c8; }
+body.dark-mode .rd-btn-donate-solid       { background-color: #a8b361; color: #121212; }
+body.dark-mode .rd-btn-donate-solid:hover { color: #121212; }
+
+
+/* ============================================================================
+   4. RD DIRECTORY (INDEX) PAGE
+   ----------------------------------------------------------------------------
+   Single page at /JG40-Build/RD/index.html. No sidebar - full-width
+   ecru body with two stacked sections (JewishGen Research Divisions
+   and External Regional Partners) separated by the volunteer strip.
+   Cards are typography-forward with a sage ribbon trim along the top.
+============================================================================ */
+
+/* -- Page wrapper -- */
+.rd-dir-wrap {
+    background-color: var(--ecru);
+    flex: 1;
+}
+
+.rd-dir-main {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 3rem 2rem 3.5rem;
+}
+
+/* When .rd-dir-main is the second ecru block (i.e. partners section,
+   sitting after the volunteer strip), tighten its top padding so the
+   section label doesn't float too far below the strip. */
+.volunteer-strip + .rd-dir-wrap .rd-dir-main {
+    padding-top: 2.5rem;
+}
+
+/* -- Intro paragraph -- */
+.rd-dir-intro {
+    max-width: 700px;
+    margin: 0 auto 3rem auto;
+    text-align: center;
+}
+.rd-dir-intro p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--charcoal);
+}
+
+/* -- Section grouping -- */
+.rd-dir-group { margin-bottom: 2.75rem; }
+.rd-dir-group:last-of-type { margin-bottom: 0; }
+
+.rd-dir-section-label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.75px;
+    color: var(--navy);
+    margin: 0 0 8px 0;
+}
+.rd-dir-section-label + .green-accent-line {
+    width: 40px;
+    height: 3px;
+    background-color: var(--sage);
+    margin-bottom: 1.5rem;
+    border-radius: 1px;
+}
+
+/* -- Card grid (fixed 3 columns at desktop so single-card groups
+      sit naturally at the left of their row instead of stretching) -- */
+.rd-dir-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
+/* -- Directory entry card (typography-forward, sage ribbon trim) -- */
+.rd-dir-card {
+    background-color: var(--white);
+    border: 1px solid var(--cream);
+    border-top: 3px solid var(--sage);
+    border-radius: 0 0 4px 4px;
+    padding: 1.5rem 1.625rem 1.375rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: inherit;
+    text-decoration: none;
+    transition: box-shadow 0.2s, transform 0.15s;
+}
+.rd-dir-card:hover {
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transform: translateY(-1px);
+    color: inherit;
+    text-decoration: none;
+}
+.rd-dir-card:focus-visible {
+    outline: 2px solid var(--sage);
+    outline-offset: 3px;
+}
+
+/* -- Card typography -- */
+.rd-dir-card__name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.375rem;
+    font-weight: normal;
+    color: var(--navy);
+    margin: 0;
+    line-height: 1.2;
+}
+.rd-dir-card__desc {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--charcoal);
+    margin: 0;
+    opacity: 0.85;
+}
+
+/* -- External-affiliate indicator (inline with title) -- */
+.rd-dir-card__ext-icon {
+    display: inline-block;
+    margin-left: 0.4rem;
+    font-size: 0.85rem;
+    color: var(--sage);
+    vertical-align: middle;
+    transition: transform 0.2s;
+}
+.rd-dir-card:hover .rd-dir-card__ext-icon { transform: translate(2px, -2px); }
+
+/* -- RD directory dark mode -- */
+body.dark-mode .rd-dir-intro p          { color: #c8c8c8; }
+body.dark-mode .rd-dir-section-label    { color: #e0e0e0; }
+body.dark-mode .rd-dir-card             {
+    background-color: #1e1e1e;
+    border-color: #333;
+    border-top-color: #a8b361;
+}
+body.dark-mode .rd-dir-card:hover       { box-shadow: 0 6px 18px rgba(0,0,0,0.4); }
+body.dark-mode .rd-dir-card__name       { color: #e0e0e0; }
+body.dark-mode .rd-dir-card__desc       { color: #c8c8c8; opacity: 1; }
+body.dark-mode .rd-dir-card__ext-icon   { color: #a8b361; }
+
+
+/* ============================================================================
+   5. VOLUNTEER STRIP OVERRIDE  (RD INDEX ONLY)
+   ----------------------------------------------------------------------------
+   The global .volunteer-strip (in jg-global.css) is a thin light-blue
+   band used on per-RD subpages. On the RD index it sits between two
+   ecru blocks; we override it as a warm margin note - italic charcoal
+   on ecru, sage hairlines top and bottom.
+
+   Selector targets only volunteer-strips that immediately follow an
+   .rd-dir-wrap (i.e. only on the RD index page), so per-RD subpages
+   keep the standard global treatment.
+============================================================================ */
+
+.rd-dir-wrap + .volunteer-strip {
+    background-color: var(--ecru) !important;
+    color: var(--charcoal) !important;
+    border-top: 1px solid var(--sage) !important;
+    border-bottom: 1px solid var(--sage) !important;
+    padding: 1.375rem 2rem !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.65;
+    text-align: center;
+    margin: 0 !important;
+}
+
+body.dark-mode .rd-dir-wrap + .volunteer-strip {
+    background-color: #1a1a1a !important;
+    color: #e0e0e0 !important;
+    border-top-color: #a8b361 !important;
+    border-bottom-color: #a8b361 !important;
+}
+
+
+/* ============================================================================
+   6. RESPONSIVE
+   ----------------------------------------------------------------------------
+   - Under 900px: directory grid drops to 2 columns
+   - Under 800px: subpage layout collapses sidebar to a horizontal pill
+                  row above the main content
+   - Under 640px: directory grid drops to 1 column, padding shrinks
+============================================================================ */
+
+@media (max-width: 900px) {
+    .rd-dir-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 800px) {
+    /* Subpage layout: collapse sidebar into a horizontal pill row */
+    .rd-body-inner,
+    .rd-body-inner--narrow {
+        grid-template-columns: 1fr;
+        padding: 1.5rem 1rem;
+        gap: 1.5rem;
+    }
+    .rd-sidebar { position: static; }
+    .rd-sidebar-card {
+        display: flex;
+        flex-wrap: wrap;
+        border-left: none;
+        border-top: 3px solid var(--navy);
+        border-radius: 6px;
+        padding: 0;
+    }
+    .rd-sidebar-label {
+        width: 100%;
+        flex: 1 0 100%;
+        margin-bottom: 0;
+    }
+    .rd-sidebar-card a {
+        padding: 8px 14px;
+        flex: 1 0 auto;
+        text-align: center;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+    }
+    .rd-sidebar-card a.active {
+        border-left: none;
+        border-bottom-color: var(--navy);
+    }
+}
+
+@media (max-width: 640px) {
+    .rd-dir-grid    { grid-template-columns: 1fr; }
+    .rd-dir-main    { padding: 2rem 1.25rem 2.5rem; }
+    .rd-dir-card    { padding: 1.25rem 1.375rem 1.125rem; }
+    .rd-dir-card__name { font-size: 1.25rem; }
+}
+
+/* ============================================================================
+   END jg-rd.css
+============================================================================ */
