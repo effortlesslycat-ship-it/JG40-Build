@@ -10,21 +10,13 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 <!-- 2. JewishGen Global Design System -->
 <link rel="stylesheet" href="/JG40-Build/jg-global.css">
-<!-- 3. Page-specific styles (will move to jg-rd.css after sign-off) -->
+<!-- 3. JewishGen Research Division stylesheet -->
+<link rel="stylesheet" href="/JG40-Build/jg-rd.css">
+<!-- 4. Page-specific styles (page-title-band only; will move to jg-global post-launch) -->
 <style>
 a { text-decoration: none; color: inherit; }
 
-/* -- Dark mode page-specific overrides -- */
-body.dark-mode .page-title-band         { background-color: #0d2a45 !important; }
-body.dark-mode .rd-dir-intro p          { color: #c8c8c8 !important; }
-body.dark-mode .rd-dir-section-label    { color: #e0e0e0 !important; }
-body.dark-mode .rd-dir-card             { background-color: #1e1e1e !important; border-color: #333 !important; border-top-color: #a8b361 !important; }
-body.dark-mode .rd-dir-card:hover       { box-shadow: 0 6px 18px rgba(0,0,0,0.4) !important; }
-body.dark-mode .rd-dir-card__name       { color: #e0e0e0 !important; }
-body.dark-mode .rd-dir-card__desc       { color: #c8c8c8 !important; opacity: 1 !important; }
-body.dark-mode .rd-dir-card__ext-icon   { color: #a8b361 !important; }
-
-/* -- Page title band -- */
+/* -- Page title band (light mode) -- */
 .page-title-band {
     background-color: var(--navy);
     padding: 44px 50px;
@@ -46,147 +38,12 @@ body.dark-mode .rd-dir-card__ext-icon   { color: #a8b361 !important; }
     line-height: 1.6;
 }
 
-/* -- Page wrapper (no sidebar - directory layout) -- */
-.rd-dir-wrap {
-    background-color: var(--ecru);
-    flex: 1;
-}
-.rd-dir-main {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 3rem 2rem 3.5rem;
-}
-/* When .rd-dir-main is the second ecru block (partners section, after volunteer strip),
-   tighten top padding so the section label doesn't float too far below the strip. */
-.volunteer-strip + .rd-dir-wrap .rd-dir-main {
-    padding-top: 2.5rem;
-}
+/* -- Page title band (dark mode) -- */
+body.dark-mode .page-title-band { background-color: #0d2a45 !important; }
 
-/* -- Intro paragraph -- */
-.rd-dir-intro {
-    max-width: 700px;
-    margin: 0 auto 3rem auto;
-    text-align: center;
-}
-.rd-dir-intro p {
-    margin: 0;
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--charcoal);
-}
-
-/* -- Section grouping -- */
-.rd-dir-group { margin-bottom: 2.75rem; }
-.rd-dir-group:last-of-type { margin-bottom: 0; }
-
-.rd-dir-section-label {
-    display: block;
-    font-size: 0.8125rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 0.75px;
-    color: var(--navy);
-    margin: 0 0 8px 0;
-}
-.rd-dir-section-label + .green-accent-line {
-    width: 40px;
-    height: 3px;
-    background-color: var(--sage);
-    margin-bottom: 1.5rem;
-    border-radius: 1px;
-}
-
-/* -- Card grid (fixed 3 columns at desktop so single-card groups don't stretch) -- */
-.rd-dir-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-}
-
-/* -- Directory entry card (typography-forward, ribbon trim) -- */
-.rd-dir-card {
-    background-color: var(--white);
-    border: 1px solid var(--cream);
-    border-top: 3px solid var(--sage);
-    border-radius: 0 0 4px 4px;
-    padding: 1.5rem 1.625rem 1.375rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    color: inherit;
-    text-decoration: none;
-    transition: box-shadow 0.2s, transform 0.15s;
-}
-.rd-dir-card:hover {
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    transform: translateY(-1px);
-    color: inherit;
-    text-decoration: none;
-}
-.rd-dir-card:focus-visible {
-    outline: 2px solid var(--sage);
-    outline-offset: 3px;
-}
-
-/* -- Card typography -- */
-.rd-dir-card__name {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1.375rem;
-    font-weight: normal;
-    color: var(--navy);
-    margin: 0;
-    line-height: 1.2;
-}
-.rd-dir-card__desc {
-    font-size: 0.875rem;
-    line-height: 1.6;
-    color: var(--charcoal);
-    margin: 0;
-    opacity: 0.85;
-}
-
-/* -- External-affiliate indicator (inline with title) -- */
-.rd-dir-card__ext-icon {
-    display: inline-block;
-    margin-left: 0.4rem;
-    font-size: 0.85rem;
-    color: var(--sage);
-    vertical-align: middle;
-    transition: transform 0.2s;
-}
-.rd-dir-card:hover .rd-dir-card__ext-icon { transform: translate(2px, -2px); }
-
-/* -- Volunteer strip override on this page (margin-note treatment) -- */
-.volunteer-strip {
-    background-color: var(--ecru) !important;
-    color: var(--charcoal) !important;
-    border-top: 1px solid var(--sage) !important;
-    border-bottom: 1px solid var(--sage) !important;
-    padding: 1.375rem 2rem !important;
-    font-family: Georgia, 'Times New Roman', serif !important;
-    font-style: italic;
-    font-size: 1rem;
-    line-height: 1.65;
-    text-align: center;
-    margin: 0 !important;
-}
-body.dark-mode .volunteer-strip {
-    background-color: #1a1a1a !important;
-    color: #e0e0e0 !important;
-    border-top-color: #a8b361 !important;
-    border-bottom-color: #a8b361 !important;
-}
-
-/* -- Responsive -- */
-@media (max-width: 900px) {
-    .rd-dir-grid { grid-template-columns: repeat(2, 1fr); }
-}
+/* -- Responsive title band only -- */
 @media (max-width: 640px) {
-    .rd-dir-grid    { grid-template-columns: 1fr; }
-    .rd-dir-main    { padding: 2rem 1.25rem 2.5rem; }
     .page-title-band { padding: 36px 24px; }
-    .rd-dir-card    { padding: 1.25rem 1.375rem 1.125rem; }
-    .rd-dir-card__name { font-size: 1.25rem; }
 }
 </style>
 </head>
