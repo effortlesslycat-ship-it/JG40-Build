@@ -18,8 +18,8 @@ a { text-decoration: none; color: inherit; }
 body.dark-mode .page-title-band         { background-color: #0d2a45 !important; }
 body.dark-mode .rd-dir-intro p          { color: #c8c8c8 !important; }
 body.dark-mode .rd-dir-section-label    { color: #e0e0e0 !important; }
-body.dark-mode .rd-dir-card             { background-color: #1e1e1e !important; border-color: #333 !important; }
-body.dark-mode .rd-dir-card:hover       { border-left-color: #a8b361 !important; box-shadow: 0 4px 14px rgba(0,0,0,0.4) !important; }
+body.dark-mode .rd-dir-card             { background-color: #1e1e1e !important; border-color: #333 !important; border-top-color: #a8b361 !important; }
+body.dark-mode .rd-dir-card:hover       { box-shadow: 0 6px 18px rgba(0,0,0,0.4) !important; }
 body.dark-mode .rd-dir-card__name       { color: #e0e0e0 !important; }
 body.dark-mode .rd-dir-card__desc       { color: #c8c8c8 !important; opacity: 1 !important; }
 body.dark-mode .rd-dir-card__ext-icon   { color: #a8b361 !important; }
@@ -75,6 +75,30 @@ body.dark-mode .rd-dir-card__ext-icon   { color: #a8b361 !important; }
     color: var(--charcoal);
 }
 
+/* -- Section flourish (fleuron-style chapter break) -- */
+.rd-dir-flourish {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    margin: 0 auto 1.75rem;
+    max-width: 200px;
+}
+.rd-dir-flourish-line {
+    flex: 1;
+    height: 1px;
+    background-color: var(--sage);
+    opacity: 0.55;
+}
+.rd-dir-flourish-mark {
+    color: var(--sage);
+    font-size: 0.625rem;
+    line-height: 1;
+    transform: translateY(-1px);
+}
+body.dark-mode .rd-dir-flourish-line { background-color: #a8b361; }
+body.dark-mode .rd-dir-flourish-mark { color: #a8b361; }
+
 /* -- Section grouping -- */
 .rd-dir-group { margin-bottom: 2.75rem; }
 .rd-dir-group:last-of-type { margin-bottom: 0; }
@@ -103,23 +127,23 @@ body.dark-mode .rd-dir-card__ext-icon   { color: #a8b361 !important; }
     gap: 1.25rem;
 }
 
-/* -- Directory entry card (typography-forward) -- */
+/* -- Directory entry card (typography-forward, ribbon trim) -- */
 .rd-dir-card {
     background-color: var(--white);
     border: 1px solid var(--cream);
-    border-left: 3px solid transparent;
-    border-radius: 4px;
+    border-top: 3px solid var(--sage);
+    border-radius: 0 0 4px 4px;
     padding: 1.5rem 1.625rem 1.375rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     color: inherit;
     text-decoration: none;
-    transition: border-left-color 0.2s, box-shadow 0.2s;
+    transition: box-shadow 0.2s, transform 0.15s;
 }
 .rd-dir-card:hover {
-    border-left-color: var(--sage);
-    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transform: translateY(-1px);
     color: inherit;
     text-decoration: none;
 }
@@ -156,8 +180,26 @@ body.dark-mode .rd-dir-card__ext-icon   { color: #a8b361 !important; }
 }
 .rd-dir-card:hover .rd-dir-card__ext-icon { transform: translate(2px, -2px); }
 
-/* -- Volunteer strip overrides (sits below ecru wrap) -- */
-.volunteer-strip { margin-bottom: 0; }
+/* -- Volunteer strip override on this page (margin-note treatment) -- */
+.volunteer-strip {
+    background-color: var(--ecru) !important;
+    color: var(--charcoal) !important;
+    border-top: 1px solid var(--sage) !important;
+    border-bottom: 1px solid var(--sage) !important;
+    padding: 1.375rem 2rem !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.65;
+    text-align: center;
+    margin: 0 !important;
+}
+body.dark-mode .volunteer-strip {
+    background-color: #1a1a1a !important;
+    color: #e0e0e0 !important;
+    border-top-color: #a8b361 !important;
+    border-bottom-color: #a8b361 !important;
+}
 
 /* -- Responsive -- */
 @media (max-width: 900px) {
@@ -195,6 +237,11 @@ body.dark-mode .rd-dir-card__ext-icon   { color: #a8b361 !important; }
         <!-- ============================================================
              GROUP 1: JewishGen Research Divisions (alphabetical)
              ============================================================ -->
+        <div class="rd-dir-flourish" aria-hidden="true">
+            <span class="rd-dir-flourish-line"></span>
+            <span class="rd-dir-flourish-mark">&#9670;</span>
+            <span class="rd-dir-flourish-line"></span>
+        </div>
         <section class="rd-dir-group" aria-labelledby="rd-grp-jg">
             <span id="rd-grp-jg" class="rd-dir-section-label">JewishGen Research Divisions</span>
             <div class="green-accent-line"></div>
@@ -285,6 +332,11 @@ body.dark-mode .rd-dir-card__ext-icon   { color: #a8b361 !important; }
              GROUP 2: External Regional Partners
              ============================================================ -->
         <!-- PLACEHOLDER NOTE: Verify external URLs and short descriptions with Caitlin before launch. -->
+        <div class="rd-dir-flourish" aria-hidden="true">
+            <span class="rd-dir-flourish-line"></span>
+            <span class="rd-dir-flourish-mark">&#9670;</span>
+            <span class="rd-dir-flourish-line"></span>
+        </div>
         <section class="rd-dir-group" aria-labelledby="rd-grp-ext">
             <span id="rd-grp-ext" class="rd-dir-section-label">External Regional Partners</span>
             <div class="green-accent-line"></div>
