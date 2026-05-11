@@ -51,7 +51,7 @@ body.dark-mode .page-title-band { background-color: #0d2a45 !important; }
 
 <!-- TITLE BAND -->
 <div class="page-title-band" role="banner">
-    <h1>Subcarpathia Databases</h1>
+    <h1>Romania Databases</h1>
     <p class="hero-subtitle">Records, indexes, and resources maintained by or relevant to the Romania Research Division.</p>
 </div>
 
@@ -112,7 +112,7 @@ function loadComponent(id, file) {
 Promise.all([
     loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
     loadComponent('site-footer', '/JG40-Build/Footer.html'),
-    loadComponent('rd-sidebar', '/JG40-Build/RD/SubCarpathia/RD_Sidebar.html')
+    loadComponent('rd-sidebar', '/JG40-Build/RD/Romania/RD_Sidebar.html')
         .then(function() { if (window.JG && JG.setActiveSidebarLink) JG.setActiveSidebarLink(); })
 ]).then(function() {
     document.querySelectorAll('.jg-nav .dropbtn, .main-nav .dropbtn').forEach(function(btn) {
@@ -134,7 +134,7 @@ Promise.all([
    DATABASE CATALOG: load JSON, render filterable/sortable cards
    ===================================================================== */
 (function() {
-    var DATA_URL    = '/JG40-Build/RD/SubCarpathia/Metadata.json';
+    var DATA_URL    = '/JG40-Build/RD/Romania/Metadata.json';
     var SEARCH_URL  = 'https://www.jewishgen.org/databases/all/';
 
     /* Canonical record-type buckets (multi-select filter).
