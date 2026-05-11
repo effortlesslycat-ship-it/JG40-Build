@@ -64,6 +64,33 @@ body.dark-mode .page-title-band { background-color: #0d2a45 !important; }
 
         <!-- Main content -->
         <main>
+
+            <!-- Family Finder placeholder banner -->
+            <!-- PLACEHOLDER NOTE: Live JGFF integration pending. When ready,
+                 replace the .rd-jgff-card__strip-text contents with the actual
+                 surname-match count (mirroring the communities-page pattern). -->
+            <div class="rd-jgff-card" role="complementary" aria-label="JewishGen Family Finder">
+                <div class="rd-jgff-card__header">
+                    <span class="rd-jgff-card__icon" aria-hidden="true">
+                        <img class="light-icon" src="/JG40-Build/databases/ComBlue.png" alt="">
+                        <img class="dark-icon"  src="/JG40-Build/databases/ComDark.png" alt="">
+                    </span>
+                    <h2 class="rd-jgff-card__title">JewishGen Family Finder</h2>
+                </div>
+                <div class="rd-jgff-card__body">
+                    <p class="rd-jgff-card__desc">Find others researching surnames connected to Romania. The JewishGen Family Finder lets you register your ancestral surnames and discover matches with researchers worldwide.</p>
+                    <div class="rd-jgff-card__strip">
+                        <p class="rd-jgff-card__strip-text">
+                            <span class="rd-jgff-card__strip-line1">Connect with researchers studying Romania</span>
+                            <span class="rd-jgff-card__strip-line2">Surname matches and contact info</span>
+                        </p>
+                        <a href="https://www.jewishgen.org/JGFF/" class="rd-jgff-card__cta" target="_blank" rel="noopener noreferrer">
+                            Search Family Finder &rarr;
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             <span class="section-heading">Database Catalog</span>
             <div class="green-accent-line"></div>
 
@@ -163,47 +190,46 @@ Promise.all([
     }
 
     function formatMonthYear(dateStr) {
-        if (!dateStr) return '';
-        
-        // 1. Force everything to a string to prevent crashes on numbers like 2005
-        dateStr = String(dateStr); 
-        
-        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        
-        // 2. Look for the MM/DD/YYYY format used in your JSON
+        if (!dateStr) return '';
+
+        /* Force everything to a string to prevent crashes on numbers like 2005 */
+        dateStr = String(dateStr);
+
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+        /* MM/DD/YYYY format (as used in Romania's Metadata.json) */
         if (dateStr.indexOf('/') !== -1) {
             var parts = dateStr.split('/');
             if (parts.length === 3) {
-                var month = parseInt(parts[0], 10) - 1; // Month is the first number
-                var year = parts[2];                    // Year is the third number
+                var month = parseInt(parts[0], 10) - 1;
+                var year  = parts[2];
                 if (month >= 0 && month <= 11) {
                     return months[month] + ' ' + year;
                 }
             }
         }
-        
-        // 3. Keep the old YYYY-MM-DD logic just as a backup
+
+        /* YYYY-MM-DD format (fallback) */
         if (dateStr.indexOf('-') !== -1) {
-            var parts = dateStr.split('-');
-            if (parts.length >= 2) {
-                var year = parts[0];
-                var month = parseInt(parts[1], 10) - 1;
-                if (month >= 0 && month <= 11) {
-                    return months[month] + ' ' + year;
+            var parts2 = dateStr.split('-');
+            if (parts2.length >= 2) {
+                var year2  = parts2[0];
+                var month2 = parseInt(parts2[1], 10) - 1;
+                if (month2 >= 0 && month2 <= 11) {
+                    return months[month2] + ' ' + year2;
                 }
             }
         }
-        
-        return dateStr; // If it's just "2005" or text, return it exactly as-is
-    }
+
+        return dateStr;
+    }
 
     function formatNumber(n) {
         if (typeof n !== 'number') return n;
         return n.toLocaleString('en-US');
     }
 
-    /* Title-case a freeform record-type fragment (e.g. "vital records" -> "Vital Records",
-       "Yizkor Books" stays "Yizkor Books"). */
+    /* Title-case a freeform record-type fragment (e.g. "vital records" -> "Vital Records"). */
     function titleCase(str) {
         if (!str) return '';
         return str.toLowerCase().replace(/\b([a-z])/g, function(_, c) { return c.toUpperCase(); });
@@ -219,23 +245,6 @@ Promise.all([
             .replace(/'/g, '&#39;');
     }
 
-    /* Description: substitute placeholder phrasing for "Pull from Marriages line"
-       entries with a generated description that includes their record type and
-       count, mirroring the Marriages entry's regional phrasing. */
-    var MARRIAGES_REGIONAL_PHRASE = 'from towns in the former Hungarian counties of Bereg, M&aacute;ramaros, and Ugocsa (now in Zakarpatska Oblast, in SW Ukraine)';
-
-    function resolveDescription(d) {
-        var raw = (d.description || '').trim();
-        var placeholder = /pull from marriages line/i.test(raw) ||
-                          /none which is wild/i.test(raw);
-        if (placeholder) {
-            var typePhrase = (d.recordType || 'records').toLowerCase();
-            var count = formatNumber(d.recordCount);
-            return 'More than ' + count + ' ' + typePhrase + ' records, ' + MARRIAGES_REGIONAL_PHRASE + '.';
-        }
-        return raw;
-    }
-
     /* Split first comma-separated value out for "primary language". */
     function primaryLanguage(lang) {
         if (!lang) return '';
@@ -247,7 +256,7 @@ Promise.all([
         var recordTypes = (d.recordType || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean);
         var primary     = primaryLanguage(d.language);
         var monthYear   = formatMonthYear(d.lastUpdated);
-        var description = resolveDescription(d);
+        var description = (d.description || '').trim();
         var hasInfoUrl  = !!(d.infoUrl && d.infoUrl.trim());
 
         /* Chips: only record-type chips on the collapsed card */
@@ -319,30 +328,30 @@ Promise.all([
     }
 
     function applySort(list) {
-        var copy = list.slice();
-        switch (state.sortKey) {
-            case 'updated-desc':
-                copy.sort(function(a, b) { 
-                    return String(b.lastUpdated || '').localeCompare(String(a.lastUpdated || '')); 
+        var copy = list.slice();
+        switch (state.sortKey) {
+            case 'updated-desc':
+                copy.sort(function(a, b) {
+                    return String(b.lastUpdated || '').localeCompare(String(a.lastUpdated || ''));
                 });
-                break;
-            case 'updated-asc':
-                copy.sort(function(a, b) { 
-                    return String(a.lastUpdated || '').localeCompare(String(b.lastUpdated || '')); 
+                break;
+            case 'updated-asc':
+                copy.sort(function(a, b) {
+                    return String(a.lastUpdated || '').localeCompare(String(b.lastUpdated || ''));
                 });
-                break;
-            case 'name-asc':
-                copy.sort(function(a, b) { return (a.name || '').localeCompare(b.name || ''); });
-                break;
-            case 'name-desc':
-                copy.sort(function(a, b) { return (b.name || '').localeCompare(a.name || ''); });
-                break;
-            case 'records-desc':
-                copy.sort(function(a, b) { return (b.recordCount || 0) - (a.recordCount || 0); });
-                break;
-        }
-        return copy;
-    }
+                break;
+            case 'name-asc':
+                copy.sort(function(a, b) { return (a.name || '').localeCompare(b.name || ''); });
+                break;
+            case 'name-desc':
+                copy.sort(function(a, b) { return (b.name || '').localeCompare(a.name || ''); });
+                break;
+            case 'records-desc':
+                copy.sort(function(a, b) { return (b.recordCount || 0) - (a.recordCount || 0); });
+                break;
+        }
+        return copy;
+    }
 
     function render() {
         var list      = state.datasets;
