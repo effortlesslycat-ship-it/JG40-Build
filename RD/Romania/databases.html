@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Databases &mdash; Romania Research Division &mdash; JewishGen</title>
+<meta name="description" content="Searchable index of databases maintained by or relevant to the JewishGen Romania Research Division.">
+
+<!-- 1. Bootstrap -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<!-- 2. JewishGen Global Design System -->
+<link rel="stylesheet" href="/JG40-Build/jg-global.css">
+<!-- 3. JewishGen Research Division stylesheet -->
+<link rel="stylesheet" href="/JG40-Build/RD/jg-rd.css">
+<!-- 4. Page-specific styles (page-title-band only) -->
+<style>
+a { text-decoration: none; color: inherit; }
+
+/* -- Page title band (will move to jg-global post-launch) -- */
+.page-title-band {
+    background-color: var(--navy);
+    padding: 44px 50px;
+    text-align: center;
+}
+.page-title-band h1 {
+    margin: 0 0 10px 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2.25rem;
+    font-weight: normal;
+    line-height: 1.2;
+    color: #ffffff;
+}
+.page-title-band p.hero-subtitle {
+    margin: 0 auto;
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 620px;
+    line-height: 1.6;
+}
+body.dark-mode .page-title-band { background-color: #0d2a45 !important; }
+
+@media (max-width: 800px) {
+    .page-title-band { padding: 36px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="site-header"></div>
+
+<!-- TITLE BAND -->
+<div class="page-title-band" role="banner">
+    <h1>Subcarpathia Databases</h1>
+    <p class="hero-subtitle">Records, indexes, and resources maintained by or relevant to the Romania Research Division.</p>
+</div>
+
+<!-- PAGE BODY -->
+<div class="rd-body-wrap">
+    <div class="rd-body-inner">
+
+        <!-- Sidebar (loaded from RD_Sidebar.html via fetch) -->
+        <aside id="rd-sidebar" class="rd-sidebar"></aside>
+
+        <!-- Main content -->
+        <main>
+            <span class="section-heading">Database Catalog</span>
+            <div class="green-accent-line"></div>
+
+            <!-- Filter & sort bar -->
+            <div class="filter-bar" aria-label="Filter and sort datasets">
+                <div class="filter-row">
+                    <span class="filter-label">Record Type</span>
+                    <div id="recordTypeFilters" role="group" aria-label="Filter by record type">
+                        <!-- chips injected by JS -->
+                    </div>
+                </div>
+                <div class="filter-row">
+                    <span class="filter-label">Sort by</span>
+                    <select id="sortSelect" class="sort-select" aria-label="Sort datasets">
+                        <option value="updated-desc">Last Updated &mdash; Newest First</option>
+                        <option value="updated-asc">Last Updated &mdash; Oldest First</option>
+                        <option value="name-asc">Name &mdash; A to Z</option>
+                        <option value="name-desc">Name &mdash; Z to A</option>
+                        <option value="records-desc">Records &mdash; Most First</option>
+                    </select>
+                    <span class="results-count" id="resultsCount" aria-live="polite"></span>
+                </div>
+            </div>
+
+            <!-- Card list -->
+            <div id="datasetList" aria-label="Dataset list"></div>
+
+        </main>
+
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div id="site-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/JG40-Build/jg-rd-sidebar.js"></script>
+<script>
+function loadComponent(id, file) {
+    return fetch(file)
+        .then(function(r) { if (!r.ok) throw new Error('Could not load ' + file); return r.text(); })
+        .then(function(html) { document.getElementById(id).innerHTML = html; })
+        .catch(function(err) { console.warn(err); });
+}
+
+Promise.all([
+    loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
+    loadComponent('site-footer', '/JG40-Build/Footer.html'),
+    loadComponent('rd-sidebar', '/JG40-Build/RD/SubCarpathia/RD_Sidebar.html')
+        .then(function() { if (window.JG && JG.setActiveSidebarLink) JG.setActiveSidebarLink(); })
+]).then(function() {
+    document.querySelectorAll('.jg-nav .dropbtn, .main-nav .dropbtn').forEach(function(btn) {
+        btn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                var menu = this.nextElementSibling;
+                if (menu) menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            }
+            if (e.key === 'Escape') {
+                var menu = this.nextElementSibling;
+                if (menu) menu.style.display = 'none';
+            }
+        });
+    });
+});
+
+/* =====================================================================
+   DATABASE CATALOG: load JSON, render filterable/sortable cards
+   ===================================================================== */
+(function() {
+    var DATA_URL    = '/JG40-Build/RD/SubCarpathia/Metadata.json';
+    var SEARCH_URL  = 'https://www.jewishgen.org/databases/all/';
+
+    /* Canonical record-type buckets (multi-select filter).
+       Each bucket maps to keywords found in the freeform recordType string. */
+    var RECORD_BUCKETS = [
+        { id: 'vital',      label: 'Vital Records',          match: ['birth', 'marriage', 'death', 'vital'] },
+        { id: 'census',     label: 'Census &amp; Family Lists', match: ['census', 'family list'] },
+        { id: 'yizkor',     label: 'Yizkor Books',           match: ['yizkor'] },
+        { id: 'burials',    label: 'Burials',                match: ['jowbr', 'burial'] },
+        { id: 'immigration',label: 'Immigration',            match: ['immigration', 'migration', 'passport'] },
+        { id: 'holocaust',  label: 'Holocaust',              match: ['holocaust'] }
+    ];
+
+    var state = {
+        datasets:   [],
+        activeBuckets: new Set(),
+        sortKey:    'updated-desc'
+    };
+
+    /* ---- Helpers ---- */
+    function bucketsFor(recordType) {
+        var lower = (recordType || '').toLowerCase();
+        return RECORD_BUCKETS.filter(function(b) {
+            return b.match.some(function(kw) { return lower.indexOf(kw) !== -1; });
+        }).map(function(b) { return b.id; });
+    }
+
+    function formatMonthYear(dateStr) {
+        if (!dateStr) return '';
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var parts = dateStr.split('-');
+        if (parts.length < 2) return dateStr;
+        var year  = parts[0];
+        var month = parseInt(parts[1], 10) - 1;
+        if (month < 0 || month > 11) return dateStr;
+        return months[month] + ' ' + year;
+    }
+
+    function formatNumber(n) {
+        if (typeof n !== 'number') return n;
+        return n.toLocaleString('en-US');
+    }
+
+    /* Title-case a freeform record-type fragment (e.g. "vital records" -> "Vital Records",
+       "Yizkor Books" stays "Yizkor Books"). */
+    function titleCase(str) {
+        if (!str) return '';
+        return str.toLowerCase().replace(/\b([a-z])/g, function(_, c) { return c.toUpperCase(); });
+    }
+
+    function escapeHtml(str) {
+        if (str === null || str === undefined) return '';
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
+    /* Description: substitute placeholder phrasing for "Pull from Marriages line"
+       entries with a generated description that includes their record type and
+       count, mirroring the Marriages entry's regional phrasing. */
+    var MARRIAGES_REGIONAL_PHRASE = 'from towns in the former Hungarian counties of Bereg, M&aacute;ramaros, and Ugocsa (now in Zakarpatska Oblast, in SW Ukraine)';
+
+    function resolveDescription(d) {
+        var raw = (d.description || '').trim();
+        var placeholder = /pull from marriages line/i.test(raw) ||
+                          /none which is wild/i.test(raw);
+        if (placeholder) {
+            var typePhrase = (d.recordType || 'records').toLowerCase();
+            var count = formatNumber(d.recordCount);
+            return 'More than ' + count + ' ' + typePhrase + ' records, ' + MARRIAGES_REGIONAL_PHRASE + '.';
+        }
+        return raw;
+    }
+
+    /* Split first comma-separated value out for "primary language". */
+    function primaryLanguage(lang) {
+        if (!lang) return '';
+        return lang.split(',')[0].trim();
+    }
+
+    /* ---- Build a dataset card ---- */
+    function buildCard(d, idx) {
+        var recordTypes = (d.recordType || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean);
+        var primary     = primaryLanguage(d.language);
+        var monthYear   = formatMonthYear(d.lastUpdated);
+        var description = resolveDescription(d);
+        var hasInfoUrl  = !!(d.infoUrl && d.infoUrl.trim());
+
+        /* Chips: only record-type chips on the collapsed card */
+        var recordChips = recordTypes.map(function(rt) {
+            return '<span class="ds-chip chip-record">' + escapeHtml(titleCase(rt)) + '</span>';
+        }).join('');
+
+        /* Fact boxes */
+        var facts = [
+            { label: 'Date Range',    value: d.years          || '&mdash;' },
+            { label: 'Total Records', value: formatNumber(d.recordCount) || '&mdash;' },
+            { label: 'Language(s)',   value: escapeHtml(d.language || '&mdash;') },
+            { label: 'Original Source', value: escapeHtml(d.sources || '&mdash;') }
+        ];
+        var factsHtml = facts.map(function(f) {
+            return '<div class="ds-fact">' +
+                   '<span class="ds-fact-label">' + f.label + '</span>' +
+                   '<span class="ds-fact-value">' + f.value + '</span>' +
+                   '</div>';
+        }).join('');
+
+        /* CTAs */
+        var ctaButtons = '';
+        if (hasInfoUrl) {
+            ctaButtons += '<a href="' + escapeHtml(d.infoUrl) + '" class="ds-btn ds-btn-navy" target="_blank" rel="noopener noreferrer">View Description &rarr;</a>';
+        }
+        ctaButtons += '<a href="' + SEARCH_URL + '" class="ds-btn ds-btn-sage" target="_blank" rel="noopener noreferrer">Search Records</a>';
+
+        var cardId = 'ds-' + idx;
+        var html = '' +
+            '<article class="ds-card" id="' + cardId + '" aria-expanded="false">' +
+                '<button type="button" class="ds-summary" aria-controls="' + cardId + '-panel" aria-expanded="false">' +
+                    '<div>' +
+                        '<h3 class="ds-card-name">' + escapeHtml(d.name) + '</h3>' +
+                        '<div class="ds-meta-row">' +
+                            '<span class="ds-meta-item"><span class="ds-meta-icon" aria-hidden="true">&#128197;</span> <span class="ds-meta-label">Years:</span> <span class="ds-meta-value">' + escapeHtml(d.years || '\u2014') + '</span></span>' +
+                            '<span class="ds-meta-item"><span class="ds-meta-icon" aria-hidden="true">&#128202;</span> <span class="ds-meta-label">Records:</span> <span class="ds-meta-value">' + (formatNumber(d.recordCount) || '\u2014') + '</span></span>' +
+                            '<span class="ds-meta-item"><span class="ds-meta-icon" aria-hidden="true">&#127760;</span> <span class="ds-meta-label">Language:</span> <span class="ds-meta-value">' + escapeHtml(d.language || '\u2014') + '</span></span>' +
+                            '<span class="ds-meta-item"><span class="ds-meta-icon" aria-hidden="true">&#128338;</span> <span class="ds-meta-label">Updated:</span> <span class="ds-meta-value">' + escapeHtml(monthYear || '\u2014') + '</span></span>' +
+                        '</div>' +
+                        '<div class="ds-chips">' +
+                            recordChips +
+                        '</div>' +
+                    '</div>' +
+                    '<span class="chevron-toggle" aria-hidden="true">&#9662;</span>' +
+                '</button>' +
+                '<div class="ds-expand" id="' + cardId + '-panel" role="region">' +
+                    '<div class="ds-expand-grid">' +
+                        '<div>' +
+                            (description ? '<p class="ds-description">' + description + '</p>' : '') +
+                            '<div class="ds-facts">' + factsHtml + '</div>' +
+                        '</div>' +
+                        '<div class="ds-cta-col">' +
+                            ctaButtons +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+            '</article>';
+        return html;
+    }
+
+    /* ---- Filtering & sorting ---- */
+    function applyFilters(list) {
+        if (state.activeBuckets.size === 0) return list;
+        return list.filter(function(d) {
+            var matched = bucketsFor(d.recordType);
+            return matched.some(function(b) { return state.activeBuckets.has(b); });
+        });
+    }
+
+    function applySort(list) {
+        var copy = list.slice();
+        switch (state.sortKey) {
+            case 'updated-desc':
+                copy.sort(function(a, b) { return (b.lastUpdated || '').localeCompare(a.lastUpdated || ''); });
+                break;
+            case 'updated-asc':
+                copy.sort(function(a, b) { return (a.lastUpdated || '').localeCompare(b.lastUpdated || ''); });
+                break;
+            case 'name-asc':
+                copy.sort(function(a, b) { return (a.name || '').localeCompare(b.name || ''); });
+                break;
+            case 'name-desc':
+                copy.sort(function(a, b) { return (b.name || '').localeCompare(a.name || ''); });
+                break;
+            case 'records-desc':
+                copy.sort(function(a, b) { return (b.recordCount || 0) - (a.recordCount || 0); });
+                break;
+        }
+        return copy;
+    }
+
+    function render() {
+        var list      = state.datasets;
+        var filtered  = applyFilters(list);
+        var sorted    = applySort(filtered);
+        var container = document.getElementById('datasetList');
+
+        if (sorted.length === 0) {
+            container.innerHTML = '<div class="rd-empty">No datasets match the selected filters.</div>';
+        } else {
+            container.innerHTML = sorted.map(buildCard).join('');
+        }
+        wireCardToggles(container);
+
+        var rc = document.getElementById('resultsCount');
+        if (rc) rc.textContent = sorted.length + ' of ' + list.length + ' datasets';
+    }
+
+    function wireCardToggles(container) {
+        container.querySelectorAll('.ds-summary').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var card = btn.closest('.ds-card');
+                var open = card.getAttribute('aria-expanded') === 'true';
+                card.setAttribute('aria-expanded', open ? 'false' : 'true');
+                btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+                card.classList.toggle('is-open', !open);
+            });
+        });
+    }
+
+    /* ---- Build filter chips ---- */
+    function renderFilterChips(availableBuckets) {
+        var wrap = document.getElementById('recordTypeFilters');
+        if (!wrap) return;
+        var html = '<button type="button" class="filter-chip ' +
+                   (state.activeBuckets.size === 0 ? 'active' : '') +
+                   '" data-bucket="__all">All</button> ';
+        RECORD_BUCKETS.forEach(function(b) {
+            if (availableBuckets.indexOf(b.id) === -1) return;
+            html += '<button type="button" class="filter-chip ' +
+                    (state.activeBuckets.has(b.id) ? 'active' : '') +
+                    '" data-bucket="' + b.id + '">' + b.label + '</button> ';
+        });
+        wrap.innerHTML = html;
+        wrap.querySelectorAll('.filter-chip').forEach(function(chip) {
+            chip.addEventListener('click', function() {
+                var bucket = chip.getAttribute('data-bucket');
+                if (bucket === '__all') {
+                    state.activeBuckets.clear();
+                } else {
+                    if (state.activeBuckets.has(bucket)) state.activeBuckets.delete(bucket);
+                    else state.activeBuckets.add(bucket);
+                }
+                renderFilterChips(availableBuckets);
+                render();
+            });
+        });
+    }
+
+    /* ---- Boot ---- */
+    fetch(DATA_URL)
+        .then(function(r) {
+            if (!r.ok) throw new Error('Failed to load dataset metadata: ' + r.status);
+            return r.json();
+        })
+        .then(function(data) {
+            state.datasets = Array.isArray(data) ? data : [];
+            /* Determine which buckets actually have data */
+            var bucketsPresent = new Set();
+            state.datasets.forEach(function(d) {
+                bucketsFor(d.recordType).forEach(function(b) { bucketsPresent.add(b); });
+            });
+            renderFilterChips(Array.from(bucketsPresent));
+
+            /* Wire sort */
+            var sortEl = document.getElementById('sortSelect');
+            if (sortEl) {
+                sortEl.addEventListener('change', function() {
+                    state.sortKey = sortEl.value;
+                    render();
+                });
+            }
+            render();
+        })
+        .catch(function(err) {
+            console.error(err);
+            var container = document.getElementById('datasetList');
+            if (container) {
+                container.innerHTML = '<div class="rd-empty">Database catalog could not be loaded. Please try again later.</div>';
+            }
+        });
+})();
+</script>
+
+</body>
+</html>
