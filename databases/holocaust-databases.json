@@ -28,7 +28,7 @@
     "name": "The Aufbau Database",
     "url": "https://www.jewishgen.org/databases/Holocaust/aufbau.htm",
     "desc": "Over 33,000 Holocaust survivors' names published in the German-language newspaper Aufbau in New York, 1944–1946.",
-    "count": "~33,000",
+    "count": "33,460",
     "yearStart": "1944",
     "yearEnd": "1946",
     "recordType": [
@@ -53,7 +53,7 @@
     "name": "Jews who Resided in Krosno, Poland before 1941",
     "url": "https://www.jewishgen.org/databases/Holocaust/0006_KrosnoJudenratList.htm",
     "desc": "Over 2,000 Jews who resided in this Galician town before 22 June 1941.",
-    "count": "~2,000",
+    "count": "2,075",
     "yearStart": "1939",
     "yearEnd": "1941",
     "recordType": [
@@ -80,7 +80,7 @@
     "name": "Norway Compilation",
     "url": "https://www.jewishgen.org/databases/Holocaust/0009_NorwegianCollection.htm",
     "desc": "Data on nearly 900 Norwegian Jews, compiled from 11 different sources.",
-    "count": "~900",
+    "count": "893",
     "yearStart": "1940",
     "yearEnd": "1945",
     "recordType": [
@@ -109,7 +109,7 @@
     "name": "Danish Deportees Database",
     "url": "https://www.jewishgen.org/databases/Holocaust/0010_DanishDeporteestoTheresienstadt.htm",
     "desc": "Over 400 persons deported from Denmark to Theresienstadt.",
-    "count": "~400",
+    "count": "482",
     "yearStart": "1943",
     "yearEnd": "1945",
     "recordType": [
@@ -320,7 +320,7 @@
     "name": "Austrian Jews in Concentration Camps",
     "url": "https://www.jewishgen.org/databases/Holocaust/0020_AustriansInCamps.htm",
     "desc": "Information on over 800 Austrian Jews from various sources.",
-    "count": "~800",
+    "count": "802",
     "yearStart": "1938",
     "yearEnd": "1945",
     "recordType": [
@@ -425,7 +425,7 @@
     "name": "Deportation of Bialystok Children from Theresienstadt",
     "url": "https://www.jewishgen.org/databases/Holocaust/0025_BialystokChildren5Oct1943.htm",
     "desc": "1,200 children deported from Theresienstadt to Auschwitz, 5 Oct 1943.",
-    "count": "1,200",
+    "count": "1,249",
     "yearStart": "1943",
     "yearEnd": "1943",
     "recordType": [
@@ -506,7 +506,7 @@
     "name": "Dachau Inmates – Possessions upon Entry",
     "url": "https://www.jewishgen.org/databases/Holocaust/0035_DachauInmatesPossessions.htm",
     "desc": "A list of 2,800+ inmates of Dachau Concentration Camp and their possessions.",
-    "count": "~2,800",
+    "count": "2,839",
     "yearStart": "1933",
     "yearEnd": "1945",
     "recordType": [
@@ -640,8 +640,8 @@
   {
     "name": "Jewish 'Training' Centers in Germany",
     "url": "https://www.jewishgen.org/databases/Holocaust/0041_German_Training_Camps.html",
-    "desc": "1,800 names of Jewish youth at Hachshara training centers in Germany, 1934–1938.",
-    "count": "~1,800",
+    "desc": "1,700 names of Jewish youth at Hachshara training centers in Germany, 1934–1938.",
+    "count": "1,715",
     "yearStart": "1934",
     "yearEnd": "1938",
     "recordType": [
@@ -694,7 +694,7 @@
     "name": "Westphalian Jews and the Holocaust",
     "url": "https://www.jewishgen.org/databases/Germany/westphalia.htm",
     "desc": "The fate of over 8,000 Westphalian Jews.",
-    "count": "~8,000",
+    "count": "8,182",
     "yearStart": "1933",
     "yearEnd": "1945",
     "recordType": [
@@ -745,10 +745,10 @@
     "notes": ""
   },
   {
-    "name": "Lvov Ghetto Database",
+    "name": "Lwów Ghetto Database",
     "url": "https://www.jewishgen.org/databases/Poland/lvov.htm",
     "desc": "Names of over 10,000 Jews in the Ghetto of Lwów Poland, 1942–1945.",
-    "count": "~10,000",
+    "count": "10,512",
     "yearStart": "1942",
     "yearEnd": "1945",
     "recordType": [
@@ -775,7 +775,7 @@
     "name": "Kraków Ghetto Database",
     "url": "https://www.jewishgen.org/databases/Poland/KrakowGhetto.htm",
     "desc": "Names of over 19,000 Jews in the Ghetto of Kraków Poland, in 1940.",
-    "count": "~19,000",
+    "count": "19,291,
     "yearStart": "1940",
     "yearEnd": "1943",
     "recordType": [
@@ -802,8 +802,8 @@
   {
     "name": "Pinsk Ghetto List, 1942",
     "url": "https://www.jewishgen.org/databases/Belarus/PinskGhetto.htm",
-    "desc": "Data on over 18,000 Jews in the Pinsk ghetto in late 1941 or 1942.",
-    "count": "~18,000",
+    "desc": "Data on over 17,000 Jews in the Pinsk ghetto in late 1941 or 1942.",
+    "count": "17,736",
     "yearStart": "1941",
     "yearEnd": "1942",
     "recordType": [
@@ -830,7 +830,7 @@
     "name": "Vilna Ghetto: Lists of Prisoners",
     "url": "https://www.jewishgen.org/databases/Lithuania/VilniusGhetto1942.htm",
     "desc": "Over 15,000 Vilnius Ghetto prisoners from a census of Lithuania in May 1942.",
-    "count": "~15,000",
+    "count": "16,197",
     "yearStart": "1942",
     "yearEnd": "1942",
     "recordType": [
@@ -857,7 +857,7 @@
     "name": "The Extraordinary Commission Lists: Riga",
     "url": "https://www.jewishgen.org/databases/Latvia/ExtraordinaryCommission.htm",
     "desc": "Over 2,000 individuals in Riga recorded as having perished at the hands of German forces, most during 1941.",
-    "count": "~2,000",
+    "count": "2,396",
     "yearStart": "1941",
     "yearEnd": "1945",
     "recordType": [
@@ -884,7 +884,7 @@
     "name": "Brest Ghetto Passport Archive",
     "url": "https://www.jewishgen.org/databases/Belarus/brest.htm",
     "desc": "Identity papers of over 12,000 people in the ghetto of Brest-Litovsk, from Soviet archives.",
-    "count": "~12,000",
+    "count": "12,259",
     "yearStart": "1941",
     "yearEnd": "1942",
     "recordType": [
@@ -1043,8 +1043,8 @@
   {
     "name": "Jews in Debrecen, Hungary, 1945",
     "url": "https://www.jewishgen.org/databases/Holocaust/0008_Debrecen.html",
-    "desc": "4,000 survivors registered in Hajdú County, 1945.",
-    "count": "~4,000",
+    "desc": "3,977 survivors registered in Hajdú County, 1945.",
+    "count": "3,977",
     "yearStart": "1945",
     "yearEnd": "1945",
     "recordType": [
@@ -1068,8 +1068,8 @@
   {
     "name": "Borislav-Drohobycz Delinquent Water Bills, 1941–1942",
     "url": "https://www.jewishgen.org/databases/Holocaust/0042_BorislavWaterBills.html",
-    "desc": "Data on 5,000 residents of Borys?aw and Drohobycz, now in Ukraine.",
-    "count": "~5,000",
+    "desc": "Data on over 5,000 residents of Boryslaw and Drohobycz, now in Ukraine.",
+    "count": "5,483",
     "yearStart": "1941",
     "yearEnd": "1942",
     "recordType": [
@@ -1094,8 +1094,8 @@
   {
     "name": "Sachsenhausen Arrivals & Departures, Oct 1940 – Jun 1941",
     "url": "https://www.jewishgen.org/databases/Holocaust/0043_SachsenhausenArrivAndDepart.html",
-    "desc": "Data on 5,000 arriving and departing prisoners at Sachsenhausen, north of Berlin.",
-    "count": "~5,000",
+    "desc": "Data on nearly 5,000 arriving and departing prisoners at Sachsenhausen, north of Berlin.",
+    "count": "4,991",
     "yearStart": "1940",
     "yearEnd": "1941",
     "recordType": [
@@ -1120,8 +1120,8 @@
   {
     "name": "Temporary Passports for Jews in Germany, 1938–1941",
     "url": "https://www.jewishgen.org/databases/Holocaust/0044_TempPassportsForGermanJews1938to1941.html",
-    "desc": "Exit passports for 500 persons, from Gestapo files.",
-    "count": "~500",
+    "desc": "Exit passports for 489 persons, from Gestapo files.",
+    "count": "489",
     "yearStart": "1938",
     "yearEnd": "1941",
     "recordType": [
@@ -1148,8 +1148,8 @@
   {
     "name": "Dachau Concentration Camp Records",
     "url": "https://www.jewishgen.org/databases/Holocaust/0050_DachauIndexing.html",
-    "desc": "Data on 150,000 prisoners from captured German documents.",
-    "count": "~150,000",
+    "desc": "Data on over 150,000 prisoners from captured German documents.",
+    "count": "164,650",
     "yearStart": "1933",
     "yearEnd": "1945",
     "recordType": [
@@ -1226,8 +1226,8 @@
   {
     "name": "Pinkas HaNitzolim I – Register of Survivors",
     "url": "https://www.jewishgen.org/databases/Holocaust/0064_PinkasNitzolimI.html",
-    "desc": "Names of nearly 62,000 survivors in Europe, published in 1945.",
-    "count": "~62,000",
+    "desc": "Names of over 61,000 survivors in Europe, published in 1945.",
+    "count": "61,697",
     "yearStart": "1945",
     "yearEnd": "1945",
     "recordType": [
@@ -1251,8 +1251,8 @@
   {
     "name": "Pinkas HaNitzolim II – Register of Survivors",
     "url": "https://www.jewishgen.org/databases/Holocaust/0058_PinkasNitzolimII.html",
-    "desc": "Names of nearly 58,000 survivors in Poland, published in 1945.",
-    "count": "~58,000",
+    "desc": "Names of nearly 57,000 survivors in Poland, published in 1945.",
+    "count": "56,957",
     "yearStart": "1945",
     "yearEnd": "1945",
     "recordType": [
@@ -1386,8 +1386,8 @@
   {
     "name": "Soviet Extraordinary Commission",
     "url": "https://www.jewishgen.org/databases/Holocaust/ExtraordinaryCommission.htm",
-    "desc": "Index to testimonials on over 60,000 Holocaust victims.",
-    "count": "~60,000",
+    "desc": "Index to testimonials on over 64,000 Holocaust victims.",
+    "count": "64,398",
     "yearStart": "1944",
     "yearEnd": "1946",
     "recordType": [
@@ -1519,7 +1519,7 @@
     "name": "North Bavarian Jews",
     "url": "https://www.jewishgen.org/databases/Holocaust/0071_Bavarian-jews.html",
     "desc": "Data on over 7,400 North Bavarian Jews, from the Captured German Records Collection at USHMM.",
-    "count": "~7,400",
+    "count": "7,407",
     "yearStart": "1933",
     "yearEnd": "1945",
     "recordType": [
@@ -1571,8 +1571,8 @@
   {
     "name": "Refugees from France to Brazil",
     "url": "https://www.jewishgen.org/databases/Holocaust/0073_Jewish_refugees_France-Brazil.html",
-    "desc": "Names of nearly 500 French Jews who were issued immigration visas to Brazil during the Holocaust.",
-    "count": "~500",
+    "desc": "Names of 471 French Jews who were issued immigration visas to Brazil during the Holocaust.",
+    "count": "471",
     "yearStart": "1940",
     "yearEnd": "1944",
     "recordType": [
@@ -1598,7 +1598,7 @@
     "name": "Braunschweig Cemetery for Forced Laborers",
     "url": "https://www.jewishgen.org/databases/Holocaust/0075_Braunschweig_cemetery.html",
     "desc": "Names of forced laborers buried in the local cemetery of Braunschweig, Germany.",
-    "count": "Unknown",
+    "count": "218",
     "yearStart": "1942",
     "yearEnd": "1945",
     "recordType": [
@@ -1626,7 +1626,7 @@
     "name": "Forced Laborers in Boryslaw and Drohobycz",
     "url": "https://www.jewishgen.org/databases/Holocaust/0031_Boryslaw_and_Drohobycz_laborers.html",
     "desc": "Names of nearly 5,000 forced laborers in Boryslaw and Drohobycz in Lwów province, Galicia (now Ukraine).",
-    "count": "~5,000",
+    "count": "4,971",
     "yearStart": "1941",
     "yearEnd": "1944",
     "recordType": [
@@ -1651,7 +1651,7 @@
     "name": "Lodz Ghetto Database",
     "url": "https://www.jewishgen.org/databases/Poland/LodzGhetto.html",
     "desc": "A record of the 240,000 inhabitants of the Lodz Ghetto.",
-    "count": "~240,000",
+    "count": "242,721",
     "yearStart": "1940",
     "yearEnd": "1944",
     "recordType": [
@@ -1679,7 +1679,7 @@
     "name": "Lodz Ghetto – Volume V",
     "url": "https://www.jewishgen.org/databases/Poland/LodzGhettoVol5.html",
     "desc": "The supplemental fifth volume of Lodz Names, with over 20,000 additional entries.",
-    "count": "~20,000",
+    "count": "20,136",
     "yearStart": "1940",
     "yearEnd": "1944",
     "recordType": [
@@ -1707,7 +1707,7 @@
     "name": "Lodz Ghetto Hospital Deaths",
     "url": "https://www.jewishgen.org/databases/Holocaust/0093_Lodz-hospital.html",
     "desc": "Over 14,000 deaths recorded in hospitals in the Lodz Ghetto, Nov 1941 through Jun 1944.",
-    "count": "~14,000",
+    "count": "14,469",
     "yearStart": "1941",
     "yearEnd": "1944",
     "recordType": [
@@ -1733,7 +1733,7 @@
     "name": "Lodz Ghetto Hospital Illness Records",
     "url": "https://www.jewishgen.org/databases/Holocaust/0106_Lodz-illness.html",
     "desc": "Over 5,600 persons with contagious diseases in hospitals in the Lodz Ghetto, Aug–Dec 1940.",
-    "count": "~5,600",
+    "count": "5,637",
     "yearStart": "1940",
     "yearEnd": "1940",
     "recordType": [
@@ -1784,8 +1784,8 @@
   {
     "name": "Hungarian Holocaust Memorials",
     "url": "https://www.jewishgen.org/databases/Hungary/HolocaustMemorials.htm",
-    "desc": "Names of more than 22,000 martyrs recorded on Holocaust memorials in 35 communities in Hungary and Slovakia.",
-    "count": "~22,000",
+    "desc": "Names of more than 23,000 martyrs recorded on Holocaust memorials in 35 communities in Hungary and Slovakia.",
+    "count": "23,657",
     "yearStart": "1944",
     "yearEnd": "1945",
     "recordType": [
@@ -1861,7 +1861,7 @@
     "name": "Displaced Persons from Bergen-Belsen to Sweden",
     "url": "https://www.jewishgen.org/databases/Holocaust/0095_Bergen-Belsen-to-Sweden.html",
     "desc": "Data on 1,600 DPs from various countries in Bergen-Belsen moved to Sweden, 24 July 1945, from UN documents.",
-    "count": "~1,600",
+    "count": "1,606",
     "yearStart": "1945",
     "yearEnd": "1945",
     "recordType": [
@@ -1888,7 +1888,7 @@
     "name": "Tirgu Mures Deportation List, 1944",
     "url": "https://www.jewishgen.org/databases/Holocaust/0089_Tirgu_Mures_Deportation.html",
     "desc": "Over 4,000 Jews deported from Tirgu Mures (Maros-Vasarhely) in 1944.",
-    "count": "~4,000",
+    "count": "4,596",
     "yearStart": "1944",
     "yearEnd": "1944",
     "recordType": [
@@ -1914,7 +1914,7 @@
     "name": "Tirgu Mures Ghetto List, 1945",
     "url": "https://www.jewishgen.org/databases/Holocaust/0090_Tirgu_Mures_Ghetto.html",
     "desc": "Over 2,000 residents of the Tirgu Mures ghetto, as of January 8, 1945.",
-    "count": "~2,000",
+    "count": "2,210",
     "yearStart": "1945",
     "yearEnd": "1945",
     "recordType": [
@@ -1940,7 +1940,7 @@
     "name": "Transnistria: Jews Receiving and Sending Support",
     "url": "https://www.jewishgen.org/databases/Holocaust/0001_Transnistra.html",
     "desc": "Lists of Jews from the Regat (pre-WWI Romania) who sent money to Jews in the ghettos of Transnistria.",
-    "count": "Unknown",
+    "count": "2,277",
     "yearStart": "1942",
     "yearEnd": "1944",
     "recordType": [
@@ -1968,7 +1968,7 @@
     "name": "Jews Murdered near Sabac, Serbia",
     "url": "https://www.jewishgen.org/databases/Holocaust/0032_JewsMurderedInZasavica.html",
     "desc": "Data on over 1,000 members of the Hechalutz Zionist youth group murdered in Zasavica near Sabac, Serbia.",
-    "count": "~1,000",
+    "count": "1,055",
     "yearStart": "1941",
     "yearEnd": "1941",
     "recordType": [
@@ -2024,7 +2024,7 @@
     "name": "Polish Children Survivors",
     "url": "https://www.jewishgen.org/databases/Holocaust/0108_Polish-children.html",
     "desc": "Data on Polish children from Dobroszycki's Survivors of the Holocaust in Poland.",
-    "count": "Unknown",
+    "count": "1,568",
     "yearStart": "1945",
     "yearEnd": "1946",
     "recordType": [
@@ -2131,8 +2131,8 @@
   {
     "name": "The Jews of Oradea (Nagyvarad)",
     "url": "https://www.jewishgen.org/databases/Holocaust/0109_Oradea.html",
-    "desc": "Names of 1,500 Jews who owned businesses in Oradea, Romania in 1944.",
-    "count": "~1,500",
+    "desc": "Names of over 1,500 Jews who owned businesses in Oradea, Romania in 1944.",
+    "count": "1,555",
     "yearStart": "1944",
     "yearEnd": "1944",
     "recordType": [
@@ -2158,8 +2158,8 @@
   {
     "name": "Neuengamme Victims",
     "url": "https://www.jewishgen.org/databases/Holocaust/0116_Neuengamme.html",
-    "desc": "Names of 1,200 victims of the bombing of the ships Cap Arcona and Thielbek in Lubeck, May 1945.",
-    "count": "~1,200",
+    "desc": "Names of 1,199 victims of the bombing of the ships Cap Arcona and Thielbek in Lubeck, May 1945.",
+    "count": "1,199",
     "yearStart": "1945",
     "yearEnd": "1945",
     "recordType": [
@@ -2295,7 +2295,7 @@
     "name": "Gyor Victims at Auschwitz",
     "url": "https://www.jewishgen.org/databases/Holocaust/0047_Gyor.html",
     "desc": "Names of over 3,000 victims from Gyor, Hungary, deported to Auschwitz.",
-    "count": "~3,000",
+    "count": "3,099",
     "yearStart": "1944",
     "yearEnd": "1944",
     "recordType": [
@@ -2379,7 +2379,7 @@
     "name": "Deportations from Dorohoi to Transnistria",
     "url": "https://www.jewishgen.org/databases/Holocaust/0091_Dorohoi.html",
     "desc": "3,200 Jewish families deported from Dorohoi, Romania to Transnistria.",
-    "count": "~3,200",
+    "count": "3,263",
     "yearStart": "1941",
     "yearEnd": "1944",
     "recordType": [
@@ -2459,7 +2459,7 @@
     "name": "Jews From Iasi who Survived the Transports",
     "url": "https://www.jewishgen.org/databases/Holocaust/0099_Iasi.html",
     "desc": "List of over 1,600 Jews who survived two transports by train from Iasi (Jassy), Romania.",
-    "count": "~1,600",
+    "count": "1,609",
     "yearStart": "1941",
     "yearEnd": "1941",
     "recordType": [
@@ -2566,7 +2566,7 @@
     "name": "Krakow Transport List",
     "url": "https://www.jewishgen.org/databases/Holocaust/0119_Krakow_transports.html",
     "desc": "Names of 6,700 Jews transported from Krakow, November 1940 through April 1941.",
-    "count": "~6,700",
+    "count": "6,701",
     "yearStart": "1940",
     "yearEnd": "1941",
     "recordType": [
@@ -2728,7 +2728,7 @@
     "name": "Ahlem Hospital Survivors",
     "url": "https://www.jewishgen.org/databases/Holocaust/0125_Ahlem_Hospital.html",
     "desc": "Names of survivors in Ahlem (Hannover) hospital, 1945.",
-    "count": "Unknown",
+    "count": "243",
     "yearStart": "1945",
     "yearEnd": "1945",
     "recordType": [
@@ -2889,7 +2889,7 @@
     "name": "World Jewish Congress Collection",
     "url": "https://www.jewishgen.org/databases/Holocaust/0131_World_Jewish_Congress.html",
     "desc": "Data on more than 72,000 Holocaust survivors from the files of the World Jewish Congress.",
-    "count": "~72,000",
+    "count": "72,899",
     "yearStart": "1945",
     "yearEnd": "1950",
     "recordType": [
@@ -2916,7 +2916,7 @@
     "name": "Polish Medical Questionnaires",
     "url": "https://www.jewishgen.org/databases/Holocaust/0132_Polish_medical_questionnaires.html",
     "desc": "Data on 2,000 Jewish medical personnel in Galicia and surrounding areas in 1940–42.",
-    "count": "~2,000",
+    "count": "2,001",
     "yearStart": "1940",
     "yearEnd": "1942",
     "recordType": [
@@ -3026,8 +3026,8 @@
   {
     "name": "Jewish Refugees in Tashkent",
     "url": "https://www.jewishgen.org/databases/Holocaust/0136_uzbek.html",
-    "desc": "Data on 152,000 Jewish refugees from the Soviet Union evacuated to Tashkent and other localities in Uzbekistan, 1941–42.",
-    "count": "~152,000",
+    "desc": "Data on nearly 152,000 Jewish refugees from the Soviet Union evacuated to Tashkent and other localities in Uzbekistan, 1941–42.",
+    "count": "151,966",
     "yearStart": "1941",
     "yearEnd": "1942",
     "recordType": [
@@ -3135,8 +3135,8 @@
   {
     "name": "Who Perished on the Struma?",
     "url": "https://www.jewishgen.org/databases/Holocaust/0140_Struma.html",
-    "desc": "Data on more than 700 Jewish refugees who perished when the Struma sank.",
-    "count": "~700",
+    "desc": "Data on more than 800 Jewish refugees who perished when the Struma sank.",
+    "count": "824",
     "yearStart": "1942",
     "yearEnd": "1942",
     "recordType": [
@@ -3190,7 +3190,7 @@
     "name": "Sarajevo Survivors to Palestine, Dec 1948",
     "url": "https://www.jewishgen.org/databases/Holocaust/0142_Sarajevo_survivors.html",
     "desc": "1,500 survivors from Sarajevo who went to Palestine, December 1948.",
-    "count": "~1,500",
+    "count": "1,553",
     "yearStart": "1948",
     "yearEnd": "1948",
     "recordType": [
@@ -3297,8 +3297,8 @@
   {
     "name": "Lodz Ghetto Work ID Cards",
     "url": "https://www.jewishgen.org/databases/Holocaust/0147_Lodz_work_cards.html",
-    "desc": "Identification cards for 13,000 workers in the Lodz Ghetto.",
-    "count": "~13,000",
+    "desc": "Identification cards for over 13,000 workers in the Lodz Ghetto.",
+    "count": "13,280",
     "yearStart": "1940",
     "yearEnd": "1944",
     "recordType": [
@@ -3326,7 +3326,7 @@
     "name": "Passports of German Jews",
     "url": "https://www.jewishgen.org/databases/Holocaust/0148_German_Passports.html",
     "desc": "Passports of 500 German Jews.",
-    "count": "~500",
+    "count": "500",
     "yearStart": "1933",
     "yearEnd": "1941",
     "recordType": [
@@ -3353,7 +3353,7 @@
     "name": "Mszana Dolna, Poland – 1942 Census",
     "url": "https://www.jewishgen.org/databases/Holocaust/0149_Mszana_Dolna.html",
     "desc": "Over 1,000 residents of Mszana Dolna, Poland, June 15, 1942.",
-    "count": "~1,000",
+    "count": "1,036",
     "yearStart": "1942",
     "yearEnd": "1942",
     "recordType": [
@@ -3378,8 +3378,8 @@
   {
     "name": "Natzweiler-Struthof Camp",
     "url": "https://www.jewishgen.org/databases/Holocaust/0151_Natzweiler_camp.html",
-    "desc": "34,000 inmates of Natzweiler-Struthof concentration camp, in Alsace.",
-    "count": "~34,000",
+    "desc": "Over 33,000 inmates of Natzweiler-Struthof concentration camp, in Alsace.",
+    "count": "33,722",
     "yearStart": "1941",
     "yearEnd": "1945",
     "recordType": [
@@ -3406,7 +3406,7 @@
     "name": "Teis-Dambovita Camp Prisoners, 1941",
     "url": "https://www.jewishgen.org/databases/Holocaust/0152_Teis-Dambovita.html",
     "desc": "Jews interned in the Teis-Dambovita camp, September 1941.",
-    "count": "Unknown",
+    "count": "1,234",
     "yearStart": "1941",
     "yearEnd": "1941",
     "recordType": [
@@ -3432,7 +3432,7 @@
     "name": "Zagreb Survivor Lists",
     "url": "https://www.jewishgen.org/databases/Holocaust/0153_Zagreb_survivors.html",
     "desc": "1,200 survivors from Zagreb, from the Croatian National Archives.",
-    "count": "~1,200",
+    "count": "1,201",
     "yearStart": "1945",
     "yearEnd": "1948",
     "recordType": [
@@ -3484,7 +3484,7 @@
     "name": "Danzig and Polish Refugees in Mauritius",
     "url": "https://www.jewishgen.org/databases/Holocaust/0155_Danzig_Polish_nationals.html",
     "desc": "Refugees to Palestine interned in Mauritius, 1940.",
-    "count": "Unknown",
+    "count": "340",
     "yearStart": "1940",
     "yearEnd": "1945",
     "recordType": [
@@ -3512,7 +3512,7 @@
     "name": "S.S. Astir Passenger Manifest",
     "url": "https://www.jewishgen.org/databases/Holocaust/0156_Astir_manifest.html",
     "desc": "Refugees to Palestine interned in Greece, 1939.",
-    "count": "Unknown",
+    "count": "184",
     "yearStart": "1939",
     "yearEnd": "1939",
     "recordType": [
@@ -3565,7 +3565,7 @@
     "name": "Auschwitz-Buchenwald Transports, Jan 1945",
     "url": "https://www.jewishgen.org/databases/Holocaust/0161_Auschwitz_Buchenwald_Transport.html",
     "desc": "Two transports from Auschwitz to Buchenwald, January 22 and 26, 1945.",
-    "count": "Unknown",
+    "count": "4,359",
     "yearStart": "1945",
     "yearEnd": "1945",
     "recordType": [
@@ -3591,7 +3591,7 @@
     "name": "Rhodes to Ferramonti",
     "url": "https://www.jewishgen.org/databases/Holocaust/0165_Rhodes.html",
     "desc": "Persons from Rhodes transferred to the Ferramonti Di Tarsia Internment Camp, January 12, 1942.",
-    "count": "Unknown",
+    "count": "201",
     "yearStart": "1942",
     "yearEnd": "1942",
     "recordType": [
@@ -3618,7 +3618,7 @@
     "name": "Lost Train from Bergen-Belsen",
     "url": "https://www.jewishgen.org/databases/Holocaust/0170_lost_train.html",
     "desc": "The Lost Train: Bergen-Belsen to Trobitz, April 1945.",
-    "count": "Unknown",
+    "count": "704",
     "yearStart": "1945",
     "yearEnd": "1945",
     "recordType": [
@@ -3645,7 +3645,7 @@
     "name": "Hidden Children in France",
     "url": "https://www.jewishgen.org/databases/Holocaust/0171_Hidden_Children_in_France.html",
     "desc": "Information on 4,000 children hidden in France by the Oeuvre de Secours aux Enfants (OSE).",
-    "count": "~4,000",
+    "count": "4,080",
     "yearStart": "1940",
     "yearEnd": "1944",
     "recordType": [
@@ -3671,8 +3671,8 @@
   {
     "name": "'Jews For Sale': The Rudolph Kasztner Transports",
     "url": "https://www.jewishgen.org/databases/Holocaust/0172_Kasznter_Jews.html",
-    "desc": "Names of 1,900 rescued Hungarian Jews, 1944.",
-    "count": "~1,900",
+    "desc": "Names of over 1,900 rescued Hungarian Jews, 1944.",
+    "count": "1,939",
     "yearStart": "1944",
     "yearEnd": "1944",
     "recordType": [
@@ -3726,7 +3726,7 @@
     "name": "Rhodes Lists",
     "url": "https://www.jewishgen.org/databases/Holocaust/0165b_rhodes.html",
     "desc": "European refugee Jews housed on Rhodes after shipwreck, then transferred to Ferramonti Di Tarsia internment camp, 1942.",
-    "count": "Unknown",
+    "count": "533",
     "yearStart": "1942",
     "yearEnd": "1942",
     "recordType": [
@@ -3779,8 +3779,8 @@
   {
     "name": "Bergen-Belsen Prisoners Liberated at Farsleben",
     "url": "https://www.jewishgen.org/databases/Holocaust/0175_Farsleben.html",
-    "desc": "2,500 prisoners liberated aboard a train from Bergen-Belsen.",
-    "count": "~2,500",
+    "desc": "2,000 prisoners liberated aboard a train from Bergen-Belsen.",
+    "count": "2,018",
     "yearStart": "1945",
     "yearEnd": "1945",
     "recordType": [
@@ -3807,7 +3807,7 @@
     "name": "Miranda de Ebro Prisoners",
     "url": "https://www.jewishgen.org/databases/Holocaust/0176_Miranda_de_Ebro.html",
     "desc": "Index of prisoners held at Miranda de Ebro, the central camp in Spain for foreign prisoners.",
-    "count": "Unknown",
+    "count": "15,469",
     "yearStart": "1939",
     "yearEnd": "1947",
     "recordType": [
@@ -4808,7 +4808,7 @@
     "name": "Contributors from the Jewish Religious Community of Peczenizyn, 1938",
     "url": "https://jewishgen.org/databases/holocaust/Contributors_Peczenizyn.html",
     "desc": "A list of contributors to the Jewish community of Peczenizyn, March 1938.",
-    "count": "Unknown",
+    "count": "108",
     "yearStart": "1938",
     "yearEnd": "1938",
     "recordType": [
@@ -5054,7 +5054,7 @@
     "name": "Auschwitz to Hessisch Lichtenau Transport List",
     "url": "https://www.jewishgen.org/databases/Holocaust/0210_Hessich_Lichtenau.html",
     "desc": "Records of 1,000 Hungarian women transferred from Auschwitz to Hessisch Lichtenau in September 1944.",
-    "count": "~1,000",
+    "count": "1,000",
     "yearStart": "1944",
     "yearEnd": "1944",
     "recordType": [
@@ -6760,7 +6760,7 @@
     "name": "Gross Rosen Transport",
     "url": "https://www.jewishgen.org/databases/Holocaust/JG0472_GrossRosenTransport.html",
     "desc": "400 records of transported Jews.",
-    "count": "~400",
+    "count": "400",
     "yearStart": "1944",
     "yearEnd": "1945",
     "recordType": [
@@ -7390,7 +7390,7 @@
     "name": "USC Shoah Foundation – Holocaust Survivor Testimonies",
     "url": "https://www.jewishgen.org/databases/holocaust/uscshoah.html",
     "desc": "Records relating to Holocaust survivor audiovisual interviews from the USC Shoah Foundation Visual History Archive.",
-    "count": "Unknown",
+    "count": "654,372",
     "yearStart": "1994",
     "yearEnd": "2005",
     "recordType": [
@@ -8239,7 +8239,7 @@
     "name": "Romanian Jews from Bucovina and Bessarabia Deported to Transnistria",
     "url": "https://www.jewishgen.org/databases/holocaust/RomaniatoTransnistriaDeportations.html",
     "desc": "2,400 records of Romanian Jews deported to Transnistria.",
-    "count": "2,400",
+    "count": "2,420",
     "yearStart": "1941",
     "yearEnd": "1943",
     "recordType": [
@@ -8292,8 +8292,8 @@
   {
     "name": "The Theresienstadt Ghetto Project",
     "url": "https://www.jewishgen.org/databases/Holocaust/TheresienstadtProject.html",
-    "desc": "An index of more than 53,570 profiles from Geni.com, with direct links to profiles.",
-    "count": "~53,570",
+    "desc": "An index of more than 53,500 profiles from Geni.com, with direct links to profiles.",
+    "count": "53,567",
     "yearStart": "1941",
     "yearEnd": "1945",
     "recordType": [
@@ -8766,7 +8766,7 @@
     "name": "The Arolsen Archives Database",
     "url": "https://www.jewishgen.org/databases/arolsen/arolsen_archives.html",
     "desc": "More than 1.5 million records shared by the Arolsen Archives - International Center on Nazi Persecution (formerly the International Tracing Service).",
-    "count": ">1,500,000",
+    "count": "1,561,594",
     "yearStart": "1933",
     "yearEnd": "1950",
     "recordType": [
@@ -8801,8 +8801,8 @@
   {
     "name": "The Auschwitz Project on Geni",
     "url": "https://www.jewishgen.org/databases/Holocaust/AuschwitzProject.html",
-    "desc": "An index of more than 64,016 people imprisoned by the Nazis in the Auschwitz Concentration Camp, with direct links to the Geni profiles.",
-    "count": "~64,016",
+    "desc": "An index of more than 63,000 people imprisoned by the Nazis in the Auschwitz Concentration Camp, with direct links to the Geni profiles.",
+    "count": "63,994",
     "yearStart": "1940",
     "yearEnd": "1945",
     "recordType": [
@@ -8858,7 +8858,7 @@
     "name": "Czechoslovak Survivors' Personal Files",
     "url": "https://www.jewishgen.org/databases/Holocaust/cspersonalfiles.html",
     "desc": "An index of a variety of official documents including residency certificates, citizenship confirmations, travel permits, and passport applications.",
-    "count": "Unknown",
+    "count": "1,007",
     "yearStart": "1945",
     "yearEnd": "1950",
     "recordType": [
