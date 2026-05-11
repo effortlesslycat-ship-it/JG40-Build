@@ -72,7 +72,10 @@ body.dark-mode .page-title-band { background-color: #0d2a45 !important; }
                  used on usbgn2620337.html). -->
             <div class="rd-jgff-card" role="complementary" aria-label="JewishGen Family Finder">
                 <div class="rd-jgff-card__header">
-                    <span class="rd-jgff-card__icon" aria-hidden="true">&#128106;</span>
+                    <span class="rd-jgff-card__icon" aria-hidden="true">
+                        <img class="light-icon" src="/JG40-Build/databases/ComBlue.png" alt="">
+                        <img class="dark-icon"  src="/JG40-Build/databases/ComDark.png" alt="">
+                    </span>
                     <h2 class="rd-jgff-card__title">JewishGen Family Finder</h2>
                 </div>
                 <div class="rd-jgff-card__body">
@@ -189,13 +192,37 @@ Promise.all([
 
     function formatMonthYear(dateStr) {
         if (!dateStr) return '';
+
+        /* Force everything to a string to prevent crashes on numeric year-only values */
+        dateStr = String(dateStr);
+
         var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        var parts = dateStr.split('-');
-        if (parts.length < 2) return dateStr;
-        var year  = parts[0];
-        var month = parseInt(parts[1], 10) - 1;
-        if (month < 0 || month > 11) return dateStr;
-        return months[month] + ' ' + year;
+
+        /* MM/DD/YYYY format */
+        if (dateStr.indexOf('/') !== -1) {
+            var parts = dateStr.split('/');
+            if (parts.length === 3) {
+                var month = parseInt(parts[0], 10) - 1;
+                var year  = parts[2];
+                if (month >= 0 && month <= 11) {
+                    return months[month] + ' ' + year;
+                }
+            }
+        }
+
+        /* YYYY-MM-DD format */
+        if (dateStr.indexOf('-') !== -1) {
+            var parts2 = dateStr.split('-');
+            if (parts2.length >= 2) {
+                var year2  = parts2[0];
+                var month2 = parseInt(parts2[1], 10) - 1;
+                if (month2 >= 0 && month2 <= 11) {
+                    return months[month2] + ' ' + year2;
+                }
+            }
+        }
+
+        return dateStr;
     }
 
     function formatNumber(n) {
@@ -323,10 +350,14 @@ Promise.all([
         var copy = list.slice();
         switch (state.sortKey) {
             case 'updated-desc':
-                copy.sort(function(a, b) { return (b.lastUpdated || '').localeCompare(a.lastUpdated || ''); });
+                copy.sort(function(a, b) {
+                    return String(b.lastUpdated || '').localeCompare(String(a.lastUpdated || ''));
+                });
                 break;
             case 'updated-asc':
-                copy.sort(function(a, b) { return (a.lastUpdated || '').localeCompare(b.lastUpdated || ''); });
+                copy.sort(function(a, b) {
+                    return String(a.lastUpdated || '').localeCompare(String(b.lastUpdated || ''));
+                });
                 break;
             case 'name-asc':
                 copy.sort(function(a, b) { return (a.name || '').localeCompare(b.name || ''); });
