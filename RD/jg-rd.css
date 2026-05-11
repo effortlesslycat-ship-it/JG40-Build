@@ -15,9 +15,13 @@
        3. RD page-template patterns (section heading, intro,
           "currently working on" callout, donation block,
           external-site card)
-       4. RD directory (index) page
-       5. Volunteer strip override (RD index only)
-       6. Responsive
+       4. RD shared filter/sort bar (used on databases and towns pages)
+       5. RD shared dataset card (used on databases page; pattern available
+          to any future RD page that lists discrete datasets)
+       6. RD shared empty-state (used by databases and towns)
+       7. RD directory (index) page
+       8. Volunteer strip override (RD index only)
+       9. Responsive
    ----------------------------------------------------------------------------
    NAMING NOTE
        Existing classes use a mix of `rd-` prefixed and unprefixed
@@ -400,6 +404,379 @@ body.dark-mode .rd-external-btn:hover {
 
 
 /* ============================================================================
+   4. SHARED FILTER / SORT BAR
+   ----------------------------------------------------------------------------
+   Used on Databases and Towns pages. Pill chips for multi-select filters,
+   compact select for sort. Both pages compose this with their own
+   page-unique content above (e.g. Towns adds a search input above the
+   filter row).
+============================================================================ */
+
+.filter-bar {
+    background-color: var(--white);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+
+.filter-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.filter-row + .filter-row {
+    margin-top: 0.875rem;
+    padding-top: 0.875rem;
+    border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+.filter-label {
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #666;
+    flex-shrink: 0;
+    margin-right: 4px;
+}
+
+.filter-chip {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--white);
+    color: var(--charcoal);
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 999px;
+    padding: 5px 13px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.12s, border-color 0.12s, color 0.12s;
+    font-family: inherit;
+}
+.filter-chip:hover {
+    background-color: var(--ecru);
+    border-color: var(--navy);
+}
+.filter-chip.active {
+    background-color: var(--navy);
+    color: #ffffff;
+    border-color: var(--navy);
+}
+.filter-chip:focus-visible { outline: 2px solid var(--sage); outline-offset: 2px; }
+
+.sort-select {
+    background-color: var(--white);
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 0.8125rem;
+    font-family: inherit;
+    color: var(--charcoal);
+    cursor: pointer;
+}
+.sort-select:focus-visible { outline: 2px solid var(--sage); outline-offset: 2px; }
+
+.results-count {
+    font-size: 0.8125rem;
+    color: #666;
+    margin-left: auto;
+}
+
+/* -- Filter bar dark mode -- */
+body.dark-mode .filter-bar           { background-color: #1e1e1e; border-color: #333; }
+body.dark-mode .filter-label         { color: #999; }
+body.dark-mode .filter-chip          { background-color: #2a2a2a; color: #c8c8c8; border-color: #444; }
+body.dark-mode .filter-chip:hover    { background-color: #333; color: #fff; }
+body.dark-mode .filter-chip.active   { background-color: var(--navy); color: #fff; border-color: var(--navy); }
+body.dark-mode .sort-select          { background-color: #2a2a2a; color: #e0e0e0; border-color: #444; }
+body.dark-mode .results-count        { color: #999; }
+
+
+/* ============================================================================
+   5. SHARED DATASET CARD
+   ----------------------------------------------------------------------------
+   Used on every RD's Databases page. Click-to-expand card with summary
+   metadata (years, record count, language, last updated) and an expanded
+   panel with full description, fact boxes, and CTAs.
+
+   Markup contract (built by per-page JS):
+     <article class="ds-card" aria-expanded="false">
+       <button class="ds-summary" ...>
+         <div>
+           <h3 class="ds-card-name">...</h3>
+           <div class="ds-meta-row">
+             <span class="ds-meta-item">
+               <span class="ds-meta-icon">...</span>
+               <span class="ds-meta-label">Years:</span>
+               <span class="ds-meta-value">...</span>
+             </span>
+             ... (records, language, updated)
+           </div>
+           <div class="ds-chips">
+             <span class="ds-chip chip-record">...</span>
+           </div>
+         </div>
+         <span class="chevron-toggle">&#9662;</span>
+       </button>
+       <div class="ds-expand">
+         <div class="ds-expand-grid">
+           <div>
+             <p class="ds-description">...</p>
+             <div class="ds-facts">
+               <div class="ds-fact">
+                 <span class="ds-fact-label">...</span>
+                 <span class="ds-fact-value">...</span>
+               </div>
+             </div>
+           </div>
+           <div class="ds-cta-col">
+             <a class="ds-btn ds-btn-navy">View Description</a>
+             <a class="ds-btn ds-btn-sage">Search Records</a>
+           </div>
+         </div>
+       </div>
+     </article>
+============================================================================ */
+
+.ds-card {
+    background-color: var(--white);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    margin-bottom: 0.875rem;
+    overflow: hidden;
+    transition: box-shadow 0.15s;
+}
+.ds-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.08); }
+.ds-card[aria-expanded="true"] { box-shadow: 0 4px 18px rgba(0,0,0,0.10); }
+
+.ds-summary {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    padding: 1.125rem 1.375rem;
+    cursor: pointer;
+    align-items: center;
+    width: 100%;
+    border: none;
+    background: none;
+    text-align: left;
+    font-family: inherit;
+}
+.ds-summary:focus-visible { outline: 2px solid var(--sage); outline-offset: -2px; }
+
+.ds-card-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.0625rem;
+    font-weight: bold;
+    color: var(--navy);
+    line-height: 1.3;
+    margin: 0 0 8px 0;
+}
+
+.ds-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem 1.5rem;
+    margin-bottom: 10px;
+    font-size: 0.8125rem;
+}
+.ds-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.ds-meta-icon {
+    color: var(--navy);
+    font-size: 0.95rem;
+    line-height: 1;
+}
+.ds-meta-label {
+    font-weight: 600;
+    color: var(--charcoal);
+}
+.ds-meta-value {
+    color: var(--charcoal);
+    opacity: 0.9;
+}
+
+/* -- Dataset chip row -- */
+.ds-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.ds-chip {
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 3px 11px;
+    border-radius: 999px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+.chip-record   { background-color: var(--sage); color: #ffffff; }
+.chip-region   { background-color: transparent; border: 1px solid var(--navy); color: var(--navy); }
+.chip-language { background-color: var(--cream); color: var(--charcoal); border: 1px solid rgba(0,0,0,0.12); }
+
+/* -- Chevron toggle (circle button at right of summary) -- */
+.chevron-toggle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.12);
+    color: #777;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    flex-shrink: 0;
+    transition: transform 0.2s, color 0.15s, border-color 0.15s;
+    background: var(--white);
+}
+.ds-card[aria-expanded="true"] .chevron-toggle {
+    transform: rotate(180deg);
+    color: var(--sage);
+    border-color: var(--sage);
+}
+
+/* -- Expanded panel -- */
+.ds-expand {
+    display: none;
+    padding: 1.5rem 1.75rem 1.625rem;
+    background-color: var(--ecru);
+    border-top: 1px solid rgba(0,0,0,0.08);
+}
+.ds-card.is-open .ds-expand { display: block; }
+
+.ds-expand-grid {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 1.75rem;
+    align-items: start;
+}
+
+.ds-description {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--charcoal);
+    margin: 0 0 1.25rem 0;
+}
+.ds-description:empty { display: none; }
+
+/* -- Fact boxes -- */
+.ds-facts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+.ds-fact {
+    background-color: var(--white);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 6px;
+    padding: 0.625rem 0.875rem;
+}
+.ds-fact-label {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--sage);
+    margin-bottom: 4px;
+}
+.ds-fact-value {
+    font-size: 0.875rem;
+    color: var(--charcoal);
+    font-weight: 600;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+/* -- CTA column -- */
+.ds-cta-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+}
+.ds-btn {
+    display: inline-block;
+    text-align: center;
+    padding: 11px 18px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: filter 0.15s, transform 0.1s;
+    text-decoration: none;
+}
+.ds-btn-navy {
+    background-color: var(--navy);
+    color: #ffffff;
+    border: 1px solid var(--navy);
+}
+.ds-btn-navy:hover {
+    filter: brightness(1.1);
+    color: #ffffff;
+    transform: translateY(-1px);
+    text-decoration: none;
+}
+.ds-btn-sage {
+    background-color: var(--sage);
+    color: #ffffff;
+}
+.ds-btn-sage:hover {
+    filter: brightness(1.08);
+    color: #ffffff;
+    transform: translateY(-1px);
+    text-decoration: none;
+}
+
+/* -- Dataset card dark mode -- */
+body.dark-mode .ds-card                 { background-color: #1e1e1e; border-color: #333; }
+body.dark-mode .ds-card:hover           { background-color: #252525; }
+body.dark-mode .ds-card-name            { color: #e0e0e0; }
+body.dark-mode .ds-meta-icon            { color: #8ab0c9; }
+body.dark-mode .ds-meta-label           { color: #999; }
+body.dark-mode .ds-meta-value           { color: #c8c8c8; }
+body.dark-mode .chip-record             { background-color: #6e7945; color: #fff; }
+body.dark-mode .chip-region             { background-color: transparent; border-color: #5a7a95; color: #8ab0c9; }
+body.dark-mode .chip-language           { background-color: #2a2a2a; border-color: #444; color: #c8c8c8; }
+body.dark-mode .chevron-toggle          { color: #888; border-color: #333; }
+body.dark-mode .ds-card[aria-expanded="true"] .chevron-toggle { color: #a8b361; }
+body.dark-mode .ds-expand               { background-color: #181818; border-top-color: #333; }
+body.dark-mode .ds-description          { color: #c8c8c8; }
+body.dark-mode .ds-fact                 { background-color: #1e1e1e; border-color: #333; }
+body.dark-mode .ds-fact-label           { color: #a8b361; }
+body.dark-mode .ds-fact-value           { color: #e0e0e0; }
+body.dark-mode .ds-btn-navy             { background-color: #5a7a95; border-color: #5a7a95; }
+body.dark-mode .ds-btn-sage             { background-color: #a8b361; color: #1a1a1a; }
+body.dark-mode .ds-btn-sage:hover       { color: #1a1a1a; }
+
+
+/* ============================================================================
+   6. SHARED EMPTY STATE
+   ----------------------------------------------------------------------------
+   Used by Databases and Towns pages when filters/search return no results.
+============================================================================ */
+
+.rd-empty {
+    background-color: var(--white);
+    border: 1px dashed rgba(0,0,0,0.12);
+    border-radius: 8px;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+}
+body.dark-mode .rd-empty { background-color: #1e1e1e; border-color: #444; color: #999; }
+
+
+/* ============================================================================
    4. RD DIRECTORY (INDEX) PAGE
    ----------------------------------------------------------------------------
    Single page at /JG40-Build/RD/index.html. No sidebar - full-width
@@ -621,6 +998,13 @@ body.dark-mode .rd-dir-wrap + .volunteer-strip {
     /* Page-template patterns: tighten padding, stack external card */
     .rd-donation-block { padding: 2rem 1.25rem; }
     .rd-external-card  { flex-direction: column; align-items: flex-start; gap: 1rem; }
+
+    /* Dataset card: tighten and stack expanded panel */
+    .ds-summary      { grid-template-columns: 1fr 36px; padding: 1rem 1.125rem; }
+    .ds-meta-row     { gap: 0.875rem 1rem; }
+    .ds-expand       { padding: 1.25rem 1.125rem 1.375rem; }
+    .ds-expand-grid  { grid-template-columns: 1fr; gap: 1.25rem; }
+    .ds-facts        { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 640px) {
