@@ -163,15 +163,39 @@ Promise.all([
     }
 
     function formatMonthYear(dateStr) {
-        if (!dateStr) return '';
-        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        var parts = dateStr.split('-');
-        if (parts.length < 2) return dateStr;
-        var year  = parts[0];
-        var month = parseInt(parts[1], 10) - 1;
-        if (month < 0 || month > 11) return dateStr;
-        return months[month] + ' ' + year;
-    }
+        if (!dateStr) return '';
+        
+        // 1. Force everything to a string to prevent crashes on numbers like 2005
+        dateStr = String(dateStr); 
+        
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        
+        // 2. Look for the MM/DD/YYYY format used in your JSON
+        if (dateStr.indexOf('/') !== -1) {
+            var parts = dateStr.split('/');
+            if (parts.length === 3) {
+                var month = parseInt(parts[0], 10) - 1; // Month is the first number
+                var year = parts[2];                    // Year is the third number
+                if (month >= 0 && month <= 11) {
+                    return months[month] + ' ' + year;
+                }
+            }
+        }
+        
+        // 3. Keep the old YYYY-MM-DD logic just as a backup
+        if (dateStr.indexOf('-') !== -1) {
+            var parts = dateStr.split('-');
+            if (parts.length >= 2) {
+                var year = parts[0];
+                var month = parseInt(parts[1], 10) - 1;
+                if (month >= 0 && month <= 11) {
+                    return months[month] + ' ' + year;
+                }
+            }
+        }
+        
+        return dateStr; // If it's just "2005" or text, return it exactly as-is
+    }
 
     function formatNumber(n) {
         if (typeof n !== 'number') return n;
@@ -295,26 +319,30 @@ Promise.all([
     }
 
     function applySort(list) {
-        var copy = list.slice();
-        switch (state.sortKey) {
-            case 'updated-desc':
-                copy.sort(function(a, b) { return (b.lastUpdated || '').localeCompare(a.lastUpdated || ''); });
-                break;
-            case 'updated-asc':
-                copy.sort(function(a, b) { return (a.lastUpdated || '').localeCompare(b.lastUpdated || ''); });
-                break;
-            case 'name-asc':
-                copy.sort(function(a, b) { return (a.name || '').localeCompare(b.name || ''); });
-                break;
-            case 'name-desc':
-                copy.sort(function(a, b) { return (b.name || '').localeCompare(a.name || ''); });
-                break;
-            case 'records-desc':
-                copy.sort(function(a, b) { return (b.recordCount || 0) - (a.recordCount || 0); });
-                break;
-        }
-        return copy;
-    }
+        var copy = list.slice();
+        switch (state.sortKey) {
+            case 'updated-desc':
+                copy.sort(function(a, b) { 
+                    return String(b.lastUpdated || '').localeCompare(String(a.lastUpdated || '')); 
+                });
+                break;
+            case 'updated-asc':
+                copy.sort(function(a, b) { 
+                    return String(a.lastUpdated || '').localeCompare(String(b.lastUpdated || '')); 
+                });
+                break;
+            case 'name-asc':
+                copy.sort(function(a, b) { return (a.name || '').localeCompare(b.name || ''); });
+                break;
+            case 'name-desc':
+                copy.sort(function(a, b) { return (b.name || '').localeCompare(a.name || ''); });
+                break;
+            case 'records-desc':
+                copy.sort(function(a, b) { return (b.recordCount || 0) - (a.recordCount || 0); });
+                break;
+        }
+        return copy;
+    }
 
     function render() {
         var list      = state.datasets;
