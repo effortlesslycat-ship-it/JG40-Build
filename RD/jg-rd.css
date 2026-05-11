@@ -19,9 +19,10 @@
        5. RD shared dataset card (used on databases page; pattern available
           to any future RD page that lists discrete datasets)
        6. RD shared empty-state (used by databases and towns)
-       7. RD directory (index) page
-       8. Volunteer strip override (RD index only)
-       9. Responsive
+       7. RD Family Finder banner (top of every RD databases page)
+       8. RD directory (index) page
+       9. Volunteer strip override (RD index only)
+      10. Responsive
    ----------------------------------------------------------------------------
    NAMING NOTE
        Existing classes use a mix of `rd-` prefixed and unprefixed
@@ -777,6 +778,132 @@ body.dark-mode .rd-empty { background-color: #1e1e1e; border-color: #444; color:
 
 
 /* ============================================================================
+   7. FAMILY FINDER BANNER  (TOP OF EVERY RD DATABASES PAGE)
+   ----------------------------------------------------------------------------
+   Sits above the "Database Catalog" section heading on every RD's
+   Databases page. Promotes JewishGen Family Finder (JGFF) and links to
+   the existing JGFF system. Designed to be enhanced post-launch with
+   live surname-match counts per region (currently placeholder prose
+   in the navy strip).
+
+   Visual structure adapted from the JGFF block on community profile
+   pages (e.g. usbgn2620337.html "Connect & Share" tab). Same white-
+   card-with-navy-accent + navy strip with CTA pattern.
+
+   Per-RD usage: copy the markup pattern into each RD's databases page,
+   substituting the region name in .rd-jgff-card__desc and
+   .rd-jgff-card__strip-line1.
+============================================================================ */
+
+.rd-jgff-card {
+    background-color: var(--white);
+    border: 1px solid #d1caba;
+    border-top: 4px solid var(--navy);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* -- Header strip (icon + JGFF title) -- */
+.rd-jgff-card__header {
+    background-color: rgba(0,0,0,0.03);
+    border-bottom: 1px solid #d1caba;
+    padding: 12px 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.rd-jgff-card__icon {
+    font-size: 1.125rem;
+    line-height: 1;
+}
+.rd-jgff-card__title {
+    font-size: 0.8125rem;
+    font-weight: bold;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+/* -- Body (description + navy CTA strip) -- */
+.rd-jgff-card__body {
+    padding: 1.125rem 1.375rem 1.25rem;
+}
+.rd-jgff-card__desc {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--charcoal);
+    margin: 0 0 1rem 0;
+}
+
+/* -- Navy CTA strip -- */
+/* Navy is hardcoded (#09497a / #0d2a45) because var(--navy) flips to
+   light gray in dark mode, washing out the band. */
+.rd-jgff-card__strip {
+    background-color: #09497a;
+    border-radius: 6px;
+    padding: 1.125rem 1.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+}
+.rd-jgff-card__strip-text {
+    color: #ffffff;
+    margin: 0;
+    flex: 1;
+    min-width: 220px;
+}
+.rd-jgff-card__strip-line1 {
+    display: block;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.0625rem;
+    font-weight: bold;
+    line-height: 1.3;
+    margin-bottom: 4px;
+}
+.rd-jgff-card__strip-line2 {
+    display: block;
+    font-size: 0.6875rem;
+    color: #a9c0d0;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+.rd-jgff-card__cta {
+    background-color: var(--sage);
+    color: #ffffff;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-size: 0.8125rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    transition: filter 0.15s, transform 0.1s;
+    flex-shrink: 0;
+    text-decoration: none;
+}
+.rd-jgff-card__cta:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* -- Family Finder banner dark mode -- */
+body.dark-mode .rd-jgff-card             { background-color: #1e1e1e; border-color: #333; }
+body.dark-mode .rd-jgff-card__header     { background-color: rgba(255,255,255,0.04); border-bottom-color: #333; }
+body.dark-mode .rd-jgff-card__title      { color: #e0e0e0; }
+body.dark-mode .rd-jgff-card__desc       { color: #c8c8c8; }
+body.dark-mode .rd-jgff-card__strip      { background-color: #0d2a45; }
+body.dark-mode .rd-jgff-card__cta        { background-color: #a8b361; color: #121212; }
+body.dark-mode .rd-jgff-card__cta:hover  { color: #121212; }
+
+
+/* ============================================================================
    4. RD DIRECTORY (INDEX) PAGE
    ----------------------------------------------------------------------------
    Single page at /JG40-Build/RD/index.html. No sidebar - full-width
@@ -1012,6 +1139,10 @@ body.dark-mode .rd-dir-wrap + .volunteer-strip {
     .rd-dir-main    { padding: 2rem 1.25rem 2.5rem; }
     .rd-dir-card    { padding: 1.25rem 1.375rem 1.125rem; }
     .rd-dir-card__name { font-size: 1.25rem; }
+
+    /* Family Finder banner: stack strip text above CTA */
+    .rd-jgff-card__strip { flex-direction: column; align-items: stretch; text-align: center; }
+    .rd-jgff-card__cta   { text-align: center; }
 }
 
 /* ============================================================================
