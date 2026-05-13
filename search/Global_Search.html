@@ -35,7 +35,12 @@
         /* Region / Collection block */
         .region-block { margin-top: 14px; }
 
-        #sub-region-container {
+        /* Sub-region container - now scoped to #SubRegionsDiv so the
+           legacy setRegions() function can show/hide it directly.
+           Cemetery cascade containers share the same visual treatment. */
+        #SubRegionsDiv,
+        #CemCountryListDiv,
+        #CemRegionListDiv {
             display: none;
             margin-top: 12px;
             padding: 14px 16px;
@@ -55,16 +60,24 @@
         }
 
         /* Sub-region select: white bg so it reads against the light-blue container */
-        #sub-region-select {
+        #GeoRegion,
+        #CemCountryList,
+        #CemRegionList {
             background: var(--white) !important;
         }
 
-        body.dark-mode #sub-region-container {
+        body.dark-mode #SubRegionsDiv,
+        body.dark-mode #CemCountryListDiv,
+        body.dark-mode #CemRegionListDiv {
             background: #1a2533;
             border-color: #333;
         }
         body.dark-mode .sub-region-label { color: #c8c0b0; }
-        body.dark-mode #sub-region-select { background: #1e1e1e !important; }
+        body.dark-mode #GeoRegion,
+        body.dark-mode #CemCountryList,
+        body.dark-mode #CemRegionList {
+            background: #1e1e1e !important;
+        }
 
         /* Submit area separator */
         .search-submit-wrap {
@@ -99,7 +112,33 @@
                 <span class="stat-line">More than 32 million records across thousands of databases.</span>
             </header>
 
-            <div class="jg-search-card" role="search" aria-label="JewishGen Global Database Search">
+            <!-- ============================================================
+                 LEGACY INTEGRATION
+                 ============================================================
+                 The <form> below posts to the existing jgform.php endpoint
+                 with the exact field names and values the production search
+                 has used since 2017. Field naming, IDs, and option values are
+                 dictated by the four legacy JS files loaded at the bottom of
+                 this document. Do NOT rename without updating those files.
+
+                 Contract:
+                   action  : /databases/jgform.php  (POST)
+                   name    : f   (legacy JS calls document.f.*)
+                   fields  : srch1..srch4         (search text)
+                             srch1v..srch4v       (data type: S/G/T/X)
+                             srch1t..srch4t       (search type: Q/D/S/E/F1/F2/FM)
+                             SrchBOOL             (AND / OR)
+                             allcountry           (region alias - drives setRegions)
+                             GeoRegion            (sub-region; the value actually
+                                                   used by jgform.php for filtering)
+                             CemCountryList,
+                             CemRegionList        (cemetery cascade - UI only)
+                             dates, Months, Years (date filter)
+                             submitform           (legacy submit marker)
+                 ============================================================ -->
+            <form name="f" id="f" method="POST" action="/databases/jgform.php"
+                  class="jg-search-card" role="search"
+                  aria-label="JewishGen Global Database Search">
 
                 <!-- Card header: title left, tips link right -->
                 <div class="jg-search-card__header">
@@ -127,76 +166,91 @@
                         <div><strong>Starts With / Contains:</strong> Finds root words in the name.<br><em>Example: "Gold" finds FeinGold</em></div>
                     </div>
                     <div class="jg-tips-panel__footer">
-                        <a href="/JG40-Build/HowToFAQ/howto.html">
+                        <a href="#"><!-- TODO: link to How to JewishGen page -->
                             Need more help? Read our complete "How to JewishGen" guide &rarr;
                         </a>
                     </div>
                 </div>
 
-                <!-- Free row 1 -->
+                <!-- ====================== FREE ROW 1 ====================== -->
                 <div class="search-row">
                     <div class="sf n">
-                        <label class="field-label" for="dtype-1">Data Type</label>
-                        <select id="dtype-1" onchange="syncSearchType(this, 'stype-1')">
-                            <option value="surname" selected>Surname</option>
-                            <option value="givenname">Given Name</option>
-                            <option value="town">Town</option>
-                            <option value="anyfield">Any Field</option>
+                        <label class="field-label" for="SEL1">Data Type</label>
+                        <select id="SEL1" name="srch1v"
+                                onchange="SelProc(this, 'OPT1', 'SRCH1', 0)">
+                            <option value="">Data Type</option>
+                            <option value="S" selected>Surname</option>
+                            <option value="G">Given Name</option>
+                            <option value="T">Town</option>
+                            <option value="X">Any Field</option>
                         </select>
                     </div>
                     <div class="sf n">
-                        <label class="field-label" for="stype-1">Search Type</label>
-                        <select id="stype-1">
-                            <option value="phonetic" selected>Phonetically Like</option>
-                            <option value="soundslike">Sounds Like</option>
-                            <option value="startswith">Starts With</option>
-                            <option value="exactly">Is Exactly</option>
-                            <option value="fuzzy">Fuzzy Match</option>
-                            <option value="fuzzier">Fuzzier Match</option>
-                            <option value="fuzziest">Fuzziest Match</option>
+                        <label class="field-label" for="OPT1">Search Type</label>
+                        <select id="OPT1" name="srch1t"
+                                onchange="if(value==''){document.getElementById('SRCH1').value='';document.getElementById('SRCH1').disabled=true;}else{document.getElementById('SRCH1').disabled=false;}">
+                            <option value="">Search Type</option>
+                            <option value="Q" selected>Phonetically Like</option>
+                            <option value="D">Sounds Like</option>
+                            <option value="S">Starts With</option>
+                            <option value="E">Is Exactly</option>
+                            <option value="F1">Fuzzy Match</option>
+                            <option value="F2">Fuzzier Match</option>
+                            <option value="FM">Fuzziest Match</option>
                         </select>
                     </div>
                     <div class="sf w">
-                        <label class="field-label" for="term-1">Search Term</label>
-                        <input type="text" id="term-1" placeholder="e.g. Hollander" maxlength="50" autocomplete="off">
+                        <label class="field-label" for="SRCH1">Search Term</label>
+                        <input type="text" id="SRCH1" name="srch1"
+                               size="25" maxlength="25"
+                               placeholder="e.g. Hollander" autocomplete="off">
                     </div>
                 </div>
 
-                <!-- Free row 2 -->
+                <!-- ====================== FREE ROW 2 ====================== -->
                 <div class="search-row">
                     <div class="sf n">
-                        <label class="field-label" for="dtype-2">Data Type</label>
-                        <select id="dtype-2" onchange="syncSearchType(this, 'stype-2')">
-                            <option value="" selected disabled>Data Type</option>
-                            <option value="surname">Surname</option>
-                            <option value="givenname">Given Name</option>
-                            <option value="town">Town</option>
-                            <option value="anyfield">Any Field</option>
+                        <label class="field-label" for="SEL2">Data Type</label>
+                        <select id="SEL2" name="srch2v"
+                                onchange="SelProc(this, 'OPT2', 'SRCH2', 0)">
+                            <option value="" selected>Data Type</option>
+                            <option value="S">Surname</option>
+                            <option value="G">Given Name</option>
+                            <option value="T">Town</option>
+                            <option value="X">Any Field</option>
                         </select>
                     </div>
                     <div class="sf n">
-                        <label class="field-label" for="stype-2">Search Type</label>
-                        <select id="stype-2">
-                            <option value="" selected disabled>Search Type</option>
-                            <option value="phonetic">Phonetically Like</option>
-                            <option value="soundslike">Sounds Like</option>
-                            <option value="startswith">Starts With</option>
-                            <option value="exactly">Is Exactly</option>
-                            <option value="fuzzy">Fuzzy Match</option>
-                            <option value="fuzzier">Fuzzier Match</option>
-                            <option value="fuzziest">Fuzziest Match</option>
+                        <label class="field-label" for="OPT2">Search Type</label>
+                        <select id="OPT2" name="srch2t" disabled
+                                onchange="if(value==''){document.getElementById('SRCH2').value='';document.getElementById('SRCH2').disabled=true;}else{document.getElementById('SRCH2').disabled=false;}">
+                            <option value="" selected>Search Type</option>
+                            <option value="Q">Phonetically Like</option>
+                            <option value="D">Sounds Like</option>
+                            <option value="S">Starts With</option>
+                            <option value="E">Is Exactly</option>
+                            <option value="F1">Fuzzy Match</option>
+                            <option value="F2">Fuzzier Match</option>
+                            <option value="FM">Fuzziest Match</option>
                         </select>
                     </div>
                     <div class="sf w">
-                        <label class="field-label" for="term-2">Search Term</label>
-                        <input type="text" id="term-2" placeholder="Search term" maxlength="50" autocomplete="off">
+                        <label class="field-label" for="SRCH2">Search Term</label>
+                        <input type="text" id="SRCH2" name="srch2"
+                               size="25" maxlength="25"
+                               placeholder="Search term" autocomplete="off">
                     </div>
                 </div>
 
-                <!-- Locked rows + persistent overlay -->
+                <!-- ====================== LOCKED ROWS 3 & 4 ======================
+                     Decorative placeholders for non-donors. The persistent
+                     overlay blocks interaction. When CURE-based donor detection
+                     is wired up later, real srch3v/srch3t/srch3 (and 4) inputs
+                     will replace these placeholders and the overlay will lift.
+                     For now, these rows do not submit any value, which jgform.php
+                     handles via isset() checks. =================================== -->
                 <div class="jg-locked-rows-wrapper">
 
-                    <!-- Decorative locked rows: hidden from AT, tabindex blocked -->
                     <div aria-hidden="true">
                         <div class="search-row locked">
                             <div class="sf n"><select tabindex="-1" disabled><option>Data Type</option></select></div>
@@ -229,86 +283,165 @@
 
                 </div><!-- /.jg-locked-rows-wrapper -->
 
-                <!-- Region / Collection -->
+                <!-- Hidden: AND/OR logical operator. Legacy form keeps this
+                     hidden by default and only exposes it for donors. We keep
+                     the value (AND) submitted so single-row searches behave
+                     correctly. -->
+                <input type="hidden" name="SrchBOOL" id="SrchBOOL" value="AND">
+
+                <!-- ====================== REGION / COLLECTION ======================
+                     The visible <select id="allcountry"> drives setRegions() in
+                     Regions.js, which populates the GeoRegion sub-region
+                     dropdown below. GeoRegion's selected value (e.g.
+                     "00poland_01pale") is what jgform.php actually filters on.
+                     The visible allcountry value is overridden by the hidden
+                     allcountry="0*" at the bottom of the form.
+
+                     Option VALUES below MUST match the `sys` keys in
+                     RegionsData_solr.js. Labels can be anything. =============== -->
                 <div class="region-block">
                     <div class="sf">
-                        <label class="field-label" for="main-region-select">Region / Collection</label>
-                        <select id="main-region-select" onchange="toggleSubRegion()">
-                            <option value="all">Region / Collection: ALL</option>
+                        <label class="field-label" for="allcountry">Region / Collection</label>
+                        <select id="allcountry" name="allcountry"
+                                onchange="setRegions(this.value); ConfigSubReg();">
+                            <option value="0*">Region / Collection: ALL</option>
+
                             <optgroup label="Topical Databases">
-                                <option value="JOWBR">Cemetery Records</option>
-                                <option value="ALLHOLOCAUST">Holocaust Records</option>
-                                <option value="sephardic">Sephardic</option>
+                                <option value="DEFAULT">Cemetery Records (JOWBR)</option>
+                                <option value="CEMETERY">Search by Specific Cemetery</option>
+                                <option value="HOLOCAUST">Holocaust Records</option>
+                                <option value="SEPH">Sephardic</option>
                             </optgroup>
+
                             <optgroup label="Africa">
-                                <option value="algeria">Algeria</option>
-                                <option value="egypt">Egypt</option>
-                                <option value="libya">Libya</option>
-                                <option value="morocco">Morocco</option>
-                                <option value="safrica">South Africa</option>
-                                <option value="tunisia">Tunisia</option>
+                                <option value="ALGERIA">Algeria</option>
+                                <option value="EGYPT">Egypt</option>
+                                <option value="LIBYA">Libya</option>
+                                <option value="MOROCCO">Morocco</option>
+                                <option value="ALLSAFRICA">South Africa</option>
+                                <option value="TUNISIA">Tunisia</option>
                             </optgroup>
+
                             <optgroup label="Asia &amp; The Middle East">
-                                <option value="india">India</option>
-                                <option value="iraq">Iraq</option>
-                                <option value="israel">Israel</option>
-                                <option value="lebanon">Lebanon</option>
-                                <option value="syria">Syria</option>
-                                <option value="turkey">Turkey</option>
+                                <option value="INDIA">India</option>
+                                <option value="IRAQ">Iraq</option>
+                                <option value="ISRAEL">Israel</option>
+                                <option value="LEBANON">Lebanon</option>
+                                <option value="SYRIA">Syria</option>
+                                <option value="TURKEY">Turkey</option>
                             </optgroup>
+
                             <optgroup label="Eastern &amp; Central Europe">
-                                <option value="austria">Austria / Czechia</option>
-                                <option value="belarus">Belarus</option>
-                                <option value="bulgaria">Bulgaria</option>
-                                <option value="germany">Germany</option>
-                                <option value="hungary">Hungary / Slovakia</option>
-                                <option value="latvia">Latvia</option>
-                                <option value="lithuania">Lithuania</option>
-                                <option value="poland">Poland</option>
-                                <option value="romania">Romania / Moldova</option>
-                                <option value="ukraine">Ukraine</option>
+                                <option value="ALLBOHMOR">Austria / Czechia</option>
+                                <option value="BELARUS">Belarus</option>
+                                <option value="BULGARIA">Bulgaria</option>
+                                <option value="ALLGERMANY">Germany</option>
+                                <option value="ALLHUNGARY">Hungary / Slovakia</option>
+                                <option value="LATVIA">Latvia</option>
+                                <option value="ALLLITHJG">Lithuania</option>
+                                <option value="ALLPOLAND">Poland</option>
+                                <option value="ALLROMANIA">Romania / Moldova</option>
+                                <option value="ALLUKRAINE">Ukraine</option>
+                                <option value="YUGOSLAVIA">Former Yugoslavia</option>
                             </optgroup>
+
                             <optgroup label="Western &amp; Southern Europe">
-                                <option value="france">France</option>
-                                <option value="greece">Greece</option>
-                                <option value="italy">Italy</option>
-                                <option value="netherlands">Netherlands</option>
-                                <option value="portugal">Portugal</option>
-                                <option value="scandinavia">Scandinavia</option>
-                                <option value="spain">Spain</option>
-                                <option value="ukireland">United Kingdom &amp; Ireland</option>
+                                <option value="ALLFRANCE">France</option>
+                                <option value="IRELAND">Ireland</option>
+                                <option value="ITALY">Italy</option>
+                                <option value="NETH">Netherlands</option>
+                                <option value="PORTUGAL">Portugal</option>
+                                <option value="ALLSCANDINAVIA">Scandinavia</option>
+                                <option value="SPAIN">Spain</option>
+                                <option value="ALLUK">United Kingdom</option>
                             </optgroup>
+
                             <optgroup label="North America">
-                                <option value="canada">Canada</option>
-                                <option value="usa">United States</option>
+                                <option value="ALLCANADA">Canada</option>
+                                <option value="ALLUSA">United States</option>
                             </optgroup>
+
                             <optgroup label="Central &amp; South America">
-                                <option value="argentina">Argentina</option>
-                                <option value="latinam">Latin America</option>
-                                <option value="venezuela">Venezuela</option>
+                                <option value="ARGENTINA">Argentina</option>
+                                <option value="ALLLATINAMERICA">Latin America</option>
+                                <option value="VENEZUELA">Venezuela</option>
                             </optgroup>
+
+                            <!-- NOTE: Greece is in the design system but not in
+                                 RegionsData_solr.js. Omitted until added upstream. -->
                         </select>
                     </div>
 
-                    <!-- Sub-region (shown dynamically when a refineable region is selected) -->
-                    <div id="sub-region-container" role="region" aria-live="polite">
-                        <span class="sub-region-label" id="sub-region-title">Refine Search:</span>
-                        <select id="sub-region-select" aria-labelledby="sub-region-title"></select>
+                    <!-- Cemetery cascade: country -> region -> specific cemetery.
+                         Shown by setRegions() when allcountry === "CEMETERY".
+                         Backing AJAX endpoint /wp_php/cemlist.php only responds
+                         when served from the live domain. -->
+                    <div id="CemCountryListDiv" role="region" aria-live="polite">
+                        <span class="sub-region-label" for="CemCountryList">Country</span>
+                        <select id="CemCountryList" name="CemCountryList"
+                                onchange="setCemRegion(this.value);"></select>
+                    </div>
+                    <div id="CemRegionListDiv" role="region" aria-live="polite">
+                        <span class="sub-region-label" for="CemRegionList">Region</span>
+                        <select id="CemRegionList" name="CemRegionList"
+                                onchange="setCemCity(this.value);"></select>
+                    </div>
+
+                    <!-- Sub-region dropdown (populated by setRegions). The
+                         legacy JS shows/hides this DIV based on whether the
+                         selected country has sub-regions. -->
+                    <div id="SubRegionsDiv" role="region" aria-live="polite">
+                        <span class="sub-region-label" for="GeoRegion">Refine Search</span>
+                        <select id="GeoRegion" name="GeoRegion" disabled>
+                            <option value="ALL" selected>All Regions</option>
+                        </select>
                     </div>
 
                 </div><!-- /.region-block -->
 
+                <!-- Hidden: date filter (defaults to all entries). The legacy
+                     form exposes Month/Year pickers but they're hidden by
+                     default; we keep the same default-all behavior. -->
+                <input type="hidden" name="dates"  id="dates"  value="all">
+                <input type="hidden" name="Months" id="Months" value="01">
+                <input type="hidden" name="Years"  id="Years"  value="2018">
+
+                <!-- Hidden override: the visible allcountry select drives UI
+                     only. jgform.php prefers GeoRegion when present, falling
+                     back to whichever allcountry input comes LAST in the
+                     submitted form. Setting this to "0*" (ALL) means a search
+                     with no sub-region selected searches all databases - which
+                     is the documented behavior. -->
+                <input type="hidden" name="allcountry" value="0*">
+                <input type="hidden" name="submitform" value="submitform">
+
                 <div class="search-submit-wrap">
-                    <button class="btn-search" type="button" onclick="submitSearch()">Search Databases</button>
+                    <button class="btn-search" type="button" id="SearchButton"
+                            onclick="doSubmit(document.f);">Search Databases</button>
                 </div>
 
-            </div><!-- /.jg-search-card -->
+            </form><!-- /.jg-search-card (now also the form) -->
         </div><!-- /.jg-search-hero__inner -->
     </section>
 
 </main>
 
 <div id="site-footer"></div>
+
+<!-- ============================================================
+     LEGACY JS - loaded from jewishgen.org (canonical source)
+     ============================================================
+     If jewishgen.org is unreachable, swap these to local copies
+     in /JG40-Build/legacy-search/. Order matters: FormUtils &
+     Utils first (defines doSubmit, set_cookie, getOptionValue),
+     RegionsData before Regions (data must exist when setRegions
+     iterates it), SearchForm_solr last (binds the form). =========== -->
+<script src="https://www.jewishgen.org/JG/Scripts/FormUtils.js"></script>
+<script src="https://www.jewishgen.org/Communities/Utils.js"></script>
+<script src="https://www.jewishgen.org/databases/Regions/RegionsData_solr.js"></script>
+<script src="https://www.jewishgen.org/databases/Regions/Regions.js"></script>
+<script src="https://www.jewishgen.org/databases/Regions/Overlay.js"></script>
+<script src="https://www.jewishgen.org/databases/Regions/SearchForm_solr.js"></script>
 
 <script>
 
@@ -351,118 +484,52 @@
         btn.setAttribute('aria-expanded', String(isOpen));
     }
 
-    /* -- Search Type sync (when Any Field is selected, options narrow) ------ */
-    var FULL_OPTIONS = [
-        { value: '',           label: 'Search Type',    disabled: true },
-        { value: 'phonetic',   label: 'Phonetically Like' },
-        { value: 'soundslike', label: 'Sounds Like'    },
-        { value: 'startswith', label: 'Starts With'    },
-        { value: 'exactly',    label: 'Is Exactly'     },
-        { value: 'fuzzy',      label: 'Fuzzy Match'    },
-        { value: 'fuzzier',    label: 'Fuzzier Match'  },
-        { value: 'fuzziest',   label: 'Fuzziest Match' }
-    ];
-
-    var ANYFIELD_OPTIONS = [
-        { value: 'contains', label: 'Contains' }
-    ];
-
-    function buildOptions(select, options) {
-        select.innerHTML = '';
-        options.forEach(function(opt) {
-            var el = document.createElement('option');
-            el.value = opt.value;
-            el.textContent = opt.label;
-            if (opt.disabled) el.disabled = true;
-            select.appendChild(el);
-        });
-        var first = options.find(function(o) { return !o.disabled; });
-        if (first) select.value = first.value;
-    }
-
-    function syncSearchType(dataTypeSelect, searchTypeId) {
-        var stSelect = document.getElementById(searchTypeId);
-        if (dataTypeSelect.value === 'anyfield') {
-            buildOptions(stSelect, ANYFIELD_OPTIONS);
-        } else {
-            buildOptions(stSelect, FULL_OPTIONS);
+    /* -- ResetRegion ------------------------------------------------------
+       Ported from the inline script in the live /databases/all/ page.
+       Restores a previously-selected sub-region from cookie on page show. */
+    function ResetRegion() {
+        try {
+            var subreg = (typeof get_cookie === 'function')
+                ? get_cookie(window.location.pathname.toLowerCase())
+                : null;
+            var country = (typeof getOptionValue === 'function')
+                ? getOptionValue('allcountry')
+                : document.getElementById('allcountry').value;
+            if (typeof setRegions === 'function') setRegions(country);
+            ConfigSubReg();
+            if (subreg && typeof setOptionValue === 'function') {
+                setOptionValue('GeoRegion', subreg);
+            }
+        } catch (e) {
+            console.warn('ResetRegion: ', e);
         }
     }
 
-    /* -- Sub-region toggle (matches home hero jgToggleSubRegion exactly) --- */
-    function toggleSubRegion() {
-        var mainSelect = document.getElementById('main-region-select');
-        var container  = document.getElementById('sub-region-container');
-        var subSelect  = document.getElementById('sub-region-select');
-        var title      = document.getElementById('sub-region-title');
-        var val = mainSelect.value;
-        var optionsHtml = '<option value="all">All Sub-Regions</option>';
-        var show = true;
-
-        if (val === 'austria') {
-            title.innerText = "Refine by Region (Austria / Czechia / Galicia):";
-            optionsHtml += '<option value="bohemia" style="font-weight:bold;">Bohemia (Bohmen)</option><option value="prague">&nbsp;&nbsp;&nbsp;Prague (Prag)</option><option value="bukovina_aus" style="font-weight:bold;">Bukovina (Bucovina / Bukowina)</option><option value="chernivtsi_aus">&nbsp;&nbsp;&nbsp;Czernowitz (Chernivtsi/Cernauti)</option><option value="burgenland" style="font-weight:bold;">Burgenland</option><option value="galicia_aus" style="font-weight:bold;">Galicia (Galizien)</option><option value="krakow_aus">&nbsp;&nbsp;&nbsp;Krakow (Krakau)</option><option value="lviv_aus">&nbsp;&nbsp;&nbsp;Lemberg (Lwow/Lviv)</option><option value="stanislau_aus">&nbsp;&nbsp;&nbsp;Stanislau (Ivano-Frankivsk/Stanislawow)</option><option value="tarnopol_aus">&nbsp;&nbsp;&nbsp;Tarnopol (Ternopil)</option><option value="lower_austria_vienna" style="font-weight:bold;">Lower Austria &amp; Vienna</option><option value="lower_austria_p">&nbsp;&nbsp;&nbsp;Lower Austria (Niederosterreich)</option><option value="vienna">&nbsp;&nbsp;&nbsp;Vienna (Wien)</option><option value="moravia" style="font-weight:bold;">Moravia (Mahren)</option>';
-
-        } else if (val === 'belarus') {
-            title.innerText = "Refine by Historical Region (Belarus):";
-            optionsHtml += '<option value="grodno_bel">Grodno (Grodnenskaya Guberniya)</option><option value="minsk">Minsk (Minskaya Guberniya)</option><option value="mogilev">Mogilev (Mogilevskaya Guberniya)</option><option value="vilna_bel">Vilna (Vilenskaya Guberniya)</option><option value="vitebsk">Vitebsk (Vitebskaya Guberniya)</option>';
-
-        } else if (val === 'canada') {
-            title.innerText = "Refine by Province/Territory (Canada):";
-            ["Alberta","British Columbia","Manitoba","New Brunswick","Newfoundland and Labrador","Nova Scotia","Northwest Territories","Nunavut","Ontario","Prince Edward Island","Quebec","Saskatchewan","Yukon"].forEach(function(p) {
-                optionsHtml += '<option value="' + p.toLowerCase().replace(/ /g, '_') + '">' + p + '</option>';
-            });
-
-        } else if (val === 'hungary') {
-            title.innerText = "Refine by Historical Region (Hungary / Slovakia / Croatia):";
-            optionsHtml += '<option value="banat" style="font-weight:bold;">Banat / Backa (Bansag / Bacska)</option><option value="croatia_slavonia" style="font-weight:bold;">Croatia-Slavonia (Hrvatska-Slavonija)</option><option value="hungary_mod" style="font-weight:bold;">Hungary (Magyarorszag)</option><option value="budapest">&nbsp;&nbsp;&nbsp;Budapest &amp; Pest</option><option value="zemplen_hun">&nbsp;&nbsp;&nbsp;Zemplen (Southern portion)</option><option value="maramures" style="font-weight:bold;">Maramures (Maramaros)</option><option value="slovakia" style="font-weight:bold;">Slovakia (Slovensko / Felvidek)</option><option value="zemplen_svk">&nbsp;&nbsp;&nbsp;Zemplin (Northern portion)</option><option value="subcarpathia" style="font-weight:bold;">Subcarpathia (Zakarpattia / Karpatalja)</option><option value="transylvania" style="font-weight:bold;">Transylvania (Transilvania / Erdely)</option>';
-
-        } else if (val === 'latvia') {
-            title.innerText = "Refine by Historical Region (Latvia):";
-            optionsHtml += '<option value="courland">Courland (Kurland)</option><option value="estland">Estland (Estonia)</option><option value="livland">Livland (Vidzeme)</option><option value="vitebsk_lat">Vitebsk (Latgale)</option>';
-
-        } else if (val === 'lithuania') {
-            title.innerText = "Refine by Historical Region (Lithuania):";
-            optionsHtml += '<option value="kovno_all" style="font-weight:bold;">Kovno Gubernia (Kauno gubernija)</option><option value="kaunas">&nbsp;&nbsp;&nbsp;Kaunas (Kovno uyezd)</option><option value="panevezys">&nbsp;&nbsp;&nbsp;Panevezys (Ponevezh uyezd)</option><option value="raseiniai">&nbsp;&nbsp;&nbsp;Raseiniai (Rossieny uyezd)</option><option value="siauliai">&nbsp;&nbsp;&nbsp;Siauliai (Shavl uyezd)</option><option value="telsiai">&nbsp;&nbsp;&nbsp;Telsiai (Telshi uyezd)</option><option value="ukmerge">&nbsp;&nbsp;&nbsp;Ukmerge (Vilkomir uyezd)</option><option value="zarasai">&nbsp;&nbsp;&nbsp;Zarasai (Novo-Aleksandrovsk uyezd)</option><option value="prussia_lit" style="font-weight:bold;">Prussia (Preussen)</option><option value="suwalki_all" style="font-weight:bold;">Suwalki Gubernia (Suvalku gubernija)</option><option value="kalvarija">&nbsp;&nbsp;&nbsp;Kalvarija (Kalwarya uyezd)</option><option value="naumiestis">&nbsp;&nbsp;&nbsp;Kudirkos Naumiestis (Wladyslawow uyezd)</option><option value="marijampole">&nbsp;&nbsp;&nbsp;Marijampole (Mariampol uyezd)</option><option value="sejny_uyezd">&nbsp;&nbsp;&nbsp;Sejny (Sejny uyezd)</option><option value="vilkaviskis">&nbsp;&nbsp;&nbsp;Vilkaviskis (Wylkowyszki uyezd)</option><option value="vilna_all" style="font-weight:bold;">Vilna Gubernia (Vilniaus gubernija)</option><option value="ashmyany">&nbsp;&nbsp;&nbsp;Ashmyany (Oshmyany uyezd)</option><option value="disna">&nbsp;&nbsp;&nbsp;Disna (Disna uyezd)</option><option value="lida">&nbsp;&nbsp;&nbsp;Lida (Lida uyezd)</option><option value="svencionys">&nbsp;&nbsp;&nbsp;Svencionys (Sventsyany uyezd)</option><option value="trakai">&nbsp;&nbsp;&nbsp;Trakai (Troki uyezd)</option><option value="vileyka">&nbsp;&nbsp;&nbsp;Vileyka (Vilejka uyezd)</option><option value="vilnius_uyezd">&nbsp;&nbsp;&nbsp;Vilnius (Vilna uyezd)</option>';
-
-        } else if (val === 'poland') {
-            title.innerText = "Refine by Historical Region (Poland):";
-            optionsHtml += '<option value="congress_poland" style="font-weight:bold;">Congress Poland (Russian Empire)</option><option value="kalisz">&nbsp;&nbsp;&nbsp;Kalisz</option><option value="kielce">&nbsp;&nbsp;&nbsp;Kielce</option><option value="lomza">&nbsp;&nbsp;&nbsp;Lomza</option><option value="lublin">&nbsp;&nbsp;&nbsp;Lublin</option><option value="piotrkow">&nbsp;&nbsp;&nbsp;Piotrkow</option><option value="plock">&nbsp;&nbsp;&nbsp;Plock</option><option value="radom">&nbsp;&nbsp;&nbsp;Radom</option><option value="siedlce">&nbsp;&nbsp;&nbsp;Siedlce</option><option value="suwalki_pol">&nbsp;&nbsp;&nbsp;Suwalki</option><option value="warszawa">&nbsp;&nbsp;&nbsp;Warsaw (Warszawa)</option><option value="galicia_pol" style="font-weight:bold;">Galicia (Galizien)</option><option value="krakow">&nbsp;&nbsp;&nbsp;Krakow (Krakau)</option><option value="lwow_pol">&nbsp;&nbsp;&nbsp;Lwow (Lviv/Lemberg)</option><option value="stanislawow_pol">&nbsp;&nbsp;&nbsp;Stanislawow (Ivano-Frankivsk)</option><option value="tarnopol_pol">&nbsp;&nbsp;&nbsp;Tarnopol (Ternopil)</option><option value="pale_pol" style="font-weight:bold;">Pale of Settlement (Russian Empire)</option><option value="grodno_pol">&nbsp;&nbsp;&nbsp;Grodno (Hrodna)</option><option value="vilna_pol">&nbsp;&nbsp;&nbsp;Vilna (Vilnius)</option><option value="volhynia_pol">&nbsp;&nbsp;&nbsp;Volhynia (Volyn)</option><option value="prussia_pol" style="font-weight:bold;">Prussia (Preussen)</option>';
-
-        } else if (val === 'romania') {
-            title.innerText = "Refine by Historical Region (Romania / Moldova):";
-            optionsHtml += '<option value="aus_rom" style="font-weight:bold;">Bukovina (Austrian Empire)</option><option value="chernivtsi_rom">&nbsp;&nbsp;&nbsp;Cernauti (Chernivtsi/Czernowitz)</option><option value="russian_rom" style="font-weight:bold;">Former Russian Empire (Republic of Moldova)</option><option value="bessarabia">&nbsp;&nbsp;&nbsp;Bessarabia</option><option value="transnistria">&nbsp;&nbsp;&nbsp;Transnistria</option><option value="kingdom_romania" style="font-weight:bold;">Kingdom of Romania</option><option value="dobrogea">&nbsp;&nbsp;&nbsp;Dobrogea</option><option value="moldavia">&nbsp;&nbsp;&nbsp;Moldavia (Moldova)</option><option value="muntenia_oltenia">&nbsp;&nbsp;&nbsp;Wallachia (Muntenia/Oltenia)</option><option value="hung_rom" style="font-weight:bold;">Pre-WWI Hungary</option><option value="banat">&nbsp;&nbsp;&nbsp;Banat</option><option value="crisana">&nbsp;&nbsp;&nbsp;Crisana</option><option value="maramures">&nbsp;&nbsp;&nbsp;Maramures (Maramaros)</option><option value="transylvania">&nbsp;&nbsp;&nbsp;Transylvania (Transilvania / Erdely)</option>';
-
-        } else if (val === 'scandinavia') {
-            title.innerText = "Refine by Country (Scandinavia):";
-            optionsHtml += '<option value="denmark">Denmark (Danmark)</option><option value="finland">Finland (Suomi)</option><option value="norway">Norway (Norge)</option><option value="sweden">Sweden (Sverige)</option>';
-
-        } else if (val === 'ukraine') {
-            title.innerText = "Refine by Historical Region (Ukraine):";
-            optionsHtml += '<option value="bukovina_ukr" style="font-weight:bold;">Bukovina (Bucovina / Bukowina)</option><option value="chernivtsi_ukr">&nbsp;&nbsp;&nbsp;Chernivtsi (Czernowitz)</option><option value="galicia_ukr" style="font-weight:bold;">Eastern Galicia (Austrian Partition)</option><option value="lviv_ukr">&nbsp;&nbsp;&nbsp;Lviv (Lemberg / Lwow)</option><option value="stanislau_ukr">&nbsp;&nbsp;&nbsp;Stanislau (Ivano-Frankivsk / Stanislawow)</option><option value="ternopil_ukr">&nbsp;&nbsp;&nbsp;Ternopil (Tarnopol)</option><option value="pale_ukr" style="font-weight:bold;">Pale of Settlement (Russian Partition)</option><option value="chernigov">&nbsp;&nbsp;&nbsp;Chernigov (Chernihiv)</option><option value="kherson">&nbsp;&nbsp;&nbsp;Kherson</option><option value="kiev_ukr">&nbsp;&nbsp;&nbsp;Kiev (Kyiv / Kijow)</option><option value="podolia">&nbsp;&nbsp;&nbsp;Podolia (Podillia / Podole)</option><option value="poltava">&nbsp;&nbsp;&nbsp;Poltava</option><option value="volhynia">&nbsp;&nbsp;&nbsp;Volhynia (Volyn / Wolyn)</option><option value="yekaterinoslav">&nbsp;&nbsp;&nbsp;Yekaterinoslav (Dnipro)</option><option value="southern_ukraine" style="font-weight:bold;">Southern Ukraine &amp; Crimea</option><option value="crimea">&nbsp;&nbsp;&nbsp;Crimea (Krym)</option><option value="odessa">&nbsp;&nbsp;&nbsp;Odessa (Odesa)</option><option value="transcarpathia_ukr" style="font-weight:bold;">Transcarpathia (Hungarian Partition)</option><option value="sub_ukr">&nbsp;&nbsp;&nbsp;Subcarpathia (Zakarpattia / Karpatalja)</option>';
-
-        } else if (val === 'usa') {
-            title.innerText = "Refine by State (United States):";
-            ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"].forEach(function(s) {
-                optionsHtml += '<option value="' + s.toLowerCase().replace(/ /g, '_') + '">' + s + '</option>';
-            });
-
-        } else {
-            show = false;
-        }
-
-        if (show) {
-            subSelect.innerHTML = optionsHtml;
-            container.style.display = 'block';
-        } else {
-            container.style.display = 'none';
-        }
+    /* -- ConfigSubReg ----------------------------------------------------
+       Ported from the live page. Hides the sub-region UI when the selected
+       country has only one (placeholder) option. */
+    function ConfigSubReg() {
+        var subreg_sel = document.getElementById('GeoRegion');
+        var subreg_div = document.getElementById('SubRegionsDiv');
+        if (!subreg_sel || !subreg_div) return;
+        subreg_div.style.display = (subreg_sel.options.length <= 1) ? 'none' : 'block';
     }
 
-    /* -- Search submit (stub) ---------------------------------------------- */
-    function submitSearch() {
-        console.log('Search submitted');
-    }
+    /* -- Body-level event handlers (replacing inline OnLoad/OnPageShow/
+         OnPageHide from the live page) ------------------------------------ */
+    window.addEventListener('load', function() {
+        if (typeof InitSearchForm === 'function') InitSearchForm();
+    });
+    window.addEventListener('pageshow', function() {
+        ResetRegion();
+    });
+    window.addEventListener('pagehide', function() {
+        var gr = document.getElementById('GeoRegion');
+        if (gr && typeof set_cookie === 'function') {
+            set_cookie(gr.value);
+        }
+        if (typeof EnableForm === 'function') EnableForm(document.f);
+    });
 
 </script>
 
