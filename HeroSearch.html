@@ -326,28 +326,6 @@
 </section>
 
 
-<!-- ============================================================
-     LEGACY JS - jgform.php contract dependencies
-     ============================================================
-     IMPORTANT: If this component is loaded into index.html via
-     fetch(), the four <script src=...> tags below DO NOT EXECUTE
-     and must be moved up into index.html's <head> or end of <body>.
-     Same goes for the inline <script> block beneath them.
-
-     Order matters: FormUtils & Communities/Utils first (defines
-     doSubmit, set_cookie, getOptionValue), RegionsData before
-     Regions (data must exist when setRegions iterates it),
-     SearchForm_solr last (binds the form on InitSearchForm()).
-     ============================================================ -->
-<script src="https://www.jewishgen.org/JG/Scripts/FormUtils.js"></script>
-<script src="https://www.jewishgen.org/Communities/Utils.js"></script>
-<script src="https://www.jewishgen.org/databases/Regions/RegionsData_solr.js"></script>
-<script src="https://www.jewishgen.org/databases/Regions/Regions.js"></script>
-<script src="https://www.jewishgen.org/databases/Regions/Overlay.js"></script>
-<script src="https://www.jewishgen.org/databases/Regions/SearchForm_solr.js"></script>
-
-<script>
-
     /* -- Tips panel toggle (component-local) ------------------------------ */
     function jgToggleTips(btn) {
         var panel = document.getElementById('jg-tips-panel');
