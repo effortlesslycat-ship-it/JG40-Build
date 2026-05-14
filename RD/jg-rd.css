@@ -290,122 +290,10 @@ body.dark-mode .rd-btn-donate-full:hover {
     margin: 0;
     line-height: 1.6;
 }
-
 /* -- Section spacing utility -- */
 .rd-section { margin-top: 2.5rem; }
 
-/* -- Centered donation block (Tabele Romania pattern) -- */
-.rd-donation-block {
-    background-color: #dfe3cd;
-    padding: 2.5rem 2rem;
-    text-align: center;
-    border-radius: 6px;
-    margin-top: 0;
-}
-
-.rd-donation-block p {
-    font-size: 0.9375rem;
-    line-height: 1.65;
-    margin: 0 auto 1.25rem;
-    max-width: 540px;
-    color: var(--charcoal);
-}
-
-.rd-btn-donate-solid {
-    background-color: var(--sage);
-    color: #ffffff;
-    padding: 12px 30px;
-    font-weight: bold;
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    display: inline-block;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: filter 0.15s, transform 0.1s;
-}
-
-.rd-btn-donate-solid:hover {
-    filter: brightness(1.08);
-    transform: translateY(-1px);
-    color: #ffffff;
-    text-decoration: none;
-}
-
-/* -- Page-template dark mode -- */
-body.dark-mode .rd-intro p          { color: #c8c8c8; }
-body.dark-mode .rd-current-card     { background-color: #1e1e1e; border-left-color: #a8b361; }
-body.dark-mode .rd-current-label    { color: #a8b361; }
-body.dark-mode .rd-current-text     { color: #c8c8c8; }
-body.dark-mode .rd-donation-block   { background-color: #2a2d1e; }
-body.dark-mode .rd-donation-block p { color: #d8d8c8; }
-body.dark-mode .rd-btn-donate-solid       { background-color: #a8b361; color: #121212; }
-body.dark-mode .rd-btn-donate-solid:hover { color: #121212; }
-
-/* -- External-site card (links out to a division's existing standalone
-      website, e.g. jewishgen.org/Sub-Carpathia/) -- */
-.rd-external-card {
-    background-color: var(--white);
-    border-radius: 6px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
-    padding: 1.25rem 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-}
-.rd-external-card h3 {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1rem;
-    font-weight: bold;
-    color: var(--navy);
-    margin: 0 0 4px 0;
-}
-.rd-external-card p {
-    font-size: 0.8125rem;
-    color: var(--charcoal);
-    line-height: 1.5;
-    margin: 0;
-}
-
-.rd-external-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background-color: transparent;
-    color: var(--navy);
-    border: 1.5px solid var(--navy);
-    font-weight: bold;
-    font-size: 0.8125rem;
-    padding: 9px 18px;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: background-color 0.15s, color 0.15s;
-    flex-shrink: 0;
-}
-.rd-external-btn:hover {
-    background-color: var(--navy);
-    color: #ffffff;
-    text-decoration: none;
-}
-.rd-external-btn .ext-icon { font-size: 0.875rem; }
-
-body.dark-mode .rd-external-card    { background-color: #1e1e1e; }
-body.dark-mode .rd-external-card h3 { color: #e0e0e0; }
-body.dark-mode .rd-external-card p  { color: #c8c8c8; }
-body.dark-mode .rd-external-btn {
-    color: #8ab0c9;
-    border-color: #5a7a95;
-}
-body.dark-mode .rd-external-btn:hover {
-    background-color: #5a7a95;
-    color: #ffffff;
-}
-
-/* -- Team card (single member: photo + name + role + optional bio).
-      Multiple cards stack vertically with breathing room via sibling
-      combinator (no need for <br> tags between them). -- */
+/* ── Our Team card ── */
 .rd-team-card {
     background-color: var(--white);
     border-radius: 6px;
@@ -416,10 +304,6 @@ body.dark-mode .rd-external-btn:hover {
     gap: 1.5rem;
     align-items: start;
 }
-.rd-team-card + .rd-team-card {
-    margin-top: 1rem;
-}
-
 .rd-photo {
     width: 130px;
     height: 155px;
@@ -428,7 +312,6 @@ body.dark-mode .rd-external-btn:hover {
     background-color: #f0f0f0;
     display: block;
 }
-
 .rd-team-name {
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 1.0625rem;
@@ -459,13 +342,6 @@ body.dark-mode .rd-external-btn:hover {
 }
 .rd-team-bio a:hover { color: var(--sage); }
 .rd-team-bio em { font-style: italic; }
-
-body.dark-mode .rd-team-card  { background-color: #1e1e1e; }
-body.dark-mode .rd-team-name  { color: #e0e0e0; }
-body.dark-mode .rd-team-role  { color: #a8b361; }
-body.dark-mode .rd-team-bio   { color: #c8c8c8; }
-body.dark-mode .rd-team-bio a { color: #8ab0c9; }
-body.dark-mode .rd-photo      { background-color: #2a2a2a; }
 
 /* ── Bio tile grid (clickable tiles, expand inline) ── */
 .bio-grid {
@@ -602,6 +478,117 @@ body.dark-mode .bio-panel-name { color: #e0e0e0 !important; }
 body.dark-mode .bio-panel-role { color: #a8b361 !important; }
 body.dark-mode .bio-panel p { color: #c8c8c8 !important; }
 body.dark-mode .bio-panel a { color: #8ab0c9 !important; }
+
+
+/* -- Centered donation block -- */
+.rd-donation-block {
+    background-color: #dfe3cd;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    border-radius: 6px;
+    margin-top: 0;
+}
+
+.rd-donation-block p {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    margin: 0 auto 1.25rem;
+    max-width: 540px;
+    color: var(--charcoal);
+}
+
+.rd-btn-donate-solid {
+    background-color: var(--sage);
+    color: #ffffff;
+    padding: 12px 30px;
+    font-weight: bold;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    display: inline-block;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: filter 0.15s, transform 0.1s;
+}
+
+.rd-btn-donate-solid:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* -- Page-template dark mode -- */
+body.dark-mode .rd-intro p          { color: #c8c8c8; }
+body.dark-mode .rd-current-card     { background-color: #1e1e1e; border-left-color: #a8b361; }
+body.dark-mode .rd-current-label    { color: #a8b361; }
+body.dark-mode .rd-current-text     { color: #c8c8c8; }
+body.dark-mode .rd-donation-block   { background-color: #2a2d1e; }
+body.dark-mode .rd-donation-block p { color: #d8d8c8; }
+body.dark-mode .rd-btn-donate-solid       { background-color: #a8b361; color: #121212; }
+body.dark-mode .rd-btn-donate-solid:hover { color: #121212; }
+
+/* -- External-site card (links out to a division's existing standalone
+      website, e.g. jewishgen.org/Sub-Carpathia/) -- */
+.rd-external-card {
+    background-color: var(--white);
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+.rd-external-card h3 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--navy);
+    margin: 0 0 4px 0;
+}
+.rd-external-card p {
+    font-size: 0.8125rem;
+    color: var(--charcoal);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.rd-external-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    color: var(--navy);
+    border: 1.5px solid var(--navy);
+    font-weight: bold;
+    font-size: 0.8125rem;
+    padding: 9px 18px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.15s, color 0.15s;
+    flex-shrink: 0;
+}
+.rd-external-btn:hover {
+    background-color: var(--navy);
+    color: #ffffff;
+    text-decoration: none;
+}
+.rd-external-btn .ext-icon { font-size: 0.875rem; }
+
+body.dark-mode .rd-external-card    { background-color: #1e1e1e; }
+body.dark-mode .rd-external-card h3 { color: #e0e0e0; }
+body.dark-mode .rd-external-card p  { color: #c8c8c8; }
+body.dark-mode .rd-external-btn {
+    color: #8ab0c9;
+    border-color: #5a7a95;
+}
+body.dark-mode .rd-external-btn:hover {
+    background-color: #5a7a95;
+    color: #ffffff;
+}
+
 
 
 /* ============================================================================
@@ -1334,6 +1321,8 @@ body.dark-mode .rd-dir-wrap + .volunteer-strip {
         border-left: none;
         border-bottom-color: var(--navy);
     }
+   
+   
 
     /* Page-template patterns: tighten padding, stack external card,
        collapse team card to one column. */
@@ -1341,6 +1330,12 @@ body.dark-mode .rd-dir-wrap + .volunteer-strip {
     .rd-external-card  { flex-direction: column; align-items: flex-start; gap: 1rem; }
     .rd-team-card      { grid-template-columns: 1fr; gap: 1.25rem; padding: 1.25rem; }
     .rd-photo          { width: 110px; height: 130px; }
+    .bio-grid        { grid-template-columns: repeat(2, 1fr); }
+    .bio-grid.bio-grid--single { grid-template-columns: 1fr; }
+    .rd-external-card { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .rd-donation-block { padding: 2rem 1.25rem; }
+    .page-title-band { padding: 36px 24px; }
+}
 
     /* Dataset card: tighten and stack expanded panel */
     .ds-summary      { grid-template-columns: 1fr 36px; padding: 1rem 1.125rem; }
