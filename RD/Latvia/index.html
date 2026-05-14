@@ -161,7 +161,7 @@ function loadComponent(id, file) {
 Promise.all([
     loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
     loadComponent('site-footer', '/JG40-Build/Footer.html'),
-    loadComponent('rd-sidebar', '/JG40-Build/RD/Romania/RD_Sidebar.html')
+    loadComponent('rd-sidebar', '/JG40-Build/RD/Latvia/RD_Sidebar.html')
         .then(function() { if (window.JG && JG.setActiveSidebarLink) JG.setActiveSidebarLink(); })
 ]).then(function() {
     document.querySelectorAll('.jg-nav .dropbtn, .main-nav .dropbtn').forEach(function(btn) {
