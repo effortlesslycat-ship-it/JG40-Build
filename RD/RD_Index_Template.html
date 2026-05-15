@@ -66,7 +66,7 @@ body.dark-mode .page-title-band { background-color: #0d2a45 !important; }
         <!-- Main content -->
         <main>
 
-            <!-- About -->
+            <!-- About - replace text-->
             <section>
                 <span class="section-heading">About the Division</span>
                 <div class="green-accent-line"></div>
@@ -76,6 +76,8 @@ body.dark-mode .page-title-band { background-color: #0d2a45 !important; }
                         Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     </div>
 
+                <!-- Current Projects - replace text with preferred-->
+
                 <div class="rd-current-card">
                     <span class="rd-current-label">Currently Working On</span>
                     <p class="rd-current-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis 
@@ -83,6 +85,7 @@ body.dark-mode .page-title-band { background-color: #0d2a45 !important; }
                 </div>
             </section>
 
+            <!--Team Member Segment - Provide the photos in folder and bios from existing bio page. If no bio, remove rd-team-bio segment; will not break it -->
             <section class="rd-section">
                 <span class="section-heading">Our Team</span>
                 <div class="green-accent-line"></div>
@@ -91,13 +94,14 @@ body.dark-mode .page-title-band { background-color: #0d2a45 !important; }
                     <img class="rd-photo" src="" alt="">
                     <div>
                         <h2 class="rd-team-name">Lorem Ipsum</h2>
-                        <span class="rd-team-role">Dolor sit Amet</span>
+                        <span class="rd-team-role">Dolor sit Amet</span>                     
                         <p class="rd-team-bio">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     </div>
                 </article>
                 <br>
                 
-                <!--<article class="rd-team-card">
+                <!-- Second Team Member if needed - copy-paste for additional.
+                    <article class="rd-team-card">
                     <img class="rd-photo" src="" alt="">
                     <div>
                         <h2 class="rd-team-name"></h2>
@@ -107,11 +111,11 @@ body.dark-mode .page-title-band { background-color: #0d2a45 !important; }
 
             </section>
             
-             <!-- Volunteer strip -->
+             <!-- Volunteer strip - make sure to include contact info! -->
             <div class="volunteer-strip rd-section">
                 The Research Division welcomes new volunteers. </div>
 
-            <!-- Centered donation block -->
+            <!-- Centered donation block - for general fund for division -->
             <section class="rd-section">
                 <span class="section-heading">Support the Research Division</span>
                 <div class="green-accent-line"></div>
@@ -121,7 +125,7 @@ body.dark-mode .page-title-band { background-color: #0d2a45 !important; }
                 </div>
             </section>
 
-             <!-- External Site -->
+             <!-- External Site - link dedicated RD site here -->
             <section class="rd-section">
                 <span class="section-heading">More Resources</span>
                 <div class="green-accent-line"></div>
@@ -142,7 +146,7 @@ body.dark-mode .page-title-band { background-color: #0d2a45 !important; }
     </div>
 </div>
 
-<!-- FOOTER -->
+<!-- FOOTER - replace sidebar component with correct for division! -->
 <div id="site-footer"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -158,7 +162,7 @@ function loadComponent(id, file) {
 Promise.all([
     loadComponent('site-header', '/JG40-Build/Header_NavBar.html'),
     loadComponent('site-footer', '/JG40-Build/Footer.html'),
-    loadComponent('rd-sidebar', '/JG40-Build/RD/Latvia/RD_Sidebar.html')
+    loadComponent('rd-sidebar', '/JG40-Build/RD/RD_Sidebar_Template.html')
         .then(function() { if (window.JG && JG.setActiveSidebarLink) JG.setActiveSidebarLink(); })
 ]).then(function() {
     document.querySelectorAll('.jg-nav .dropbtn, .main-nav .dropbtn').forEach(function(btn) {
