@@ -7,7 +7,7 @@
    File location: /JG40-Build/Communities/jg-community.css
    ============================================================ */
 
-a { text-decoration: none; color: inherit; }
+main a { text-decoration: none; color: inherit; }
 
 /* -------- Loading / Error states (PHP can render these inline if no record found) -------- */
 .page-state { max-width: 700px; margin: 80px auto; padding: 40px 30px; text-align: center; }
@@ -193,6 +193,11 @@ a { text-decoration: none; color: inherit; }
 .back-link .arrow { font-size: 18px; }
 .footer-tag { font-size: 12px; color: var(--charcoal); opacity: 0.5; font-style: italic; }
 
+/* -------- Icon slots collapse while empty so the removed-emoji slots create no gaps.
+   Per-slot sizing/fill rules follow once real icons + dimensions are set. -------- */
+.tab-icon:empty, .res-icon:empty, .era-icon:empty, .con-icon:empty,
+.partner-icon:empty, .map-ph-icon:empty, .cs-icon:empty, .state-icon:empty { display: none; }
+
 /* -------- Dark mode overrides -------- */
 body.dark-mode .community-title-band { background-color: #0d2a45; }
 body.dark-mode .community-title-band h1 { color: #ffffff !important; }
@@ -223,6 +228,7 @@ body.dark-mode .nearby-list li { border-bottom-color: #2a2a2a; }
 body.dark-mode .resource-card { background-color: #1a1a1a; }
 body.dark-mode .resource-card.muted-accent { border-top-color: #444; }
 body.dark-mode .resource-card-header { background-color: rgba(255,255,255,0.03); border-bottom-color: #333; }
+body.dark-mode .res-count { background-color: #262626; }
 body.dark-mode .yizkor-item, body.dark-mode .kehila-item, body.dark-mode .jowbr-item, body.dark-mode .landsmanshaft-item { border-bottom-color: #333; }
 body.dark-mode .yizkor-more { color: var(--sage); border-color: var(--sage); }
 body.dark-mode .yizkor-more:hover { background-color: var(--sage); color: #121212; }
