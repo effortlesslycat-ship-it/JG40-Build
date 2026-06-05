@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 <style>
-  /* ---- placeholder tokens (real values come from jg-global.css) ---- */
   :root{
     --navy:#0e3a5c; --navy-active:#09497a; --sage:#8a8f3f; --cream:#ece6d8;
     --charcoal:#3a3a3a; --ecru:#e3ddcc; --light-blue:#e4eaef; --white:#fff;
@@ -21,13 +20,16 @@
   .jg-town-card{background:var(--white);border-radius:8px;box-shadow:0 4px 15px rgba(0,0,0,.05);
     border:1px solid rgba(0,0,0,.05);overflow:hidden;border-top:4px solid var(--sage)}
 
-  /* ---- cards-as-toggle (this is the production CSS for jg-community.css) ---- */
-  .era-card-strip-head{padding:16px 16px 0;display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px}
-  .era-card-strip-head .instr{font-family:Arial,sans-serif;font-size:.75rem;color:var(--charcoal);opacity:.7}
-  .era-card-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:12px 16px 16px}
+  /* ---- cards-as-toggle ---- */
+  .era-card-strip-head{padding:16px 16px 4px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+  .era-card-strip-head .instr{font-family:Arial,sans-serif;font-size:.875rem;font-weight:bold;color:#fff;
+    background:var(--sage);padding:6px 14px;border-radius:20px;display:inline-flex;align-items:center;gap:7px;
+    box-shadow:0 2px 6px rgba(138,143,63,.35)}
+  .instr .pointer{font-size:1rem;line-height:1}
+  .era-card-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:8px 16px 16px}
   .jurisdiction-card{border:1px solid #d1caba;border-radius:6px;padding:13px 14px;background:#fafafa;
     border-top-width:3px;cursor:pointer;transition:all .15s ease;text-align:left;font:inherit}
-  .jurisdiction-card:hover{box-shadow:0 4px 10px rgba(0,0,0,.10);transform:translateY(-1px)}
+  .jurisdiction-card:hover{box-shadow:0 4px 10px rgba(0,0,0,.12);transform:translateY(-1px);border-color:var(--sage)}
   .jurisdiction-card.era-prewwi{border-top-color:var(--navy)}
   .jurisdiction-card.era-interwar{border-top-color:#5a7a9a}
   .jurisdiction-card.era-postwar{border-top-color:var(--sage)}
@@ -35,7 +37,6 @@
   .jurisdiction-card .j-era{font-size:.625rem;text-transform:uppercase;font-weight:bold;color:var(--charcoal);opacity:.6;display:block;margin-bottom:5px;letter-spacing:.5px;font-family:Arial,sans-serif}
   .jurisdiction-card .j-town{font-size:.9375rem;font-weight:bold;color:var(--navy);display:block;margin-bottom:2px}
   .jurisdiction-card .j-dist{font-size:.8125rem;color:var(--charcoal);opacity:.8;line-height:1.4;display:block}
-  /* selected state */
   .jurisdiction-card.is-selected{background:var(--navy-active);border-color:var(--navy-active);box-shadow:0 4px 12px rgba(9,73,122,.3)}
   .jurisdiction-card.is-selected .j-era{color:#bcd3e6;opacity:1}
   .jurisdiction-card.is-selected .j-town,
@@ -45,12 +46,13 @@
   .map-shell{position:relative}
   #map-container{height:430px;background:var(--parchment)}
   .leaflet-container{background:var(--parchment)}
-  .map-era-badge{position:absolute;top:12px;left:12px;background:var(--navy-active);color:#fff;font-size:.6875rem;font-weight:bold;padding:4px 10px;border-radius:4px;text-transform:uppercase;z-index:600;font-family:Arial,sans-serif}
-  .map-coords-badge{position:absolute;bottom:12px;left:12px;background:rgba(255,255,255,.9);color:var(--charcoal);font-size:.6875rem;padding:4px 8px;border-radius:4px;z-index:600;font-family:Arial,sans-serif}
-  .today-toggle{position:absolute;top:12px;right:12px;z-index:600;background:rgba(255,255,255,.92);border:1px solid #d1caba;border-radius:4px;padding:5px 9px;font-family:Arial,sans-serif;font-size:.75rem;color:var(--navy);cursor:pointer;display:flex;align-items:center;gap:6px}
-  .country-label{position:absolute;top:12px;right:150px;z-index:600;font-size:1.1rem;font-weight:bold;color:var(--navy);text-shadow:0 1px 2px rgba(255,255,255,.8);font-family:Georgia,serif}
+  /* country + timeframe stacked, top-right */
+  .country-label{position:absolute;top:12px;right:12px;z-index:600;font-size:1.15rem;font-weight:bold;color:var(--navy);text-align:right;text-shadow:0 1px 2px rgba(255,255,255,.85);font-family:Georgia,serif}
+  .map-era-badge{position:absolute;top:44px;right:12px;z-index:600;background:var(--navy-active);color:#fff;font-size:.6875rem;font-weight:bold;padding:4px 10px;border-radius:4px;text-transform:uppercase;font-family:Arial,sans-serif}
+  /* overlay-today moved to lower-left */
+  .today-toggle{position:absolute;bottom:12px;left:12px;z-index:600;background:rgba(255,255,255,.92);border:1px solid #d1caba;border-radius:4px;padding:5px 9px;font-family:Arial,sans-serif;font-size:.75rem;color:var(--navy);cursor:pointer;display:flex;align-items:center;gap:6px}
   .map-source-note{padding:8px 12px;font-size:.6875rem;color:#777;text-align:right;font-style:italic}
-  .map-google-note{height:430px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--navy);opacity:.6;text-align:center;background:var(--ecru)}
+  #google-note{position:absolute;inset:0;height:430px;display:none;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--navy);opacity:.85;text-align:center;background:var(--ecru);z-index:500}
   .anchor-tt{background:transparent;border:none;box-shadow:none;color:#46535f;font-family:Arial,sans-serif;font-size:10px;font-weight:600;padding:0;margin-left:3px}
   .anchor-tt::before{display:none}
   .leaflet-tooltip.town-tt{background:transparent;border:none;box-shadow:none;color:var(--navy);font-weight:bold;font-size:13px;font-family:Arial,sans-serif}
@@ -63,18 +65,18 @@
   <div class="jg-town-card">
     <div class="era-card-strip-head">
       <span class="lbl">Historical jurisdictions</span>
-      <span class="instr">Click an era to see it on the map</span>
+      <span class="instr"><span class="pointer">&#128071;</span> Click an era below to see it on the map</span>
     </div>
     <div class="era-card-strip" id="era-cards"></div>
 
     <div class="map-shell">
       <div id="map-container"></div>
-      <div class="map-era-badge" id="era-badge"></div>
+      <div id="google-note"></div>
       <div class="country-label" id="country-label"></div>
+      <div class="map-era-badge" id="era-badge"></div>
       <label class="today-toggle" id="today-wrap" style="display:none">
-        <input type="checkbox" id="today-toggle"> Today's borders
+        <input type="checkbox" id="today-toggle"> Overlay today's borders
       </label>
-      <div class="map-coords-badge">50&deg;05' N, 19&deg;55' E</div>
     </div>
     <div class="map-source-note" id="map-source-note"></div>
   </div>
@@ -87,116 +89,97 @@ const ANCHORS = [{"lat":52.23,"lng":21.01,"n":"Warsaw"},{"lat":48.21,"lng":16.37
 const ERA_IDX = {prewwi:0, interwar:1, postwar:2, present:3};
 const SUBJECT = {lat:50.083, lng:19.917};
 
-/* alias only where the database name differs from the (curated) polygon name */
 function aliasTarget(eraKey, country){
   if(eraKey==='prewwi' && (country==='Austrian Empire' || country==='Hungary')) return 'Austria Hungary';
-  return country;  // Soviet Union, Germany, Turkey, Iraq, Poland... already normalized to match
+  return country;
 }
 function anchorName(a, eraKey){ return Array.isArray(a.n) ? a.n[ERA_IDX[eraKey]] : a.n; }
 
-let LMAP = null, currentEra = 'prewwi', showToday = false;
+let LMAP=null, borderLayer=null, todayLayer=null, anchorGroup=null, pinLayer=null;
+let currentEra='prewwi', showToday=false, fitted=false;
 
 function buildCards(){
   const wrap = document.getElementById('era-cards');
-  wrap.innerHTML = '';
+  wrap.innerHTML='';
   Object.keys(ERA_DATA).forEach(key=>{
-    const e = ERA_DATA[key];
-    const b = document.createElement('button');
-    b.className = 'jurisdiction-card era-'+key + (key===currentEra?' is-selected':'');
-    b.id = 'jcard-'+key;
-    const line2 = [e.district, e.province].filter(Boolean).join(' \u00b7 ');
-    b.innerHTML = '<span class="j-era">'+e.label+'</span>'
-      + '<span class="j-town">'+e.town+'</span>'
-      + '<span class="j-dist">'+(line2?line2+'<br>':'')+'<strong>'+e.country+'</strong></span>';
-    b.onclick = ()=>switchEra(key);
+    const e=ERA_DATA[key];
+    const b=document.createElement('button');
+    b.className='jurisdiction-card era-'+key+(key===currentEra?' is-selected':'');
+    b.id='jcard-'+key;
+    const line2=[e.district,e.province].filter(Boolean).join(' \u00b7 ');
+    b.innerHTML='<span class="j-era">'+e.label+'</span><span class="j-town">'+e.town+'</span>'
+      +'<span class="j-dist">'+(line2?line2+'<br>':'')+'<strong>'+e.country+'</strong></span>';
+    b.onclick=()=>switchEra(key);
     wrap.appendChild(b);
   });
 }
-
 function setSelectedCard(key){
   document.querySelectorAll('.jurisdiction-card').forEach(c=>c.classList.remove('is-selected'));
-  const el = document.getElementById('jcard-'+key); if(el) el.classList.add('is-selected');
+  const el=document.getElementById('jcard-'+key); if(el) el.classList.add('is-selected');
 }
-
-function clearMap(){ if(LMAP){ LMAP.remove(); LMAP=null; } }
-
 function styleFor(isHL){
-  return isHL
-    ? {fillColor:'#b4502f', fillOpacity:.45, color:'#8a3a1f', weight:1.4}
-    : {fillColor:'#cdbf9f', fillOpacity:.25, color:'#b3a884', weight:.5};
+  return isHL ? {fillColor:'#b4502f',fillOpacity:.45,color:'#8a3a1f',weight:1.4}
+              : {fillColor:'#cdbf9f',fillOpacity:.25,color:'#b3a884',weight:.5};
 }
-
-function renderLeaflet(key){
-  const e = ERA_DATA[key];
-  const cont = document.getElementById('map-container');
-  clearMap();
-  cont.innerHTML = '';
-  LMAP = L.map(cont, {minZoom:3, maxZoom:8, zoomControl:true, attributionControl:false});
-  LMAP.setView([SUBJECT.lat, SUBJECT.lng], 5);
-
-  const target = aliasTarget(key, e.country);
-  const hlLayers = [];
-  L.geoJSON(BORDERS[e.border], {
-    style: f => styleFor(f.properties.NAME === target),
-    onEachFeature: (f, layer)=>{ if(f.properties.NAME===target) hlLayers.push(layer);
-      layer.bindTooltip(f.properties.NAME, {sticky:true}); }
+function ensureMap(){
+  if(LMAP) return;
+  LMAP=L.map(document.getElementById('map-container'),
+    {minZoom:3,maxZoom:8,zoomControl:true,attributionControl:false});
+  LMAP.setView([SUBJECT.lat,SUBJECT.lng],5);
+  setTimeout(()=>LMAP.invalidateSize(),0);
+}
+function swapLayers(key){
+  const e=ERA_DATA[key];
+  [borderLayer,todayLayer,anchorGroup,pinLayer].forEach(l=>{ if(l) LMAP.removeLayer(l); });
+  const target=aliasTarget(key,e.country);
+  const hl=[];
+  borderLayer=L.geoJSON(BORDERS[e.border],{
+    style:f=>styleFor(f.properties.NAME===target),
+    onEachFeature:(f,layer)=>{ if(f.properties.NAME===target) hl.push(layer); }
   }).addTo(LMAP);
-
-  if(showToday){
-    L.geoJSON(BORDERS['present'], {interactive:false,
-      style:()=>({fill:false, color:'#2c3e50', weight:1, dashArray:'3 3', opacity:.6})}).addTo(LMAP);
-  }
-
-  // anchor cities (era-aware names; skip the subject town)
+  todayLayer = showToday ? L.geoJSON(BORDERS['present'],{interactive:false,
+    style:()=>({fill:false,color:'#2c3e50',weight:1,dashArray:'3 3',opacity:.6})}).addTo(LMAP) : null;
+  anchorGroup=L.layerGroup();
   ANCHORS.forEach(a=>{
     if(Math.abs(a.lng-SUBJECT.lng)<0.15 && Math.abs(a.lat-SUBJECT.lat)<0.15) return;
-    L.circleMarker([a.lat,a.lng], {radius:3, color:'#fff', weight:.8, fillColor:'#5b6b78', fillOpacity:.8})
-      .addTo(LMAP)
-      .bindTooltip(anchorName(a,key), {permanent:true, direction:'right', className:'anchor-tt', offset:[2,0]});
+    L.circleMarker([a.lat,a.lng],{radius:3,color:'#fff',weight:.8,fillColor:'#5b6b78',fillOpacity:.8})
+      .bindTooltip(anchorName(a,key),{permanent:true,direction:'right',className:'anchor-tt',offset:[2,0]})
+      .addTo(anchorGroup);
   });
-
-  // subject town pin
-  L.circleMarker([SUBJECT.lat, SUBJECT.lng], {radius:6, color:'#fff', weight:1.5, fillColor:'#9e2b25', fillOpacity:1})
-    .addTo(LMAP)
-    .bindTooltip(e.town, {permanent:true, direction:'top', className:'town-tt', offset:[0,-6]});
-
-  // frame the highlighted country (fall back to town)
-  if(hlLayers.length){
-    const fg = L.featureGroup(hlLayers);
-    LMAP.fitBounds(fg.getBounds(), {padding:[18,18], maxZoom:7});
-  } else {
-    LMAP.setView([SUBJECT.lat, SUBJECT.lng], 6);
+  anchorGroup.addTo(LMAP);
+  pinLayer=L.circleMarker([SUBJECT.lat,SUBJECT.lng],{radius:6,color:'#fff',weight:1.5,fillColor:'#9e2b25',fillOpacity:1})
+    .bindTooltip(e.town,{permanent:true,direction:'top',className:'town-tt',offset:[0,-6]}).addTo(LMAP);
+  // frame ONCE (no per-click camera move -> no jerk); user pan/zoom is preserved after
+  if(!fitted && hl.length){
+    LMAP.fitBounds(L.featureGroup(hl).getBounds(),{padding:[18,18],maxZoom:7,animate:false});
+    fitted=true;
   }
-
-  document.getElementById('country-label').textContent = e.country;
-  document.getElementById('today-wrap').style.display = '';
 }
-
+function renderLeaflet(key){
+  document.getElementById('google-note').style.display='none';
+  ensureMap();
+  swapLayers(key);
+  document.getElementById('today-wrap').style.display='';
+}
 function renderGoogle(key){
-  const e = ERA_DATA[key];
-  clearMap();
-  const cont = document.getElementById('map-container');
-  // PRODUCTION: this is your existing Google embed iframe.
-  cont.innerHTML = '<div class="map-google-note"><strong>Present Day</strong>'
-    + '<span style="font-size:12px;max-width:280px;line-height:1.4">In production this stays your live Google embed iframe (free, unchanged).</span></div>';
-  document.getElementById('country-label').textContent = e.country;
-  document.getElementById('today-wrap').style.display = 'none';
+  document.getElementById('today-wrap').style.display='none';
+  const n=document.getElementById('google-note');
+  n.innerHTML='<strong>Present Day</strong><span style="font-size:12px;max-width:280px;line-height:1.4">In production this stays your live Google embed iframe (free, unchanged).</span>';
+  n.style.display='flex';
 }
-
 function switchEra(key){
-  currentEra = key;
+  currentEra=key;
   setSelectedCard(key);
-  const e = ERA_DATA[key];
-  document.getElementById('era-badge').textContent = e.label;
-  document.getElementById('map-source-note').textContent = e.sourceNote || '';
+  const e=ERA_DATA[key];
+  document.getElementById('era-badge').textContent=e.label;
+  document.getElementById('country-label').textContent=e.country;
+  document.getElementById('map-source-note').textContent=e.sourceNote||'';
   if(e.mapType==='google') renderGoogle(key); else renderLeaflet(key);
 }
-
-document.getElementById('today-toggle').addEventListener('change', ev=>{
-  showToday = ev.target.checked;
-  if(ERA_DATA[currentEra].mapType!=='google') renderLeaflet(currentEra);
+document.getElementById('today-toggle').addEventListener('change',ev=>{
+  showToday=ev.target.checked;
+  if(ERA_DATA[currentEra].mapType!=='google') swapLayers(currentEra);
 });
-
 buildCards();
 switchEra('prewwi');
 </script>
