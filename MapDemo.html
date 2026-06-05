@@ -70,13 +70,25 @@
   path.terr:hover{fill:#cdbf9f}
   path.terr.hl:hover{fill:var(--hl)}
   .grat{stroke:#b8a983;stroke-width:.4;opacity:.35;fill:none}
+  .anchor{cursor:default}
   .anchor-dot{fill:#5b6b78;stroke:#fff;stroke-width:.8;opacity:.7}
-  .anchor-label{font-family:"Helvetica Neue",Arial,sans-serif;font-size:9.5px;fill:#46535f;opacity:.78;pointer-events:none;letter-spacing:.02em}
+  .anchor:hover .anchor-dot{fill:var(--navy);opacity:1}
+  .anchor-label{font-family:"Helvetica Neue",Arial,sans-serif;font-size:9.5px;fill:#37434e;
+    pointer-events:none;letter-spacing:.02em;opacity:0;transition:font-size .1s ease;
+    paint-order:stroke;stroke:var(--parch-1);stroke-width:3px;stroke-linejoin:round}
+  .anchor.t1 .anchor-label{opacity:.92}
+  .anchor:hover .anchor-label{opacity:1;font-size:13.5px;font-weight:700;fill:var(--navy)}
+  .today path{fill:none;stroke:#2c3e50;stroke-width:1;stroke-dasharray:3 3;opacity:.55;pointer-events:none}
   .terr-label{font-family:"Iowan Old Style",Palatino,Georgia,serif;fill:#6a5a36;
     font-size:11px;font-style:italic;pointer-events:none;text-anchor:middle;opacity:.0;
+    paint-order:stroke;stroke:var(--parch-1);stroke-width:3.2px;stroke-linejoin:round;
     animation:fade .8s ease .25s forwards}
   .hl-label{fill:#7a2f18;font-weight:700;font-style:normal;font-size:13px}
+  .pin text{paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round}
   @keyframes fade{to{opacity:.85}}
+  .ctrl{padding:0 14px 12px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;color:var(--ink)}
+  .ctrl label{display:inline-flex;align-items:center;gap:7px;cursor:pointer;user-select:none}
+  .ctrl input{accent-color:var(--navy);width:15px;height:15px}
 
   .pin{transform-origin:center;animation:drop .5s cubic-bezier(.3,1.3,.5,1) both}
   @keyframes drop{from{transform:translateY(-16px);opacity:0}to{transform:translateY(0);opacity:1}}
@@ -97,6 +109,7 @@
   <div class="label" style="margin:2px 4px 10px">JewishGen Communities Database — concept demo</div>
   <div class="card">
     <div class="toggle" id="toggle"></div>
+    <div class="ctrl"><label><input type="checkbox" id="todayToggle"> Overlay today&rsquo;s borders (dotted) for orientation</label></div>
     <div class="jur" id="jur"></div>
     <div class="mapwrap" id="mapwrap">
       <div class="era-badge" id="eraBadge"></div>
@@ -205,10 +218,12 @@ function centroidOf(g){
 
 const tip=document.getElementById("tip");
 const mapwrap=document.getElementById("mapwrap");
+let showToday=false, currentEra="1900";
 
 function render(eraKey){
   const era=ERAS.find(e=>e.key===eraKey);
   const d=DATA[eraKey];
+  currentEra=eraKey;
   while(svg.firstChild) svg.removeChild(svg.firstChild);
 
   // graticule
@@ -236,22 +251,34 @@ function render(eraKey){
       if(cx>20&&cx<W-20&&cy>14&&cy<H-14) labelsToDraw.push({name:nice(f.name),x:cx,y:cy,hl:f.hl});
     }
   });
+  // optional: dotted present-day borders overlaid for orientation
+  if(showToday && eraKey!=="present"){
+    const tg=el("g",{class:"today"});
+    DATA["present"].features.forEach(f=>{ tg.appendChild(el("path",{d:geomPath(f.geom)})); });
+    svg.appendChild(tg);
+  }
+
   // labels (highlight last/on top)
   labelsToDraw.sort((a,b)=>a.hl-b.hl).forEach(L=>{
     const t=el("text",{x:L.x.toFixed(1),y:L.y.toFixed(1),class:"terr-label"+(L.hl?" hl-label":"")});
     t.textContent=L.name; svg.appendChild(t);
   });
 
-  // orientation anchors (faint reference cities)
+  // orientation anchors (faint reference cities; labels reveal on hover)
+  const TIER1=new Set(["Warsaw","Vienna","Berlin","Budapest","Prague","Lemberg","Lwów","Lviv"]);
   const ag=el("g",{class:"anchors"});
   ANCHORS.forEach(a=>{
     if(Math.abs(a.lng-19.9167)<0.12 && Math.abs(a.lat-50.0833)<0.12) return; // skip subject town
     const ax=px(a.lng), ay=py(a.lat);
     if(ax<14||ax>W-14||ay<12||ay>H-12) return; // only those in frame
-    ag.appendChild(el("circle",{cx:ax.toFixed(1),cy:ay.toFixed(1),r:2.6,class:"anchor-dot"}));
+    const nm=anchorName(a,eraKey);
+    const g=el("g",{class:"anchor"+(TIER1.has(nm)?" t1":"")});
+    g.appendChild(el("circle",{cx:ax.toFixed(1),cy:ay.toFixed(1),r:2.6,class:"anchor-dot"}));
     const lbl=el("text",{x:(ax+5).toFixed(1),y:(ay+3).toFixed(1),class:"anchor-label"});
-    lbl.textContent=anchorName(a,eraKey);
-    ag.appendChild(lbl);
+    lbl.textContent=nm;
+    g.appendChild(lbl);
+    g.addEventListener("mouseenter",()=>ag.appendChild(g)); // raise hovered label above siblings
+    ag.appendChild(g);
   });
   svg.appendChild(ag);
 
@@ -293,6 +320,7 @@ ERAS.forEach((e,i)=>{
   b.addEventListener("click",()=>{document.querySelectorAll(".pill").forEach(p=>p.classList.remove("active"));b.classList.add("active");render(e.key);});
   tog.appendChild(b);
 });
+document.getElementById("todayToggle").addEventListener("change",e=>{showToday=e.target.checked;render(currentEra);});
 render("1900");
 </script>
 </body>
