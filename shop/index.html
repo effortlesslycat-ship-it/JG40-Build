@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shop – JewishGen</title>
+<title>Support JewishGen – JewishGen</title>
 
 <!-- 1. Bootstrap -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
@@ -13,397 +13,288 @@
 <style>
 a { text-decoration: none; color: inherit; }
 
-/* ── Dark mode overrides ── */
+/* ── Dark mode page-specific overrides ── */
 body.dark-mode .page-title-band { background-color: #0d2a45 !important; }
-body.dark-mode .shop-hero-band { background-color: #0d2a45 !important; }
-body.dark-mode .shop-wrap { background-color: #121212 !important; }
-body.dark-mode .shop-section-header h2 { color: #e0e0e0 !important; }
-body.dark-mode .shop-section-header { border-bottom-color: #a8b361 !important; }
-body.dark-mode .shop-section-header p { color: #a0a0a0 !important; }
-body.dark-mode .product-card { background-color: #1e1e1e !important; border-color: #333 !important; }
-body.dark-mode .product-card:hover { border-color: #a8b361 !important; }
-body.dark-mode .product-card__title { color: #e0e0e0 !important; }
-body.dark-mode .product-card__meta { color: #a0a0a0 !important; }
-body.dark-mode .product-card__desc { color: #b0b0b0 !important; }
-body.dark-mode .product-card__price { color: #e0e0e0 !important; }
-body.dark-mode .swatch { border-color: #555 !important; }
-body.dark-mode .swatch.active { outline-color: #a8b361 !important; }
-body.dark-mode .section-divider { border-color: #333 !important; }
-body.dark-mode .shop-all-link { color: #8ab0c9 !important; }
-body.dark-mode .shop-all-link:hover { color: #a8b361 !important; }
-body.dark-mode .hero-product-card { background-color: #1e1e1e !important; }
-body.dark-mode .hero-product-card__name { color: #e0e0e0 !important; }
-body.dark-mode .hero-product-card__desc { color: #b0b0b0 !important; }
-body.dark-mode .hero-product-card__price { color: #a8b361 !important; }
-body.dark-mode .hero-collection-panel { background-color: #09497a !important; }
-body.dark-mode .product-card__badge { background-color: #2a2a2a !important; color: #c8c0b0 !important; border-color: #444 !important; }
+body.dark-mode .page-title-band p.hero-subtitle { color: rgba(255,255,255,0.85) !important; }
+body.dark-mode .ops-card,
+body.dark-mode .funds-box,
+body.dark-mode .ow-card { background-color: #1e1e1e !important; border-color: #333 !important; }
+body.dark-mode .ops-card:hover,
+body.dark-mode .ow-card:hover { border-color: var(--sage) !important; }
+body.dark-mode .funds-list li { border-bottom-color: #333 !important; }
+body.dark-mode .funds-list a { color: #e0e0e0 !important; }
+body.dark-mode .ops-card h3,
+body.dark-mode .ow-card h3,
+body.dark-mode .funds-box h2,
+body.dark-mode .ops-section h2,
+body.dark-mode .other-ways-section h2 { color: #e0e0e0 !important; }
+body.dark-mode .ops-card p,
+body.dark-mode .ow-card p { color: #c0c0c0 !important; }
+body.dark-mode .disclaimer { color: #a0a0a0 !important; }
+body.dark-mode .other-ways-section { background-color: #141414 !important; border-top-color: #333 !important; border-bottom-color: #333 !important; }
 
-/* ── Spotlight hero ── */
-.shop-hero-band {
-    background-color: #09497a;
-    padding: 48px 40px;
+/* ── Page title band ── */
+.page-title-band {
+    background-color: var(--navy);
+    padding: 44px 50px;
+    text-align: center;
 }
-.shop-hero-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 340px;
-    gap: 48px;
-    align-items: center;
-}
-
-/* Left: collection panel */
-.hero-collection-panel {
-    background-color: rgba(255,255,255,0.08);
-    border-radius: 10px;
-    padding: 36px 40px;
-    border: 1px solid rgba(255,255,255,0.15);
-}
-.hero-collection-panel__eyebrow {
+.page-title-band .tagline {
     display: block;
-    font-size: 0.75rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #C7CC82;
-    margin-bottom: 12px;
+    color: var(--light-green);
+    font-size: 0.875rem;
+    font-style: italic;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
 }
-.hero-collection-panel h2 {
+.page-title-band h1 {
+    margin: 0 0 10px 0;
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 2.25rem;
     font-weight: normal;
+    line-height: 1.15;
     color: #ffffff;
-    margin: 0 0 14px 0;
-    line-height: 1.2;
 }
-.hero-collection-panel p {
+.page-title-band p.hero-subtitle {
+    margin: 0 auto;
     font-size: 0.9375rem;
-    color: rgba(255,255,255,0.82);
-    line-height: 1.65;
-    margin: 0 0 28px 0;
-}
-.hero-collection-imgs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 28px;
-}
-.hero-collection-imgs img {
-    width: 72px;
-    height: 72px;
-    object-fit: cover;
-    border-radius: 6px;
-    border: 2px solid rgba(255,255,255,0.2);
-}
-.btn-shop-collection {
-    display: inline-block;
-    background-color: #939b51;
-    color: #ffffff;
-    padding: 12px 28px;
-    border-radius: 5px;
-    font-size: 0.875rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: filter 0.15s, transform 0.15s;
-    text-decoration: none;
-}
-.btn-shop-collection:hover {
-    filter: brightness(1.1);
-    transform: translateY(-1px);
-    color: #ffffff;
+    color: rgba(255,255,255,0.85);
+    max-width: 720px;
+    line-height: 1.6;
 }
 
-/* Right: featured single item */
-.hero-product-card {
-    background-color: #ffffff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+/* ── Ecru content wrap ── */
+.support-ecru-wrap {
+    background-color: var(--ecru);
+    padding: 3rem 2rem;
 }
-.hero-product-card__img {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    display: block;
-}
-.hero-product-card__body {
-    padding: 18px 20px 20px;
-}
-.hero-product-card__eyebrow {
-    font-size: 0.6875rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #939b51;
-    display: block;
-    margin-bottom: 5px;
-}
-.hero-product-card__name {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1.0625rem;
-    color: #232b2b;
-    margin: 0 0 5px 0;
-    font-weight: normal;
-    line-height: 1.3;
-}
-.hero-product-card__desc {
-    font-size: 0.8125rem;
-    color: #555;
-    margin: 0 0 14px 0;
-    line-height: 1.45;
-}
-.hero-product-card__price {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #232b2b;
-    display: block;
-    margin-bottom: 12px;
-}
-.btn-hero-cart {
-    display: block;
-    background-color: #939b51;
-    color: #ffffff;
-    border: none;
-    padding: 10px 0;
-    width: 100%;
-    border-radius: 5px;
-    font-size: 0.8125rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    transition: filter 0.15s;
-    text-align: center;
-    text-decoration: none;
-}
-.btn-hero-cart:hover { filter: brightness(1.1); color: #ffffff; }
-
-/* ── Main shop wrapper ── */
-.shop-wrap {
-    background-color: #f7f4f2;
-    flex: 1;
-    padding: 0 0 60px 0;
-}
-.shop-inner {
+.support-ecru-inner {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 30px;
 }
 
-/* ── Section header ── */
-.shop-section-header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    border-bottom: 3px solid #939b51;
-    padding: 32px 0 12px 0;
-    margin-bottom: 24px;
-    gap: 16px;
-    flex-wrap: wrap;
-}
-.shop-section-header h2 {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1.5rem;
-    font-weight: normal;
-    color: #09497a;
-    margin: 0 0 2px 0;
-}
-.shop-section-header p {
-    font-size: 0.8125rem;
-    color: #232b2b;
-    margin: 0;
-    opacity: 0.65;
-}
-.shop-section-header__left { flex: 1; }
-.shop-all-link {
-    font-size: 0.8125rem;
-    font-weight: bold;
-    color: #09497a;
-    text-decoration: underline dotted;
-    text-underline-offset: 3px;
-    white-space: nowrap;
-    flex-shrink: 0;
-}
-.shop-all-link:hover { color: #939b51; text-decoration: underline; }
-
-/* ── Product grid ── */
-.product-grid {
+/* ── Main 70 / 30 grid ── */
+.support-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 3fr);
+    gap: 28px;
+    align-items: start;
 }
 
-/* ── Product card ── */
-.product-card {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: border-color 0.15s, box-shadow 0.15s;
+/* ── Section headings with 40px sage underline bar ── */
+.section-heading {
+    margin: 0 0 18px 0;
+    font-size: 20px;
+    color: var(--navy);
     position: relative;
-}
-.product-card:hover {
-    border-color: #939b51;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-}
-.product-card__img-wrap {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    background-color: #f5f5f5;
-}
-.product-card__img-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.2s ease;
-}
-.product-card:hover .product-card__img-wrap img { transform: scale(1.03); }
-.product-card.is-book .product-card__img-wrap {
-    background-color: #ece8e0;
-}
-.product-card.is-book .product-card__img-wrap img {
-    object-fit: contain;
-    padding: 10px;
-}
-
-/* badge */
-.product-card__badge {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    background-color: #f7f4f2;
-    color: #09497a;
-    font-size: 0.5625rem;
+    padding-bottom: 8px;
     font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 3px 7px;
-    border-radius: 3px;
-    border: 1px solid #ccc;
+}
+.section-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--sage);
+    border-radius: 2px;
 }
 
-/* card body */
-.product-card__body {
-    padding: 12px 14px 14px;
+/* ── Left column stacking ── */
+.left-col > * + * { margin-top: 28px; }
+
+/* ── Ops grid: 2 columns, Annual Fund spans full width when present ── */
+.ops-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+.ops-card {
+    background-color: var(--white);
+    border: 1px solid #d1caba;
+    border-radius: 8px;
+    padding: 16px 18px;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
     display: flex;
     flex-direction: column;
-    flex: 1;
-    gap: 4px;
 }
-.product-card__title {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 0.875rem;
-    color: #232b2b;
-    font-weight: normal;
-    margin: 0;
-    line-height: 1.35;
+.ops-card:hover {
+    border-color: var(--sage);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
 }
-.product-card__meta {
-    font-size: 0.6875rem;
-    color: #232b2b;
-    opacity: 0.55;
-    margin: 0;
-}
-.product-card__desc {
-    font-size: 0.75rem;
-    color: #232b2b;
-    line-height: 1.5;
-    margin: 0;
-    flex: 1;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-/* swatches */
-.product-card__swatches {
-    display: flex;
-    gap: 5px;
-    margin-top: 4px;
-    align-items: center;
-    flex-wrap: wrap;
-}
-.product-card__swatches .swatch-label {
-    font-size: 0.625rem;
-    color: #232b2b;
-    opacity: 0.55;
-    margin-right: 2px;
-}
-.swatch {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    border: 1.5px solid #ccc;
-    cursor: pointer;
-    display: inline-block;
-    transition: outline 0.1s;
-}
-.swatch.active {
-    outline: 2px solid #939b51;
-    outline-offset: 2px;
-}
-.swatch.swatch-navy  { background-color: #09497a; }
-.swatch.swatch-white { background-color: #ffffff; border-color: #bbb; }
-.swatch.swatch-washout { background-color: #7fa8c4; }
-.swatch.swatch-natural { background-color: #e8e1c8; border-color: #bbb; }
-
-/* price + button */
-.product-card__footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 10px;
-    gap: 6px;
-}
-.product-card__price {
+.ops-card--wide { grid-column: 1 / -1; }
+.ops-card h3 {
+    color: var(--navy);
+    margin: 0 0 6px 0;
     font-size: 0.9375rem;
     font-weight: bold;
-    color: #232b2b;
+    line-height: 1.3;
 }
-.btn-add-cart {
-    background-color: #939b51;
-    color: #ffffff;
-    border: none;
-    padding: 7px 12px;
-    border-radius: 4px;
-    font-size: 0.6875rem;
+.ops-card p {
+    margin: 0 0 10px 0;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--charcoal);
+    flex: 1;
+}
+.ops-card a.ops-link {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: var(--sage);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: auto;
+}
+.ops-card a.ops-link:hover { color: var(--navy); }
+
+/* ── Right column: Regional & Topical Funds ── */
+.funds-box {
+    background-color: var(--white);
+    border: 1px solid #d1caba;
+    border-radius: 8px;
+    padding: 18px 20px;
+    position: sticky;
+    top: 20px;
+}
+.funds-box h2 { margin: 0 0 14px 0; font-size: 16px; }
+.funds-box h2::after { width: 34px; }
+.funds-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.funds-list li { border-bottom: 1px dotted #d1caba; }
+.funds-list li:last-child { border-bottom: none; }
+.funds-list a {
+    display: block;
+    padding: 7px 4px;
+    color: var(--navy);
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    transition: background-color 0.15s, padding-left 0.15s, color 0.15s;
+}
+.funds-list a:hover,
+.funds-list a:focus {
+    background-color: rgba(147,155,81,0.10);
+    padding-left: 10px;
+    color: var(--navy);
+    outline: none;
+}
+.funds-list a::after {
+    content: " \203A";
+    color: var(--sage);
+    font-weight: bold;
+    opacity: 0;
+    margin-left: 4px;
+    transition: opacity 0.15s;
+}
+.funds-list a:hover::after,
+.funds-list a:focus::after { opacity: 1; }
+
+/* ── Other Ways to Give: full-width cream band ── */
+.other-ways-section {
+    background-color: var(--cream);
+    border-top: 1px solid #d1caba;
+    border-bottom: 1px solid #d1caba;
+    padding: 48px 2rem 44px 2rem;
+}
+.other-ways-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.other-ways-section h2 {
+    margin: 0 0 24px 0;
+    font-size: 20px;
+    color: var(--navy);
+    position: relative;
+    padding-bottom: 8px;
+    font-weight: bold;
+    text-align: left;
+}
+.other-ways-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--sage);
+    border-radius: 2px;
+}
+
+.ow-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+.ow-card {
+    background-color: var(--white);
+    border: 1px solid #d1caba;
+    border-radius: 8px;
+    padding: 18px 20px;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+.ow-card:hover {
+    border-color: var(--sage);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+}
+.ow-card h3 {
+    color: var(--navy);
+    font-size: 0.75rem;
+    margin: 0 0 10px 0;
     font-weight: bold;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    transition: filter 0.15s, transform 0.15s;
-    white-space: nowrap;
+    letter-spacing: 1px;
 }
-.btn-add-cart:hover { filter: brightness(1.1); transform: translateY(-1px); }
-body.dark-mode .btn-add-cart { background-color: #a8b361; color: #121212; }
+.ow-card p {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--charcoal);
+    margin: 0 0 6px 0;
+}
+.ow-card p:last-child { margin-bottom: 0; }
+.ow-card a {
+    color: var(--navy);
+    font-weight: bold;
+    text-decoration: underline dotted;
+}
+.ow-card a:hover { color: var(--sage); }
+body.dark-mode .ow-card a { color: #e0e0e0; }
+body.dark-mode .ow-card a:hover { color: var(--sage); }
 
-/* section divider */
-.section-divider {
-    border: none;
-    border-top: 1px solid #ddd;
-    margin: 48px 0 0 0;
+.disclaimer {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 0.75rem;
+    font-style: italic;
+    color: var(--charcoal);
+    line-height: 1.6;
+    opacity: 0.8;
 }
 
 /* ── Responsive ── */
-@media (max-width: 1024px) {
-    .product-grid { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 960px) {
+    .support-grid { grid-template-columns: 1fr; gap: 24px; }
+    .funds-box { position: static; }
+    .ow-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+    .ops-grid { grid-template-columns: 1fr; }
+    .ops-card--wide { grid-column: auto; }
 }
 @media (max-width: 768px) {
-    .shop-hero-band { padding: 32px 20px; }
-    .shop-hero-inner { grid-template-columns: 1fr; gap: 24px; }
-    .hero-product-card { max-width: 320px; margin: 0 auto; }
-    .shop-inner { padding: 0 16px; }
-    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-    .shop-section-header { padding-top: 24px; }
+    .page-title-band { padding: 30px 20px; }
+    .page-title-band h1 { font-size: 1.75rem; }
+    .support-ecru-wrap { padding: 2rem 1.25rem; }
+    .other-ways-section { padding: 36px 1.25rem 32px 1.25rem; }
 }
-@media (max-width: 480px) {
-    .hero-collection-panel h2 { font-size: 1.75rem; }
-    .product-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+@media (max-width: 520px) {
+    .ow-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -412,436 +303,176 @@ body.dark-mode .btn-add-cart { background-color: #a8b361; color: #121212; }
 <!-- HEADER -->
 <div id="site-header"></div>
 
-<!-- SPOTLIGHT HERO -->
-<div class="shop-hero-band">
-    <div class="shop-hero-inner">
+<!-- PAGE TITLE BAND -->
+<div class="page-title-band">
+    <span class="tagline">Your gift makes it all happen!</span>
+    <h1>Support JewishGen</h1>
+    <p class="hero-subtitle">JewishGen, the Jewish Genealogy Research Division of the Museum of Jewish Heritage - A Living Memorial to the Holocaust, is the premier online resource for Jewish genealogy. Your gifts, which are greatly appreciated, help to ensure our continued ability to serve the ever-growing worldwide JewishGen community. Please contribute whatever you are able at this time &ndash; it will make an immediate difference.</p>
+</div>
 
-        <!-- Left: JG40 collection panel -->
-        <div class="hero-collection-panel">
-            <span class="hero-collection-panel__eyebrow">New Collection</span>
-            <h2>JG40 Anniversary Collection</h2>
-            <p>Celebrating 40 years of JewishGen &mdash; the global home for Jewish genealogy. You don&#8217;t look a day over 5787.</p>
-            <div class="hero-collection-imgs" aria-hidden="true">
-                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/JG_S_N2.jpg" alt="">
-                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/mug_YouDontJG40.jpg" alt="">
-                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/Tote_YouDontJG40.jpg" alt="">
-                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/JG_T_N.jpg" alt="">
-            </div>
-            <a href="/shop/JG40.html" class="btn-shop-collection">Shop the Collection &rsaquo;</a>
+<!-- MAIN CONTENT  -  ecru wrap -->
+<main class="support-ecru-wrap">
+<div class="support-ecru-inner">
+
+    <div class="support-grid">
+
+        <!-- LEFT COLUMN: featured fundraiser + general operations -->
+        <div class="left-col">
+
+            <!-- FEATURED FUNDRAISER (fetched from separate file) -->
+            <div id="featured-fundraiser" aria-live="polite"></div>
+
+            <!-- GENERAL OPERATIONS SUPPORT -->
+            <section class="ops-section" aria-labelledby="ops-heading">
+                <h2 id="ops-heading" class="section-heading">General Operations Support</h2>
+
+                <div class="ops-grid">
+
+<!-- HIDE IF THIS IS FEATURED
+                    Annual Fund card spans full width (grid-column: 1/-1) when shown.
+                    When hidden, remaining 4 cards form a clean 2x2.
+                    <article class="ops-card ops-card--wide">
+                        <h3>The JewishGen Annual Fund</h3>
+                        <p>Your gift fuels JewishGen's mission to preserve the precious history of the Jewish people, and enables us to increase the information we provide to all who have an interest in researching their Jewish ancestry.</p>
+                        <a class="ops-link" href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=25">Give Now &rsaquo;</a>
+                    </article>
+END HIDE -->
+
+                    <article class="ops-card">
+                        <h3>Monthly Giving &amp; Chai Societies</h3>
+                        <p>Join our &ldquo;Monthly Giving Society&rdquo; with recurring automatic donations that give JewishGen predictable, stable funding. Gifts of $8.34/month qualify for Value Added Services; $18/month or more makes you a member of our &ldquo;Chai Society.&rdquo;</p>
+                        <a class="ops-link" href="https://jewishgen.net/project/redirect/546">Join Now &rsaquo;</a>
+                    </article>
+
+                    <article class="ops-card">
+                        <h3>Planned Giving Opportunities</h3>
+                        <p>Contribute to the future of JewishGen by planning for a special kind of gift or bequest.</p>
+                        <a class="ops-link" href="https://www.jewishgen.org/jewishgen-erosity/PlannedGiving.htm">Learn More &rsaquo;</a>
+                    </article>
+
+                    <article class="ops-card">
+                        <h3>JewishGen Wall of Honor</h3>
+                        <p>Honor someone on a special occasion, or choose a unique way to express your appreciation, and have a message displayed on our Wall of Honor (honorees will be notified).</p>
+                        <a class="ops-link" href="https://www.jewishgen.org/jewishgen-erosity/Honors/">Dedicate a Tribute &rsaquo;</a>
+                    </article>
+
+                    <article class="ops-card">
+                        <h3>Dedicated Day of Research</h3>
+                        <p>An amplification of the Wall of Honor: choose a specific day (anniversary, Yahrzeit, or other meaningful occasion) and have your dedication displayed on the website. A weekly email announces upcoming dedications.</p>
+                        <a class="ops-link" href="https://www.jewishgen.org/JewishGen-erosity/Honors/">Choose a Day &rsaquo;</a>
+                    </article>
+
+                </div>
+            </section>
         </div>
 
-        <!-- Right: featured item -->
-        <div class="hero-product-card">
-            <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/mug_YouDontJG40.jpg"
-                 alt="JG40 mug with 'You don't look a day over 5787' — ceramic 11 oz."
-                 class="hero-product-card__img">
-            <div class="hero-product-card__body">
-                <span class="hero-product-card__eyebrow">Featured Item</span>
-                <h3 class="hero-product-card__name">JG40 Anniversary Mug</h3>
-                <p class="hero-product-card__desc">&#8220;You don&#8217;t look a day over 5787!&#8221; &#8212; 11 oz. ceramic mug.</p>
-                <span class="hero-product-card__price">$TBD</span>
-                <button class="btn-hero-cart" type="button">Add to Cart</button>
-            </div>
-        </div>
+        <!-- RIGHT COLUMN: regional & topical funds -->
+        <aside class="funds-box" aria-labelledby="funds-heading">
+            <h2 id="funds-heading" class="section-heading">Regional &amp; Topical Funds</h2>
+            <ul class="funds-list">
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=8">Austria-Czech</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=1">Belarus</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=43">Bessarabia</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=32">Burial Registry (JOWBR)</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=31">Danzig/Gdańsk</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=52">Education Projects</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=74">Fall Appeal 2025/5786</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=12">France Projects</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=13">Germany</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=15">Hungary</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=72">JewishGen Press: Yizkor Books in Print</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=57">Latin America Research Division</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=16">Latvia</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=62">Peter &amp; Mary Kalikow Center</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=70">Poland</a></li>
+                <li><a href="https://effortlesslycat-ship-it.github.io/JG40-Build/RD/Romania/fundraising.html">Romania</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=75">Sephardic</a></li>
+                <li><a href="https://effortlesslycat-ship-it.github.io/JG40-Build/RD/SubCarpathia/fundraising.html">Subcarpathia</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=22">Ukraine</a></li>
+                <li><a href="https://www.jewishgen.org/jewishgen-erosity/v_projectslist.asp?project_cat=11">USA Research Division</a></li>
+                <li><a href="https://effortlesslycat-ship-it.github.io/JG40-Build/Donate/YizkorTr/YBFund.html">Yizkor Book Translations</a></li>
+            </ul>
+        </aside>
 
     </div>
-</div><!-- /shop-hero-band -->
 
-<!-- MAIN CONTENT -->
-<main class="shop-wrap">
-<div class="shop-inner">
-
-    <!-- ======================================================
-         SWAG
-    ====================================================== -->
-    <div class="shop-section-header">
-        <div class="shop-section-header__left">
-            <h2>Swag</h2>
-            <p>Apparel, accessories, and gifts</p>
-        </div>
-        <a href="/shop/swag/" class="shop-all-link">Shop All Swag &rsaquo;</a>
-    </div>
-
-    <div class="product-grid">
-
-        <div class="product-card" id="sweatshirt-jg">
-            <div class="product-card__img-wrap">
-                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/JG_S_N.jpg"
-                     alt="JewishGen hoodie in navy" id="sweatshirt-jg-img">
-            </div>
-            <div class="product-card__body">
-                <h3 class="product-card__title">JewishGen Hoodie</h3>
-                <p class="product-card__meta">Unisex pullover hoodie</p>
-                <p class="product-card__desc">Classic JewishGen logo in comfortable pullover style.</p>
-                <div class="product-card__swatches">
-                    <span class="swatch-label">Color:</span>
-                    <span class="swatch swatch-navy active" title="Navy"
-                        onclick="swapImg('sweatshirt-jg-img','https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/JG_S_N.jpg'); setActive(this,'sweatshirt-jg')"
-                        role="radio" aria-checked="true" aria-label="Navy" tabindex="0"></span>
-                    <span class="swatch swatch-white" title="White"
-                        onclick="swapImg('sweatshirt-jg-img','https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/JG_S_Wh.jpg'); setActive(this,'sweatshirt-jg')"
-                        role="radio" aria-checked="false" aria-label="White" tabindex="0"></span>
-                    <span class="swatch swatch-washout" title="Washout"
-                        onclick="swapImg('sweatshirt-jg-img','https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/JG_S_Wo.jpg'); setActive(this,'sweatshirt-jg')"
-                        role="radio" aria-checked="false" aria-label="Washout" tabindex="0"></span>
-                </div>
-                <div class="product-card__footer">
-                    <span class="product-card__price">$TBD</span>
-                    <button class="btn-add-cart" type="button">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card" id="tshirt">
-            <div class="product-card__img-wrap">
-                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/JG_T_N.jpg"
-                     alt="JewishGen t-shirt in navy" id="tshirt-img">
-            </div>
-            <div class="product-card__body">
-                <h3 class="product-card__title">JewishGen T-Shirt</h3>
-                <p class="product-card__meta">Unisex crewneck tee</p>
-                <p class="product-card__desc">Lightweight crewneck with the JewishGen logo.</p>
-                <div class="product-card__swatches">
-                    <span class="swatch-label">Color:</span>
-                    <span class="swatch swatch-navy active" title="Navy"
-                        onclick="swapImg('tshirt-img','https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/JG_T_N.jpg'); setActive(this,'tshirt')"
-                        role="radio" aria-checked="true" aria-label="Navy" tabindex="0"></span>
-                    <span class="swatch swatch-white" title="White"
-                        onclick="swapImg('tshirt-img','https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/JG_T_Wh.jpg'); setActive(this,'tshirt')"
-                        role="radio" aria-checked="false" aria-label="White" tabindex="0"></span>
-                    <span class="swatch swatch-washout" title="Washout"
-                        onclick="swapImg('tshirt-img','https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/JG_T_Wo.jpg'); setActive(this,'tshirt')"
-                        role="radio" aria-checked="false" aria-label="Washout" tabindex="0"></span>
-                </div>
-                <div class="product-card__footer">
-                    <span class="product-card__price">$TBD</span>
-                    <button class="btn-add-cart" type="button">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="product-card__img-wrap">
-                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/mug_logo.jpg"
-                     alt="JewishGen logo ceramic mug">
-            </div>
-            <div class="product-card__body">
-                <h3 class="product-card__title">JewishGen Mug</h3>
-                <p class="product-card__meta">11 oz. ceramic mug</p>
-                <p class="product-card__desc">Start your research sessions right.</p>
-                <div class="product-card__footer">
-                    <span class="product-card__price">$TBD</span>
-                    <button class="btn-add-cart" type="button">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="product-card__img-wrap">
-                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/Onesie_NewLeaf.jpg"
-                     alt="Baby onesie — New Leaf on the Family Tree">
-            </div>
-            <div class="product-card__body">
-                <h3 class="product-card__title">&#8220;New Leaf&#8221; Baby Onesie</h3>
-                <p class="product-card__meta">Infant bodysuit</p>
-                <p class="product-card__desc">The perfect gift for the newest branch of the mishpacha.</p>
-                <div class="product-card__footer">
-                    <span class="product-card__price">$TBD</span>
-                    <button class="btn-add-cart" type="button">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-    </div><!-- /product-grid swag -->
-
-    <hr class="section-divider">
-
-    <!-- ======================================================
-         YIZKOR BOOKS IN PRINT
-    ====================================================== -->
-    <div class="shop-section-header">
-        <div class="shop-section-header__left">
-            <h2>Yizkor Books in Print</h2>
-            <p>Printed translations of Jewish memorial books, published by JewishGen Press</p>
-        </div>
-        <a href="/shop/YBIP/" class="shop-all-link">Shop All Yizkor Books &rsaquo;</a>
-    </div>
-
-    <div class="product-grid">
-
-        <div class="product-card is-book">
-            <div class="product-card__badge">Yizkor Book</div>
-            <div class="product-card__img-wrap">
-                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/YB_Kishinev.jpg"
-                     alt="Book cover: Jews of Kishinev (Chisinau, Moldova)">
-            </div>
-            <div class="product-card__body">
-                <h3 class="product-card__title">Jews of Kishinev</h3>
-                <p class="product-card__meta">Chisinau, Moldova &mdash; Hard cover, 266 pp.</p>
-                <p class="product-card__desc">Translation of <em>Yehudei Kishinev</em>. A record of Kishinev&#8217;s Jewish community through pogrom and Holocaust.</p>
-                <div class="product-card__footer">
-                    <span class="product-card__price">$39.00</span>
-                    <button class="btn-add-cart" type="button">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card is-book">
-            <div class="product-card__badge">Yizkor Book</div>
-            <div class="product-card__img-wrap">
-                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/YB_NowyZmigrod.jpg"
-                     alt="Book cover: Memorial Book of Nowy Zmigrod, Galicia, Poland">
-            </div>
-            <div class="product-card__body">
-                <h3 class="product-card__title">Memorial Book of Nowy Zmigrod</h3>
-                <p class="product-card__meta">Galicia, Poland &mdash; Hard cover, 332 pp.</p>
-                <p class="product-card__desc">Commemorates the Jewish community of Nowy Zmigrod, destroyed in the Holocaust.</p>
-                <div class="product-card__footer">
-                    <span class="product-card__price">$38.00</span>
-                    <button class="btn-add-cart" type="button">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card is-book">
-            <div class="product-card__badge">Yizkor Book</div>
-            <div class="product-card__img-wrap">
-                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/YB_Rovno.jpg"
-                     alt="Book cover: Rovno Memorial Book, Rivne, Ukraine">
-            </div>
-            <div class="product-card__body">
-                <h3 class="product-card__title">Rovno Memorial Book</h3>
-                <p class="product-card__meta">Rivne, Ukraine &mdash; Hard cover, 1,022 pp.</p>
-                <p class="product-card__desc">A monumental record of the largest Jewish community in Volhynia.</p>
-                <div class="product-card__footer">
-                    <span class="product-card__price">$60.00</span>
-                    <button class="btn-add-cart" type="button">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card is-book">
-            <div class="product-card__badge">Yizkor Book</div>
-            <div class="product-card__img-wrap">
-                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/YB_BloodStainedFeathers.jpg"
-                     alt="Book cover: Blood Stained Feathers by Mordechai Lustig">
-            </div>
-            <div class="product-card__body">
-                <h3 class="product-card__title">Blood Stained Feathers</h3>
-                <p class="product-card__meta">Mordechai Lustig &mdash; Hard cover, 414 pp.</p>
-                <p class="product-card__desc">The harrowing memoir of a Shoah survivor from Nowy S&#261;cz, Poland.</p>
-                <div class="product-card__footer">
-                    <span class="product-card__price">$43.00</span>
-                    <button class="btn-add-cart" type="button">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-    </div><!-- /product-grid ybip -->
-
-    <hr class="section-divider">
-
-    <!-- ======================================================
-         JEWISHGEN PRESS
-    ====================================================== -->
-    <div class="shop-section-header">
-        <div class="shop-section-header__left">
-            <h2>JewishGen Press</h2>
-            <p>Original histories, memoirs, and community studies</p>
-        </div>
-        <a href="/shop/press/" class="shop-all-link">Shop All Press Titles &rsaquo;</a>
-    </div>
-
-    <div class="product-grid">
-
-        <div class="product-card is-book">
-            <div class="product-card__img-wrap">
-                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/AnAmericanTale_book.jpg"
-                     alt="Book cover: An American Tale by Howard I. Schwartz">
-            </div>
-            <div class="product-card__body">
-                <h3 class="product-card__title">An American Tale</h3>
-                <p class="product-card__meta">Howard I. Schwartz, PhD &mdash; 206 pp.</p>
-                <p class="product-card__desc">A historian unearths his family&#8217;s remarkable immigration journey from Tsarist Russia to America.</p>
-                <div class="product-card__footer">
-                    <span class="product-card__price">$35.00</span>
-                    <button class="btn-add-cart" type="button">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card is-book">
-            <div class="product-card__img-wrap">
-                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/Krakow_Women_book.jpg"
-                     alt="Book cover: Krakow, the Jewish Community and Women">
-            </div>
-            <div class="product-card__body">
-                <h3 class="product-card__title">Krak&#xf3;w: The Jewish Community and Women</h3>
-                <p class="product-card__meta">Geoffrey M. Weisgard &mdash; 246 pp.</p>
-                <p class="product-card__desc">Five centuries of Jewish women&#8217;s lives in Krak&#xf3;w &#8212; their changing roles from the early modern period to today.</p>
-                <div class="product-card__footer">
-                    <span class="product-card__price">$34.00 / $29.00</span>
-                    <button class="btn-add-cart" type="button">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card is-book">
-            <div class="product-card__img-wrap">
-                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/YB_BloodStainedFeathers.jpg"
-                     alt="Book cover: Blood Stained Feathers by Mordechai Lustig">
-            </div>
-            <div class="product-card__body">
-                <h3 class="product-card__title">Blood Stained Feathers</h3>
-                <p class="product-card__meta">Mordechai Lustig &mdash; Hard cover, 414 pp.</p>
-                <p class="product-card__desc">The harrowing memoir of a Shoah survivor from Nowy S&#261;cz, Poland.</p>
-                <div class="product-card__footer">
-                    <span class="product-card__price">$43.00</span>
-                    <button class="btn-add-cart" type="button">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card is-book">
-            <div class="product-card__img-wrap">
-                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/Kaushany_Info_book.jpg"
-                     alt="Book cover: Jewish Families in Shtetl Kaushany, Bessarabia">
-            </div>
-            <div class="product-card__body">
-                <h3 class="product-card__title">Jewish Families in Shtetl Kaushany</h3>
-                <p class="product-card__meta">Yefim Kogan &mdash; 220 pp.</p>
-                <p class="product-card__desc">Five centuries of Jewish genealogy, history, and culture in Kaushany, Bessarabia.</p>
-                <div class="product-card__footer">
-                    <span class="product-card__price">$43.00</span>
-                    <button class="btn-add-cart" type="button">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-    </div><!-- /product-grid press -->
-
-    <hr class="section-divider">
-
-    <!-- ======================================================
-         RESEARCH TOOLS
-    ====================================================== -->
-    <div class="shop-section-header">
-        <div class="shop-section-header__left">
-            <h2>Research Tools</h2>
-            <p>Handbooks, guides, and workbooks to support your research</p>
-        </div>
-        <a href="/shop/research-tools/" class="shop-all-link">Shop All Research Tools &rsaquo;</a>
-    </div>
-
-    <div class="product-grid">
-
-        <div class="product-card is-book">
-            <div class="product-card__badge">Research Aid</div>
-            <div class="product-card__img-wrap">
-                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/Galicia_book.jpg"
-                     alt="Book cover: The Jews of Galicia: A Genealogy Handbook by Suzan Wynne">
-            </div>
-            <div class="product-card__body">
-                <h3 class="product-card__title">The Jews of Galicia: A Genealogy Handbook</h3>
-                <p class="product-card__meta">Suzan Wynne &mdash; 324 pp., softcover</p>
-                <p class="product-card__desc">An essential guide to records, history, and geography for descendants of Jewish Galitzianers.</p>
-                <div class="product-card__footer">
-                    <span class="product-card__price">$26.00</span>
-                    <button class="btn-add-cart" type="button">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card is-book">
-            <div class="product-card__badge">Research Aid</div>
-            <div class="product-card__img-wrap">
-                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/WhatsInAName_book.jpg"
-                     alt="Book cover: What's in a Name? A Young Person's Jewish Genealogy Workbook">
-            </div>
-            <div class="product-card__body">
-                <h3 class="product-card__title">What&#8217;s in a Name?</h3>
-                <p class="product-card__meta">Cohen &amp; Alter &mdash; 154 pp.</p>
-                <p class="product-card__desc">A genealogy workbook for young people just starting their Jewish roots journey.</p>
-                <div class="product-card__footer">
-                    <span class="product-card__price">$28.00</span>
-                    <button class="btn-add-cart" type="button">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card is-book">
-            <div class="product-card__badge">Research Aid</div>
-            <div class="product-card__img-wrap">
-                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/Krakow_Info_book.jpg"
-                     alt="Book cover: Krakow: Sources of Information for Jewish Genealogy">
-            </div>
-            <div class="product-card__body">
-                <h3 class="product-card__title">Krak&#xf3;w: Sources of Information for Jewish Genealogy</h3>
-                <p class="product-card__meta">Geoffrey Weisgard &mdash; 208 pp.</p>
-                <p class="product-card__desc">A researcher&#8217;s guide to Jewish records in Krak&#xf3;w from 1790&#8211;1939.</p>
-                <div class="product-card__footer">
-                    <span class="product-card__price">$33.00 / $28.00</span>
-                    <button class="btn-add-cart" type="button">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card is-book">
-            <div class="product-card__badge">Research Aid</div>
-            <div class="product-card__img-wrap">
-                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/Kaushany_Info_book.jpg"
-                     alt="Book cover: Jewish Families in Shtetl Kaushany, Bessarabia">
-            </div>
-            <div class="product-card__body">
-                <h3 class="product-card__title">Jewish Families in Shtetl Kaushany</h3>
-                <p class="product-card__meta">Yefim Kogan &mdash; 220 pp.</p>
-                <p class="product-card__desc">Five centuries of Jewish genealogy, history, and culture in Kaushany, Bessarabia.</p>
-                <div class="product-card__footer">
-                    <span class="product-card__price">$43.00</span>
-                    <button class="btn-add-cart" type="button">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-    </div><!-- /product-grid research tools -->
-
-</div><!-- /shop-inner -->
+</div>
 </main>
+
+<!-- OTHER WAYS TO GIVE  -  full-width cream band -->
+<section class="other-ways-section" aria-labelledby="other-ways-heading">
+    <div class="other-ways-inner">
+        <h2 id="other-ways-heading">Other Ways to Give</h2>
+
+        <div class="ow-grid">
+
+            <div class="ow-card">
+                <h3>By Mail</h3>
+                <p>Prefer to mail your gift? Send your check, payable to &ldquo;Museum of Jewish Heritage,&rdquo; to: Museum of Jewish Heritage / JewishGen, 36 Battery Place, New York, NY 10280.</p>
+                <p><em>Please include &ldquo;JewishGen&rdquo; in the reference line.</em></p>
+            </div>
+
+            <div class="ow-card">
+                <h3>By DAF</h3>
+                <p>We accept DAF donations. <a href="https://www.jewishgen.org/daf/">Click here to start your DAF donation</a>.</p>
+                <br>
+                <h3>Via PayPal</h3>
+                <p>If you prefer to donate via PayPal, please <a href="https://www.jewishgen.org/JewishGen-erosity/PayPal.asp">click here</a>.</p>
+            </div>
+
+            <div class="ow-card">
+                <h3>Major Gifts & Development</h3>
+                <p>Interested in making a significant gift or discussing naming opportunities and legacy giving?<br><br>
+                    Email us at <a href="mailto:Development@mjhnyc.org" aria-label="Email development@mjhnyc.org for major gifts">development@mjhnyc.org</a></p>
+            </div>
+
+            <div class="ow-card">
+                <h3>By Phone</h3>
+                <p>Contact the JewishGen office at <a href="tel:+16464942972">646-494-2972</a> or email <a href="mailto:info@JewishGen.org">info@JewishGen.org</a> for a call back.</p>
+            </div>
+
+        </div>
+
+        <p class="disclaimer">JewishGen is the Jewish Genealogy Research Division of the Museum of Jewish Heritage - A Living Memorial to the Holocaust, which is a qualified 501(c)(3) tax-exempt organization. All donations are tax-deductible to the full extent of the law. Our Tax ID# is 13-3376265.</p>
+    </div>
+</section>
 
 <!-- FOOTER -->
 <div id="site-footer"></div>
 
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-function loadComponent(id, url) {
-    var el = document.getElementById(id);
-    if (!el) return;
-    fetch(url).then(function(r){ return r.text(); }).then(function(html){
-        el.innerHTML = html;
-    }).catch(function(){});
+function loadComponent(id, file) {
+    return fetch(file)
+        .then(r => { if (!r.ok) throw new Error('Could not load ' + file); return r.text(); })
+        .then(html => { document.getElementById(id).innerHTML = html; })
+        .catch(err => console.warn(err));
 }
-loadComponent('site-header', 'https://effortlesslycat-ship-it.github.io/JG40-Build/Header_NavBar.html');
-loadComponent('site-footer', 'https://effortlesslycat-ship-it.github.io/JG40-Build/Footer.html');
 
-function swapImg(imgId, src) {
-    var img = document.getElementById(imgId);
-    if (img) img.src = src;
-}
-function setActive(clickedSwatch, cardId) {
-    var card = document.getElementById(cardId);
-    if (!card) return;
-    card.querySelectorAll('.swatch').forEach(function(s) {
-        s.classList.remove('active');
-        s.setAttribute('aria-checked','false');
+Promise.all([
+    loadComponent('site-header',         'https://effortlesslycat-ship-it.github.io/JG40-Build/Header_NavBar.html'),
+    loadComponent('site-footer',         'https://effortlesslycat-ship-it.github.io/JG40-Build/Footer.html'),
+    loadComponent('featured-fundraiser', 'https://effortlesslycat-ship-it.github.io/JG40-Build/Donate/Featured_Fundraiser.html')
+]).then(() => {
+    document.querySelectorAll('.jg-nav .dropbtn').forEach(btn => {
+        btn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const expanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', String(!expanded));
+                const menu = document.getElementById(this.getAttribute('aria-controls'));
+                if (menu) menu.style.display = expanded ? 'none' : 'block';
+            }
+            if (e.key === 'Escape') {
+                this.setAttribute('aria-expanded', 'false');
+                const menu = document.getElementById(this.getAttribute('aria-controls'));
+                if (menu) menu.style.display = 'none';
+            }
+        });
     });
-    clickedSwatch.classList.add('active');
-    clickedSwatch.setAttribute('aria-checked','true');
-}
-document.addEventListener('keydown', function(e) {
-    if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('swatch')) {
-        e.preventDefault();
-        e.target.click();
-    }
 });
 </script>
+
 </body>
 </html>
