@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop – JewishGen</title>
+
+<!-- 1. Bootstrap -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<!-- 2. JewishGen Global Design System -->
+<link rel="stylesheet" href="https://effortlesslycat-ship-it.github.io/JG40-Build/jg-global.css">
+<!-- 3. Page-specific styles -->
+<style>
+a { text-decoration: none; color: inherit; }
+
+/* ── Dark mode overrides ── */
+body.dark-mode .page-title-band { background-color: #0d2a45 !important; }
+body.dark-mode .page-title-band p.hero-subtitle { color: rgba(255,255,255,0.85) !important; }
+body.dark-mode .shop-section-header { background-color: #1a1a1a !important; border-bottom-color: #333 !important; }
+body.dark-mode .product-card { background-color: #1e1e1e !important; border-color: #333 !important; }
+body.dark-mode .product-card:hover { border-color: var(--sage) !important; }
+body.dark-mode .product-card__title { color: #e0e0e0 !important; }
+body.dark-mode .product-card__meta { color: #a0a0a0 !important; }
+body.dark-mode .product-card__desc { color: #b0b0b0 !important; }
+body.dark-mode .product-card__price { color: #e0e0e0 !important; }
+body.dark-mode .swatch { border-color: #555 !important; }
+body.dark-mode .swatch.active { outline-color: var(--sage) !important; }
+body.dark-mode .shop-wrap { background-color: #121212 !important; }
+body.dark-mode .section-divider { border-color: #333 !important; }
+body.dark-mode .cart-placeholder { background-color: #1a1a1a !important; border-color: #333 !important; color: #a0a0a0 !important; }
+body.dark-mode .product-card__badge { background-color: #2a2a2a !important; }
+
+/* ── Page title band ── */
+.page-title-band {
+    background-color: #09497a;
+    padding: 44px 50px;
+    text-align: center;
+}
+.page-title-band h1 {
+    margin: 0 0 10px 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2.25rem;
+    font-weight: normal;
+    line-height: 1.15;
+    color: #ffffff;
+}
+.page-title-band p.hero-subtitle {
+    margin: 0 auto;
+    max-width: 640px;
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.6;
+}
+
+/* ── Cart placeholder strip ── */
+.cart-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 10px 40px;
+    background-color: var(--ecru);
+    border-bottom: 1px solid var(--cream);
+    font-size: 0.8125rem;
+    color: var(--charcoal);
+}
+.cart-placeholder .cart-icon {
+    font-size: 1.25rem;
+    position: relative;
+    cursor: pointer;
+}
+.cart-placeholder .cart-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background-color: var(--sage);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 0.625rem;
+    font-weight: bold;
+    position: absolute;
+    top: -6px;
+    right: -8px;
+}
+.cart-placeholder .cart-todo {
+    font-size: 0.75rem;
+    color: var(--sage);
+    font-style: italic;
+}
+
+/* ── Main shop wrapper ── */
+.shop-wrap {
+    background-color: var(--ecru);
+    flex: 1;
+    padding: 0 0 60px 0;
+}
+.shop-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+/* ── Section header band ── */
+.shop-section-header {
+    background-color: #fff;
+    border-bottom: 3px solid var(--sage);
+    padding: 28px 0 16px 0;
+    margin: 40px 0 28px 0;
+}
+.shop-section-header h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.5rem;
+    font-weight: normal;
+    color: #09497a;
+    margin: 0 0 4px 0;
+}
+.shop-section-header p {
+    font-size: 0.875rem;
+    color: var(--charcoal);
+    margin: 0;
+    opacity: 0.75;
+}
+
+/* ── Product grid ── */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+/* ── Product card ── */
+.product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    position: relative;
+}
+.product-card:hover {
+    border-color: var(--sage);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+/* image area */
+.product-card__img-wrap {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background-color: #f5f5f5;
+    position: relative;
+}
+.product-card__img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.2s ease;
+}
+.product-card:hover .product-card__img-wrap img {
+    transform: scale(1.03);
+}
+/* book covers: contain so full cover shows */
+.product-card.is-book .product-card__img-wrap {
+    background-color: #ece8e0;
+}
+.product-card.is-book .product-card__img-wrap img {
+    object-fit: contain;
+    padding: 12px;
+}
+
+/* badge */
+.product-card__badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: var(--ecru);
+    color: #09497a;
+    font-size: 0.625rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+/* card body */
+.product-card__body {
+    padding: 14px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 6px;
+}
+.product-card__title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 0.9375rem;
+    color: var(--charcoal);
+    font-weight: normal;
+    margin: 0;
+    line-height: 1.35;
+}
+.product-card__meta {
+    font-size: 0.75rem;
+    color: var(--charcoal);
+    opacity: 0.6;
+    margin: 0;
+}
+.product-card__desc {
+    font-size: 0.8125rem;
+    color: var(--charcoal);
+    line-height: 1.5;
+    margin: 0;
+    flex: 1;
+    /* clamp to 3 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* swatches */
+.product-card__swatches {
+    display: flex;
+    gap: 6px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.product-card__swatches .swatch-label {
+    font-size: 0.6875rem;
+    color: var(--charcoal);
+    opacity: 0.6;
+    margin-right: 2px;
+}
+.swatch {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1.5px solid #ccc;
+    cursor: pointer;
+    transition: outline 0.1s;
+    display: inline-block;
+}
+.swatch.active {
+    outline: 2px solid var(--sage);
+    outline-offset: 2px;
+}
+.swatch.swatch-navy  { background-color: #09497a; }
+.swatch.swatch-white { background-color: #ffffff; border-color: #bbb; }
+.swatch.swatch-washout { background-color: #7fa8c4; }
+.swatch.swatch-natural { background-color: #e8e1c8; border-color: #bbb; }
+
+/* price + button row */
+.product-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    gap: 8px;
+}
+.product-card__price {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--charcoal);
+}
+.btn-add-cart {
+    background-color: var(--sage);
+    color: #ffffff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: filter 0.15s, transform 0.15s;
+    white-space: nowrap;
+}
+.btn-add-cart:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+body.dark-mode .btn-add-cart { background-color: #a8b361; color: #121212; }
+
+/* "Also in" cross-link for Blood Stained Feathers */
+.product-card__crosslink {
+    font-size: 0.6875rem;
+    color: #09497a;
+    opacity: 0.7;
+    margin-top: 2px;
+}
+body.dark-mode .product-card__crosslink { color: #8ab0c9; }
+
+/* section divider */
+.section-divider {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 48px 0 0 0;
+}
+
+/* caps placeholder card */
+.product-card.is-placeholder .product-card__img-wrap {
+    background-color: var(--light-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.placeholder-text {
+    font-size: 0.8125rem;
+    color: #09497a;
+    opacity: 0.6;
+    text-align: center;
+    padding: 16px;
+    font-style: italic;
+}
+
+/* TODO callout */
+.todo-note {
+    display: inline-block;
+    background-color: #fff3cd;
+    border: 1px solid #ffc107;
+    color: #856404;
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .page-title-band { padding: 30px 20px; }
+    .page-title-band h1 { font-size: 1.75rem; }
+    .shop-inner { padding: 0 16px; }
+    .product-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
+    .cart-placeholder { padding: 10px 16px; }
+}
+@media (max-width: 480px) {
+    .product-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="site-header"></div>
+
+<!-- PAGE TITLE BAND -->
+<div class="page-title-band">
+    <h1>JewishGen Shop</h1>
+    <p class="hero-subtitle">Support our mission while celebrating Jewish genealogy. Purchases help fund research, translations, and databases that connect families around the world.</p>
+</div>
+
+<!-- CART PLACEHOLDER STRIP -->
+<div class="cart-placeholder">
+    <span class="cart-todo">[TODO: cart integration — Shopify]</span>
+    <span style="position:relative; font-size:1.25rem; cursor:pointer;" aria-label="Shopping cart" role="img">
+        &#128722;
+        <span class="cart-count">0</span>
+    </span>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="shop-wrap">
+<div class="shop-inner">
+
+    <!-- ======================================================
+         SECTION 1: SWAG
+    ====================================================== -->
+    <div class="shop-section-header">
+        <h2>Swag</h2>
+        <p>JewishGen &amp; JG40 anniversary apparel and accessories</p>
+    </div>
+
+    <div class="product-grid">
+
+        <!-- JewishGen Sweatshirt (navy) -->
+        <div class="product-card" id="sweatshirt-jg">
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/JG_S_N.jpg" alt="JewishGen Sweatshirt in navy with logo on front" id="sweatshirt-jg-img">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">JewishGen Hoodie</h3>
+                <p class="product-card__meta">Unisex pullover hoodie</p>
+                <p class="product-card__desc">Classic JewishGen logo hoodie — the global home for Jewish genealogy, in comfortable pullover style.</p>
+                <div class="product-card__swatches">
+                    <span class="swatch-label">Color:</span>
+                    <span class="swatch swatch-navy active" title="Navy"
+                        onclick="swapImg('sweatshirt-jg-img','https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/JG_S_N.jpg'); setActive(this,'sweatshirt-jg')" role="radio" aria-checked="true" aria-label="Navy" tabindex="0"></span>
+                    <span class="swatch swatch-white" title="White"
+                        onclick="swapImg('sweatshirt-jg-img','https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/JG_S_Wh.jpg'); setActive(this,'sweatshirt-jg')" role="radio" aria-checked="false" aria-label="White" tabindex="0"></span>
+                    <span class="swatch swatch-washout" title="Washout"
+                        onclick="swapImg('sweatshirt-jg-img','https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/JG_S_Wo.jpg'); setActive(this,'sweatshirt-jg')" role="radio" aria-checked="false" aria-label="Washout" tabindex="0"></span>
+                </div>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$TBD</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- JG40 Sweatshirt -->
+        <div class="product-card" id="sweatshirt-jg40">
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/JG_S_N2.jpg" alt="JG40 Anniversary Hoodie in navy with JG40 logo on back" id="sweatshirt-jg40-img">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">JG40 Anniversary Hoodie</h3>
+                <p class="product-card__meta">Unisex pullover hoodie</p>
+                <p class="product-card__desc">Celebrate 40 years of JewishGen with this commemorative hoodie featuring the JG40 logo.</p>
+                <div class="product-card__swatches">
+                    <span class="swatch-label">Color:</span>
+                    <span class="swatch swatch-navy active" title="Navy"
+                        onclick="swapImg('sweatshirt-jg40-img','https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/JG_S_N2.jpg'); setActive(this,'sweatshirt-jg40')" role="radio" aria-checked="true" aria-label="Navy" tabindex="0"></span>
+                    <span class="swatch swatch-white" title="White"
+                        onclick="swapImg('sweatshirt-jg40-img','https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/JG_S_W2.jpg'); setActive(this,'sweatshirt-jg40')" role="radio" aria-checked="false" aria-label="White" tabindex="0"></span>
+                </div>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$TBD</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- T-Shirts -->
+        <div class="product-card" id="tshirt">
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/JG_T_N.jpg" alt="JewishGen T-shirt in navy" id="tshirt-img">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">JewishGen T-Shirt</h3>
+                <p class="product-card__meta">Unisex crewneck tee</p>
+                <p class="product-card__desc">Lightweight crewneck tee with the JewishGen logo. Available in three colorways.</p>
+                <div class="product-card__swatches">
+                    <span class="swatch-label">Color:</span>
+                    <span class="swatch swatch-navy active" title="Navy"
+                        onclick="swapImg('tshirt-img','https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/JG_T_N.jpg'); setActive(this,'tshirt')" role="radio" aria-checked="true" aria-label="Navy" tabindex="0"></span>
+                    <span class="swatch swatch-white" title="White"
+                        onclick="swapImg('tshirt-img','https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/JG_T_Wh.jpg'); setActive(this,'tshirt')" role="radio" aria-checked="false" aria-label="White" tabindex="0"></span>
+                    <span class="swatch swatch-washout" title="Washout"
+                        onclick="swapImg('tshirt-img','https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/JG_T_Wo.jpg'); setActive(this,'tshirt')" role="radio" aria-checked="false" aria-label="Washout" tabindex="0"></span>
+                </div>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$TBD</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mug - JewishGen logo -->
+        <div class="product-card" id="mug-jg">
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/mug_logo.jpg" alt="JewishGen logo ceramic mug">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">JewishGen Mug</h3>
+                <p class="product-card__meta">11 oz. ceramic mug</p>
+                <p class="product-card__desc">Start your morning research sessions with the JewishGen logo mug.</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$TBD</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mug - JG40 -->
+        <div class="product-card" id="mug-jg40">
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/mug_YouDontJG40.jpg" alt="JG40 anniversary mug with 'You don't look a day over 5787' slogan" id="mug-jg40-img">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">JG40 Anniversary Mug</h3>
+                <p class="product-card__meta">11 oz. ceramic mug</p>
+                <p class="product-card__desc">&#8220;You don&#8217;t look a day over 5787!&#8221; Commemorating 40 years of JewishGen.</p>
+                <div class="product-card__swatches">
+                    <span class="swatch-label">Style:</span>
+                    <span class="swatch swatch-white active" title="Plain" style="background-image: none;"
+                        onclick="swapImg('mug-jg40-img','https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/mug_JG40.jpg'); setActive(this,'mug-jg40')" role="radio" aria-checked="false" aria-label="No text" tabindex="0"></span>
+                    <span class="swatch" title="With text" style="background-color:#dce5ea; border-color:#aac;"
+                        onclick="swapImg('mug-jg40-img','https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/mug_YouDontJG40.jpg'); setActive(this,'mug-jg40')" role="radio" aria-checked="true" aria-label="With slogan" tabindex="0"></span>
+                </div>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$TBD</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tote -->
+        <div class="product-card" id="tote">
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/Tote_YouDontJG40.jpg" alt="Natural canvas tote bag with JG40 logo and 'You don't look a day over 5787'">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">JG40 Canvas Tote</h3>
+                <p class="product-card__meta">Natural canvas tote bag</p>
+                <p class="product-card__desc">Sturdy natural canvas tote with the JG40 anniversary design. Perfect for conferences and archives.</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$TBD</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Baby onesie -->
+        <div class="product-card" id="onesie">
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/Onesie_NewLeaf.jpg" alt="White baby onesie with 'New Leaf on the Family Tree' design">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">&#8220;New Leaf&#8221; Baby Onesie</h3>
+                <p class="product-card__meta">Infant bodysuit</p>
+                <p class="product-card__desc">&#8220;New Leaf on the Family Tree&#8221; &#8212; the perfect gift for the newest member of the mishpacha.</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$TBD</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Baseball caps placeholder -->
+        <div class="product-card is-placeholder" id="caps">
+            <div class="product-card__img-wrap">
+                <div class="placeholder-text">Baseball cap photo<br>coming soon</div>
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">JewishGen Baseball Cap</h3>
+                <p class="product-card__meta">Adjustable structured cap</p>
+                <p class="product-card__desc">JewishGen logo embroidered cap. Available in multiple colorways.</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$TBD</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notebook placeholder -->
+        <div class="product-card is-placeholder">
+            <div class="product-card__img-wrap">
+                <div class="placeholder-text">Notebook photo<br>coming soon</div>
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">JewishGen Research Notebook</h3>
+                <p class="product-card__meta">Softcover notebook</p>
+                <p class="product-card__desc">A beautiful notebook for keeping your family research notes.</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$TBD</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pen placeholder -->
+        <div class="product-card is-placeholder">
+            <div class="product-card__img-wrap">
+                <div class="placeholder-text">Pen/pencil photo<br>coming soon</div>
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">JewishGen Pen Set</h3>
+                <p class="product-card__meta">Set of 2</p>
+                <p class="product-card__desc">Branded pens for the serious genealogist.</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$TBD</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /product-grid swag -->
+
+    <hr class="section-divider">
+
+    <!-- ======================================================
+         SECTION 2: YIZKOR BOOKS IN PRINT
+    ====================================================== -->
+    <div class="shop-section-header">
+        <h2>Yizkor Books in Print</h2>
+        <p>Published by JewishGen Press — printed translations of Jewish memorial books</p>
+    </div>
+
+    <div class="product-grid">
+
+        <!-- Jews of Kishinev -->
+        <div class="product-card is-book">
+            <div class="product-card__badge">Yizkor Book</div>
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/YB_Kishinev.jpg" alt="Book cover: Jews of Kishinev (Chisinau, Moldova)">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">Jews of Kishinev</h3>
+                <p class="product-card__meta">Chisinau, Moldova &mdash; Hard cover, 266 pp.</p>
+                <p class="product-card__desc">Translation of <em>Yehudei Kishinev</em>. Documents the vibrant Jewish community of Kishinev from the 19th century through the devastating pogroms of 1903 and 1905 and the Holocaust.</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$39.00</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nowy Zmigrod -->
+        <div class="product-card is-book">
+            <div class="product-card__badge">Yizkor Book</div>
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/YB_NowyZmigrod.jpg" alt="Book cover: Memorial Book of Nowy Zmigrod, Galicia, Poland">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">Memorial Book of Nowy Zmigrod</h3>
+                <p class="product-card__meta">Galicia, Poland &mdash; Hard cover, 332 pp.</p>
+                <p class="product-card__desc">Commemorates the once-vital Jewish community of Nowy Zmigrod in the Carpathian mountains of Galicia, a community that was entirely destroyed in the Holocaust.</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$38.00</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rovno -->
+        <div class="product-card is-book">
+            <div class="product-card__badge">Yizkor Book</div>
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/YB_Rovno.jpg" alt="Book cover: Rovno Memorial Book, Rivne, Ukraine">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">Rovno Memorial Book</h3>
+                <p class="product-card__meta">Rivne, Ukraine &mdash; Hard cover, 1,022 pp.</p>
+                <p class="product-card__desc">Translation of <em>Rowne; sefer zikaron</em>. A monumental record of the largest Jewish community in Volhynia, its glorious past and the tragedy of its destruction.</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$60.00</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Blood Stained Feathers -->
+        <div class="product-card is-book">
+            <div class="product-card__badge">Yizkor Book</div>
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/YB_BloodStainedFeathers.jpg" alt="Book cover: Blood Stained Feathers, the story of a Shoah survivor by Mordechai Lustig">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">Blood Stained Feathers</h3>
+                <p class="product-card__meta">By Mordechai Lustig &mdash; Hard cover, 414 pp.</p>
+                <p class="product-card__desc">The harrowing memoir of a Shoah survivor from Nowy S&#261;cz, Poland &mdash; one of the few concentration camp survivors who bore witness to the destruction of his entire family.</p>
+                <p class="product-card__crosslink">&#8594; Also in: JewishGen Press</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$43.00</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /product-grid yizkor -->
+
+    <hr class="section-divider">
+
+    <!-- ======================================================
+         SECTION 3: JEWISHGEN PRESS
+    ====================================================== -->
+    <div class="shop-section-header">
+        <h2>JewishGen Press</h2>
+        <p>Original histories, memoirs, and community studies published by JewishGen</p>
+    </div>
+
+    <div class="product-grid">
+
+        <!-- An American Tale -->
+        <div class="product-card is-book">
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/AnAmericanTale_book.jpg" alt="Book cover: An American Tale, the Real Moskovitch Family Journey">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">An American Tale</h3>
+                <p class="product-card__meta">Howard I. Schwartz, PhD &mdash; 8.5&#x22;&#xd7;11&#x22;, 206 pp.</p>
+                <p class="product-card__desc">A historian unearths the remarkable story of his family&#8217;s immigration from Tsarist Russia to America, recovering lost details from existing records into a rich family narrative.</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$35.00</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Krakow Women -->
+        <div class="product-card is-book">
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/Krakow_Women_book.jpg" alt="Book cover: Krakow, the Jewish Community and Women, Five Centuries of Change">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">Krak&#xf3;w: The Jewish Community and Women</h3>
+                <p class="product-card__meta">Geoffrey M. Weisgard &mdash; 6.14&#x22;&#xd7;9.21&#x22;, 246 pp.</p>
+                <p class="product-card__desc">Five centuries of Jewish women&#8217;s lives in Krak&#xf3;w &mdash; their changing economic, religious, and social roles from the early modern period to today.</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$34.00 / $29.00</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Blood Stained Feathers (cross-listed) -->
+        <div class="product-card is-book">
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/YB_BloodStainedFeathers.jpg" alt="Book cover: Blood Stained Feathers, the story of a Shoah survivor by Mordechai Lustig">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">Blood Stained Feathers</h3>
+                <p class="product-card__meta">By Mordechai Lustig &mdash; Hard cover, 414 pp.</p>
+                <p class="product-card__desc">The harrowing memoir of a Shoah survivor from Nowy S&#261;cz, Poland &mdash; one of the few concentration camp survivors who bore witness to the destruction of his entire family.</p>
+                <p class="product-card__crosslink">&#8594; Also in: Yizkor Books in Print</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$43.00</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /product-grid press -->
+
+    <hr class="section-divider">
+
+    <!-- ======================================================
+         SECTION 4: RESEARCH TOOLS
+    ====================================================== -->
+    <div class="shop-section-header">
+        <h2>Research Tools</h2>
+        <p>Handbooks, guides, and workbooks to support your genealogy research</p>
+    </div>
+
+    <div class="product-grid">
+
+        <!-- Jews of Galicia -->
+        <div class="product-card is-book">
+            <div class="product-card__badge">Research Aid</div>
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/Galicia_book.jpg" alt="Book cover: The Jews of Galicia, A Genealogy Handbook by Suzan Wynne">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">The Jews of Galicia: A Genealogy Handbook</h3>
+                <p class="product-card__meta">Suzan Wynne &mdash; 6&#x22;&#xd7;9&#x22;, 324 pp. softcover</p>
+                <p class="product-card__desc">An essential guide to the geography, history, and records for descendants of Jewish Galitzianers. Covers vital records, surname acquisition, and the Galician Gazetteer.</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$26.00</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- What's in a Name -->
+        <div class="product-card is-book">
+            <div class="product-card__badge">Research Aid</div>
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/WhatsInAName_book.jpg" alt="Book cover: What's in a Name? A Young Person's Jewish Genealogy Workbook">
+                <!-- NOTE: using placeholder - swap with correct What's in a Name image -->
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/WhatsInAName_book.jpg" alt="Book cover: What's in a Name? A Young Person's Jewish Genealogy Workbook" style="display:none" id="wian-real">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">What&#8217;s in a Name?</h3>
+                <p class="product-card__meta">Cohen &amp; Alter &mdash; 8.5&#x22;&#xd7;11&#x22;, 154 pp.</p>
+                <p class="product-card__desc">A genealogy workbook for young people just starting their Jewish roots journey. Covers documents, naming customs, languages, and family stories. A keepsake when completed.</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$28.00</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Krakow Sources -->
+        <div class="product-card is-book">
+            <div class="product-card__badge">Research Aid</div>
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/Krakow_Info_book.jpg" alt="Book cover: Krakow, Sources of Information for Jewish Genealogy and History">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">Krak&#xf3;w: Sources of Information for Jewish Genealogy</h3>
+                <p class="product-card__meta">Geoffrey Weisgard &mdash; 6.14&#x22;&#xd7;9.21&#x22;, 208 pp.</p>
+                <p class="product-card__desc">A researcher&#8217;s guide to Jewish records in Krak&#xf3;w from 1790&#8211;1939, including a 20-mile regional survey of surrounding shtetlach and villages.</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$33.00 / $28.00</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kaushany -->
+        <div class="product-card is-book">
+            <div class="product-card__badge">Research Aid</div>
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/Kaushany_Info_book.jpg" alt="Book cover: Jewish Families in Shtetl Kaushany, Bessarabia">
+                <!-- NOTE: swap with correct Kaushany cover image -->
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">Jewish Families in Shtetl Kaushany, Bessarabia</h3>
+                <p class="product-card__meta">Yefim Kogan &mdash; 8.5&#x22;&#xd7;11&#x22;, 220 pp. hardcover</p>
+                <p class="product-card__desc">Five centuries of Jewish genealogy, history, and culture in Kaushany (C&#259;u&#x15F;eni, Moldova) &mdash; drawn from archival documents, family memoirs, and photographs.</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$43.00</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /product-grid research -->
+
+</div><!-- /shop-inner -->
+</main>
+
+<!-- FOOTER -->
+<div id="site-footer"></div>
+
+<script>
+// Component loader
+function loadComponent(id, url) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    fetch(url).then(function(r){ return r.text(); }).then(function(html){
+        el.innerHTML = html;
+    }).catch(function(){});
+}
+loadComponent('site-header', 'https://effortlesslycat-ship-it.github.io/JG40-Build/Header_NavBar.html');
+loadComponent('site-footer', 'https://effortlesslycat-ship-it.github.io/JG40-Build/Footer.html');
+
+// Swatch image swap
+function swapImg(imgId, src) {
+    var img = document.getElementById(imgId);
+    if (img) img.src = src;
+}
+
+// Set active swatch within a card
+function setActive(clickedSwatch, cardId) {
+    var card = document.getElementById(cardId);
+    if (!card) return;
+    var swatches = card.querySelectorAll('.swatch');
+    swatches.forEach(function(s) {
+        s.classList.remove('active');
+        s.setAttribute('aria-checked', 'false');
+    });
+    clickedSwatch.classList.add('active');
+    clickedSwatch.setAttribute('aria-checked', 'true');
+}
+
+// Keyboard support for swatches
+document.addEventListener('keydown', function(e) {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('swatch')) {
+        e.preventDefault();
+        e.target.click();
+    }
+});
+</script>
+</body>
+</html>
