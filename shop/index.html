@@ -109,15 +109,31 @@ body.dark-mode .shop-hero-band { background-color: #121212 !important; }
     align-items: center;
 }
 
-/* Left: collection panel — navy card on ecru */
+/* Left: collection panel — navy card on ecru with depth */
 .hero-collection-panel {
     background-color: #09497a;
+    background-image:
+        url('https://effortlesslycat-ship-it.github.io/JG40-Build/JGStarT.png'),
+        linear-gradient(135deg, #0b5a94 0%, #09497a 40%, #073560 100%);
+    background-repeat: no-repeat, no-repeat;
+    background-position: right -60px bottom -80px, 0 0;
+    background-size: 320px auto, 100% 100%;
     border-radius: 10px;
     padding: 36px 40px;
     border: none;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    border-top: 3px solid #C7CC82;
+    box-shadow:
+        0 6px 24px rgba(0,0,0,0.18),
+        0 2px 6px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
 }
-body.dark-mode .hero-collection-panel { background-color: #0d2a45 !important; }
+body.dark-mode .hero-collection-panel {
+    background-color: #0d2a45;
+    background-image:
+        url('https://effortlesslycat-ship-it.github.io/JG40-Build/JGStarT.png'),
+        linear-gradient(135deg, #102e47 0%, #0d2a45 40%, #091e33 100%);
+}
 .hero-collection-panel__eyebrow {
     display: block;
     font-size: 0.75rem;
@@ -482,6 +498,14 @@ body.dark-mode .btn-add-cart { background-color: #a8b361; color: #121212; }
     <p class="hero-subtitle">Support our mission while celebrating Jewish genealogy. Every purchase helps fund research, translations, and databases that connect families worldwide.</p>
 </div>
 
+<!-- SECTION NAV (JOWBR-style centered tab bar) -->
+<div role="navigation" class="shop-section-nav" aria-label="Shop sections">
+    <a href="#section-swag">Swag</a>
+    <a href="#section-ybip">Yizkor Books in Print</a>
+    <a href="#section-press">JewishGen Press</a>
+    <a href="#section-research">Research Tools</a>
+</div>
+
 <!-- SPOTLIGHT HERO -->
 <div class="shop-hero-band">
     <div class="shop-hero-inner">
@@ -516,14 +540,6 @@ body.dark-mode .btn-add-cart { background-color: #a8b361; color: #121212; }
 
     </div>
 </div><!-- /shop-hero-band -->
-
-<!-- SECTION NAV (JOWBR-style centered tab bar) -->
-<div role="navigation" class="shop-section-nav" aria-label="Shop sections">
-    <a href="#section-swag">Swag</a>
-    <a href="#section-ybip">Yizkor Books in Print</a>
-    <a href="#section-press">JewishGen Press</a>
-    <a href="#section-research">Research Tools</a>
-</div>
 
 <!-- MAIN CONTENT -->
 <main class="shop-wrap">
