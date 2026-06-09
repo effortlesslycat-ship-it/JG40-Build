@@ -35,48 +35,45 @@ a { text-decoration: none; color: inherit; }
     line-height: 1.55;
 }
 
-/* ── Shop section nav ── */
+/* ── Shop section nav (JOWBR-style centered tab bar) ── */
 .shop-section-nav {
-    background-color: #f7f4f2;
-    border-bottom: 1px solid #ddd;
-    padding: 0 40px;
-}
-.shop-section-nav__inner {
-    max-width: 1100px;
-    margin: 0 auto;
+    background-color: #ffffff;
+    border-bottom: 2px solid #e8e1d1;
+    padding: 0 50px;
     display: flex;
-    gap: 4px;
-    align-items: stretch;
+    justify-content: center;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+body.dark-mode .shop-section-nav {
+    background-color: #121212;
+    border-bottom-color: #333;
 }
 .shop-section-nav a {
     display: inline-block;
-    padding: 13px 20px;
-    font-size: 0.8125rem;
-    font-weight: bold;
+    padding: 13px 18px;
+    font-size: 0.875rem;
+    font-weight: 600;
     color: #232b2b;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
     border-bottom: 3px solid transparent;
-    transition: color 0.15s, border-color 0.15s;
     white-space: nowrap;
     text-decoration: none;
+    transition: color 0.15s, border-color 0.15s;
 }
 .shop-section-nav a:hover {
     color: #09497a;
     border-bottom-color: #939b51;
 }
-.shop-section-nav a:focus-visible {
-    outline: 2px solid #939b51;
-    outline-offset: -2px;
+body.dark-mode .shop-section-nav a { color: #a0a0a0; }
+body.dark-mode .shop-section-nav a:hover {
+    color: #e0e0e0;
+    border-bottom-color: #a8b361;
 }
 
-/* ── Dark mode overrides ── */
+/* ── Dark mode: title band + hero ── */
 body.dark-mode .page-title-band { background-color: #0d2a45 !important; }
 body.dark-mode .page-title-band h1 { color: #ffffff !important; }
 body.dark-mode .page-title-band p.hero-subtitle { color: rgba(255,255,255,0.78) !important; }
-body.dark-mode .shop-section-nav { background-color: #1a1a1a !important; border-bottom-color: #333 !important; }
-body.dark-mode .shop-section-nav a { color: #c8c8c8 !important; }
-body.dark-mode .shop-section-nav a:hover { color: #a8b361 !important; border-bottom-color: #a8b361 !important; }
 body.dark-mode .shop-hero-band { background-color: #0d2a45 !important; }
 body.dark-mode .shop-wrap { background-color: #121212 !important; }
 body.dark-mode .shop-section-header h2 { color: #e0e0e0 !important; }
@@ -458,9 +455,7 @@ body.dark-mode .btn-add-cart { background-color: #a8b361; color: #121212; }
 @media (max-width: 768px) {
     .page-title-band { padding: 22px 20px; }
     .page-title-band h1 { font-size: 1.625rem; }
-    .shop-section-nav { padding: 0 16px; overflow-x: auto; }
-    .shop-section-nav__inner { gap: 0; }
-    .shop-section-nav a { padding: 12px 14px; font-size: 0.75rem; }
+    .shop-section-nav { padding: 0 20px; }
     .shop-hero-band { padding: 32px 20px; }
     .shop-hero-inner { grid-template-columns: 1fr; gap: 24px; }
     .hero-product-card { max-width: 320px; margin: 0 auto; }
@@ -483,16 +478,6 @@ body.dark-mode .btn-add-cart { background-color: #a8b361; color: #121212; }
 <div class="page-title-band">
     <h1>JewishGen Shop</h1>
     <p class="hero-subtitle">Support our mission while celebrating Jewish genealogy. Every purchase helps fund research, translations, and databases that connect families worldwide.</p>
-</div>
-
-<!-- SECTION NAV -->
-<div class="shop-section-nav" role="navigation" aria-label="Shop sections">
-    <div class="shop-section-nav__inner">
-        <a href="#section-swag">Swag</a>
-        <a href="#section-ybip">Yizkor Books in Print</a>
-        <a href="#section-press">JewishGen Press</a>
-        <a href="#section-research">Research Tools</a>
-    </div>
 </div>
 
 <!-- SPOTLIGHT HERO -->
@@ -529,6 +514,14 @@ body.dark-mode .btn-add-cart { background-color: #a8b361; color: #121212; }
 
     </div>
 </div><!-- /shop-hero-band -->
+
+<!-- SECTION NAV (JOWBR-style centered tab bar) -->
+<div role="navigation" class="shop-section-nav" aria-label="Shop sections">
+    <a href="#section-swag">Swag</a>
+    <a href="#section-ybip">Yizkor Books in Print</a>
+    <a href="#section-press">JewishGen Press</a>
+    <a href="#section-research">Research Tools</a>
+</div>
 
 <!-- MAIN CONTENT -->
 <main class="shop-wrap">
