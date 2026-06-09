@@ -97,15 +97,15 @@ body.dark-mode .product-card__badge { background-color: #2a2a2a !important; colo
 /* ── Spotlight hero ── */
 .shop-hero-band {
     background-color: #f7f4f2;
-    padding: 40px 40px 44px;
+    padding: 32px 40px 36px;
 }
 body.dark-mode .shop-hero-band { background-color: #121212 !important; }
 .shop-hero-inner {
     max-width: 1100px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 320px;
-    gap: 36px;
+    grid-template-columns: 1fr 260px;
+    gap: 32px;
     align-items: center;
 }
 
@@ -113,7 +113,7 @@ body.dark-mode .shop-hero-band { background-color: #121212 !important; }
 .hero-collection-panel {
     background: linear-gradient(135deg, #0b5a94 0%, #09497a 40%, #073560 100%);
     border-radius: 10px;
-    padding: 36px 40px;
+    padding: 28px 32px;
     border: none;
     border-top: 3px solid #C7CC82;
     box-shadow:
@@ -136,7 +136,7 @@ body.dark-mode .hero-collection-panel {
 }
 .hero-collection-panel h2 {
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: 2.25rem;
+    font-size: 1.875rem;
     font-weight: normal;
     color: #ffffff;
     margin: 0 0 14px 0;
@@ -146,16 +146,16 @@ body.dark-mode .hero-collection-panel {
     font-size: 0.9375rem;
     color: rgba(255,255,255,0.82);
     line-height: 1.65;
-    margin: 0 0 28px 0;
+    margin: 0 0 20px 0;
 }
 .hero-collection-imgs {
     display: flex;
-    gap: 10px;
-    margin-bottom: 28px;
+    gap: 8px;
+    margin-bottom: 22px;
 }
 .hero-collection-imgs img {
-    width: 72px;
-    height: 72px;
+    width: 60px;
+    height: 60px;
     object-fit: cover;
     border-radius: 6px;
     border: 2px solid rgba(255,255,255,0.2);
@@ -190,12 +190,12 @@ body.dark-mode .hero-collection-panel {
 body.dark-mode .hero-product-card { background-color: #1e1e1e !important; border-color: #333 !important; }
 .hero-product-card__img {
     width: 100%;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 4 / 3;
     object-fit: cover;
     display: block;
 }
 .hero-product-card__body {
-    padding: 18px 20px 20px;
+    padding: 14px 16px 16px;
 }
 .hero-product-card__eyebrow {
     font-size: 0.6875rem;
@@ -467,13 +467,13 @@ body.dark-mode .btn-add-cart { background-color: #a8b361; color: #121212; }
     .shop-section-nav { padding: 0 20px; }
     .shop-hero-band { padding: 32px 20px; }
     .shop-hero-inner { grid-template-columns: 1fr; gap: 24px; }
-    .hero-product-card { max-width: 320px; margin: 0 auto; }
+    .hero-product-card { max-width: 260px; margin: 0 auto; }
     .shop-inner { padding: 0 16px; }
     .product-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
     .shop-section-header { padding-top: 24px; }
 }
 @media (max-width: 480px) {
-    .hero-collection-panel h2 { font-size: 1.75rem; }
+    .hero-collection-panel h2 { font-size: 1.5rem; }
     .product-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
 }
 </style>
@@ -491,7 +491,9 @@ body.dark-mode .btn-add-cart { background-color: #a8b361; color: #121212; }
 
 <!-- SECTION NAV (JOWBR-style centered tab bar) -->
 <div role="navigation" class="shop-section-nav" aria-label="Shop sections">
-    <a href="#section-swag">Swag</a>
+    <a href="#section-picks">Staff Picks</a>
+    <a href="#section-latest">Latest Publications</a>
+    <a href="#section-gear">JewishGen Gear</a>
     <a href="#section-ybip">Yizkor Books in Print</a>
     <a href="#section-press">JewishGen Press</a>
     <a href="#section-research">Research Tools</a>
@@ -537,14 +539,179 @@ body.dark-mode .btn-add-cart { background-color: #a8b361; color: #121212; }
 <div class="shop-inner">
 
     <!-- ======================================================
-         SWAG
+         STAFF PICKS
     ====================================================== -->
-    <div class="shop-section-header" id="section-swag">
+    <div class="shop-section-header" id="section-picks">
         <div class="shop-section-header__left">
-            <h2>Swag</h2>
+            <h2>Staff Picks</h2>
+            <p>Curated favorites from the JewishGen team</p>
+        </div>
+    </div>
+
+    <div class="product-grid">
+
+        <div class="product-card">
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/mug_YouDontJG40.jpg"
+                     alt="JG40 Anniversary Mug">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">JG40 Anniversary Mug</h3>
+                <p class="product-card__meta">11 oz. ceramic mug</p>
+                <p class="product-card__desc">&#8220;You don&#8217;t look a day over 5787!&#8221;</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$TBD</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card is-book">
+            <div class="product-card__badge">Research Aid</div>
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/Galicia_book.jpg"
+                     alt="Book cover: The Jews of Galicia">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">The Jews of Galicia: A Genealogy Handbook</h3>
+                <p class="product-card__meta">Suzan Wynne &mdash; 324 pp.</p>
+                <p class="product-card__desc">The essential guide for descendants of Jewish Galitzianers.</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$26.00</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card is-book">
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/Krakow_Women_book.jpg"
+                     alt="Book cover: Krakow, the Jewish Community and Women">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">Krak&#xf3;w: The Jewish Community and Women</h3>
+                <p class="product-card__meta">Geoffrey M. Weisgard &mdash; 246 pp.</p>
+                <p class="product-card__desc">Five centuries of Jewish women&#8217;s lives in Krak&#xf3;w.</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$34.00 / $29.00</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/Tote_YouDontJG40.jpg"
+                     alt="JG40 Canvas Tote">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">JG40 Canvas Tote</h3>
+                <p class="product-card__meta">Natural canvas tote bag</p>
+                <p class="product-card__desc">Perfect for conferences and archive visits.</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$TBD</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /product-grid picks -->
+
+    <hr class="section-divider">
+
+    <!-- ======================================================
+         LATEST PUBLICATIONS
+    ====================================================== -->
+    <div class="shop-section-header" id="section-latest">
+        <div class="shop-section-header__left">
+            <h2>Latest Publications</h2>
+            <p>The newest Yizkor book translations and JewishGen Press titles</p>
+        </div>
+    </div>
+
+    <div class="product-grid">
+
+        <div class="product-card is-book">
+            <div class="product-card__badge">New</div>
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/YB_Rovno.jpg"
+                     alt="Book cover: Rovno Memorial Book">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">Rovno Memorial Book</h3>
+                <p class="product-card__meta">Rivne, Ukraine &mdash; 1,022 pp.</p>
+                <p class="product-card__desc">A monumental record of the largest Jewish community in Volhynia.</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$60.00</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card is-book">
+            <div class="product-card__badge">New</div>
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/Kaushany_Info_book.jpg"
+                     alt="Book cover: Jewish Families in Shtetl Kaushany">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">Jewish Families in Shtetl Kaushany</h3>
+                <p class="product-card__meta">Yefim Kogan &mdash; 220 pp.</p>
+                <p class="product-card__desc">Five centuries of Jewish genealogy, history, and culture in Kaushany.</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$43.00</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card is-book">
+            <div class="product-card__badge">New</div>
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/Krakow_Info_book.jpg"
+                     alt="Book cover: Krakow Sources of Information">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">Krak&#xf3;w: Sources of Information for Jewish Genealogy</h3>
+                <p class="product-card__meta">Geoffrey Weisgard &mdash; 208 pp.</p>
+                <p class="product-card__desc">A researcher&#8217;s guide to Jewish records in Krak&#xf3;w.</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$33.00 / $28.00</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card is-book">
+            <div class="product-card__badge">New</div>
+            <div class="product-card__img-wrap">
+                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/AnAmericanTale_book.jpg"
+                     alt="Book cover: An American Tale">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__title">An American Tale</h3>
+                <p class="product-card__meta">Howard I. Schwartz, PhD &mdash; 206 pp.</p>
+                <p class="product-card__desc">A historian unearths his family&#8217;s immigration journey from Russia to America.</p>
+                <div class="product-card__footer">
+                    <span class="product-card__price">$35.00</span>
+                    <button class="btn-add-cart" type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /product-grid latest -->
+
+    <hr class="section-divider">
+
+    <!-- ======================================================
+         JEWISHGEN GEAR
+    ====================================================== -->
+    <div class="shop-section-header" id="section-gear">
+        <div class="shop-section-header__left">
+            <h2>JewishGen Gear</h2>
             <p>Apparel, accessories, and gifts</p>
         </div>
-        <a href="/shop/swag/" class="shop-all-link">Shop All Swag &rsaquo;</a>
+        <a href="/shop/gear/" class="shop-all-link">Shop All Gear &rsaquo;</a>
     </div>
 
     <div class="product-grid">
