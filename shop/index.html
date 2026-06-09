@@ -74,7 +74,6 @@ body.dark-mode .shop-section-nav a:hover {
 body.dark-mode .page-title-band { background-color: #0d2a45 !important; }
 body.dark-mode .page-title-band h1 { color: #ffffff !important; }
 body.dark-mode .page-title-band p.hero-subtitle { color: rgba(255,255,255,0.78) !important; }
-body.dark-mode .shop-hero-band { background-color: #0d2a45 !important; }
 body.dark-mode .shop-wrap { background-color: #121212 !important; }
 body.dark-mode .shop-section-header h2 { color: #e0e0e0 !important; }
 body.dark-mode .shop-section-header { border-bottom-color: #a8b361 !important; }
@@ -90,34 +89,35 @@ body.dark-mode .swatch.active { outline-color: #a8b361 !important; }
 body.dark-mode .section-divider { border-color: #333 !important; }
 body.dark-mode .shop-all-link { color: #8ab0c9 !important; }
 body.dark-mode .shop-all-link:hover { color: #a8b361 !important; }
-body.dark-mode .hero-product-card { background-color: #1e1e1e !important; }
 body.dark-mode .hero-product-card__name { color: #e0e0e0 !important; }
 body.dark-mode .hero-product-card__desc { color: #b0b0b0 !important; }
 body.dark-mode .hero-product-card__price { color: #a8b361 !important; }
-body.dark-mode .hero-collection-panel { background-color: #09497a !important; }
 body.dark-mode .product-card__badge { background-color: #2a2a2a !important; color: #c8c0b0 !important; border-color: #444 !important; }
 
 /* ── Spotlight hero ── */
 .shop-hero-band {
-    background-color: #09497a;
-    padding: 48px 40px;
+    background-color: #f7f4f2;
+    padding: 40px 40px 44px;
 }
+body.dark-mode .shop-hero-band { background-color: #121212 !important; }
 .shop-hero-inner {
     max-width: 1100px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 340px;
-    gap: 48px;
+    grid-template-columns: 1fr 320px;
+    gap: 36px;
     align-items: center;
 }
 
-/* Left: collection panel */
+/* Left: collection panel — navy card on ecru */
 .hero-collection-panel {
-    background-color: rgba(255,255,255,0.08);
+    background-color: #09497a;
     border-radius: 10px;
     padding: 36px 40px;
-    border: 1px solid rgba(255,255,255,0.15);
+    border: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
 }
+body.dark-mode .hero-collection-panel { background-color: #0d2a45 !important; }
 .hero-collection-panel__eyebrow {
     display: block;
     font-size: 0.75rem;
@@ -177,8 +177,10 @@ body.dark-mode .product-card__badge { background-color: #2a2a2a !important; colo
     background-color: #ffffff;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    border: 1px solid #d1caba;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
 }
+body.dark-mode .hero-product-card { background-color: #1e1e1e !important; border-color: #333 !important; }
 .hero-product-card__img {
     width: 100%;
     aspect-ratio: 1 / 1;
