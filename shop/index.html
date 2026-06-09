@@ -101,12 +101,8 @@ body.dark-mode .product-card__badge { background-color: #2a2a2a !important; colo
 }
 body.dark-mode .shop-hero-band { background-color: #121212 !important; }
 .shop-hero-inner {
-    max-width: 1100px;
+    max-width: 900px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 260px;
-    gap: 32px;
-    align-items: center;
 }
 
 /* Left: collection panel — navy card on ecru with depth */
@@ -491,19 +487,14 @@ body.dark-mode .btn-add-cart { background-color: #a8b361; color: #121212; }
 
 <!-- SECTION NAV (JOWBR-style centered tab bar) -->
 <div role="navigation" class="shop-section-nav" aria-label="Shop sections">
-    <a href="#section-picks">Staff Picks</a>
     <a href="#section-latest">Latest Publications</a>
     <a href="#section-gear">JewishGen Gear</a>
-    <a href="#section-ybip">Yizkor Books in Print</a>
-    <a href="#section-press">JewishGen Press</a>
-    <a href="#section-research">Research Tools</a>
+    <a href="#section-books">JewishGen Book Shop</a>
 </div>
 
 <!-- SPOTLIGHT HERO -->
 <div class="shop-hero-band">
     <div class="shop-hero-inner">
-
-        <!-- Left: JG40 collection panel -->
         <div class="hero-collection-panel">
             <span class="hero-collection-panel__eyebrow">New Collection</span>
             <h2>JG40 Anniversary Collection</h2>
@@ -516,108 +507,12 @@ body.dark-mode .btn-add-cart { background-color: #a8b361; color: #121212; }
             </div>
             <a href="/shop/JG40.html" class="btn-shop-collection">Shop the Collection &rsaquo;</a>
         </div>
-
-        <!-- Right: featured item -->
-        <div class="hero-product-card">
-            <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/mug_YouDontJG40.jpg"
-                 alt="JG40 mug with 'You don't look a day over 5787' — ceramic 11 oz."
-                 class="hero-product-card__img">
-            <div class="hero-product-card__body">
-                <span class="hero-product-card__eyebrow">Featured Item</span>
-                <h3 class="hero-product-card__name">JG40 Anniversary Mug</h3>
-                <p class="hero-product-card__desc">&#8220;You don&#8217;t look a day over 5787!&#8221; &#8212; 11 oz. ceramic mug.</p>
-                <span class="hero-product-card__price">$TBD</span>
-                <button class="btn-hero-cart" type="button">Add to Cart</button>
-            </div>
-        </div>
-
     </div>
 </div><!-- /shop-hero-band -->
 
 <!-- MAIN CONTENT -->
 <main class="shop-wrap">
 <div class="shop-inner">
-
-    <!-- ======================================================
-         STAFF PICKS
-    ====================================================== -->
-    <div class="shop-section-header" id="section-picks">
-        <div class="shop-section-header__left">
-            <h2>Staff Picks</h2>
-            <p>Curated favorites from the JewishGen team</p>
-        </div>
-    </div>
-
-    <div class="product-grid">
-
-        <div class="product-card">
-            <div class="product-card__img-wrap">
-                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/mug_YouDontJG40.jpg"
-                     alt="JG40 Anniversary Mug">
-            </div>
-            <div class="product-card__body">
-                <h3 class="product-card__title">JG40 Anniversary Mug</h3>
-                <p class="product-card__meta">11 oz. ceramic mug</p>
-                <p class="product-card__desc">&#8220;You don&#8217;t look a day over 5787!&#8221;</p>
-                <div class="product-card__footer">
-                    <span class="product-card__price">$TBD</span>
-                    <button class="btn-add-cart" type="button">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card is-book">
-            <div class="product-card__badge">Research Aid</div>
-            <div class="product-card__img-wrap">
-                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/Galicia_book.jpg"
-                     alt="Book cover: The Jews of Galicia">
-            </div>
-            <div class="product-card__body">
-                <h3 class="product-card__title">The Jews of Galicia: A Genealogy Handbook</h3>
-                <p class="product-card__meta">Suzan Wynne &mdash; 324 pp.</p>
-                <p class="product-card__desc">The essential guide for descendants of Jewish Galitzianers.</p>
-                <div class="product-card__footer">
-                    <span class="product-card__price">$26.00</span>
-                    <button class="btn-add-cart" type="button">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card is-book">
-            <div class="product-card__img-wrap">
-                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/Krakow_Women_book.jpg"
-                     alt="Book cover: Krakow, the Jewish Community and Women">
-            </div>
-            <div class="product-card__body">
-                <h3 class="product-card__title">Krak&#xf3;w: The Jewish Community and Women</h3>
-                <p class="product-card__meta">Geoffrey M. Weisgard &mdash; 246 pp.</p>
-                <p class="product-card__desc">Five centuries of Jewish women&#8217;s lives in Krak&#xf3;w.</p>
-                <div class="product-card__footer">
-                    <span class="product-card__price">$34.00 / $29.00</span>
-                    <button class="btn-add-cart" type="button">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="product-card__img-wrap">
-                <img src="https://effortlesslycat-ship-it.github.io/JG40-Build/shop/images/Tote_YouDontJG40.jpg"
-                     alt="JG40 Canvas Tote">
-            </div>
-            <div class="product-card__body">
-                <h3 class="product-card__title">JG40 Canvas Tote</h3>
-                <p class="product-card__meta">Natural canvas tote bag</p>
-                <p class="product-card__desc">Perfect for conferences and archive visits.</p>
-                <div class="product-card__footer">
-                    <span class="product-card__price">$TBD</span>
-                    <button class="btn-add-cart" type="button">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-    </div><!-- /product-grid picks -->
-
-    <hr class="section-divider">
 
     <!-- ======================================================
          LATEST PUBLICATIONS
