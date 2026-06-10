@@ -386,26 +386,27 @@ body.dark-mode .btn-add-cart { background-color: #a8b361; color: #121212; }
 
 /* ── JewishGen Book Store ── */
 .bookstore-header {
-    background-color: #09497a;
-    border-radius: 8px;
-    padding: 24px 32px;
-    margin: 40px 0 24px 0;
     text-align: center;
+    border-bottom: 3px solid #939b51;
+    padding: 32px 0 14px 0;
+    margin-bottom: 28px;
 }
-body.dark-mode .bookstore-header { background-color: #0d2a45 !important; }
 .bookstore-header h2 {
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1.625rem;
+    font-size: 1.75rem;
     font-weight: normal;
-    color: #ffffff;
+    color: #09497a;
     margin: 0 0 6px 0;
 }
+body.dark-mode .bookstore-header h2 { color: #e0e0e0 !important; }
 .bookstore-header p {
     font-size: 0.875rem;
-    color: rgba(255,255,255,0.8);
+    color: #232b2b;
+    opacity: 0.65;
     margin: 0;
     line-height: 1.5;
 }
+body.dark-mode .bookstore-header p { color: #a0a0a0 !important; opacity: 1; }
 
 .bookstore-grid {
     display: grid;
@@ -516,7 +517,7 @@ body.dark-mode .btn-viewall-books { background-color: #a8b361 !important; color:
     .hero-collection-panel h2 { font-size: 1.5rem; }
     .product-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
     .bookstore-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-    .bookstore-header { padding: 18px 20px; }
+    .bookstore-header { padding: 24px 0 12px 0; }
     .bookstore-header h2 { font-size: 1.375rem; }
 }
 </style>
@@ -534,8 +535,8 @@ body.dark-mode .btn-viewall-books { background-color: #a8b361 !important; color:
 
 <!-- SECTION NAV (JOWBR-style centered tab bar) -->
 <div role="navigation" class="shop-section-nav" aria-label="Shop sections">
-    <a href="#section-gear">JewishGen Gear</a>
     <a href="#section-books">JewishGen Book Store</a>
+    <a href="#section-gear">JewishGen Gear</a>
 </div>
 
 <!-- SPOTLIGHT HERO -->
@@ -619,8 +620,11 @@ body.dark-mode .btn-viewall-books { background-color: #a8b361 !important; color:
     <div class="bookstore-viewall">
         <a href="/shop/books/" class="btn-viewall-books">View All Books &rsaquo;</a>
     </div>
+
+
     <hr class="section-divider">
-        <!-- ======================================================
+
+    <!-- ======================================================
          JEWISHGEN GEAR
     ====================================================== -->
     <div class="shop-section-header" id="section-gear">
@@ -722,7 +726,6 @@ body.dark-mode .btn-viewall-books { background-color: #a8b361 !important; color:
         </div>
 
     </div><!-- /product-grid swag -->
-
 </div><!-- /shop-inner -->
 </main>
 
