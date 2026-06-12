@@ -4,8 +4,70 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JewishGen Hoodie – The JewishGen Store</title>
+<!-- 1. Bootstrap -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<!-- 2. JewishGen Global Design System -->
+<link rel="stylesheet" href="https://effortlesslycat-ship-it.github.io/JG40-Build/jg-global.css">
+<!-- 3. Page-specific styles -->
 <style>
+a { text-decoration: none; color: inherit; }
+
+/* ── Page title band ── */
+.page-title-band {
+    background-color: #09497a;
+    padding: 28px 40px;
+    text-align: center;
+}
+.page-title-band h1 {
+    margin: 0 0 6px 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2rem;
+    font-weight: normal;
+    color: #ffffff;
+    line-height: 1.15;
+}
+.page-title-band p.hero-subtitle {
+    margin: 0 auto;
+    max-width: 560px;
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.55;
+}
+    /* ── Shop section nav (JOWBR-style centered tab bar) ── */
+.shop-section-nav {
+    background-color: #ffffff;
+    border-bottom: 2px solid #e8e1d1;
+    padding: 0 50px;
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+body.dark-mode .shop-section-nav {
+    background-color: #121212;
+    border-bottom-color: #333;
+}
+.shop-section-nav a {
+    display: inline-block;
+    padding: 13px 18px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #232b2b;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: color 0.15s, border-color 0.15s;
+}
+.shop-section-nav a:hover {
+    color: #09497a;
+    border-bottom-color: #939b51;
+}
+body.dark-mode .shop-section-nav a { color: #a0a0a0; }
+body.dark-mode .shop-section-nav a:hover {
+    color: #e0e0e0;
+    border-bottom-color: #a8b361;
+}
+
     /* ── Global Styles ── */
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background-color: #f7f4f2; color: #232b2b; }
     a { text-decoration: none; color: #09497a; }
@@ -70,6 +132,20 @@
 </style>
 </head>
 <body>
+    <!-- HEADER -->
+<div id="site-header"></div>
+
+<!-- PAGE TITLE BAND -->
+<div class="page-title-band">
+    <h1>JewishGen Shop</h1>
+    <p class="hero-subtitle">Support our mission while celebrating Jewish genealogy. Every purchase helps fund research, translations, and databases that connect families worldwide.</p>
+</div>
+
+<!-- SECTION NAV (JOWBR-style centered tab bar) -->
+<div role="navigation" class="shop-section-nav" aria-label="Shop sections">
+    <a href="#section-books">JewishGen Book Store</a>
+    <a href="#section-gear">JewishGen Gear</a>
+</div>
 
 <div class="breadcrumb-bar">
     <a href="/shop">Store Home</a> <span>/</span> <a href="/shop/gear">JewishGen Gear</a> <span>/</span> JewishGen Hoodie
@@ -98,7 +174,7 @@
         <p>Stay comfortable during long research sessions. This premium unisex pullover features the classic JewishGen logo embroidered on the left chest. Made from a durable, soft cotton blend designed to last.</p>
         
         <div class="mission-callout">
-            <strong>Purchase with Purpose:</strong> 100% of the proceeds from this item directly fund the preservation of Jewish history and operations at the Kalikow Center.
+            <strong>Purchase with Purpose:</strong> Every purchase helps fund research, translations, and databases that connect families worldwide.
         </div>
 
         <div class="variant-group">
@@ -159,7 +235,19 @@
         
     </div>
 </div>
+<!-- FOOTER -->
+<div id="site-footer"></div>
 
+<script>
+function loadComponent(id, url) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    fetch(url).then(function(r){ return r.text(); }).then(function(html){
+        el.innerHTML = html;
+    }).catch(function(){});
+}
+loadComponent('site-header', 'https://effortlesslycat-ship-it.github.io/JG40-Build/Header_NavBar.html');
+loadComponent('site-footer', 'https://effortlesslycat-ship-it.github.io/JG40-Build/Footer.html');</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     function swapMainImage(thumbElement, src) {
