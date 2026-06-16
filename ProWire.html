@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My JewishGen Account &ndash; Wireframe</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<!-- Pulling live global CSS from GitHub Pages build site for wireframe fidelity -->
+<link rel="stylesheet" href="https://effortlesslycat-ship-it.github.io/jg-global.css">
+
+<style>
+/* ── Wireframe resets ── */
+a { text-decoration: none; color: inherit; }
+
+/* ── Dark mode fixes (same pattern as other pages) ── */
+body.dark-mode .page-title-band { background-color: #0d2a45 !important; }
+body.dark-mode .page-title-band h1,
+body.dark-mode .page-title-band p { color: #ffffff !important; }
+
+/* ============================================================
+   PROFILE PAGE-SPECIFIC STYLES
+   CHW - Project Shorashim profile wireframe
+   All tokens from jg-global.css :root only
+   ============================================================ */
+
+/* ── Title band tag uses .jg-tag-sage from global ── */
+.page-title-band .jg-tag-sage {
+    margin-bottom: 14px;
+    display: inline-block;
+}
+.page-title-band h1 {
+    margin: 0 0 10px 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2.25rem;
+    font-weight: normal;
+    color: #ffffff;
+}
+.page-title-band p.hero-subtitle {
+    margin: 0 auto;
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 620px;
+}
+.page-title-band {
+    background-color: #09497a;
+    padding: 44px 50px;
+    text-align: center;
+}
+
+/* ── Member ID strip below title band ── */
+.profile-id-strip {
+    background-color: var(--light-blue);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 0.8125rem;
+    color: var(--charcoal);
+    letter-spacing: 0.5px;
+}
+.profile-id-strip strong {
+    color: var(--navy);
+}
+body.dark-mode .profile-id-strip {
+    background-color: #1a2a33;
+    color: #c0c0c0;
+}
+body.dark-mode .profile-id-strip strong { color: #a8b361; }
+
+/* ── Sidebar active state override for profile nav ── */
+.rd-sidebar-card a.active {
+    color: var(--navy);
+    border-left-color: var(--navy);
+    background-color: var(--ecru);
+    font-weight: 700;
+}
+
+/* ── Section heading inside main content ── */
+.profile-section-heading {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.375rem;
+    font-weight: normal;
+    color: var(--navy);
+    margin: 0 0 0.25rem 0;
+}
+.profile-section-rule {
+    border: none;
+    border-top: 2px solid var(--sage);
+    margin: 0.5rem 0 1.5rem 0;
+    opacity: 0.8;
+}
+
+/* ── Research activity mini-cards (3-up grid) ── */
+.profile-activity-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+.profile-stat-card {
+    background: var(--white);
+    border-radius: 8px;
+    border-top: 3px solid var(--sage);
+    padding: 1.25rem 1.25rem 1rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+body.dark-mode .profile-stat-card {
+    background: #1e1e1e;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+.profile-stat-card__label {
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--charcoal);
+    opacity: 0.7;
+}
+.profile-stat-card__value {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: var(--navy);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.1;
+}
+body.dark-mode .profile-stat-card__value { color: #e0e0e0; }
+.profile-stat-card__sub {
+    font-size: 0.8125rem;
+    color: var(--charcoal);
+    opacity: 0.75;
+    margin-bottom: 0.75rem;
+    flex: 1;
+}
+.profile-stat-card__link {
+    font-size: 0.8125rem;
+    font-weight: bold;
+    color: var(--sage);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.profile-stat-card__link:hover { color: var(--navy); }
+
+/* ── Recent activity card ── */
+.profile-recent-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    margin-bottom: 2rem;
+}
+body.dark-mode .profile-recent-card {
+    background: #1e1e1e;
+}
+.profile-recent-card h3 {
+    font-size: 0.875rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--charcoal);
+    margin: 0 0 1rem 0;
+    opacity: 0.7;
+}
+.profile-activity-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.profile-activity-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--cream);
+    font-size: 0.875rem;
+    color: var(--charcoal);
+}
+body.dark-mode .profile-activity-list li { border-bottom-color: #2a2a2a; }
+.profile-activity-list li:last-child { border-bottom: none; }
+.profile-activity-list .activity-date {
+    font-size: 0.75rem;
+    color: var(--charcoal);
+    opacity: 0.6;
+    white-space: nowrap;
+    margin-left: 1rem;
+}
+
+/* ── Value-Added Services status card ── */
+.profile-vas-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--sage);
+}
+body.dark-mode .profile-vas-card { background: #1e1e1e; border-left-color: #a8b361; }
+.profile-vas-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.profile-vas-card__header h3 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: normal;
+    font-size: 1.125rem;
+    color: var(--navy);
+    margin: 0;
+}
+body.dark-mode .profile-vas-card__header h3 { color: #e0e0e0; }
+.profile-vas-badge {
+    display: inline-block;
+    background-color: #2e7d32;
+    color: #ffffff;
+    font-size: 0.6875rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+.profile-vas-meta {
+    font-size: 0.8125rem;
+    color: var(--charcoal);
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+.profile-vas-benefits {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.4rem 1.5rem;
+}
+.profile-vas-benefits li {
+    font-size: 0.875rem;
+    color: var(--charcoal);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.profile-vas-benefits li::before {
+    content: "\2713";
+    color: #2e7d32;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+body.dark-mode .profile-vas-benefits li { color: #c0c0c0; }
+
+/* ── Donation appreciation card (navy, reuses rd-sidebar-donate visually) ── */
+.profile-donate-card {
+    background-color: #09497a;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+}
+body.dark-mode .profile-donate-card { background-color: #0d2a45; }
+.profile-donate-card h3 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: normal;
+    font-size: 1.125rem;
+    color: var(--light-green);
+    margin: 0 0 0.75rem 0;
+}
+.profile-donate-card p {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.55;
+    margin: 0 0 0.5rem 0;
+}
+.profile-donate-card .last-gift {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.65);
+    font-style: italic;
+    margin-bottom: 1.25rem;
+}
+.profile-donate-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+}
+
+/* ── Newsletter preference cards ── */
+.profile-newsletter-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+.profile-nl-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 1.25rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+body.dark-mode .profile-nl-card { background: #1e1e1e; }
+.profile-nl-card__info h4 {
+    font-size: 0.9375rem;
+    font-weight: bold;
+    color: var(--navy);
+    margin: 0 0 0.35rem 0;
+}
+body.dark-mode .profile-nl-card__info h4 { color: #e0e0e0; }
+.profile-nl-card__info p {
+    font-size: 0.8125rem;
+    color: var(--charcoal);
+    line-height: 1.45;
+    margin: 0;
+    opacity: 0.8;
+}
+/* Toggle pill */
+.nl-toggle {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+.nl-toggle__switch {
+    width: 42px;
+    height: 24px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+.nl-toggle__switch.on  { background-color: var(--sage); }
+.nl-toggle__switch.off { background-color: #c0c0c0; }
+.nl-toggle__switch::after {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: #ffffff;
+    border-radius: 50%;
+    top: 3px;
+    transition: left 0.2s;
+}
+.nl-toggle__switch.on::after  { left: 21px; }
+.nl-toggle__switch.off::after { left: 3px; }
+.nl-toggle__label {
+    font-size: 0.6875rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.nl-toggle__label.on  { color: var(--sage); }
+.nl-toggle__label.off { color: #999; }
+
+/* ── Contact Information form view ── */
+.profile-contact-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    margin-bottom: 1.5rem;
+}
+body.dark-mode .profile-contact-card { background: #1e1e1e; }
+.profile-field-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 0.5rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--cream);
+    font-size: 0.9rem;
+    align-items: baseline;
+}
+body.dark-mode .profile-field-row { border-bottom-color: #2a2a2a; }
+.profile-field-row:last-child { border-bottom: none; }
+.profile-field-label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.profile-field-value {
+    color: var(--charcoal);
+}
+body.dark-mode .profile-field-value { color: #c0c0c0; }
+
+/* ── Security section ── */
+.profile-security-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    margin-bottom: 1rem;
+}
+body.dark-mode .profile-security-card { background: #1e1e1e; }
+.profile-security-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.875rem 0;
+    border-bottom: 1px solid var(--cream);
+    font-size: 0.9rem;
+}
+body.dark-mode .profile-security-row { border-bottom-color: #2a2a2a; }
+.profile-security-row:last-child { border-bottom: none; }
+.profile-security-row__label { font-weight: 600; color: var(--charcoal); }
+.profile-security-row__note {
+    font-size: 0.8125rem;
+    color: var(--charcoal);
+    opacity: 0.65;
+}
+body.dark-mode .profile-security-row__label { color: #c0c0c0; }
+
+/* ── Wireframe section switcher (JS show/hide) ── */
+.profile-content-section { display: none; }
+.profile-content-section.active { display: block; }
+
+/* ── Responsive ── */
+@media (max-width: 800px) {
+    .profile-activity-grid { grid-template-columns: 1fr; }
+    .profile-newsletter-grid { grid-template-columns: 1fr; }
+    .profile-vas-benefits { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER PLACEHOLDER (simplified for wireframe) -->
+<div style="background:#09497a; color:#fff; padding:12px 40px; font-size:0.8125rem; font-weight:bold; letter-spacing:1px; text-align:center; opacity:0.6;">
+    [ SITE HEADER + NAVIGATION ]
+</div>
+
+<!-- ============================================================
+     PAGE TITLE BAND
+     ============================================================ -->
+<div class="page-title-band">
+    <span class="jg-tag-sage">Account</span>
+    <h1>My JewishGen Account</h1>
+    <p class="hero-subtitle">Manage your research tools, communication preferences, and account information.</p>
+</div>
+
+<!-- Member ID strip -->
+<div class="profile-id-strip">
+    JewishGen Member ID: <strong>#750352</strong>
+    &nbsp;&middot;&nbsp;
+    Member since: <strong>March 2008</strong>
+</div>
+
+<!-- ============================================================
+     BODY: RD-PATTERN SIDEBAR + CONTENT GRID
+     ============================================================ -->
+<div class="rd-body-wrap">
+    <div class="rd-body-inner">
+
+        <!-- ── LEFT SIDEBAR ── -->
+        <aside class="rd-sidebar">
+            <div class="rd-sidebar-card">
+                <span class="rd-sidebar-label">My Account</span>
+                <a href="#" class="active" onclick="showSection('overview', this); return false;">Overview</a>
+                <a href="#" onclick="showSection('ff', this); return false;">Family Finder</a>
+                <a href="#" onclick="showSection('searches', this); return false;">Saved Searches</a>
+                <a href="#" onclick="showSection('ftjp', this); return false;">Family Tree</a>
+                <a href="#" onclick="showSection('viewmate', this); return false;">ViewMate</a>
+                <a href="#" onclick="showSection('newsletter', this); return false;">Newsletter Preferences</a>
+                <a href="#" onclick="showSection('donations', this); return false;">Donations &amp; Services</a>
+                <a href="#" onclick="showSection('contact', this); return false;">Contact Information</a>
+                <a href="#" onclick="showSection('security', this); return false;">Security</a>
+            </div>
+        </aside>
+
+        <!-- ── MAIN CONTENT ── -->
+        <main>
+
+            <!-- ==============================
+                 OVERVIEW
+                 ============================== -->
+            <div id="section-overview" class="profile-content-section active">
+
+                <h2 class="profile-section-heading">Research Activity</h2>
+                <hr class="profile-section-rule">
+
+                <div class="profile-activity-grid">
+
+                    <div class="profile-stat-card">
+                        <span class="profile-stat-card__label">Family Finder</span>
+                        <span class="profile-stat-card__value">41</span>
+                        <span class="profile-stat-card__sub">entries in JGFF</span>
+                        <a href="#" class="profile-stat-card__link" onclick="showSection('ff', document.querySelector('[onclick*=&quot;ff&quot;]')); return false;">View Entries &rsaquo;</a>
+                    </div>
+
+                    <div class="profile-stat-card">
+                        <span class="profile-stat-card__label">Saved Searches</span>
+                        <span class="profile-stat-card__value">12</span>
+                        <span class="profile-stat-card__sub">searches saved</span>
+                        <a href="#" class="profile-stat-card__link">Manage Searches &rsaquo;</a>
+                    </div>
+
+                    <div class="profile-stat-card">
+                        <span class="profile-stat-card__label">Family Tree</span>
+                        <span class="profile-stat-card__value" style="font-size:1rem; padding-top:0.4rem; color: var(--charcoal); opacity:0.6;">Not submitted</span>
+                        <span class="profile-stat-card__sub">to FTJP</span>
+                        <a href="#" class="profile-stat-card__link">Learn More &rsaquo;</a>
+                    </div>
+
+                </div>
+
+                <h2 class="profile-section-heading">Recent Activity</h2>
+                <hr class="profile-section-rule">
+
+                <div class="profile-recent-card">
+                    <h3>Activity Log</h3>
+                    <ul class="profile-activity-list">
+                        <li>
+                            <span>Family Finder entry updated</span>
+                            <span class="activity-date">March 15, 2026</span>
+                        </li>
+                        <li>
+                            <span>Saved Search created &mdash; Romania, 1880&ndash;1920</span>
+                            <span class="activity-date">March 8, 2026</span>
+                        </li>
+                        <li>
+                            <span>Saved Search created &mdash; Hollander, Galicia</span>
+                            <span class="activity-date">February 22, 2026</span>
+                        </li>
+                        <li>
+                            <span>Last login</span>
+                            <span class="activity-date">June 14, 2026</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Value-Added status summary on overview -->
+                <h2 class="profile-section-heading">Account Status</h2>
+                <hr class="profile-section-rule">
+
+                <div class="profile-vas-card">
+                    <div class="profile-vas-card__header">
+                        <h3>Value-Added Services</h3>
+                        <span class="profile-vas-badge">Active</span>
+                    </div>
+                    <p class="profile-vas-meta">Valid through: <strong>January 1, 2027</strong></p>
+                    <a href="#" class="profile-stat-card__link" style="font-size:0.875rem;">View full details &rsaquo;</a>
+                </div>
+
+            </div>
+            <!-- /overview -->
+
+            <!-- ==============================
+                 FAMILY FINDER
+                 ============================== -->
+            <div id="section-ff" class="profile-content-section">
+                <h2 class="profile-section-heading">JewishGen Family Finder</h2>
+                <hr class="profile-section-rule">
+
+                <div class="profile-recent-card">
+                    <p style="font-size:0.9375rem; color:var(--charcoal); margin:0 0 1rem 0;">
+                        You have <strong>41 entries</strong> in the JewishGen Family Finder.
+                    </p>
+                    <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+                        <a href="#" class="jg-btn jg-btn--primary">View My Entries</a>
+                        <a href="#" class="jg-btn jg-btn--secondary">Edit Entries</a>
+                        <a href="#" class="jg-btn jg-btn--secondary">Add New Entry</a>
+                    </div>
+                </div>
+
+                <div class="profile-recent-card" style="opacity:0.6; pointer-events:none;">
+                    <h3>Entry list will appear here</h3>
+                    <p style="font-size:0.875rem; color:var(--charcoal); margin:0;">[Placeholder &mdash; entry table/list TBD]</p>
+                </div>
+            </div>
+
+            <!-- ==============================
+                 SAVED SEARCHES
+                 ============================== -->
+            <div id="section-searches" class="profile-content-section">
+                <h2 class="profile-section-heading">Saved Searches</h2>
+                <hr class="profile-section-rule">
+
+                <div class="profile-recent-card">
+                    <ul class="profile-activity-list">
+                        <li>
+                            <span>Romania, 1880&ndash;1920 &mdash; <em style="opacity:0.65;">Waas, Hollander</em></span>
+                            <span class="activity-date">Mar 8, 2026</span>
+                        </li>
+                        <li>
+                            <span>Hollander, Galicia &mdash; <em style="opacity:0.65;">All databases</em></span>
+                            <span class="activity-date">Feb 22, 2026</span>
+                        </li>
+                        <li>
+                            <span>Belarus, Minsk &mdash; <em style="opacity:0.65;">Vital records</em></span>
+                            <span class="activity-date">Jan 14, 2026</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ==============================
+                 FAMILY TREE
+                 ============================== -->
+            <div id="section-ftjp" class="profile-content-section">
+                <h2 class="profile-section-heading">Family Tree of the Jewish People</h2>
+                <hr class="profile-section-rule">
+
+                <div class="profile-recent-card">
+                    <p style="font-size:0.9375rem; color:var(--charcoal); margin:0 0 1rem 0;">
+                        You have not submitted your family tree to the FTJP.
+                    </p>
+                    <a href="#" class="jg-btn jg-btn--primary">Learn About FTJP</a>
+                    <span style="margin-left:0.75rem;"><a href="#" class="profile-stat-card__link">View Instructions &rsaquo;</a></span>
+                </div>
+            </div>
+
+            <!-- ==============================
+                 VIEWMATE
+                 ============================== -->
+            <div id="section-viewmate" class="profile-content-section">
+                <h2 class="profile-section-heading">ViewMate</h2>
+                <hr class="profile-section-rule">
+
+                <div class="profile-recent-card">
+                    <ul class="profile-activity-list">
+                        <li><span>Images submitted</span><span class="activity-date">None</span></li>
+                        <li><span>Postings responded to</span><span class="activity-date">None</span></li>
+                    </ul>
+                    <div style="margin-top:1rem;">
+                        <a href="#" class="jg-btn jg-btn--primary">Submit an Image</a>
+                        <span style="margin-left:0.75rem;"><a href="#" class="profile-stat-card__link">Browse ViewMate &rsaquo;</a></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==============================
+                 NEWSLETTER PREFERENCES
+                 ============================== -->
+            <div id="section-newsletter" class="profile-content-section">
+                <h2 class="profile-section-heading">Newsletter Preferences</h2>
+                <hr class="profile-section-rule">
+
+                <div class="profile-newsletter-grid">
+
+                    <div class="profile-nl-card">
+                        <div class="profile-nl-card__info">
+                            <h4>Research Updates</h4>
+                            <p>New records, database additions, and search improvements.</p>
+                        </div>
+                        <div class="nl-toggle">
+                            <button class="nl-toggle__switch on" aria-label="Research Updates subscribed" aria-pressed="true"></button>
+                            <span class="nl-toggle__label on">On</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-nl-card">
+                        <div class="profile-nl-card__info">
+                            <h4>Educational Programs</h4>
+                            <p>Webinars, classes, and learning opportunities.</p>
+                        </div>
+                        <div class="nl-toggle">
+                            <button class="nl-toggle__switch on" aria-label="Educational Programs subscribed" aria-pressed="true"></button>
+                            <span class="nl-toggle__label on">On</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-nl-card">
+                        <div class="profile-nl-card__info">
+                            <h4>Community News</h4>
+                            <p>Announcements, events, and JewishGen updates.</p>
+                        </div>
+                        <div class="nl-toggle">
+                            <button class="nl-toggle__switch off" aria-label="Community News not subscribed" aria-pressed="false"></button>
+                            <span class="nl-toggle__label off">Off</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-nl-card">
+                        <div class="profile-nl-card__info">
+                            <h4>Donor Communications</h4>
+                            <p>Contribution receipts and supporter updates.</p>
+                        </div>
+                        <div class="nl-toggle">
+                            <button class="nl-toggle__switch on" aria-label="Donor Communications subscribed" aria-pressed="true"></button>
+                            <span class="nl-toggle__label on">On</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div style="text-align:right;">
+                    <button class="jg-btn jg-btn--primary">Save Preferences</button>
+                </div>
+            </div>
+
+            <!-- ==============================
+                 DONATIONS & SERVICES
+                 ============================== -->
+            <div id="section-donations" class="profile-content-section">
+                <h2 class="profile-section-heading">Value-Added Services</h2>
+                <hr class="profile-section-rule">
+
+                <div class="profile-vas-card" style="margin-bottom:1.5rem;">
+                    <div class="profile-vas-card__header">
+                        <h3>Value-Added Services</h3>
+                        <span class="profile-vas-badge">Active</span>
+                    </div>
+                    <p class="profile-vas-meta">Valid through: <strong>January 1, 2027</strong></p>
+                    <ul class="profile-vas-benefits">
+                        <li>Advanced Search Filters</li>
+                        <li>Additional Search Rows</li>
+                        <li>Premium Research Features</li>
+                        <li>Priority Support</li>
+                    </ul>
+                </div>
+
+                <h2 class="profile-section-heading" style="margin-top:2rem;">Support JewishGen</h2>
+                <hr class="profile-section-rule">
+
+                <div class="profile-donate-card">
+                    <h3>Thank You for Your Support</h3>
+                    <p>Your contributions help preserve and expand access to Jewish genealogical records worldwide.</p>
+                    <p class="last-gift">Last contribution: March 2026</p>
+                    <div class="profile-donate-actions">
+                        <a href="#" class="rd-btn-donate-full">Make a Contribution</a>
+                        <a href="#" class="jg-back-link-light" style="position:static; font-size:0.8125rem; margin:0; text-align:center;">View Donation History &rsaquo;</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==============================
+                 CONTACT INFORMATION
+                 ============================== -->
+            <div id="section-contact" class="profile-content-section">
+                <h2 class="profile-section-heading">Contact Information</h2>
+                <hr class="profile-section-rule">
+
+                <div class="profile-contact-card">
+                    <div class="profile-field-row">
+                        <span class="profile-field-label">Name</span>
+                        <span class="profile-field-value">Caitlin Hollander Waas</span>
+                    </div>
+                    <div class="profile-field-row">
+                        <span class="profile-field-label">Address</span>
+                        <span class="profile-field-value">387 Huguenot Street, Apt 3D<br>New Rochelle, NY 10801<br>United States</span>
+                    </div>
+                    <div class="profile-field-row">
+                        <span class="profile-field-label">Telephone</span>
+                        <span class="profile-field-value">(813) 480-1177</span>
+                    </div>
+                    <div class="profile-field-row">
+                        <span class="profile-field-label">Email</span>
+                        <span class="profile-field-value">chollander@jewishgen.org</span>
+                    </div>
+                </div>
+
+                <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+                    <a href="#" class="jg-btn jg-btn--primary">Edit Contact Information</a>
+                </div>
+            </div>
+
+            <!-- ==============================
+                 SECURITY
+                 ============================== -->
+            <div id="section-security" class="profile-content-section">
+                <h2 class="profile-section-heading">Security</h2>
+                <hr class="profile-section-rule">
+
+                <div class="profile-security-card">
+                    <div class="profile-security-row">
+                        <div>
+                            <div class="profile-security-row__label">Password</div>
+                            <div class="profile-security-row__note">Last changed: unknown</div>
+                        </div>
+                        <a href="#" class="jg-btn jg-btn--secondary" style="font-size:0.8125rem;">Change Password</a>
+                    </div>
+                    <div class="profile-security-row">
+                        <div>
+                            <div class="profile-security-row__label">Delete Account</div>
+                            <div class="profile-security-row__note">Permanently remove your JewishGen account and data.</div>
+                        </div>
+                        <a href="#" class="jg-btn" style="font-size:0.8125rem; background:transparent; border:2px solid #c0392b; color:#c0392b; border-radius:6px; padding:0.4rem 0.9rem;">Delete Account</a>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        <!-- /main -->
+
+    </div><!-- /rd-body-inner -->
+</div><!-- /rd-body-wrap -->
+
+<!-- FOOTER PLACEHOLDER -->
+<div style="background:var(--white); border-top:1px solid var(--cream); color:var(--charcoal); padding:20px 40px; font-size:0.8125rem; text-align:center; opacity:0.6; margin-top:auto;">
+    [ SITE FOOTER ]
+</div>
+
+<!-- ============================================================
+     DARK MODE TOGGLE (wireframe utility)
+     ============================================================ -->
+<button onclick="document.body.classList.toggle('dark-mode')"
+    style="position:fixed; bottom:20px; right:20px; z-index:9999;
+           background:#09497a; color:#fff; border:none; border-radius:20px;
+           padding:8px 16px; font-size:12px; font-weight:bold; cursor:pointer;
+           box-shadow:0 2px 8px rgba(0,0,0,0.3);">
+    Toggle Dark Mode
+</button>
+
+<script>
+// Section switcher for wireframe
+function showSection(id, clickedEl) {
+    // Hide all sections
+    document.querySelectorAll('.profile-content-section').forEach(function(s) {
+        s.classList.remove('active');
+    });
+    // Show target
+    var target = document.getElementById('section-' + id);
+    if (target) target.classList.add('active');
+
+    // Update sidebar active state
+    document.querySelectorAll('.rd-sidebar-card a').forEach(function(a) {
+        a.classList.remove('active');
+    });
+    // Find the right sidebar link
+    document.querySelectorAll('.rd-sidebar-card a').forEach(function(a) {
+        if (a.getAttribute('onclick') && a.getAttribute('onclick').indexOf("'" + id + "'") !== -1) {
+            a.classList.add('active');
+        }
+    });
+}
+
+// Newsletter toggle interaction
+document.querySelectorAll('.nl-toggle__switch').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        var label = this.nextElementSibling;
+        if (this.classList.contains('on')) {
+            this.classList.remove('on');
+            this.classList.add('off');
+            this.setAttribute('aria-pressed', 'false');
+            label.textContent = 'Off';
+            label.className = 'nl-toggle__label off';
+        } else {
+            this.classList.remove('off');
+            this.classList.add('on');
+            this.setAttribute('aria-pressed', 'true');
+            label.textContent = 'On';
+            label.className = 'nl-toggle__label on';
+        }
+    });
+});
+</script>
+
+</body>
+</html>
